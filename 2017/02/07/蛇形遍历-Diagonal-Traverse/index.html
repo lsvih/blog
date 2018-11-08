@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '6U6P1RGK4F',
+      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
+      indexName: 'lsvih',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Input: [[ 1, 2, 3 ],  [ 4, 5, 6 ],  [ 7, 8, 9 ]] Output:  [1,2,4,7,5,3,6,8,9] Explanation:  像蛇爬行一样沿着对角线来回遍历整个矩阵。 提供一种很容易实现的解题思路： 在遍历过程中有几种情况：向右遍历、向下遍历、向左下遍历、向右上遍历。 给定两个变量x,y(记做matrix[x][y])记录当前坐标，就能通过">
+<meta name="keywords" content="note,Algorithm,code,python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蛇形遍历(Diagonal Traverse)">
+<meta property="og:url" content="https://lsvih.com/2017/02/07/蛇形遍历-Diagonal-Traverse/index.html">
+<meta property="og:site_name" content="My note">
+<meta property="og:description" content="Input: [[ 1, 2, 3 ],  [ 4, 5, 6 ],  [ 7, 8, 9 ]] Output:  [1,2,4,7,5,3,6,8,9] Explanation:  像蛇爬行一样沿着对角线来回遍历整个矩阵。 提供一种很容易实现的解题思路： 在遍历过程中有几种情况：向右遍历、向下遍历、向左下遍历、向右上遍历。 给定两个变量x,y(记做matrix[x][y])记录当前坐标，就能通过">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://lsvih.com/images/pasted-107.png">
+<meta property="og:updated_time" content="2018-10-28T16:13:19.719Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="蛇形遍历(Diagonal Traverse)">
+<meta name="twitter:description" content="Input: [[ 1, 2, 3 ],  [ 4, 5, 6 ],  [ 7, 8, 9 ]] Output:  [1,2,4,7,5,3,6,8,9] Explanation:  像蛇爬行一样沿着对角线来回遍历整个矩阵。 提供一种很容易实现的解题思路： 在遍历过程中有几种情况：向右遍历、向下遍历、向左下遍历、向右上遍历。 给定两个变量x,y(记做matrix[x][y])记录当前坐标，就能通过">
+<meta name="twitter:image" content="https://lsvih.com/images/pasted-107.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://lsvih.com/2017/02/07/蛇形遍历-Diagonal-Traverse/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>蛇形遍历(Diagonal Traverse) | My note</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">lsvih</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/02/07/蛇形遍历-Diagonal-Traverse/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">蛇形遍历(Diagonal Traverse)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-02-07 14:30:00" itemprop="dateCreated datePublished" datetime="2017-02-07T14:30:00+08:00">2017-02-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-29 00:13:19" itemprop="dateModified" datetime="2018-10-29T00:13:19+08:00">2018-10-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>Input:</strong></p>
+<p>[[ 1, 2, 3 ],</p>
+<p> [ 4, 5, 6 ],</p>
+<p> [ 7, 8, 9 ]]</p>
+<p><strong>Output:</strong>  [1,2,4,7,5,3,6,8,9]</p>
+<p><strong>Explanation:</strong></p>
+<p><img src="/images/pasted-107.png" alt="upload successful"></p>
+<p>像蛇爬行一样沿着对角线来回遍历整个矩阵。</p>
+<p>提供一种很容易实现的解题思路：</p>
+<p>在遍历过程中有几种情况：向右遍历、向下遍历、向左下遍历、向右上遍历。</p>
+<p>给定两个变量x,y(记做matrix[x][y])记录当前坐标，就能通过判断这几个方向决定下一个坐标位置。</p>
+<p>例如，向左下遍历即x++,y–，如果x已经到矩阵下边界则转向右遍历；如果x未到矩阵下边界,y到矩阵左边界则向下遍历；如果xy都未到矩阵边界则继续向左下遍历。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">state,x,y,M,N = <span class="string">'right_up'</span>,<span class="number">0</span>,<span class="number">0</span>,len(matrix),len(matrix[<span class="number">0</span>])</span><br><span class="line"><span class="keyword">if</span> state == <span class="string">'left_down'</span>:</span><br><span class="line">    rs.append(matrix[x][y])</span><br><span class="line">    <span class="keyword">if</span> x == M<span class="number">-1</span> <span class="keyword">or</span> y == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> x == M<span class="number">-1</span>:</span><br><span class="line">            y += <span class="number">1</span></span><br><span class="line">            state = <span class="string">'right_after_left_down'</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            x += <span class="number">1</span></span><br><span class="line">            state = <span class="string">'down_after_left_down'</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            x += <span class="number">1</span></span><br><span class="line">            y -= <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>依次类推，可以将所有情况与边界情况都列出来。</p>
+<p>同时需要排除三种特殊情况：当矩阵为空时不存在遍历结果；当矩阵行或列为1时直接将矩阵从上至下遍历。</p>
+<p>经简化可写出解法(result)：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findDiagonalOrder</span><span class="params">(matrix)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    :type matrix: List[List[int]]</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> matrix == []:<span class="keyword">return</span> []</span><br><span class="line">    rs,state,x,y,M,N = [],<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,len(matrix),len(matrix[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">if</span> M == <span class="number">1</span> <span class="keyword">or</span> N == <span class="number">1</span>:<span class="keyword">return</span> reduce(<span class="keyword">lambda</span> x,y:x+y,matrix)</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        rs.append(matrix[x][y])</span><br><span class="line">        <span class="keyword">if</span> x == M<span class="number">-1</span> <span class="keyword">and</span> y == N<span class="number">-1</span>:<span class="keyword">return</span> rs</span><br><span class="line">        <span class="keyword">elif</span> state == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> x == <span class="number">0</span> <span class="keyword">or</span> y == N<span class="number">-1</span>:</span><br><span class="line">                <span class="keyword">if</span> y == N<span class="number">-1</span>:x,state = x+<span class="number">1</span>,<span class="number">2</span></span><br><span class="line">                <span class="keyword">else</span>:y,state = y+<span class="number">1</span>,<span class="number">5</span></span><br><span class="line">            <span class="keyword">else</span>:x,y = x<span class="number">-1</span>,y+<span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">if</span> x == M<span class="number">-1</span> <span class="keyword">or</span> y == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">if</span> x == M<span class="number">-1</span>:y,state = y+<span class="number">1</span>,<span class="number">4</span></span><br><span class="line">                <span class="keyword">else</span>:x,state = x+<span class="number">1</span>,<span class="number">3</span></span><br><span class="line">            <span class="keyword">else</span>:x,y = x+<span class="number">1</span>,y<span class="number">-1</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="number">3</span> <span class="keyword">or</span> state == <span class="number">4</span>:x,y,state = x<span class="number">-1</span>,y+<span class="number">1</span>,<span class="number">0</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="number">2</span> <span class="keyword">or</span> state == <span class="number">5</span>:x,y,state = x+<span class="number">1</span>,y<span class="number">-1</span>,<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>其中每个元素都被处理过一遍，其时间复杂度为O(n)</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/note/" rel="tag"># note</a>
+          
+            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+          
+            <a href="/tags/code/" rel="tag"># code</a>
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/31/Python-collections模块中的Counter/" rel="next" title="Python collections模块中的Counter">
+                <i class="fa fa-chevron-left"></i> Python collections模块中的Counter
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/18/旋转生成矩阵-Spiral-Matrix/" rel="prev" title="旋转生成矩阵(Spiral Matrix)">
+                旋转生成矩阵(Spiral Matrix) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lsvih</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">139</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">165</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lsvih</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

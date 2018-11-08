@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '6U6P1RGK4F',
+      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
+      indexName: 'lsvih',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="无论是教导新手还是资深 Python 程序员，我都发现 很多 Python 程序员没有充分利用多重赋值这一特性。 多重赋值（也经常被称为元组解包或者可迭代对象解包）能让你在一行代码内同时对多个变量进行赋值。这种特性在学习时看起来很简单，但在真正需要使用时再去回想它可能会比较麻烦。 在本文中，将介绍什么是多重赋值，举一些常用的多重赋值的样例，并了解一些较少用、常被忽视的多重赋值用法。 请注意在本文中">
+<meta name="keywords" content="Python,语法糖,多重赋值,元组解包,代码可读性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用多重赋值与元组解包提升 Python 代码的可读性">
+<meta property="og:url" content="https://lsvih.com/2018/07/04/使用多重赋值与元组解包提升-Python-代码的可读性/index.html">
+<meta property="og:site_name" content="My note">
+<meta property="og:description" content="无论是教导新手还是资深 Python 程序员，我都发现 很多 Python 程序员没有充分利用多重赋值这一特性。 多重赋值（也经常被称为元组解包或者可迭代对象解包）能让你在一行代码内同时对多个变量进行赋值。这种特性在学习时看起来很简单，但在真正需要使用时再去回想它可能会比较麻烦。 在本文中，将介绍什么是多重赋值，举一些常用的多重赋值的样例，并了解一些较少用、常被忽视的多重赋值用法。 请注意在本文中">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-28T16:13:09.827Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用多重赋值与元组解包提升 Python 代码的可读性">
+<meta name="twitter:description" content="无论是教导新手还是资深 Python 程序员，我都发现 很多 Python 程序员没有充分利用多重赋值这一特性。 多重赋值（也经常被称为元组解包或者可迭代对象解包）能让你在一行代码内同时对多个变量进行赋值。这种特性在学习时看起来很简单，但在真正需要使用时再去回想它可能会比较麻烦。 在本文中，将介绍什么是多重赋值，举一些常用的多重赋值的样例，并了解一些较少用、常被忽视的多重赋值用法。 请注意在本文中">
+
+
+
+
+
+
+  <link rel="canonical" href="https://lsvih.com/2018/07/04/使用多重赋值与元组解包提升-Python-代码的可读性/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>使用多重赋值与元组解包提升 Python 代码的可读性 | My note</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">lsvih</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/07/04/使用多重赋值与元组解包提升-Python-代码的可读性/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用多重赋值与元组解包提升 Python 代码的可读性
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-04 10:16:00" itemprop="dateCreated datePublished" datetime="2018-07-04T10:16:00+08:00">2018-07-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-29 00:13:09" itemprop="dateModified" datetime="2018-10-29T00:13:09+08:00">2018-10-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>无论是教导新手还是资深 Python 程序员，我都发现 <strong>很多 Python 程序员没有充分利用多重赋值这一特性</strong>。</p>
+<p>多重赋值（也经常被称为元组解包或者可迭代对象解包）能让你在一行代码内同时对多个变量进行赋值。这种特性在学习时看起来很简单，但在真正需要使用时再去回想它可能会比较麻烦。</p>
+<p>在本文中，将介绍什么是多重赋值，举一些常用的多重赋值的样例，并了解一些较少用、常被忽视的多重赋值用法。</p>
+<p>请注意在本文中会用到 <a href="https://cito.github.io/blog/f-strings/" target="_blank" rel="noopener">f-strings</a> 这种 Python 3.6 以上版本才有的特性，如果你的 Python 版本较老，可以使用字符串的 <code>format</code> 方法来代替这种特性。</p>
+<h2 id="多重赋值的实现原理"><a href="#多重赋值的实现原理" class="headerlink" title="多重赋值的实现原理"></a>多重赋值的实现原理</h2><p>在本文中，我将使用“多重赋值”、“元组解包”、“迭代对象解包”等不同的词，但他们其实表示的是同一个东西。</p>
+<p>Python 的多重赋值如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x, y = 10, 20</span><br></pre></td></tr></table></figure>
+<p>在这儿我们将 <code>x</code> 设为了 <code>10</code>，<code>y</code> 设为了 <code>20</code>。</p>
+<p>从更底层的角度看，我们其实是创建了一个 <code>10, 20</code> 的元组，然后遍历这个元组，将拿到的两个数字按照顺序分别赋给 <code>x</code> 与 <code>y</code>。</p>
+<p>写成下面这种语法应该更容易理解：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; (x, y) = (10, 20)</span><br></pre></td></tr></table></figure>
+<p>在 Python 中，元组周围的括号是可以忽略的，因此在“多重赋值”（写成上面这种元组形式的语法）时也可以省去。下面几行代码都是等价的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x, y = 10, 20</span><br><span class="line">&gt;&gt;&gt; x, y = (10, 20)</span><br><span class="line">&gt;&gt;&gt; (x, y) = 10, 20</span><br><span class="line">&gt;&gt;&gt; (x, y) = (10, 20)</span><br></pre></td></tr></table></figure>
+<p>多重赋值常被直接称为“元组解包”，因为它在大多数情况下都是用于元组。但其实我们可以用除了元组之外的任何可迭代对象进行多重赋值。下面是使用列表（list）的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x, y = [10, 20]</span><br><span class="line">&gt;&gt;&gt; x</span><br><span class="line">10</span><br><span class="line">&gt;&gt;&gt; y</span><br><span class="line">20</span><br></pre></td></tr></table></figure>
+<p>下面是使用字符串（string）的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x, y = &apos;hi&apos;</span><br><span class="line">&gt;&gt;&gt; x</span><br><span class="line">&apos;h&apos;</span><br><span class="line">&gt;&gt;&gt; y</span><br><span class="line">&apos;i&apos;</span><br></pre></td></tr></table></figure>
+<p>任何可以用于循环的东西都能和元组解包、多重赋值一样被“解开”。</p>
+<p>下面是另一个可以证明多重赋值能用于任何数量、任何变量（甚至是我们自己创建的对象）的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; point = 10, 20, 30</span><br><span class="line">&gt;&gt;&gt; x, y, z = point</span><br><span class="line">&gt;&gt;&gt; print(x, y, z)</span><br><span class="line">10 20 30</span><br><span class="line">&gt;&gt;&gt; (x, y, z) = (z, y, x)</span><br><span class="line">&gt;&gt;&gt; print(x, y, z)</span><br><span class="line">30 20 10</span><br></pre></td></tr></table></figure>
+<p>请注意，在上面例子中的最后一行我们仅交换了变量的名称。多重赋值可以让我们轻松地实现这种情形。</p>
+<p>下面我们将讨论如何使用多重赋值。</p>
+<h2 id="在-for-循环中解包"><a href="#在-for-循环中解包" class="headerlink" title="在 for 循环中解包"></a>在 for 循环中解包</h2><p>你会经常在 <code>for</code> 循环中看到多重赋值。下面举例说明：</p>
+<p>先创建一个字典（dict）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; person_dictionary = &#123;&apos;name&apos;: &quot;Trey&quot;, &apos;company&apos;: &quot;Truthful Technology LLC&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p>下面这种循环遍历字典的方法比较少见：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for item in person_dictionary.items():</span><br><span class="line">    print(f&quot;Key &#123;item[0]&#125; has value &#123;item[1]&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>但你会经常看到 Python 程序员通过多重赋值来这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for key, value in person_dictionary.items():</span><br><span class="line">    print(f&quot;Key &#123;key&#125; has value &#123;value&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>当你在 for 循环中写 <code>for X in Y</code> 时，其实是告诉 Python 在循环的每次遍历时都对 <code>X</code> 做一次赋值。与用 <code>=</code> 符号赋值一样，这儿也可以使用多重赋值。</p>
+<p>这种写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for key, value in person_dictionary.items():</span><br><span class="line">    print(f&quot;Key &#123;key&#125; has value &#123;value&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>在本质上与这种写法是一致的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for item in person_dictionary.items():</span><br><span class="line">    key, value = item</span><br><span class="line">    print(f&quot;Key &#123;key&#125; has value &#123;value&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>与前一个例子相比，我们其实就是去掉了一个没有必要的额外赋值。</p>
+<p>因此，多重赋值在用于将字典元素解包为键值对时十分有用。此外，它还在其它地方也可以使用：</p>
+<p>在内置函数 <code>enumerate</code> 的值拆分成对时，也是多重赋值的一个很有用的场景：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for i, line in enumerate(my_file):</span><br><span class="line">    print(f&quot;Line &#123;i&#125;: &#123;line&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>还有 <code>zip</code> 函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for color, ratio in zip(colors, ratios):</span><br><span class="line">    print(f&quot;It&apos;s &#123;ratio*100&#125;% &#123;color&#125;.&quot;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for (product, price, color) in zip(products, prices, colors):</span><br><span class="line">    print(f&quot;&#123;product&#125; is &#123;color&#125; and costs $&#123;price:.2f&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>如果你还对 <code>enumerate</code> 和 <code>zip</code> 不熟悉，请参阅作者之前的文章 <a href="http://treyhunner.com/2016/04/how-to-loop-with-indexes-in-python/" target="_blank" rel="noopener">looping with indexes in Python</a>。</p>
+<p>有些 Python 新手经常在 <code>for</code> 循环中看到多重赋值，然后就认为它只能与循环一起使用。但其实，多重赋值不仅可以用在循环赋值时，还可以用在其它任何需要赋值的地方。</p>
+<h2 id="替代硬编码索引"><a href="#替代硬编码索引" class="headerlink" title="替代硬编码索引"></a>替代硬编码索引</h2><p>很少有人在代码中对索引进行硬编码（比如 <code>point[0]</code>、<code>items[1]</code>、<code>vals[-1]</code>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(f&quot;The first item is &#123;items[0]&#125; and the last item is &#123;items[-1]&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>当你在 Python 代码中看到有硬编码索引时，一般都可以设法<strong>使用多重赋值来让你的代码更具可读性</strong>。</p>
+<p>下面是一些使用了硬编码索引的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reformat_date</span><span class="params">(mdy_date_string)</span>:</span></span><br><span class="line">    <span class="string">"""Reformat MM/DD/YYYY string into YYYY-MM-DD string."""</span></span><br><span class="line">    date = mdy_date_string.split(<span class="string">'/'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f"<span class="subst">&#123;date[<span class="number">2</span>]&#125;</span>-<span class="subst">&#123;date[<span class="number">0</span>]&#125;</span>-<span class="subst">&#123;date[<span class="number">1</span>]&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<p>我们可以通过多重赋值，分别对月、天、年三个变量进行赋值，让代码更具可读性：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reformat_date</span><span class="params">(mdy_date_string)</span>:</span></span><br><span class="line">    <span class="string">"""Reformat MM/DD/YYYY string into YYYY-MM-DD string."""</span></span><br><span class="line">    month, day, year = mdy_date_string.split(<span class="string">'/'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f"<span class="subst">&#123;year&#125;</span>-<span class="subst">&#123;month&#125;</span>-<span class="subst">&#123;day&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<p>因此当你准备对索引进行硬编码时，请停下来想一想是不是应该用多重赋值来改善代码的可读性。</p>
+<h2 id="多重赋值是十分严格的"><a href="#多重赋值是十分严格的" class="headerlink" title="多重赋值是十分严格的"></a>多重赋值是十分严格的</h2><p>在我们对可迭代对象进行解包时，多重赋值的条件是非常严格的。</p>
+<p>如果将一个较大的可迭代对象解包到一组数量更小的对象中，会报下面的错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x, y = (10, 20, 30)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">    File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">ValueError: too many values to unpack (expected 2)</span><br></pre></td></tr></table></figure>
+<p>如果将一个较小的可迭代对象解包到一组数量更多的对象中，会报下面的错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x, y, z = (10, 20)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">    File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">ValueError: not enough values to unpack (expected 3, got 2)</span><br></pre></td></tr></table></figure>
+<p>这种严格的限制其实很棒，如果我们在处理元素时出现了非预期的对象数量，多重赋值会直接报错，这样我们就能发现一些还没有被发现的 bug。</p>
+<p>举个例子。假设我们有一个简单的命令行程序，通过原始的方式接受参数，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line"></span><br><span class="line">new_file = sys.argv[1]</span><br><span class="line">old_file = sys.argv[2]</span><br><span class="line">print(f&quot;Copying &#123;new_file&#125; to &#123;old_file&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>这个程序希望接受两个参数，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ my_program.py file1.txt file2.txt</span><br><span class="line">Copying file1.txt to file2.txt</span><br></pre></td></tr></table></figure>
+<p>但如果在运行程序时输入了三个参数，也不会有任何报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ my_program.py file1.txt file2.txt file3.txt</span><br><span class="line">Copying file1.txt to file2.txt</span><br></pre></td></tr></table></figure>
+<p>由于我们没有验证接收到的参数是否为 2 个，因此不会报错。</p>
+<p>如果使用多重赋值来代替硬编码索引，在赋值时将会验证程序是否真的接收到了期望个数的参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line"></span><br><span class="line">_, new_file, old_file = sys.argv</span><br><span class="line">print(f&quot;Copying &#123;new_file&#125; to &#123;old_file&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 我们用了一个名为 <code>_</code> 的变量，意思是我们不想关注 <code>sys.argv[0]</code>（对应的是我们程序的名称）。用 <code>_</code> 对象来忽略不需关注的变量是一种常用的语法。</p>
+<h2 id="替代数组拆分"><a href="#替代数组拆分" class="headerlink" title="替代数组拆分"></a>替代数组拆分</h2><p>根据上文，我们一直多重赋值可以用来代替硬编码的索引，并且它严格的条件可以确保我们处理的元组或可迭代对象的大小是正确的。</p>
+<p>此外，多重赋值还能用于代替硬编码的数组拆分。</p>
+<p>“拆分”是一种手动将 list 或其它序列中的部分元素取出的方法、</p>
+<p>下面是一种用数字索引进行“硬编码”拆分的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">all_after_first = items[1:]</span><br><span class="line">all_but_last_two = items[:-2]</span><br><span class="line">items_with_ends_removed = items[1:-1]</span><br></pre></td></tr></table></figure>
+<p>当你在拆分时发现没有在拆分索引中用到变量，那么就能用多重赋值来替代它。为了实现多重赋值拆分数组，我们将用到一个之前没提过的特性：<code>*</code> 符号。</p>
+<p><code>*</code> 符号于 Python 3 中加入了多重赋值的语法中，它可以让我们在解包时拿到“剩余”的元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; numbers = [1, 2, 3, 4, 5, 6]</span><br><span class="line">&gt;&gt;&gt; first, *rest = numbers</span><br><span class="line">&gt;&gt;&gt; rest</span><br><span class="line">[2, 3, 4, 5, 6]</span><br><span class="line">&gt;&gt;&gt; first</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<p>因此，<code>*</code> 可以让我们在取数组末尾时替换硬编码拆分。</p>
+<p>下面两行是等价的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; beginning, last = numbers[:-1], numbers[-1]</span><br><span class="line">&gt;&gt;&gt; *beginning, last = numbers</span><br></pre></td></tr></table></figure>
+<p>下面两行也是等价的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; head, middle, tail = numbers[0], numbers[1:-1], numbers[-1]</span><br><span class="line">&gt;&gt;&gt; head, *middle, tail = numbers</span><br></pre></td></tr></table></figure>
+<p>有了 <code>*</code> 和多重赋值之后，你可以替换一切类似于下面这样的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">main(sys.argv[0], sys.argv[1:])</span><br></pre></td></tr></table></figure>
+<p>可以写成下面这种更具自描述性的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">program_name, *arguments = sys.argv</span><br><span class="line">main(program_name, arguments)</span><br></pre></td></tr></table></figure>
+<p>总之，如果你写了硬编码的拆分代码，请考虑一下你可以用多重赋值来让这些拆分的逻辑更加清晰。</p>
+<h2 id="深度解包"><a href="#深度解包" class="headerlink" title="深度解包"></a>深度解包</h2><p>这个特性是 Python 程序员长期以来经常忽略的一个东西。它虽然不如我之前提到的几种多重复值用法常用，但是当你用到它的时候会深刻体会到它的好处。</p>
+<p>在前文，我们已经看到多重赋值用于解包元组或者其它的可迭代对象，但还没看过它<strong>更进一步</strong>地进行深度解包。</p>
+<p>下面例子中的多重赋值是<strong>浅度</strong>的，因为它只进行了一层的解包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; color, point = (&quot;red&quot;, (1, 2, 3))</span><br><span class="line">&gt;&gt;&gt; color</span><br><span class="line">&apos;red&apos;</span><br><span class="line">&gt;&gt;&gt; point</span><br><span class="line">(1, 2, 3)</span><br></pre></td></tr></table></figure>
+<p>而下面这种多重赋值可以认为是<strong>深度</strong>的，因为它将 <code>point</code> 元组也进一步解包成了 <code>x</code>、<code>y</code>、<code>z</code> 变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; color, (x, y, z) = (&quot;red&quot;, (1, 2, 3))</span><br><span class="line">&gt;&gt;&gt; color</span><br><span class="line">&apos;red&apos;</span><br><span class="line">&gt;&gt;&gt; x</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; y</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<p>上面的例子可能比较让人迷惑，所以我们在赋值语句两端加上括号来让这个例子更加明了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; (color, (x, y, z)) = (&quot;red&quot;, (1, 2, 3))</span><br></pre></td></tr></table></figure>
+<p>可以看到在第一层解包时得到了两个对象，但是这个语句将第二个对象再次解包，得到了另外的三个对象。然后将第一个对象及新解出的三个对象赋值给了新的对象（<code>color</code>、<code>x</code>、<code>y</code>、<code>z</code>）。</p>
+<p>下面以这两个 list 为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">start_points = [(1, 2), (3, 4), (5, 6)]</span><br><span class="line">end_points = [(-1, -2), (-3, 4), (-6, -5)]</span><br></pre></td></tr></table></figure>
+<p>下面的代码是举例用浅层解包来处理上面的两个 list：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for start, end in zip(start_points, end_points):</span><br><span class="line">    if start[0] == -end[0] and start[1] == -end[1]:</span><br><span class="line">        print(f&quot;Point &#123;start[0]&#125;,&#123;start[1]&#125; was negated.&quot;)</span><br></pre></td></tr></table></figure>
+<p>下面用深度解包来做同样的事情：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (x1, y1), (x2, y2) in zip(start_points, end_points):</span><br><span class="line">    if x1 == -x2 and y1 == -y2:</span><br><span class="line">        print(f&quot;Point &#123;x1&#125;,&#123;y1&#125; was negated.&quot;)</span><br></pre></td></tr></table></figure>
+<p>请注意在第二个例子中，在处理对象时，对象的类型明显更加清晰易懂。深度解包让我们可以明显的看到，在每次循环中我们都会收到两个二元组。</p>
+<p>深度解包通常会在每次得到多个元素的嵌套循环中使用。例如，你能在同时使用 <code>enumerate</code> 与 <code>zip</code> 时应用深度多重赋值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">items = [1, 2, 3, 4, 2, 1]</span><br><span class="line">for i, (first, last) in enumerate(zip(items, reversed(items))):</span><br><span class="line">    if first != last:</span><br><span class="line">        raise ValueError(f&quot;Item &#123;i&#125; doesn&apos;t match: &#123;first&#125; != &#123;last&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>前面我提到过多重赋值对于可迭代对象的大小以及解包的大小是非常严格的，在复读解包中我们也可以利用这点<strong>严格控制可迭代对象的大小</strong>。</p>
+<p>这么写可以正常运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; points = ((1, 2), (-1, -2))</span><br><span class="line">&gt;&gt;&gt; points[0][0] == -points[1][0] and points[0][1] == -point[1][1]</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<p>这种看起来 bug 的代码也能正常运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; points = ((1, 2, 4), (-1, -2, 3), (6, 4, 5))</span><br><span class="line">&gt;&gt;&gt; points[0][0] == -points[1][0] and points[0][1] == -point[1][1]</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<p>这种写法也能运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; points = ((1, 2), (-1, -2))</span><br><span class="line">&gt;&gt;&gt; (x1, y1), (x2, y2) = points</span><br><span class="line">&gt;&gt;&gt; x1 == -x2 and y1 == -y2</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<p>但是这样不行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; points = ((1, 2, 4), (-1, -2, 3), (6, 4, 5))</span><br><span class="line">&gt;&gt;&gt; (x1, y1), (x2, y2) = points</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">    File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">ValueError: too many values to unpack (expected 2)</span><br></pre></td></tr></table></figure>
+<p>在给变量多重赋值时我们其实也对可迭代对象做了一次特殊的断言（assert）。因此多重赋值既能让别人更容易理清你的代码（<strong>因为有着更好的代码可读性</strong>），也能让电脑更好地理解你的代码（<strong>因为对代码进行了确认保证了正确性</strong>）。</p>
+<h2 id="使用-list-类型语法"><a href="#使用-list-类型语法" class="headerlink" title="使用 list 类型语法"></a>使用 list 类型语法</h2><p>在前文我提到的多重赋值都用的是元组类型的语法（tuple-like），但其实多重赋值可以用于任何可迭代对象。而这种类似元组的语法也使得多重赋值常被称为“元组解包”。而更准确地来说，多重赋值应该叫做“可迭代对象解包”。</p>
+<p>前文中我还没有提到过，多重赋值可以写成 list 类型的语法（list-like）。</p>
+<p>下面是一个应用 list 语法的最简单多重赋值示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; [x, y, z] = 1, 2, 3</span><br><span class="line">&gt;&gt;&gt; x</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<p>这种写法看起来很奇怪。为什么在元组语法之外还要允许这种 list 语法呢？</p>
+<p>我也很少使用这种特性，但它在一些特殊情况下能让代码更加<strong>简洁</strong>。</p>
+<p>举例，假设我有下面这种代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def most_common(items):</span><br><span class="line">    return Counter(items).most_common(1)[0][0]</span><br></pre></td></tr></table></figure>
+<p>我们用心良苦的同事决定用深度多重赋值将代码重构成下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def most_common(items):</span><br><span class="line">    (value, times_seen), = Counter(items).most_common(1)</span><br><span class="line">    return value</span><br></pre></td></tr></table></figure>
+<p>看到赋值语句左侧的最后一个逗号了吗？很容易会将它漏掉，而且这个逗号让代码看起来不伦不类。这个逗号在这段代码中是做什么事的呢？</p>
+<p>此处的尾部逗号其实是构造了一个单元素的元组，然后对此处进行深度解包。</p>
+<p>可以将上面的代码换种写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def most_common(items):</span><br><span class="line">    ((value, times_seen),) = Counter(items).most_common(1)</span><br><span class="line">    return value</span><br></pre></td></tr></table></figure>
+<p>这种写法让深度解包的语法更加明显了。但我更喜欢下面这种写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def most_common(items):</span><br><span class="line">    [(value, times_seen)] = Counter(items).most_common(1)</span><br><span class="line">    return value</span><br></pre></td></tr></table></figure>
+<p>赋值中的 list 语法让它更加的清晰，可以明确看出我们将一个单元素可迭代对象进行了解包，并将单元素又解包并赋值给 <code>value</code> 与 <code>times_seen</code> 对象。</p>
+<p>当我看到这种代码时，可以非常确定我们解包的是一个单元组 list（事实上代码做的也正是这个）。我们在此处用了 collections 模组中的 <a href="https://docs.python.org/3/library/collections.html#collections.Counter" target="_blank" rel="noopener">Counter</a> 对象。<code>Counter</code> 对象的 <code>most_common</code> 方法可以让我们指定返回 list 的长度。在此处我们将 list 限制为仅返回一个元素。</p>
+<p>当你在解包有很多的值的结构（比如说 list）或者有确定个数值的结构（比如说元组）时，可以考虑用 list 语法来对这些类似 list 的结构进行解包，这样能让代码更加具有“语法正确性”。</p>
+<p>如果你乐意，还可以用对类 list 结构使用 list 语法解包时应用一些 list 的语法（常见的例子为在多重赋值时使用 <code>*</code> 符号）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; [first, *rest] = numbers</span><br></pre></td></tr></table></figure>
+<p>我自己其实不常用这种写法，因为我没有这个习惯。但如果你觉得这种写法有用，可以考虑在你自己的代码中用上它。</p>
+<p>结论：当你在代码中用多重赋值时，可以考虑在何时的时候用 list 语法来让你的代码更具自解释性并更加简洁。这有时也能提升代码的可读性。</p>
+<h2 id="不要忘记这些多重赋值的用法"><a href="#不要忘记这些多重赋值的用法" class="headerlink" title="不要忘记这些多重赋值的用法"></a>不要忘记这些多重赋值的用法</h2><p>多重赋值可以提高代码的可读性与正确性。它能使你代码<strong>更具自描述性</strong>，同时也可以对正在进行解包的可迭代对象的<strong>大小</strong>进行隐式断言。</p>
+<p>据我观察，人们经常忘记多重赋值可以<strong>替换硬编码索引</strong>，以及<strong>替换硬编码拆分</strong>（用 <code>*</code> 语法）。深度多重赋值，以及同时使用元组语法和 list 语法也常被忽视。</p>
+<p>认清并记住所有多重赋值的用例是很麻烦的。请随意使用本文作为你使用多重赋值的参考指南。</p>
+<blockquote>
+<p>juejin: <a href="https://juejin.im/post/5b3c2cf1e51d451925625b94" target="_blank" rel="noopener">https://juejin.im/post/5b3c2cf1e51d451925625b94</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/语法糖/" rel="tag"># 语法糖</a>
+          
+            <a href="/tags/多重赋值/" rel="tag"># 多重赋值</a>
+          
+            <a href="/tags/元组解包/" rel="tag"># 元组解包</a>
+          
+            <a href="/tags/代码可读性/" rel="tag"># 代码可读性</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/04/什么是-JavaScript-生成器？如何使用生成器？/" rel="next" title="什么是 JavaScript 生成器？如何使用生成器？">
+                <i class="fa fa-chevron-left"></i> 什么是 JavaScript 生成器？如何使用生成器？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/23/使用-PhpFastCache-提升网站性能-1/" rel="prev" title="Slide of 'Language Modeling with Gated Convolutional Networks' used in workshop.">
+                Slide of 'Language Modeling with Gated Convolutional Networks' used in workshop. <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lsvih</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">139</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">165</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#多重赋值的实现原理"><span class="nav-number">1.</span> <span class="nav-text">多重赋值的实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-for-循环中解包"><span class="nav-number">2.</span> <span class="nav-text">在 for 循环中解包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替代硬编码索引"><span class="nav-number">3.</span> <span class="nav-text">替代硬编码索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多重赋值是十分严格的"><span class="nav-number">4.</span> <span class="nav-text">多重赋值是十分严格的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#替代数组拆分"><span class="nav-number">5.</span> <span class="nav-text">替代数组拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度解包"><span class="nav-number">6.</span> <span class="nav-text">深度解包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-list-类型语法"><span class="nav-number">7.</span> <span class="nav-text">使用 list 类型语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不要忘记这些多重赋值的用法"><span class="nav-number">8.</span> <span class="nav-text">不要忘记这些多重赋值的用法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lsvih</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

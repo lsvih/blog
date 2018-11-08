@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '6U6P1RGK4F',
+      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
+      indexName: 'lsvih',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="文件越小，意味着下载速度就越快。因此在向客户端发送资源文件前，使文件变得更小是件有益的事情。 其实，精简与压缩资源文件不仅是一件很棒的事情，同时也是每一位现代开发者应该尽量去做的事情。但是，用于精简的工具通常无法做到完美精简；用于压缩的压缩器效果好坏会取决于用于压缩的数据。下面介绍一些小技巧与方法，用于调整这些工具，使其达到最好的工作状态。 准备工作我们将以一个简单的 SVG 文件为例：  这个">
+<meta name="keywords" content="Translate,Algorithm,Front End,juejin,svg,gzip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从 Gzip 压缩 SVG 说起 — 论如何减小资源文件的大小">
+<meta property="og:url" content="https://lsvih.com/2017/12/13/从-Gzip-压缩-SVG-说起-—-论如何减小资源文件的大小/index.html">
+<meta property="og:site_name" content="My note">
+<meta property="og:description" content="文件越小，意味着下载速度就越快。因此在向客户端发送资源文件前，使文件变得更小是件有益的事情。 其实，精简与压缩资源文件不仅是一件很棒的事情，同时也是每一位现代开发者应该尽量去做的事情。但是，用于精简的工具通常无法做到完美精简；用于压缩的压缩器效果好坏会取决于用于压缩的数据。下面介绍一些小技巧与方法，用于调整这些工具，使其达到最好的工作状态。 准备工作我们将以一个简单的 SVG 文件为例：  这个">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://lsvih.com/images/pasted-289.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-290.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-291.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-292.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-293.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-294.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-295.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-296.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-297.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-298.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-299.png">
+<meta property="og:image" content="https://github.com/subzey/svg-gz-supplement/blob/master/backrefs-animated.gif?raw=true">
+<meta property="og:image" content="https://lsvih.com/images/pasted-300.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-301.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-302.png">
+<meta property="og:updated_time" content="2018-10-28T16:13:06.014Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从 Gzip 压缩 SVG 说起 — 论如何减小资源文件的大小">
+<meta name="twitter:description" content="文件越小，意味着下载速度就越快。因此在向客户端发送资源文件前，使文件变得更小是件有益的事情。 其实，精简与压缩资源文件不仅是一件很棒的事情，同时也是每一位现代开发者应该尽量去做的事情。但是，用于精简的工具通常无法做到完美精简；用于压缩的压缩器效果好坏会取决于用于压缩的数据。下面介绍一些小技巧与方法，用于调整这些工具，使其达到最好的工作状态。 准备工作我们将以一个简单的 SVG 文件为例：  这个">
+<meta name="twitter:image" content="https://lsvih.com/images/pasted-289.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://lsvih.com/2017/12/13/从-Gzip-压缩-SVG-说起-—-论如何减小资源文件的大小/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>从 Gzip 压缩 SVG 说起 — 论如何减小资源文件的大小 | My note</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">lsvih</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/12/13/从-Gzip-压缩-SVG-说起-—-论如何减小资源文件的大小/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从 Gzip 压缩 SVG 说起 — 论如何减小资源文件的大小
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-12-13 12:19:00" itemprop="dateCreated datePublished" datetime="2017-12-13T12:19:00+08:00">2017-12-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-10-29 00:13:06" itemprop="dateModified" datetime="2018-10-29T00:13:06+08:00">2018-10-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/pasted-289.png" alt="upload successful"></p>
+<p>文件越小，意味着下载速度就越快。因此在向客户端发送资源文件前，使文件变得更小是件有益的事情。</p>
+<p>其实，精简与压缩资源文件不仅是一件很棒的事情，同时也是每一位现代开发者应该尽量去做的事情。但是，用于精简的工具通常无法做到完美精简；用于压缩的压缩器效果好坏会取决于用于压缩的数据。下面介绍一些小技巧与方法，用于调整这些工具，使其达到最好的工作状态。</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>我们将以一个简单的 SVG 文件为例：</p>
+<p><img src="/images/pasted-290.png" alt="upload successful"></p>
+<p>这个<code>&lt;svg&gt;</code>图像的内容为一个 10x10 像素的区域（<code>viewBox</code>），其中包含了两个 6x6 的正方形（<code>&lt;rect&gt;</code>）。原始文件大小为 176 字节，经过 gzip 压缩过后大小为 138 字节。</p>
+<p>当然这个图像并没有什么艺术感，但它足以满足这篇文章想要表达的意思，并且防止这篇文章变成长篇大论。</p>
+<h3 id="第-0-步：Svgo"><a href="#第-0-步：Svgo" class="headerlink" title="第 0 步：Svgo"></a>第 0 步：Svgo</h3><p>运行 <code>svgo image.svg</code> 直接进行压缩。</p>
+<p><img src="/images/pasted-291.png" alt="upload successful"></p>
+<p><strong>（为了便于阅读，为其添加了回车与缩进）</strong></p>
+<p>可以明显地看到，<code>rect</code> 被替换成了 <code>path</code>。<code>path</code> 路径形状由它的 <code>d</code> 属性定义，后面的一串命令类似于 canvas 的 draw 函数，控制一支虚拟的笔移动进行绘画。命令可以是绝对位移（移动<strong>到</strong> x,y），也可以是相对位移（向某方向移动 x,y）。请仔细观察其中的一条路径：</p>
+<p><code>M 0 0</code>：路径起点为坐标<code>(0, 0)</code><br><code>h 6</code>：水平向右移动 6 px<br><code>v 6</code>：垂直向下移动 6 px<br><code>H 0</code>：水平移动至 <code>x = 0</code><br><code>z</code>：闭合路径 — 移回路径的起点</p>
+<p>这个路径画出的正方形是多么的精确！而且它比 <code>rect</code> 元素更加的紧凑。</p>
+<p>另外，<code>#f00</code> 被改成了 <code>red</code>，这儿也少了一个字节！</p>
+<p>现在文件大小为 135 字节，gzip 压缩过后为 126 字节。</p>
+<h3 id="第-1-步：进行整体缩放"><a href="#第-1-步：进行整体缩放" class="headerlink" title="第 1 步：进行整体缩放"></a>第 1 步：进行整体缩放</h3><p>你可能已经注意到了，两个路径中的所有坐标均为偶数。我们是否可以把它们都除以 2 呢？</p>
+<p><img src="/images/pasted-292.png" alt="upload successful"></p>
+<p>图像和之前看起来是一样的，但它缩小了两倍。因此，我们可以对 <code>viewBox</code> 进行缩放，使图像与之前一样大。</p>
+<p><img src="/images/pasted-293.png" alt="upload successful"></p>
+<p>现在文件大小为 133 字节，gzip 压缩过后为 124 字节。</p>
+<h3 id="第-2-步：使用非闭合路径"><a href="#第-2-步：使用非闭合路径" class="headerlink" title="第 2 步：使用非闭合路径"></a>第 2 步：使用非闭合路径</h3><p>回过头来看路径。两个路径中的最后一个命令都是 <code>z</code>，也就是“闭合路径”。但路径在填充的时候会被隐式地闭合，因此我们可以删除这些命令。</p>
+<p><img src="/images/pasted-294.png" alt="upload successful"></p>
+<p>又少了 2 字节，现在文件大小为 131 字节，gzip 压缩过后为 122 字节。从常识上说，原始字节数越少，能压缩的大小也越小。而现在我们已经在 svgo 之后节省了 4 个 gzip 字节了。</p>
+<p><strong>你可能会想：为什么 svgo 不自动进行这些优化呢？原因是缩放图像与删除尾部的 z 命令是不安全的。请看下面的例子：</strong></p>
+<p><img src="/images/pasted-295.png" alt="upload successful"></p>
+<p>这是一些有 stroke（路径宽度）的图形。从左至右分别为：原始图形、不闭合的情况、不闭合且进行缩放的情况。</p>
+<p><strong>线宽完全混乱了。庆幸的是，我们知道自己不需要使用线宽。但是 Svgo 并不知道这个情况，因此它必须要保证图形的安全，避免不安全的变换。</strong></p>
+<p>现在看起来不能从代码中删除任何东西了。XML 语法是严格的，现在所有的属性都是必须的，并且它们的值不能不加引号。</p>
+<p>你以为结束了？并不，这仅仅是个开始。</p>
+<h3 id="第-3-步：减少出现的字母"><a href="#第-3-步：减少出现的字母" class="headerlink" title="第 3 步：减少出现的字母"></a>第 3 步：减少出现的字母</h3><p>现在，让我来介绍一个非常方便的工具：<a href="https://encode.ru/threads/1889-gzthermal-pseudo-thermal-view-of-Gzip-Deflate-compression-efficiency" target="_blank" rel="noopener">gzthermal</a>。它可以分析需要进行 gzip 压缩的文件，并对进行编码的原始字节进行着色。更好压缩的字节是绿色，不好压缩的数据是红色，简单明了。</p>
+<p><img src="/images/pasted-296.png" alt="upload successful"></p>
+<p>请再次关注 <code>d</code> 属性，尤其是被标成红色的 M 命令值得注意。我们不能删除它，但我们可以用相对位移 <code>m2 2</code> 来代替它。</p>
+<p>初始的“指针”位置为坐标轴原点<code>(0, 0)</code>，因此移动<strong>到</strong><code>(2, 2)</code>和从原点移动<code>(2, 2)</code>是同一个意思。让我们试试：</p>
+<p><img src="/images/pasted-297.png" alt="upload successful"></p>
+<p><img src="/images/pasted-298.png" alt="upload successful"></p>
+<p>原始文件依然是 131 字节，但是经过 gzip 压缩过后大小仅有 121 字节了。发生了什么？答案是……</p>
+<h4 id="哈夫曼树（Huffman-Trees）"><a href="#哈夫曼树（Huffman-Trees）" class="headerlink" title="哈夫曼树（Huffman Trees）"></a>哈夫曼树（Huffman Trees）</h4><p>Gzip 使用的是 <a href="https://en.wikipedia.org/wiki/DEFLATE" target="_blank" rel="noopener">DEFLATE</a> 压缩算法，而 DEFLATE 算法是以哈夫曼树为基础构建的。</p>
+<p>哈夫曼编码的核心思想就是使用更少的<strong>比特</strong>对出现次数更多的符号进行编码，反之亦然，出现次数很少的符号需要占用更多的比特。</p>
+<p><strong>没错，这儿说的是比特不是字节。DEFATE 算法会将一字节的字符视为一系列的比特，无论一字节包含 7、9、100 个比特，DEFLATE 算法都能一视同仁。</strong></p>
+<p>以字符串“Test”为例，根据它出现的字母来进行编码：<br><code>00</code> T<br><code>01</code> e<br><code>10</code> s<br><code>11</code> t</p>
+<p>对每个符号都进行过编码的字符串“Test”可以表示为：<code>00011011</code>，总共占 8 比特。</p>
+<p>然后我们把它开头的“T”改成小写“test”，再试一次：<br><code>0</code> t<br><code>10</code> e<br><code>11</code> s</p>
+<p>字母 t 出现了更多的次数，它的编码也变得更短，仅为 1 比特。这个字符串经过编码后为 <code>010110</code>，仅为 6 比特！</p>
+<hr>
+<p>在我们的 SVG 中的 M 字母也一样。在将其变为小写之后，整个编码中都不包含大写的 M 了，可以将它从树上移除，因此平均编码长度可以更短。</p>
+<p>当你编写对 gzip 友好的代码时，应该更多地使用那些使用频率较高的字符。即使你不能将代码长度减短，但它经过压缩后消耗的比特数也会变少。</p>
+<h3 id="第-4-步：回退引用（backreferences）"><a href="#第-4-步：回退引用（backreferences）" class="headerlink" title="第 4 步：回退引用（backreferences）"></a>第 4 步：回退引用（backreferences）</h3><p>DEFLATE 算法还有一个特性：回退引用。某些编码点不会直接进行编码，而是告诉解码器复制一些最近解码的字节。</p>
+<p>因此，它不需要对原始字节一次又一次地进行编码，而是可以直接引用：<br><strong>向前返回 n 个字节，复制 m 个字节</strong><br>例如：</p>
+<p><code>Hey diddle diddle, the cat and the fiddle.</code></p>
+<p><code>Hey diddle**&lt;7,7&gt;**, the cat and**&lt;12,5&gt;**f**&lt;24,5&gt;**.</code></p>
+<p>巧妙的是，gzthermal 还有一种只显示回退引用的特殊模式。<br><code>gzthermal -z</code> 会显示以下图像：</p>
+<p><img src="/images/pasted-299.png" alt="upload successful"></p>
+<p>普通文本字节为橙色，可回退引用的字节为蓝色。下面的动画更直观：</p>
+<p><img src="https://github.com/subzey/svg-gz-supplement/blob/master/backrefs-animated.gif?raw=true" alt=""></p>
+<p>除了 fill 值、<code>m</code> 命令和最后的 <code>H</code> 命令外，第二条路径几乎全部都使用了回退引用。对于 fill 和 m 我们无能为力，因为第二个方块的确有着不同的颜色和位置。</p>
+<p>但是它们的形状是一样的，并且我们现在对 gzip 有了更加清晰的认识。因此，我们可以将绝对位移命令 <code>H0</code> 和 <code>H2</code> 都替换为相对位移命令：<code>h-3</code>。</p>
+<p><img src="/images/pasted-300.png" alt="upload successful"></p>
+<p><img src="/images/pasted-301.png" alt="upload successful"></p>
+<p>现在，两个分开的回退引用合为了一个，文件大小为 133 字节，gzip 后的大小为 119 字节。虽然我们在压缩前增加了 2 个字节，但 gzip 的结果又减少了 2 个字节！</p>
+<p>我们只需要关心压缩后的大小即可：在传送资源时，客户端 99.9% 用的是 gzip 或者 brotli。顺带说一下 brotli。</p>
+<h3 id="Brotli-压缩算法"><a href="#Brotli-压缩算法" class="headerlink" title="Brotli 压缩算法"></a>Brotli 压缩算法</h3><p><a href="https://en.wikipedia.org/wiki/Brotli" target="_blank" rel="noopener">Brotli</a> 是于 2015 年推出的用于替换浏览器中 gzip（源自 1992）的算法。不过它与 gzip 在很多方面都有相似之处：它也是基于哈夫曼编码与回退引用的原理，因此我们前面为 gzip 所做的调整都可以同样利于 Brotli。最后让我们用 Brotli 应用于前面的所有步骤：</p>
+<p>原始文件大小：106 字节<br>在第 0 步之后（svgo）：104 字节<br>在第 1 步之后（viewBox）：105 字节<br>在第 2 步之后（使用非闭合路径）：113 字节<br>在第 3 步之后（小写 m）：116 字节<br>在第 4 步之后（相关命令）：102 字节</p>
+<p>如你所见，最终的文件比 svgo 后的更小。这可以说明，之前我们为 gzip 做的酷炫的工作同样适用于 Brotli。</p>
+<p>但是，中间步骤的文件大小却是混乱的，Brotli 压缩后的文件变得更大了。毕竟，Brotli 并不是 gzip，它是一种单独的新算法。尽管与 gzip 有一些相似之处，但仍有所不同。</p>
+<p>其中最大的不同是，Brotli 内置了预定义字典，在编码时使用它进行上下文启发。此外，Brotli 的最小回退引用大小为 2 字节（gzip 仅能创建 3 字节及以上的回退引用）。</p>
+<p>可以说，Brotli 比 gzip 更加<strong>难以预测</strong>。我很想解释一下是什么导致了“压缩退化”，可惜 Brotli 并没有类似于 gzip 的 gzthermal 和 <a href="https://encode.ru/threads/1428-defdb-a-tool-to-dump-the-deflate-stream-from-gz-and-png-files" target="_blank" rel="noopener">defdb</a> 之类的工具。我只能靠<a href="https://tools.ietf.org/html/rfc7932" target="_blank" rel="noopener">它的规范</a> 以及试错的方法来进行调试。</p>
+<h3 id="试错法"><a href="#试错法" class="headerlink" title="试错法"></a>试错法</h3><p>让我们再试一次。这次将改变 <code>fill</code> 属性内的颜色。显然 <code>red</code> 比 <code>#f00</code> 更短，但也许 Brotli 会用更长的回退引用进行压缩。</p>
+<p><img src="/images/pasted-302.png" alt="upload successful"></p>
+<p>gzip 压缩过后大小为 120 字节，Brotli 压缩过后为 100 字节。gzip 流长了 1 字节，Brotli 流短了 2 字节。</p>
+<p>此时，它在 Brotli 中表现更好，在 gzip 中表现更差。我觉得，这完全无碍！因为我们几乎不可能一次性将数据针对所有压缩器进行优化，并得到<strong>最佳结果</strong>。解决压缩器问题就像转一个糟糕的魔方，只能尽量优化。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>上面描述的所有的调整方法都不仅限于 SVG 压缩为 gzip 的情景。</p>
+<p>以下是一些可以帮助你写出更具备压缩性能的代码的准则：</p>
+<ol>
+<li>压缩<strong>更小的源数据</strong>可能会得到更小的压缩数据。</li>
+<li><strong>不同的字符越少</strong>就意味着熵越少。而熵越小，压缩效果就越好。</li>
+<li>频繁出现的字符会以更小的字节被压缩。<strong>删除不常见字符</strong>以及<strong>使常见字符更常见</strong>可以提高压缩效率。</li>
+<li><strong>长段重复的代码</strong>可以被压缩成几个字节。<a href="https://zh.wikipedia.org/wiki/%e4%b8%80%e6%ac%a1%e4%b8%94%e4%bb%85%e4%b8%80%e6%ac%a1" target="_blank" rel="noopener">DRY（“不要重复自己”原则）</a>不一定在任何情况下都是最好的选择，有时候<strong>重复自己</strong>反而能得到更好的结果。</li>
+<li>有些时候更大的源数据反而可以得到更小的压缩数据。<strong>减少熵</strong>可以让压缩器更好地移除冗余的信息。</li>
+</ol>
+<p>你可以在 <a href="https://github.com/subzey/svg-gz-supplement/" target="_blank" rel="noopener">此 GitHub repo</a> 中找到以上所有资源、压缩过的图片以及其它资料。</p>
+<p>希望你喜欢这篇文章。下次我们将讨论如何压缩普通 JavaScript 代码与 Webpack bundle 中的 JavaScript 代码。</p>
+<blockquote>
+<p>本文发布于掘金 <a href="https://juejin.im/post/5a30a7fdf265da4309452517" target="_blank" rel="noopener">https://juejin.im/post/5a30a7fdf265da4309452517</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Translate/" rel="tag"># Translate</a>
+          
+            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+          
+            <a href="/tags/Front-End/" rel="tag"># Front End</a>
+          
+            <a href="/tags/juejin/" rel="tag"># juejin</a>
+          
+            <a href="/tags/svg/" rel="tag"># svg</a>
+          
+            <a href="/tags/gzip/" rel="tag"># gzip</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/05/wk-遍历行取出数据进行处理/" rel="next" title="awk 遍历行取出数据进行处理">
+                <i class="fa fa-chevron-left"></i> awk 遍历行取出数据进行处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/03/How-to-write-an-introduction-for-a-paper/" rel="prev" title="How to write an introduction for a paper">
+                How to write an introduction for a paper <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lsvih</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">139</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">165</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第-0-步：Svgo"><span class="nav-number">2.</span> <span class="nav-text">第 0 步：Svgo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第-1-步：进行整体缩放"><span class="nav-number">3.</span> <span class="nav-text">第 1 步：进行整体缩放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第-2-步：使用非闭合路径"><span class="nav-number">4.</span> <span class="nav-text">第 2 步：使用非闭合路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第-3-步：减少出现的字母"><span class="nav-number">5.</span> <span class="nav-text">第 3 步：减少出现的字母</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#哈夫曼树（Huffman-Trees）"><span class="nav-number">5.1.</span> <span class="nav-text">哈夫曼树（Huffman Trees）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第-4-步：回退引用（backreferences）"><span class="nav-number">6.</span> <span class="nav-text">第 4 步：回退引用（backreferences）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Brotli-压缩算法"><span class="nav-number">7.</span> <span class="nav-text">Brotli 压缩算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#试错法"><span class="nav-number">8.</span> <span class="nav-text">试错法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">9.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lsvih</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
