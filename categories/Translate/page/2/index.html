@@ -11,10 +11,8 @@
 
 
 
-  
 
-
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next pisces" lang="">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,14 +82,14 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '6.5.0',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '6U6P1RGK4F',
       apiKey: 'b14e73cdd627eabe947b5decbe14850f',
@@ -138,6 +136,16 @@
 
 
 
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4de170e51b04cee02fbdb1b7cb7a8a60";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
 
 
 
@@ -197,7 +205,7 @@
     </div>
     
       
-        <p class="site-subtitle">lsvih</p>
+        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
       
     
   </div>
@@ -238,6 +246,40 @@
         
         
           
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories menu-item-active">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
           <li class="menu-item menu-item-archives">
 
     
@@ -254,27 +296,46 @@
 
       
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
     </ul>
   
 
   
-    
-
-    
-    
-      
-      
-    
-      
-      
-    
-    
 
   
-
-
+    <div class="site-search">
+      
   
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
 
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -294,6 +355,28 @@
       <div class="main-inner">
         <div class="content-wrap">
           
+            
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
+
+          
           <div id="content" class="content">
             
 
@@ -304,8 +387,8 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>Translate<small>Category</small>
-        </h1>
+        <h2>Translate<small>Category</small>
+        </h2>
       </div>
 
       
@@ -314,7 +397,7 @@
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
             <a class="post-title-link" href="/2018/02/22/在-Swift-playground-中编写单元测试/" itemprop="url">
               
@@ -322,7 +405,7 @@
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2018-02-22T14:48:00+08:00" content="2018-02-22">
@@ -340,7 +423,7 @@
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
             <a class="post-title-link" href="/2018/02/06/如何为-Flask-Web-应用配置-Nginx/" itemprop="url">
               
@@ -348,7 +431,7 @@
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2018-02-06T16:04:00+08:00" content="2018-02-06">
@@ -366,7 +449,7 @@
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
             <a class="post-title-link" href="/2018/01/16/TML-5-2-有哪些新内容？/" itemprop="url">
               
@@ -374,7 +457,7 @@
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2018-01-16T15:40:08+08:00" content="2018-01-16">
@@ -392,7 +475,7 @@
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
             <a class="post-title-link" href="/2017/12/13/从-Gzip-压缩-SVG-说起-—-论如何减小资源文件的大小/" itemprop="url">
               
@@ -400,7 +483,7 @@
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2017-12-13T12:19:00+08:00" content="2017-12-13">
@@ -418,7 +501,7 @@
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
             <a class="post-title-link" href="/2017/12/04/为你的网站带上帽子-—-使用-helmet-保护-Express-应用/" itemprop="url">
               
@@ -426,7 +509,7 @@
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2017-12-04T16:13:00+08:00" content="2017-12-04">
@@ -444,7 +527,7 @@
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
             <a class="post-title-link" href="/2017/11/12/前端-Console-调试小技巧/" itemprop="url">
               
@@ -452,7 +535,7 @@
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2017-11-12T16:41:00+08:00" content="2017-11-12">
@@ -470,7 +553,7 @@
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
             <a class="post-title-link" href="/2017/11/03/RNN-循环神经网络系列-5-自定义单元/" itemprop="url">
               
@@ -478,7 +561,7 @@
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2017-11-03T10:23:00+08:00" content="2017-11-03">
@@ -496,7 +579,7 @@
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
             <a class="post-title-link" href="/2017/11/03/Spotify-每周推荐功能：基于机器学习的音乐推荐/" itemprop="url">
               
@@ -504,7 +587,7 @@
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2017-11-03T10:16:14+08:00" content="2017-11-03">
@@ -522,7 +605,7 @@
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
             <a class="post-title-link" href="/2017/10/16/Keras-中构建神经网络的-5-个步骤/" itemprop="url">
               
@@ -530,7 +613,7 @@
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2017-10-16T12:57:27+08:00" content="2017-10-16">
@@ -548,7 +631,7 @@
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <h2 class="post-title">
+      <h3 class="post-title">
         
             <a class="post-title-link" href="/2017/10/13/Javascript-中多样的-this/" itemprop="url">
               
@@ -556,7 +639,7 @@
               
             </a>
         
-      </h2>
+      </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated" datetime="2017-10-13T15:14:22+08:00" content="2017-10-13">
@@ -1007,6 +1090,32 @@
           
 
           
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lsvih" title="GitHub &rarr; https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:lsvih@qq.com" title="E-Mail &rarr; mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
 
           
 
@@ -1035,9 +1144,9 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2018</span>
   <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 
@@ -1047,17 +1156,15 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
-  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.5.0</div>
 
 
 
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.5.0</div>
-
-
+  <div class="footer-custom"><a target="_blank" rel="external nofollow" href="http://www.miitbeian.gov.cn">京ICP备18029472号</a></div>
 
 
         
@@ -1118,6 +1225,8 @@
 
 
 
+  
+
 
 
   
@@ -1135,6 +1244,11 @@
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
 
   
 
@@ -1147,6 +1261,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
 
   
 
@@ -1177,16 +1298,75 @@
 
 
 
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.5.0"></script>
+
+
 
   
 
   
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
 
   
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
 
   
   
