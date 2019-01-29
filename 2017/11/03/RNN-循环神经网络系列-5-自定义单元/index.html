@@ -1,13 +1,1398 @@
-<!DOCTYPE html><html class="theme-next pisces"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0"><link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",version:"6.5.0",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!1,fastclick:!1,lazyload:!1,tabs:!0,motion:{enable:!1,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},algolia:{applicationID:"6U6P1RGK4F",apiKey:"b14e73cdd627eabe947b5decbe14850f",indexName:"lsvih",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><meta name="description" content="本系列文章汇总RNN 循环神经网络系列 1：基本 RNN 与 CHAR-RNNRNN 循环神经网络系列 2：文本分类RNN 循环神经网络系列 3：编码、解码器RNN 循环神经网络系列 4：注意力机制RNN 循环神经网络系列 5：自定义单元在本文中，我们将探索并尝试创建我们自己定义的 RNN 单元。不过在此之前，我们需要先仔细研究简单的 RNN，再逐步深入较为复杂的单元（如 LSTM 与 GRU）。"><meta name="keywords" content="juejin,Translate,machine learning,RNN,LSTM"><meta property="og:type" content="article"><meta property="og:title" content="RNN 循环神经网络系列 5: 自定义单元"><meta property="og:url" content="https://lsvih.com/2017/11/03/RNN-循环神经网络系列-5-自定义单元/index.html"><meta property="og:site_name" content="My note"><meta property="og:description" content="本系列文章汇总RNN 循环神经网络系列 1：基本 RNN 与 CHAR-RNNRNN 循环神经网络系列 2：文本分类RNN 循环神经网络系列 3：编码、解码器RNN 循环神经网络系列 4：注意力机制RNN 循环神经网络系列 5：自定义单元在本文中，我们将探索并尝试创建我们自己定义的 RNN 单元。不过在此之前，我们需要先仔细研究简单的 RNN，再逐步深入较为复杂的单元（如 LSTM 与 GRU）。"><meta property="og:locale" content="default"><meta property="og:image" content="https://lsvih.com/images/pasted-255.png"><meta property="og:image" content="https://lsvih.com/images/pasted-256.png"><meta property="og:image" content="https://lsvih.com/images/pasted-257.png"><meta property="og:image" content="https://lsvih.com/images/pasted-258.png"><meta property="og:image" content="https://lsvih.com/images/pasted-259.png"><meta property="og:image" content="https://lsvih.com/images/pasted-260.png"><meta property="og:image" content="https://lsvih.com/images/pasted-261.png"><meta property="og:image" content="https://lsvih.com/images/pasted-262.png"><meta property="og:updated_time" content="2018-10-28T16:13:00.380Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="RNN 循环神经网络系列 5: 自定义单元"><meta name="twitter:description" content="本系列文章汇总RNN 循环神经网络系列 1：基本 RNN 与 CHAR-RNNRNN 循环神经网络系列 2：文本分类RNN 循环神经网络系列 3：编码、解码器RNN 循环神经网络系列 4：注意力机制RNN 循环神经网络系列 5：自定义单元在本文中，我们将探索并尝试创建我们自己定义的 RNN 单元。不过在此之前，我们需要先仔细研究简单的 RNN，再逐步深入较为复杂的单元（如 LSTM 与 GRU）。"><meta name="twitter:image" content="https://lsvih.com/images/pasted-255.png"><link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml"><link rel="canonical" href="https://lsvih.com/2017/11/03/RNN-循环神经网络系列-5-自定义单元/"><script type="text/javascript" id="page.configurations">CONFIG.page={sidebar:""}</script><title>RNN 循环神经网络系列 5: 自定义单元 | My note</title><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?4de170e51b04cee02fbdb1b7cb7a8a60";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><noscript><style type="text/css">.sidebar-inner,.use-motion .brand,.use-motion .collection-title,.use-motion .comments,.use-motion .menu-item,.use-motion .motion-element,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .logo,.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}.logo-line-after i{right:initial}</style></noscript></head><body itemscope itemtype="http://schema.org/WebPage" lang="default"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">My note</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description">lsvih</h1></div><div class="site-nav-toggle"><button aria-label="Toggle navigation bar"><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>Archives</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>Search</a></li></ul><div class="site-search"><div class="algolia-popup popup search-popup"><div class="algolia-search"><div class="algolia-search-input-icon"><i class="fa fa-search"></i></div><div class="algolia-search-input" id="algolia-search-input"></div></div><div class="algolia-results"><div id="algolia-stats"></div><div id="algolia-hits"></div><div id="algolia-pagination" class="algolia-pagination"></div></div><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><div class="reading-progress-bar"></div><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/11/03/RNN-循环神经网络系列-5-自定义单元/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="lsvih"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="My note"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">RNN 循环神经网络系列 5: 自定义单元</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">Posted on</span> <time title="Created: 2017-11-03 10:23:00" itemprop="dateCreated datePublished" datetime="2017-11-03T10:23:00+08:00">2017-11-03</time> </span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">In</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span></span></div></header><div class="post-body" itemprop="articleBody"><p><strong>本系列文章汇总</strong></p><ol><li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-1-basic-rnn-char-rnn.md" target="_blank" rel="noopener">RNN 循环神经网络系列 1：基本 RNN 与 CHAR-RNN</a></li><li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-2-text-classification.md" target="_blank" rel="noopener">RNN 循环神经网络系列 2：文本分类</a></li><li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-3-encoder-decoder.md" target="_blank" rel="noopener">RNN 循环神经网络系列 3：编码、解码器</a></li><li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-network-rnn-part-4-attentional-interfaces.md" target="_blank" rel="noopener">RNN 循环神经网络系列 4：注意力机制</a></li><li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-network-rnn-part-5-custom-cells.md" target="_blank" rel="noopener">RNN 循环神经网络系列 5：自定义单元</a></li></ol><p>在本文中，我们将探索并尝试创建我们自己定义的 RNN 单元。不过在此之前，我们需要先仔细研究简单的 RNN，再逐步深入较为复杂的单元（如 LSTM 与 GRU）。我们会分析这些单元在 tensorflow 中的实现代码，最终参照这些代码来创建我们的自定义单元。本文将援引由 Chris Olah 所著，在 RNN、LSTM 方面非常棒的一篇文章中的图片。在此我强烈推荐你阅读<strong><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">这篇文章</a></strong>，本文中会重申其中许多相关内容，不过由于我们主要还是关注 tf 代码，所以这些内容将会较快地略过。将来当我要对 RNN 结构进行层规范化时，我还会引用本文中的代码。之后的文章可以在<strong><a href="https://theneuralperspective.com/2016/10/27/gradient-topics/" target="_blank" rel="noopener">这儿</a></strong>查看。</p><h2 id="基本-RNN："><a href="#基本-RNN：" class="headerlink" title="基本 RNN："></a>基本 RNN：</h2><p>对于传统的 RNN 来说，最大的问题就在于每个单元的重复输入都是静态的，因此我们无法充分学习到长期的依赖情况。你回想一下基本 RNN 单元，就会发现所有操作都是单一的 tanh 运算。</p><p><img src="/images/pasted-255.png" alt="upload successful"></p><p>对于解决短期依赖情况的问题来说，这种结构已经够用了；但如果我们希望通过有效的长期记忆来预测目标，则需要使用更稳定强大的 RNN 单元 —— LSTM。</p><h2 id="长短期记忆网络（LSTM）："><a href="#长短期记忆网络（LSTM）：" class="headerlink" title="长短期记忆网络（LSTM）："></a>长短期记忆网络（LSTM）：</h2><p>LSTM 的结构可以让我们在更多的操作中进行长期的信息控制。传统的 RNN 仅有一个输出，其既作为隐藏状态表示也作为此单元的输出端。</p><p><img src="/images/pasted-256.png" alt="upload successful"></p><p>这种结构缺乏对信息的控制，无法存住对许多步之后有用的信息。而 LSTM 有两种不同的输出。其中一种仍与前面的传统结构一样，既作为隐藏状态表示也作为单元输出；但 LSTM 单元还有另一种输出 - 单元状态 C。这也是 LSTM 精髓所在，让我们仔细研究它。</p><p><img src="/images/pasted-257.png" alt="upload successful"></p><h3 id="遗忘门："><a href="#遗忘门：" class="headerlink" title="遗忘门："></a>遗忘门：</h3><p>第一个要介绍的门就是遗忘门。这个门可以让我们选择性地传递信息以决定单元的状态。我将公式罗列在下，后面介绍其它的门时也会如此。</p><p><img src="/images/pasted-258.png" alt="upload successful"></p><p><img src="/images/pasted-259.png" alt="upload successful"></p><p>你可以参考类似 tf 的 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/rnn_cell.py#867" target="_blank" rel="noopener">_linear</a> 函数来实现它。不过遗忘门的主要要点是对输入与隐藏状态前应用了 sigmoid。那么这个 sigmoid 的作用是什么？请回想一下，sigmoid 会输出在 [0, 1] 范围的值，在此我们将其应用于 [N X H] 的矩阵，因此会得到 NXH 个 sigmoid 算出的值。如果 sigmoid 得到 0 值，那么其对应的隐藏值就会失效；如果 sigmoid 得到 1 值，那么此隐藏值将会被应用在计算中。而处于 0 和 1 之间的值将会允许一部分的信息继续传递。这样就能很好地通过阻塞与选择性地传递输入单元的数据，以达到控制信息的目的。</p><p>这就是遗忘门。它是我们的单元得到最终结果前的第一个步骤。下面介绍另一个操作：输入门。</p><h3 id="输入门："><a href="#输入门：" class="headerlink" title="输入门："></a>输入门：</h3><p>输入门将获取我们的输入值 X 以及在前面的隐藏状态，并对它们进行两次运算。首先会通过 sigmoid 门来选择性地允许部分数据输入，接着将其与输入值的 tanh 值相乘。</p><p><img src="/images/pasted-260.png" alt="upload successful"></p><p>这儿的 tanh 与前面的 sigmoid 操作不同。请回忆一下，tanh 会将输入值改变为 [-1, 1] 范围内的值。它本质上通过非线性的方式改变了输入的表示。这一步与我们在基本 RNN 单元中进行的操作一致，不过在此我们将两值的乘积加上遗忘门得到的值得到本单元的状态值。</p><p>遗忘门与输入门的操作可以看做同时保存了旧状态（C_{t-1}）的一部分与新变换（tanh）单元状态（C~_t）的一部分。这些权重将会通过我们数据的训练学到需要保存多少数据以及如何进行正确的变换。</p><h3 id="输出门："><a href="#输出门：" class="headerlink" title="输出门："></a>输出门：</h3><p>最后一个门是输出门，它利用输入值、前面的隐藏状态值以及新单元状态值来共同决定新隐藏状态的表示。</p><p><img src="/images/pasted-261.png" alt="upload successful"></p><p>该步骤依旧涉及到了 sigmoid，将它的值与单元状态的 tanh 值相乘以决定信息的去留。需要注意这一步的 tanh 计算与输入门的 tanh 计算不同，此步不再是神经网络的计算，而仅仅是单纯、不带任何权重地计算单元状态值的 tanh 值。这样我们就能强制单元状态矩阵 [NXH] 的值处于 [-1, 1] 的范围内。</p><h3 id="变体"><a href="#变体" class="headerlink" title="变体"></a>变体</h3><p>RNN 单元有许多种变体，在此再次建议去阅读 Chris Olah 的<strong><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">这篇博文</a></strong>学习更多相关知识。不过他在文中讨论的是 peehole 模型（在计算 C_{t-1} 或 C_t 时允许所有门都能观察到单元状态值）以及单元状态的 couple（更新与遗忘同时进行）。不过目前 LSTM 的竞争对手是正在被广泛使用的 GRU（Gated Recurrent Unit）。</p><h2 id="GRU（Gated-Recurrent-Unit）："><a href="#GRU（Gated-Recurrent-Unit）：" class="headerlink" title="GRU（Gated Recurrent Unit）："></a>GRU（Gated Recurrent Unit）：</h2><p>GRU 的主要原理是将遗忘门与输入门结合成一个更新门。</p><p><img src="/images/pasted-262.png" alt="upload successful"></p><p>在实际使用中，GRU 的性能与 LSTM 相当，但其计算量更小，因此它现在日益流行。</p><h2 id="原生-Tensorflow-实现："><a href="#原生-Tensorflow-实现：" class="headerlink" title="原生 Tensorflow 实现："></a>原生 Tensorflow 实现：</h2><p>我们先观察一下 Tensorflow 官方对于 GRU 单元的实现代码，主要关注其函数调用方式、输入以及输出。然后我们会复制它的结构用于创建我们自己的单元。如果你对其它的单元有兴趣，可以在<strong><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/rnn_cell.py" target="_blank" rel="noopener">这儿</a></strong>找到它们的实现。本文将主要关注 GRU，因为它在大多数情况下性能与 LSTM 相当且复杂度更低。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GRUCell</span><span class="params">(RNNCell)</span>:</span></span><br><span class="line">  <span class="string">"""Gated Recurrent Unit cell (cf. http://arxiv.org/abs/1406.1078)."""</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, num_units, input_size=None, activation=tanh)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> input_size <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">      logging.warn(<span class="string">"%s: The input_size parameter is deprecated."</span>, self)</span><br><span class="line">    self._num_units = num_units</span><br><span class="line">    self._activation = activation</span><br><span class="line"></span><br><span class="line"><span class="meta">  @property</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">state_size</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> self._num_units</span><br><span class="line"></span><br><span class="line"><span class="meta">  @property</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">output_size</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> self._num_units</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, inputs, state, scope=None)</span>:</span></span><br><span class="line">    <span class="string">"""Gated recurrent unit (GRU) with nunits cells."""</span></span><br><span class="line">    <span class="keyword">with</span> vs.variable_scope(scope <span class="keyword">or</span> type(self).__name__):  <span class="comment"># "GRUCell"</span></span><br><span class="line">      <span class="keyword">with</span> vs.variable_scope(<span class="string">"Gates"</span>):  <span class="comment"># Reset gate and update gate.</span></span><br><span class="line">        <span class="comment"># We start with bias of 1.0 to not reset and not update.</span></span><br><span class="line">        r, u = array_ops.split(<span class="number">1</span>, <span class="number">2</span>, _linear([inputs, state],</span><br><span class="line">                                             <span class="number">2</span> * self._num_units, <span class="keyword">True</span>, <span class="number">1.0</span>))</span><br><span class="line">        r, u = sigmoid(r), sigmoid(u)</span><br><span class="line">      <span class="keyword">with</span> vs.variable_scope(<span class="string">"Candidate"</span>):</span><br><span class="line">        c = self._activation(_linear([inputs, r * state],</span><br><span class="line">                                     self._num_units, <span class="keyword">True</span>))</span><br><span class="line">      new_h = u * state + (<span class="number">1</span> - u) * c</span><br><span class="line">    <span class="keyword">return</span> new_h, new_h</span><br></pre></td></tr></table></figure><p>GRUCell 类由 <strong>init</strong> 函数开始执行。在 <strong>init</strong> 函数中定义了单元的数量与其使用的激活函数。其激活函数一般是 tanh，不过也可以使用 sigmoid 来使得值固定在 [0, 1] 范围内方便我们控制信息流。另外，它还有两个在调用时会返回 self._num_units 的属性。最后定义了 <strong>call</strong> 函数，它将处理输入值并得出新的隐藏值。回忆一下，GRU 没有类似 LSTM 的单元状态值。</p><p>在 <strong>call</strong> 中，我们首先计算 r 和 u（u 是前面图中的 z）。在这步中，我们没有单独去计算它们，而是以乘以 2 倍 num_units 的形式合并了权重，再将结果分割成两份得到它们（split(dim, num_splits, value)）。然后对得到的值应用 sigmoid 激活函数，以选择性地控制信息流。接着计算 c 的值，用它计算新隐藏状态表示值。你可能发现它计算 new_h 的顺序和之前颠倒了，不过由于权重会同时进行训练，因此代码仍能正常运行。</p><p>其它的单元代码都与此代码类似，你弄明白了上面的代码就能轻松解释其它单元的代码。</p><blockquote><p>本文发布于掘金 <a href="https://juejin.im/post/59fbd28b6fb9a045204b91f2" target="_blank" rel="noopener">https://juejin.im/post/59fbd28b6fb9a045204b91f2</a></p></blockquote></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author: </strong>lsvih</li><li class="post-copyright-link"><strong>Post link: </strong><a href="https://lsvih.com/2017/11/03/RNN-循环神经网络系列-5-自定义单元/" title="RNN 循环神经网络系列 5: 自定义单元">https://lsvih.com/2017/11/03/RNN-循环神经网络系列-5-自定义单元/</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/juejin/" rel="tag"># juejin</a> <a href="/tags/Translate/" rel="tag"># Translate</a> <a href="/tags/machine-learning/" rel="tag"># machine learning</a> <a href="/tags/RNN/" rel="tag"># RNN</a> <a href="/tags/LSTM/" rel="tag"># LSTM</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2017/11/03/Spotify-每周推荐功能：基于机器学习的音乐推荐/" rel="next" title="Spotify 每周推荐功能：基于机器学习的音乐推荐"><i class="fa fa-chevron-left"></i> Spotify 每周推荐功能：基于机器学习的音乐推荐</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2017/11/12/前端-Console-调试小技巧/" rel="prev" title="前端 Console 调试小技巧">前端 Console 调试小技巧 <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">Table of Contents</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">Overview</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><p class="site-author-name" itemprop="name">lsvih</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">140</span> <span class="site-state-item-name">posts</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">9</span> <span class="site-state-item-name">categories</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">167</span> <span class="site-state-item-name">tags</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/lsvih" title="GitHub &rarr; https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a> </span><span class="links-of-author-item"><a href="mailto:lsvih@qq.com" title="E-Mail &rarr; mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a></span></div><div class="cc-license motion-element" itemprop="license"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本-RNN："><span class="nav-number">1.</span> <span class="nav-text">基本 RNN：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#长短期记忆网络（LSTM）："><span class="nav-number">2.</span> <span class="nav-text">长短期记忆网络（LSTM）：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#遗忘门："><span class="nav-number">2.1.</span> <span class="nav-text">遗忘门：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入门："><span class="nav-number">2.2.</span> <span class="nav-text">输入门：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出门："><span class="nav-number">2.3.</span> <span class="nav-text">输出门：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变体"><span class="nav-number">2.4.</span> <span class="nav-text">变体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GRU（Gated-Recurrent-Unit）："><span class="nav-number">3.</span> <span class="nav-text">GRU（Gated Recurrent Unit）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原生-Tensorflow-实现："><span class="nav-number">4.</span> <span class="nav-text">原生 Tensorflow 实现：</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span> <span class="with-love" id="animate"><i class="fa fa-"></i> </span><span class="author" itemprop="copyrightHolder">lsvih</span></div><div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.5.0</div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script><script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script><link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css"><script src="/lib/algolia-instant-search/instantsearch.min.js"></script><script src="/js/src/algolia-search.js?v=6.5.0"></script><script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '6U6P1RGK4F',
+      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
+      indexName: 'lsvih',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本系列文章汇总  RNN 循环神经网络系列 1：基本 RNN 与 CHAR-RNN RNN 循环神经网络系列 2：文本分类 RNN 循环神经网络系列 3：编码、解码器 RNN 循环神经网络系列 4：注意力机制 RNN 循环神经网络系列 5：自定义单元  在本文中，我们将探索并尝试创建我们自己定义的 RNN 单元。不过在此之前，我们需要先仔细研究简单的 RNN，再逐步深入较为复杂的单元（如 LSTM">
+<meta name="keywords" content="machine learning,Translate,juejin,RNN,LSTM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RNN 循环神经网络系列 5: 自定义单元">
+<meta property="og:url" content="https://lsvih.com/2017/11/03/RNN-循环神经网络系列-5-自定义单元/index.html">
+<meta property="og:site_name" content="My note">
+<meta property="og:description" content="本系列文章汇总  RNN 循环神经网络系列 1：基本 RNN 与 CHAR-RNN RNN 循环神经网络系列 2：文本分类 RNN 循环神经网络系列 3：编码、解码器 RNN 循环神经网络系列 4：注意力机制 RNN 循环神经网络系列 5：自定义单元  在本文中，我们将探索并尝试创建我们自己定义的 RNN 单元。不过在此之前，我们需要先仔细研究简单的 RNN，再逐步深入较为复杂的单元（如 LSTM">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://lsvih.com/images/pasted-255.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-256.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-257.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-258.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-259.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-260.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-261.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-262.png">
+<meta property="og:updated_time" content="2018-10-28T16:13:00.380Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RNN 循环神经网络系列 5: 自定义单元">
+<meta name="twitter:description" content="本系列文章汇总  RNN 循环神经网络系列 1：基本 RNN 与 CHAR-RNN RNN 循环神经网络系列 2：文本分类 RNN 循环神经网络系列 3：编码、解码器 RNN 循环神经网络系列 4：注意力机制 RNN 循环神经网络系列 5：自定义单元  在本文中，我们将探索并尝试创建我们自己定义的 RNN 单元。不过在此之前，我们需要先仔细研究简单的 RNN，再逐步深入较为复杂的单元（如 LSTM">
+<meta name="twitter:image" content="https://lsvih.com/images/pasted-255.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://lsvih.com/2017/11/03/RNN-循环神经网络系列-5-自定义单元/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>RNN 循环神经网络系列 5: 自定义单元 | My note</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4de170e51b04cee02fbdb1b7cb7a8a60";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/11/03/RNN-循环神经网络系列-5-自定义单元/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">RNN 循环神经网络系列 5: 自定义单元
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-11-03 10:23:00" itemprop="dateCreated datePublished" datetime="2017-11-03T10:23:00+08:00">2017-11-03</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>本系列文章汇总</strong></p>
+<ol>
+<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-1-basic-rnn-char-rnn.md" target="_blank" rel="noopener">RNN 循环神经网络系列 1：基本 RNN 与 CHAR-RNN</a></li>
+<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-2-text-classification.md" target="_blank" rel="noopener">RNN 循环神经网络系列 2：文本分类</a></li>
+<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-3-encoder-decoder.md" target="_blank" rel="noopener">RNN 循环神经网络系列 3：编码、解码器</a></li>
+<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-network-rnn-part-4-attentional-interfaces.md" target="_blank" rel="noopener">RNN 循环神经网络系列 4：注意力机制</a></li>
+<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-network-rnn-part-5-custom-cells.md" target="_blank" rel="noopener">RNN 循环神经网络系列 5：自定义单元</a></li>
+</ol>
+<p>在本文中，我们将探索并尝试创建我们自己定义的 RNN 单元。不过在此之前，我们需要先仔细研究简单的 RNN，再逐步深入较为复杂的单元（如 LSTM 与 GRU）。我们会分析这些单元在 tensorflow 中的实现代码，最终参照这些代码来创建我们的自定义单元。本文将援引由 Chris Olah 所著，在 RNN、LSTM 方面非常棒的一篇文章中的图片。在此我强烈推荐你阅读<strong><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">这篇文章</a></strong>，本文中会重申其中许多相关内容，不过由于我们主要还是关注 tf 代码，所以这些内容将会较快地略过。将来当我要对 RNN 结构进行层规范化时，我还会引用本文中的代码。之后的文章可以在<strong><a href="https://theneuralperspective.com/2016/10/27/gradient-topics/" target="_blank" rel="noopener">这儿</a></strong>查看。</p>
+<h2 id="基本-RNN："><a href="#基本-RNN：" class="headerlink" title="基本 RNN："></a>基本 RNN：</h2><p>对于传统的 RNN 来说，最大的问题就在于每个单元的重复输入都是静态的，因此我们无法充分学习到长期的依赖情况。你回想一下基本 RNN 单元，就会发现所有操作都是单一的 tanh 运算。</p>
+<p><img src="/images/pasted-255.png" alt="upload successful"></p>
+<p>对于解决短期依赖情况的问题来说，这种结构已经够用了；但如果我们希望通过有效的长期记忆来预测目标，则需要使用更稳定强大的 RNN 单元 —— LSTM。</p>
+<h2 id="长短期记忆网络（LSTM）："><a href="#长短期记忆网络（LSTM）：" class="headerlink" title="长短期记忆网络（LSTM）："></a>长短期记忆网络（LSTM）：</h2><p>LSTM 的结构可以让我们在更多的操作中进行长期的信息控制。传统的 RNN 仅有一个输出，其既作为隐藏状态表示也作为此单元的输出端。</p>
+<p><img src="/images/pasted-256.png" alt="upload successful"></p>
+<p>这种结构缺乏对信息的控制，无法存住对许多步之后有用的信息。而 LSTM 有两种不同的输出。其中一种仍与前面的传统结构一样，既作为隐藏状态表示也作为单元输出；但 LSTM 单元还有另一种输出 - 单元状态 C。这也是 LSTM 精髓所在，让我们仔细研究它。</p>
+<p><img src="/images/pasted-257.png" alt="upload successful"></p>
+<h3 id="遗忘门："><a href="#遗忘门：" class="headerlink" title="遗忘门："></a>遗忘门：</h3><p>第一个要介绍的门就是遗忘门。这个门可以让我们选择性地传递信息以决定单元的状态。我将公式罗列在下，后面介绍其它的门时也会如此。</p>
+<p><img src="/images/pasted-258.png" alt="upload successful"></p>
+<p><img src="/images/pasted-259.png" alt="upload successful"></p>
+<p>你可以参考类似 tf 的 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/rnn_cell.py#867" target="_blank" rel="noopener">_linear</a> 函数来实现它。不过遗忘门的主要要点是对输入与隐藏状态前应用了 sigmoid。那么这个 sigmoid 的作用是什么？请回想一下，sigmoid 会输出在 [0, 1] 范围的值，在此我们将其应用于 [N X H] 的矩阵，因此会得到 NXH 个 sigmoid 算出的值。如果 sigmoid 得到 0 值，那么其对应的隐藏值就会失效；如果 sigmoid 得到 1 值，那么此隐藏值将会被应用在计算中。而处于 0 和 1 之间的值将会允许一部分的信息继续传递。这样就能很好地通过阻塞与选择性地传递输入单元的数据，以达到控制信息的目的。</p>
+<p>这就是遗忘门。它是我们的单元得到最终结果前的第一个步骤。下面介绍另一个操作：输入门。</p>
+<h3 id="输入门："><a href="#输入门：" class="headerlink" title="输入门："></a>输入门：</h3><p>输入门将获取我们的输入值 X 以及在前面的隐藏状态，并对它们进行两次运算。首先会通过 sigmoid 门来选择性地允许部分数据输入，接着将其与输入值的 tanh 值相乘。</p>
+<p><img src="/images/pasted-260.png" alt="upload successful"></p>
+<p>这儿的 tanh 与前面的 sigmoid 操作不同。请回忆一下，tanh 会将输入值改变为 [-1, 1] 范围内的值。它本质上通过非线性的方式改变了输入的表示。这一步与我们在基本 RNN 单元中进行的操作一致，不过在此我们将两值的乘积加上遗忘门得到的值得到本单元的状态值。</p>
+<p>遗忘门与输入门的操作可以看做同时保存了旧状态（C_{t-1}）的一部分与新变换（tanh）单元状态（C~_t）的一部分。这些权重将会通过我们数据的训练学到需要保存多少数据以及如何进行正确的变换。</p>
+<h3 id="输出门："><a href="#输出门：" class="headerlink" title="输出门："></a>输出门：</h3><p>最后一个门是输出门，它利用输入值、前面的隐藏状态值以及新单元状态值来共同决定新隐藏状态的表示。</p>
+<p><img src="/images/pasted-261.png" alt="upload successful"></p>
+<p>该步骤依旧涉及到了 sigmoid，将它的值与单元状态的 tanh 值相乘以决定信息的去留。需要注意这一步的 tanh 计算与输入门的 tanh 计算不同，此步不再是神经网络的计算，而仅仅是单纯、不带任何权重地计算单元状态值的 tanh 值。这样我们就能强制单元状态矩阵 [NXH] 的值处于 [-1, 1] 的范围内。</p>
+<h3 id="变体"><a href="#变体" class="headerlink" title="变体"></a>变体</h3><p>RNN 单元有许多种变体，在此再次建议去阅读 Chris Olah 的<strong><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">这篇博文</a></strong>学习更多相关知识。不过他在文中讨论的是 peehole 模型（在计算 C_{t-1} 或 C_t 时允许所有门都能观察到单元状态值）以及单元状态的 couple（更新与遗忘同时进行）。不过目前 LSTM 的竞争对手是正在被广泛使用的 GRU（Gated Recurrent Unit）。</p>
+<h2 id="GRU（Gated-Recurrent-Unit）："><a href="#GRU（Gated-Recurrent-Unit）：" class="headerlink" title="GRU（Gated Recurrent Unit）："></a>GRU（Gated Recurrent Unit）：</h2><p>GRU 的主要原理是将遗忘门与输入门结合成一个更新门。</p>
+<p><img src="/images/pasted-262.png" alt="upload successful"></p>
+<p>在实际使用中，GRU 的性能与 LSTM 相当，但其计算量更小，因此它现在日益流行。</p>
+<h2 id="原生-Tensorflow-实现："><a href="#原生-Tensorflow-实现：" class="headerlink" title="原生 Tensorflow 实现："></a>原生 Tensorflow 实现：</h2><p>我们先观察一下 Tensorflow 官方对于 GRU 单元的实现代码，主要关注其函数调用方式、输入以及输出。然后我们会复制它的结构用于创建我们自己的单元。如果你对其它的单元有兴趣，可以在<strong><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/rnn_cell.py" target="_blank" rel="noopener">这儿</a></strong>找到它们的实现。本文将主要关注 GRU，因为它在大多数情况下性能与 LSTM 相当且复杂度更低。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GRUCell</span><span class="params">(RNNCell)</span>:</span></span><br><span class="line">  <span class="string">"""Gated Recurrent Unit cell (cf. http://arxiv.org/abs/1406.1078)."""</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, num_units, input_size=None, activation=tanh)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> input_size <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">      logging.warn(<span class="string">"%s: The input_size parameter is deprecated."</span>, self)</span><br><span class="line">    self._num_units = num_units</span><br><span class="line">    self._activation = activation</span><br><span class="line"></span><br><span class="line"><span class="meta">  @property</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">state_size</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> self._num_units</span><br><span class="line"></span><br><span class="line"><span class="meta">  @property</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">output_size</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> self._num_units</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, inputs, state, scope=None)</span>:</span></span><br><span class="line">    <span class="string">"""Gated recurrent unit (GRU) with nunits cells."""</span></span><br><span class="line">    <span class="keyword">with</span> vs.variable_scope(scope <span class="keyword">or</span> type(self).__name__):  <span class="comment"># "GRUCell"</span></span><br><span class="line">      <span class="keyword">with</span> vs.variable_scope(<span class="string">"Gates"</span>):  <span class="comment"># Reset gate and update gate.</span></span><br><span class="line">        <span class="comment"># We start with bias of 1.0 to not reset and not update.</span></span><br><span class="line">        r, u = array_ops.split(<span class="number">1</span>, <span class="number">2</span>, _linear([inputs, state],</span><br><span class="line">                                             <span class="number">2</span> * self._num_units, <span class="keyword">True</span>, <span class="number">1.0</span>))</span><br><span class="line">        r, u = sigmoid(r), sigmoid(u)</span><br><span class="line">      <span class="keyword">with</span> vs.variable_scope(<span class="string">"Candidate"</span>):</span><br><span class="line">        c = self._activation(_linear([inputs, r * state],</span><br><span class="line">                                     self._num_units, <span class="keyword">True</span>))</span><br><span class="line">      new_h = u * state + (<span class="number">1</span> - u) * c</span><br><span class="line">    <span class="keyword">return</span> new_h, new_h</span><br></pre></td></tr></table></figure>
+<p>GRUCell 类由 <strong>init</strong> 函数开始执行。在 <strong>init</strong> 函数中定义了单元的数量与其使用的激活函数。其激活函数一般是 tanh，不过也可以使用 sigmoid 来使得值固定在 [0, 1] 范围内方便我们控制信息流。另外，它还有两个在调用时会返回 self._num_units 的属性。最后定义了 <strong>call</strong> 函数，它将处理输入值并得出新的隐藏值。回忆一下，GRU 没有类似 LSTM 的单元状态值。</p>
+<p>在 <strong>call</strong> 中，我们首先计算 r 和 u（u 是前面图中的 z）。在这步中，我们没有单独去计算它们，而是以乘以 2 倍 num_units 的形式合并了权重，再将结果分割成两份得到它们（split(dim, num_splits, value)）。然后对得到的值应用 sigmoid 激活函数，以选择性地控制信息流。接着计算 c 的值，用它计算新隐藏状态表示值。你可能发现它计算 new_h 的顺序和之前颠倒了，不过由于权重会同时进行训练，因此代码仍能正常运行。</p>
+<p>其它的单元代码都与此代码类似，你弄明白了上面的代码就能轻松解释其它单元的代码。</p>
+<blockquote>
+<p>本文发布于掘金 <a href="https://juejin.im/post/59fbd28b6fb9a045204b91f2" target="_blank" rel="noopener">https://juejin.im/post/59fbd28b6fb9a045204b91f2</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>lsvih</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    
+    <a href="https://lsvih.com/2017/11/03/RNN-循环神经网络系列-5-自定义单元/" title="RNN 循环神经网络系列 5: 自定义单元">https://lsvih.com/2017/11/03/RNN-循环神经网络系列-5-自定义单元/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+          
+            <a href="/tags/Translate/" rel="tag"># Translate</a>
+          
+            <a href="/tags/juejin/" rel="tag"># juejin</a>
+          
+            <a href="/tags/RNN/" rel="tag"># RNN</a>
+          
+            <a href="/tags/LSTM/" rel="tag"># LSTM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/03/Spotify-每周推荐功能：基于机器学习的音乐推荐/" rel="next" title="Spotify 每周推荐功能：基于机器学习的音乐推荐">
+                <i class="fa fa-chevron-left"></i> Spotify 每周推荐功能：基于机器学习的音乐推荐
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/12/前端-Console-调试小技巧/" rel="prev" title="前端 Console 调试小技巧">
+                前端 Console 调试小技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lsvih</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">140</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">167</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lsvih" title="GitHub &rarr; https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:lsvih@qq.com" title="E-Mail &rarr; mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本-RNN："><span class="nav-number">1.</span> <span class="nav-text">基本 RNN：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#长短期记忆网络（LSTM）："><span class="nav-number">2.</span> <span class="nav-text">长短期记忆网络（LSTM）：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#遗忘门："><span class="nav-number">2.1.</span> <span class="nav-text">遗忘门：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输入门："><span class="nav-number">2.2.</span> <span class="nav-text">输入门：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出门："><span class="nav-number">2.3.</span> <span class="nav-text">输出门：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变体"><span class="nav-number">2.4.</span> <span class="nav-text">变体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GRU（Gated-Recurrent-Unit）："><span class="nav-number">3.</span> <span class="nav-text">GRU（Gated Recurrent Unit）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原生-Tensorflow-实现："><span class="nav-number">4.</span> <span class="nav-text">原生 Tensorflow 实现：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lsvih</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.5.0"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
         processEscapes: true,
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       },
       TeX: {equationNumbers: { autoNumber: "AMS" }}
-    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
       var all = MathJax.Hub.getAllJax(), i;
         for (i=0; i < all.length; i += 1) {
           all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });</script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+    });
+</script>
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

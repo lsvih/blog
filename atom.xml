@@ -25,18 +25,19 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;/images/1.jpeg&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;&lt;p&gt;为了加密互联网流量中未被加密的最后一部分，我们与 &lt;a href=&quot;https://www.cloudflare.com/dns/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Cloudflare DNS&lt;/a&gt; 合作进行了一个试点项目。这个试点项目利用安全传输层协议（即 &lt;a href=&quot;https://code.fb.com/networking-traffic/deploying-tls-1-3-at-scale-with-fizz-a-performant-open-source-tls-library/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;TLS&lt;/a&gt;，一种被广泛应用的、经过时间证明的机制，可用于双方在不安全信道上建立通讯时，为通讯提供身份认证及加密）与 DNS 进行结合。这个 DNS over TLS（DoT）方案能够加密并验证 Web 流量的最后一部分。在 DoT 测试中，人们可以在浏览 Facebook 时使用 Cloudflare DNS 享受完全加密的体验：不仅是在连接 Facebook 时用的 HTTPS 时进行了加密，而且在 DNS 级别，从用户计算机到 Cloudflare DNS、从 Cloudflare DNS 到 Facebook 域名服务器（NAMESERVER）中全程都采用了加密技术。&lt;/p&gt;
+      &lt;p&gt;&lt;img src=&quot;/images/1.jpeg&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;为了加密互联网流量中未被加密的最后一部分，我们与 &lt;a href=&quot;https://www.cloudflare.com/dns/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Cloudflare DNS&lt;/a&gt; 合作进行了一个试点项目。这个试点项目利用安全传输层协议（即 &lt;a href=&quot;https://code.fb.com/networking-traffic/deploying-tls-1-3-at-scale-with-fizz-a-performant-open-source-tls-library/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;TLS&lt;/a&gt;，一种被广泛应用的、经过时间证明的机制，可用于双方在不安全信道上建立通讯时，为通讯提供身份认证及加密）与 DNS 进行结合。这个 DNS over TLS（DoT）方案能够加密并验证 Web 流量的最后一部分。在 DoT 测试中，人们可以在浏览 Facebook 时使用 Cloudflare DNS 享受完全加密的体验：不仅是在连接 Facebook 时用的 HTTPS 时进行了加密，而且在 DNS 级别，从用户计算机到 Cloudflare DNS、从 Cloudflare DNS 到 Facebook 域名服务器（NAMESERVER）中全程都采用了加密技术。&lt;/p&gt;
     
     </summary>
     
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
+      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
-      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
+      <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
     
       <category term="DNS" scheme="https://lsvih.com/tags/DNS/"/>
     
@@ -66,11 +67,11 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
+      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
     
-      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
+      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
   </entry>
   
@@ -96,9 +97,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
-    
       <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
+    
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
     
       <category term="Slide" scheme="https://lsvih.com/tags/Slide/"/>
     
@@ -128,9 +129,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
-    
       <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
+    
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
     
       <category term="matrix" scheme="https://lsvih.com/tags/matrix/"/>
     
@@ -155,7 +156,10 @@
       
         
         
-          &lt;blockquote&gt;&lt;p&gt;NIPS 2000 经典论文 非负矩阵分解算法 翻译&lt;/p&gt;&lt;/blockquote&gt;&lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot;
+          &lt;blockquote&gt;
+&lt;p&gt;NIPS 2000 经典论文 非负矩阵分解算法 翻译&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot;
         
       
     
@@ -164,19 +168,19 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
-    
-      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
-    
       <category term="note" scheme="https://lsvih.com/tags/note/"/>
     
       <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
       <category term="algorithm" scheme="https://lsvih.com/tags/algorithm/"/>
     
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
       <category term="matrix" scheme="https://lsvih.com/tags/matrix/"/>
     
       <category term="gradient descent" scheme="https://lsvih.com/tags/gradient-descent/"/>
+    
+      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
   </entry>
   
@@ -215,18 +219,20 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;初学者的并行编程指南&quot;&gt;&lt;a href=&quot;#初学者的并行编程指南&quot; class=&quot;headerlink&quot; title=&quot;初学者的并行编程指南&quot;&gt;&lt;/a&gt;初学者的并行编程指南&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/images/pasted-322.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;&lt;p&gt;在参加 Kaggle 的 &lt;a href=&quot;https://www.kaggle.com/c/planet-understanding-the-amazon-from-space&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Understanding the Amazon from Space&lt;/a&gt; 比赛时，我试图对自己代码的各个部分进行加速。速度在 Kaggle 比赛中至关重要。高排名常常需要尝试数百种模型结构与超参组合，能在一个持续一分钟的 epoch 中省出 10 秒都是一个巨大的胜利。&lt;/p&gt;&lt;p&gt;让我吃惊的是，数据处理是最大的瓶颈。我用了 Numpy 的矩阵旋转、矩阵翻转、缩放及裁切等操作，在 CPU 上进行运算。Numpy 和 Pytorch 的 DataLoader 在某些情况中使用了并行处理。我同时会运行 3 到 5 个实验，每个实验都各自进行数据处理。但这种处理方式看起来效率不高，我希望知道我是否能用并行处理来加快所有实验的运行速度。&lt;/p&gt;
+      &lt;h2 id=&quot;初学者的并行编程指南&quot;&gt;&lt;a href=&quot;#初学者的并行编程指南&quot; class=&quot;headerlink&quot; title=&quot;初学者的并行编程指南&quot;&gt;&lt;/a&gt;初学者的并行编程指南&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/images/pasted-322.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在参加 Kaggle 的 &lt;a href=&quot;https://www.kaggle.com/c/planet-understanding-the-amazon-from-space&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Understanding the Amazon from Space&lt;/a&gt; 比赛时，我试图对自己代码的各个部分进行加速。速度在 Kaggle 比赛中至关重要。高排名常常需要尝试数百种模型结构与超参组合，能在一个持续一分钟的 epoch 中省出 10 秒都是一个巨大的胜利。&lt;/p&gt;
+&lt;p&gt;让我吃惊的是，数据处理是最大的瓶颈。我用了 Numpy 的矩阵旋转、矩阵翻转、缩放及裁切等操作，在 CPU 上进行运算。Numpy 和 Pytorch 的 DataLoader 在某些情况中使用了并行处理。我同时会运行 3 到 5 个实验，每个实验都各自进行数据处理。但这种处理方式看起来效率不高，我希望知道我是否能用并行处理来加快所有实验的运行速度。&lt;/p&gt;
     
     </summary>
     
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
+      <category term="python" scheme="https://lsvih.com/tags/python/"/>
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
-      <category term="python" scheme="https://lsvih.com/tags/python/"/>
+      <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
     
   </entry>
   
@@ -243,7 +249,8 @@
       
         
         
-          &lt;p&gt;本文将与你一同探索 PhpFastCache 库，来为你的 PHP 应用实现缓存功能。通过缓存功能，能够提升网站的整体性能与页面加载速度。&lt;/p&gt;&lt;h2 id=&quot;什么是-PhpFastCache？&quot;&gt;&lt;a href=&quot;#什么是-PhpFastCache？&quot;
+          &lt;p&gt;本文将与你一同探索 PhpFastCache 库，来为你的 PHP 应用实现缓存功能。通过缓存功能，能够提升网站的整体性能与页面加载速度。&lt;/p&gt;
+&lt;h2 id=&quot;什么是-PhpFastCache？&quot;&gt;&lt;a href=&quot;#什么是-PhpFastCache？&quot;
         
       
     
@@ -252,9 +259,9 @@
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
-    
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
+    
+      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
       <category term="PHP" scheme="https://lsvih.com/tags/PHP/"/>
     
@@ -311,7 +318,8 @@
       
         
         
-          &lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/2000/1*9XJAQFEiYvd2i1hv9tgwXA.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;&lt;p&gt;在本文中，我们将了解 ECMAScript 6
+          &lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/2000/1*9XJAQFEiYvd2i1hv9tgwXA.jpeg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在本文中，我们将了解 ECMAScript 6
         
       
     
@@ -343,7 +351,10 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/code&gt; HMLT5 于 2014 年 10 月由万维网联盟（W3C）发布，旨在通过改进 HTML 语言来支持最新的多媒体设备，在保证计算机与设备（如 Web 浏览器，解析器等）可解析的前提下增强对人类的可读性。&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;/images/pasted-321.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;&lt;p&gt;我可以确定你们都已经在使用 HTML5 做网页了，并且会使用一些常见的标签，如 &lt;code&gt;&amp;lt;header&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;section&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;article&amp;gt;&lt;/code&gt; 和 &lt;code&gt;&amp;lt;footer&amp;gt;&lt;/code&gt; 等等，除此之外，还有一些不常用的标签是有助于正确使用 HTML5 的语义化开发。&lt;/p&gt;&lt;p&gt;在此我将其中一些最重要的标签列出来，希望能帮助你遵循 HTML5 语义进行开发。&lt;/p&gt;
+      &lt;p&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/code&gt; HMLT5 于 2014 年 10 月由万维网联盟（W3C）发布，旨在通过改进 HTML 语言来支持最新的多媒体设备，在保证计算机与设备（如 Web 浏览器，解析器等）可解析的前提下增强对人类的可读性。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/pasted-321.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;
+&lt;p&gt;我可以确定你们都已经在使用 HTML5 做网页了，并且会使用一些常见的标签，如 &lt;code&gt;&amp;lt;header&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;section&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;article&amp;gt;&lt;/code&gt; 和 &lt;code&gt;&amp;lt;footer&amp;gt;&lt;/code&gt; 等等，除此之外，还有一些不常用的标签是有助于正确使用 HTML5 的语义化开发。&lt;/p&gt;
+&lt;p&gt;在此我将其中一些最重要的标签列出来，希望能帮助你遵循 HTML5 语义进行开发。&lt;/p&gt;
     
     </summary>
     
@@ -382,9 +393,9 @@
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
-    
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
+    
+      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
       <category term="Node.js" scheme="https://lsvih.com/tags/Node-js/"/>
     
@@ -441,7 +452,8 @@
       
         
         
-          &lt;p&gt;小组使用了 GitLab，在某项目中需要利用 CI 进行远程部署，但生产服务器是另一台远程服务器，而 CI Runner 的运行环境是 Docker。&lt;/p&gt;&lt;p&gt;由于 ssh 的安全措施，在建立 ssh 连接时不允许自动化输入密码，必须在出现密码框后手动输入，因此在
+          &lt;p&gt;小组使用了 GitLab，在某项目中需要利用 CI 进行远程部署，但生产服务器是另一台远程服务器，而 CI Runner 的运行环境是 Docker。&lt;/p&gt;
+&lt;p&gt;由于 ssh 的安全措施，在建立 ssh 连接时不允许自动化输入密码，必须在出现密码框后手动输入，因此在
         
       
     
@@ -477,7 +489,19 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;a href=&quot;https://flutter.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Flutter&lt;/a&gt; 是一款用同一套代码构建高性能、高保真的 iOS 及安卓应用的跨平台移动端应用 SDK。&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://flutter.io/technical-overview/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;文档&lt;/a&gt;中提到：&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;Flutter 包括一个 &lt;strong&gt;react 风格&lt;/strong&gt;的框架、一个 2D 渲染引擎、一些预制的插件以及开发者工具。&lt;/p&gt;&lt;/blockquote&gt;&lt;p&gt;&lt;img src=&quot;/images/pasted-312.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;&lt;p&gt;文本希望能快速为 JavaScript 开发者们提供一个简练的入门指南，我会试着以 JS 与 npm 生态系统来类比 Flutter / Dart 与 &lt;a href=&quot;https://pub.dartlang.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Pub&lt;/a&gt; 包库。&lt;/p&gt;&lt;blockquote&gt;&lt;p&gt;如果你对最新的 Flutter 教程、库、公告及社区的更新感兴趣，我建议您订阅双周刊 &lt;a href=&quot;http://flutternewsletter.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Flutter Newsletter&lt;/a&gt;。&lt;/p&gt;&lt;/blockquote&gt;&lt;hr&gt;&lt;p&gt;我在 &lt;a href=&quot;https://react-native.eu/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;React Native EU&lt;/a&gt; 的演讲 &lt;a href=&quot;https://www.youtube.com/watch?v=pFtvv0rJgPw&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;React Native — 跨平台及超越&lt;/a&gt;中讨论并演示了 React 生态系统中 &lt;a href=&quot;https://github.com/necolas/react-native-web&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;React Native Web&lt;/a&gt;、&lt;a href=&quot;https://github.com/lelandrichardson/react-primitives&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;React Primitives&lt;/a&gt; 和 &lt;a href=&quot;https://microsoft.github.io/reactxp/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ReactXP&lt;/a&gt; 的不同之处，并且我也有机会讨论 &lt;a href=&quot;https://weex.incubator.apache.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Weex&lt;/a&gt; 及 &lt;a href=&quot;https://flutter.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Flutter&lt;/a&gt; 的不同之处。&lt;/p&gt;&lt;p&gt;在尝试 Flutter 之后，我认为它是近几年我所关注的前端技术中最让我激动的一个。在本文中，我将讨论为何它如此令我激动，并介绍如何尽可能快的入门 Flutter。&lt;/p&gt;
+      &lt;p&gt;&lt;a href=&quot;https://flutter.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Flutter&lt;/a&gt; 是一款用同一套代码构建高性能、高保真的 iOS 及安卓应用的跨平台移动端应用 SDK。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://flutter.io/technical-overview/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;文档&lt;/a&gt;中提到：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Flutter 包括一个 &lt;strong&gt;react 风格&lt;/strong&gt;的框架、一个 2D 渲染引擎、一些预制的插件以及开发者工具。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;/images/pasted-312.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;
+&lt;p&gt;文本希望能快速为 JavaScript 开发者们提供一个简练的入门指南，我会试着以 JS 与 npm 生态系统来类比 Flutter / Dart 与 &lt;a href=&quot;https://pub.dartlang.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Pub&lt;/a&gt; 包库。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果你对最新的 Flutter 教程、库、公告及社区的更新感兴趣，我建议您订阅双周刊 &lt;a href=&quot;http://flutternewsletter.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Flutter Newsletter&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;我在 &lt;a href=&quot;https://react-native.eu/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;React Native EU&lt;/a&gt; 的演讲 &lt;a href=&quot;https://www.youtube.com/watch?v=pFtvv0rJgPw&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;React Native — 跨平台及超越&lt;/a&gt;中讨论并演示了 React 生态系统中 &lt;a href=&quot;https://github.com/necolas/react-native-web&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;React Native Web&lt;/a&gt;、&lt;a href=&quot;https://github.com/lelandrichardson/react-primitives&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;React Primitives&lt;/a&gt; 和 &lt;a href=&quot;https://microsoft.github.io/reactxp/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ReactXP&lt;/a&gt; 的不同之处，并且我也有机会讨论 &lt;a href=&quot;https://weex.incubator.apache.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Weex&lt;/a&gt; 及 &lt;a href=&quot;https://flutter.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Flutter&lt;/a&gt; 的不同之处。&lt;/p&gt;
+&lt;p&gt;在尝试 Flutter 之后，我认为它是近几年我所关注的前端技术中最让我激动的一个。在本文中，我将讨论为何它如此令我激动，并介绍如何尽可能快的入门 Flutter。&lt;/p&gt;
     
     </summary>
     
@@ -490,8 +514,6 @@
     
       <category term="iOS" scheme="https://lsvih.com/tags/iOS/"/>
     
-      <category term="React Native" scheme="https://lsvih.com/tags/React-Native/"/>
-    
       <category term="Juejin" scheme="https://lsvih.com/tags/Juejin/"/>
     
       <category term="Flutter" scheme="https://lsvih.com/tags/Flutter/"/>
@@ -501,6 +523,8 @@
       <category term="JavaScript" scheme="https://lsvih.com/tags/JavaScript/"/>
     
       <category term="Dart" scheme="https://lsvih.com/tags/Dart/"/>
+    
+      <category term="React Native" scheme="https://lsvih.com/tags/React-Native/"/>
     
   </entry>
   
@@ -513,16 +537,26 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;/images/pasted-311.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;&lt;h3 id=&quot;TL-DR&quot;&gt;&lt;a href=&quot;#TL-DR&quot; class=&quot;headerlink&quot; title=&quot;TL;DR&quot;&gt;&lt;/a&gt;TL;DR&lt;/h3&gt;&lt;p&gt;本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Python 应用的例子。以下为本指南的内容摘要：&lt;/p&gt;&lt;ul&gt;&lt;li&gt;使用合适的基础镜像（开发环境使用 debian，生产环境使用 alpine）。&lt;/li&gt;&lt;li&gt;在开发时使用 &lt;code&gt;gunicorn&lt;/code&gt; 进行热加载。&lt;/li&gt;&lt;li&gt;优化 Docker 的 cache layer（缓存层）—— 按照正确的顺序使用命令，仅在必要时运行 &lt;code&gt;pip install&lt;/code&gt;。&lt;/li&gt;&lt;li&gt;使用 &lt;code&gt;flask&lt;/code&gt; 的 static 及 template 目录部署静态文件（比如 React、Vue、Angular 生成的 bundle）。&lt;/li&gt;&lt;li&gt;使用 &lt;code&gt;alpine&lt;/code&gt; 进行生产环境下的多级构建，减少最终镜像文件的大小。&lt;/li&gt;&lt;li&gt;#彩蛋 — 在开发时可以用 gunicorn 的 &lt;code&gt;--reload&lt;/code&gt; 与 &lt;code&gt;--reload_extra_files&lt;/code&gt; 监视文件（包括 html、css 及 js）的修改。&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;如果你需要以上步骤的代码，请参考 &lt;a href=&quot;https://github.com/praveenweb/python-docker&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
+      &lt;p&gt;&lt;img src=&quot;/images/pasted-311.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;TL-DR&quot;&gt;&lt;a href=&quot;#TL-DR&quot; class=&quot;headerlink&quot; title=&quot;TL;DR&quot;&gt;&lt;/a&gt;TL;DR&lt;/h3&gt;&lt;p&gt;本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Python 应用的例子。以下为本指南的内容摘要：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用合适的基础镜像（开发环境使用 debian，生产环境使用 alpine）。&lt;/li&gt;
+&lt;li&gt;在开发时使用 &lt;code&gt;gunicorn&lt;/code&gt; 进行热加载。&lt;/li&gt;
+&lt;li&gt;优化 Docker 的 cache layer（缓存层）—— 按照正确的顺序使用命令，仅在必要时运行 &lt;code&gt;pip install&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;flask&lt;/code&gt; 的 static 及 template 目录部署静态文件（比如 React、Vue、Angular 生成的 bundle）。&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;alpine&lt;/code&gt; 进行生产环境下的多级构建，减少最终镜像文件的大小。&lt;/li&gt;
+&lt;li&gt;#彩蛋 — 在开发时可以用 gunicorn 的 &lt;code&gt;--reload&lt;/code&gt; 与 &lt;code&gt;--reload_extra_files&lt;/code&gt; 监视文件（包括 html、css 及 js）的修改。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果你需要以上步骤的代码，请参考 &lt;a href=&quot;https://github.com/praveenweb/python-docker&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
     
     </summary>
     
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
-    
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
+    
+      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
       <category term="Docker" scheme="https://lsvih.com/tags/Docker/"/>
     
@@ -548,11 +582,11 @@
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
-    
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
       <category term="python" scheme="https://lsvih.com/tags/python/"/>
+    
+      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
       <category term="Websocket" scheme="https://lsvih.com/tags/Websocket/"/>
     
@@ -577,7 +611,8 @@
       
         
         
-          &lt;p&gt;进入 Grub 之后，显示 GRUB&amp;gt; 命令提示符。可根据以下操作加载 linux kernel 并进行引导。&lt;/p&gt;&lt;h4 id=&quot;查找引导分区&quot;&gt;&lt;a href=&quot;#查找引导分区&quot; class=&quot;headerlink&quot;
+          &lt;p&gt;进入 Grub 之后，显示 GRUB&amp;gt; 命令提示符。可根据以下操作加载 linux kernel 并进行引导。&lt;/p&gt;
+&lt;h4 id=&quot;查找引导分区&quot;&gt;&lt;a href=&quot;#查找引导分区&quot; class=&quot;headerlink&quot;
         
       
     
@@ -603,16 +638,25 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;/images/pasted-306.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;&lt;h3 id=&quot;TL-DR&quot;&gt;&lt;a href=&quot;#TL-DR&quot; class=&quot;headerlink&quot; title=&quot;TL;DR&quot;&gt;&lt;/a&gt;TL;DR&lt;/h3&gt;&lt;p&gt;本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Node.js Web 应用的例子。以下为本指南的内容摘要：&lt;/p&gt;&lt;ul&gt;&lt;li&gt;使用合适的基础镜像（开发环境使用 carbon，生产环境使用 alpine）。&lt;/li&gt;&lt;li&gt;在开发时使用 &lt;code&gt;nodemon&lt;/code&gt; 进行热加载。&lt;/li&gt;&lt;li&gt;优化 Docker 的 cache layer（缓存层）—— 按照正确的顺序使用命令，仅在需要时运行 &lt;code&gt;npm install&lt;/code&gt;。&lt;/li&gt;&lt;li&gt;使用 &lt;code&gt;serve&lt;/code&gt; 包部署静态文件（比如 React、Vue、Angular 生成的 bundle）。&lt;/li&gt;&lt;li&gt;使用 &lt;code&gt;alpine&lt;/code&gt; 进行生产环境下的多级构建，减少最终镜像文件的大小。&lt;/li&gt;&lt;li&gt;#建议 — 1) 使用 COPY 代替 ADD 2) 使用 &lt;code&gt;init&lt;/code&gt; 标识，处理 CTRL-C 等内核信号。&lt;/li&gt;&lt;/ul&gt;
+      &lt;p&gt;&lt;img src=&quot;/images/pasted-306.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;TL-DR&quot;&gt;&lt;a href=&quot;#TL-DR&quot; class=&quot;headerlink&quot; title=&quot;TL;DR&quot;&gt;&lt;/a&gt;TL;DR&lt;/h3&gt;&lt;p&gt;本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Node.js Web 应用的例子。以下为本指南的内容摘要：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用合适的基础镜像（开发环境使用 carbon，生产环境使用 alpine）。&lt;/li&gt;
+&lt;li&gt;在开发时使用 &lt;code&gt;nodemon&lt;/code&gt; 进行热加载。&lt;/li&gt;
+&lt;li&gt;优化 Docker 的 cache layer（缓存层）—— 按照正确的顺序使用命令，仅在需要时运行 &lt;code&gt;npm install&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;serve&lt;/code&gt; 包部署静态文件（比如 React、Vue、Angular 生成的 bundle）。&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;alpine&lt;/code&gt; 进行生产环境下的多级构建，减少最终镜像文件的大小。&lt;/li&gt;
+&lt;li&gt;#建议 — 1) 使用 COPY 代替 ADD 2) 使用 &lt;code&gt;init&lt;/code&gt; 标识，处理 CTRL-C 等内核信号。&lt;/li&gt;
+&lt;/ul&gt;
     
     </summary>
     
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
-    
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
+    
+      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
       <category term="Docker" scheme="https://lsvih.com/tags/Docker/"/>
     
@@ -631,13 +675,9 @@
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;p&gt;Swift playground 对于&lt;a href=&quot;https://github.com/johnsundell/testdrive&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;试用新的 framework&lt;/a&gt;、&lt;a
-        
-      
+      &lt;p&gt;Swift playground 对于&lt;a href=&quot;https://github.com/johnsundell/testdrive&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;试用新的 framework&lt;/a&gt;、&lt;a href=&quot;https://github.com/ole/whats-new-in-swift-4&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;探索语言的新特性&lt;/a&gt;来说十分有用。它提供的实时反馈能让你快速尝试新的想法与解决方案，大大提高生产力。&lt;/p&gt;
+&lt;p&gt;自 Swift 问世以来，无论是设计 framework API，还是给 app 开发新功能，我一直在不停地使用 playground，希望找到将它整合进工作流的办法。&lt;/p&gt;
+&lt;p&gt;本周，让我们来了解如何将 Swift playground 应用于编写单元测试，以及如何让 &lt;a href=&quot;https://en.wikipedia.org/wiki/Test-driven_development&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;TDD - 测试驱动开发&lt;/a&gt;（ish）工作流变得更加顺畅。&lt;/p&gt;
     
     </summary>
     

@@ -1,13 +1,1462 @@
-<!DOCTYPE html><html class="theme-next pisces"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0"><link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",version:"6.5.0",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!1,fastclick:!1,lazyload:!1,tabs:!0,motion:{enable:!1,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},algolia:{applicationID:"6U6P1RGK4F",apiKey:"b14e73cdd627eabe947b5decbe14850f",indexName:"lsvih",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><meta name="description" content="如同人的神经元一般，由输入端-神经元-输出这样一系列过程的信息处理方式，可以处理较为复杂的信息，并有一定的学习功能。神经网络一般分为：输入层、隐藏层、输出层。对于用户来说，只有输出层的输出是可知的，隐藏层可以完成许多间接的复杂运算，因此神经网络的计算复杂度比单层结构复杂的多。上图为一个有两层隐藏层的典型的神经网络,可以看到其基本结构.可以发现任何一个节点相当于收到上一层所有节点的影响.每个节点影响"><meta name="keywords" content="machine learning,coursera note"><meta property="og:type" content="article"><meta property="og:title" content="机器学习学习笔记（十）神经网络前向传播"><meta property="og:url" content="https://lsvih.com/2016/04/12/机器学习学习笔记（十）神经网络前向传播/index.html"><meta property="og:site_name" content="My note"><meta property="og:description" content="如同人的神经元一般，由输入端-神经元-输出这样一系列过程的信息处理方式，可以处理较为复杂的信息，并有一定的学习功能。神经网络一般分为：输入层、隐藏层、输出层。对于用户来说，只有输出层的输出是可知的，隐藏层可以完成许多间接的复杂运算，因此神经网络的计算复杂度比单层结构复杂的多。上图为一个有两层隐藏层的典型的神经网络,可以看到其基本结构.可以发现任何一个节点相当于收到上一层所有节点的影响.每个节点影响"><meta property="og:locale" content="default"><meta property="og:image" content="https://lsvih.com/images/pasted-45.png"><meta property="og:image" content="https://lsvih.com/images/pasted-46.png"><meta property="og:image" content="https://lsvih.com/images/pasted-47.png"><meta property="og:image" content="https://lsvih.com/images/pasted-48.png"><meta property="og:image" content="https://lsvih.com/images/pasted-31.png"><meta property="og:image" content="https://lsvih.com/images/pasted-49.png"><meta property="og:image" content="https://lsvih.com/images/pasted-50.png"><meta property="og:image" content="https://lsvih.com/images/pasted-51.png"><meta property="og:image" content="https://lsvih.com/images/pasted-52.png"><meta property="og:updated_time" content="2018-10-28T16:13:16.992Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="机器学习学习笔记（十）神经网络前向传播"><meta name="twitter:description" content="如同人的神经元一般，由输入端-神经元-输出这样一系列过程的信息处理方式，可以处理较为复杂的信息，并有一定的学习功能。神经网络一般分为：输入层、隐藏层、输出层。对于用户来说，只有输出层的输出是可知的，隐藏层可以完成许多间接的复杂运算，因此神经网络的计算复杂度比单层结构复杂的多。上图为一个有两层隐藏层的典型的神经网络,可以看到其基本结构.可以发现任何一个节点相当于收到上一层所有节点的影响.每个节点影响"><meta name="twitter:image" content="https://lsvih.com/images/pasted-45.png"><link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml"><link rel="canonical" href="https://lsvih.com/2016/04/12/机器学习学习笔记（十）神经网络前向传播/"><script type="text/javascript" id="page.configurations">CONFIG.page={sidebar:""}</script><title>机器学习学习笔记（十）神经网络前向传播 | My note</title><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?4de170e51b04cee02fbdb1b7cb7a8a60";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><noscript><style type="text/css">.sidebar-inner,.use-motion .brand,.use-motion .collection-title,.use-motion .comments,.use-motion .menu-item,.use-motion .motion-element,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .logo,.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}.logo-line-after i{right:initial}</style></noscript></head><body itemscope itemtype="http://schema.org/WebPage" lang="default"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">My note</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description">lsvih</h1></div><div class="site-nav-toggle"><button aria-label="Toggle navigation bar"><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>Archives</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>Search</a></li></ul><div class="site-search"><div class="algolia-popup popup search-popup"><div class="algolia-search"><div class="algolia-search-input-icon"><i class="fa fa-search"></i></div><div class="algolia-search-input" id="algolia-search-input"></div></div><div class="algolia-results"><div id="algolia-stats"></div><div id="algolia-hits"></div><div id="algolia-pagination" class="algolia-pagination"></div></div><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><div class="reading-progress-bar"></div><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/12/机器学习学习笔记（十）神经网络前向传播/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="lsvih"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="My note"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">机器学习学习笔记（十）神经网络前向传播</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">Posted on</span> <time title="Created: 2016-04-12 13:42:00" itemprop="dateCreated datePublished" datetime="2016-04-12T13:42:00+08:00">2016-04-12</time> </span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">In</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span></span></div></header><div class="post-body" itemprop="articleBody"><p><img src="/images/pasted-45.png" alt="upload successful"></p><p>如同人的神经元一般，由输入端-神经元-输出这样一系列过程的信息处理方式，可以处理较为复杂的信息，并有一定的学习功能。</p><p>神经网络一般分为：输入层、隐藏层、输出层。对于用户来说，只有输出层的输出是可知的，隐藏层可以完成许多间接的复杂运算，因此神经网络的计算复杂度比单层结构复杂的多。</p><p><img src="/images/pasted-46.png" alt="upload successful"></p><hr><p>上图为一个有两层隐藏层的典型的神经网络,可以看到其基本结构.可以发现任何一个节点相当于收到上一层所有节点的影响.每个节点影响的程度可以以权值表示。</p><p>以下面一个简单的神经网络举例，</p><p><img src="/images/pasted-47.png" alt="upload successful"></p><p>隐藏层(a(2)1,a(2)2,a(2)3)的值的计算为：</p><script type="math/tex;mode=display">a^{(2)}_1 = g(\theta ^{(1)}_{10}x_0 + \theta ^{(1)}_{11}x_1 + \theta ^{(1)}_{12}x_2 + \theta ^{(1)}_{13}x_3)</script><script type="math/tex;mode=display">a^{(2)}_2 = g(\theta ^{(1)}_{20}x_0 + \theta ^{(1)}_{21}x_1 + \theta ^{(1)}_{22}x_2 + \theta ^{(1)}_{23}x_3)</script><script type="math/tex;mode=display">a^{(2)}_3 = g(\theta ^{(1)}_{30}x_0 + \theta ^{(1)}_{31}x_1 + \theta ^{(1)}_{32}x_2 + \theta ^{(1)}_{33}x_3)</script><p>$\theta$即表示相应层元素受到上一层“激励”的权值。（x0为加上的额外的偏度单元）</p><p>g为S函数（解决逻辑回归问题）</p><p>同理，输出层的值为</p><script type="math/tex;mode=display">h_\theta(x)=a^{(3)}_1 = g(\theta ^{(2)}_{10}a_0 + \theta ^{(2)}_{11}a_1 + \theta ^{(2)}_{12}a_2 + \theta ^{(2)}_{13}a_3)</script><p>为前一层（隐藏层）的所以元素乘对应的权值的和的对应函数值。</p><hr><script type="math/tex;mode=display">a^{(2)}_1 = g(\theta ^{(1)}_{10}x_0 + \theta ^{(1)}_{11}x_1 + \theta ^{(1)}_{12}x_2 + \theta ^{(1)}_{13}x_3)</script><script type="math/tex;mode=display">a^{(2)}_2 = g(\theta ^{(1)}_{20}x_0 + \theta ^{(1)}_{21}x_1 + \theta ^{(1)}_{22}x_2 + \theta ^{(1)}_{23}x_3)</script><script type="math/tex;mode=display">a^{(2)}_3 = g(\theta ^{(1)}_{30}x_0 + \theta ^{(1)}_{31}x_1 + \theta ^{(1)}_{32}x_2 + \theta ^{(1)}_{33}x_3)</script><p>对于以上式子可以看成矩阵相乘的形式，</p><script type="math/tex;mode=display">x=\begin{bmatrix}x_0\ x_1\ x_2\ x_3\end{bmatrix}</script><script type="math/tex;mode=display">z^{(2)}=\begin{bmatrix}z_1^{(2)}\ z_2^{(2)}\ z_3^{(2)}\end{bmatrix}</script><script type="math/tex;mode=display">z^{(2)} = \theta^{(1)}x</script><script type="math/tex;mode=display">a^{(2)}=g(z^{(2)})</script><p>z(2)为第二层元素值的向量形式。\theta(1)为输入层对应的权值的向量形式。</p><script type="math/tex;mode=display">z^{(3)} = \theta^{(2)}a^{(2)}</script><script type="math/tex;mode=display">h_\theta(x)=a^{(3)}=g(z^{(3)})</script><p>\theta(2)为隐藏层对应权值的向量形式。</p><blockquote><p>神经网络中这种由训练输入送入网络中，获得激励响应的行为称为“前向传播”</p></blockquote><hr><h3 id="神经网络解决实际问题"><a href="#神经网络解决实际问题" class="headerlink" title="神经网络解决实际问题"></a>神经网络解决实际问题</h3><p>例如下表：</p><div class="table-container"><table><thead><tr><th>x1</th><th>x2</th><th>y</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></tbody></table></div><p>在神经网络中，可以以下形式表示</p><p><img src="/images/pasted-48.png" alt="upload successful"></p><p>计算一下，发现x1与x2等于0时z=-30，x1与x2等于1时z=10,x1与x2不相等时z=-10.</p><p>将其放到S函数中，</p><p><img src="/images/pasted-31.png" alt="upload successful"></p><p>z=-30与z=-10时g(z)趋近与0，z=10时趋近与1，可以表示上表的值的关系。</p><p>可以用y=x1 AND x2 （与）表示这个关系。</p><hr><p>下表用神经网络表示：</p><div class="table-container"><table><thead><tr><th>x1</th><th>x2</th><th>y</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></tbody></table></div><p>这种“异或”问题可以看成一个“与”与一个“或”问题的结合，</p><p><img src="/images/pasted-49.png" alt="upload successful"></p><p>（NOT）</p><p><img src="/images/pasted-50.png" alt="upload successful"></p><p>(AND)</p><p>(NOT x1)AND(NOT x2)</p><p><img src="/images/pasted-51.png" alt="upload successful"></p><p>可以得到上表内容。</p><p>以上为神经网络表示“异或”运算。</p><p>必须要两层网络才能解决异或运算问题。因为1层网络放在坐标图上可以看成是画了一条直线，而异或问题放在图上是这样的：</p><p><img src="/images/pasted-52.png" alt="upload successful"></p><p>不难发现没有一条直线能够完美地分开两类点。</p></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author: </strong>lsvih</li><li class="post-copyright-link"><strong>Post link: </strong><a href="https://lsvih.com/2016/04/12/机器学习学习笔记（十）神经网络前向传播/" title="机器学习学习笔记（十）神经网络前向传播">https://lsvih.com/2016/04/12/机器学习学习笔记（十）神经网络前向传播/</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/machine-learning/" rel="tag"># machine learning</a> <a href="/tags/coursera-note/" rel="tag"># coursera note</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2016/04/12/python批量处理csv文件/" rel="next" title="python批量处理csv文件"><i class="fa fa-chevron-left"></i> python批量处理csv文件</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2016/04/18/在Centos下设置apache的虚拟目录/" rel="prev" title="在Centos下设置apache的虚拟目录">在Centos下设置apache的虚拟目录 <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">Table of Contents</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">Overview</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><p class="site-author-name" itemprop="name">lsvih</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">140</span> <span class="site-state-item-name">posts</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">9</span> <span class="site-state-item-name">categories</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">167</span> <span class="site-state-item-name">tags</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/lsvih" title="GitHub &rarr; https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a> </span><span class="links-of-author-item"><a href="mailto:lsvih@qq.com" title="E-Mail &rarr; mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a></span></div><div class="cc-license motion-element" itemprop="license"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络解决实际问题"><span class="nav-number">1.</span> <span class="nav-text">神经网络解决实际问题</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span> <span class="with-love" id="animate"><i class="fa fa-"></i> </span><span class="author" itemprop="copyrightHolder">lsvih</span></div><div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.5.0</div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script><script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script><link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css"><script src="/lib/algolia-instant-search/instantsearch.min.js"></script><script src="/js/src/algolia-search.js?v=6.5.0"></script><script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '6U6P1RGK4F',
+      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
+      indexName: 'lsvih',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="如同人的神经元一般，由输入端-神经元-输出这样一系列过程的信息处理方式，可以处理较为复杂的信息，并有一定的学习功能。 神经网络一般分为：输入层、隐藏层、输出层。对于用户来说，只有输出层的输出是可知的，隐藏层可以完成许多间接的复杂运算，因此神经网络的计算复杂度比单层结构复杂的多。   上图为一个有两层隐藏层的典型的神经网络,可以看到其基本结构.可以发现任何一个节点相当于收到上一层所有节点的影响.每">
+<meta name="keywords" content="machine learning,coursera note">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习学习笔记（十）神经网络前向传播">
+<meta property="og:url" content="https://lsvih.com/2016/04/12/机器学习学习笔记（十）神经网络前向传播/index.html">
+<meta property="og:site_name" content="My note">
+<meta property="og:description" content="如同人的神经元一般，由输入端-神经元-输出这样一系列过程的信息处理方式，可以处理较为复杂的信息，并有一定的学习功能。 神经网络一般分为：输入层、隐藏层、输出层。对于用户来说，只有输出层的输出是可知的，隐藏层可以完成许多间接的复杂运算，因此神经网络的计算复杂度比单层结构复杂的多。   上图为一个有两层隐藏层的典型的神经网络,可以看到其基本结构.可以发现任何一个节点相当于收到上一层所有节点的影响.每">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://lsvih.com/images/pasted-45.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-46.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-47.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-48.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-31.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-49.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-50.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-51.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-52.png">
+<meta property="og:updated_time" content="2018-10-28T16:13:16.992Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习学习笔记（十）神经网络前向传播">
+<meta name="twitter:description" content="如同人的神经元一般，由输入端-神经元-输出这样一系列过程的信息处理方式，可以处理较为复杂的信息，并有一定的学习功能。 神经网络一般分为：输入层、隐藏层、输出层。对于用户来说，只有输出层的输出是可知的，隐藏层可以完成许多间接的复杂运算，因此神经网络的计算复杂度比单层结构复杂的多。   上图为一个有两层隐藏层的典型的神经网络,可以看到其基本结构.可以发现任何一个节点相当于收到上一层所有节点的影响.每">
+<meta name="twitter:image" content="https://lsvih.com/images/pasted-45.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://lsvih.com/2016/04/12/机器学习学习笔记（十）神经网络前向传播/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>机器学习学习笔记（十）神经网络前向传播 | My note</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4de170e51b04cee02fbdb1b7cb7a8a60";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/12/机器学习学习笔记（十）神经网络前向传播/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">机器学习学习笔记（十）神经网络前向传播
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-04-12 13:42:00" itemprop="dateCreated datePublished" datetime="2016-04-12T13:42:00+08:00">2016-04-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/pasted-45.png" alt="upload successful"></p>
+<p>如同人的神经元一般，由输入端-神经元-输出这样一系列过程的信息处理方式，可以处理较为复杂的信息，并有一定的学习功能。</p>
+<p>神经网络一般分为：输入层、隐藏层、输出层。对于用户来说，只有输出层的输出是可知的，隐藏层可以完成许多间接的复杂运算，因此神经网络的计算复杂度比单层结构复杂的多。</p>
+<p><img src="/images/pasted-46.png" alt="upload successful"></p>
+<hr>
+<p>上图为一个有两层隐藏层的典型的神经网络,可以看到其基本结构.可以发现任何一个节点相当于收到上一层所有节点的影响.每个节点影响的程度可以以权值表示。</p>
+<p>以下面一个简单的神经网络举例，</p>
+<p><img src="/images/pasted-47.png" alt="upload successful"></p>
+<p>隐藏层(a(2)1,a(2)2,a(2)3)的值的计算为：</p>
+<script type="math/tex; mode=display">a^{(2)}_1 = g(\theta ^{(1)}_{10}x_0 + \theta ^{(1)}_{11}x_1 + \theta ^{(1)}_{12}x_2 + \theta ^{(1)}_{13}x_3)</script><script type="math/tex; mode=display">a^{(2)}_2 = g(\theta ^{(1)}_{20}x_0 + \theta ^{(1)}_{21}x_1 + \theta ^{(1)}_{22}x_2 + \theta ^{(1)}_{23}x_3)</script><script type="math/tex; mode=display">a^{(2)}_3 = g(\theta ^{(1)}_{30}x_0 + \theta ^{(1)}_{31}x_1 + \theta ^{(1)}_{32}x_2 + \theta ^{(1)}_{33}x_3)</script><p>$\theta$即表示相应层元素受到上一层“激励”的权值。（x0为加上的额外的偏度单元）</p>
+<p>g为S函数（解决逻辑回归问题）</p>
+<p>同理，输出层的值为</p>
+<script type="math/tex; mode=display">h_\theta(x)=a^{(3)}_1 = g(\theta ^{(2)}_{10}a_0 + \theta ^{(2)}_{11}a_1 + \theta ^{(2)}_{12}a_2 + \theta ^{(2)}_{13}a_3)</script><p>为前一层（隐藏层）的所以元素乘对应的权值的和的对应函数值。</p>
+<hr>
+<script type="math/tex; mode=display">a^{(2)}_1 = g(\theta ^{(1)}_{10}x_0 + \theta ^{(1)}_{11}x_1 + \theta ^{(1)}_{12}x_2 + \theta ^{(1)}_{13}x_3)</script><script type="math/tex; mode=display">a^{(2)}_2 = g(\theta ^{(1)}_{20}x_0 + \theta ^{(1)}_{21}x_1 + \theta ^{(1)}_{22}x_2 + \theta ^{(1)}_{23}x_3)</script><script type="math/tex; mode=display">a^{(2)}_3 = g(\theta ^{(1)}_{30}x_0 + \theta ^{(1)}_{31}x_1 + \theta ^{(1)}_{32}x_2 + \theta ^{(1)}_{33}x_3)</script><p>对于以上式子可以看成矩阵相乘的形式，</p>
+<script type="math/tex; mode=display">x=\begin{bmatrix}x_0\ x_1\ x_2\ x_3\end{bmatrix}</script><script type="math/tex; mode=display">z^{(2)}=\begin{bmatrix}z_1^{(2)}\ z_2^{(2)}\ z_3^{(2)}\end{bmatrix}</script><script type="math/tex; mode=display">z^{(2)} = \theta^{(1)}x</script><script type="math/tex; mode=display">a^{(2)}=g(z^{(2)})</script><p>z(2)为第二层元素值的向量形式。\theta(1)为输入层对应的权值的向量形式。</p>
+<script type="math/tex; mode=display">z^{(3)} = \theta^{(2)}a^{(2)}</script><script type="math/tex; mode=display">h_\theta(x)=a^{(3)}=g(z^{(3)})</script><p>\theta(2)为隐藏层对应权值的向量形式。</p>
+<blockquote>
+<p>神经网络中这种由训练输入送入网络中，获得激励响应的行为称为“前向传播”</p>
+</blockquote>
+<hr>
+<h3 id="神经网络解决实际问题"><a href="#神经网络解决实际问题" class="headerlink" title="神经网络解决实际问题"></a>神经网络解决实际问题</h3><p>例如下表：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>x1</th>
+<th>x2</th>
+<th>y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在神经网络中，可以以下形式表示</p>
+<p><img src="/images/pasted-48.png" alt="upload successful"></p>
+<p>计算一下，发现x1与x2等于0时z=-30，x1与x2等于1时z=10,x1与x2不相等时z=-10.</p>
+<p>将其放到S函数中，</p>
+<p><img src="/images/pasted-31.png" alt="upload successful"></p>
+<p>z=-30与z=-10时g(z)趋近与0，z=10时趋近与1，可以表示上表的值的关系。</p>
+<p>可以用y=x1 AND x2 （与）表示这个关系。</p>
+<hr>
+<p>下表用神经网络表示：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>x1</th>
+<th>x2</th>
+<th>y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这种“异或”问题可以看成一个“与”与一个“或”问题的结合，</p>
+<p><img src="/images/pasted-49.png" alt="upload successful"></p>
+<p>（NOT）</p>
+<p><img src="/images/pasted-50.png" alt="upload successful"></p>
+<p>(AND)</p>
+<p>(NOT x1)AND(NOT x2)</p>
+<p><img src="/images/pasted-51.png" alt="upload successful"></p>
+<p>可以得到上表内容。</p>
+<p>以上为神经网络表示“异或”运算。</p>
+<p>必须要两层网络才能解决异或运算问题。因为1层网络放在坐标图上可以看成是画了一条直线，而异或问题放在图上是这样的：</p>
+<p><img src="/images/pasted-52.png" alt="upload successful"></p>
+<p>不难发现没有一条直线能够完美地分开两类点。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>lsvih</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    
+    <a href="https://lsvih.com/2016/04/12/机器学习学习笔记（十）神经网络前向传播/" title="机器学习学习笔记（十）神经网络前向传播">https://lsvih.com/2016/04/12/机器学习学习笔记（十）神经网络前向传播/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+          
+            <a href="/tags/coursera-note/" rel="tag"># coursera note</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/12/python批量处理csv文件/" rel="next" title="python批量处理csv文件">
+                <i class="fa fa-chevron-left"></i> python批量处理csv文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/18/在Centos下设置apache的虚拟目录/" rel="prev" title="在Centos下设置apache的虚拟目录">
+                在Centos下设置apache的虚拟目录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lsvih</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">140</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">167</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lsvih" title="GitHub &rarr; https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:lsvih@qq.com" title="E-Mail &rarr; mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络解决实际问题"><span class="nav-number">1.</span> <span class="nav-text">神经网络解决实际问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lsvih</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.5.0"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
         processEscapes: true,
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       },
       TeX: {equationNumbers: { autoNumber: "AMS" }}
-    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
       var all = MathJax.Hub.getAllJax(), i;
         for (i=0; i < all.length; i += 1) {
           all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });</script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+    });
+</script>
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

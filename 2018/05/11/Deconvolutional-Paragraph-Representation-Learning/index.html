@@ -1,13 +1,1442 @@
-<!DOCTYPE html><html class="theme-next pisces"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0"><link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",version:"6.5.0",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!1,fastclick:!1,lazyload:!1,tabs:!0,motion:{enable:!1,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},algolia:{applicationID:"6U6P1RGK4F",apiKey:"b14e73cdd627eabe947b5decbe14850f",indexName:"lsvih",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><meta name="description" content="摘要在许多自然语言处理应用中，从长文本序列中学习其潜在的语义表示是重要的第一步。RNN 已经成为了这个任务的基石。然而，随着文本长度的增加，RNN 的解码重建（decoding、reconstraction）的质量也随之降低。因此，我们提出了一个 seq2seq、由纯粹的卷积与反卷积结构构成的自动编码框架，它没有上述 RNN 的问题，同时计算效率也很高。另外，此方法简单易行，可以在许多应用中作为一"><meta name="keywords" content="Paper Note,DeConv,Conv,CNN,Encoder-decoder"><meta property="og:type" content="article"><meta property="og:title" content="Deconvolutional Paragraph Representation Learning"><meta property="og:url" content="https://lsvih.com/2018/05/11/Deconvolutional-Paragraph-Representation-Learning/index.html"><meta property="og:site_name" content="My note"><meta property="og:description" content="摘要在许多自然语言处理应用中，从长文本序列中学习其潜在的语义表示是重要的第一步。RNN 已经成为了这个任务的基石。然而，随着文本长度的增加，RNN 的解码重建（decoding、reconstraction）的质量也随之降低。因此，我们提出了一个 seq2seq、由纯粹的卷积与反卷积结构构成的自动编码框架，它没有上述 RNN 的问题，同时计算效率也很高。另外，此方法简单易行，可以在许多应用中作为一"><meta property="og:locale" content="default"><meta property="og:image" content="https://lsvih.com/images/pasted-317.png"><meta property="og:image" content="https://lsvih.com/images/15258102755361.jpg"><meta property="og:image" content="https://lsvih.com/images/15258102868772.jpg"><meta property="og:image" content="https://lsvih.com/images/15258102990486.jpg"><meta property="og:image" content="https://lsvih.com/images/15258103106207.jpg"><meta property="og:image" content="https://lsvih.com/images/15258103206038.jpg"><meta property="og:updated_time" content="2018-10-28T16:12:54.544Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Deconvolutional Paragraph Representation Learning"><meta name="twitter:description" content="摘要在许多自然语言处理应用中，从长文本序列中学习其潜在的语义表示是重要的第一步。RNN 已经成为了这个任务的基石。然而，随着文本长度的增加，RNN 的解码重建（decoding、reconstraction）的质量也随之降低。因此，我们提出了一个 seq2seq、由纯粹的卷积与反卷积结构构成的自动编码框架，它没有上述 RNN 的问题，同时计算效率也很高。另外，此方法简单易行，可以在许多应用中作为一"><meta name="twitter:image" content="https://lsvih.com/images/pasted-317.png"><link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml"><link rel="canonical" href="https://lsvih.com/2018/05/11/Deconvolutional-Paragraph-Representation-Learning/"><script type="text/javascript" id="page.configurations">CONFIG.page={sidebar:""}</script><title>Deconvolutional Paragraph Representation Learning | My note</title><script type="text/javascript">var _hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="https://hm.baidu.com/hm.js?4de170e51b04cee02fbdb1b7cb7a8a60";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><noscript><style type="text/css">.sidebar-inner,.use-motion .brand,.use-motion .collection-title,.use-motion .comments,.use-motion .menu-item,.use-motion .motion-element,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .logo,.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}.logo-line-after i{right:initial}</style></noscript></head><body itemscope itemtype="http://schema.org/WebPage" lang="default"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">My note</span> <span class="logo-line-after"><i></i></span></a></div><h1 class="site-subtitle" itemprop="description">lsvih</h1></div><div class="site-nav-toggle"><button aria-label="Toggle navigation bar"><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>Home</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>Archives</a></li><li class="menu-item menu-item-search"><a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i><br>Search</a></li></ul><div class="site-search"><div class="algolia-popup popup search-popup"><div class="algolia-search"><div class="algolia-search-input-icon"><i class="fa fa-search"></i></div><div class="algolia-search-input" id="algolia-search-input"></div></div><div class="algolia-results"><div id="algolia-stats"></div><div id="algolia-hits"></div><div id="algolia-pagination" class="algolia-pagination"></div></div><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span></div></div></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><div class="reading-progress-bar"></div><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/05/11/Deconvolutional-Paragraph-Representation-Learning/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="lsvih"><meta itemprop="description" content=""><meta itemprop="image" content="/images/avatar.gif"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="My note"></span><header class="post-header"><h2 class="post-title" itemprop="name headline">Deconvolutional Paragraph Representation Learning</h2><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">Posted on</span> <time title="Created: 2018-05-11 14:32:00" itemprop="dateCreated datePublished" datetime="2018-05-11T14:32:00+08:00">2018-05-11</time> </span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">In</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span></span></div></header><div class="post-body" itemprop="articleBody"><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>在许多自然语言处理应用中，从长文本序列中学习其潜在的语义表示是重要的第一步。RNN 已经成为了这个任务的基石。然而，随着文本长度的增加，RNN 的解码重建（decoding、reconstraction）的质量也随之降低。因此，我们提出了一个 seq2seq、由纯粹的卷积与反卷积结构构成的自动编码框架，它没有上述 RNN 的问题，同时计算效率也很高。另外，此方法简单易行，可以在许多应用中作为一块积木使用。我们可以证明，此框架在重构长文本任务中的效果比 RNN 更好。同时，在半监督文本分类及文本摘要任务中的评价指标表明此框架能更好地利用无标注长文本数据。</p><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h3><p>学习句子或多个句子组成的段落是自然语言处理的一项重要任务，它常常是实现其它任务（如情感分析、机器翻译、对话系统、文本摘要等）的基础。从数据中学习句子的表示使用的是编码器 - 解码器结构。在标准的自动编码步骤中，首先由输入序列的 embedding 编码为向量表示，再解码到原始域重建输入序列。近期在 RNN 中，LSTM 及其变体在许多依赖句子表示的学习任务中取得了巨大的成功。</p><p>基于 RNN 的方法通常将句子递归建模为含有隐藏单元的马尔可夫过程，其中每个输入句子的单词都是由前一个单词及隐藏单元的状态生成的，通过 emission 与 transition 运算建模为神经网络。原则上，输入序列的神经元表示应当包含了足够的输入序列结构的信息，才能在之后通过解码恢复原句。然而由于 RNN 的递归性质，基于 RNN 将句子完全表示为向量存在着挑战。典型的问题是，RNN 在训练时是基于之前的置信单词的状态来生成序列中的单词，而不是由编码后的向量表示解码整个句子。现在已经证明这种强制性的策略（teacher forcing training）是有必要的，因为它可以让 RNN 的输出接近于置信序列。然而，由于在重建序列时 RNN 允许解码器使用置信信息，削弱了编码器独立生成向量表示的能力，导致编码后的表示没能携带足够的信息来引导解码器在没有其它指引的情况下进行解码。为了解决这个问题，[19] 提出了一种在训练过程中的采样方法，从同时使用潜在表示与置信信号进行学习逐渐转换为仅用编码的潜在表示进行学习。但 [20] 表明，这种计划采样本质上是一种不一致训练策略，在实际使用中会产生不稳定的结果，最终导致训练无法收敛。</p><p>在推理时，在遇到无法使用置信信号的句子时，仅能通过前一个单词及表示向量的状态来生成新的单词。此时，解码的错误随着序列长度的增加而成比例增加。这也意味着，在处理句子时，一旦出现一个错误，后续生成的句子将错的更离谱。这种现象是 [19] 中的 exposure bias 产生的。</p><p>我们提出了一种简单而强大的纯卷积结构，用于学习句子的表示。比较方便的是，由于这个结构中不含 RNN，因此 teacher forcing training 与 exposure bias 的问题自然就不存在了。这种方法使用 CNN 作为编码器，deCNN 作为解码器。我们认为，这种结构通过多层 CNN 迫使潜在表示从整个句子中提取信息，由此在不适用 RNN 解码器的情况下实现较高的重建质量。这种多层 CNN 能够让表示向量从整个句子中抽取信息而无需考虑句子长度，这也使它可以应用于长句子或段落相关任务。此外，由于这种结构不涉及递归编码及解码，因此可以使用图形处理单元（GPU）的特定卷积原语进行高效并行化，与 RNN 模型相比显著减少了计算成本。</p><h3 id="2-自动编码卷积文本模型"><a href="#2-自动编码卷积文本模型" class="headerlink" title="2 自动编码卷积文本模型"></a>2 自动编码卷积文本模型</h3><h4 id="2-1-卷积编码器"><a href="#2-1-卷积编码器" class="headerlink" title="2.1 卷积编码器"></a>2.1 卷积编码器</h4><p>用 $w^t$ 表示给定句子中的第 t 个词，将每个词 $w^t$ 进行 embedding，映射为 k 维的词向量 $x_t = W_e[w^t]$，其中 $ W_e \in \mathbb{R}^{k \times V} $ 为一个已经学习好的 Word embedding 矩阵，V 为单词数量；用 $ W_e[v]$ 来表示 $W_e$ 的第 v 列。$W_e$ 中的所有列都经过 l2-norm 处理，例如 $ ||W_e[v]||_2 = 1, \forall v $。在经过 embedding 之后，一个长度为 T 的句子（经过 padding）可以在将 embedding 进行 concat 后表示为 $X \in \mathbb{R}^{k \times T}$；其中 $x_t$ 为 X 的第 t 列。</p><p>对于句子做编码，我们采用了类似 [24] 中的 CNN 结构，这个结构最初是为做图像处理任务设计的。这个 CNN 结构包含 L 个层（L - 1 个卷积层，第 L 层为全连接层），此结构最后可以将一个输入句子转化为一个定长的表示向量 h。层 $l \in {1, … ,L}$ 由学习到的滤波器 $p_l$ 组成。对于第一层中的第 i 个滤波器来说，相当于对 X 进行一个步长（stride）为 $r^{(1)}$、滤波器为 $W_c^{(i,1)} \in \mathbb{R}^{k \times h}$ 的卷积运算（式中的 h 代表卷积滤波器的大小）。这一系列操作会生成一个潜在特征映射：$c^{(i,1)}=\gamma(X * W_c^{(i,1)} + b^{(i,1)}) \in \mathbb{R}^{(T-h)/r^{(1)}+1}$，其中 $\gamma(.)$ 为非线性激活函数，$b^{(i,1)} \in \mathbb{R}^{(T-h)/r^{(1)}+1}$ ，* 符号代表了卷积操作。在我们的实验中，$\gamma(.)$ 为 ReLU。需要注意的是，最初的 embedding 维数 k 在经过第一层卷积层后就发生了变化，$c^{(i,1)} \in \mathbb{R}^{(T-h)/r^{(1)}+1}$ for i = 1,…,p1。在第一层将 p1 滤波器得到的结果进行拼接，就得到了一个特征映射，$C^{(1)}= [c^{(1,1)}… c^{(p1,1)}] \in \mathbb{R}^{p_1 \times [(T-h)/r^{(1)}+1]}$。</p><p>在第一个卷积层之后，我们对得到的特征映射 $C^{(1)}$ 使用同样的滤波器大小 h 进行卷积操作，并在这 L - 1 层中不断重复此操作。每次操作都能将空间维数降低为 $T^{(l+1)}=[(T^{(l)} - h)/r^{(l)} + 1]$（$r^{(l)}$ 为步长，$T^{(l)}$ 为空间维数大小，l 为第 l 层，[] 为向下取整函数）。在最后一层 L 中，得到了特征映射 $C^{(L-1)}$，将其送入全连接层中制造潜在表示向量 h。在实现时，我们直接用了一个滤波器大小等于 $T^{(L-1)}$（不考虑 h）的卷积层，它就相当于一个全连接层。这个实现上的 trick 在 [24] 中有所使用。这个最后一层将所有的空间坐标 $T^{(L-1)}$ 汇聚成为标量特征，使用滤波器 ${W_c^{(i,l)}}$ for i=1,…,p1 and l=1,…,L 将句子的子结构依次封装为了向量表示。其中 $W_c^{(i,l)}$ 表示层 l 的滤波器 i。这也意味着提取出来的特征的维度是固定的，与输入句子的长度无关。</p><p><img src="/images/pasted-317.png" alt="upload successful"></p><p>图1，卷积自动编码结构。编码器：将输入序列展开为 embedding 矩阵 X，接着通过多个卷积层编码器压缩为表示向量 h，在最后一层中将向量折叠去除空间维度。解码器：将表示向量 h 送入多个反卷积解码器，以 X 为目标，使用余弦相似度交叉熵损失函数重建 $\hat{X}$。</p><p>在最后一层有 $p_L$ 个滤波器，将会构造出 $p_L$ 维的表示向量。对于输入句子来说，也记为 $h=C^{(L)}$。例如，在图一中，编码器由 L=3 个层构成，句子长度为 T=60，embedding 维数为 k=300，不同层的步长 ${ r^{(1)},r^{(2)},r^{(3)} } = {2,2,1}$ ，滤波器大小 $h = {5,5,12}$，滤波器数量 ${p_1,p_2,p_3 }={300,600,500}$。中间层得到的特征映射 $C^{(1)}$ 和 $C^{(2)}$ 的大小分别为 ${28 \times 300,12 \times 600}$。最后的特征映射大小为 1 x 500，对应的正是潜在表示向量 h。</p><p>从概念上看，较低层中的滤波器捕捉的是原始的句子信息（h-gram，类似于图像处理中的边缘信息），而叫高层中的滤波器捕捉的是更复杂的语言特征，比如语义和句法结构等（类似于图像处理中的图像元素）。这种自底向上的结构通过分层堆叠文本片段（h-gram）作为构建表示向量 h 的积木。这种方法在思路上类似于通过 concrete syntax trees [26] 对语言的语法结构进行建模。不过，我们没有事先去指定某种语法结构（比如英语），而是通过多层 CNN 网络提取此结构。</p><h4 id="2-2-反卷积解码器"><a href="#2-2-反卷积解码器" class="headerlink" title="2.2 反卷积解码器"></a>2.2 反卷积解码器</h4><p>我们按照一定步长应用卷积的变体 - 反卷积操作（比如 convolutional transpose），用于解码表示向量 h，将其还原至原来的文本域。随着反卷积的不断进行，向量的空间高度也不断增加，如图1所示，和之前描述的卷积操作刚好相反。空间维数首先展开至与卷积层的 L-1 层相同，接着逐渐展开为 $T^{(l+1)} = (T^{(l)}-1)*r^{(l)} + h$ for l=1,…直到第 L 个反卷积层（此层与卷积编码器的输入层相对应）。第 L 反卷积层的输出目标是重建 Word embedding 矩阵 $\hat{X}$。与 $W_e$ 一样，$\hat{X}$ 的每一列都经由 l2-norm 处理。</p><p>用 $\hat{w}^t$ 来表示重建后句子 $\hat{s}$ 中的第 t 个单词，$\hat{w}^t$ 为 v 的概率可表示为：</p><script type="math/tex;mode=display">p(\hat{w}^t = v) = \frac{\exp[\tau^{-1}D_{cos}(\hat{x}^t,W_e[v])]}{\sum_{v'\in V}\exp[\tau^{-1}D_{cos}(\hat{x}^t,W_e[v'])]}</script><p>式中，$D_{cos}(x,y)$ 代表余弦相似度，计算方法为 $\frac{&lt;{x,y}&gt;}{||x||||y||}$ ，$W_e[v]$ 是 $W_e$ 的第 v 列，$\hat{x}^t$ 是 $\hat{X}$ 的第 t 列，$\tau$ 是一个正数，我们将其定义为 temperature parameter [27]。此参数类似于 Dirichlet 分布的浓度参数，控制着概率向量 $[p(\hat{w}^t = 1)…p(\hat{w}^t = V)]$ 的扩散，较大的 $\tau$ 值会鼓励概率均匀地分布，较小的 $\tau$ 值会鼓励概率稀疏并集中。在实验中，我们设定 $\tau = 0.01$。此外在我们的实验中，余弦相似度可直接由经由 l2-norm 的 $W_e$ 与 $\hat{X}$ 内积得到。</p><h4 id="2-3-模型学习"><a href="#2-3-模型学习" class="headerlink" title="2.3 模型学习"></a>2.3 模型学习</h4><p>上述卷积自动编码器的目标可以记为所有句子（$s \in D$）的词级别的对数似然：</p><script type="math/tex;mode=display">\iota^{\alpha e} = \sum_{d \in D} \sum_t \log p(\hat{w}^t_d = w^t_d)</script><p>上述式子中，D 表示句子的集合。为了简单起见，使用随机梯度下降对式中的最大对数似然进行优化。实现相关的细节将在实验一节中详细描述。请注意，上述工作与之前的相关工作有两处不同：i) [22,28] 中使用了池化与上池化（pooling,unpooling）操作，而我们用了卷积与反卷积；ii) 更重要的是，[22,28] 没有像我们前面的步骤一样使用余弦相似度来重建句子，而是使用了基于 RNN 的解码器。我们将在第 3 节中更详细地讨论相关工作。在早期的实验（论文中未写出）中，我们使用了池化与上池化，但是没有观察到显著的性能提升；而卷积/反卷积运算则在内存占用方面更具效率。与标准的 LSTM RNN 自动编码器进行对比，两者参数数量大致相同，但我们的结构在单片 NVIDIA TITAN X GPU 上计算速度相当快（详见实验一节）。原因是 CNN 通过 cuDNN 原语处理有着很高的并行效率。</p><p><strong>反卷积解码器与 RNN 解码器的对比：</strong> 这种结构可以视为 NLP 模型的一种补充结构。与标准的基于 LSTM 的解码器相反，反卷积与 RNN 的区别在于它有着不严格的序列依赖性。具体来说，RNN 生成一个单词需要一个隐藏单元的向量，以递归的方式在整句中顺序地积累信息（长效信息主要依赖于向下权重）；而反卷积解码器，解码时的生成仅依赖一个封装了整个句子信息的表示向量，没有指定顺序结构。因此，对于语言生成任务，RNN 解码器会比反卷积解码器生成相关性更好的文本；与之相反，反卷积解码器在计算长句、远距离依赖的情况效果更好，因此在分类特征提取与文本摘要任务中更加有用。</p><h4 id="2-4-半监督分类与摘要"><a href="#2-4-半监督分类与摘要" class="headerlink" title="2.4 半监督分类与摘要"></a>2.4 半监督分类与摘要</h4><p>识别相关主题或情绪以及从用户生成的内容（如博客、产品评论等）生成摘要最近获得了大量的关注[1, 3, 4, 30, 31, 13, 11]。在大多数实际情况下，未标注数据非常丰富，但实际上很少能充分发挥这些未标注数据的潜力。以此为契机，我们希望能补充一些稀缺但更有价值的标注数据，以提高监督学习模型的泛化能力。无论是标注数据还是未标注数据，上述模型可以通过提取未标注数据，学习它们的潜在表示，捕获其语义信息。这可以将任务分为两步，在监督训练之前进行上述步骤。近期，应用这种思路的基于 RNN 的方法已经被广泛使用，并在许多任务中获得了 state-of-the-art 的效果 [1, 3, 4, 30, 31]。此外，还可以构建一个分类器与自动编码解码器联合的分类模型，对潜在向量表示 h 进行分类，详见 [32, 33]。</p><p>又比如，在产品评论中，每个评论可能包含了数百个词，这对基于 RNN 的序列编码器来说有着一定的困难。因为 RNN 需要在文本中滑动并抽取信息，这会导致信息的丢失，在长句子中更为严重[34]。另外，在训练过程中解码用到了置信的真实信息，这可能导致无法完全保留来自输入文本的所有信息，而这些丢失的信息对于重建句子、分类、摘要来说是至关重要的。</p><p>我们考虑将这个卷积自动编码解码结构应用于长句、段落的半监督学习任务中。我们将半监督问题视作 [35] 中的多任务学习问题，同时训练序列编码器与监督模型，而不是像 [1, 3] 中那样预训练无监督模型。理论上来说，这种联合训练方法得到的段落 embedding 向量会保持重建与分类的能力。</p><h3 id="3-相关工作"><a href="#3-相关工作" class="headerlink" title="3 相关工作"></a>3 相关工作</h3><p>之前的工作 [22, 28, 21, 38, 39] 已经考虑了将 CNN 用作为一些 NLP 任务的编码器了。一般来说，基于 CNN 的编码器结构会使用一个单一的卷积层再加上池化层。这种结构在给定卷积滤波窗口大小为 h 时，实质上就是做了一个识别特定 h-gram 结构的检测器。从原理看，我们这种架构中的深层结构可以让高层学习到更复杂的语言特征。</p><h3 id="4-实验"><a href="#4-实验" class="headerlink" title="4 实验"></a>4 实验</h3><p>实验结果图：</p><p><img src="/images/15258102755361.jpg" alt=""></p><p><img src="/images/15258102868772.jpg" alt=""></p><p><img src="/images/15258102990486.jpg" alt=""></p><p><img src="/images/15258103106207.jpg" alt=""></p><p><img src="/images/15258103206038.jpg" alt=""></p><h3 id="5-结论"><a href="#5-结论" class="headerlink" title="5 结论"></a>5 结论</h3><p>我们提出了一种只使用卷积与反卷积运算的用于文本模型的通用结构。这种结构没有进行序列条件生成，因此避免了 teacher forcing training 与 exposure bias 问题。这种方法可以将段落完全压缩至潜在表示向量中，此向量也能解压缩重建原始输入序列。总的来说，这种方法实现了高质量的长段落重建，并优于现有的拼写矫正算法、半监督序列分类算法、文本摘要算法，且减少了计算成本。</p><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>[1] Andrew M Dai and Quoc V Le. Semi-supervised sequence learning. In NIPS, 2015.</p><p>[2] Quoc Le and Tomas Mikolov. Distributed representations of sentences and documents. In ICML, 2014.</p><p>[3] Rie Johnson and Tong Zhang. Supervised and Semi-Supervised Text Categorization using LSTM for Region Embeddings. arXiv, February 2016.</p><p>[4] Takeru Miyato, Andrew M Dai, and Ian Goodfellow. Adversarial Training Methods for Semi-Supervised Text Classiﬁcation. In ICLR, May 2017.</p><p>[5] Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural Machine Translation by Jointly Learning to Align and Translate. In ICLR, 2015.</p><p>[6] Kyunghyun Cho, Bart Van Merriënboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, and Yoshua Bengio. Learning phrase representations using rnn encoder-decoder for statistical machine translation. In EMNLP, 2014.</p><p>[7] Fandong Meng, Zhengdong Lu, Mingxuan Wang, Hang Li, Wenbin Jiang, and Qun Liu. Encoding source language with convolutional neural network for machine translation. In ACL, 2015.</p><p>[8] Tsung-Hsien Wen, Milica Gasic, Nikola Mrksic, Pei-Hao Su, David Vandyke, and Steve Young. Semantically conditioned lstm-based natural language generation for spoken dialogue systems. arXiv, 2015.</p><p>[9] Jiwei Li, Will Monroe, Alan Ritter, Michel Galley, Jianfeng Gao, and Dan Jurafsky. Deep reinforcement learning for dialogue generation. arXiv, 2016.</p><p>[10] Jiwei Li, Will Monroe, Tianlin Shi, Alan Ritter, and Dan Jurafsky. Adversarial learning for neural dialogue generation. arXiv:1701.06547, 2017.</p><p>[11] Ramesh Nallapati, Bowen Zhou, Cicero Nogueira dos santos, Caglar Gulcehre, and Bing Xiang. Abstractive Text Summarization Using Sequence-to-Sequence RNNs and Beyond. In CoNLL, 2016.</p><p>[12] Shashi Narayan, Nikos Papasarantopoulos, Mirella Lapata, and Shay B Cohen. Neural Extractive Summarization with Side Information. arXiv, April 2017.</p><p>[13] Alexander M Rush, Sumit Chopra, and Jason Weston. A Neural Attention Model for Abstractive Sentence Summarization. In EMNLP, 2015.</p><p>[14] Ilya Sutskever, Oriol Vinyals, and Quoc V Le. Sequence to sequence learning with neural networks. In NIPS, 2014.</p><p>[15] Tomas Mikolov, Martin Karaﬁát, Lukas Burget, Jan Cernock`y, and Sanjeev Khudanpur. Recurrent neural network based language model. In INTERSPEECH, 2010.</p><p>[16] Sepp Hochreiter and Jürgen Schmidhuber. Long short-term memory. In Neural computation, 1997.</p><p>[17] Junyoung Chung, Caglar Gulcehre, KyungHyun Cho, and Yoshua Bengio. Empirical evaluation of gated recurrent neural networks on sequence modeling. arXiv, 2014.</p><p>[18] Ronald J Williams and David Zipser. A learning algorithm for continually running fully recurrent neural networks. Neural computation, 1(2):270–280, 1989.</p><p>[19] Samy Bengio, Oriol Vinyals, Navdeep Jaitly, and Noam Shazeer. Scheduled sampling for sequence prediction with recurrent neural networks. In NIPS, 2015.</p><p>[20] Ferenc Huszár. How (not) to train your generative model: Scheduled sampling, likelihood, adversary? arXiv, 2015.</p><p>[21] Nal Kalchbrenner, Edward Grefenstette, and Phil Blunsom. A convolutional neural network for modelling sentences. In ACL, 2014.</p><p>[22] Yoon Kim. Convolutional neural networks for sentence classiﬁcation. In EMNLP, 2014.</p><p>[23] Ishaan Gulrajani, Kundan Kumar, Faruk Ahmed, Adrien Ali Taiga, Francesco Visin, David Vazquez, and Aaron Courville. Pixelvae: A latent variable model for natural images. arXiv, 2016.</p><p>[24] Alec Radford, Luke Metz, and Soumith Chintala. Unsupervised representation learning with deep convolutional generative adversarial networks. arXiv, 2015.</p><p>[25] Vinod Nair and Geoffrey E Hinton. Rectiﬁed linear units improve restricted boltzmann machines. In ICML, pages 807–814, 2010.</p><p>[26] Ian Chiswell and Wilfrid Hodges. Mathematical logic, volume 3. OUP Oxford, 2007.</p><p>[27] Emil Julius Gumbel and Julius Lieblein. Statistical theory of extreme values and some practical applications: a series of lectures. 1954.</p><p>[28] Ronan Collobert, Jason Weston, Léon Bottou, Michael Karlen, Koray Kavukcuoglu, and Pavel Kuksa. Natural language processing (almost) from scratch. In JMLR, 2011.</p><p>[29] Sharan Chetlur, Cliff Woolley, Philippe Vandermersch, Jonathan Cohen, John Tran, Bryan Catanzaro, and Evan Shelhamer. cudnn: Efﬁcient primitives for deep learning. arXiv, 2014.</p><p>[30] Zichao Yang, Diyi Yang, Chris Dyer, Xiaodong He, Alex Smola, and Eduard Hovy. Hierarchical attention networks for document classiﬁcation. In NAACL, 2016.</p><p>[31] Adji B Dieng, Chong Wang, Jianfeng Gao, and John Paisley. TopicRNN: A Recurrent Neural Network with Long-Range Semantic Dependency. In ICLR, 2016.</p><p>[32] Diederik P Kingma, Shakir Mohamed, Danilo Jimenez Rezende, and Max Welling. Semi-supervised learning with deep generative models. In NIPS, 2014.</p><p>[33] Yunchen Pu, Zhe Gan, Ricardo Henao, Xin Yuan, Chunyuan Li, Andrew Stevens, and Lawrence Carin.</p><p>Variational autoencoder for deep learning of images, labels and captions. In NIPS, 2016.</p><p>[34] Sepp Hochreiter, Yoshua Bengio, Paolo Frasconi, and Jürgen Schmidhuber. Gradient ﬂow in recurrent nets: the difﬁculty of learning long-term dependencies, 2001.</p><p>[35] Richard Socher, Jeffrey Pennington, Eric H Huang, Andrew Y Ng, and Christopher D Manning. Semisupervised recursive autoencoders for predicting sentiment distributions. In EMNLP. Association for Computational Linguistics, 2011.</p><p>[36] Samuel R Bowman, Luke Vilnis, Oriol Vinyals, Andrew M Dai, Rafal Jozefowicz, and Samy Bengio. Generating sentences from a continuous space. arXiv, 2015.</p><p>[37] Zichao Yang, Zhiting Hu, Ruslan Salakhutdinov, and Taylor Berg-Kirkpatrick. Improved Variational Autoencoders for Text Modeling using Dilated Convolutions. arXiv, February 2017.</p><p>[38] Baotian Hu, Zhengdong Lu, Hang Li, and Qingcai Chen. Convolutional neural network architectures for matching natural language sentences. In NIPS, 2014.</p><p>[39] Rie Johnson and Tong Zhang. Effective use of word order for text categorization with convolutional neural networks. In NAACL HLT, 2015.</p><p>[40] Jost Tobias Springenberg, Alexey Dosovitskiy, Thomas Brox, and Martin Riedmiller. Striving for simplicity: The all convolutional net. arXiv, 2014.</p><p>[41] Karen Simonyan and Andrew Zisserman. Very deep convolutional networks for large-scale image recognition. In ICLR, 2015.</p><p>[42] Stanislau Semeniuta, Aliaksei Severyn, and Erhardt Barth. A Hybrid Convolutional Variational Autoencoder for Text Generation. arXiv, February 2017.</p><p>[43] Nal Kalchbrenner, Lasse Espeholt, Karen Simonyan, Aaron van den Oord, Alex Graves, and Koray Kavukcuoglu. Neural machine translation in linear time. arXiv, 2016.</p><p>[44] Yann N Dauphin, Angela Fan, Michael Auli, and David Grangier. Language Modeling with Gated Convolutional Networks. arXiv, December 2016.</p><p>[45] J. Gehring, M. Auli, D. Grangier, D. Yarats, and Y. N. Dauphin. Convolutional Sequence to Sequence Learning. arXiv, May 2017.</p><p>[46] Aaron van den Oord, Nal Kalchbrenner, Lasse Espeholt, Oriol Vinyals, Alex Graves, et al. Conditional image generation with pixelcnn decoders. In NIPS, pages 4790–4798, 2016.</p><p>[47] Jiwei Li, Minh-Thang Luong, and Dan Jurafsky. A hierarchical neural autoencoder for paragraphs and documents. In ACL, 2015.</p><p>[48] Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. Distributed representations of words and phrases and their compositionality. In NIPS, 2013.</p><p>[49] Kam-Fai Wong, Mingli Wu, and Wenjie Li. Extractive summarization using supervised and semi-supervised learning. In ICCL. Association for Computational Linguistics, 2008.</p><p>[50] Chin-Yew Lin. Rouge: A package for automatic evaluation of summaries. In ACL workshop, 2004.</p><p>[51] Kishore Papineni, Salim Roukos, Todd Ward, and Wei-Jing Zhu. Bleu: a method for automatic evaluation of machine translation. In ACL. Association for Computational Linguistics, 2002.</p><p>[52] Xiang Zhang, Junbo Zhao, and Yann LeCun. Character-level convolutional networks for text classiﬁcation. In NIPS, pages 649–657, 2015.</p><p>[53] Dzmitry Bahdanau, Philemon Brakel, Kelvin Xu, Anirudh Goyal, Ryan Lowe, Joelle Pineau, Aaron Courville, and Yoshua Bengio. An actor-critic algorithm for sequence prediction. arXiv, 2016.</p><p>[54] JP Woodard and JT Nelson. An information theoretic measure of speech recognition performance. In Workshop on standardisation for speech I/O, 1982.</p><p>[55] Diederik Kingma and Jimmy Ba. Adam: A method for stochastic optimization. In ICLR, 2015.</p><p>[56] Xavier Glorot and Yoshua Bengio. Understanding the difﬁculty of training deep feedforward neural networks. In AISTATS, 2010.</p></div><div><ul class="post-copyright"><li class="post-copyright-author"><strong>Post author: </strong>lsvih</li><li class="post-copyright-link"><strong>Post link: </strong><a href="https://lsvih.com/2018/05/11/Deconvolutional-Paragraph-Representation-Learning/" title="Deconvolutional Paragraph Representation Learning">https://lsvih.com/2018/05/11/Deconvolutional-Paragraph-Representation-Learning/</a></li><li class="post-copyright-license"><strong>Copyright Notice: </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li></ul></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Paper-Note/" rel="tag"># Paper Note</a> <a href="/tags/DeConv/" rel="tag"># DeConv</a> <a href="/tags/Conv/" rel="tag"># Conv</a> <a href="/tags/CNN/" rel="tag"># CNN</a> <a href="/tags/Encoder-decoder/" rel="tag"># Encoder-decoder</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2018/04/18/ssh-不用手动输密码远程执行命令/" rel="next" title="ssh 不用手动输密码远程执行命令"><i class="fa fa-chevron-left"></i> ssh 不用手动输密码远程执行命令</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2018/05/16/由-Node-js-发送-Web-推送通知/" rel="prev" title="由 Node.js 发送 Web 推送通知">由 Node.js 发送 Web 推送通知 <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">Table of Contents</li><li class="sidebar-nav-overview" data-target="site-overview-wrap">Overview</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><p class="site-author-name" itemprop="name">lsvih</p><p class="site-description motion-element" itemprop="description"></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">140</span> <span class="site-state-item-name">posts</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">9</span> <span class="site-state-item-name">categories</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">167</span> <span class="site-state-item-name">tags</span></a></div></nav><div class="feed-link motion-element"><a href="/atom.xml" rel="alternate"><i class="fa fa-rss"></i> RSS</a></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/lsvih" title="GitHub &rarr; https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a> </span><span class="links-of-author-item"><a href="mailto:lsvih@qq.com" title="E-Mail &rarr; mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a></span></div><div class="cc-license motion-element" itemprop="license"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a></div></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-简介"><span class="nav-number">2.</span> <span class="nav-text">1 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-自动编码卷积文本模型"><span class="nav-number">3.</span> <span class="nav-text">2 自动编码卷积文本模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-卷积编码器"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 卷积编码器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-反卷积解码器"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 反卷积解码器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-模型学习"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 模型学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-半监督分类与摘要"><span class="nav-number">3.4.</span> <span class="nav-text">2.4 半监督分类与摘要</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-相关工作"><span class="nav-number">4.</span> <span class="nav-text">3 相关工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-实验"><span class="nav-number">5.</span> <span class="nav-text">4 实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-结论"><span class="nav-number">6.</span> <span class="nav-text">5 结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用"><span class="nav-number">7.</span> <span class="nav-text">引用</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span> <span class="with-love" id="animate"><i class="fa fa-"></i> </span><span class="author" itemprop="copyrightHolder">lsvih</span></div><div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.5.0</div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script><script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script><link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css"><script src="/lib/algolia-instant-search/instantsearch.min.js"></script><script src="/js/src/algolia-search.js?v=6.5.0"></script><script>!function(){var t=document.createElement("script"),e=window.location.protocol.split(":")[0];t.src="https"===e?"https://zz.bdstatic.com/linksubmit/push.js":"http://push.zhanzhang.baidu.com/push.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}()</script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.5.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.5.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.5.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.5.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.5.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '6U6P1RGK4F',
+      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
+      indexName: 'lsvih',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="摘要在许多自然语言处理应用中，从长文本序列中学习其潜在的语义表示是重要的第一步。RNN 已经成为了这个任务的基石。然而，随着文本长度的增加，RNN 的解码重建（decoding、reconstraction）的质量也随之降低。因此，我们提出了一个 seq2seq、由纯粹的卷积与反卷积结构构成的自动编码框架，它没有上述 RNN 的问题，同时计算效率也很高。另外，此方法简单易行，可以在许多应用中作为一">
+<meta name="keywords" content="Paper Note,DeConv,Conv,CNN,Encoder-decoder">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deconvolutional Paragraph Representation Learning">
+<meta property="og:url" content="https://lsvih.com/2018/05/11/Deconvolutional-Paragraph-Representation-Learning/index.html">
+<meta property="og:site_name" content="My note">
+<meta property="og:description" content="摘要在许多自然语言处理应用中，从长文本序列中学习其潜在的语义表示是重要的第一步。RNN 已经成为了这个任务的基石。然而，随着文本长度的增加，RNN 的解码重建（decoding、reconstraction）的质量也随之降低。因此，我们提出了一个 seq2seq、由纯粹的卷积与反卷积结构构成的自动编码框架，它没有上述 RNN 的问题，同时计算效率也很高。另外，此方法简单易行，可以在许多应用中作为一">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://lsvih.com/images/pasted-317.png">
+<meta property="og:image" content="https://lsvih.com/images/15258102755361.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15258102868772.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15258102990486.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15258103106207.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15258103206038.jpg">
+<meta property="og:updated_time" content="2018-10-28T16:12:54.544Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Deconvolutional Paragraph Representation Learning">
+<meta name="twitter:description" content="摘要在许多自然语言处理应用中，从长文本序列中学习其潜在的语义表示是重要的第一步。RNN 已经成为了这个任务的基石。然而，随着文本长度的增加，RNN 的解码重建（decoding、reconstraction）的质量也随之降低。因此，我们提出了一个 seq2seq、由纯粹的卷积与反卷积结构构成的自动编码框架，它没有上述 RNN 的问题，同时计算效率也很高。另外，此方法简单易行，可以在许多应用中作为一">
+<meta name="twitter:image" content="https://lsvih.com/images/pasted-317.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://lsvih.com/2018/05/11/Deconvolutional-Paragraph-Representation-Learning/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Deconvolutional Paragraph Representation Learning | My note</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4de170e51b04cee02fbdb1b7cb7a8a60";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/05/11/Deconvolutional-Paragraph-Representation-Learning/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Deconvolutional Paragraph Representation Learning
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-05-11 14:32:00" itemprop="dateCreated datePublished" datetime="2018-05-11T14:32:00+08:00">2018-05-11</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>在许多自然语言处理应用中，从长文本序列中学习其潜在的语义表示是重要的第一步。RNN 已经成为了这个任务的基石。然而，随着文本长度的增加，RNN 的解码重建（decoding、reconstraction）的质量也随之降低。因此，我们提出了一个 seq2seq、由纯粹的卷积与反卷积结构构成的自动编码框架，它没有上述 RNN 的问题，同时计算效率也很高。另外，此方法简单易行，可以在许多应用中作为一块积木使用。我们可以证明，此框架在重构长文本任务中的效果比 RNN 更好。同时，在半监督文本分类及文本摘要任务中的评价指标表明此框架能更好地利用无标注长文本数据。</p>
+<h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h3><p>学习句子或多个句子组成的段落是自然语言处理的一项重要任务，它常常是实现其它任务（如情感分析、机器翻译、对话系统、文本摘要等）的基础。从数据中学习句子的表示使用的是编码器 - 解码器结构。在标准的自动编码步骤中，首先由输入序列的 embedding 编码为向量表示，再解码到原始域重建输入序列。近期在 RNN 中，LSTM 及其变体在许多依赖句子表示的学习任务中取得了巨大的成功。</p>
+<p>基于 RNN 的方法通常将句子递归建模为含有隐藏单元的马尔可夫过程，其中每个输入句子的单词都是由前一个单词及隐藏单元的状态生成的，通过 emission 与 transition 运算建模为神经网络。原则上，输入序列的神经元表示应当包含了足够的输入序列结构的信息，才能在之后通过解码恢复原句。然而由于 RNN 的递归性质，基于 RNN 将句子完全表示为向量存在着挑战。典型的问题是，RNN 在训练时是基于之前的置信单词的状态来生成序列中的单词，而不是由编码后的向量表示解码整个句子。现在已经证明这种强制性的策略（teacher forcing training）是有必要的，因为它可以让 RNN 的输出接近于置信序列。然而，由于在重建序列时 RNN 允许解码器使用置信信息，削弱了编码器独立生成向量表示的能力，导致编码后的表示没能携带足够的信息来引导解码器在没有其它指引的情况下进行解码。为了解决这个问题，[19] 提出了一种在训练过程中的采样方法，从同时使用潜在表示与置信信号进行学习逐渐转换为仅用编码的潜在表示进行学习。但 [20] 表明，这种计划采样本质上是一种不一致训练策略，在实际使用中会产生不稳定的结果，最终导致训练无法收敛。</p>
+<p>在推理时，在遇到无法使用置信信号的句子时，仅能通过前一个单词及表示向量的状态来生成新的单词。此时，解码的错误随着序列长度的增加而成比例增加。这也意味着，在处理句子时，一旦出现一个错误，后续生成的句子将错的更离谱。这种现象是 [19] 中的 exposure bias 产生的。</p>
+<p>我们提出了一种简单而强大的纯卷积结构，用于学习句子的表示。比较方便的是，由于这个结构中不含 RNN，因此 teacher forcing training 与 exposure bias 的问题自然就不存在了。这种方法使用 CNN 作为编码器，deCNN 作为解码器。我们认为，这种结构通过多层 CNN 迫使潜在表示从整个句子中提取信息，由此在不适用 RNN 解码器的情况下实现较高的重建质量。这种多层 CNN 能够让表示向量从整个句子中抽取信息而无需考虑句子长度，这也使它可以应用于长句子或段落相关任务。此外，由于这种结构不涉及递归编码及解码，因此可以使用图形处理单元（GPU）的特定卷积原语进行高效并行化，与 RNN 模型相比显著减少了计算成本。</p>
+<h3 id="2-自动编码卷积文本模型"><a href="#2-自动编码卷积文本模型" class="headerlink" title="2 自动编码卷积文本模型"></a>2 自动编码卷积文本模型</h3><h4 id="2-1-卷积编码器"><a href="#2-1-卷积编码器" class="headerlink" title="2.1 卷积编码器"></a>2.1 卷积编码器</h4><p>用 $w^t$ 表示给定句子中的第 t 个词，将每个词 $w^t$ 进行 embedding，映射为 k 维的词向量 $x_t = W_e[w^t]$，其中 $ W_e \in \mathbb{R}^{k \times V} $ 为一个已经学习好的 Word embedding 矩阵，V 为单词数量；用 $ W_e[v]$ 来表示 $W_e$ 的第 v 列。$W_e$ 中的所有列都经过 l2-norm 处理，例如 $ ||W_e[v]||_2 = 1, \forall v $。在经过 embedding 之后，一个长度为 T 的句子（经过 padding）可以在将 embedding 进行 concat 后表示为 $X \in \mathbb{R}^{k \times T}$；其中 $x_t$ 为 X 的第 t 列。</p>
+<p>对于句子做编码，我们采用了类似 [24] 中的 CNN 结构，这个结构最初是为做图像处理任务设计的。这个 CNN 结构包含 L 个层（L - 1 个卷积层，第 L 层为全连接层），此结构最后可以将一个输入句子转化为一个定长的表示向量 h。层 $l \in {1, … ,L}$ 由学习到的滤波器 $p_l$ 组成。对于第一层中的第 i 个滤波器来说，相当于对 X 进行一个步长（stride）为 $r^{(1)}$、滤波器为 $W_c^{(i,1)} \in \mathbb{R}^{k \times h}$ 的卷积运算（式中的 h 代表卷积滤波器的大小）。这一系列操作会生成一个潜在特征映射：$c^{(i,1)}=\gamma(X * W_c^{(i,1)} + b^{(i,1)}) \in \mathbb{R}^{(T-h)/r^{(1)}+1}$，其中 $\gamma(.)$ 为非线性激活函数，$b^{(i,1)} \in \mathbb{R}^{(T-h)/r^{(1)}+1}$ ，* 符号代表了卷积操作。在我们的实验中，$\gamma(.)$ 为 ReLU。需要注意的是，最初的 embedding 维数 k 在经过第一层卷积层后就发生了变化，$c^{(i,1)} \in \mathbb{R}^{(T-h)/r^{(1)}+1}$ for i = 1,…,p1。在第一层将 p1 滤波器得到的结果进行拼接，就得到了一个特征映射，$C^{(1)}= [c^{(1,1)}… c^{(p1,1)}] \in \mathbb{R}^{p_1 \times [(T-h)/r^{(1)}+1]}$。</p>
+<p>在第一个卷积层之后，我们对得到的特征映射 $C^{(1)}$ 使用同样的滤波器大小 h 进行卷积操作，并在这 L - 1 层中不断重复此操作。每次操作都能将空间维数降低为 $T^{(l+1)}=[(T^{(l)} - h)/r^{(l)} + 1]$（$r^{(l)}$ 为步长，$T^{(l)}$ 为空间维数大小，l 为第 l 层，[] 为向下取整函数）。在最后一层 L 中，得到了特征映射 $C^{(L-1)}$，将其送入全连接层中制造潜在表示向量 h。在实现时，我们直接用了一个滤波器大小等于 $T^{(L-1)}$（不考虑 h）的卷积层，它就相当于一个全连接层。这个实现上的 trick 在 [24] 中有所使用。这个最后一层将所有的空间坐标 $T^{(L-1)}$ 汇聚成为标量特征，使用滤波器 ${W_c^{(i,l)}}$ for i=1,…,p1 and l=1,…,L 将句子的子结构依次封装为了向量表示。其中 $W_c^{(i,l)}$ 表示层 l 的滤波器 i。这也意味着提取出来的特征的维度是固定的，与输入句子的长度无关。</p>
+<p><img src="/images/pasted-317.png" alt="upload successful"></p>
+<p>图1，卷积自动编码结构。编码器：将输入序列展开为 embedding 矩阵 X，接着通过多个卷积层编码器压缩为表示向量 h，在最后一层中将向量折叠去除空间维度。解码器：将表示向量 h 送入多个反卷积解码器，以 X 为目标，使用余弦相似度交叉熵损失函数重建 $\hat{X}$。</p>
+<p>在最后一层有 $p_L$ 个滤波器，将会构造出 $p_L$ 维的表示向量。对于输入句子来说，也记为 $h=C^{(L)}$。例如，在图一中，编码器由 L=3 个层构成，句子长度为 T=60，embedding 维数为 k=300，不同层的步长 ${ r^{(1)},r^{(2)},r^{(3)} } = {2,2,1}$ ，滤波器大小 $h = {5,5,12}$，滤波器数量 ${p_1,p_2,p_3 }={300,600,500}$。中间层得到的特征映射 $C^{(1)}$ 和 $C^{(2)}$ 的大小分别为 ${28 \times 300,12 \times 600}$。最后的特征映射大小为 1 x 500，对应的正是潜在表示向量 h。</p>
+<p>从概念上看，较低层中的滤波器捕捉的是原始的句子信息（h-gram，类似于图像处理中的边缘信息），而叫高层中的滤波器捕捉的是更复杂的语言特征，比如语义和句法结构等（类似于图像处理中的图像元素）。这种自底向上的结构通过分层堆叠文本片段（h-gram）作为构建表示向量 h 的积木。这种方法在思路上类似于通过 concrete syntax trees [26] 对语言的语法结构进行建模。不过，我们没有事先去指定某种语法结构（比如英语），而是通过多层 CNN 网络提取此结构。</p>
+<h4 id="2-2-反卷积解码器"><a href="#2-2-反卷积解码器" class="headerlink" title="2.2 反卷积解码器"></a>2.2 反卷积解码器</h4><p>我们按照一定步长应用卷积的变体 - 反卷积操作（比如 convolutional transpose），用于解码表示向量 h，将其还原至原来的文本域。随着反卷积的不断进行，向量的空间高度也不断增加，如图1所示，和之前描述的卷积操作刚好相反。空间维数首先展开至与卷积层的 L-1 层相同，接着逐渐展开为 $T^{(l+1)} = (T^{(l)}-1)*r^{(l)} + h$ for l=1,…直到第 L 个反卷积层（此层与卷积编码器的输入层相对应）。第 L 反卷积层的输出目标是重建 Word embedding 矩阵 $\hat{X}$。与 $W_e$ 一样，$\hat{X}$ 的每一列都经由 l2-norm 处理。</p>
+<p>用 $\hat{w}^t$ 来表示重建后句子 $\hat{s}$ 中的第 t 个单词，$\hat{w}^t$ 为 v 的概率可表示为：</p>
+<script type="math/tex; mode=display">p(\hat{w}^t = v) = \frac{\exp[\tau^{-1}D_{cos}(\hat{x}^t,W_e[v])]}{\sum_{v'\in V}\exp[\tau^{-1}D_{cos}(\hat{x}^t,W_e[v'])]}</script><p>式中，$D_{cos}(x,y)$ 代表余弦相似度，计算方法为 $\frac{&lt;{x,y}&gt;}{||x||||y||}$ ，$W_e[v]$ 是 $W_e$ 的第 v 列，$\hat{x}^t$ 是 $\hat{X}$ 的第 t 列，$\tau$ 是一个正数，我们将其定义为 temperature parameter [27]。此参数类似于 Dirichlet 分布的浓度参数，控制着概率向量 $[p(\hat{w}^t = 1)…p(\hat{w}^t = V)]$ 的扩散，较大的 $\tau$ 值会鼓励概率均匀地分布，较小的 $\tau$ 值会鼓励概率稀疏并集中。在实验中，我们设定 $\tau = 0.01$。此外在我们的实验中，余弦相似度可直接由经由 l2-norm 的 $W_e$ 与 $\hat{X}$ 内积得到。</p>
+<h4 id="2-3-模型学习"><a href="#2-3-模型学习" class="headerlink" title="2.3 模型学习"></a>2.3 模型学习</h4><p>上述卷积自动编码器的目标可以记为所有句子（$s \in D$）的词级别的对数似然：</p>
+<script type="math/tex; mode=display">\iota^{\alpha e} = \sum_{d \in D} \sum_t \log p(\hat{w}^t_d = w^t_d)</script><p>上述式子中，D 表示句子的集合。为了简单起见，使用随机梯度下降对式中的最大对数似然进行优化。实现相关的细节将在实验一节中详细描述。请注意，上述工作与之前的相关工作有两处不同：i) [22,28] 中使用了池化与上池化（pooling,unpooling）操作，而我们用了卷积与反卷积；ii) 更重要的是，[22,28] 没有像我们前面的步骤一样使用余弦相似度来重建句子，而是使用了基于 RNN 的解码器。我们将在第 3 节中更详细地讨论相关工作。在早期的实验（论文中未写出）中，我们使用了池化与上池化，但是没有观察到显著的性能提升；而卷积/反卷积运算则在内存占用方面更具效率。与标准的 LSTM RNN 自动编码器进行对比，两者参数数量大致相同，但我们的结构在单片 NVIDIA TITAN X GPU 上计算速度相当快（详见实验一节）。原因是 CNN 通过 cuDNN 原语处理有着很高的并行效率。</p>
+<p><strong>反卷积解码器与 RNN 解码器的对比：</strong> 这种结构可以视为 NLP 模型的一种补充结构。与标准的基于 LSTM 的解码器相反，反卷积与 RNN 的区别在于它有着不严格的序列依赖性。具体来说，RNN 生成一个单词需要一个隐藏单元的向量，以递归的方式在整句中顺序地积累信息（长效信息主要依赖于向下权重）；而反卷积解码器，解码时的生成仅依赖一个封装了整个句子信息的表示向量，没有指定顺序结构。因此，对于语言生成任务，RNN 解码器会比反卷积解码器生成相关性更好的文本；与之相反，反卷积解码器在计算长句、远距离依赖的情况效果更好，因此在分类特征提取与文本摘要任务中更加有用。</p>
+<h4 id="2-4-半监督分类与摘要"><a href="#2-4-半监督分类与摘要" class="headerlink" title="2.4 半监督分类与摘要"></a>2.4 半监督分类与摘要</h4><p>识别相关主题或情绪以及从用户生成的内容（如博客、产品评论等）生成摘要最近获得了大量的关注[1, 3, 4, 30, 31, 13, 11]。在大多数实际情况下，未标注数据非常丰富，但实际上很少能充分发挥这些未标注数据的潜力。以此为契机，我们希望能补充一些稀缺但更有价值的标注数据，以提高监督学习模型的泛化能力。无论是标注数据还是未标注数据，上述模型可以通过提取未标注数据，学习它们的潜在表示，捕获其语义信息。这可以将任务分为两步，在监督训练之前进行上述步骤。近期，应用这种思路的基于 RNN 的方法已经被广泛使用，并在许多任务中获得了 state-of-the-art 的效果 [1, 3, 4, 30, 31]。此外，还可以构建一个分类器与自动编码解码器联合的分类模型，对潜在向量表示 h 进行分类，详见 [32, 33]。</p>
+<p>又比如，在产品评论中，每个评论可能包含了数百个词，这对基于 RNN 的序列编码器来说有着一定的困难。因为 RNN 需要在文本中滑动并抽取信息，这会导致信息的丢失，在长句子中更为严重[34]。另外，在训练过程中解码用到了置信的真实信息，这可能导致无法完全保留来自输入文本的所有信息，而这些丢失的信息对于重建句子、分类、摘要来说是至关重要的。</p>
+<p>我们考虑将这个卷积自动编码解码结构应用于长句、段落的半监督学习任务中。我们将半监督问题视作 [35] 中的多任务学习问题，同时训练序列编码器与监督模型，而不是像 [1, 3] 中那样预训练无监督模型。理论上来说，这种联合训练方法得到的段落 embedding 向量会保持重建与分类的能力。</p>
+<h3 id="3-相关工作"><a href="#3-相关工作" class="headerlink" title="3 相关工作"></a>3 相关工作</h3><p>之前的工作 [22, 28, 21, 38, 39] 已经考虑了将 CNN 用作为一些 NLP 任务的编码器了。一般来说，基于 CNN 的编码器结构会使用一个单一的卷积层再加上池化层。这种结构在给定卷积滤波窗口大小为 h 时，实质上就是做了一个识别特定 h-gram 结构的检测器。从原理看，我们这种架构中的深层结构可以让高层学习到更复杂的语言特征。</p>
+<h3 id="4-实验"><a href="#4-实验" class="headerlink" title="4 实验"></a>4 实验</h3><p>实验结果图：</p>
+<p><img src="/images/15258102755361.jpg" alt=""></p>
+<p><img src="/images/15258102868772.jpg" alt=""></p>
+<p><img src="/images/15258102990486.jpg" alt=""></p>
+<p><img src="/images/15258103106207.jpg" alt=""></p>
+<p><img src="/images/15258103206038.jpg" alt=""></p>
+<h3 id="5-结论"><a href="#5-结论" class="headerlink" title="5 结论"></a>5 结论</h3><p>我们提出了一种只使用卷积与反卷积运算的用于文本模型的通用结构。这种结构没有进行序列条件生成，因此避免了 teacher forcing training 与 exposure bias 问题。这种方法可以将段落完全压缩至潜在表示向量中，此向量也能解压缩重建原始输入序列。总的来说，这种方法实现了高质量的长段落重建，并优于现有的拼写矫正算法、半监督序列分类算法、文本摘要算法，且减少了计算成本。</p>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>[1] Andrew M Dai and Quoc V Le. Semi-supervised sequence learning. In NIPS, 2015.</p>
+<p>[2] Quoc Le and Tomas Mikolov. Distributed representations of sentences and documents. In ICML, 2014.</p>
+<p>[3] Rie Johnson and Tong Zhang. Supervised and Semi-Supervised Text Categorization using LSTM for Region Embeddings. arXiv, February 2016.</p>
+<p>[4] Takeru Miyato, Andrew M Dai, and Ian Goodfellow. Adversarial Training Methods for Semi-Supervised Text Classiﬁcation. In ICLR, May 2017.</p>
+<p>[5] Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural Machine Translation by Jointly Learning to Align and Translate. In ICLR, 2015.</p>
+<p>[6] Kyunghyun Cho, Bart Van Merriënboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, and Yoshua Bengio. Learning phrase representations using rnn encoder-decoder for statistical machine translation. In EMNLP, 2014.</p>
+<p>[7] Fandong Meng, Zhengdong Lu, Mingxuan Wang, Hang Li, Wenbin Jiang, and Qun Liu. Encoding source language with convolutional neural network for machine translation. In ACL, 2015.</p>
+<p>[8] Tsung-Hsien Wen, Milica Gasic, Nikola Mrksic, Pei-Hao Su, David Vandyke, and Steve Young. Semantically conditioned lstm-based natural language generation for spoken dialogue systems. arXiv, 2015.</p>
+<p>[9] Jiwei Li, Will Monroe, Alan Ritter, Michel Galley, Jianfeng Gao, and Dan Jurafsky. Deep reinforcement learning for dialogue generation. arXiv, 2016.</p>
+<p>[10] Jiwei Li, Will Monroe, Tianlin Shi, Alan Ritter, and Dan Jurafsky. Adversarial learning for neural dialogue generation. arXiv:1701.06547, 2017.</p>
+<p>[11] Ramesh Nallapati, Bowen Zhou, Cicero Nogueira dos santos, Caglar Gulcehre, and Bing Xiang. Abstractive Text Summarization Using Sequence-to-Sequence RNNs and Beyond. In CoNLL, 2016.</p>
+<p>[12] Shashi Narayan, Nikos Papasarantopoulos, Mirella Lapata, and Shay B Cohen. Neural Extractive Summarization with Side Information. arXiv, April 2017.</p>
+<p>[13] Alexander M Rush, Sumit Chopra, and Jason Weston. A Neural Attention Model for Abstractive Sentence Summarization. In EMNLP, 2015.</p>
+<p>[14] Ilya Sutskever, Oriol Vinyals, and Quoc V Le. Sequence to sequence learning with neural networks. In NIPS, 2014.</p>
+<p>[15] Tomas Mikolov, Martin Karaﬁát, Lukas Burget, Jan Cernock`y, and Sanjeev Khudanpur. Recurrent neural network based language model. In INTERSPEECH, 2010.</p>
+<p>[16] Sepp Hochreiter and Jürgen Schmidhuber. Long short-term memory. In Neural computation, 1997.</p>
+<p>[17] Junyoung Chung, Caglar Gulcehre, KyungHyun Cho, and Yoshua Bengio. Empirical evaluation of gated recurrent neural networks on sequence modeling. arXiv, 2014.</p>
+<p>[18] Ronald J Williams and David Zipser. A learning algorithm for continually running fully recurrent neural networks. Neural computation, 1(2):270–280, 1989.</p>
+<p>[19] Samy Bengio, Oriol Vinyals, Navdeep Jaitly, and Noam Shazeer. Scheduled sampling for sequence prediction with recurrent neural networks. In NIPS, 2015.</p>
+<p>[20] Ferenc Huszár. How (not) to train your generative model: Scheduled sampling, likelihood, adversary? arXiv, 2015.</p>
+<p>[21] Nal Kalchbrenner, Edward Grefenstette, and Phil Blunsom. A convolutional neural network for modelling sentences. In ACL, 2014.</p>
+<p>[22] Yoon Kim. Convolutional neural networks for sentence classiﬁcation. In EMNLP, 2014.</p>
+<p>[23] Ishaan Gulrajani, Kundan Kumar, Faruk Ahmed, Adrien Ali Taiga, Francesco Visin, David Vazquez, and Aaron Courville. Pixelvae: A latent variable model for natural images. arXiv, 2016.</p>
+<p>[24] Alec Radford, Luke Metz, and Soumith Chintala. Unsupervised representation learning with deep convolutional generative adversarial networks. arXiv, 2015.</p>
+<p>[25] Vinod Nair and Geoffrey E Hinton. Rectiﬁed linear units improve restricted boltzmann machines. In ICML, pages 807–814, 2010.</p>
+<p>[26] Ian Chiswell and Wilfrid Hodges. Mathematical logic, volume 3. OUP Oxford, 2007.</p>
+<p>[27] Emil Julius Gumbel and Julius Lieblein. Statistical theory of extreme values and some practical applications: a series of lectures. 1954.</p>
+<p>[28] Ronan Collobert, Jason Weston, Léon Bottou, Michael Karlen, Koray Kavukcuoglu, and Pavel Kuksa. Natural language processing (almost) from scratch. In JMLR, 2011.</p>
+<p>[29] Sharan Chetlur, Cliff Woolley, Philippe Vandermersch, Jonathan Cohen, John Tran, Bryan Catanzaro, and Evan Shelhamer. cudnn: Efﬁcient primitives for deep learning. arXiv, 2014.</p>
+<p>[30] Zichao Yang, Diyi Yang, Chris Dyer, Xiaodong He, Alex Smola, and Eduard Hovy. Hierarchical attention networks for document classiﬁcation. In NAACL, 2016.</p>
+<p>[31] Adji B Dieng, Chong Wang, Jianfeng Gao, and John Paisley. TopicRNN: A Recurrent Neural Network with Long-Range Semantic Dependency. In ICLR, 2016.</p>
+<p>[32] Diederik P Kingma, Shakir Mohamed, Danilo Jimenez Rezende, and Max Welling. Semi-supervised learning with deep generative models. In NIPS, 2014.</p>
+<p>[33] Yunchen Pu, Zhe Gan, Ricardo Henao, Xin Yuan, Chunyuan Li, Andrew Stevens, and Lawrence Carin.</p>
+<p>Variational autoencoder for deep learning of images, labels and captions. In NIPS, 2016.</p>
+<p>[34] Sepp Hochreiter, Yoshua Bengio, Paolo Frasconi, and Jürgen Schmidhuber. Gradient ﬂow in recurrent nets: the difﬁculty of learning long-term dependencies, 2001.</p>
+<p>[35] Richard Socher, Jeffrey Pennington, Eric H Huang, Andrew Y Ng, and Christopher D Manning. Semisupervised recursive autoencoders for predicting sentiment distributions. In EMNLP. Association for Computational Linguistics, 2011.</p>
+<p>[36] Samuel R Bowman, Luke Vilnis, Oriol Vinyals, Andrew M Dai, Rafal Jozefowicz, and Samy Bengio. Generating sentences from a continuous space. arXiv, 2015.</p>
+<p>[37] Zichao Yang, Zhiting Hu, Ruslan Salakhutdinov, and Taylor Berg-Kirkpatrick. Improved Variational Autoencoders for Text Modeling using Dilated Convolutions. arXiv, February 2017.</p>
+<p>[38] Baotian Hu, Zhengdong Lu, Hang Li, and Qingcai Chen. Convolutional neural network architectures for matching natural language sentences. In NIPS, 2014.</p>
+<p>[39] Rie Johnson and Tong Zhang. Effective use of word order for text categorization with convolutional neural networks. In NAACL HLT, 2015.</p>
+<p>[40] Jost Tobias Springenberg, Alexey Dosovitskiy, Thomas Brox, and Martin Riedmiller. Striving for simplicity: The all convolutional net. arXiv, 2014.</p>
+<p>[41] Karen Simonyan and Andrew Zisserman. Very deep convolutional networks for large-scale image recognition. In ICLR, 2015.</p>
+<p>[42] Stanislau Semeniuta, Aliaksei Severyn, and Erhardt Barth. A Hybrid Convolutional Variational Autoencoder for Text Generation. arXiv, February 2017.</p>
+<p>[43] Nal Kalchbrenner, Lasse Espeholt, Karen Simonyan, Aaron van den Oord, Alex Graves, and Koray Kavukcuoglu. Neural machine translation in linear time. arXiv, 2016.</p>
+<p>[44] Yann N Dauphin, Angela Fan, Michael Auli, and David Grangier. Language Modeling with Gated Convolutional Networks. arXiv, December 2016.</p>
+<p>[45] J. Gehring, M. Auli, D. Grangier, D. Yarats, and Y. N. Dauphin. Convolutional Sequence to Sequence Learning. arXiv, May 2017.</p>
+<p>[46] Aaron van den Oord, Nal Kalchbrenner, Lasse Espeholt, Oriol Vinyals, Alex Graves, et al. Conditional image generation with pixelcnn decoders. In NIPS, pages 4790–4798, 2016.</p>
+<p>[47] Jiwei Li, Minh-Thang Luong, and Dan Jurafsky. A hierarchical neural autoencoder for paragraphs and documents. In ACL, 2015.</p>
+<p>[48] Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. Distributed representations of words and phrases and their compositionality. In NIPS, 2013.</p>
+<p>[49] Kam-Fai Wong, Mingli Wu, and Wenjie Li. Extractive summarization using supervised and semi-supervised learning. In ICCL. Association for Computational Linguistics, 2008.</p>
+<p>[50] Chin-Yew Lin. Rouge: A package for automatic evaluation of summaries. In ACL workshop, 2004.</p>
+<p>[51] Kishore Papineni, Salim Roukos, Todd Ward, and Wei-Jing Zhu. Bleu: a method for automatic evaluation of machine translation. In ACL. Association for Computational Linguistics, 2002.</p>
+<p>[52] Xiang Zhang, Junbo Zhao, and Yann LeCun. Character-level convolutional networks for text classiﬁcation. In NIPS, pages 649–657, 2015.</p>
+<p>[53] Dzmitry Bahdanau, Philemon Brakel, Kelvin Xu, Anirudh Goyal, Ryan Lowe, Joelle Pineau, Aaron Courville, and Yoshua Bengio. An actor-critic algorithm for sequence prediction. arXiv, 2016.</p>
+<p>[54] JP Woodard and JT Nelson. An information theoretic measure of speech recognition performance. In Workshop on standardisation for speech I/O, 1982.</p>
+<p>[55] Diederik Kingma and Jimmy Ba. Adam: A method for stochastic optimization. In ICLR, 2015.</p>
+<p>[56] Xavier Glorot and Yoshua Bengio. Understanding the difﬁculty of training deep feedforward neural networks. In AISTATS, 2010.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>lsvih</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    
+    <a href="https://lsvih.com/2018/05/11/Deconvolutional-Paragraph-Representation-Learning/" title="Deconvolutional Paragraph Representation Learning">https://lsvih.com/2018/05/11/Deconvolutional-Paragraph-Representation-Learning/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Paper-Note/" rel="tag"># Paper Note</a>
+          
+            <a href="/tags/DeConv/" rel="tag"># DeConv</a>
+          
+            <a href="/tags/Conv/" rel="tag"># Conv</a>
+          
+            <a href="/tags/CNN/" rel="tag"># CNN</a>
+          
+            <a href="/tags/Encoder-decoder/" rel="tag"># Encoder-decoder</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/18/ssh-不用手动输密码远程执行命令/" rel="next" title="ssh 不用手动输密码远程执行命令">
+                <i class="fa fa-chevron-left"></i> ssh 不用手动输密码远程执行命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/16/由-Node-js-发送-Web-推送通知/" rel="prev" title="由 Node.js 发送 Web 推送通知">
+                由 Node.js 发送 Web 推送通知 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lsvih</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">140</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">167</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lsvih" title="GitHub &rarr; https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:lsvih@qq.com" title="E-Mail &rarr; mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-简介"><span class="nav-number">2.</span> <span class="nav-text">1 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-自动编码卷积文本模型"><span class="nav-number">3.</span> <span class="nav-text">2 自动编码卷积文本模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-卷积编码器"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 卷积编码器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-反卷积解码器"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 反卷积解码器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-模型学习"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 模型学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-半监督分类与摘要"><span class="nav-number">3.4.</span> <span class="nav-text">2.4 半监督分类与摘要</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-相关工作"><span class="nav-number">4.</span> <span class="nav-text">3 相关工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-实验"><span class="nav-number">5.</span> <span class="nav-text">4 实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-结论"><span class="nav-number">6.</span> <span class="nav-text">5 结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用"><span class="nav-number">7.</span> <span class="nav-text">引用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lsvih</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.5.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.5.0"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
       tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
         processEscapes: true,
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
       },
       TeX: {equationNumbers: { autoNumber: "AMS" }}
-    });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
       var all = MathJax.Hub.getAllJax(), i;
         for (i=0; i < all.length; i += 1) {
           all[i].SourceElement().parentNode.className += ' has-jax';
         }
-    });</script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
+    });
+</script>
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
