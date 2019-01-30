@@ -368,6 +368,166 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/09/26/自动在指定时间在微信中分享知乎日报的消息→-→/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/09/26/自动在指定时间在微信中分享知乎日报的消息→-→/" class="post-title-link" itemprop="url">自动在指定时间在微信中分享知乎日报的消息→_→</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-09-26 05:42:00" itemprop="dateCreated datePublished" datetime="2016-09-26T05:42:00+08:00">2016-09-26</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>情景：老板规定在指定日期必须分享文章</p>
+<p>使用selenium进行微信的自动化操作，适用requests获取目标网站的内容，适用BeautifulSoup快速获得需要选择的元素及内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> BeautifulSoup <span class="keyword">import</span> BeautifulSoup</span><br><span class="line">browser = webdriver.Chrome()</span><br><span class="line">browser.get( <span class="string">"https://wx.qq.com/ "</span>)</span><br><span class="line">print( <span class="string">"请登录 "</span>)</span><br><span class="line">time.sleep(<span class="number">10</span>)</span><br><span class="line">chat_elems = browser.find_elements_by_class_name( <span class="string">"ng-scope "</span>)</span><br><span class="line"><span class="keyword">for</span> elem <span class="keyword">in</span> chat_elems:</span><br><span class="line">    <span class="keyword">if</span>(elem.text.encode(<span class="string">'UTF-8'</span>) == <span class="string">u'文件传输助手'</span>.encode(<span class="string">'UTF-8'</span>)):</span><br><span class="line">        elem.click()</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    current_time = time.localtime(time.time())</span><br><span class="line">    <span class="keyword">if</span> ((current_time.tm_mday%<span class="number">10</span> == <span class="number">5</span>) <span class="keyword">and</span> (current_time.tm_hour == <span class="number">1</span>)):</span><br><span class="line">        headers = &#123; <span class="string">"Accept "</span>:  <span class="string">"text/html,application/xhtml+xml,application/xml; "</span>,</span><br><span class="line">                    <span class="string">"Accept-Encoding "</span>:  <span class="string">"gzip "</span>,</span><br><span class="line">                    <span class="string">"Accept-Language "</span>:  <span class="string">"zh-CN,zh;q=0.8 "</span>,</span><br><span class="line">                    <span class="string">"Referer "</span>:  <span class="string">"http://daily.zhihu.com/ "</span>,</span><br><span class="line">                    <span class="string">"User-Agent "</span>:  <span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36 "</span></span><br><span class="line">                   &#125;</span><br><span class="line">        zhihu = BeautifulSoup(requests.get(url= <span class="string">"http://daily.zhihu.com/ "</span>,headers=headers).text)</span><br><span class="line">        frist_q = zhihu.find(attrs=&#123;<span class="string">'class'</span>:<span class="string">'wrap'</span>&#125;).find( <span class="string">"a "</span>)</span><br><span class="line">        frist_q_content = frist_q.text</span><br><span class="line">        frist_q_link = <span class="string">'http://daily.zhihu.com'</span> + frist_q.get( <span class="string">"href "</span>)</span><br><span class="line">        browser.find_element_by_id( <span class="string">"editArea "</span>).send_keys(frist_q_content)</span><br><span class="line">        browser.find_element_by_id( <span class="string">"editArea "</span>).send_keys(frist_q_link)</span><br><span class="line">        browser.find_element_by_class_name( <span class="string">"btn_send "</span>).click()</span><br><span class="line">    time.sleep(<span class="number">60</span>*<span class="number">59</span>)</span><br></pre></td></tr></table></figure>
+<p>其中，headers 为了反防爬虫策略。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/08/14/使用swift制作简易图片滤镜/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1907,209 +2067,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/06/27/使用gulp构建前端工程/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/06/27/使用gulp构建前端工程/" class="post-title-link" itemprop="url">使用gulp构建前端工程</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-06-27 09:05:57" itemprop="dateCreated datePublished" datetime="2016-06-27T09:05:57+08:00">2016-06-27</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>gulp.js 是一个自动化构建工具,基于 Node.js。通过gulp可以省略前端开发中很多重复无意义的步骤,例如js/css的压缩、less/sass的编译等。</p>
-<p>在公司的项目中,需要在测试环境中反复调试一些内容(需求要求),而我在js中使用了es6的let声明关键词与严格模式,在测试容器—微信浏览器下无法顺利运行。因此使用gulp重新构建项目,利用其特性实现自动化压缩js/css,编译less,替换js中的let为var等功能。</p>
-<p>项目目录结构:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├─node_modules</span><br><span class="line">├─dist</span><br><span class="line">│   ├─css</span><br><span class="line">│   ├─fonts</span><br><span class="line">│   ├─images</span><br><span class="line">│   └─js</span><br><span class="line">└─src</span><br><span class="line">    ├─css</span><br><span class="line">    ├─fonts</span><br><span class="line">    ├─images</span><br><span class="line">    ├─js</span><br><span class="line">    └─less</span><br></pre></td></tr></table></figure></p>
-<p>dist目录为构建目录,src为工程目录;</p>
-<p>首先下载nodejs,其中也包含了npm包管理工具。</p>
-<p>切换到项目根目录下,输入:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --global gulp</span><br></pre></td></tr></table></figure></p>
-<p>全局安装gulp。</p>
-<p>输入:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp</span><br></pre></td></tr></table></figure></p>
-<p>使其作为项目的开发依赖安装。此时会自动创建目录node_modules;</p>
-<p>输入:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp-uglify gulp-minify-css gulp-sourcemaps gulp-less gulp-concat gulp-rename gulp-imagemin gulp-replace gulp-htmlmin --save-dev</span><br></pre></td></tr></table></figure></p>
-<p>安装项目所需要的插件。</p>
-<p>使用到的插件有:</p>
-<p>gulp-uglify:js混淆、压缩</p>
-<p>gulp-minify-css:css压缩</p>
-<p>gulp-sourcemaps:为less插件创建map</p>
-<p>gulp-less:编译less文件</p>
-<p>gulp-concat:文件合并</p>
-<p>gulp-rename:文件重命名</p>
-<p>gulp-imagemin:图片压缩</p>
-<p>gulp-replace:文本替换(正则式)</p>
-<p>gulp-htmlmin:html文件压缩(html中的css与js也会被压缩)</p>
-<p>在根目录创建gulpfile.js。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp=<span class="built_in">require</span>(<span class="string">"gulp"</span>);<span class="comment">//创建gulp模块</span></span><br><span class="line"><span class="keyword">var</span> uglify=<span class="built_in">require</span>(<span class="string">"gulp-uglify"</span>);<span class="comment">//创建js混淆压缩模块</span></span><br><span class="line"><span class="keyword">var</span> minify_css=<span class="built_in">require</span>(<span class="string">"gulp-minify-css"</span>);<span class="comment">//创建css混淆压缩模块</span></span><br><span class="line"><span class="keyword">var</span> less=<span class="built_in">require</span>(<span class="string">'gulp-less'</span>);</span><br><span class="line"><span class="keyword">var</span> gulp_concat=<span class="built_in">require</span>(<span class="string">'gulp-concat'</span>);<span class="comment">//创建文件合并模块</span></span><br><span class="line"><span class="keyword">var</span> del=<span class="built_in">require</span>(<span class="string">'del'</span>);</span><br><span class="line"><span class="keyword">var</span> rename=<span class="built_in">require</span>(<span class="string">'gulp-rename'</span>);</span><br><span class="line"><span class="keyword">var</span> imagemin=<span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>);<span class="comment">//压缩图片</span></span><br><span class="line"><span class="keyword">var</span> replace=<span class="built_in">require</span>(<span class="string">'gulp-replace'</span>);</span><br><span class="line"><span class="keyword">var</span> htmlmin=<span class="built_in">require</span>(<span class="string">'gulp-htmlmin'</span>);</span><br><span class="line"><span class="keyword">var</span> sourcemaps=<span class="built_in">require</span>(<span class="string">'gulp-sourcemaps'</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clean</span>(<span class="params">path</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Clean:'</span> + path)</span><br><span class="line">    del(path);</span><br><span class="line">&#125;</span><br><span class="line">gulp.task(<span class="string">'less'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.src(<span class="string">'./src/less/*.less'</span>)</span><br><span class="line">        .pipe(sourcemaps.init())</span><br><span class="line">        .pipe(less())</span><br><span class="line">        .pipe(sourcemaps.write())</span><br><span class="line">        .pipe(rename(&#123; <span class="attr">suffix</span>: <span class="string">'.min'</span> &#125;))</span><br><span class="line">        .pipe(minify_css())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'./dist/css'</span>));</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.src(<span class="string">'./src/css/*.css'</span>)</span><br><span class="line">   		.pipe(rename(&#123; <span class="attr">suffix</span>: <span class="string">'.min'</span> &#125;))</span><br><span class="line">        .pipe(minify_css())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'./dist/css'</span>));</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'javascripts'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  gulp.src(<span class="string">'./src/js/*.js'</span>)</span><br><span class="line">    .pipe(replace(<span class="string">'let '</span>, <span class="string">'var '</span>))<span class="comment">//微信不支持let用法因此换成var</span></span><br><span class="line">    .pipe(replace(<span class="string">'"use strict";'</span>, <span class="string">''</span>))<span class="comment">//微信不支持严格模式</span></span><br><span class="line">    .pipe(rename(&#123; <span class="attr">suffix</span>: <span class="string">'.min'</span> &#125;))</span><br><span class="line">    .pipe(uglify())</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'./dist/js'</span>));</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> options = &#123;</span><br><span class="line">        removeComments: <span class="literal">true</span>,<span class="comment">//清除HTML注释</span></span><br><span class="line">        collapseWhitespace: <span class="literal">true</span>,<span class="comment">//压缩HTML</span></span><br><span class="line">        collapseBooleanAttributes: <span class="literal">true</span>,<span class="comment">//省略布尔属性的值 &lt;input checked="true"/&gt; ==&gt; &lt;input /&gt;</span></span><br><span class="line">        removeEmptyAttributes: <span class="literal">true</span>,<span class="comment">//删除所有空格作属性值 &lt;input id="" /&gt; ==&gt; &lt;input /&gt;</span></span><br><span class="line">        removeScriptTypeAttributes: <span class="literal">true</span>,<span class="comment">//删除&lt;script&gt;的type="text/javascript"</span></span><br><span class="line">        removeStyleLinkTypeAttributes: <span class="literal">true</span>,<span class="comment">//删除&lt;style&gt;和&lt;link&gt;的type="text/css"</span></span><br><span class="line">        minifyJS: <span class="literal">true</span>,<span class="comment">//压缩页面JS</span></span><br><span class="line">        minifyCSS: <span class="literal">true</span><span class="comment">//压缩页面CSS</span></span><br><span class="line">    &#125;;</span><br><span class="line">    gulp.src(<span class="string">'./src/*.html'</span>)</span><br><span class="line">    .pipe(replace(<span class="string">'let '</span>, <span class="string">'var '</span>))<span class="comment">//微信不支持let用法因此换成var</span></span><br><span class="line">    .pipe(replace(<span class="string">'"use strict";'</span>, <span class="string">''</span>))<span class="comment">//微信不支持严格模式</span></span><br><span class="line">    .pipe(replace(<span class="string">'.css'</span>, <span class="string">'.min.css'</span>))<span class="comment">//将html引用的资源从css与js变成min.css与min.js</span></span><br><span class="line">    .pipe(replace(<span class="string">'.js'</span>, <span class="string">'.min.js'</span>))</span><br><span class="line">    .pipe(htmlmin(options))</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'./dist/'</span>));</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'images'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.src([<span class="string">'./src/images/*.*'</span>,<span class="string">'./src/images/**/*.*'</span>])</span><br><span class="line">    .pipe(imagemin())</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'./dist/images/'</span>));</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'fonts'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	gulp.src(<span class="string">'./src/fonts/*.*'</span>)</span><br><span class="line">	.pipe(gulp.dest(<span class="string">'./dist/fonts/'</span>));</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'clean'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    clean(<span class="string">'./dist/*'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'build'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    gulp.run(<span class="string">'less'</span>,<span class="string">'css'</span>,<span class="string">'javascripts'</span>,<span class="string">'html'</span>,<span class="string">'images'</span>,<span class="string">'fonts'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Done!'</span>)</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    gulp.run(<span class="string">'build'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Done!'</span>)</span><br><span class="line">    gulp.watch([<span class="string">'./src/less/*.less'</span>,<span class="string">'./src/js/*.js'</span>,<span class="string">'./src/css/*.css'</span>,<span class="string">'./src/*.html'</span>,<span class="string">'./src/images/*.*'</span>,<span class="string">'./src/images/*/*.*'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        gulp.run(<span class="string">'build'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>与gulp有关的方法主要有以下几种:</p>
-<p>gulp.task 定义gulp任务</p>
-<p>gulp.run 运行gulp任务</p>
-<p>gulp.watch 监控文件变化</p>
-<p>gulp.src 输入文件路径</p>
-<p>gulp.dest 指定处理完后文件输出的路径</p>
-<p>其中参数多是以数组形式输入,例如监控多个目录:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gulp.watch([<span class="string">'./src/less/*.less'</span>,<span class="string">'./src/js/*.js'</span>,<span class="string">'./src/css/*.css'</span>,<span class="string">'./src/*.html'</span>,<span class="string">'./src/images/*.*'</span>,<span class="string">'./src/images/*/*.*'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="comment">//检测到文件变化时执行的操作</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>gulp.task定义了任务的名称与过程。</p>
-<p>例如<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    gulp.run(<span class="string">'build'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Done!'</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>即定义了default任务,在执行default任务时,执行build任务并返回“Done”</p>
-<p>default任务是默认任务,执行时直接在项目目录执行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp</span><br></pre></td></tr></table></figure></p>
-<p>即为进行default任务。</p>
-<p>同时也可以通过gulp + 任务名 来运行指定任务,例如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp clean</span><br></pre></td></tr></table></figure></p>
-<p>即为运行名称为clean的任务。</p>
-<p>在任务中,文件以“流”的形式在任务中流转,使用pipe可对其进行操作;.pipe可对与流通至此管道中的文件流进行相关操作。</p>
-<p>例如,输入src/images中的所有图片进行压缩后,输出到dist/images<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'images'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.src([<span class="string">'./src/images/*.*'</span>,<span class="string">'./src/images/**/*.*'</span>])</span><br><span class="line">    .pipe(imagemin())</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'./dist/images/'</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>gulp.src获取images与images子目录下的所有文件,传入管道中;文件流通过imagemin()管道时,其中的图片被分别压缩,最终输出到dist/images目录中。</p>
-<p>掌握gulp基本用法后就能够使用它进行一般的工程化构建了。当需要达到某种对文件流的处理效果时,可以在网上搜索相关插件,使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp-xxx --save-dev</span><br></pre></td></tr></table></figure></p>
-<p>下载与保存,在gulpfile.js中以var xxx=require(‘gulp-xxx’)形式定义,即可在任务中使用这种插件了。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2152,7 +2114,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">140</span>
+                    <span class="site-state-item-count">141</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2530,7 +2492,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">167</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">170</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

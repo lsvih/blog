@@ -368,6 +368,274 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/09/如何将时间序列问题用-Python-转换成为监督学习问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/08/09/如何将时间序列问题用-Python-转换成为监督学习问题/" class="post-title-link" itemprop="url">如何将时间序列问题用 Python 转换成为监督学习问题</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-08-09 16:23:01" itemprop="dateCreated datePublished" datetime="2017-08-09T16:23:01+08:00">2017-08-09</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>一些机器学习方法（例如深度学习）可以用于进行时间序列预测。</p>
+<p>在使用这些机器学习方法前，必须先将时间序列预测问题转化为监督学习问题。也就是说，需要将一个时间序列转换成一组包含成对输入输出的序列。</p>
+<p>在这篇教程里，你将了解如何将单变量时间序列预测问题和多变量时间序列预测问题转换成监督学习问题，以使用机器学习算法。</p>
+<p>读完这篇教程，你将会了解：</p>
+<ul>
+<li>如何编写一个将时间序列数据集转换为监督学习数据集的函数。</li>
+<li>如何转换一元时间序列数据以使用机器学习。</li>
+<li>如何转换多元时间序列数据以使用机器学习。</li>
+</ul>
+<p>让我们开始吧。</p>
+<p><img src="/images/pasted-170.png" alt="upload successful"></p>
+<p>题图：如何将时间序列问题用 Python 转换成为监督学习问题</p>
+<p><a href="https://www.flickr.com/photos/quimgil/8490510169/" target="_blank" rel="noopener">Quim Gil</a> 拍摄，版权所有。</p>
+<h2 id="时间序列-vs-监督学习"><a href="#时间序列-vs-监督学习" class="headerlink" title="时间序列 vs 监督学习"></a>时间序列 vs 监督学习</h2><p>在正式开始之前，让我们先花点时间更好地了解一下时间序列和监督学习的数据集结构。</p>
+<p>单个时间序列由一系列按照时间排序的数字序列组成。可以将其理解为一列有序值。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">0</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
+<p>而一个监督学习问题是由一组输入（*X*）和一组输出（*y*）组成，算法可以学会如何通过输入值来预测输出值。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">X,  y</span><br><span class="line">1 2</span><br><span class="line">2,  3</span><br><span class="line">3,  4</span><br><span class="line">4,  5</span><br><span class="line">5,  6</span><br><span class="line">6,  7</span><br><span class="line">7,  8</span><br><span class="line">8,  9</span><br></pre></td></tr></table></figure>
+<p>可以参阅这篇文章，学习更多有关知识：</p>
+<ul>
+<li><a href="http://machinelearningmastery.com/time-series-forecasting-supervised-learning/" target="_blank" rel="noopener">Time Series Forecasting as Supervised Learning</a></li>
+</ul>
+<h2 id="Pandas-的-shift-函数"><a href="#Pandas-的-shift-函数" class="headerlink" title="Pandas 的 shift() 函数"></a>Pandas 的 shift() 函数</h2><p>我们将时间序列数据转化为监督学习问题的关键就是使用 Pandas 的 <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.shift.html" target="_blank" rel="noopener">shift()</a> 函数。</p>
+<p>给定一个 DataFrame，*shift()* 函数会将输入的列复制一份，然后将副本列整体往后移动（最前面的数据空位会用 NaN 填充）或者往前移动（最后面的数据空位会用 NaN 填充）。</p>
+<p>这样可以创建一个滞后值列，加上观察列，就能将时间序列数据集变成监督学习数据集的格式。</p>
+<p>让我们看看 shift 函数实际用起来效果如何。</p>
+<p>我们可以通过下面的代码模拟一个长度为 10 的时间序列数据集，此时它在 DataFrame 中为单独的一列：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> DataFrame</span><br><span class="line">df = DataFrame()</span><br><span class="line">df[<span class="string">'t'</span>] = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line">print(df)</span><br></pre></td></tr></table></figure>
+<p>运行上面的样例，将时间序列数据输出，其每一行都为带有索引的观察组数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">   t</span><br><span class="line">0  0</span><br><span class="line">1  1</span><br><span class="line">2  2</span><br><span class="line">3  3</span><br><span class="line">4  4</span><br><span class="line">5  5</span><br><span class="line">6  6</span><br><span class="line">7  7</span><br><span class="line">8  8</span><br><span class="line">9  9</span><br></pre></td></tr></table></figure></p>
+<p>我们可以在数据顶部插入一行，将观察组的数据整体下挪一位。由于最上面插入的新行没有数据，因此我们可以用 NaN 填充来表示这儿“没有数据”。</p>
+<p>shift 函数可以完成这些操作。我们可以将 shift 函数“挪动”过的新列插入原始序列的旁边。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> DataFrame</span><br><span class="line">df = DataFrame()</span><br><span class="line">df[<span class="string">'t'</span>] = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line">df[<span class="string">'t-1'</span>] = df[<span class="string">'t'</span>].shift(<span class="number">1</span>)</span><br><span class="line">print(df)</span><br></pre></td></tr></table></figure>
+<p>运行上面的样例，你将得到一个包含两列的数据集。第一列是原始的观察组，第二列是经由 shift 函数挪动生成的新列。</p>
+<p>可以看到，经过将序列移动一次的操作之后，我们得到了一个原始的监督学习问题（虽然此时的 *X* 和 *y* 的排序明显是错的）。忽略最前面的表头，第一行存在 NaN 值，因此需要将其丢弃。在第二行，我们可以将第二列的 0.0 作为输入值（也就是 *X*），将第一列的 1 作为输出值（或 *y*）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">   t  t-1</span><br><span class="line">0  0  NaN</span><br><span class="line">1  1  0.0</span><br><span class="line">2  2  1.0</span><br><span class="line">3  3  2.0</span><br><span class="line">4  4  3.0</span><br><span class="line">5  5  4.0</span><br><span class="line">6  6  5.0</span><br><span class="line">7  7  6.0</span><br><span class="line">8  8  7.0</span><br><span class="line">9  9  8.0</span><br></pre></td></tr></table></figure>
+<p>如果我们重复 shift 步骤，让原始列挪动 2 位、3 位或者更多位，我们就能得到一系列的输入数据（*X*），由这些输入值就能去预测输出值（*y*）了。</p>
+<p>shift 操作能也能接受负整数作为参数。如果你这么做，它会在列底部插入新行，从而使得原列向上移动。下面是例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> DataFrame</span><br><span class="line">df = DataFrame()</span><br><span class="line">df[<span class="string">'t'</span>] = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line">df[<span class="string">'t+1'</span>] = df[<span class="string">'t'</span>].shift(<span class="number">-1</span>)</span><br><span class="line">print(df)</span><br></pre></td></tr></table></figure>
+<p>运行上面的样例，可以看到新列中的最后一个值为 NaN。</p>
+<p>此时可以将预测列作为输入值（*X*），将第二列作为输出值（*y*）。也就是给定输入值 0 可以用于预测输出值 1。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">   t  t+1</span><br><span class="line">0  0  1.0</span><br><span class="line">1  1  2.0</span><br><span class="line">2  2  3.0</span><br><span class="line">3  3  4.0</span><br><span class="line">4  4  5.0</span><br><span class="line">5  5  6.0</span><br><span class="line">6  6  7.0</span><br><span class="line">7  7  8.0</span><br><span class="line">8  8  9.0</span><br><span class="line">9  9  NaN</span><br></pre></td></tr></table></figure>
+<p>从技术上说，在时间序列预测问题的术语中，当前时间（*t*）和未来时间（*t+1, t+n*）为待预测时间，过去时间（*t-1, t-n*）则用于预测。</p>
+<p>从上面的例子中，我们可以学会如何使用通过 shift 函数正向或反向移动序列，生成新的 DataFrame，将时间序列问题转变成监督学习问题的输入-输出模式。</p>
+<p>这不仅可以解决经典的 *X -> y* 类预测问题，也可以用于输入输出值都是序列的 *X -> Y* 类预测。</p>
+<p>另外，shift 函数也能用于多元时间序列问题中。这类问题中包含多列观察组（例如温度、气压等）。时间序列中的所有变量都能用通过向前或向后挪动，生成多元输入值与输出值序列。稍后我们将探讨这类问题。</p>
+<h2 id="series-to-supervised-函数"><a href="#series-to-supervised-函数" class="headerlink" title="series_to_supervised() 函数"></a>series_to_supervised() 函数</h2><p>我们可以使用 Pandas 的 *shift()* 函数，在给定希望得到的输入值、输出值序列长度后自动生成时间序列问题的新格式数据。</p>
+<p>这是个很有用的工具。我们可以通过机器学习算法研究各种时间序列问题格式，探究哪种格式能够得到效果更佳的模型。</p>
+<p>在本节中，我们将创建一个新的 Python 函数，名为 *series_to_supervised()*。它可以将多元时间序列问题与一元时间序列问题转换为监督学习数据集的格式。</p>
+<p>这个函数接收以下 4 个参数：</p>
+<ul>
+<li><strong>data</strong>：必填，待转换的序列，数据类型为 list 或 2 维 NumPy array。</li>
+<li><strong>n_in</strong>： 可选，滞后组（作为输入值 X）的数量。范围可以在 [1..len(data)] 之间，默认值为 1。</li>
+<li><strong>n_out</strong>： 可选，观察组（作为输出值 y）的数量。范围可以在  [0..len(data)-1] 之间，默认值为 1。</li>
+<li><strong>dropnan</strong>：选填，决定是否抛去包含 NaN 的行。类型为 Boolean，默认值为 True。</li>
+</ul>
+<p>函数将会返回一个值：</p>
+<ul>
+<li><strong>return</strong>：返回监督学习格式的数据集，数据类型为 Pandas DataFrame。</li>
+</ul>
+<p>新数据集 DataFrame 格式，每一列都由原变量名称和移动步数命名，让你可以根据给定的一元或多元时间序列问题设计出各种移动步数的序列。</p>
+<p>在 DataFrame 返回时，你可以对其行进行分割，根据你的需要决定如何将返回的 DataFrame 分成 X 和 y 两部分。</p>
+<p>这个函数的参数都设置了默认值，因此可以直接调用它处理你的数据，这种默认情况它将会返回一个 *t-1* 作为 X，*t* 作为 y 的 DataFrame。</p>
+<p>这个函数已确定同时兼容 Python2 和 Python3。</p>
+<p>下面为完整代码，并写好了注释：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> DataFrame</span><br><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> concat</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">series_to_supervised</span><span class="params">(data, n_in=<span class="number">1</span>, n_out=<span class="number">1</span>, dropnan=True)</span>:</span></span><br><span class="line">  <span class="string">"""</span></span><br><span class="line"><span class="string">  函数用途：将时间序列转化为监督学习数据集。</span></span><br><span class="line"><span class="string">  参数说明：</span></span><br><span class="line"><span class="string">    data: 观察值序列，数据类型可以是 list 或者 NumPy array。</span></span><br><span class="line"><span class="string">    n_in: 作为输入值(X)的滞后组的数量。</span></span><br><span class="line"><span class="string">    n_out: 作为输出值(y)的观察组的数量。</span></span><br><span class="line"><span class="string">    dropnan: Boolean 值，确定是否将包含 NaN 的行移除。</span></span><br><span class="line"><span class="string">  返回值:</span></span><br><span class="line"><span class="string">    经过转换的用于监督学习的 Pandas DataFrame 序列。</span></span><br><span class="line"><span class="string">  """</span></span><br><span class="line">  n_vars = <span class="number">1</span> <span class="keyword">if</span> type(data) <span class="keyword">is</span> list <span class="keyword">else</span> data.shape[<span class="number">1</span>]</span><br><span class="line">  df = DataFrame(data)</span><br><span class="line">  cols, names = list(), list()</span><br><span class="line">  <span class="comment"># 输入序列 (t-n, ... t-1)</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(n_in, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">    cols.append(df.shift(i))</span><br><span class="line">    names += [(<span class="string">'var%d(t-%d)'</span> % (j+<span class="number">1</span>, i)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">  <span class="comment"># 预测序列 (t, t+1, ... t+n)</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n_out):</span><br><span class="line">    cols.append(df.shift(-i))</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">      names += [(<span class="string">'var%d(t)'</span> % (j+<span class="number">1</span>)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      names += [(<span class="string">'var%d(t+%d)'</span> % (j+<span class="number">1</span>, i)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">  <span class="comment"># 将所有列拼合</span></span><br><span class="line">  agg = concat(cols, axis=<span class="number">1</span>)</span><br><span class="line">  agg.columns = names</span><br><span class="line">  <span class="comment"># drop 掉包含 NaN 的行</span></span><br><span class="line">  <span class="keyword">if</span> dropnan:</span><br><span class="line">    agg.dropna(inplace=<span class="keyword">True</span>)</span><br><span class="line">  <span class="keyword">return</span> agg</span><br></pre></td></tr></table></figure>
+<p>你觉得可以怎样提高这个函数的鲁棒性或者可读性吗？请留言在评论区。</p>
+<p>至此我们已经得到了整个函数，接下来探索它的用法。</p>
+<h2 id="单步或单变量预测"><a href="#单步或单变量预测" class="headerlink" title="单步或单变量预测"></a>单步或单变量预测</h2><p>在时间序列预测问题中通常使用滞后时间（例如 t-1）作为输入变量来预测当前时间（t）。</p>
+<p>这种问题被称为单步预测。</p>
+<p>下面展示了使用滞后一个时间步的时间（t-1）来预测当前时间（t）的例子。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> DataFrame</span><br><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> concat</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">series_to_supervised</span><span class="params">(data, n_in=<span class="number">1</span>, n_out=<span class="number">1</span>, dropnan=True)</span>:</span></span><br><span class="line">  <span class="string">"""</span></span><br><span class="line"><span class="string">  函数用途：将时间序列转化为监督学习数据集。</span></span><br><span class="line"><span class="string">  参数说明：</span></span><br><span class="line"><span class="string">    data: 观察值序列，数据类型可以是 list 或者 NumPy array。</span></span><br><span class="line"><span class="string">    n_in: 作为输入值(X)的滞后组的数量。</span></span><br><span class="line"><span class="string">    n_out: 作为输出值(y)的观察组的数量。</span></span><br><span class="line"><span class="string">    dropnan: Boolean 值，确定是否将包含 NaN 的行移除。</span></span><br><span class="line"><span class="string">  返回值:</span></span><br><span class="line"><span class="string">    经过转换的用于监督学习的 Pandas DataFrame 序列。</span></span><br><span class="line"><span class="string">  """</span></span><br><span class="line">  n_vars = <span class="number">1</span> <span class="keyword">if</span> type(data) <span class="keyword">is</span> list <span class="keyword">else</span> data.shape[<span class="number">1</span>]</span><br><span class="line">  df = DataFrame(data)</span><br><span class="line">  cols, names = list(), list()</span><br><span class="line">  <span class="comment"># 输入序列 (t-n, ... t-1)</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(n_in, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">    cols.append(df.shift(i))</span><br><span class="line">    names += [(<span class="string">'var%d(t-%d)'</span> % (j+<span class="number">1</span>, i)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">  <span class="comment"># 预测序列 (t, t+1, ... t+n)</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n_out):</span><br><span class="line">    cols.append(df.shift(-i))</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">      names += [(<span class="string">'var%d(t)'</span> % (j+<span class="number">1</span>)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      names += [(<span class="string">'var%d(t+%d)'</span> % (j+<span class="number">1</span>, i)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">  <span class="comment"># 将所有列拼合</span></span><br><span class="line">  agg = concat(cols, axis=<span class="number">1</span>)</span><br><span class="line">  agg.columns = names</span><br><span class="line">  <span class="comment"># drop 掉包含 NaN 的行</span></span><br><span class="line">  <span class="keyword">if</span> dropnan:</span><br><span class="line">    agg.dropna(inplace=<span class="keyword">True</span>)</span><br><span class="line">  <span class="keyword">return</span> agg</span><br><span class="line">  </span><br><span class="line">  values = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line">  data = series_to_supervised(values)</span><br><span class="line">  print(data)</span><br></pre></td></tr></table></figure>
+<p>运行样例，输出转换后的时间序列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   var1(t-1)  var1(t)</span><br><span class="line">1        0.0        1</span><br><span class="line">2        1.0        2</span><br><span class="line">3        2.0        3</span><br><span class="line">4        3.0        4</span><br><span class="line">5        4.0        5</span><br><span class="line">6        5.0        6</span><br><span class="line">7        6.0        7</span><br><span class="line">8        7.0        8</span><br><span class="line">9        8.0        9</span><br></pre></td></tr></table></figure>
+<p>可以看到，观察组被命名为“*var1*”，作为输入值的观察组被命名为（*t-1*），输出值组被命名为（*t*）。</p>
+<p>此外，可以看到包含 NaN 的行已经被自动从 DataFrame 中移除。</p>
+<p>我们可以任意给定输入序列数量的值来重复运行这个例子。例如输入 3，我们事先已经将输入序列的数量定义为了一个参数。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = series_to_supervised(values, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>完整样例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> DataFrame</span><br><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> concat</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">series_to_supervised</span><span class="params">(data, n_in=<span class="number">1</span>, n_out=<span class="number">1</span>, dropnan=True)</span>:</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">  函数用途：将时间序列转化为监督学习数据集。</span></span><br><span class="line"><span class="string">  参数说明：</span></span><br><span class="line"><span class="string">    data: 观察值序列，数据类型可以是 list 或者 NumPy array。</span></span><br><span class="line"><span class="string">    n_in: 作为输入值(X)的滞后组的数量。</span></span><br><span class="line"><span class="string">    n_out: 作为输出值(y)的观察组的数量。</span></span><br><span class="line"><span class="string">    dropnan: Boolean 值，确定是否将包含 NaN 的行移除。</span></span><br><span class="line"><span class="string">  返回值:</span></span><br><span class="line"><span class="string">    经过转换的用于监督学习的 Pandas DataFrame 序列。</span></span><br><span class="line"><span class="string">  """</span></span><br><span class="line">  n_vars = <span class="number">1</span> <span class="keyword">if</span> type(data) <span class="keyword">is</span> list <span class="keyword">else</span> data.shape[<span class="number">1</span>]</span><br><span class="line">  df = DataFrame(data)</span><br><span class="line">  cols, names = list(), list()</span><br><span class="line">  <span class="comment"># 输入序列 (t-n, ... t-1)</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(n_in, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">    cols.append(df.shift(i))</span><br><span class="line">    names += [(<span class="string">'var%d(t-%d)'</span> % (j+<span class="number">1</span>, i)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">  <span class="comment"># 预测序列 (t, t+1, ... t+n)</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n_out):</span><br><span class="line">    cols.append(df.shift(-i))</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">      names += [(<span class="string">'var%d(t)'</span> % (j+<span class="number">1</span>)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      names += [(<span class="string">'var%d(t+%d)'</span> % (j+<span class="number">1</span>, i)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">  <span class="comment"># 将所有列拼合</span></span><br><span class="line">  agg = concat(cols, axis=<span class="number">1</span>)</span><br><span class="line">  agg.columns = names</span><br><span class="line">  <span class="comment"># drop 掉包含 NaN 的行</span></span><br><span class="line">  <span class="keyword">if</span> dropnan:</span><br><span class="line">    agg.dropna(inplace=<span class="keyword">True</span>)</span><br><span class="line">  <span class="keyword">return</span> agg</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">values = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line">data = series_to_supervised(values, <span class="number">3</span>)</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure>
+<p>再次运行样例，输出重新构造的序列，可以看到输入序列准确无误地从左至右裴烈，作为预测项的输入值在最右边。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   var1(t-3)  var1(t-2)  var1(t-1)  var1(t)</span><br><span class="line">3        0.0        1.0        2.0        3</span><br><span class="line">4        1.0        2.0        3.0        4</span><br><span class="line">5        2.0        3.0        4.0        5</span><br><span class="line">6        3.0        4.0        5.0        6</span><br><span class="line">7        4.0        5.0        6.0        7</span><br><span class="line">8        5.0        6.0        7.0        8</span><br><span class="line">9        6.0        7.0        8.0        9</span><br></pre></td></tr></table></figure>
+<h2 id="多步或序列预测"><a href="#多步或序列预测" class="headerlink" title="多步或序列预测"></a>多步或序列预测</h2><p>还有一类预测问题：使用过去的观察组来对未来的观察组序列做预测。</p>
+<p>可以将这类问题成为序列预测问题或者多步预测问题。</p>
+<p>我们可以通过规定另一个参数来将序列预测问题的时间序列重新构造。例如，我们可以把 2 个过去的观察组转变为 2 个未来的观察组，从而重新构造预测问题：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data=series_to_supervised(values,<span class="number">2</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>完整样例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> DataFrame</span><br><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> concat</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">series_to_supervised</span><span class="params">(data, n_in=<span class="number">1</span>, n_out=<span class="number">1</span>, dropnan=True)</span>:</span></span><br><span class="line">  <span class="string">"""</span></span><br><span class="line"><span class="string">  函数用途：将时间序列转化为监督学习数据集。</span></span><br><span class="line"><span class="string">  参数说明：</span></span><br><span class="line"><span class="string">    data: 观察值序列，数据类型可以是 list 或者 NumPy array。</span></span><br><span class="line"><span class="string">    n_in: 作为输入值(X)的滞后组的数量。</span></span><br><span class="line"><span class="string">    n_out: 作为输出值(y)的观察组的数量。</span></span><br><span class="line"><span class="string">    dropnan: Boolean 值，确定是否将包含 NaN 的行移除。</span></span><br><span class="line"><span class="string">  返回值:</span></span><br><span class="line"><span class="string">    经过转换的用于监督学习的 Pandas DataFrame 序列。</span></span><br><span class="line"><span class="string">  """</span></span><br><span class="line">  n_vars = <span class="number">1</span> <span class="keyword">if</span> type(data) <span class="keyword">is</span> list <span class="keyword">else</span> data.shape[<span class="number">1</span>]</span><br><span class="line">  df = DataFrame(data)</span><br><span class="line">  cols, names = list(), list()</span><br><span class="line">  <span class="comment"># 输入序列 (t-n, ... t-1)</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(n_in, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">    cols.append(df.shift(i))</span><br><span class="line">    names += [(<span class="string">'var%d(t-%d)'</span> % (j+<span class="number">1</span>, i)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">  <span class="comment"># 预测序列 (t, t+1, ... t+n)</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n_out):</span><br><span class="line">    cols.append(df.shift(-i))</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">      names += [(<span class="string">'var%d(t)'</span> % (j+<span class="number">1</span>)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      names += [(<span class="string">'var%d(t+%d)'</span> % (j+<span class="number">1</span>, i)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">  <span class="comment"># 将所有列拼合</span></span><br><span class="line">  agg = concat(cols, axis=<span class="number">1</span>)</span><br><span class="line">  agg.columns = names</span><br><span class="line">  <span class="comment"># drop 掉包含 NaN 的行</span></span><br><span class="line">  <span class="keyword">if</span> dropnan:</span><br><span class="line">    agg.dropna(inplace=<span class="keyword">True</span>)</span><br><span class="line">  <span class="keyword">return</span> agg</span><br><span class="line"></span><br><span class="line">values = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line">data = series_to_supervised(values, <span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure>
+<p>运行样例，可以看到将（*t-n*）作为输入变量、将（*t+n*）作为输出变量时，与将当前观察组（*t*）作为输出的不同之处。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   var1(t-2)  var1(t-1)  var1(t)  var1(t+1)</span><br><span class="line">2        0.0        1.0        2        3.0</span><br><span class="line">3        1.0        2.0        3        4.0</span><br><span class="line">4        2.0        3.0        4        5.0</span><br><span class="line">5        3.0        4.0        5        6.0</span><br><span class="line">6        4.0        5.0        6        7.0</span><br><span class="line">7        5.0        6.0        7        8.0</span><br><span class="line">8        6.0        7.0        8        9.0</span><br></pre></td></tr></table></figure>
+<h2 id="多元预测"><a href="#多元预测" class="headerlink" title="多元预测"></a>多元预测</h2><p>还有一种重要的时间序列类型，叫做多元时间序列。</p>
+<p>这种情况我们会将多个不同的指标作为观察组，并预测它们中的一个或多个的值。</p>
+<p>例如，我们有两组时间序列观察组 obs1 和 obs2，希望预测它们或它们中的一者。</p>
+<p>我们同样可以调用 *series_to_supervised()*。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> DataFrame</span><br><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> concat</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">series_to_supervised</span><span class="params">(data, n_in=<span class="number">1</span>, n_out=<span class="number">1</span>, dropnan=True)</span>:</span></span><br><span class="line">  <span class="string">"""</span></span><br><span class="line"><span class="string">  函数用途：将时间序列转化为监督学习数据集。</span></span><br><span class="line"><span class="string">  参数说明：</span></span><br><span class="line"><span class="string">    data: 观察值序列，数据类型可以是 list 或者 NumPy array。</span></span><br><span class="line"><span class="string">    n_in: 作为输入值(X)的滞后组的数量。</span></span><br><span class="line"><span class="string">    n_out: 作为输出值(y)的观察组的数量。</span></span><br><span class="line"><span class="string">    dropnan: Boolean 值，确定是否将包含 NaN 的行移除。</span></span><br><span class="line"><span class="string">  返回值:</span></span><br><span class="line"><span class="string">    经过转换的用于监督学习的 Pandas DataFrame 序列。</span></span><br><span class="line"><span class="string">  """</span></span><br><span class="line">  n_vars = <span class="number">1</span> <span class="keyword">if</span> type(data) <span class="keyword">is</span> list <span class="keyword">else</span> data.shape[<span class="number">1</span>]</span><br><span class="line">  df = DataFrame(data)</span><br><span class="line">  cols, names = list(), list()</span><br><span class="line">  <span class="comment"># 输入序列 (t-n, ... t-1)</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(n_in, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">    cols.append(df.shift(i))</span><br><span class="line">    names += [(<span class="string">'var%d(t-%d)'</span> % (j+<span class="number">1</span>, i)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">  <span class="comment"># 预测序列 (t, t+1, ... t+n)</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n_out):</span><br><span class="line">    cols.append(df.shift(-i))</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">      names += [(<span class="string">'var%d(t)'</span> % (j+<span class="number">1</span>)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      names += [(<span class="string">'var%d(t+%d)'</span> % (j+<span class="number">1</span>, i)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">  <span class="comment"># 将所有列拼合</span></span><br><span class="line">  agg = concat(cols, axis=<span class="number">1</span>)</span><br><span class="line">  agg.columns = names</span><br><span class="line">  <span class="comment"># drop 掉包含 NaN 的行</span></span><br><span class="line">  <span class="keyword">if</span> dropnan:</span><br><span class="line">    agg.dropna(inplace=<span class="keyword">True</span>)</span><br><span class="line">  <span class="keyword">return</span> agg</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">raw = DataFrame()</span><br><span class="line">raw[<span class="string">'ob1'</span>] = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line">raw[<span class="string">'ob2'</span>] = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">50</span>, <span class="number">60</span>)]</span><br><span class="line">values = raw.values</span><br><span class="line">data = series_to_supervised(values)</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure>
+<p>运行样例，将会得到经过重新构造后的数据。数据显示了分别处于同一个时间的两组变量作为输入组以及输出组。</p>
+<p>与之前一样，根据问题的需要，可以将列分入 *X* 和 *y* 两个子集中，需要注意的是如果放入了 *var1* 做为观察组，那就要放入 *var2* 作为待预测组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   var1(t-1)  var2(t-1)  var1(t)  var2(t)</span><br><span class="line">1        0.0       50.0        1       51</span><br><span class="line">2        1.0       51.0        2       52</span><br><span class="line">3        2.0       52.0        3       53</span><br><span class="line">4        3.0       53.0        4       54</span><br><span class="line">5        4.0       54.0        5       55</span><br><span class="line">6        5.0       55.0        6       56</span><br><span class="line">7        6.0       56.0        7       57</span><br><span class="line">8        7.0       57.0        8       58</span><br><span class="line">9        8.0       58.0        9       59</span><br></pre></td></tr></table></figure>
+<p>可以看到，通过上面这样给定输入序列和输出序列的数量生成的新的序列，可以帮助你轻松地完成多元时间序列的预测。</p>
+<p>例如，下面将把 1 作为输入列数量，将 2 作为输出列（预测列）数量，重新构造预测序列：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> DataFrame</span><br><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> concat</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">series_to_supervised</span><span class="params">(data, n_in=<span class="number">1</span>, n_out=<span class="number">1</span>, dropnan=True)</span>:</span></span><br><span class="line">  <span class="string">"""</span></span><br><span class="line"><span class="string">  函数用途：将时间序列转化为监督学习数据集。</span></span><br><span class="line"><span class="string">  参数说明：</span></span><br><span class="line"><span class="string">    data: 观察值序列，数据类型可以是 list 或者 NumPy array。</span></span><br><span class="line"><span class="string">    n_in: 作为输入值(X)的滞后组的数量。</span></span><br><span class="line"><span class="string">    n_out: 作为输出值(y)的观察组的数量。</span></span><br><span class="line"><span class="string">    dropnan: Boolean 值，确定是否将包含 NaN 的行移除。</span></span><br><span class="line"><span class="string">  返回值:</span></span><br><span class="line"><span class="string">    经过转换的用于监督学习的 Pandas DataFrame 序列。</span></span><br><span class="line"><span class="string">  """</span></span><br><span class="line">  n_vars = <span class="number">1</span> <span class="keyword">if</span> type(data) <span class="keyword">is</span> list <span class="keyword">else</span> data.shape[<span class="number">1</span>]</span><br><span class="line">  df = DataFrame(data)</span><br><span class="line">  cols, names = list(), list()</span><br><span class="line">  <span class="comment"># 输入序列 (t-n, ... t-1)</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(n_in, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">    cols.append(df.shift(i))</span><br><span class="line">    names += [(<span class="string">'var%d(t-%d)'</span> % (j+<span class="number">1</span>, i)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">  <span class="comment"># 预测序列 (t, t+1, ... t+n)</span></span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n_out):</span><br><span class="line">    cols.append(df.shift(-i))</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">      names += [(<span class="string">'var%d(t)'</span> % (j+<span class="number">1</span>)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      names += [(<span class="string">'var%d(t+%d)'</span> % (j+<span class="number">1</span>, i)) <span class="keyword">for</span> j <span class="keyword">in</span> range(n_vars)]</span><br><span class="line">  <span class="comment"># 将所有列拼合</span></span><br><span class="line">  agg = concat(cols, axis=<span class="number">1</span>)</span><br><span class="line">  agg.columns = names</span><br><span class="line">  <span class="comment"># drop 掉包含 NaN 的行</span></span><br><span class="line">  <span class="keyword">if</span> dropnan:</span><br><span class="line">    agg.dropna(inplace=<span class="keyword">True</span>)</span><br><span class="line">  <span class="keyword">return</span> agg</span><br><span class="line"></span><br><span class="line">raw = DataFrame()</span><br><span class="line">raw[<span class="string">'ob1'</span>] = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)]</span><br><span class="line">raw[<span class="string">'ob2'</span>] = [x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">50</span>, <span class="number">60</span>)]</span><br><span class="line">values = raw.values</span><br><span class="line">data = series_to_supervised(values, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">print(data)</span><br></pre></td></tr></table></figure>
+<p>运行样例，将会展示重新构造的很大的 DataFrame。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">   var1(t-1)  var2(t-1)  var1(t)  var2(t)  var1(t+1)  var2(t+1)</span><br><span class="line">1        0.0       50.0        1       51        2.0       52.0</span><br><span class="line">2        1.0       51.0        2       52        3.0       53.0</span><br><span class="line">3        2.0       52.0        3       53        4.0       54.0</span><br><span class="line">4        3.0       53.0        4       54        5.0       55.0</span><br><span class="line">5        4.0       54.0        5       55        6.0       56.0</span><br><span class="line">6        5.0       55.0        6       56        7.0       57.0</span><br><span class="line">7        6.0       56.0        7       57        8.0       58.0</span><br><span class="line">8        7.0       57.0        8       58        9.0       59.0</span><br></pre></td></tr></table></figure>
+<p>你可以用你自己的数据集多做几次实验，来试试哪种重构的效果更好。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在这篇教程中，你已经了解了如何使用 Python 将时间序列数据集转换为监督学习问题。</p>
+<p>特别的，你了解了：</p>
+<ul>
+<li>有关 Pandas *shift()* 函数的知识，以及它如何自动将时间序列数据转化为监督学习数据集。</li>
+<li>如何将一元时间序列重构成单步或多步监督学习问题。</li>
+<li>如何将多元时间序列重构成单步或多步监督学习问题。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/07/21/使用-Python-spaCy-进行简易自然语言处理/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2721,266 +2989,11 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/05/12/别让你的偏爱拖了后腿：快拥抱箭头函数吧！/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/05/12/别让你的偏爱拖了后腿：快拥抱箭头函数吧！/" class="post-title-link" itemprop="url">别让你的偏爱拖了后腿：快拥抱箭头函数吧！</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-05-12 19:12:00" itemprop="dateCreated datePublished" datetime="2017-05-12T19:12:00+08:00">2017-05-12</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/images/pasted-153.png" alt="upload successful"></p>
-<p>我以教 JavaScript 为生。最近我给学生上了柯里化箭头函数这个课程——这还是最开始的几节课。我认为它是一个很好用的技能，因此将这个内容提到了课程的前面。而学生们没有让我失望，比我想象中地<strong>更快地</strong>掌握了使用箭头函数进行柯里化。</p>
-<p>如果学生们能够理解它，并且能尽快由它获益，为什么不早点将箭头函数教给他们呢？</p>
-<blockquote>
-<p>Note：我的课程并不适合那些从来没有接触过代码的人。大多数学生在加入我们的课程之前至少有几个月的编程经历——无论他们是自学，还是通过培训班学习，或者本身就是专业的。然而，我发现许多只有一点经验或者没有经验的年轻开发者们能够很快地接受这些主题。</p>
-</blockquote>
-<p>我看到很多的学生在上了 1 小时的课之后就能很熟练地使用箭头函数工作了。（如果你是<a href="https://ericelliottjs.com/product/lifetime-access-pass/" target="_blank" rel="noopener">“和 Eric Elliott 一起学习 JavaScript”</a>培训班的同学，你可以看这个约 55 分钟的视频——<a href="https://ericelliottjs.com/premium-content/es6-curry-composition/" target="_blank" rel="noopener">ES6 的柯里化与组合</a>）。</p>
-<p>看到学生们如此之快地掌握与应用他们新发现的柯里化方法，我想起了我在推特上发了柯里化箭头函数的帖子，然后被一群人喷“可读性差”的事。我很惊讶为什么他们会坚持这个观点。</p>
-<p>首先，我们先来看看这个例子。我在推特发了这个函数，然后我发现有人强烈反对这种写法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const secret = msg =&gt; () =&gt; msg;</span><br></pre></td></tr></table></figure>
-<p>我对有人在推特上指责我在误导别人感到不可思议。我写这个函数是为了示范在 ES6 中写柯里化函数是多么的<strong>简单</strong>。它是我能想到的在 JavaScript 中<strong>最简单</strong>的实际运用与闭包表达式了。（相关阅读：<a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-closure-b2f0d2152b36" target="_blank" rel="noopener">什么是闭包</a>）</p>
-<p>它和下面的函数表达式等价：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const secret = function (msg) &#123;</span><br><span class="line">  return function () &#123;</span><br><span class="line">    return msg;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><code>secret()</code> 是一个函数，它需要传入 <code>msg</code> 这个参数，然后会返回一个新的函数，这个函数将会返回 <code>msg</code> 的值。无论你向 <code>secret()</code> 中传入什么值，它都会利用闭包固定 <code>msg</code> 的值。</p>
-<p>你可以这么用它：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const mySecret = secret(&apos;hi&apos;);</span><br><span class="line">mySecret(); // &apos;hi&apos;</span><br></pre></td></tr></table></figure>
-<p>事实证明，双箭头并没有让人感到困惑。我坚信：</p>
-<blockquote>
-<p>对于熟悉的人来说，单行的箭头函数是 JavaScript 表达柯里化函数<strong>最具有可读性</strong>的方法了。</p>
-</blockquote>
-<p>有许多人指责我，告诉我将代码写的长一些比简短的代码更容易阅读。他们有时也许是对的，但是大多数情况都错了。更长、更详细的代码不一定更容易阅读——至少，对熟悉箭头函数的人来说就是如此。</p>
-<p>我在推特上看到的持反对意见的人，并没有像我的学生一样享受平滑的学习箭头函数的过程。在我的经验里，学生学习柯里化箭头函数就像鱼在水里生活一样。仅仅学了几天，他们就开始使用箭头了。它帮助学生们轻松地跨过了各种编程问题的鸿沟。</p>
-<p>我没有看到学习、阅读、理解箭头函数对那些学生造成了任何的“困难”——一旦他们决定学习，只要上个大概一小时的课就能基本掌握。</p>
-<p>他们能够很轻松地读懂柯里化箭头函数，尽管他们从来没有见过这类的东西，他们还是能够告诉我这些函数做了什么事。当我给他们布置任务后他们也能够很自如地自己完成任务。</p>
-<p>从另一方面说，他们能够很快<strong>熟悉</strong>柯里化箭头函数，并且没有为此产生任何<strong>问题</strong>。他们阅读这些函数就像你读一句话一样，他们对其的理解让他们写出了更简单、更少 bug 的代码。</p>
-<h3 id="为什么一些人认为传统的函数表达式看起来“更具有可读性”？"><a href="#为什么一些人认为传统的函数表达式看起来“更具有可读性”？" class="headerlink" title="为什么一些人认为传统的函数表达式看起来“更具有可读性”？"></a>为什么一些人认为传统的函数表达式看起来“更具有可读性”？</h3><p><strong>偏爱</strong>是一种显著的<a href="https://www.psychologytoday.com/blog/mind-my-money/200807/familiarity-bias-part-i-what-is-it" target="_blank" rel="noopener">人类认知偏差</a>，它会让我们在有更好的选择的情况下做出自暴自弃的选择。我们会因此无视更舒服更好的方法，习惯性地选用以前使用过的老方法。</p>
-<p>你可以从这本书中更详细地了解“偏爱”这种心理：<a href="https://www.amazon.com/Undoing-Project-Friendship-Changed-Minds-ebook/dp/B01GI6S7EK/ref=as_li_ss_tl?ie=UTF8&amp;qid=1492606452&amp;sr=8-1&amp;keywords=the+undoing+project&amp;linkCode=ll1&amp;tag=eejs-20&amp;linkId=4ebd1476f97023e8acb4bba37ea18b90" target="_blank" rel="noopener">《The Undoing Project: A Friendship that Changed Our Minds》</a>（很多情况都是我们自欺欺人）。每个软件工程师都应该读一读这本书，因为它会鼓励你辩证地去看待问题，以及鼓励你多对假设进行实验，以免掉入各种认知陷阱中。书中那些发现认知陷阱的故事也很有趣。</p>
-<h3 id="传统的函数表达式可能会在你的代码中导致-Bug-的出现"><a href="#传统的函数表达式可能会在你的代码中导致-Bug-的出现" class="headerlink" title="传统的函数表达式可能会在你的代码中导致 Bug 的出现"></a>传统的函数表达式可能会在你的代码中导致 Bug 的出现</h3><p>今天我用 ES5 的语法重写了一个 ES6 写的柯里化箭头函数，以便发布开源模块让人们无需编译就能在老浏览器中用。然而 ES5 版本让我震惊。</p>
-<p>ES6 版本的代码非常简短、简介、优雅——仅仅只需要 4 行。</p>
-<p>我觉得，这件事可以发个推特，告诉大家箭头函数是一种更加优越的实现，是时候如同放弃自己的坏习惯一样，放弃传统函数表达式的写法了。</p>
-<p>所以我发了一条推特：</p>
-<p><img src="/images/pasted-154.png" alt="upload successful"></p>
-<p>为了防止你看不清图片，下面贴上这个函数的文本：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 使用箭头函数柯里化</span><br><span class="line">const composeMixins = (...mixins) =&gt; (</span><br><span class="line">  instance = &#123;&#125;,</span><br><span class="line">  mix = (...fns) =&gt; x =&gt; fns.reduce((acc, fn) =&gt; fn(acc), x)</span><br><span class="line">) =&gt; mix(...mixins)(instance);</span><br><span class="line">// 对比一下 ES5 风格的代码：</span><br><span class="line">var composeMixins = function () &#123;</span><br><span class="line">  var mixins = [].slice.call(arguments);</span><br><span class="line">  return function (instance, mix) &#123;</span><br><span class="line">    if (!instance) instance = &#123;&#125;;</span><br><span class="line">    if (!mix) &#123;</span><br><span class="line">      mix = function () &#123;</span><br><span class="line">        var fns = [].slice.call(arguments);</span><br><span class="line">        return function (x) &#123;</span><br><span class="line">          return fns.reduce(function (acc, fn) &#123;</span><br><span class="line">            return fn(acc);</span><br><span class="line">          &#125;, x);</span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    return mix.apply(null, mixins)(instance);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这里的函数封装了一个 <code>pipe()</code>，它是标准的函数式编程的工具函数，通常<a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-function-composition-20dfb109a1a0" target="_blank" rel="noopener">用于组合函数</a>。这个 <code>pipe()</code> 函数在 lodash 中是 <code>lodash/flow</code>，在 Ramda 中是 <code>R.pipe()</code>，在一些函数式编程语言中它甚至本身就是一个运算符号。</p>
-<p>每个<a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0" target="_blank" rel="noopener">熟悉函数式编程</a>的人都应该很熟悉它。它的实现主要依赖于<a href="https://medium.com/javascript-scene/reduce-composing-software-fe22f0c39a1d" target="_blank" rel="noopener">Reduce</a>。</p>
-<p>在这个例子中，它用来组合混合函数，不过这点无关紧要（有专门写这方面的博客文章）。我们需要注意是以下几个重要的细节：</p>
-<p>这个函数可以将任何数量的函数混合，最终返回一个函数，这个函数在管道中应用了其它的函数——就像流水线一样。每个混合函数都将实例（<code>instance</code>）作为输入，然后在将自己传递给管道中下一个函数之前，将一些变量传入。</p>
-<p>如果你没有传入 <code>instance</code>，它将会为你创建一个新的对象。</p>
-<p>有时你可能会想用别的混合方式。例如，使用 <code>compose()</code> 代替 <code>pipe()</code> 来传递函数，让组合顺序反过来。</p>
-<p>如果你不需要自定义函数混合时的行为，你可以简单地使用默认设定，使用 <code>pipe()</code> 来完成过程。</p>
-<h3 id="事实"><a href="#事实" class="headerlink" title="事实"></a>事实</h3><p>除了可读性的区别之外，以下列举了一些与这个例子有关的<strong>客观事实</strong>：</p>
-<ul>
-<li>我有多年的 ES5 与 ES6 编程经验，无论是箭头函数表达式还是别的函数表达式我都很熟悉。因此“偏爱”对我来说<strong>不是</strong>一个变化无常的因素。</li>
-<li>我没几秒就写好了 ES6 版本的代码，它没有任何 bug（它通过了所有的单元测试，因此我敢肯定这点）。</li>
-<li>写 ES5 版本的代码花了我好几分钟。一个是几秒，一个是几分钟，差距还是挺大的。写 ES5 代码时，我有 2 次弄错了函数的作用范围；写出了 3 个 bug，然后要花时间去分别调试与修复；还有 2 次我不得不使用 <code>console.log()</code> 来弄清函数执行的情况。</li>
-<li>ES6 版本代码仅仅只有 4 行。</li>
-<li>ES5 版本代码有 21 行（其中真正有代码的有 17 行）。</li>
-<li>尽管 ES5 版本的代码更加冗长，但是它比起 ES6 版本的代码来说仍然缺少了一些信息。它虽然长，但是<strong>表达的东西更少</strong>。这个问题在后面会提到。</li>
-<li>ES6 版本代码在代码中有 2 个 speard 运算符。而 ES5 版本代码中没有这个运算符，而是使用了<strong>意义晦涩</strong>的 <code>arguments</code> 对象，它将严重影响函数内容的可读性。（不推荐原因之一）</li>
-<li>ES6 版本代码在函数片段中定义了 <code>mix</code> 的默认值，由此你可以很清楚地看到它是参数的值。而 ES5 版本代码却混淆了这个细节问题，将它隐藏在函数体中。（不推荐原因之二）</li>
-<li>ES6 版本代码仅有 2 层代码块，这将会帮助读者理解代码结构，以及知道如何去阅读这个代码。而 ES5 代码有 6 层代码块，复杂的层级结构会让函数结构的可读性变得很差。（不推荐原因之三）</li>
-</ul>
-<p>在 ES5 版本代码中，<code>pipe()</code> 占据了函数体的大部分内容——要把它们放到同一行中去简直是个荒唐的想法。非常<strong>有必要</strong>将 <code>pipe()</code> 这个函数单独抽离出来，让我们的 ES5 版本代码更具有可读性：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var pipe = function () &#123;</span><br><span class="line">  var fns = [].slice.call(arguments);</span><br><span class="line"></span><br><span class="line">  return function (x) &#123;</span><br><span class="line">    return fns.reduce(function (acc, fn) &#123;</span><br><span class="line">      return fn(acc);</span><br><span class="line">    &#125;, x);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var composeMixins = function () &#123;</span><br><span class="line">  var mixins = [].slice.call(arguments);</span><br><span class="line"></span><br><span class="line">  return function (instance, mix) &#123;</span><br><span class="line">    if (!instance) instance = &#123;&#125;;</span><br><span class="line">    if (!mix) mix = pipe;</span><br><span class="line"></span><br><span class="line">    return mix.apply(null, mixins)(instance);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这样，我觉得它更具可读性，并且更容易理解它的意思了。</p>
-<p>让我们看看如果我们对 ES6 版本代码做一些可读性“优化”会怎么样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const pipe = (...fns) =&gt; x =&gt; fns.reduce((acc, fn) =&gt; fn(acc), x);</span><br><span class="line"></span><br><span class="line">const composeMixins = (...mixins) =&gt; (</span><br><span class="line">  instance = &#123;&#125;,</span><br><span class="line">  mix = pipe</span><br><span class="line">) =&gt; mix(...mixins)(instance);</span><br></pre></td></tr></table></figure>
-<p>就像 ES5 版本代码的优化一样，这个“优化”后的代码更加冗长（它加入了之前没有的新变量）。与 ES5 版本代码不同，这个版本在将管道的概念抽象出来后<strong>并没有明显的提高代码可读性</strong>。不过毕竟函数里已经清楚的写明了 <code>mix</code> 这个变量，它还是更容易让人理解一些。</p>
-<p><code>mix</code> 的定义本身在它的那一行就已经存在了，它不太可能会让阅读代码的人找不到何时结束 <code>mix</code>、剩下的代码何时执行。</p>
-<p>而现在我们用了 2 个变量来表示同一个东西。我们因此而获益了吗？完全没有。</p>
-<p>那么为什么 ES5 函数在对函数进行抽象之后会变得<strong>更具可读性</strong>呢？</p>
-<p>因为之前 ES5 版本的代码<strong>明显更复杂</strong>。这种复杂度的来源是我们讨论的问题重点。我可以断言，它的复杂度的来源归根结底就是<strong>语法干扰</strong>，这种语法干扰只会让<strong>函数的本身含义变得费解</strong>，并没有别的用处。</p>
-<p>让我们换种方法，把一些多余的变量去掉，在例子中都使用 ES6 代码，只比较<strong>箭头函数</strong>与<strong>传统函数表达式</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var composeMixins = function (...mixins) &#123;</span><br><span class="line">  return function (</span><br><span class="line">    instance = &#123;&#125;,</span><br><span class="line"></span><br><span class="line">    mix = function (...fns) &#123;</span><br><span class="line">      return function (x) &#123;</span><br><span class="line">        return fns.reduce(function (acc, fn) &#123;</span><br><span class="line">          return fn(acc);</span><br><span class="line">        &#125;, x);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  ) &#123;</span><br><span class="line">    return mix(...mixins)(instance);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>现在，至少我觉得它的可读性显著的提升了。我们利用 <strong>rest</strong> 语法以及<strong>默认参数</strong>语法对它进行了修改。当然，你得对 rest 语法和默认参数语法很熟悉才会觉得这个版本的代码更可读。不过即使你不了解这些，我觉得这个版本也会看起来更加<strong>有条理</strong>。</p>
-<p>现在已经改进了许多了，但是我觉得这个版本还是比较简洁。将 <code>pipe()</code> 抽象出来，写到它自己的函数里可能会<strong>有所帮助</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">const pipe = function (...fns) &#123;</span><br><span class="line">  return function (x) &#123;</span><br><span class="line">    return fns.reduce(function (acc, fn) &#123;</span><br><span class="line">      return fn(acc);</span><br><span class="line">    &#125;, x);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 传统函数表达式</span><br><span class="line">const composeMixins = function (...mixins) &#123;</span><br><span class="line">  return function (</span><br><span class="line">    instance = &#123;&#125;,</span><br><span class="line">    mix = pipe</span><br><span class="line">  ) &#123;</span><br><span class="line">    return mix(...mixins)(instance);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这样是不是更好了？现在 <code>mix</code> 只占了单独的一样，函数结构也更加的清晰——但是这样做不符合我的胃口，它的语法干扰实在是太多了。在现在的 <code>composeMixins()</code> 中，我觉得描述一个函数在哪结束、另一个函数从哪开始还不够清楚。</p>
-<p>除了调用函数体之外，<code>funcion</code> 这个关键字似乎和其它的代码<strong>混淆</strong>在一起了。我的函数的真正的功能被<strong>隐藏</strong>了起来！参数的调用和函数体的起始到底在哪里？如果我仔细看也能够分析出来，但是它对我来说实在是不容易阅读。</p>
-<p>那么如果我们去掉 <code>function</code> 这个关键字，然后通过一个<strong>大箭头</strong> <code>=&gt;</code> 指向返回值来代替 <code>return</code> 关键字，避免它们和其它关键部分混在一起，现在会怎么样呢？</p>
-<p>我们当然可以这么做，代码会是这样的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const composeMixins = (...mixins) =&gt; (</span><br><span class="line">  instance = &#123;&#125;,</span><br><span class="line">  mix = pipe</span><br><span class="line">) =&gt; mix(...mixins)(instance);</span><br></pre></td></tr></table></figure>
-<p>现在应该可以很清楚这段代码做了什么事了。<code>composeMixins()</code> 是一个函数，它传入了任意数量的 <code>mixins</code>，最终会返回一个得到两个额外参数（<code>instance</code> 与 <code>mix</code>）的函数。它返回了通过 <code>mixins</code> 管道组合的 <code>instance</code> 的结果。</p>
-<p>还有一件事……如果我们对 <code>pipe()</code> 进行同样的优化，可以神奇地将它写到一行中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const pipe = (...fns) =&gt; x =&gt; fns.reduce((acc, fn) =&gt; fn(acc), x);</span><br></pre></td></tr></table></figure>
-<p>当它在一行内被定义的时候，将它抽象成一个函数这件事反而变得不那么明了了。</p>
-<p>另外请记住，这个函数在 Lodash、Ramda 以及其它库中都有用到，但是仅仅为了用这个函数就去 import 这些库并不是一件划得来的事。</p>
-<p>那么我们自己写一行这个函数有必要吗？应该有的。它实际上是两个不同的函数，把它们分开会让代码更加清晰。</p>
-<p>另一方面，如果将其写在一行中，当你看参数命名的时候，你就已经明了了其类型以及用例。我们将它写在一行，就如下面代码所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const composeMixins = (...mixins) =&gt; (</span><br><span class="line">  instance = &#123;&#125;,</span><br><span class="line">  mix = (...fns) =&gt; x =&gt; fns.reduce((acc, fn) =&gt; fn(acc), x)</span><br><span class="line">) =&gt; mix(...mixins)(instance);</span><br></pre></td></tr></table></figure>
-<p>现在让我们回头看看最初的函数。无论我们后面做了什么调整，<strong>我们都没有丢弃任何本来就有的信息</strong>。并且，通过在行内声明变量和默认值，我们还给这个函数<strong>增加了信息量</strong>，描述了这个函数是怎么使用的以及参数值是什么样子的。</p>
-<p>ES5 版本中增加的额外的代码其实都是语法干扰。这些代码对于<strong>熟悉</strong>柯里化箭头函数的人来说<strong>没有任何有用之处</strong>。</p>
-<p>只要你熟悉柯里化箭头函数，你就会觉得最开头的代码更加清晰并具有<strong>可读性</strong>，因为它没有多余的语法糊弄人。</p>
-<p>柯里化箭头函数还能<strong>减少错误的藏身之处</strong>，因为它能让 bug 隐藏的部分更少。我猜想，在传统函数表达式中一定隐藏了许多的 bug，一旦你升级使用箭头函数就能找到并排除这些 bug。</p>
-<p>我希望你的团队也能支持、学习与应用 ES6 的更加简洁的代码风格，提高工作效率。</p>
-<p>有时，在代码中详细地进行描述是正确的行为，但通常来说，代码越少越好。如果更少的代码能够实现同样的东西，能够传达更多的信息，不用丢弃任何信息量，那么它<strong>明显</strong>更加优越。认知这些不同点的关键就是看它们表达的信息。如果加上的代码没有更多的意义，那么这种代码就不应该存在。这个道理很简单，就和自然语言的风格规范一样（不说废话）。将这种表达风格规范应用到代码中。拥抱它，你将能写出更好的代码。</p>
-<p>一天过去，天色已黑，仍然有其它推特的回复在说 ES6 版本的代码更加缺乏可读性：</p>
-<p><img src="/images/pasted-155.png" alt="upload successful"></p>
-<p>我只想说：是时候熟练去掌握 ES6、柯里化与组合函数了。</p>
-<h3 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h3><p><a href="https://ericelliottjs.com/product/lifetime-access-pass/" target="_blank" rel="noopener">“与 Eric Elliott 一起学习 JavaScript”</a>会员现在可以看这个大约 55 分钟的视频课程——<a href="https://ericelliottjs.com/premium-content/es6-curry-composition/" target="_blank" rel="noopener">ES6 柯里化与组合</a>。</p>
-<p>如果你还不是我们的会员，你可会遗憾地错过这个机会哦！</p>
-<p><img src="/images/pasted-156.png" alt="upload successful"></p>
-<h3 id="作者简介"><a href="#作者简介" class="headerlink" title="作者简介"></a>作者简介</h3><p><strong>*Eric Elliott*</strong> 是 O’Reilly 出版的<a href="http://pjabook.com" target="_blank" rel="noopener">*《Programming JavaScript Applications》*</a>书籍、<a href="http://ericelliottjs.com/product/lifetime-access-pass/" target="_blank" rel="noopener">“与 Eric Elliott 学习 JavaScript”</a>课程作者。他曾经帮助 Adobe、莱美、华尔街日报、ESPN、BBC 进行软件开发，以及帮助 Usher、Frank Ocean、Metallica 等著名音乐家做网站。</p>
-<p>最后<del>喂狗粮</del>：</p>
-<p><strong>他与世界上最美丽的女人在旧金山湾区共度一生。</strong></p>
-<blockquote>
-<p>发布于掘金 <a href="https://juejin.im/post/59158c92a0bb9f005fd58fd7" target="_blank" rel="noopener">https://juejin.im/post/59158c92a0bb9f005fd58fd7</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -3023,7 +3036,7 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">140</span>
+                    <span class="site-state-item-count">141</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -3401,7 +3414,13 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
                     
                       
                     
-                    <span class="site-state-item-count">167</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">170</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
