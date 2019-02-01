@@ -108,9 +108,9 @@
     
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
-      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
-    
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
   </entry>
   
@@ -135,9 +135,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
-    
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
       <category term="Slide" scheme="https://lsvih.com/tags/Slide/"/>
     
@@ -166,9 +166,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
-    
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
       <category term="matrix" scheme="https://lsvih.com/tags/matrix/"/>
     
@@ -206,13 +206,13 @@
     
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
       <category term="note" scheme="https://lsvih.com/tags/note/"/>
     
       <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
       <category term="algorithm" scheme="https://lsvih.com/tags/algorithm/"/>
-    
-      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
     
       <category term="matrix" scheme="https://lsvih.com/tags/matrix/"/>
     
@@ -267,9 +267,9 @@
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
-      <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
-    
       <category term="python" scheme="https://lsvih.com/tags/python/"/>
+    
+      <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
     
   </entry>
   
@@ -554,11 +554,11 @@
     
       <category term="Juejin" scheme="https://lsvih.com/tags/Juejin/"/>
     
-      <category term="JavaScript" scheme="https://lsvih.com/tags/JavaScript/"/>
-    
       <category term="Flutter" scheme="https://lsvih.com/tags/Flutter/"/>
     
       <category term="Android" scheme="https://lsvih.com/tags/Android/"/>
+    
+      <category term="JavaScript" scheme="https://lsvih.com/tags/JavaScript/"/>
     
       <category term="Dart" scheme="https://lsvih.com/tags/Dart/"/>
     
