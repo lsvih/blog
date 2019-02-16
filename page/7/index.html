@@ -368,6 +368,226 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/06/04/动态规划/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/06/04/动态规划/" class="post-title-link" itemprop="url">动态规划</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-06-04 16:36:00" itemprop="dateCreated datePublished" datetime="2017-06-04T16:36:00+08:00">2017-06-04</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>拿着以前的笔记复习一下~</p>
+</blockquote>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>决策可以分为静态决策与动态决策。</p>
+<p>其中静态决策又被称为“一次性决策”，即根据输入进行决策判断，得到相应的输出结果。如图所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">         u决策</span><br><span class="line">           +</span><br><span class="line">           |</span><br><span class="line">        +--v--+</span><br><span class="line">x1输入+--&gt;     +--&gt;x2输出</span><br><span class="line">        +--+--+</span><br><span class="line">           |</span><br><span class="line">           v</span><br><span class="line">        z决策效应</span><br></pre></td></tr></table></figure>
+<p>动态决策也叫“多阶段决策”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">       u1         u2                 uk                     un</span><br><span class="line">       |          |                  |                      |</span><br><span class="line">    +--v--+    +--v--+            +--v--+                +--v--+</span><br><span class="line">x1--&gt;  T1 +-x2-&gt; T2  +-x3-&gt;...xk--&gt;  Tk +-x(k+1)-&gt;...xn--&gt;  Tn  +--&gt;x(n+1)</span><br><span class="line">    +--+--+    +--v--+            +--v--+                +--v--+</span><br><span class="line">       |          |                  |                      |</span><br><span class="line">       v          v                  v                      v</span><br><span class="line">       r1         r2                 rk                     rn</span><br></pre></td></tr></table></figure>
+<p>也可以记为$X_{k+1} = T_k(x_k,u_k)$，若系统在 k 阶段之后的决策只与$x_k$有关，而与之前做过的决策无关，则这样的决策过程称为具有<strong>无后效性的多段决策过程。</strong></p>
+<p>多段决策过程从第 k 步到最后一步的过程称为 k-后部子过程，简称 k-子过程</p>
+<h3 id="动态规划模型"><a href="#动态规划模型" class="headerlink" title="动态规划模型"></a>动态规划模型</h3><script type="math/tex; mode=display">\text{opt}_{u_1 \cdots u_n} R = \bigoplus_{k=1}^n r_k (x_k,u_k)</script><script type="math/tex; mode=display">\left\{
+\begin{aligned}
+   &x_{k+1} = T_k(x_k,u_k) \\
+   &x_k \in X_k \\
+   &u_k \in U_k \\
+   &k = 1 \sim n
+   \end{aligned}
+   \right.</script><p>opt 表示求优过程</p>
+<p>Xk 为一个集合，表示在 k 阶段时状态所有可能取值的范围，因此称为<strong>状态可能集合</strong></p>
+<p>Uk 为一个集合，表示在 k 阶段时决策所有可能取值的范围，称为<strong>决策允许集合</strong></p>
+<p>一般对于不同的状态，可以选择的决策范围也不同，因此决策允许集合也记为$U_k(x_k)$</p>
+<p>解决动态规划问题需要确定以下几个步骤：</p>
+<p>1、确定阶段与阶段变量</p>
+<p>2、明确状态变量与状态可能集合</p>
+<p>3、确定决策变量与决策允许集合</p>
+<p>4、确定状态转移方程</p>
+<p>5、明确阶段效应和目标</p>
+<p>其中重要的是确定状态转移方程与明确阶段相应和目标。</p>
+<p>状态转移方程即在状态$x_k$时做出了决策$u_k(x_k)$之后系统状态的变化，这个变化会影响之后的决策过程。因此必须明确状态的转移过程，即根据问题的内在关系，明确$x_{k+1}=T_k(x_k,u_k)$中的函数Tk()。</p>
+<p>阶段效应$r_k(x_k,u_k)$是在阶段k以$x_k$为起点发出决策$u_k$所产生的后果。明确$r_k,x_k,u_k$才能构成目标函数，目标函数由具体问题决定，例如根据具体问题确定求最大还是最小。</p>
+<h3 id="多段决策的特点"><a href="#多段决策的特点" class="headerlink" title="多段决策的特点"></a>多段决策的特点</h3><p>1、每个阶段都要进行决策</p>
+<p>2、相继进行的阶段决策构成决策序列</p>
+<p>3、前一阶段的终止状态是后一阶段的起始状态</p>
+<p>阶段 k 的最优决策不应该只是当前阶段的最优决策，而应该是 k-后部子过程的最优决策。</p>
+<h3 id="最优性原理"><a href="#最优性原理" class="headerlink" title="最优性原理"></a>最优性原理</h3><p>无论初始状态和初始决策如何，对于之前所有决策造成的某一状态而言，剩余的决策序列必须构成最优策略。</p>
+<p><strong>最优性原理的含义：</strong></p>
+<p>1、最优策略的任何一部分子策略，也是相应最初状态的最优策略。</p>
+<p>2、每个最优策略只能由最优子策略构成。</p>
+<p>因此对于无后效多段决策过程而言，按照 k-后部子过程最优的原则来求各阶段的最优决策，这样构成的决策序列一定具有最优性原理的性质。</p>
+<h3 id="贝尔曼函数"><a href="#贝尔曼函数" class="headerlink" title="贝尔曼函数"></a>贝尔曼函数</h3><p>阶段 k，从状态$x_k$出发，执行最优决策序列，最终到达终点时，整个 k-后部子过程中的目标函数取值被称为条件最优目标函数，即贝尔曼函数。</p>
+<script type="math/tex; mode=display">f_k(k_k)=opt_{u_k~u_n} \sum^{n}_{i=n} r_i(x_i,u_i) | k\in {1,2,3,...,n}</script><h3 id="动态规划基本方程、贝尔曼方程"><a href="#动态规划基本方程、贝尔曼方程" class="headerlink" title="动态规划基本方程、贝尔曼方程"></a>动态规划基本方程、贝尔曼方程</h3><p>在阶段 k时，执行任意决策$u_k$后的状态是$x_{k+1} = T_k(x_k,u_k)$。这时 k-后部子过程就缩小为了 k+1 后部子过程。根据最优性原理，k+1 后部子过程应该采取最优策略，由于无后效性，k-后部子过程的目标函数值为 $r_k(x_k,u_k)+f_{k+1}(T_k(x_k,u_k))$。根据条件最优目标函数的定义，有：</p>
+<script type="math/tex; mode=display">f_k(x_k) = opt_{u_k}{ r_k(x_k,u_k) + f_{k+1}(T_k(x_k,u_k)) }</script><p>此方程即为动态规划基本方程。</p>
+<h3 id="动态规划求解"><a href="#动态规划求解" class="headerlink" title="动态规划求解"></a>动态规划求解</h3><p>1、逆序求出条件最优目标函数值集合与条件最优决策集合</p>
+<p>2、顺序求最优目标值、最优策略和最佳路线</p>
+<p>逆序求集合：</p>
+<script type="math/tex; mode=display">
+ \begin{aligned}
+ k=n, &f_n(x_n) = \text{opt}_{u_n}\{r_n(x_n,u_n) + f_{n+1}(x_{n+1})\} \\
+ & \because f_{n+1}(x_{n+1}) = 0 \\
+ & \therefore 原式 = \text{opt}_{u_n}\{r_n(x_n,u_n)\} \\
+ & \Rightarrow f_n(x_n) = r_n(x_n,u_n^\prime(x_n)) \\\\
+ k=n-1, &f_{n-1}(x_{n-1}) = \text{opt}_{u_{n-1}}\{r_{n-1}(x_{n-1},u_{n-1}) + f_{n}(x_{n})\} \\
+ & \because f_n(x_n) 已求出，因此根据 x_n = T_{n-1}(x_{n-1},u_{n-1})\\
+ & 可得 n-1 时的 x_{n-1} \in X_{n-1} 对应的条件最有目标函数值\\
+ & f_{n-1}(x_{n-1}) \\
+ & \Rightarrow \{f_{n-1}(x_{n-1}),u_{n-1}^\prime(x_{n-1})|x_{n-1} \in X_{n-1}\} \\\\
+  k=1, &f_1(x_1) = \text{opt}_{u_1}\{r_1(x_1,u_1) + f_2(x_2)\} \\
+ &  \{f_1(x_1),u_1^\prime(x_1)|x_1 \in X_1\} \\
+\end{aligned}</script><p>顺序求目标值：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+x_1 确定, &R^* = f_1(x_1) \qquad u^*_1(x_1) = u_1^\prime(x_1) \\
+x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
+& 得 x_1^*,带入求 x_2^,以此类推得 x_n^*,x_{n+1}^*
+\end{aligned}</script>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/05/12/别让你的偏爱拖了后腿：快拥抱箭头函数吧！/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2427,197 +2647,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/03/22/python实现k-means分类算法/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/03/22/python实现k-means分类算法/" class="post-title-link" itemprop="url">python实现k-means分类算法</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-03-22 01:51:00" itemprop="dateCreated datePublished" datetime="2017-03-22T01:51:00+08:00">2017-03-22</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>准备实现一些算法，顺带复习numpy，因此将比较简单的k-means算法用python实现一次。</p>
-<h2 id="k-means算法"><a href="#k-means算法" class="headerlink" title="k-means算法"></a>k-means算法</h2><p><img src="/images/pasted-109.png" alt="upload successful"></p>
-<h2 id="准备数据集"><a href="#准备数据集" class="headerlink" title="准备数据集"></a>准备数据集</h2><p>首先，考虑数据集来源。懒得去找数据，因此直接用scikit的dataset模块随机生成一组聚类数据。既然要生成聚类数据，用make_blobs是再好不过了。<a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_blobs.html#sklearn.datasets.make_blobs" target="_blank" rel="noopener">sklearn.dataset.make_blobs文档</a></p>
-<p>为了直观地展示数据，用matplotlib来进行数据可视化。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> make_blobs</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generateDataAndShow</span><span class="params">()</span>:</span></span><br><span class="line">    plt.figure(figsize=(<span class="number">8</span>,<span class="number">5</span>))</span><br><span class="line">    plt.title(<span class="string">"Dataset"</span>, fontsize=<span class="string">'small'</span>)</span><br><span class="line">    datas, class_info = make_blobs(n_samples=<span class="number">200</span> ,n_features=<span class="number">2</span>, centers=<span class="number">3</span>)</span><br><span class="line">    plt.scatter(datas[:, <span class="number">0</span>], datas[:, <span class="number">1</span>], marker=<span class="string">'o'</span>, c=class_info)</span><br><span class="line">    plt.show()</span><br><span class="line">    <span class="keyword">return</span> datas</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">    data = generateDataAndShow()</span><br></pre></td></tr></table></figure>
-<p>可以得到一个有三个聚类，共200个点的数据集。如图所示</p>
-<p><img src="/images/pasted-110.png" alt="upload successful"></p>
-<p>且每次运行都会生成不同的数据。</p>
-<p>此时，得到200对坐标数据以及相应的分类数据。仅将坐标数据拿出来进行计算。</p>
-<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><p>1、随机生成3个点，作为初始聚类中心。为了减少计算量，所以将3个点生成在所有点的值域中。此时data的数据结构是Float[][]，第一重数组为一个点，第二重数组为点的两个坐标。因此需要用到numpy的amax函数与amin函数：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[x_max, y_max], [x_min, y_min] = np.amax(data,axis=<span class="number">0</span>),np.amin(data,axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>使用numpy.random的rand生成一组点：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">centers = np.random.rand(<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line">centers[<span class="number">0</span>:,<span class="number">0</span>] = (x_max-x_min)*centers[<span class="number">0</span>:,<span class="number">0</span>]+x_min</span><br><span class="line">centers[<span class="number">0</span>:,<span class="number">1</span>] = (y_max-y_min)*centers[<span class="number">0</span>:,<span class="number">1</span>]+y_min</span><br></pre></td></tr></table></figure>
-<p>这样就得到了在值域内的3个随机点。</p>
-<p>2、计算距离。二维平面内两个点的距离公式为</p>
-<script type="math/tex; mode=display">d=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}</script><p>因此可以计算出每个点分别到三个聚类中心的距离：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">distance</span><span class="params">(data, dots)</span>:</span></span><br><span class="line">    rs = []</span><br><span class="line">    <span class="keyword">for</span> d <span class="keyword">in</span> data:</span><br><span class="line">        rs.append([])</span><br><span class="line">        <span class="keyword">for</span> dot <span class="keyword">in</span> dots:</span><br><span class="line">            rs[<span class="number">-1</span>].append(((d[<span class="number">0</span>]-dot[<span class="number">0</span>])**<span class="number">2</span>+(d[<span class="number">1</span>]-dot[<span class="number">1</span>])**<span class="number">2</span>)**<span class="number">0.5</span>)</span><br><span class="line">    <span class="keyword">return</span> rs</span><br></pre></td></tr></table></figure>
-<p>3、分组。根据计算得到的各个点距离聚类中心的距离，可以判断这个点是属于哪一个聚类的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify</span><span class="params">(dis)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [i.index(min(i)) <span class="keyword">for</span> i <span class="keyword">in</span> dis]</span><br></pre></td></tr></table></figure>
-<p>返回一个分类索引数组。这个时候也可以用plt将此时的分类打印出来，和最开始的正确聚类对比一下：</p>
-<p><img src="/images/pasted-111.png" alt="upload successful"></p>
-<p><img src="/images/pasted-112.png" alt="upload successful"> </p>
-<p>考虑一种特殊情况：只分出两个聚类。这时候将无法继续计算下去，应当重新随机生成中心。</p>
-<p>4、移动聚类中心。根据随机得到的初始聚类，重新计算每个聚类的质心作为其新的聚类中心。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calCenters</span><span class="params">(data, clazz)</span>:</span></span><br><span class="line">    clz = [[] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>)]</span><br><span class="line">    <span class="keyword">for</span> index,dot <span class="keyword">in</span> enumerate(data):</span><br><span class="line">        clz[clazz[index]].append(dot)</span><br><span class="line">    <span class="keyword">return</span> [sum(x)/len(x) <span class="keyword">for</span> x <span class="keyword">in</span> clz]</span><br></pre></td></tr></table></figure>
-<p>得到了新的聚类中心</p>
-<p>5、循环上述步骤，直到收敛。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    new_centers = calCenters(data, clazz)</span><br><span class="line">    <span class="keyword">if</span> equal(new_centers,centers):<span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        centers = new_centers</span><br><span class="line">        clazz = classify(distance(data,centers))</span><br></pre></td></tr></table></figure>
-<p>收敛条件是聚类中心点不再变化。</p>
-<p>最终代码：<a href="https://github.com/lsvih/algorithm-practice/blob/master/k-means/k-means.py" target="_blank" rel="noopener">https://github.com/lsvih/algorithm-practice/blob/master/k-means/k-means.py</a> (_src=undefined)</p>
-<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>生成的聚类：</p>
-<p><img src="/images/pasted-113.png" alt="upload successful"></p>
-<p>k-means运行后的聚类：</p>
-<p><img src="/images/pasted-114.png" alt="upload successful"></p>
-<p>可以看到分类算法运行良好。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2665,7 +2694,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">141</span>
+                    <span class="site-state-item-count">142</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -3049,7 +3078,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">170</span>
+                      
+                    
+                    <span class="site-state-item-count">171</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

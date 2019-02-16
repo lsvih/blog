@@ -368,6 +368,197 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/09/卷积神经网络/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/08/09/卷积神经网络/" class="post-title-link" itemprop="url">卷积神经网络</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-08-09 16:25:34" itemprop="dateCreated datePublished" datetime="2017-08-09T16:25:34+08:00">2017-08-09</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="CNN-是怎么学习的？学习了什么？"><a href="#CNN-是怎么学习的？学习了什么？" class="headerlink" title="CNN 是怎么学习的？学习了什么？"></a>CNN 是怎么学习的？学习了什么？</h2><p><strong>这篇文章是深度学习系列的一部分。你可以在</strong><a href="https://github.com/xitu/gold-miner/blob/master/TODO/deep-learning-1-setting-up-aws-image-recognition.md" target="_blank" rel="noopener"><strong>这里</strong></a><strong>查看第一部分，以及在</strong><a href="https://github.com/xitu/gold-miner/blob/master/TODO/deep-learning-3-more-on-cnns-handling-overfitting.md" target="_blank" rel="noopener"><strong>这里</strong></a><strong>查看第三部分。</strong></p>
+<p><img src="/images/pasted-171.png" alt="upload successful"></p>
+<p>这一周，我们将探索卷积神经网络（CNN）的内部工作原理。你可能会问：在网络内部究竟发生了什么？它们是怎样学习的？</p>
+<p>这门课程遵循自上而下的学习方法与理念。因此一般来说，我们在开始学习的时候就能立即玩到所有的模型，然后我们会逐渐深入其内部的工作原理。因此，本系列也将会逐渐深入探索神经网络的内部工作原理。现在仅仅是第二周，让我们朝着最终的目标迈进吧！</p>
+<p>在上周，我在猫狗图像集上训练了 Vgg 16 模型。我想先聊一下为什么说使用预先训练好的模型是一种很好的方法。为了使用这些模型，首先你得要弄清楚这些模型到底学习的是什么。从本质上说，CNN 学习的是过滤器，并将学习到的过滤器应用于图像。当然，这些“过滤器”和你在 Instagram 里用的滤镜（英文也为“filter”）并不是一种东西，但它们其实有一些相同之处。CNN 会使用一个小方块遍历整张图片，通常将这个小方块称为“窗口”。接下来，网络会在图片中查找与过滤器匹配的图片内容。在第一层，网络可能只学习到了一些简单的事物（例如对角线）。在之后的每一层中，网络都将结合前面找到的特征，持续学习更加复杂的概念。单单听这些概念可能会让人比较迷糊，让我们直接来看一些例子。<a href="https://arxiv.org/abs/1311.2901" target="_blank" rel="noopener">Zeiler and Fergus (2013)</a> 为可视化 CNN 学习过程做出了一项很棒的工作。下图是他们在论文中用的 CNN 模型，赢得 Imagenet 竞赛的 Vgg16 模型就是基于这个模型做出来的。</p>
+<p><img src="/images/pasted-172.png" alt="upload successful"></p>
+<p>CNN，作者：Zeiler &amp; Fergus (2013)</p>
+<p>可能你现在会觉得这个图片很难懂，请不要慌！让我们先从我们可以在图中看到的东西说起吧。首先，输入图像是正方形，大小为 224x224 像素。我之前说的过滤器大小是 7x7 像素大小。该模型有一个输入层，7 个隐藏层以及一个输出层。输出层的“C”指的是模型的预测分类数量。现在让我们来了解 CNN 中最有趣的部分：这个神经网络在每一层中都学到了什么！</p>
+<p><img src="/images/pasted-173.png" alt="upload successful"></p>
+<p>上图为 CNN 的第二层。左边的图像代表了 CNN 的这层网络在右边的真实图片中学习到的内容。<br>在 CNN 的第二层中，你可以发现这个模型已经不仅仅是去提取对角线了，它找到了一些更有意思的形状特征。例如在第二排第二列的方块中，你可以看到模型正在提取圆形；还有，最后一个方块表明模型正在专注于识别图中的一个直角作为特征。</p>
+<p><img src="/images/pasted-174.png" alt="upload successful"></p>
+<p>上图为 CNN 的第三层。<br>在第三层中，我们可以看到模型已经开始学习一些更具体的东西。第一个方块中的图像表明模型已经能够识别出一些地理特征；第二排第二列的方块表明模型正在识别车轮；倒数第二个方块表明模型正在识别人类。</p>
+<p><img src="/images/pasted-175.png" alt="upload successful"></p>
+<p>CNN 的第四层与第五层</p>
+<p>在最后，第四层与第五层保持前面模型越来越具体的趋势。第五层找到了对解决我们的猫狗问题非常有帮助的特征。与此同时，它还识别出了独轮车，以及鸟类、爬行动物的眼睛。请注意，这些图像仅仅展示了每一层学习到的东西的极小一部分。</p>
+<p>希望上面的文字已经告诉了你为什么使用预先训练好的模型是很有用的。如果你想更多的了解这块领域的研究，你可以搜索“迁移学习”（transfer learning）的相关内容。虽然我们的猫狗问题训练集仅仅只有 25000 张图片，一个新的模型可能还无法从这些图片中学习到所有的特征，但我们的 Vgg16 模型已经相当“了解”怎么去识别猫和狗了。最后，通过“微调”（Finetuning） Vgg16 模型的最后一层，让其不再输出 1000 多种分类的概率，而是直接输出二分类 —— 猫和狗。</p>
+<p>如果你对深度学习背后的数学知识感兴趣，<a href="http://cs231n.github.io/" target="_blank" rel="noopener">Stanford’s CNN pages</a> 是很好的参考材料。他们首次以“数学之美”解释了浅层神经网络。</p>
+<hr>
+<h4 id="微调及线性层（全连接层）"><a href="#微调及线性层（全连接层）" class="headerlink" title="微调及线性层（全连接层）"></a>微调及线性层（全连接层）</h4><p>上周，我用这个预先训练好的 Vgg16 模型不能很自然的区分猫和狗这两个分类下的图片，而是提出了 1000 余种分类。此外，这个模型并不会直接输出“猫”和“狗”的分类，而是输出猫和狗的一些特定品种。那我们如何修改这个模型，让它能够有效地对猫和狗进行分类呢？</p>
+<p>有种可选方案：手动将这些品种分到猫和狗中去，然后计算其概率之和。但是，这种做法会丢弃一些关键信息。例如，如果图片中只有一根骨头，但它很可能是一张属于狗的照片。如果我们仅查看这些品种分为猫狗的概率，前面提到的这种信息很可能会丢失。因此在模型的最后，我们加入一个线性层（全连接层），它将仅输出两种分类。实际上，Vgg16 模型的最后有 3 层全连接层。我们可以微调这些层，通过反向传播来训练它们。反向传播算法常常被人看成是一种抽象的魔法，但其实它只是简单应用链式求导法则。你可以暂时忽略这些数学上的细节，TensorFlow、Theano 和其它深度学习库已经帮你做好了这些工作。</p>
+<p>如果你正在运行 Fast AI 课程 lesson 2 的 notebook，我建议你最好先只使用 notebook 的样例图片。如果你运行 p2 的实例，可能会由于保存、加载 numpy 数组将内存耗尽。</p>
+<hr>
+<h4 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h4><p>前面我们讨论了网络最后的线性层（全连接层）。然而，神经网络的所有层都不是线性的。在神经网络计算出每个神经元的参数之后，我们需要将它们的计算结果作为参数输入到激活函数中。人工神经网络基本上由矩阵乘法组成，如果我们只使用线性计算的话，我们只能将它们一个个叠加在一起，并不能做成一个很深的网络。因此，我们会经常在网络的各层使用非线性的激活函数。通过将重重线性与非线性函数叠加在一起，理论上我们可以对任何事物进行建模。下面是三种最受欢迎的非线性激活函数：</p>
+<ul>
+<li>Sigmoid <strong>（将值转换到 0，1 间）</strong></li>
+<li>TanH <strong>（将值转换到 -1，1 间）</strong></li>
+<li>ReLu <strong>（如果值为负则输出 0，否则输出原值）</strong></li>
+</ul>
+<p><img src="/images/pasted-176.png" alt="upload successful"></p>
+<p>上图为最常用的激活函数：Sigmoid、Tanh 和 ReLu（又名修正线性单元）<br>目前，ReLu 是使用的最多的非线性激活函数，主要原因是它可以减少梯度消失的可能性，以及保持稀疏特征。稍后会讨论这方面的更多详情。因为我们希望模型最后能够输出确定的内容，因此模型的最后一层通常使用一种另外的激活函数 —— softmax。softmax 函数是一种非常受欢迎的分类器。</p>
+<p>在微调完 Vgg16 模型的最后一层之后，它总共有 138357544 个参数。谢天谢地，我们不需要手动计算各种梯度 XD。下一周我们将更深入地了解 CNN 的工作原理，讨论主题为欠拟合和过拟合。</p>
+<p>如果你喜欢这篇文章，请将它推荐给其他人吧！你也可以关注此系列文章，跟上 Fast AI 课程的进度。下篇文章再会！</p>
+<blockquote>
+<p>发布于掘金 <a href="https://juejin.im/post/598ac6a55188257dd366367f" target="_blank" rel="noopener">https://juejin.im/post/598ac6a55188257dd366367f</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/09/如何将时间序列问题用-Python-转换成为监督学习问题/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2769,226 +2960,6 @@ V(s) = \max_a \sum_{s_{t+1}} P(s_{t+1}|s_t,\pi(s))[R(s_t,\pi(s),s_{t+1}) +\gamma
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/06/04/动态规划/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/06/04/动态规划/" class="post-title-link" itemprop="url">动态规划</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-06-04 16:36:00" itemprop="dateCreated datePublished" datetime="2017-06-04T16:36:00+08:00">2017-06-04</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>拿着以前的笔记复习一下~</p>
-</blockquote>
-<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>决策可以分为静态决策与动态决策。</p>
-<p>其中静态决策又被称为“一次性决策”，即根据输入进行决策判断，得到相应的输出结果。如图所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">         u决策</span><br><span class="line">           +</span><br><span class="line">           |</span><br><span class="line">        +--v--+</span><br><span class="line">x1输入+--&gt;     +--&gt;x2输出</span><br><span class="line">        +--+--+</span><br><span class="line">           |</span><br><span class="line">           v</span><br><span class="line">        z决策效应</span><br></pre></td></tr></table></figure>
-<p>动态决策也叫“多阶段决策”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">       u1         u2                 uk                     un</span><br><span class="line">       |          |                  |                      |</span><br><span class="line">    +--v--+    +--v--+            +--v--+                +--v--+</span><br><span class="line">x1--&gt;  T1 +-x2-&gt; T2  +-x3-&gt;...xk--&gt;  Tk +-x(k+1)-&gt;...xn--&gt;  Tn  +--&gt;x(n+1)</span><br><span class="line">    +--+--+    +--v--+            +--v--+                +--v--+</span><br><span class="line">       |          |                  |                      |</span><br><span class="line">       v          v                  v                      v</span><br><span class="line">       r1         r2                 rk                     rn</span><br></pre></td></tr></table></figure>
-<p>也可以记为$X_{k+1} = T_k(x_k,u_k)$，若系统在 k 阶段之后的决策只与$x_k$有关，而与之前做过的决策无关，则这样的决策过程称为具有<strong>无后效性的多段决策过程。</strong></p>
-<p>多段决策过程从第 k 步到最后一步的过程称为 k-后部子过程，简称 k-子过程</p>
-<h3 id="动态规划模型"><a href="#动态规划模型" class="headerlink" title="动态规划模型"></a>动态规划模型</h3><script type="math/tex; mode=display">\text{opt}_{u_1 \cdots u_n} R = \bigoplus_{k=1}^n r_k (x_k,u_k)</script><script type="math/tex; mode=display">\left\{
-\begin{aligned}
-   &x_{k+1} = T_k(x_k,u_k) \\
-   &x_k \in X_k \\
-   &u_k \in U_k \\
-   &k = 1 \sim n
-   \end{aligned}
-   \right.</script><p>opt 表示求优过程</p>
-<p>Xk 为一个集合，表示在 k 阶段时状态所有可能取值的范围，因此称为<strong>状态可能集合</strong></p>
-<p>Uk 为一个集合，表示在 k 阶段时决策所有可能取值的范围，称为<strong>决策允许集合</strong></p>
-<p>一般对于不同的状态，可以选择的决策范围也不同，因此决策允许集合也记为$U_k(x_k)$</p>
-<p>解决动态规划问题需要确定以下几个步骤：</p>
-<p>1、确定阶段与阶段变量</p>
-<p>2、明确状态变量与状态可能集合</p>
-<p>3、确定决策变量与决策允许集合</p>
-<p>4、确定状态转移方程</p>
-<p>5、明确阶段效应和目标</p>
-<p>其中重要的是确定状态转移方程与明确阶段相应和目标。</p>
-<p>状态转移方程即在状态$x_k$时做出了决策$u_k(x_k)$之后系统状态的变化，这个变化会影响之后的决策过程。因此必须明确状态的转移过程，即根据问题的内在关系，明确$x_{k+1}=T_k(x_k,u_k)$中的函数Tk()。</p>
-<p>阶段效应$r_k(x_k,u_k)$是在阶段k以$x_k$为起点发出决策$u_k$所产生的后果。明确$r_k,x_k,u_k$才能构成目标函数，目标函数由具体问题决定，例如根据具体问题确定求最大还是最小。</p>
-<h3 id="多段决策的特点"><a href="#多段决策的特点" class="headerlink" title="多段决策的特点"></a>多段决策的特点</h3><p>1、每个阶段都要进行决策</p>
-<p>2、相继进行的阶段决策构成决策序列</p>
-<p>3、前一阶段的终止状态是后一阶段的起始状态</p>
-<p>阶段 k 的最优决策不应该只是当前阶段的最优决策，而应该是 k-后部子过程的最优决策。</p>
-<h3 id="最优性原理"><a href="#最优性原理" class="headerlink" title="最优性原理"></a>最优性原理</h3><p>无论初始状态和初始决策如何，对于之前所有决策造成的某一状态而言，剩余的决策序列必须构成最优策略。</p>
-<p><strong>最优性原理的含义：</strong></p>
-<p>1、最优策略的任何一部分子策略，也是相应最初状态的最优策略。</p>
-<p>2、每个最优策略只能由最优子策略构成。</p>
-<p>因此对于无后效多段决策过程而言，按照 k-后部子过程最优的原则来求各阶段的最优决策，这样构成的决策序列一定具有最优性原理的性质。</p>
-<h3 id="贝尔曼函数"><a href="#贝尔曼函数" class="headerlink" title="贝尔曼函数"></a>贝尔曼函数</h3><p>阶段 k，从状态$x_k$出发，执行最优决策序列，最终到达终点时，整个 k-后部子过程中的目标函数取值被称为条件最优目标函数，即贝尔曼函数。</p>
-<script type="math/tex; mode=display">f_k(k_k)=opt_{u_k~u_n} \sum^{n}_{i=n} r_i(x_i,u_i) | k\in {1,2,3,...,n}</script><h3 id="动态规划基本方程、贝尔曼方程"><a href="#动态规划基本方程、贝尔曼方程" class="headerlink" title="动态规划基本方程、贝尔曼方程"></a>动态规划基本方程、贝尔曼方程</h3><p>在阶段 k时，执行任意决策$u_k$后的状态是$x_{k+1} = T_k(x_k,u_k)$。这时 k-后部子过程就缩小为了 k+1 后部子过程。根据最优性原理，k+1 后部子过程应该采取最优策略，由于无后效性，k-后部子过程的目标函数值为 $r_k(x_k,u_k)+f_{k+1}(T_k(x_k,u_k))$。根据条件最优目标函数的定义，有：</p>
-<script type="math/tex; mode=display">f_k(x_k) = opt_{u_k}{ r_k(x_k,u_k) + f_{k+1}(T_k(x_k,u_k)) }</script><p>此方程即为动态规划基本方程。</p>
-<h3 id="动态规划求解"><a href="#动态规划求解" class="headerlink" title="动态规划求解"></a>动态规划求解</h3><p>1、逆序求出条件最优目标函数值集合与条件最优决策集合</p>
-<p>2、顺序求最优目标值、最优策略和最佳路线</p>
-<p>逆序求集合：</p>
-<script type="math/tex; mode=display">
- \begin{aligned}
- k=n, &f_n(x_n) = \text{opt}_{u_n}\{r_n(x_n,u_n) + f_{n+1}(x_{n+1})\} \\
- & \because f_{n+1}(x_{n+1}) = 0 \\
- & \therefore 原式 = \text{opt}_{u_n}\{r_n(x_n,u_n)\} \\
- & \Rightarrow f_n(x_n) = r_n(x_n,u_n^\prime(x_n)) \\\\
- k=n-1, &f_{n-1}(x_{n-1}) = \text{opt}_{u_{n-1}}\{r_{n-1}(x_{n-1},u_{n-1}) + f_{n}(x_{n})\} \\
- & \because f_n(x_n) 已求出，因此根据 x_n = T_{n-1}(x_{n-1},u_{n-1})\\
- & 可得 n-1 时的 x_{n-1} \in X_{n-1} 对应的条件最有目标函数值\\
- & f_{n-1}(x_{n-1}) \\
- & \Rightarrow \{f_{n-1}(x_{n-1}),u_{n-1}^\prime(x_{n-1})|x_{n-1} \in X_{n-1}\} \\\\
-  k=1, &f_1(x_1) = \text{opt}_{u_1}\{r_1(x_1,u_1) + f_2(x_2)\} \\
- &  \{f_1(x_1),u_1^\prime(x_1)|x_1 \in X_1\} \\
-\end{aligned}</script><p>顺序求目标值：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-x_1 确定, &R^* = f_1(x_1) \qquad u^*_1(x_1) = u_1^\prime(x_1) \\
-x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
-& 得 x_1^*,带入求 x_2^,以此类推得 x_n^*,x_{n+1}^*
-\end{aligned}</script>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3036,7 +3007,7 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">141</span>
+                    <span class="site-state-item-count">142</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -3420,7 +3391,9 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
                     
                       
                     
-                    <span class="site-state-item-count">170</span>
+                      
+                    
+                    <span class="site-state-item-count">171</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

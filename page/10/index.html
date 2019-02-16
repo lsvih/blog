@@ -368,6 +368,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/09/28/在远程git仓库回退版本，撤销commit/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/09/28/在远程git仓库回退版本，撤销commit/" class="post-title-link" itemprop="url">在远程git仓库回退版本，撤销commit</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-09-28 04:52:00" itemprop="dateCreated datePublished" datetime="2016-09-28T04:52:00+08:00">2016-09-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>当做出了不正确的commit还push到远程仓库后，可以用强推的方法回退远程仓库</p>
+<ol>
+<li>先从远程仓库clone下最新的版本</li>
+<li>使用git reset —hard HEAD^ 来将仓库所有内容回退到上一个版本，在运行命令的时候可以看到当前的commit点<br><img src="/images/pasted-104.png" alt="upload successful"></li>
+<li>使用git status确认信息是否正确<br><img src="/images/pasted-105.png" alt="upload successful"><br>可以看到本地仓库是处于远程仓库4个commit版本前的位置</li>
+<li>强行将本地仓库推送到远程仓库，覆盖原来的master</li>
+</ol>
+<p>使用 git push origin +master:master</p>
+<p>此时远程仓库就回到了4个commit版本前。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/09/26/自动在指定时间在微信中分享知乎日报的消息→-→/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1905,168 +2070,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/06/27/禁止手机浏览器与微信浏览器的原生滚动/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/06/27/禁止手机浏览器与微信浏览器的原生滚动/" class="post-title-link" itemprop="url">禁止手机浏览器与微信浏览器的原生滚动</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-06-27 11:17:00" itemprop="dateCreated datePublished" datetime="2016-06-27T11:17:00+08:00">2016-06-27</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在微信浏览器中,如果页面内容到头或者到底,手指滑动时会拖动整个页面。如图所示</p>
-<p><img src="/images/pasted-85.png" alt="upload successful"></p>
-<p>在原生滑动过程中,页面中的所有动画(包括canvas动画、gif动图、css变幻、js计时器)会全部停止,在页面回弹到初始位置时才会继续运行,极大地影响了用户的体验。</p>
-<p>因此,在用户有拖动操作时需要将页面的上下原生滑动停止,至少要在用户拖动区域禁止原生滚动事件。</p>
-<p>例如我在项目中碰到需要用户左右滑动的操作,而如果用户向左下滑动,则会造成页面先向下滑动后回弹,然后定义的事件才会产生。</p>
-<p>因此需要使用preventDefault()来禁止原生touchstart动作。但是如果直接使用event.preventDefault()会使整个页面的滚动事件全部失效,达不到想要的效果,因此对其进行有条件的处理。js代码如下:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* </span></span><br><span class="line"><span class="comment">* 禁止微信原生上下滚动</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> overscroll = <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">	el.addEventListener(<span class="string">'touchstart'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	    <span class="keyword">var</span> top = el.scrollTop,</span><br><span class="line">		totalScroll = el.scrollHeight,</span><br><span class="line">		currentScroll = top + el.offsetHeight;</span><br><span class="line">	    <span class="keyword">if</span> (top === <span class="number">0</span>) &#123;</span><br><span class="line">    	el.scrollTop = <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (currentScroll === totalScroll) &#123;</span><br><span class="line">	        el.scrollTop = top - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    el.addEventListener(<span class="string">'touchmove'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (el.offsetHeight &lt; el.scrollHeight)</span><br><span class="line">      evt._isScroller = <span class="literal">true</span>;</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;</span><br><span class="line">overscroll(<span class="built_in">document</span>.querySelector(<span class="string">'#scroll'</span>));<span class="comment">//此处的scroll为需要禁止原生滚动的Object</span></span><br><span class="line"><span class="built_in">document</span>.body.addEventListener(<span class="string">'touchmove'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!evt._isScroller) &#123;</span><br><span class="line">    evt.preventDefault();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2114,7 +2117,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">141</span>
+                    <span class="site-state-item-count">142</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2498,7 +2501,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">170</span>
+                      
+                    
+                    <span class="site-state-item-count">171</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
