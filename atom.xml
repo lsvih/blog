@@ -267,9 +267,9 @@
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
-      <category term="python" scheme="https://lsvih.com/tags/python/"/>
-    
       <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
+    
+      <category term="python" scheme="https://lsvih.com/tags/python/"/>
     
   </entry>
   
@@ -550,8 +550,6 @@
     
       <category term="iOS" scheme="https://lsvih.com/tags/iOS/"/>
     
-      <category term="React Native" scheme="https://lsvih.com/tags/React-Native/"/>
-    
       <category term="Juejin" scheme="https://lsvih.com/tags/Juejin/"/>
     
       <category term="Flutter" scheme="https://lsvih.com/tags/Flutter/"/>
@@ -561,6 +559,8 @@
       <category term="JavaScript" scheme="https://lsvih.com/tags/JavaScript/"/>
     
       <category term="Dart" scheme="https://lsvih.com/tags/Dart/"/>
+    
+      <category term="React Native" scheme="https://lsvih.com/tags/React-Native/"/>
     
   </entry>
   
