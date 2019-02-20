@@ -368,6 +368,177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/09/30/js实现async-parallel功能/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/09/30/js实现async-parallel功能/" class="post-title-link" itemprop="url">js实现async.parallel功能</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-09-30 16:25:46" itemprop="dateCreated datePublished" datetime="2016-09-30T16:25:46+08:00">2016-09-30</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在有多个异步请求的情况下，如何将它们全部正确的返回请求是个问题。如果不适用async,一般有几种实现的情况。</p>
+<p>1、对于result需要按照顺序请求的情况直接使用回调-回调-回调</p>
+<p>  直接使用这样的回调就能完成相应需求：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> allResult = &#123;&#125;</span><br><span class="line">asyncFunction(<span class="string">"1"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(error==<span class="literal">null</span>)</span><br><span class="line">    allResult[<span class="string">"1"</span>]=result</span><br><span class="line">    asyncFunction(<span class="string">"2"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(error==<span class="literal">null</span>)</span><br><span class="line">        allResult[<span class="string">"2"</span>]=result</span><br><span class="line">        asyncFunction(<span class="string">"3"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">          <span class="keyword">if</span>(error==<span class="literal">null</span>)</span><br><span class="line">            allResult[<span class="string">"3"</span>]=result </span><br><span class="line">          <span class="keyword">else</span></span><br><span class="line">          <span class="built_in">console</span>.error(error)</span><br><span class="line">        &#125;)</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      <span class="built_in">console</span>.error(error)</span><br><span class="line">    &#125;)</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">     <span class="built_in">console</span>.error(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这种请求方式虽然能很明确地描述出整个流程，能保证result按顺序输出，但是代码一层套一层，不利于阅读。</p>
+<p>这种情况可以使用async.series进行控制，暂且不提</p>
+<p>2、如果不要求按照顺序输出result，因此上面那种做法就显得非常浪费时间，因为每个请求都要等到前一个请求完成后才会进行下一个请求，它们的时间是相加的。因此可以同时进行所有的请求，将所有请求的result都拿到，不需要管它们哪个先输出哪个后输出。</p>
+<p>在async中，可以这样实现:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>.parallel(&#123;</span><br><span class="line">  one:<span class="function"><span class="keyword">function</span>(<span class="params">done</span>)</span>&#123;</span><br><span class="line">    asyncFunction(<span class="string">'1'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(!error)</span><br><span class="line">        done(<span class="literal">null</span>,result)</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        done(error,<span class="literal">null</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  two:<span class="function"><span class="keyword">function</span>(<span class="params">done</span>)</span>&#123;</span><br><span class="line">    asyncFunction(<span class="string">'2'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(!error)</span><br><span class="line">        done(<span class="literal">null</span>,result)</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        done(error,<span class="literal">null</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  three:<span class="function"><span class="keyword">function</span>(<span class="params">done</span>)</span>&#123;</span><br><span class="line">    asyncFunction(<span class="string">'3'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(!error)</span><br><span class="line">        done(<span class="literal">null</span>,result)</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        done(error,<span class="literal">null</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!error)</span><br><span class="line">    callback(<span class="literal">null</span>,result)</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    callback(error,<span class="literal">null</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>以上代码的含义是，同时调用3个asyncFunction，当三个函数都成功取到result之后将result输出，如果其中有任何一个函数出现了错误(收到了error)则输出错误信息。通过这种方式可以节省请求时间且便于查看代码。</p>
+<h3 id="实现async-parallel"><a href="#实现async-parallel" class="headerlink" title="实现async.parallel"></a>实现async.parallel</h3><p>async.parallel参数由2部分，第一部分是由请求组成的对象，第二部分是全部完成时处理的函数</p>
+<p>需要处理的第一点就是如何判断所有的asyncFunction都成功完成，且在那时候调用之后的函数.</p>
+<p>可以采用for in 来获取第一部分参数的请求数量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>.parallel = <span class="function"><span class="keyword">function</span>(<span class="params">actions,allDone</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> Result = &#123;&#125;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> action <span class="keyword">in</span> actions)&#123;</span><br><span class="line">       <span class="keyword">if</span>(actions.hasOwnProperty(action)) n++</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样就能获得请求总数，hasOwnproperty防止计数时遍历到其原型的属性</p>
+<p>接着，就可以遍历请求，分别处理它们的回调了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>.parallel = <span class="function"><span class="keyword">function</span>(<span class="params">actions,allDone</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> Result = &#123;&#125;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> action <span class="keyword">in</span> actions)&#123;</span><br><span class="line">       <span class="keyword">if</span>(actions.hasOwnProperty(action)) n++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//得到了n</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> action <span class="keyword">in</span> actions)&#123;</span><br><span class="line">       <span class="keyword">var</span> done = <span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">           <span class="keyword">if</span>(error==<span class="literal">null</span>)&#123;</span><br><span class="line">               Result[action] = result</span><br><span class="line">               n--</span><br><span class="line">               <span class="keyword">if</span>(n==<span class="number">0</span>) allDone(<span class="literal">null</span>,Result)</span><br><span class="line">           &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">               allDone(error,Result)<span class="comment">//如果asyncFunction发生错误,将错误返回</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       action(done)<span class="comment">//将done作为参数放入每个请求中，用于处理result和error</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过这种方式，简单实现了async.parallel的功能。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/09/28/在远程git仓库回退版本，撤销commit/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1911,165 +2082,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/07/03/MUI-NativeJS-for-iOS判断是否安装了指定应用/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/07/03/MUI-NativeJS-for-iOS判断是否安装了指定应用/" class="post-title-link" itemprop="url">MUI NativeJS for iOS判断是否安装了指定应用</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-07-03 09:18:00" itemprop="dateCreated datePublished" datetime="2016-07-03T09:18:00+08:00">2016-07-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>使用Objective-C可以轻松实现判断应用是否安装：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BOOL</span> result=[[<span class="built_in">UIApplication</span> sharedApplication] canOpenURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"weixin://"</span>]];</span><br></pre></td></tr></table></figure></p>
-<p>转换为NativeJS写法为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> NSURL = plus.ios.import(<span class="string">'NSURL'</span>);</span><br><span class="line">    <span class="keyword">var</span> UIA = plus.ios.import(<span class="string">'UIApplication'</span>); </span><br><span class="line">    <span class="keyword">var</span> obj = <span class="keyword">new</span> UIA.sharedApplication();</span><br><span class="line">    <span class="keyword">var</span> result = obj.canOpenURL(NSURL.URLWithString(<span class="string">'weixin://'</span>));</span><br><span class="line">    <span class="comment">//return result;</span></span><br><span class="line">    alert(result);</span><br><span class="line">    <span class="comment">//[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"weixin://"]];</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>返回值为1则安装了”weixin”,返回0则没安装。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2117,7 +2129,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">142</span>
+                    <span class="site-state-item-count">143</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2503,7 +2515,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">171</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">173</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

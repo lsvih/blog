@@ -368,6 +368,193 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/30/机器学习学习笔记（八）分类问题实操/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/03/30/机器学习学习笔记（八）分类问题实操/" class="post-title-link" itemprop="url">机器学习学习笔记（八）分类问题实操</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-03-30 18:49:00" itemprop="dateCreated datePublished" datetime="2016-03-30T18:49:00+08:00">2016-03-30</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="直线分类问题"><a href="#直线分类问题" class="headerlink" title="直线分类问题"></a>直线分类问题</h3><p><img src="/images/pasted-33.png" alt="upload successful"></p>
+<p>对于此数据图可以发现正类与负类的决策边界大约是一条直线。</p>
+<p>与线性回归类似，先计算代价方程J</p>
+<script type="math/tex; mode=display">J(\theta_0,\theta_1)=\frac{1}{2m} \sum^m_{i=1}(h_\theta(x^{(i)}-y^{(i)}))^2</script><p>但是其中的h(x)发生了变化，实际上为</p>
+<script type="math/tex; mode=display">h_\theta(x)=g(\theta^Tx)</script><script type="math/tex; mode=display">g(z)=\frac{1}{1+e^{-z}}</script><p>带入得</p>
+<script type="math/tex; mode=display">J(\theta)=\frac{1}{m}\sum^m_{i=1}Cost(h_\theta(x^{(i)},y^{(i)})) \\=-\frac{1}{m}[\sum^m_{i=1}y^{(i)}log{h_\theta(x^{(i)})}+(1-y^{(i)})log{(1-h_\theta(x^{(i)})})]</script><p>同理带入梯度下降函数</p>
+<script type="math/tex; mode=display">\theta:=\theta-\alpha\frac{1}{m}\sum^m_{i=1}[(h_\theta(x^{(i)})-y^{(i)})\cdot x^{(i)}]</script><p>最后将它们放入fminunc（matlab求最小值函数）中运算即可得到训练结果。<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span><br><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span><br><span class="line">J += (-y(<span class="built_in">i</span>).*(<span class="built_in">log</span>(h))-(<span class="number">1</span>-y(<span class="built_in">i</span>)).*(<span class="built_in">log</span>(<span class="number">1</span>-h)))/m;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">//----</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span><br><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span><br><span class="line">grad += ((h - y(<span class="built_in">i</span>))*X(<span class="built_in">i</span>,:)')/m;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">options = optimset(<span class="string">'GradObj'</span>, <span class="string">'on'</span>, <span class="string">'MaxIter'</span>, <span class="number">400</span>);</span><br><span class="line"></span><br><span class="line">[theta, cost] = ...</span><br><span class="line">	fminunc(@(t)(costFunction(t, X, y)), initial_theta, options);</span><br></pre></td></tr></table></figure>
+<p>即可得到训练后的$\theta$值，在图上表现出来呈</p>
+<p><img src="/images/pasted-34.png" alt="upload successful"></p>
+<p>可以看到正集与负集基本分开。</p>
+<h3 id="非直线分类"><a href="#非直线分类" class="headerlink" title="非直线分类"></a>非直线分类</h3><p><img src="/images/pasted-35.png" alt="upload successful"></p>
+<p>如图所示，可以看出正负集的边界应该是曲线。</p>
+<p>曲线的方程是多项式，因此首先对曲线的多项式的项进行罗列：</p>
+<p><img src="/images/pasted-36.png" alt="upload successful"></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">degree = <span class="number">6</span>;</span><br><span class="line">out = <span class="built_in">ones</span>(<span class="built_in">size</span>(X1(:,<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:degree</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">0</span>:<span class="built_in">i</span></span><br><span class="line">        out(:, <span class="keyword">end</span>+<span class="number">1</span>) = (X1.^(<span class="built_in">i</span>-<span class="built_in">j</span>)).*(X2.^<span class="built_in">j</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>以上生成了一个28项的向量作为这个曲线的项。</p>
+<script type="math/tex; mode=display">J(\theta)=\frac{1}{m}[\sum^m_{i=1}-y^{(i)}log{h_\theta(x^{(i)})}-(1-y^{(i)})log{(1-h_\theta(x^{(i)})})]+\frac{\lambda}{2m}\sum^n_{j=1}\theta^2_j</script><p>根据此公式进行代价函数的运算。</p>
+<p>由于上式中最后一项$\theta$不需要惩罚$\theta_0$，因此从$\theta_1$开始相乘。由于matlab的下标号是从1开始的，因此最后一项的θ要从2开始相乘。后面的梯度函数同理</p>
+<script type="math/tex; mode=display">\frac{\partial J(\theta)}{\partial \theta_0}=\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j, \text{for j=0}\\ \frac{\partial J(\theta)}{\partial \theta_j}=(\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j)+\frac{\lambda}{m}\theta_j ,\text{for j}\geq 1</script><p>简单用循环写代码如下<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span><br><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span><br><span class="line">J += (-y(<span class="built_in">i</span>).*(<span class="built_in">log</span>(h))-(<span class="number">1</span>-y(<span class="built_in">i</span>)).*(<span class="built_in">log</span>(<span class="number">1</span>-h)))/m;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=(<span class="number">2</span>:<span class="built_in">size</span>(theta))</span><br><span class="line">J += theta(<span class="built_in">j</span>)^<span class="number">2.</span>*lambda/(<span class="number">2</span>*m);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">//-------</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span><br><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span><br><span class="line">grad += ((h - y(<span class="built_in">i</span>))*X(<span class="built_in">i</span>,:)')./m;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=(<span class="number">2</span>:<span class="built_in">size</span>(theta))</span><br><span class="line">grad(<span class="built_in">j</span>) += theta(<span class="built_in">j</span>).*lambda./m;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>可以得到多项式的各个$\theta$值。</p>
+<p>根据多项式画出图形可以看到</p>
+<p><img src="/images/pasted-37.png" alt="upload successful"></p>
+<p>基本将正负极分开。</p>
+<p>如果对$\lambda=1$(正则化参数)进行修改，例如修改成别的值可以得到：</p>
+<p>$\lambda=0$</p>
+<p><img src="/images/pasted-38.png" alt="upload successful"></p>
+<p>$\lambda=100$</p>
+<p><img src="/images/pasted-39.png" alt="upload successful"></p>
+<p>可以看到$\lambda=0$的时候拟合曲线绕的弯非常多，试图去匹配所有的点，因而失去了这个集整体的特征，变得过度复杂，这种现象称为过拟合；</p>
+<p>而$\lambda=100$的时候明显拟合曲线并没有良好地工作，称为欠拟合（$\theta$的乘积占的权重过大导致除了θ0之外的项全部变为0）。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/26/机器学习学习笔记（七）分类问题/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1976,186 +2163,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/23/机器学习学习笔记（二）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/03/23/机器学习学习笔记（二）/" class="post-title-link" itemprop="url">机器学习学习笔记（二）</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-03-23 16:21:12" itemprop="dateCreated datePublished" datetime="2016-03-23T16:21:12+08:00">2016-03-23</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在监督学习中，有一种情况是数据集呈连续状分布，数据的几个值大致呈线性关系（如例子中的房价和房间大小的关系）。体现在坐标轴上如图下所示</p>
-<p><img src="/images/pasted-3.png" alt="upload successful"></p>
-<p>可以画出一条直线大概描述出整体数据的走向，这条直线被称为拟合曲线，在机器学习中直线代表的方程被称为预测（Hypothesis）方程，可以记作</p>
-<script type="math/tex; mode=display">h_\theta(x)=\theta_0+\theta_1x</script><p>的形式，其中两个θ被称为预测方程的参数（Parameters），直接影响预测方程预测的准确性。</p>
-<hr>
-<p>为了方便记录，整个数据集包含的样品数（坐标图上的所有点数）记作m，</p>
-<p>每个点的x与y轴坐标一一对应，带入x值可以通过预测方程预测出y的大概值。因此称x为输入值(input)，y为输出值(output)</p>
-<hr>
-<p>为了表示预测方程预测的准确性，可以拿每个输入值x带入预测方程计算得到预测值h(x)，再与实际值y进行比较。通过这种比较，能够衡量在这组参数下预估的结果和实际结果的差距，这样的计算方式称为代价函数（Cost Fuction）。比如说线性回归的代价函数定义为:</p>
-<script type="math/tex; mode=display">J(\theta_0,\theta_1)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2</script><p>（误差平方和函数是一个比较合适、常用的选择，当然，也可以选择一些其他形式的代价函数）</p>
-<p>代价函数值越小，就说明当前参数值下的预测方程越准确。</p>
-<p>为了得到尽量准确的预测方程，就要使J(代价函数)的值最小。现在单独将参数一个个拿出来看：</p>
-<p>假设$\theta_0=0$，即预测函数的直线经过原点。假定训练集为(1,1)(2,2)(3,3)，很明显斜率为1的时候代价函数最小。</p>
-<p>此时J=0,说明联系集的所有值全部符合预测方程。</p>
-<blockquote>
-<p>J=0时能说明预测方程符合程度较好，但不能说明接下来的数一定能够被完美预测。</p>
-</blockquote>
-<p>当让$\theta_1=0.5$时，可以发现坐标图变成了如下所示</p>
-<p><img src="/images/pasted-4.png" alt="upload successful"></p>
-<p>预测函数明显偏离了数据集。这时的代价函数值为</p>
-<script type="math/tex; mode=display">J(0)=\frac{1}{2 \times 3}[(0.5-1)^2+(1-2)^2+(1.5-3)^2]=\frac{3.5}{6}=0.58</script><p>当$\theta_1=0$时，</p>
-<script type="math/tex; mode=display">J(0)=\frac{1}{2 \times 3}[1^2+2^2+3^2]=\frac{14}{6}=2.3</script><p>可以发现偏差的越大，代价函数值越大。而且由于代价函数是平方差，因此参数往另一个方向变化也会有对称的变化。模型所预测的值与训练集中实际值之间的差距就是建模误差（modeling error）。</p>
-<p>可以将代价函数值与参数$\theta_1$的值对应起来，坐标图如下</p>
-<p><img src="/images/pasted-5.png" alt="upload successful"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2203,7 +2210,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">142</span>
+                    <span class="site-state-item-count">143</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2589,7 +2596,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">171</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">173</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

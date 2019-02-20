@@ -368,6 +368,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/07/03/MUI-NativeJS-for-iOS判断是否安装了指定应用/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/07/03/MUI-NativeJS-for-iOS判断是否安装了指定应用/" class="post-title-link" itemprop="url">MUI NativeJS for iOS判断是否安装了指定应用</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-07-03 09:18:00" itemprop="dateCreated datePublished" datetime="2016-07-03T09:18:00+08:00">2016-07-03</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用Objective-C可以轻松实现判断应用是否安装：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BOOL</span> result=[[<span class="built_in">UIApplication</span> sharedApplication] canOpenURL:[<span class="built_in">NSURL</span> URLWithString:<span class="string">@"weixin://"</span>]];</span><br></pre></td></tr></table></figure></p>
+<p>转换为NativeJS写法为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> NSURL = plus.ios.import(<span class="string">'NSURL'</span>);</span><br><span class="line">    <span class="keyword">var</span> UIA = plus.ios.import(<span class="string">'UIApplication'</span>); </span><br><span class="line">    <span class="keyword">var</span> obj = <span class="keyword">new</span> UIA.sharedApplication();</span><br><span class="line">    <span class="keyword">var</span> result = obj.canOpenURL(NSURL.URLWithString(<span class="string">'weixin://'</span>));</span><br><span class="line">    <span class="comment">//return result;</span></span><br><span class="line">    alert(result);</span><br><span class="line">    <span class="comment">//[[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"weixin://"]];</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>返回值为1则安装了”weixin”,返回0则没安装。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/06/27/禁止手机浏览器与微信浏览器的原生滚动/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2105,176 +2264,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/17/改进Flappy-Bird并搭建NodeJS服务器接收相关数值/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/05/17/改进Flappy-Bird并搭建NodeJS服务器接收相关数值/" class="post-title-link" itemprop="url">改进Flappy Bird并搭建NodeJS服务器接收相关数值</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-05-17 08:53:00" itemprop="dateCreated datePublished" datetime="2016-05-17T08:53:00+08:00">2016-05-17</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>加入了键盘响应事件：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.onkeydown = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (gamestate == <span class="number">1</span> || gamestate == <span class="number">-1</span>) &#123;</span><br><span class="line">	    start()</span><br><span class="line">    &#125;</span><br><span class="line">    tap()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>将图片插入后，页面改成如下：</p>
-<video class="edui-upload-video  vjs-default-skin  video-js" controls preload="none" width="300" height="496" src="/img/1463475783775457.mp4" data-setup="{}"><source src="/img/1463475783775457.mp4" type="video/mp4"></video>
-
-<p>希望以某种方式获取鸟与柱子的实时数据。因此使用NodeJS进行获取。</p>
-<p>在网页中加入js:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> upload = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	$.get(<span class="string">"http://localhost:8000/?x-distance="</span> + (<span class="number">300</span> - pillarX - <span class="number">50</span>) + <span class="string">"&amp;y-distance="</span> + (pillarupH + <span class="number">100</span> - startY))</span><br><span class="line">&#125;, <span class="number">20</span>)</span><br></pre></td></tr></table></figure></p>
-<p>可以每20毫秒以get的方式请求一次服务器，将相关的数据上传。因为是本机搭建服务器因此无需担心由于网络环境造成的丢包与延迟等情况。</p>
-<p>NodeJS代码如下</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>);</span><br><span class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</span><br><span class="line"></span><br><span class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/plain'</span>&#125;);</span><br><span class="line">    res.end(util.inspect(url.parse(req.url, <span class="literal">true</span>)));</span><br><span class="line">    <span class="keyword">var</span> arg = url.parse(req.url, <span class="literal">true</span>).query; </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(arg))</span><br><span class="line">&#125;).listen(<span class="number">8000</span>);</span><br></pre></td></tr></table></figure>
-<p>直接在本机8000端口建立服务器，并获得前端的get请求。</p>
-<p>运行效果如下</p>
-<video class="edui-upload-video  vjs-default-skin video-js" controls preload="none" width="420" height="280" src="/img/1463476317496303.mp4" data-setup="{}"><source src="/img/1463476317496303.mp4" type="video/mp4"></video>
-
-<p>能获得当前数据信息，之后考虑如何让电脑学会玩这个小游戏</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2322,7 +2311,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">142</span>
+                    <span class="site-state-item-count">143</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2708,7 +2697,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">171</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">173</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
