@@ -95,7 +95,7 @@
 
 
   <meta name="description" content="Robust Classification with Convolutional Prototype Learning 一文是自动化所刘成林、殷飞老师组 Hong-Ming Yang 师兄的工作，CVPR 2018 录用。论文地址：https://arxiv.org/abs/1805.03438v1论文代码：https://github.com/YangHM/Convolutional-Prot">
-<meta name="keywords" content="note,machine learning,Paper,CNN,deep learning,cnn,prototype learning">
+<meta name="keywords" content="note,machine learning,CNN,Paper,deep learning,cnn,prototype learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Robust Classification with Convolutional Prototype Learning 论文笔记">
 <meta property="og:url" content="https://lsvih.com/2019/04/07/Robust-Classification-with-Convolutional-Prototype-Learning-论文笔记/index.html">
@@ -103,7 +103,6 @@
 <meta property="og:description" content="Robust Classification with Convolutional Prototype Learning 一文是自动化所刘成林、殷飞老师组 Hong-Ming Yang 师兄的工作，CVPR 2018 录用。论文地址：https://arxiv.org/abs/1805.03438v1论文代码：https://github.com/YangHM/Convolutional-Prot">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://lsvih.com/images/15546341569411.jpg">
-<meta property="og:image" content="https://lsvih.com/2019/04/07/Robust-Classification-with-Convolutional-Prototype-Learning-论文笔记/media/15546210282493.jpg">
 <meta property="og:image" content="https://lsvih.com/images/15546341698125.jpg">
 <meta property="og:image" content="https://lsvih.com/images/15546341823585.jpg">
 <meta property="og:image" content="https://lsvih.com/images/15546341912068.jpg">
@@ -112,7 +111,7 @@
 <meta property="og:image" content="https://lsvih.com/images/15546342235530.jpg">
 <meta property="og:image" content="https://lsvih.com/images/15546342332247.jpg">
 <meta property="og:image" content="https://lsvih.com/images/15546342428370.jpg">
-<meta property="og:updated_time" content="2019-04-07T10:50:52.331Z">
+<meta property="og:updated_time" content="2019-04-07T11:05:27.968Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Robust Classification with Convolutional Prototype Learning 论文笔记">
 <meta name="twitter:description" content="Robust Classification with Convolutional Prototype Learning 一文是自动化所刘成林、殷飞老师组 Hong-Ming Yang 师兄的工作，CVPR 2018 录用。论文地址：https://arxiv.org/abs/1805.03438v1论文代码：https://github.com/YangHM/Convolutional-Prot">
@@ -494,7 +493,7 @@
 <li>实验结果与分析</li>
 </ul>
 <p>因此，这篇笔记也按照论文作者的写作顺序记录。</p>
-<h2 id="背景与相关工作"><a href="#背景与相关工作" class="headerlink" title="背景与相关工作"></a>背景与相关工作</h2><p><img src="/images/15546341569411.jpg" alt=""><br><img src="media/15546210282493.jpg" alt=""></p>
+<h2 id="背景与相关工作"><a href="#背景与相关工作" class="headerlink" title="背景与相关工作"></a>背景与相关工作</h2><p><img src="/images/15546341569411.jpg" alt=""></p>
 <p>文章开头就给了这张图，描述了传统的 CNN 模型 + cross entropy loss 在 MNIST 上训练出来的特征的二维表示。作者用此图片说明了传统 CNN 模型的问题：学习出来的分类特征在特征空间内非常集中，甚至有很多类内距离（intra-class）小于类间距离（inter-class）的情况。这种情况也就会导致最终的分类效果变差，并且分类模型不易拓展等不够“Robust”的问题。</p>
 <blockquote>
 <p>这个图片的具体作图方法，是把模型输出层前的最后隐层（bottleneck layer）设定为两个神经元，训练完成后，将样本送入神经网络，取出这两个神经元的输出，将输出分别设为 X 与 Y 轴，即得到了这张图。（这个方法可以用在别的需要可视化特征的场景中，可以免去 PCA 等降维步骤。不过在一些比较复杂的任务里貌似这么训练会很难收敛）</p>
@@ -623,9 +622,9 @@
           
             <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
           
-            <a href="/tags/Paper/" rel="tag"># Paper</a>
-          
             <a href="/tags/CNN/" rel="tag"># CNN</a>
+          
+            <a href="/tags/Paper/" rel="tag"># Paper</a>
           
             <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
           
