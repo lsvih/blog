@@ -368,6 +368,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/30/让网页菜单上拉出现下拉消失——简单有趣的headroom-js/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/03/30/让网页菜单上拉出现下拉消失——简单有趣的headroom-js/" class="post-title-link" itemprop="url">让网页菜单上拉出现下拉消失——简单有趣的headroom.js</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-03-30 19:19:00" itemprop="dateCreated datePublished" datetime="2016-03-30T19:19:00+08:00">2016-03-30</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Headroom.js 是一个轻量级、高性能的JS小工具,通过在指定的div class中加上”headroom”，”headroom headroom—unpinned”,”headroom headroom—pinned”来使用户能够方便地基于网页上下滚动控制菜单样式。</p>
+<p>使用时，只需在网页中引用js库（jquery版需要同时引用 jQuery.headroom.min.js 与 headroom.min.js）,将事件绑定在元素上</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#header"</span>).headroom();</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myElement = <span class="built_in">document</span>.querySelector(<span class="string">"header"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> headroom  = <span class="keyword">new</span> Headroom(myElement);</span><br><span class="line"></span><br><span class="line">headroom.init();</span><br></pre></td></tr></table></figure>
+<p>即可方便使用。</p>
+<p>成功使用时，可以在调试台看到页面上下滚动时设置的元素的class也同时在变化。由class的变化可以在css中添加样式与动画，达到想要的效果。例如<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.headroom</span> &#123;</span><br><span class="line">    <span class="attribute">will-change</span>: transform;</span><br><span class="line">    <span class="attribute">transition</span>: transform <span class="number">200ms</span> linear;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.headroom--pinned</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(0%);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.headroom--unpinned</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-100%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上代码简单实现了菜单栏随着页面上下滚动的显示与隐藏效果。</p>
+<p>cdn 地址：<a href="http://www.bootcdn.cn/headroom/" target="_blank" rel="noopener">http://www.bootcdn.cn/headroom/</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/30/机器学习学习笔记（八）分类问题实操/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1971,198 +2136,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/23/机器学习学习笔记（三）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/03/23/机器学习学习笔记（三）/" class="post-title-link" itemprop="url">机器学习学习笔记（三）</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-03-23 16:48:56" itemprop="dateCreated datePublished" datetime="2016-03-23T16:48:56+08:00">2016-03-23</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>把一个参数的情形推广到两个参数，每个$\theta_0$都对应一组J与$\theta_1$,表现在坐标图上呈现出一个碗状图形</p>
-<p><img src="/images/pasted-6.png" alt="upload successful"></p>
-<hr>
-<p>用了等高线的概念来理解这个图，可以做出它的“等高图”（轮廓图，contour figure）</p>
-<p><img src="/images/pasted-7.png" alt="upload successful"></p>
-<p>横坐标与纵坐标便代表了两个参数，不同的圆弧代表了不同的代价函数值。</p>
-<p>发现通过不断地降低J的值，可以得到更好的预测函数的拟合。</p>
-<p><img src="/images/pasted-8.png" alt="upload successful"></p>
-<p><img src="/images/pasted-9.png" alt="upload successful"></p>
-<p><img src="/images/pasted-10.png" alt="upload successful"></p>
-<hr>
-<h4 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h4><p>为了让J尽可能的小，因此要同时考虑$\theta_1$与$\theta_0$的值。如果$\theta_1$保持不动，$\theta_0$就要往得到更小J的方向取值，反之亦然。可以理解成人站在山坡上，一步一步地向地势低的地方走，最终会到达“局部最低点”（local minimum）。</p>
-<p><img src="/images/pasted-11.png" alt="upload successful"></p>
-<p>于是可以看到，影响这个过程的有几个因素：起始的位置，每步的步长和每个点的某方向上的斜率。</p>
-<p><img src="/images/pasted-12.png" alt="upload successful"></p>
-<p>发现不同的起始位置可能会到达不同的局部最小值。因为这种“下山”的方式不是全面的，没有测算两个参数的所有情况。</p>
-<hr>
-<p>回到只有一个参数的情况上看。</p>
-<p>$\theta_1:=\theta_1-\alpha\frac{d}{d\theta_1}J(\theta_1)$（ := 符号代表赋值）</p>
-<p>$\theta_1$连续不断地减去当时的斜率与步长（合适的步长）的乘积，会向局部最小值滑动（可用高数证明），越接近局部最小值斜率就越小，值移动的就越慢，最后无限趋近到达导数为0的点。</p>
-<p><img src="/images/pasted-13.png" alt="upload successful"></p>
-<p>当步长的取值过大时，$\theta_1$有可能直接滑过局部最小值而到了极值点的另一侧，此时导数符号反转，与上面的趋近最小值的过程刚好相反，$\theta_1$越来越远离这个点。</p>
-<p><img src="/images/pasted-14.png" alt="upload successful"></p>
-<blockquote>
-<p>但是当步长取值过小时，找到局部最小值的过程会变得太过漫长，效率低下<br>by the way,如果起始点一开始就在一个极小值点上时，其导数为0，它不再会发生变化</p>
-</blockquote>
-<p>为了得到收敛值，可列出如下算式。</p>
-<p><img src="/images/pasted-15.png" alt="upload successful"></p>
-<p>带入原式得</p>
-<p><img src="/images/pasted-16.png" alt="upload successful"></p>
-<p>这就是梯度下降算法。</p>
-<hr>
-<p>梯度下降算法能得到一个局部最优解，而对于线性回归问题来说，它的坐标图形是碗状的，只有一个最低点，因此用梯度下降法得到的点就是线性回归问题的全局最低值，使J最小，即全局最优解。</p>
-<blockquote>
-<p>梯度下降算法一定是两个参数同时下降才能达到效果</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2210,7 +2183,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">143</span>
+                    <span class="site-state-item-count">144</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2600,7 +2573,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">173</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">175</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

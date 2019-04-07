@@ -368,6 +368,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/04/01/一名-iOS-开发者的-React-Native-开发经历-md/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/04/01/一名-iOS-开发者的-React-Native-开发经历-md/" class="post-title-link" itemprop="url">一名 iOS 开发者的 React Native 开发经历.md</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-04-01 15:12:00" itemprop="dateCreated datePublished" datetime="2017-04-01T15:12:00+08:00">2017-04-01</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果你是一名 iOS 开发者，你应该听说过 React Native。它给出了简单而吸引人的承诺：一次编写，两处部署，同时搞定 iOS 与安卓版本的 app。我是一名资深的 iOS 开发者（还是一名更资深的 macOS 开发者），我想分享我应用这门神奇技术的经历。</p>
+<p>去年，我们和一个客户进行过交谈。他们来找我们是因为他们想尽快完成他们的 iOS app。在讨论的过程中，他们提到了这个叫做 React Native 的东西。他们有个善于使用 Javascript 的 web 开发人员，那个人指出使用 RN 可以让开发速度快很多。这场谈判最终我们没有达成共识而是以失败告终，但这件事也让我开始思考是否应该将 RN 纳入我们的技术栈中</p>
+<p>几周后一位老友来访，让我为他出版的一本书制作一个 app 作为补充参考资料。因为这个工作我找到了一线机会：这是一个很棒的时机来试一试 React Native。由于他的读者大多数使用安卓系统，因此「一次编写，两处部署」的理念在此深得我心。</p>
+<p>我不会带你亲历一遍我的各种尝试和遇到的问题。但我要说的是，就这么一个简单的 app，并不能使用 RN 很好的进行开发。以下是原因。</p>
+<p>首先，我必须说一下除开「一次编写，两处部署」的承诺，我喜欢 React Native 的地方。</p>
+<ul>
+<li>React.js，RN 由它而生。它是一种描述与更新 UI 的优雅方法。它的基本原理是组件使用一组传递给它的属性由上到下渲染其 UI。感谢 React 的虚拟 DOM，当属性变化时 UI 会立即更新，使得 model 与 view 能够自动且无缝地同步。我多么希望 iOS 的 UIKit 也这样设计啊！</li>
+<li>更新 JSX 代码就可以在模拟器中更新 app 而不需要重新编译与重新运行，这点真的很棒。</li>
+<li>蓬勃发展的 RN 社区提供了数以百计的预制组件，你可以在你的 app 中使用它们。（实际上我非常讨厌这种看似专业的「脚本小子」的编程方法。构建一个大部分都不是你自己写的，并且弄不明白的 app，将会导致之后的维护如同陷入泥潭一般困难）</li>
+<li>我很担心 RN 的性能，但是在我的经历中它并没有出现问题。滚动和动画都很流畅。毕竟 RN app 大部分使用的是平台原生的 UI 控件，RN 的工程师们也对它们进行了很好的优化。</li>
+</ul>
+<p>那么为什么我不喜欢它呢？老实说，我并不是 React Native 的目标用户。我熟悉 Javascript 但我并不精通它，我精通的是 Swift/Objective-C。我很快就意识到，如果我使用 RN 来完成这个 app，将会比我用 Swift 慢 10-20 倍。当然，安卓版本还要单独写，但是考虑到我学习 RN 的学习曲线，我还不如去学习 Java。</p>
+<p>除此之外，我认为采用 RN 的解决方案还有一些严重的问题。</p>
+<h3 id="脆弱的依赖链"><a href="#脆弱的依赖链" class="headerlink" title="脆弱的依赖链"></a>脆弱的依赖链</h3><p>React Native 并不是一个一站式解决方案。我制作了一个粗略的必要组件依赖图：</p>
+<p><img src="/images/pasted-117.png" alt="upload successful"></p>
+<p>React Native 的依赖链</p>
+<p>如果你来自 web 开发的世界，这可能对你来说很正常；但是对我来说，这很不正常。我的世界中有 Xcode，任何创建 Swift/Obj-C/iOS/Mac/Apple TV 等 app 所需要的东西都已经封装好并由 Xcode 管理。依赖链和前面的图一样（甚至更长），<strong>但是依赖链中的东西都保证是同步且兼容的。</strong></p>
+<p>我现在肯定 RN 依赖链中的大多数组件都是互相兼容的。但我遇到了四五个需要在 StackOverflow 上花几小时寻求解决方案的问题。在我心中更重要的是之后会发生的事情。例如，升级 Nuclide（IDE 的 RN 拓展）可能需要新版的 Atom。我系统中的另一个工具需要新版的 <code>winston</code>，如果那个版本不兼容 RN 怎么办？后果可想而知。</p>
+<h3 id="被打破的承诺"><a href="#被打破的承诺" class="headerlink" title="被打破的承诺"></a>被打破的承诺</h3><p>事实证明「一次编写，两处部署」的承诺只有部分实现了。我遇到了必须要把我的 RN app 根据目标平台（iOS 或安卓）进行「分支」的问题。例如 tab bar，你可能认为像它这么随处可见的组件会被 RN 列为「一等公民」，但事实不是这样的。RN 为 iOS 收录了 <code>TabBarIOS</code> 组件，但是因为某些原因它在安卓上并不相同。相反，在 GitHub 上有一堆的教程和解决方案教你如何从头做起。又例如 nav bar，iOS 的 <code>NavigatorIOS</code> 与安卓的 <code>Navigator</code> 工作方式差别巨大。这些核心的导航功能结构在两个平台上的差异会导致要为每个平台分别编写大量的不同的文件与组件。我开始感觉到，尽管承诺很神奇，尽管我在用同一种语言，但其实我仍然在写两个不同的 app。</p>
+<ul>
+<li>实际上，这个「承诺」其实是别人推断的，并不是官方宣称的（至少 Facebook/RN 的人没有这么宣称过）。官方宣传的是「一次学习，随处编写」。</li>
+</ul>
+<h3 id="令人惊讶的技术限制"><a href="#令人惊讶的技术限制" class="headerlink" title="令人惊讶的技术限制"></a>令人惊讶的技术限制</h3><p>我在做的这个项目其实是一个层级化的参考指南。书作者和我为目录与文章用我们设计的 UI 范式规划了一套挺合理的布局。根据我们的想法，我们可以通过链接或导航跳转到数百个使用静态内容的详情页中。我写好了代码，但奇怪的是我调用 <code>require()</code> 一直不成功。我经过一段时间的研究，了解到 RN 限制<strong>您无法从任意路径读取文件</strong>。显然你的 RN app 在编译时收集了所有可能用到的路径，任何编译器无法找到的路径都将不能读取。所以你可以用 <code>require(‘../file1.json’)</code> 但不能用 <code>require(‘../file’ + ‘1’ + ‘.json’)</code>。这个让人惊讶的限制使得我们的架构无法实现。</p>
+<h3 id="冒牌货般的-UI"><a href="#冒牌货般的-UI" class="headerlink" title="冒牌货般的 UI"></a>冒牌货般的 UI</h3><p>你最终完成的 RN app 可能既不像原生的 iOS app 也不像原生的安卓 app。大多数用户可能不会察觉这个问题，但有些人会发现更大的问题。你有可能会丢失一些用户会注意到的平台特有的细节，例如不能从左侧右滑来返回。（当你用 <code>NavigatorIOS</code> 完成两个平台的导航时会出现这个问题）</p>
+<p>总而言之，iOS 开发者不应该将 React Native 视为两个平台的跨平台解决方案。写一个原生的 iOS app 将会花费<strong>更少</strong>的时间并可能得到更棒的 UX。对于安卓 app 也一样，所以我认为大家应该更多的去专注于平台原生解决方案。</p>
+<p>什么时候用 RN 才是正确的呢？如果你是一个专业的 Javascript 程序员或者你有这么一个员工，并且你<strong>不打算</strong>配置 iOS 开发或安卓开发人员，那么你<strong>可能</strong>会从中获益。还记得那个想要尽快做好跨平台 app 的那个客户吗？他们<strong>曾</strong>有一名 Javascript 工程师，他们 app 的 v1.0 版本最近才出现在应用商店中。此时，距他们联系我们已经过去了 8 个月。</p>
+<blockquote>
+<p>发布于掘金 <a href="https://juejin.im/post/58df4c3fa0bb9f0069e2f2bd" target="_blank" rel="noopener">https://juejin.im/post/58df4c3fa0bb9f0069e2f2bd</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/03/23/EM-algorithm-in-python/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1997,206 +2182,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/11/30/Key-to-‘JavaScript-Puzzlers-3/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/11/30/Key-to-‘JavaScript-Puzzlers-3/" class="post-title-link" itemprop="url">Key to ‘JavaScript Puzzlers'(3)</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-11-30 07:38:00" itemprop="dateCreated datePublished" datetime="2016-11-30T07:38:00+08:00">2016-11-30</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="4-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#4-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="4.What is the result of this expression? (or multiple ones)"></a>4.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> END = <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>);</span><br><span class="line"><span class="keyword">var</span> START = END - <span class="number">100</span>;</span><br><span class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = START; i &lt;= END; i++) &#123;</span><br><span class="line">    count++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(count);</span><br></pre></td></tr></table></figure>
-<p>A    0</p>
-<p>B    100</p>
-<p>C    101</p>
-<p>D    other</p>
-<p>Correct answer is D.2<sup>53</sup> is the largest number in javascript,so that i never become lager than START.This code will cause infinite loop.</p>
-<h4 id="5-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#5-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="5.What is the result of this expression? (or multiple ones)"></a>5.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ary = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line">ary[<span class="number">10</span>] = <span class="number">10</span>;</span><br><span class="line">ary.filter(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123; <span class="keyword">return</span> x === <span class="literal">undefined</span>;&#125;);</span><br></pre></td></tr></table></figure>
-<p>A    [undefined x 7]</p>
-<p>B    [0,1,2,10]</p>
-<p>C    []</p>
-<p>D    [undefined]</p>
-<p>C is correct answer.The ary looks like [0,1,2,undefined x 7,10] , but in fact array.prototype.filter() ignore undefined element.So it returned []</p>
-<blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank" rel="noopener">See more information about array.prototype.filter()</a></p>
-</blockquote>
-<h4 id="6-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#6-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="6.What is the result of this expression? (or multiple ones)"></a>6.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> two   = <span class="number">0.2</span></span><br><span class="line"><span class="keyword">var</span> one   = <span class="number">0.1</span></span><br><span class="line"><span class="keyword">var</span> eight = <span class="number">0.8</span></span><br><span class="line"><span class="keyword">var</span> six   = <span class="number">0.6</span></span><br><span class="line">[two - one == one, eight - six == two]</span><br></pre></td></tr></table></figure>
-<p>A    [true,true]</p>
-<p>B    [false,false]</p>
-<p>C    [true,false]</p>
-<p>D    other</p>
-<p>Is C.</p>
-<p>Javascript hasn’t ability of precise calculation,so that float number will be calculated in a imprecise mode.</p>
-<p>&gt; 0.8-0.6 = 0.20000000000000007</p>
-<p>Specially, 0.2-0.1 = 0.1</p>
-<h4 id="7-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#7-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="7.What is the result of this expression? (or multiple ones)"></a>7.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCase2</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(value) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Case A'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'B'</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Case B'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="literal">undefined</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'undefined'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Do not know!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">showCase2(<span class="built_in">String</span>(<span class="string">'A'</span>));</span><br></pre></td></tr></table></figure>
-<p>A    Case A</p>
-<p>B    Case B</p>
-<p>C    Do not know!</p>
-<p>D    undefined</p>
-<p>swith() method uses ‘===’ to judge condition,new String(A) construct a new string object, </p>
-<p>new String(‘a’) == ‘a’ but new String(‘a’) !== ‘a’.</p>
-<p>So this question’s answer is C</p>
-<p>let a = new String(“b”)</p>
-<p>typeof a === ‘object’</p>
-<p>8.What is the result of this expression? (or multiple ones)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCase2</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(value) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Case A'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'B'</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Case B'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="literal">undefined</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'undefined'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Do not know!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">showCase2(<span class="built_in">String</span>(<span class="string">'A'</span>));</span><br></pre></td></tr></table></figure>
-<p>A    Case A</p>
-<p>B    Case B</p>
-<p>C    Do not know!</p>
-<p>D    undefined</p>
-<p>Correct is A.</p>
-<p>String(‘A’) === ‘A’</p>
-<p>let a  = String(‘b’)</p>
-<p>typeof a === ‘string’</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2244,7 +2229,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">143</span>
+                    <span class="site-state-item-count">144</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2634,7 +2619,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">173</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">175</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
