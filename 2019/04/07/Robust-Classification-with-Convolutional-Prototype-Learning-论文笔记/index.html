@@ -95,7 +95,7 @@
 
 
   <meta name="description" content="Robust Classification with Convolutional Prototype Learning 一文是自动化所刘成林、殷飞老师组 Hong-Ming Yang 师兄的工作，CVPR 2018 录用。论文地址：https://arxiv.org/abs/1805.03438v1论文代码：https://github.com/YangHM/Convolutional-Prot">
-<meta name="keywords" content="note,machine learning,CNN,Paper,deep learning,cnn,prototype learning">
+<meta name="keywords" content="machine learning,note,CNN,Paper,deep learning,cnn,prototype learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Robust Classification with Convolutional Prototype Learning 论文笔记">
 <meta property="og:url" content="https://lsvih.com/2019/04/07/Robust-Classification-with-Convolutional-Prototype-Learning-论文笔记/index.html">
@@ -111,7 +111,7 @@
 <meta property="og:image" content="https://lsvih.com/images/15546342235530.jpg">
 <meta property="og:image" content="https://lsvih.com/images/15546342332247.jpg">
 <meta property="og:image" content="https://lsvih.com/images/15546342428370.jpg">
-<meta property="og:updated_time" content="2019-04-07T11:05:27.968Z">
+<meta property="og:updated_time" content="2019-04-08T01:36:59.196Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Robust Classification with Convolutional Prototype Learning 论文笔记">
 <meta name="twitter:description" content="Robust Classification with Convolutional Prototype Learning 一文是自动化所刘成林、殷飞老师组 Hong-Ming Yang 师兄的工作，CVPR 2018 录用。论文地址：https://arxiv.org/abs/1805.03438v1论文代码：https://github.com/YangHM/Convolutional-Prot">
@@ -543,7 +543,7 @@
 <h3 id="Generalized-CPL-with-prototype-loss-GCPL"><a href="#Generalized-CPL-with-prototype-loss-GCPL" class="headerlink" title="Generalized CPL with prototype loss(GCPL)"></a>Generalized CPL with prototype loss(GCPL)</h3><p>除了上述的 loss 之外，作者还提出了一种可以加入上述 loss 中的约束方法。作者给的理由是，由于 CPL 中的参数比较少（因为 CNN 的参数本来就不多），很容易过拟合，因此需要这么一个约束来防止 overfit 情况的发生：</p>
 <script type="math/tex; mode=display">p l ( ( x , y ) ; \theta , M ) = \left\| f ( x ) - m _ { y j } \right\| _ { 2 } ^ { 2 }</script><p>这个式子的意义是，计算在特征空间内样本的位置与对应分类的原型（且为距离最近的一个原型）位置的距离。利用这个约束，可以将前文提到的几种 loss 记为：</p>
 <script type="math/tex; mode=display">\operatorname { loss } ( ( x , y ) ; \theta , M ) = l ( ( x , y ) ; \theta , M ) + \lambda p l ( ( x , y ) ; \theta , M )</script><p>上式中的 $\lambda$ 作用是控制此约束的强硬程度。通过这个约束，可以让同类的原型间的距离更近，不同类的原型间的距离更远。与此同时，就能保证样本在特征空间中的类内距离更近，类间距离更远。</p>
-<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>基于以上方法，作者在 MNIST、CIFAR-10、OLHWDB 数据集上进行了实验。其中，OLHWDB 数据集是一个大规模的中文手写文字数据集，甚至比 ImageNet 还要大。（不过我觉得作者还是应该在 ImageNet 上进行实验，不然整个实验还是不够完整。另外，作者的实验虽然都很置信且完善，但是对比实验选择的 baseline 不够 hard，只用了最基本的 softmax 作为对比，没有考虑最近几年涌现出的各种 softmax 的进阶版。）</p>
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>基于以上方法，作者在 MNIST、CIFAR-10、OLHWDB 数据集上进行了实验。其中，OLHWDB 数据集是一个大规模的中文手写文字数据集，甚至比 ImageNet 还要大。（不过我觉得作者还是应该在 ImageNet 上进行实验，不然整个实验还是不够完整。另外，作者的实验虽然都很置信且完善，但是对比实验选择的 baseline 不够 solid，只用了最基本的 softmax 作为对比，没有考虑最近几年涌现出的各种 softmax 的进阶版。）</p>
 <h3 id="基本分类实验结果"><a href="#基本分类实验结果" class="headerlink" title="基本分类实验结果"></a>基本分类实验结果</h3><ul>
 <li><p>MNIST:<br><img src="/images/15546341823585.jpg" alt=""></p>
 </li>
@@ -618,9 +618,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/note/" rel="tag"># note</a>
-          
             <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+          
+            <a href="/tags/note/" rel="tag"># note</a>
           
             <a href="/tags/CNN/" rel="tag"># CNN</a>
           
