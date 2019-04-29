@@ -368,6 +368,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/18/JS写一遍K-means/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/05/18/JS写一遍K-means/" class="post-title-link" itemprop="url">JS写一遍K-means</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-05-18 06:54:00" itemprop="dateCreated datePublished" datetime="2016-05-18T06:54:00+08:00">2016-05-18</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>数据可视化用的highcharts.</p>
+<p>运行结果:</p>
+<p><img src="/images/pasted-75.png" alt="upload successful"></p>
+<p>在html头部加上highcharts的cdn<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://cdn.hcharts.cn/highcharts/highcharts.js"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>数据如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        name: 'Female',</span><br><span class="line">        color: 'rgba(223,83,83,.5)',</span><br><span class="line">        data: [[161.2, 51.6],[167.5, 59.0],[159.5, 49.2],</span><br><span class="line">        [157.0, 63.0],[155.8, 53.6]...]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name: 'Male',</span><br><span class="line">        color: 'rgba(119,152,191,.5)',</span><br><span class="line">        data:  [[174.0, 65.6],[175.3, 71.8],[193.5, 80.7],</span><br><span class="line">        [186.5, 72.6],[187.2, 78.8]...]</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>共有507个样本的身高与体重数据，标签分为男女。</p>
+<p>====代码====<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Dot_1, Dot_2, temp_group_1, temp_group_2 = <span class="keyword">new</span> <span class="built_in">Array</span>;</span><br><span class="line"><span class="keyword">var</span> temp_data</span><br><span class="line"><span class="keyword">var</span> dataTotel = hasntlabel_data.length;</span><br><span class="line"><span class="keyword">var</span> TempDot = [<span class="number">0</span>, <span class="number">0</span>];</span><br><span class="line">random_dot();</span><br><span class="line">initgroup();</span><br><span class="line">k_means()</span><br><span class="line"><span class="comment">//主要代码</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123; <span class="comment">//初始化</span></span><br><span class="line">  group_1 = [];</span><br><span class="line">  group_2 = [];</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"init"</span>) <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dataTotel; i++) &#123;</span><br><span class="line">    distance(Dot_1,hasntlabel_data[i])&gt;distance(Dot_2,hasntlabel_data[i])?</span><br><span class="line">    group_2.push(hasntlabel_data[i]):group_1.push(hasntlabel_data[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">random_dot</span>(<span class="params"></span>) </span>&#123; <span class="comment">//随机定两个点</span></span><br><span class="line">  Dot_1=[<span class="built_in">Math</span>.random()*<span class="number">7</span>,<span class="built_in">Math</span>.random()*<span class="number">7</span>]Dot_2=[<span class="built_in">Math</span>.random()*<span class="number">7</span>,<span class="built_in">Math</span>.random()*<span class="number">7</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">k_means</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(group_1.length + <span class="string">','</span> + group_2.length);</span><br><span class="line">  <span class="keyword">if</span> (!group_1.length || !group_2.length) &#123;</span><br><span class="line">    random_dot();</span><br><span class="line">    init();</span><br><span class="line">    k_means()</span><br><span class="line">  &#125;</span><br><span class="line">  data_1_x_sum = <span class="number">0</span>;</span><br><span class="line">  data_1_y_sum = <span class="number">0</span>;</span><br><span class="line">  data_2_x_sum = <span class="number">0</span>;</span><br><span class="line">  data_2_y_sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; group_1.length; i++) &#123;</span><br><span class="line">    data_1_x_sum += group_1[i][<span class="number">0</span>];</span><br><span class="line">    data_1_y_sum += group_1[i][<span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; group_2.length; i++) &#123;</span><br><span class="line">    data_2_x_sum += group_2[i][<span class="number">0</span>];</span><br><span class="line">    data_2_y_sum += group_2[i][<span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  TempDot[<span class="number">0</span>] = Dot_1;</span><br><span class="line">  TempDot[<span class="number">1</span>] = Dot_2;</span><br><span class="line">  Dot_1 = [(data_1_x_sum / group_1.length), (data_1_y_sum / group_1.length)];</span><br><span class="line">  Dot_2 = [(data_2_x_sum / group_2.length), (data_2_y_sum / group_2.length)];</span><br><span class="line">  <span class="keyword">if</span>(Dot_1[<span class="number">0</span>]==TempDot[<span class="number">0</span>][<span class="number">0</span>]&amp;&amp;Dot_1[<span class="number">1</span>]==TempDot[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">  &amp;&amp;Dot_2[<span class="number">0</span>]==TempDot[<span class="number">1</span>][<span class="number">0</span>]&amp;&amp;Dot_2[<span class="number">1</span>]==TempDot[<span class="number">1</span>][<span class="number">1</span>])&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  group_1 = [];</span><br><span class="line">  group_2 = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dataTotel; i++) &#123;</span><br><span class="line">    distance(Dot_1,hasntlabel_data[i])&gt;distance(Dot_2,hasntlabel_data[i])</span><br><span class="line">    ?group_2.push(hasntlabel_data[i]):group_1.push(hasntlabel_data[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  k_means()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params">e, f</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(<span class="built_in">Math</span>.pow((f[<span class="number">0</span>] - e[<span class="number">0</span>]), <span class="number">2</span>) + <span class="built_in">Math</span>.pow((f[<span class="number">1</span>] - e[<span class="number">1</span>]), <span class="number">2</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>当多次运行代码时，可以看到不同的结果</p>
+<p><img src="/images/pasted-76.png" alt="upload successful"></p>
+<p>对于K-means来说初始点对于结果的影响大，</p>
+<p>且收敛太慢，算法复杂度高O(nkt)，结果不一定是全局最优，只能保证局部最优。</p>
+<p>之后会学习与使用K-means++之类的增强的算法来进行聚类分析。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/17/使用Python-selenium轻松实现自动化操作/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1914,170 +2083,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/21/js获取url中的参数传值/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/04/21/js获取url中的参数传值/" class="post-title-link" itemprop="url">js获取url中的参数传值</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-04-21 06:57:00" itemprop="dateCreated datePublished" datetime="2016-04-21T06:57:00+08:00">2016-04-21</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>之前页面只需要传一个值，因此用的是比较简单的方法：获取页面url后以等号进行字符串分割，代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="built_in">window</span>.location.search;</span><br><span class="line"><span class="keyword">var</span> loc = url.substring(url.lastIndexOf(<span class="string">"="</span>) + <span class="number">1</span>, url.length);</span><br></pre></td></tr></table></figure></p>
-<p>但是这样只能获取最后一个等号所带的值，大多情况无法满足需要。因此需要一个能够获取全部参数部分（“?”之后的部分）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetRequest</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> url = location.search; <span class="comment">//获取url中"?"符后的字串   </span></span><br><span class="line">	<span class="keyword">var</span> theRequest = <span class="keyword">new</span> <span class="built_in">Object</span>();<span class="comment">//新建对象</span></span><br><span class="line">	<span class="keyword">if</span> (url.indexOf(<span class="string">"?"</span>) != <span class="number">-1</span>) &#123; <span class="comment">//排除没有参数的情况</span></span><br><span class="line">		<span class="keyword">var</span> str = url.substr(<span class="number">1</span>);<span class="comment">//抽取从第二个字符到结尾的字符子串</span></span><br><span class="line">		strs = str.split(<span class="string">"&amp;"</span>);<span class="comment">//将str以&amp;作为分隔符分成多个部分，以数组形式存在strs里</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; strs.length; i++) &#123;<span class="comment">//遍历strs数组</span></span><br><span class="line">			theRequest[strs[i].split(<span class="string">"="</span>)[<span class="number">0</span>]] = <span class="built_in">unescape</span>(strs[i].split(<span class="string">"="</span>)[<span class="number">1</span>]);<span class="comment">//使theRsquest[key] = value</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> theRequest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用方法：</p>
-<p>GetRequest()[key]</p>
-<p>例如 访问test.html?id=9&amp;type=cat</p>
-<p>在test.html里</p>
-<p>GetRequest()[“id”] //9</p>
-<p>GetRequest()[“type”] //cat</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2125,7 +2130,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-count">145</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2519,7 +2524,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">175</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">177</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -2600,7 +2609,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">京ICP备18029472号 </a>&copy; 2016 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-"></i>
   </span>

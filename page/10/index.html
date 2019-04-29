@@ -368,6 +368,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/08/使用node-express-mongoDB进行微信jssdk签名运算/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/10/08/使用node-express-mongoDB进行微信jssdk签名运算/" class="post-title-link" itemprop="url">使用node+express+mongoDB进行微信jssdk签名运算</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-10-08 06:03:45" itemprop="dateCreated datePublished" datetime="2016-10-08T06:03:45+08:00">2016-10-08</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>代码地址:<a href="https://github.com/lsvih/Wechat-JSSDK-API/blob/master/index.js" target="_blank" rel="noopener">https://github.com/lsvih/Wechat-JSSDK-API/blob/master/index.js</a></p>
+<p>如果需要在微信浏览器中调用微信的底层支持(如调用相机等),需要使用微信jssdk。为了使用微信jssdk，需要计算出所需要的相关签名信息。</p>
+<p>微信jssdk文档:<a href="http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html#.E6.A6.82.E8.BF.B0" target="_blank" rel="noopener">http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html#.E6.A6.82.E8.BF.B0</a> </p>
+<p>附录1为签名计算方法，大致过程如下:</p>
+<p>微信的签名需要使用jssdk_ticket生成，jssdk_ticket需要使用access_token生成。它们的生命周期都只有2个小时而且每天的请求数量是有限制的，因此需要在获取到access_token与ticket之后使用各种方法，如缓存，文件，数据库来将它存储住。</p>
+<p>根据业务需求，我使用node+express+mongoDB写了微信签名的计算.</p>
+<p>在需要使用jssdk的页面调用 xxxxx/wx?url=location.href就能计算出当前页面的微信jssdk签名等信息。</p>
+<p>可以使用微信的签名校验工具来测试签名是否正确</p>
+<p>微信签名校验工具:<a href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign" target="_blank" rel="noopener">https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign</a> </p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/03/在less中使用calc/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1927,178 +2092,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/07/15/使用canvas制作画图板/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/07/15/使用canvas制作画图板/" class="post-title-link" itemprop="url">使用canvas制作画图板</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-07-15 03:28:00" itemprop="dateCreated datePublished" datetime="2016-07-15T03:28:00+08:00">2016-07-15</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>原理：在canvas画布上捕捉鼠标（手指）动作，关注下笔、拖动、抬笔三个事件。</p>
-<p>下笔使用onmousedown/ontouchstart，拖动使用onmousemove/ontouchmove，抬笔使用onmouseup/ontouchend，同时需要检测笔尖是否移动到画布外（onmouseout）。</p>
-<p>在这三个事件被捕捉后，就能顺利的在画布上生成图像了。</p>
-<p>在画布上自由画画：</p>
-<p>Html:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"canvas"</span> <span class="attr">width</span>=<span class="string">"1024"</span> <span class="attr">height</span>=<span class="string">"665"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>Javascript:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>);</span><br><span class="line"><span class="keyword">var</span> can = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line"><span class="comment">//定义画布</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/****使用自由画笔****/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Brush</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">canvas.ontouchstart = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	<span class="keyword">var</span> sX = e.pageX - <span class="keyword">this</span>.offsetLeft;</span><br><span class="line">	<span class="keyword">var</span> sY = e.pageY - <span class="keyword">this</span>.offsetTop;</span><br><span class="line">	<span class="comment">//获取起始坐标</span></span><br><span class="line">	can.beginPath();</span><br><span class="line">	can.moveTo(sX, sY);</span><br><span class="line">	status = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//画笔移动的时候</span></span><br><span class="line">canvas.ontouchmove = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	<span class="keyword">var</span> eX = e.pageX - <span class="keyword">this</span>.offsetLeft;</span><br><span class="line">	<span class="keyword">var</span> eY = e.pageY - <span class="keyword">this</span>.offsetTop;</span><br><span class="line">	<span class="keyword">if</span>(status == <span class="number">1</span>) &#123;</span><br><span class="line">		can.lineTo(eX, eY);</span><br><span class="line">		can.stroke();</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//画笔抬起的时候</span></span><br><span class="line">canvas.ontouchend = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	can.closePath();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">Brush();</span><br></pre></td></tr></table></figure>
-<p>通过以上代码可以实现在画布上自由绘画。</p>
-<p>用按钮触发以上函数可实现选择“自由画笔工具”绘画。</p>
-<p>相似的，画直线、画圆形、画矩形也是如此：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/****画直线****/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Line</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">canvas.ontouchstart = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	sX = e.pageX - <span class="keyword">this</span>.offsetLeft;</span><br><span class="line">	sY = e.pageY - <span class="keyword">this</span>.offsetTop;</span><br><span class="line">	can.beginPath();</span><br><span class="line">	can.moveTo(sX, sY);</span><br><span class="line">&#125;</span><br><span class="line">canvas.ontouchmove = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//画笔抬起时，画笔位置为终点</span></span><br><span class="line">canvas.ontouchend = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	<span class="keyword">var</span> eX = e.pageX - <span class="keyword">this</span>.offsetLeft;</span><br><span class="line">	<span class="keyword">var</span> eY = e.pageY - <span class="keyword">this</span>.offsetTop;</span><br><span class="line">	can.lineTo(eX, eY);</span><br><span class="line">	can.closePath();</span><br><span class="line">	can.stroke();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/****画空心圆形****/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Arc</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">canvas.ontouchstart = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	sX = e.pageX - <span class="keyword">this</span>.offsetLeft;</span><br><span class="line">	sY = e.pageY - <span class="keyword">this</span>.offsetTop;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//画空心圆，鼠标抬起时，当前画笔位置为外圆结束点</span></span><br><span class="line">canvas.ontouchend = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	<span class="keyword">var</span> eX = e.pageX - <span class="keyword">this</span>.offsetLeft;</span><br><span class="line">	<span class="keyword">var</span> eY = e.pageY - <span class="keyword">this</span>.offsetTop;</span><br><span class="line">	<span class="keyword">var</span> dX = eX - sX</span><br><span class="line">	<span class="keyword">var</span> dY = eY - sY;</span><br><span class="line"><span class="keyword">var</span> r = <span class="built_in">Math</span>.sqrt(<span class="built_in">Math</span>.pow(dX, <span class="number">2</span>) + <span class="built_in">Math</span>.pow(dY, <span class="number">2</span>)); </span><br><span class="line">	<span class="comment">//计算出半径</span></span><br><span class="line">	can.beginPath();</span><br><span class="line">	can.arc(sX, sY, r, <span class="number">0</span>, <span class="number">360</span>, <span class="literal">false</span>);</span><br><span class="line">	can.closePath();</span><br><span class="line">	can.stroke();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/****画矩形****/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Rect</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">canvas.ontouchstart = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	sX = e.pageX - <span class="keyword">this</span>.offsetLeft;</span><br><span class="line">	sY = e.pageY - <span class="keyword">this</span>.offsetTop;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//画空心矩形，画笔抬起时，当前画笔位置为矩形的右下角</span></span><br><span class="line">canvas.ontouchend = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	<span class="keyword">var</span> eX = e.pageX - <span class="keyword">this</span>.offsetLeft;</span><br><span class="line">	<span class="keyword">var</span> eY = e.pageY - <span class="keyword">this</span>.offsetTop;</span><br><span class="line">	<span class="keyword">var</span> w = eX - sX; <span class="comment">//矩形的宽</span></span><br><span class="line">	<span class="keyword">var</span> h = eY - sY; <span class="comment">//矩形的高</span></span><br><span class="line">	can.strokeRect(sX, sY, w, h);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>通过以上代码可以实现简单的画图板。但是会产生一个问题：画矩形与圆形时 在画笔移动时，画布上不会产生相应的图形，只有在画笔抬起时才会产生图像，所以在画画的时候感知不到自己纠结画出的图形是怎样的，这样的体验非常差。因此，使用双画布来解决这个问题，即在本来的画布上放一个同样大小的画布，移动画笔的时候在临时画布上不断地清除、绘制图像就能使用户感知到画画的过程。</p>
-<p>临时画布需要设置position:absolute与z-index来与主画布重叠。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/****清除临时画布的函数****/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clearContext</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    can_bak.clearRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1024</span>, <span class="number">665</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>例如画圆形时，加上<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">canvas_bak.ontouchmove = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	clearContext();</span><br><span class="line">	<span class="keyword">var</span> eX = e.pageX - <span class="keyword">this</span>.offsetLeft;</span><br><span class="line">	<span class="keyword">var</span> eY = e.pageY - <span class="keyword">this</span>.offsetTop;</span><br><span class="line">	<span class="keyword">var</span> dX = eX - sX</span><br><span class="line">	<span class="keyword">var</span> dY = eY - sY;</span><br><span class="line"><span class="keyword">var</span> r = <span class="built_in">Math</span>.sqrt(<span class="built_in">Math</span>.pow(dX, <span class="number">2</span>) + <span class="built_in">Math</span>.pow(dY, <span class="number">2</span>));</span><br><span class="line">	can_bak.beginPath();</span><br><span class="line">	can_bak.arc(sX, sY, r, <span class="number">0</span>, <span class="number">360</span>, <span class="literal">false</span>);</span><br><span class="line">	can_bak.closePath();</span><br><span class="line">	can_bak.stroke();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在ontouchend中加上clearContext();即可。</p>
-<p>最终效果：</p>
-<p><img src="/images/pasted-86.png" alt="upload successful"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2146,7 +2139,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-count">145</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2540,7 +2533,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">175</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">177</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -2621,7 +2618,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">京ICP备18029472号 </a>&copy; 2016 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-"></i>
   </span>

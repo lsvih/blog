@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lsvih.com/"/>
-  <updated>2019-04-08T01:36:59.196Z</updated>
+  <updated>2019-04-29T04:03:39.628Z</updated>
   <id>https://lsvih.com/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 PyTorch 在 MNIST 数据集上进行逻辑回归</title>
+    <link href="https://lsvih.com/2019/04/29/logistic-regression-on-mnist-with-pytorch/"/>
+    <id>https://lsvih.com/2019/04/29/logistic-regression-on-mnist-with-pytorch/</id>
+    <published>2019-04-29T04:02:00.000Z</published>
+    <updated>2019-04-29T04:03:39.628Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>逻辑回归（Logistic Regression）</strong>既可以用来描述数据，也可以用来解释数据中各个二值变量、类别变量、顺序变量、距离变量、比率变量之间的关系[1]。下图展示了<strong>逻辑回归</strong>与<strong>线性回归</strong>的区别。</p><p><img src="https://cdn-images-1.medium.com/max/2000/1*xFhICZgdr2VEZQ-C4FLUEA.jpeg" alt="Taken from [https://www.sciencedirect.com/topics/nursing-and-health-professions/logistic-regression-analysis](https://www.sciencedirect.com/topics/nursing-and-health-professions/logistic-regression-analysis)"></p><p>本文将展示如何使用 PyTorch 编写逻辑回归模型。<br><a id="more"></a><br>我们将尝试在 MNIST 数据集上解决分类问题。首先，导入我们所需要的所有库：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch.autograd <span class="keyword">import</span> Variable</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">import</span> torchvision.datasets <span class="keyword">as</span> dsets</span><br></pre></td></tr></table></figure><p>在创建模型前，我喜欢列一个如下的步骤表。PyTorch 官网[2]上也有这个步骤列表：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一步：加载数据集</span></span><br><span class="line"><span class="comment"># 第二步：使数据集可迭代</span></span><br><span class="line"><span class="comment"># 第三步：创建模型类</span></span><br><span class="line"><span class="comment"># 第四步：将模型类实例化</span></span><br><span class="line"><span class="comment"># 第五步：实例化 Loss 类</span></span><br><span class="line"><span class="comment"># 第六步：实例化优化器类</span></span><br><span class="line"><span class="comment"># 第七步：训练模型</span></span><br></pre></td></tr></table></figure><p>下面我们将一步步完成上述的步骤。</p><h3 id="加载数据集"><a href="#加载数据集" class="headerlink" title="加载数据集"></a>加载数据集</h3><p>我们使用 <strong>torchvision.datasets</strong> 来加载数据集。这个库中包含了几乎全部的用于机器学习的流行数据集。在[3]中可以看到完整的数据集列表。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_dataset = dsets.MNIST(root=<span class="string">'./data'</span>, train=<span class="keyword">True</span>, transform=transforms.ToTensor(), download=<span class="keyword">False</span>)</span><br><span class="line">test_dataset = dsets.MNIST(root=<span class="string">'./data'</span>, train=<span class="keyword">False</span>, transform=transforms.ToTensor())</span><br></pre></td></tr></table></figure><h3 id="使数据集可迭代"><a href="#使数据集可迭代" class="headerlink" title="使数据集可迭代"></a>使数据集可迭代</h3><p>我们利用 DataLoader 类，使用以下代码来让我们的数据集可被迭代：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=<span class="keyword">True</span>)</span><br><span class="line">test_loader = torch.utils.data.DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure><h3 id="创建模型类"><a href="#创建模型类" class="headerlink" title="创建模型类"></a>创建模型类</h3><p>现在，我们将创建一个用来定义逻辑回归模型结构的类：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LogisticRegression</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, input_dim, output_dim)</span>:</span></span><br><span class="line">        super(LogisticRegression, self).__init__()</span><br><span class="line">        self.linear = torch.nn.Linear(input_dim, output_dim)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        outputs = self.linear(x)</span><br><span class="line">        <span class="keyword">return</span> outputs</span><br></pre></td></tr></table></figure><h3 id="将模型类实例化"><a href="#将模型类实例化" class="headerlink" title="将模型类实例化"></a>将模型类实例化</h3><p>在将模型类实例化之前，我们先初始化如下所示的参数：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">batch_size = <span class="number">100</span></span><br><span class="line">n_iters = <span class="number">3000</span></span><br><span class="line">epochs = n_iters / (len(train_dataset) / batch_size)</span><br><span class="line">input_dim = <span class="number">784</span></span><br><span class="line">output_dim = <span class="number">10</span></span><br><span class="line">lr_rate = <span class="number">0.001</span></span><br></pre></td></tr></table></figure><p>然后，就能初始化我们的逻辑回归模型了：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = LogisticRegression(input_dim, output_dim)</span><br></pre></td></tr></table></figure><h3 id="实例化-Loss-类"><a href="#实例化-Loss-类" class="headerlink" title="实例化 Loss 类"></a>实例化 Loss 类</h3><p>我们使用交叉熵损失来计算 loss：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">criterion = torch.nn.CrossEntropyLoss() <span class="comment"># 计算 softmax 分布之上的交叉熵损失</span></span><br></pre></td></tr></table></figure><h3 id="实例化优化器类"><a href="#实例化优化器类" class="headerlink" title="实例化优化器类"></a>实例化优化器类</h3><p>优化器（optimizer）就是我们即将使用的学习算法。在本例中，我们将使用随机梯度下降（SGD）作为优化器：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer = torch.optim.SGD(model.parameters(), lr=lr_rate)</span><br></pre></td></tr></table></figure><h3 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h3><p>这就是最后一步了。我们将用以下的代码来训练模型：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">iter = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(int(epochs)):</span><br><span class="line">    <span class="keyword">for</span> i, (images, labels) <span class="keyword">in</span> enumerate(train_loader):</span><br><span class="line">        images = Variable(images.view(<span class="number">-1</span>, <span class="number">28</span> * <span class="number">28</span>))</span><br><span class="line">        labels = Variable(labels)</span><br><span class="line"></span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        outputs = model(images)</span><br><span class="line">        loss = criterion(outputs, labels)</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">        iter+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> iter%<span class="number">500</span>==<span class="number">0</span>:</span><br><span class="line">            <span class="comment"># 计算准确率</span></span><br><span class="line">            correct = <span class="number">0</span></span><br><span class="line">            total = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> images, labels <span class="keyword">in</span> test_loader:</span><br><span class="line">                images = Variable(images.view(<span class="number">-1</span>, <span class="number">28</span>*<span class="number">28</span>))</span><br><span class="line">                outputs = model(images)</span><br><span class="line">                _, predicted = torch.max(outputs.data, <span class="number">1</span>)</span><br><span class="line">                total+= labels.size(<span class="number">0</span>)</span><br><span class="line">                <span class="comment"># 如果用的是 GPU，则要把预测值和标签都取回 CPU，才能用 Python 来计算</span></span><br><span class="line">                correct+= (predicted == labels).sum()</span><br><span class="line">            accuracy = <span class="number">100</span> * correct/total</span><br><span class="line">            print(<span class="string">"Iteration: &#123;&#125;. Loss: &#123;&#125;. Accuracy: &#123;&#125;."</span>.format(iter, loss.item(), accuracy))</span><br></pre></td></tr></table></figure><p>在训练时，这个模型只需要进行 3000 次迭代就能达到 <strong>82%</strong> 的准确率。你可以试着继续调整一下参数，看看还能不能把准确率再调高一点。</p><p>如果你想加深对在 PyTorch 中实现逻辑回归的理解，可以把上面的模型应用于任何分类问题。比如，你可以训练一个逻辑回归模型来对你最喜爱的<strong>漫威英雄</strong>的图像做个分类（有一半已经化灰了，所以做分类应该不是很难）:)</p><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>[1] <a href="https://www.statisticssolutions.com/what-is-logistic-regression/" target="_blank" rel="noopener">https://www.statisticssolutions.com/what-is-logistic-regression/</a></p><p>[2] <a href="https://pytorch.org/tutorials/beginner/blitz/neural_networks_tutorial.html#sphx-glr-beginner-blitz-neural-networks-tutorial-py" target="_blank" rel="noopener">https://pytorch.org/tutorials/beginner/blitz/neural_networks_tutorial.html#sphx-glr-beginner-blitz-neural-networks-tutorial-py</a></p><p>[3] <a href="https://pytorch.org/docs/stable/torchvision/datasets.html" target="_blank" rel="noopener">https://pytorch.org/docs/stable/torchvision/datasets.html</a></p><blockquote><p>掘金地址：<a href="https://juejin.im/post/5cc66d946fb9a032286173a7" target="_blank" rel="noopener">https://juejin.im/post/5cc66d946fb9a032286173a7</a> </p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;逻辑回归（Logistic Regression）&lt;/strong&gt;既可以用来描述数据，也可以用来解释数据中各个二值变量、类别变量、顺序变量、距离变量、比率变量之间的关系[1]。下图展示了&lt;strong&gt;逻辑回归&lt;/strong&gt;与&lt;strong&gt;线性回归&lt;/strong&gt;的区别。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn-images-1.medium.com/max/2000/1*xFhICZgdr2VEZQ-C4FLUEA.jpeg&quot; alt=&quot;Taken from [https://www.sciencedirect.com/topics/nursing-and-health-professions/logistic-regression-analysis](https://www.sciencedirect.com/topics/nursing-and-health-professions/logistic-regression-analysis)&quot;&gt;&lt;/p&gt;
+&lt;p&gt;本文将展示如何使用 PyTorch 编写逻辑回归模型。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
+    
+    
+      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
+    
+      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
+    
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="pytorch" scheme="https://lsvih.com/tags/pytorch/"/>
+    
+      <category term="MNIST" scheme="https://lsvih.com/tags/MNIST/"/>
+    
+  </entry>
   
   <entry>
     <title>Robust Classification with Convolutional Prototype Learning 论文笔记</title>
@@ -38,9 +70,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
-    
       <category term="note" scheme="https://lsvih.com/tags/note/"/>
+    
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
     
       <category term="CNN" scheme="https://lsvih.com/tags/CNN/"/>
     
@@ -72,9 +104,9 @@
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
-    
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
+    
+      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
       <category term="Front End" scheme="https://lsvih.com/tags/Front-End/"/>
     
@@ -132,9 +164,9 @@
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
-    
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
+    
+      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
       <category term="Ionic" scheme="https://lsvih.com/tags/Ionic/"/>
     
@@ -165,11 +197,11 @@
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
+      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
-      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
+      <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
     
       <category term="DNS" scheme="https://lsvih.com/tags/DNS/"/>
     
@@ -200,9 +232,9 @@
     
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
-      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
-    
       <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
+    
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
     
   </entry>
   
@@ -227,9 +259,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
-    
       <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
+    
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
     
       <category term="Slide" scheme="https://lsvih.com/tags/Slide/"/>
     
@@ -258,9 +290,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
-    
       <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
+    
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
     
       <category term="matrix" scheme="https://lsvih.com/tags/matrix/"/>
     
@@ -298,13 +330,13 @@
     
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
-      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
-    
       <category term="note" scheme="https://lsvih.com/tags/note/"/>
     
       <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
       <category term="algorithm" scheme="https://lsvih.com/tags/algorithm/"/>
+    
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
     
       <category term="matrix" scheme="https://lsvih.com/tags/matrix/"/>
     
@@ -357,9 +389,9 @@
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
-    
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
+    
+      <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
     
       <category term="python" scheme="https://lsvih.com/tags/python/"/>
     
@@ -387,9 +419,9 @@
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
-    
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
+    
+      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
       <category term="PHP" scheme="https://lsvih.com/tags/PHP/"/>
     
@@ -521,9 +553,9 @@
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
-    
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
+    
+      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
       <category term="Node.js" scheme="https://lsvih.com/tags/Node-js/"/>
     
@@ -642,8 +674,6 @@
     
       <category term="iOS" scheme="https://lsvih.com/tags/iOS/"/>
     
-      <category term="React Native" scheme="https://lsvih.com/tags/React-Native/"/>
-    
       <category term="Juejin" scheme="https://lsvih.com/tags/Juejin/"/>
     
       <category term="Flutter" scheme="https://lsvih.com/tags/Flutter/"/>
@@ -654,45 +684,7 @@
     
       <category term="Dart" scheme="https://lsvih.com/tags/Dart/"/>
     
-  </entry>
-  
-  <entry>
-    <title>为 Python Web App 编写 Dockerfiles</title>
-    <link href="https://lsvih.com/2018/03/19/%E4%B8%BA-Python-Web-App-%E7%BC%96%E5%86%99-Dockerfiles/"/>
-    <id>https://lsvih.com/2018/03/19/为-Python-Web-App-编写-Dockerfiles/</id>
-    <published>2018-03-19T09:22:00.000Z</published>
-    <updated>2019-01-30T00:39:04.630Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://lsvih.com/images/pasted-311.png" alt="upload successful"></p><h3 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h3><p>本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Python 应用的例子。以下为本指南的内容摘要：</p><ul><li>使用合适的基础镜像（开发环境使用 debian，生产环境使用 alpine）。</li><li>在开发时使用 <code>gunicorn</code> 进行热加载。</li><li>优化 Docker 的 cache layer（缓存层）—— 按照正确的顺序使用命令，仅在必要时运行 <code>pip install</code>。</li><li>使用 <code>flask</code> 的 static 及 template 目录部署静态文件（比如 React、Vue、Angular 生成的 bundle）。</li><li>使用 <code>alpine</code> 进行生产环境下的多级构建，减少最终镜像文件的大小。</li><li>#彩蛋 — 在开发时可以用 gunicorn 的 <code>--reload</code> 与 <code>--reload_extra_files</code> 监视文件（包括 html、css 及 js）的修改。</li></ul><p>如果你需要以上步骤的代码，请参考 <a href="https://github.com/praveenweb/python-docker" target="_blank" rel="noopener">GitHub repo</a>.</p><a id="more"></a><h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><ol><li>简单的 Dockerfile 与 .dockerignore</li><li>使用 gunicorn 实现热加载</li><li>运行一个单文件 python 脚本</li><li>部署静态文件</li><li>生产环境中的直接构建</li><li>生产环境中的多级构建</li></ol><p>假设我们有一个名为 python-app 的应用，为其准备一个简单的目录结构。在顶级目录下，包含 <code>Dockerfile</code> 以及 <code>src</code> 文件夹。</p><p>python app 的源码就存放在 <code>src</code> 目录中，app 的依赖关系保存在 <code>requirements.txt</code> 里。为了简洁起见，我们假设 server.py 定义了一个运行于 8080 端口的 flask 服务。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python-app</span><br><span class="line">├── Dockerfile</span><br><span class="line">└── src</span><br><span class="line">    └── server.py</span><br><span class="line">    └── requirements.txt</span><br></pre></td></tr></table></figure><h3 id="1-简单的-Dockerfile-样例"><a href="#1-简单的-Dockerfile-样例" class="headerlink" title="1. 简单的 Dockerfile 样例"></a>1. 简单的 Dockerfile 样例</h3><figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 app 目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 安装 app 依赖</span></span></span><br><span class="line"><span class="bash">COPY src/requirements.txt ./</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">RUN pip install -r requirements.txt</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 打包 app 源码</span></span></span><br><span class="line"><span class="bash">COPY src /app</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">EXPOSE 8080</span></span><br><span class="line"><span class="bash">CMD [ <span class="string">"python"</span>, <span class="string">"server.py"</span> ]</span></span><br></pre></td></tr></table></figure><p>我们将使用最新版本的 <code>python:3.6</code> 作为基础镜像。</p><p>在构建镜像时，docker 会获取所有位于 <code>context</code> 目录下的文件。为了提高 docker 构建的速度，可以在 context 目录中添加 <code>.dockerignore</code> 文件来排除不需要的文件与目录。</p><p>通常，你的 <code>.dockerignore</code> 文件件应该如下所示：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.git</span><br><span class="line">__pycache__</span><br><span class="line">*.pyc</span><br><span class="line">*.pyo</span><br><span class="line">*.pyd</span><br><span class="line">.Python</span><br><span class="line">env</span><br></pre></td></tr></table></figure><p>构建并运行此镜像：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> python-docker</span><br><span class="line">$ docker build -t python-docker-dev .</span><br><span class="line">$ docker run --rm -it -p 8080:8080 python-docker-dev</span><br></pre></td></tr></table></figure><p>你将能在 <code>[http://localhost:8080](http://localhost:8080.)</code> 访问此 app。使用 <code>Ctrl+C</code> 组合键可以退出程序。</p><p>现在，假设你希望在每次修改代码（比如在本地部署时）时都运行以上代码，那么你需要在启停 python 服务时将代码源文件挂载到容器中。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --rm -it -p 8080:8080 -v $(pwd):/app \</span><br><span class="line">             python-docker-dev bash</span><br><span class="line">root@id:/app# python src/server.py</span><br></pre></td></tr></table></figure><h3 id="2-使用-Gunicorn-实现热更新"><a href="#2-使用-Gunicorn-实现热更新" class="headerlink" title="2. 使用 Gunicorn 实现热更新"></a>2. 使用 Gunicorn 实现热更新</h3><p><a href="http://gunicorn.org" target="_blank" rel="noopener">gunicorn</a> 是一款运行于 Unix 下的 Python WSGI HTTP server，使用的是 pre-fork worker 模型（注，Arbiter 是 gunicorn 的 master，因此称 gunicorn 为 pre-fork worker）。你可以使用各种各样的选项来配置 gunicorn。向 gunicorn 命令中传入 <code>--reload</code> 或是将 <code>reload</code> 写入配置文件，就可以让 gunicorn 在有文件发生变化时自动重启 python 服务。</p><figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 app 目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 安装 app 依赖</span></span></span><br><span class="line"><span class="bash">COPY gunicorn_app/requirements.txt ./</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">RUN pip install -r requirements.txt</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 打包 app 源码</span></span></span><br><span class="line"><span class="bash">COPY gunicorn_app /app</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">EXPOSE 8080</span></span><br></pre></td></tr></table></figure><p>我们将构建镜像并运行 gunicorn，以便在 <code>app</code> 目录下文件发生变动时对代码进行 rebuild。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cd python-docker</span><br><span class="line">$ docker build -t python-hot-reload-docker .</span><br><span class="line">$ docker run --rm -it -p 8080:8080 -v $(pwd):/app \</span><br><span class="line">             python-hot-reload-docker bash</span><br><span class="line">root@id:/app# gunicorn --config ./gunicorn_app/conf/gunicorn_config.py gunicorn_app:app</span><br></pre></td></tr></table></figure><p>一切在 <code>app</code> 目录下 python 文件的更改都会触发 rebuild，发生的变化都能在 <code>[http://localhost:8080](http://localhost:8080.)</code> 上实时展示。请注意，我们已经将文件挂载到了容器中，因此 gunicorn 才能正常工作。</p><p><strong>其它格式的文件怎么办？</strong> 如果你希望 gunicorn 在监视代码变动的时候也监视其它类型的文件（如 template、view 之类的文件），可以在 <code>reload_extra_files</code> 参数中进行指定。此参数接受数组形式的多个文件名。</p><h3 id="3-运行一个单文件-python-脚本"><a href="#3-运行一个单文件-python-脚本" class="headerlink" title="3. 运行一个单文件 python 脚本"></a>3. 运行一个单文件 python 脚本</h3><p>你可以通过 docker run，使用 python 镜像来简单地运行 python 单文件脚本。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --rm --name single-python-script -v <span class="string">"<span class="variable">$PWD</span>"</span>:/app -w /app python:3 python your-daemon-or-script.py</span><br></pre></td></tr></table></figure><p>你也可以给脚本传递一些参数。在上面的例子中，我们就已经挂载了当前工作目录，也就是说可以将目录中的文件当做参数传递。</p><h3 id="4-部署静态文件"><a href="#4-部署静态文件" class="headerlink" title="4. 部署静态文件"></a>4. 部署静态文件</h3><p>上面的 Dockerfile 假定了你是使用 Python 运行一个 API 服务器。如果你想用 Python 为 React.js、Vue.js、Angular.js app 提供服务，可以使用 Flask。Flask 为渲染静态文件提供了一种便捷的方式：html 文件放在 <code>templates</code> 目录中，css、js 及图片放在 <code>static</code> 目录中。</p><p>请<a href="https://github.com/praveenweb/python-docker/tree/master/static_app" target="_blank" rel="noopener">在此 repo</a> 中查看简单的 hello world 静态 app 的目录结构。</p><figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 app 目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 安装 app 依赖</span></span></span><br><span class="line"><span class="bash">COPY static_app/requirements.txt ./</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">RUN pip install -r requirements.txt</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 打包 app 源码</span></span></span><br><span class="line"><span class="bash">COPY static_app /app</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">EXPOSE 8080</span></span><br><span class="line"><span class="bash">CMD [<span class="string">"python"</span>,<span class="string">"server.py"</span>]</span></span><br></pre></td></tr></table></figure><p>In your server.py,</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    app.run(host=<span class="string">'0.0.0.0'</span>)</span><br></pre></td></tr></table></figure><p>请注意，host 需要设置为 <code>0.0.0.0</code> - 这样可以让你的服务在容器外被访问。如果不设置此参数，host 会默认设为 <code>localhost</code>。</p><h3 id="5-生产环境中的直接构建"><a href="#5-生产环境中的直接构建" class="headerlink" title="5. 生产环境中的直接构建"></a>5. 生产环境中的直接构建</h3><figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.6</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 app 目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 安装 app 依赖</span></span></span><br><span class="line"><span class="bash">COPY gunicorn_app/requirements.txt ./</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">RUN pip install -r requirements.txt</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 打包 app 源码</span></span></span><br><span class="line"><span class="bash">COPY . /app</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">EXPOSE 8080</span></span><br><span class="line"><span class="bash">CMD [<span class="string">"gunicorn"</span>, <span class="string">"--config"</span>, <span class="string">"./gunicorn_app/conf/gunicorn_config.py"</span>, <span class="string">"gunicorn_app:app"</span>]</span></span><br></pre></td></tr></table></figure><p>构建并运行这个一体化镜像：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> python-docker</span><br><span class="line">$ docker build -t python-docker-prod .</span><br><span class="line">$ docker run --rm -it -p 8080:8080 python-docker-prod</span><br></pre></td></tr></table></figure><p>由于底层为 Debian，构建完成后镜像约为 700MB（具体数值取决于你的源码）。下面探讨如何减小这个文件的大小。</p><h3 id="6-生产环境中的多级构建"><a href="#6-生产环境中的多级构建" class="headerlink" title="6. 生产环境中的多级构建"></a>6. 生产环境中的多级构建</h3><p>使用多级构建时，将在 Dockerfile 中使用多个 <code>FROM</code> 语句，但最后仅会使用最终阶段构建的文件。这样，得到的镜像将仅包含生产服务器中所需的依赖，理想情况下文件将非常小。</p><p>当你需要使用依赖于系统的模块或需要编译的模块时，这种构建模式十分有用。比如 <code>pycrypto</code> 和 <code>numpy</code> 就很适合这种方法。</p><figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ---- 基础 python 镜像 ----</span></span><br><span class="line"><span class="keyword">FROM</span> python:<span class="number">3.6</span> AS base</span><br><span class="line"><span class="comment"># 创建 app 目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># ---- 依赖 ----</span></span></span><br><span class="line"><span class="bash">FROM base AS dependencies  </span></span><br><span class="line"><span class="bash">COPY gunicorn_app/requirements.txt ./</span></span><br><span class="line"><span class="bash"><span class="comment"># 安装 app 依赖</span></span></span><br><span class="line"><span class="bash">RUN pip install -r requirements.txt</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># ---- 复制文件并 build ----</span></span></span><br><span class="line"><span class="bash">FROM dependencies AS build  </span></span><br><span class="line"><span class="bash">WORKDIR /app</span></span><br><span class="line"><span class="bash">COPY . /app</span></span><br><span class="line"><span class="bash"><span class="comment"># 在需要时进行 Build 或 Compile</span></span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># --- 使用 Alpine 发布 ----</span></span></span><br><span class="line"><span class="bash">FROM python:3.6-alpine3.7 AS release  </span></span><br><span class="line"><span class="bash"><span class="comment"># 创建 app 目录</span></span></span><br><span class="line"><span class="bash">WORKDIR /app</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash">COPY --from=dependencies /app/requirements.txt ./</span></span><br><span class="line"><span class="bash">COPY --from=dependencies /root/.cache /root/.cache</span></span><br><span class="line"><span class="bash"></span></span><br><span class="line"><span class="bash"><span class="comment"># 安装 app 依赖</span></span></span><br><span class="line"><span class="bash">RUN pip install -r requirements.txt</span></span><br><span class="line"><span class="bash">COPY --from=build /app/ ./</span></span><br><span class="line"><span class="bash">CMD [<span class="string">"gunicorn"</span>, <span class="string">"--config"</span>, <span class="string">"./gunicorn_app/conf/gunicorn_config.py"</span>, <span class="string">"gunicorn_app:app"</span>]</span></span><br></pre></td></tr></table></figure><p>使用上面的方法，用 Alpine 构建的镜像文件大小约 90MB，比之前少了 8 倍。使用 <code>alpine</code> 版本进行构建能有效减小镜像的大小。</p><p><strong>注意：</strong>上面的 Dockerfiles 是为 <code>python 3</code> 编写的，你可以只做少数修改就能将其改为 <code>python 2</code> 版本。如果你要部署的是 <code>django</code> 应用，也应该能通过少数改动就做出可部署于生产环境的 Dockerfiles。</p><p>如果你对前面的方法有任何建议，或希望看到别的用例，请告知作者。</p><p>欢迎加入 <a href="https://www.reddit.com/r/flask/comments/80css4/how_to_write_dockerfiles_for_python_web_apps/" target="_blank" rel="noopener">Reddit</a> 或 <a href="https://news.ycombinator.com/item?id=16471630" target="_blank" rel="noopener">HackerNews</a> 参与讨论 :)</p><hr><p>此外，你是否试过将 python web app 部署在 Hasura 上呢？这其实是将 python 应用部署于 HTTPS 域名的最快的方法（仅需使用 git push）。尝试使用 <a href="https://hasura.io/hub/projects/hasura/hello-python-flask" target="_blank" rel="noopener">https://hasura.io/hub/projects/hasura/hello-python-flask</a> 的模板快速入门吧！Hasura 中所有的项目模板都带有 Dockerfile 与 Kubernetes 标准文件，你可以自由进行定义。</p><blockquote><p>本文发布于掘金 <a href="https://juejin.im/post/5aaf8038518825557e783285" target="_blank" rel="noopener">https://juejin.im/post/5aaf8038518825557e783285</a></p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;https://lsvih.com/images/pasted-311.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;TL-DR&quot;&gt;&lt;a href=&quot;#TL-DR&quot; class=&quot;headerlink&quot; title=&quot;TL;DR&quot;&gt;&lt;/a&gt;TL;DR&lt;/h3&gt;&lt;p&gt;本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Python 应用的例子。以下为本指南的内容摘要：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;使用合适的基础镜像（开发环境使用 debian，生产环境使用 alpine）。&lt;/li&gt;
-&lt;li&gt;在开发时使用 &lt;code&gt;gunicorn&lt;/code&gt; 进行热加载。&lt;/li&gt;
-&lt;li&gt;优化 Docker 的 cache layer（缓存层）—— 按照正确的顺序使用命令，仅在必要时运行 &lt;code&gt;pip install&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;使用 &lt;code&gt;flask&lt;/code&gt; 的 static 及 template 目录部署静态文件（比如 React、Vue、Angular 生成的 bundle）。&lt;/li&gt;
-&lt;li&gt;使用 &lt;code&gt;alpine&lt;/code&gt; 进行生产环境下的多级构建，减少最终镜像文件的大小。&lt;/li&gt;
-&lt;li&gt;#彩蛋 — 在开发时可以用 gunicorn 的 &lt;code&gt;--reload&lt;/code&gt; 与 &lt;code&gt;--reload_extra_files&lt;/code&gt; 监视文件（包括 html、css 及 js）的修改。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果你需要以上步骤的代码，请参考 &lt;a href=&quot;https://github.com/praveenweb/python-docker&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub repo&lt;/a&gt;.&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
-    
-    
-      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
-    
-      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
-    
-      <category term="Docker" scheme="https://lsvih.com/tags/Docker/"/>
-    
-      <category term="Python" scheme="https://lsvih.com/tags/Python/"/>
-    
-      <category term="Gunicorn" scheme="https://lsvih.com/tags/Gunicorn/"/>
+      <category term="React Native" scheme="https://lsvih.com/tags/React-Native/"/>
     
   </entry>
   

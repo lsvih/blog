@@ -368,6 +368,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/21/js获取url中的参数传值/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/04/21/js获取url中的参数传值/" class="post-title-link" itemprop="url">js获取url中的参数传值</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-04-21 06:57:00" itemprop="dateCreated datePublished" datetime="2016-04-21T06:57:00+08:00">2016-04-21</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>之前页面只需要传一个值，因此用的是比较简单的方法：获取页面url后以等号进行字符串分割，代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="built_in">window</span>.location.search;</span><br><span class="line"><span class="keyword">var</span> loc = url.substring(url.lastIndexOf(<span class="string">"="</span>) + <span class="number">1</span>, url.length);</span><br></pre></td></tr></table></figure></p>
+<p>但是这样只能获取最后一个等号所带的值，大多情况无法满足需要。因此需要一个能够获取全部参数部分（“?”之后的部分）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GetRequest</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> url = location.search; <span class="comment">//获取url中"?"符后的字串   </span></span><br><span class="line">	<span class="keyword">var</span> theRequest = <span class="keyword">new</span> <span class="built_in">Object</span>();<span class="comment">//新建对象</span></span><br><span class="line">	<span class="keyword">if</span> (url.indexOf(<span class="string">"?"</span>) != <span class="number">-1</span>) &#123; <span class="comment">//排除没有参数的情况</span></span><br><span class="line">		<span class="keyword">var</span> str = url.substr(<span class="number">1</span>);<span class="comment">//抽取从第二个字符到结尾的字符子串</span></span><br><span class="line">		strs = str.split(<span class="string">"&amp;"</span>);<span class="comment">//将str以&amp;作为分隔符分成多个部分，以数组形式存在strs里</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; strs.length; i++) &#123;<span class="comment">//遍历strs数组</span></span><br><span class="line">			theRequest[strs[i].split(<span class="string">"="</span>)[<span class="number">0</span>]] = <span class="built_in">unescape</span>(strs[i].split(<span class="string">"="</span>)[<span class="number">1</span>]);<span class="comment">//使theRsquest[key] = value</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> theRequest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用方法：</p>
+<p>GetRequest()[key]</p>
+<p>例如 访问test.html?id=9&amp;type=cat</p>
+<p>在test.html里</p>
+<p>GetRequest()[“id”] //9</p>
+<p>GetRequest()[“type”] //cat</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/20/根据Vuejs制作的可查找多个数值的过滤器/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1957,198 +2121,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/31/机器学习学习笔记（九）过拟合，欠拟合与正则化/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/03/31/机器学习学习笔记（九）过拟合，欠拟合与正则化/" class="post-title-link" itemprop="url">机器学习学习笔记（九）过拟合，欠拟合与正则化</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-03-31 07:44:00" itemprop="dateCreated datePublished" datetime="2016-03-31T07:44:00+08:00">2016-03-31</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="过拟合与欠拟合"><a href="#过拟合与欠拟合" class="headerlink" title="过拟合与欠拟合"></a>过拟合与欠拟合</h2><p>举例：</p>
-<p><img src="/images/pasted-40.png" alt="upload successful"></p>
-<p>例如对与如上曲线的拟合，如果用两个参数表示，则会成为一条直线，不能正确的表示出size与price间的通常关系。如下图</p>
-<p><img src="/images/pasted-41.png" alt="upload successful"></p>
-<p>加入一个二次项后，会发现拟合情况变好了，曲线基本能够反映出数据集中各点的位置，并能判断size与price的大概关系。如下图</p>
-<p><img src="/images/pasted-42.png" alt="upload successful"></p>
-<p>另一个极端情况是，当继续加入多项式时，会发现得到了一条扭曲的曲线，在不断地上下波动。看上去它拟合了所有数据集中的点，但是很明显这不是一个能够真实反应Size与Price的曲线。</p>
-<p><img src="/images/pasted-43.png" alt="upload successful"></p>
-<hr>
-<p>第一种情况由于参数过少，项数过少不能很好拟合数据的情况就是欠拟合；第三种情况由于项数过多，变量太多而没有更多的数据去约束这个过多变量的模型，就会导致过度拟合，或者叫过拟合（overfittin）</p>
-<p>逻辑回归中一样有这样的情况，如图</p>
-<p><img src="/images/pasted-44.png" alt="upload successful"></p>
-<p>欠拟合的改进比较简单，增加参数增加多次项即可。</p>
-<p>过拟合则需要“正则化”来对其进行约束。</p>
-<h3 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h3><p>过拟合的一个特征就是高方差。如何避免过拟合的情况呢？可以通过减少变量的形式来避免过拟合。而具体减少哪些变量并不能在所有的模型中很快得出，因此只能说是尽量减少所有的参数值。</p>
-<script type="math/tex; mode=display">\lambda \sum_{j=1}^{n}\theta^{2}_{j}</script><p>上式可以表述所有的参数大小的总体。lambda被称为“正则化参数”。为了使上式尽量小，可以将其加入代价函数$ J(\theta )$中，</p>
-<script type="math/tex; mode=display">J(\theta )=\frac{1}{2m}[\sum^{m}_{i=1}(h_{\theta }(x^{(i)})-y^{(i)})^{2}+\lambda \sum^{n}_{j=1}\theta ^{2}_{j}]</script><p>当参数过多过大时，后面的正则化项的值就会很大，因而导致$J(\theta )$也变大，从而使这个预测方程得到更多的惩罚，使其像参数变量尽量小的地步靠拢。对正则化过程有影响的是lambda，当lambda数值大的时候，函数收到的惩罚更多，会更快地减少参数数值；当lambda为0的时候，函数则不会对参数进行正则化处理。</p>
-<p>因此lambda的值与学习率一样，必须适中才能使正则化的过程正常运转。</p>
-<hr>
-<h2 id="线性回归中的正则化"><a href="#线性回归中的正则化" class="headerlink" title="线性回归中的正则化"></a>线性回归中的正则化</h2><p>当知道代价函数的正则化后，可以来看梯度下降中的正则化</p>
-<p><img src="images/1459409321448044.png" alt="" title="1459409321448044.png"></p>
-<p>这是正常没有做正则化的梯度下降，没有对参数过多做出任何惩罚。</p>
-<p>在式中加上正则化项，使$\theta $尽量往数值小的方面靠拢</p>
-<script type="math/tex; mode=display">\theta_j :=\theta_j - \alpha[\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j)+\frac{\lambda}{m}\theta_j]</script><p>（也可直接由$J(\theta )$求偏导得出。）</p>
-<blockquote>
-<p>由于已经规定了$x_{0}=1 $，因此$\theta _{0}$不需要加入到正则化进行惩罚，因此上式其实是从$\theta _{1}$开始的。</p>
-<p>（在matlab中，下标号是从0开始，因此上式在matlab中表现是从$\theta _{2}$开始）</p>
-</blockquote>
-<p>可经化简得到这么一个式子</p>
-<p><script type="math/tex">\theta_{j} :=\theta_{j}(1-\alpha\frac{\lambda}{m})-\alpha\frac{1}{m}\sum^{m}_{i=1}(h_{\theta}(x^{(i)})-y^{(i)})x_{j}^{(i)}</script>（从第二项开始）</p>
-<p><script type="math/tex">1-\alpha \frac{\lambda}{m}</script>是小于1的</p>
-<p>因此在迭代中，$\theta $会因为参数过大过多被惩罚加速下降，最后以此避免过拟合的出现。</p>
-<p>可以推广到逻辑回归的正则化，与线性回归是一样的，只是它们的h(z）和g(x)不一样。</p>
-<p>更高级的优化函数中都一样，只是将CostFucion里面加上$\frac{\lambda }{2m}\sum_{j=1}^{n}\theta^{2}_{j}$正则化值。</p>
-<hr>
-<p>暂不深入正则化的向量写法。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2196,7 +2168,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">144</span>
+                    <span class="site-state-item-count">145</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2590,7 +2562,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">175</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">177</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -2671,7 +2647,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">京ICP备18029472号 </a>&copy; 2016 – <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-"></i>
   </span>
