@@ -368,6 +368,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/25/Python对句子中的单词出现次数排序/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/05/25/Python对句子中的单词出现次数排序/" class="post-title-link" itemprop="url">Python对句子中的单词出现次数排序</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-05-25 03:26:00" itemprop="dateCreated datePublished" datetime="2016-05-25T03:26:00+08:00">2016-05-25</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>出现次数相同的单词按照单词字母排序<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""Count words."""</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_words</span><span class="params">(s, n)</span>:</span></span><br><span class="line">    <span class="string">"""Return the n most frequently occuring words in s."""</span></span><br><span class="line">    words = s.split(<span class="string">" "</span>)</span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> Count the number of occurences of each word in s</span></span><br><span class="line">    counters = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> counters:</span><br><span class="line">            counters[word] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            counters[word] = <span class="number">1</span></span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> Sort the occurences in descending order (alphabetically in case of ties)</span></span><br><span class="line">    top = sorted(counters.iteritems(), key=<span class="keyword">lambda</span> d:(-d[<span class="number">1</span>],d[<span class="number">0</span>]))</span><br><span class="line">    <span class="comment">##lambda中"-"为反序，意思是先把单词出现次数从大到小排列，</span></span><br><span class="line">    <span class="comment">##然后再以单词的字母从小到大排列</span></span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> Return the top n words as a list of tuples (&lt;word&gt;, &lt;count&gt;)</span></span><br><span class="line">    top_n = top[:n]<span class="comment">##返回前n个单词</span></span><br><span class="line">    <span class="keyword">return</span> top_n</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_run</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""Test count_words() with some inputs."""</span></span><br><span class="line">    <span class="keyword">print</span> count_words(<span class="string">"cat bat mat cat bat cat"</span>, <span class="number">3</span>)</span><br><span class="line">    <span class="keyword">print</span> count_words(<span class="string">"betty bought a bit of butter but the butter was bitter"</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    test_run()</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/18/JS写一遍K-means/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1916,173 +2073,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/21/探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/04/21/探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化/" class="post-title-link" itemprop="url">探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-04-21 10:36:00" itemprop="dateCreated datePublished" datetime="2016-04-21T10:36:00+08:00">2016-04-21</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在此之前没有接触过矩阵化运算，因此对于矩阵化运算的过程一头雾水。准备对于线性回归的代价函数进行矩阵化以探究其过程。</p>
-<hr>
-<p>CostFuction 数学表达式：</p>
-<script type="math/tex; mode=display">J(\theta)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2</script><p>根据数学式之前以for循环写了算法：<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:m</span><br><span class="line">J += (theta(<span class="number">1</span>)+ theta(<span class="number">2</span>)*X(<span class="built_in">i</span>,<span class="number">2</span>)-y(<span class="built_in">i</span>))^<span class="number">2</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">J = J/(<span class="number">2</span>*m);</span><br></pre></td></tr></table></figure></p>
-<p>很明确的循环符合数学式。</p>
-<p>尝试对齐进行矩阵化，首先看$h_\theta(x^{(i)})$</p>
-<script type="math/tex; mode=display">h_\theta(x)=\theta^T x = \theta_0 + \theta_1 x_1</script><p>对每个x(i)进行运算：</p>
-<p><img src="/images/pasted-54.png" alt="upload successful"></p>
-<p>对其进行sum与转置操作后可以得到</p>
-<script type="math/tex; mode=display">\sum((\theta'.*X)')-y'= \\ [\theta_1 x^{(1)}_1+\theta_2 x^{(1)}_2 -y^{(1)},\theta_1 x^{(2)}_1+\theta_2 x^{(2)}_2 -y^{(2)},...,\theta_1 x^{(m)}_1+\theta_2 x^{(m)}_2 -y^{(m)}]</script><p>因此可以得知代价函数的矩阵化函数式为：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">J = sum((sum((theta'.*X)')-y').^<span class="number">2</span>)/(<span class="number">2</span>*m);</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2130,7 +2120,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">145</span>
+                    <span class="site-state-item-count">146</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2528,7 +2518,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">177</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">179</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

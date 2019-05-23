@@ -368,6 +368,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/07/27/解决在手机上无法顺利监听onscroll事件/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/07/27/解决在手机上无法顺利监听onscroll事件/" class="post-title-link" itemprop="url">解决在手机上无法顺利监听onscroll事件</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-07-27 09:28:00" itemprop="dateCreated datePublished" datetime="2016-07-27T09:28:00+08:00">2016-07-27</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在进行制作视差滚动效果时，需要获得每时每刻滚动条的位置以进行计算，因此会使用window.onscroll来监听滚动条的位置。在pc上可以顺利的连续获得滚动条的任意时刻的坐标，然而在手机上无法顺利获得连续的事件触发。原因是移动端为了获得流畅的滚动效果与弹性效果，对于系统原生的滚动事件进行了限制，因此无法获得连续的滚动事件。</p>
+<p>为了在移动端上实现视差网页效果，需要手动模拟用户滚动的事件，这样才能连续获取事件触发。通常使用iscroll等帮助实现效果。</p>
+<p>在寻找相关滚动库的时候发现了一款小巧又好用的滚动js库 Jroll,大小仅仅只有13KB,比iscroll的lite版本还要小一半，而且能够完整实现需求。</p>
+<p>Git地址:<a href="https://git.oschina.net/chenjianlong/JRoll2" target="_blank" rel="noopener">https://git.oschina.net/chenjianlong/JRoll2</a></p>
+<p>官网:<a href="http://www.chjtx.com/JRoll/" target="_blank" rel="noopener">http://www.chjtx.com/JRoll/</a></p>
+<p>用法：</p>
+<p>引用<code>&lt;script src=&#39;jroll.js&#39;&gt;&lt;/script&gt;</code>后，在文档中定义好滚动对象与滚动容器，例如<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wrapper"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"scroller"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>其中scroller为滚动对象，wrapper为滚动容器。需要注意的是滚动对象的高必须大于滚动容器的高才能顺利地进行滚动操作（废话）</p>
+<p>接着创建jroll对象，如下所示<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jroll = <span class="keyword">new</span> JRoll(<span class="string">"#wrapper"</span>, &#123;option&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>其中option为配置内容，具体使用方法见官网。</p>
+<p>另外，当在页面(滚动对象)中存在类似于动态加载与文本展开等情况的时候，在加载完毕与文本展开动画播放完毕的时候必须要使用jroll.refresh()对jroll对象进行刷新，不然jroll的高度不会发生改变从而使页面显示不全。</p>
+<p>在项目中，使用jroll完美地完成了视差滚动效果的实现，在ios设备上的webapp中滚动动画打到了40fps以上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jroll.on(<span class="string">'scroll'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//视差滚动计算</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/07/15/使用canvas制作画图板/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2110,163 +2278,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/25/Python对句子中的单词出现次数排序/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/05/25/Python对句子中的单词出现次数排序/" class="post-title-link" itemprop="url">Python对句子中的单词出现次数排序</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-05-25 03:26:00" itemprop="dateCreated datePublished" datetime="2016-05-25T03:26:00+08:00">2016-05-25</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>出现次数相同的单词按照单词字母排序<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""Count words."""</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_words</span><span class="params">(s, n)</span>:</span></span><br><span class="line">    <span class="string">"""Return the n most frequently occuring words in s."""</span></span><br><span class="line">    words = s.split(<span class="string">" "</span>)</span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> Count the number of occurences of each word in s</span></span><br><span class="line">    counters = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> counters:</span><br><span class="line">            counters[word] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            counters[word] = <span class="number">1</span></span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> Sort the occurences in descending order (alphabetically in case of ties)</span></span><br><span class="line">    top = sorted(counters.iteritems(), key=<span class="keyword">lambda</span> d:(-d[<span class="number">1</span>],d[<span class="number">0</span>]))</span><br><span class="line">    <span class="comment">##lambda中"-"为反序，意思是先把单词出现次数从大到小排列，</span></span><br><span class="line">    <span class="comment">##然后再以单词的字母从小到大排列</span></span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> Return the top n words as a list of tuples (&lt;word&gt;, &lt;count&gt;)</span></span><br><span class="line">    top_n = top[:n]<span class="comment">##返回前n个单词</span></span><br><span class="line">    <span class="keyword">return</span> top_n</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_run</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">"""Test count_words() with some inputs."""</span></span><br><span class="line">    <span class="keyword">print</span> count_words(<span class="string">"cat bat mat cat bat cat"</span>, <span class="number">3</span>)</span><br><span class="line">    <span class="keyword">print</span> count_words(<span class="string">"betty bought a bit of butter but the butter was bitter"</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    test_run()</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2314,7 +2325,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">145</span>
+                    <span class="site-state-item-count">146</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2712,7 +2723,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">177</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">179</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

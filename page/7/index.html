@@ -368,6 +368,302 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/06/15/用-Go-语言理解-Tensorflow/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2017/06/15/用-Go-语言理解-Tensorflow/" class="post-title-link" itemprop="url">用 Go 语言理解 Tensorflow</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-06-15 15:41:00" itemprop="dateCreated datePublished" datetime="2017-06-15T15:41:00+08:00">2017-06-15</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Tensorflow 并不是一个严格意义上的机器学习库，它是一个使用图来表示计算的通用计算库。它的核心功能由 C++ 实现，通过封装，能在各种不同的语言下运行。它的 Golang 版和 Python 版不同，Golang 版 Tensorflow 不仅能让你通过 Go 语言使用 Tensorflow，还能让你理解 Tensorflow 的底层实现。</p>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><p>根据官方说明，Tensorflow 开发者发布了以下内容：</p>
+<ul>
+<li><p>C++ 源码：底层和高层的具体功能由 C ++ 源码实现，它是真正 Tensorflow 的核心。</p>
+</li>
+<li><p>Python 封装与Python 库：由 C++ 实现自动生成的封装版本，通过这种方式我们可以直接用 Python 来调用 C++ 函数：这也是 numpy 的核心实现方式。</p>
+<p>Python 库通过将 Python 封装版的各种调用结合起来，组成了各种广为人知的高层 API。</p>
+</li>
+<li><p>Java 封装</p>
+</li>
+<li><p>Go 封装</p>
+</li>
+</ul>
+<p>作为一名 Gopher 而非一名 java 爱好者，我对 Go 封装给予了极大的关注，希望了解其适用于何种任务。</p>
+<blockquote>
+<p>译注，这里说的”封装“也有说法叫做”语言界面“</p>
+</blockquote>
+<h2 id="Go-封装"><a href="#Go-封装" class="headerlink" title="Go 封装"></a>Go 封装</h2><p><img src="/images/pasted-165.png" alt="upload successful"></p>
+<p>图为 Gopher（由 Takuya Ueda <a href="https://twitter.com/tenntenn" target="_blank" rel="noopener">@tenntenn</a> 创建，遵循 CC 3.0 协议）与 Tensorflow 的 Logo 结合在一起。</p>
+<hr>
+<p>首先要注意的是，代码维护者自己也承认了，Go API 缺少 <code>Variable</code> 支持，因此这个 API 仅用于<strong>使用</strong>训练好的模型，而<strong>不能用于</strong>进行模型训练。</p>
+<p>在文档 <a href="https://www.tensorflow.org/versions/master/install/install_go" target="_blank" rel="noopener">Installing Tensorflow for Go</a> 中已经明确提到：</p>
+<blockquote>
+<p>TensorFlow 为 Go 编程提供了一些 API。这些 API 特别适合加载在 Python 中创建的模型，让其在 Go 应用 中运行。</p>
+</blockquote>
+<p>如果我们对训练机器学习模型没兴趣，那这个限制是 OK 的。</p>
+<p>但是，如果你打算自己训练模型，请看下面给的建议：</p>
+<blockquote>
+<p>作为一名 Gopher，请让 Go 保持简洁！使用 Python 去定义、训练模型，在这之后你随时都可以用 Go 来加载训练好的模型！（意思就是他们懒得开发呗）</p>
+</blockquote>
+<p>简而言之，golang 版 tensorflow 可以<strong>导入与定义</strong>常数图（constant graph）。这个常数图指的是在图中没有训练过程，也没有需要训练的变量。</p>
+<p>让我们用 Golang 深入研究 Tensorflow 吧！首先创建我们的第一个应用。</p>
+<p>我建议读者在阅读下面的内容前，先准备好 Go 环境，以及编译、安装好 Tensorflow Go 版（编译、安装过程参考 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/go/README.md" target="_blank" rel="noopener">README</a>）。</p>
+<h2 id="理解-Tensorflow-的结构"><a href="#理解-Tensorflow-的结构" class="headerlink" title="理解 Tensorflow 的结构"></a>理解 Tensorflow 的结构</h2><p>先复习一下什么是 Tensorflow 吧！（这是我个人的理解，和<a href="https://www.tensorflow.org/" target="_blank" rel="noopener">官网</a>的有所不同）</p>
+<blockquote>
+<p>TensorFlow™ 是一个采用数据流图(data flow graphs),用于数值计算的开源软件库。节点（Nodes）在图中<strong>表示</strong>数学操作，图中的线（edges）则<strong>表示</strong>在节点间相互联系的多维数据数组，即张量（tensor）。</p>
+</blockquote>
+<p>我们可以把 Tensorflow 看做一种类似于 SQL 的描述性语言，首先你得确定你需要什么数据，它会通过底层引擎（数据库）分析你的查询语句，检查你的句法错误和语法错误，将查询语句转换为私有语言表达式，进行优化之后运算得出计算结果。这样，它能保证将正确的结果传达给你。</p>
+<p>因此，我们无论使用什么 API 实质上都是在描述一个图。我们将它放在 <code>Session</code> 中作为求值的起点，这样做确定了这个图将会在这个 Session 中运行。</p>
+<p>了解这一点，我们可以试着定义一个计算操作的图，并将其放在一个 <code>Session</code> 中进行求值。</p>
+<p> <a href="https://godoc.org/github.com/tensorflow/tensorflow/tensorflow/go" target="_blank" rel="noopener">API 文档</a>中明确告知了 <code>tensorflow</code>（简称 <code>tf</code>）包与 <code>op</code> 包中的可用方法列表。</p>
+<p>在这个列表中我们可以看到，这两个包中包含了一切我们需要用来定义与评价图的方法。</p>
+<p><code>tf</code> 包中包含了各种构建基础结构的函数，例如 <code>Graph</code>（图）。<code>op</code> 包是最重要的包，它包含了由 C++ 实现自动生成的绑定等功能。</p>
+<p>现在，假设我们要计算 AAA 与 xxx 的矩阵乘法：</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fg9itnbsc7j31au06274m.jpg" alt=""></p>
+<p>我假定你们都熟悉 tensorflow 图的定义，都了解 placeholder 并知道它们的工作原理。</p>
+<p>下面的代码是一位 Tensorflow Python 用户第一次尝试时会写的代码。让我们给这个文件取名为 <code>attempt1.go</code>。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	tf <span class="string">"github.com/tensorflow/tensorflow/tensorflow/go"</span></span><br><span class="line">	<span class="string">"github.com/tensorflow/tensorflow/tensorflow/go/op"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 第一步：创建图</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 首先我们需要在 Runtime 定义两个 placeholder 进行占位</span></span><br><span class="line">	<span class="comment">// 第一个 placeholder A 将会被一个 [2, 2] 的 interger 类型张量代替</span></span><br><span class="line">	<span class="comment">// 第二个 placeholder x 将会被一个 [2, 1] 的 interger 类型张量代替</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 接下来我们要计算 Y = Ax</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 创建图的第一个节点：让这个空节点作为图的根</span></span><br><span class="line">	root := op.NewScope()</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 定义两个 placeholder</span></span><br><span class="line">	A := op.Placeholder(root, tf.Int64, op.PlaceholderShape(tf.MakeShape(<span class="number">2</span>, <span class="number">2</span>)))</span><br><span class="line">	x := op.Placeholder(root, tf.Int64, op.PlaceholderShape(tf.MakeShape(<span class="number">2</span>, <span class="number">1</span>)))</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 定义接受 A 与 x 输入的 op 节点</span></span><br><span class="line">	product := op.MatMul(root, A, x)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 每次我们传递一个域给一个操作的时候，</span></span><br><span class="line">	<span class="comment">// 我们都要将操作放在在这个域下。</span></span><br><span class="line">	<span class="comment">// 如你所见，现在我们已经有了一个空作用域（由 newScope）创建。这个空作用域</span></span><br><span class="line">	<span class="comment">// 是我们图的根，我们可以用“/”表示它。</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 现在让 tensorflow 按照我们的定义建立图吧。</span></span><br><span class="line">	<span class="comment">// 依据我们定义的 scope 与 op 结合起来的抽象图，程序会创建相应的常数图。</span></span><br><span class="line"></span><br><span class="line">	graph, err := root.Finalize()</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="comment">// 如果我们错误地定义了图，我们必须手动修正相关定义，</span></span><br><span class="line">		<span class="comment">// 任何尝试自动处理错误的方法都是无用的。</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 就像 SQL 查询一样，如果查询不是有效的语法，我们只能重写它。</span></span><br><span class="line">		<span class="built_in">panic</span>(err.Error())</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果到这一步，说明我们的图语法上是正确的。</span></span><br><span class="line">	<span class="comment">// 现在我们可以将它放在一个 Session 中并执行它了！</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> sess *tf.Session</span><br><span class="line">	sess, err = tf.NewSession(graph, &amp;tf.SessionOptions&#123;&#125;)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="built_in">panic</span>(err.Error())</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 为了使用 placeholder，我们需要创建传入网络的值的张量</span></span><br><span class="line">	<span class="keyword">var</span> matrix, column *tf.Tensor</span><br><span class="line"></span><br><span class="line">	<span class="comment">// A = [ [1, 2], [-1, -2] ]</span></span><br><span class="line">	<span class="keyword">if</span> matrix, err = tf.NewTensor([<span class="number">2</span>][<span class="number">2</span>]<span class="keyword">int64</span>&#123; &#123;<span class="number">1</span>, <span class="number">2</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">-2</span>&#125; &#125;); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="built_in">panic</span>(err.Error())</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// x = [ [10], [100] ]</span></span><br><span class="line">	<span class="keyword">if</span> column, err = tf.NewTensor([<span class="number">2</span>][<span class="number">1</span>]<span class="keyword">int64</span>&#123; &#123;<span class="number">10</span>&#125;, &#123;<span class="number">100</span>&#125; &#125;); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="built_in">panic</span>(err.Error())</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> results []*tf.Tensor</span><br><span class="line">	<span class="keyword">if</span> results, err = sess.Run(<span class="keyword">map</span>[tf.Output]*tf.Tensor&#123;</span><br><span class="line">		A: matrix,</span><br><span class="line">		x: column,</span><br><span class="line">	&#125;, []tf.Output&#123;product&#125;, <span class="literal">nil</span>); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="built_in">panic</span>(err.Error())</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> _, result := <span class="keyword">range</span> results &#123;</span><br><span class="line">		fmt.Println(result.Value().([][]<span class="keyword">int64</span>))</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码写好了注释，我建议读者阅读上面的每一条注释。</p>
+<p>现在，这位 Tensorflow Python 用户自我感觉良好，认为他的代码能够成功编译与运行。让我们试一试吧：</p>
+<p><code>go run attempt1.go</code></p>
+<p>然后他会看到：</p>
+<p><code>panic: failed to add operation &quot;Placeholder&quot;: Duplicate node name in graph: &#39;Placeholder&#39;</code></p>
+<p>等等，为什么会这样呢？</p>
+<p>问题很明显。上面代码里出现了 2 个重名的“Placeholder”操作。</p>
+<h2 id="第-1-课：node-IDs"><a href="#第-1-课：node-IDs" class="headerlink" title="第 1 课：node IDs"></a>第 1 课：node IDs</h2><p><strong>每次在我们调用方法定义一个操作的时候，不管他是否在之前被调用过，Python API 都会生成不同的节点</strong>。</p>
+<p>所以，下面的代码没有任何问题，会返回 3。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">a = tf.placeholder(tf.int32, shape=())</span><br><span class="line">b = tf.placeholder(tf.int32, shape=())</span><br><span class="line">add = tf.add(a,b)</span><br><span class="line">sess = tf.InteractiveSession()</span><br><span class="line">print(sess.run(add, feed_dict=&#123;a: <span class="number">1</span>,b: <span class="number">2</span>&#125;))</span><br></pre></td></tr></table></figure>
+<p>我们可以验证一下这个问题，看看程序是否创建了两个不同的 placeholder 节点： <code>print(a.name, b.name)</code> </p>
+<p>它打印出 <code>Placeholder:0 Placeholder_1:0</code>。</p>
+<p>这样就清楚了，<code>a</code> placeholder 是 <code>Placeholder:0</code> 而 <code>b</code> placeholder 是 <code>Placeholder_1:0</code>。</p>
+<p>但是在 Go 中，上面的程序会报错，因为 <code>A</code> 与 <code>x</code> 都叫做 <code>Placeholder</code>。我们可以由此得出结论：</p>
+<p><strong>每次我们调用定义操作的函数时，Go API 并不会自动生成新的名称</strong>。因此，它的操作名是固定的，我们没法修改。</p>
+<h4 id="提问时间："><a href="#提问时间：" class="headerlink" title="提问时间："></a>提问时间：</h4><ul>
+<li><p>关于 Tensorflow 的架构我们学到了什么？</p>
+<p><strong>图中的每个节点都必须有唯一的名称。所有节点都是通过名称进行辨认。</strong></p>
+</li>
+<li><p>节点名称与定义操作符的名称是否相同？</p>
+<p><strong>是的，也可说节点名称是操作符名称的最后一段。</strong></p>
+</li>
+</ul>
+<p>接下来让我们修复节点名称重复的问题，来弄明白上面的第二个提问。</p>
+<h2 id="第-2-课：作用域"><a href="#第-2-课：作用域" class="headerlink" title="第 2 课：作用域"></a>第 2 课：作用域</h2><p>正如我们所见，Python API 在定义操作时会自动创建新的名称。如果研究底层会发现，Python API 调用了 C++ <code>Scope</code> 类中的 <code>WithOpName</code> 方法。</p>
+<p>下面是该方法的文档及特性，参考 <a href="https://github.com/tensorflow/tensorflow/blob/a5b1fb8e56ceda0ee2794ee05f5a7642157875c5/tensorflow/cc/framework/scope.h" target="_blank" rel="noopener">scope.h</a>：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 返回新的作用域。所有在返回的作用域中的 op 都会被命名为</span></span><br><span class="line"><span class="comment">/// &lt;name&gt;/&lt;op_name&gt;[_&lt;suffix].</span></span><br><span class="line">Scope WithOpName(<span class="keyword">const</span> <span class="keyword">string</span>&amp; op_name) <span class="keyword">const</span>;</span><br></pre></td></tr></table></figure>
+<p>注意这个方法，返回一个作用域 <code>Scope</code> 来对节点进行命名，因此节点名称事实上就是作用域 <code>Scope</code>。</p>
+<p><code>Scope</code> 就是从根 <code>/</code>（空图）追溯至 <code>op_name</code> 的<strong>完整路径</strong>。</p>
+<p><code>WithOpName</code> 方法在我们尝试添加一个有着相同的 <code>/</code> 到 <code>op_name</code> 路径的节点时，为了避免在相同作用域下有重复的节点，会为其加上一个后缀 <code>_&lt;suffix&gt;</code>（<code>&lt;suffix&gt;</code> 是一个计数器）。</p>
+<p>了解了以上内容，我们可以通过在 <code>type Scope</code> 中寻找 <code>WithOpName</code> 来解决重复节点名称的问题。然而，Go tf API  中没有这个方法。</p>
+<p>如果查阅 <a href="https://godoc.org/github.com/tensorflow/tensorflow/tensorflow/go/op#Scope" target="_blank" rel="noopener">type Scope 的文档</a>，我们可以看到唯一能返回新 <code>Scope</code> 的方法只有 <code>SubScope(namespace string)</code>。</p>
+<p>下面引用文档中的内容：</p>
+<blockquote>
+<p>SubScope 将会返回一个新的 Scope，这个 Scope 能确保所有的被加入图中的操作都被放置在 ‘namespace’ 的命名空间下。如果这个命名空间和作用域中已经存在的命名空间冲突，将会给它加上后缀。</p>
+</blockquote>
+<p>这种加后缀的冲突处理和 C++ 中的 <code>WithOpName</code> 方法<strong>不同</strong>，<code>WithOpName</code> 是在<strong>操作名后面</strong>加<code>suffix</code>，它们都在同样的作用域内（例如 <code>Placeholder</code> 变成 <code>Placeholder_1</code>），而 Go 的 <code>SubScope</code> 是在<strong>作用域名称后面</strong>加 <code>suffix</code>。</p>
+<p>这将导致这两种方法会生成完全不同的图（节点在不同的作用域中了），但是它们的计算结果却是一样的。</p>
+<p>让我们试着改一改 placeholder 定义，让它们定义两个不同的节点，然后打印 <code>Scope</code> 名称。</p>
+<p>让我们创建 <code>attempt2.go</code> ，将下面几行</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A := op.Placeholder(root, tf.Int64, op.PlaceholderShape(tf.MakeShape(<span class="number">2</span>, <span class="number">2</span>)))</span><br><span class="line">x := op.Placeholder(root, tf.Int64, op.PlaceholderShape(tf.MakeShape(<span class="number">2</span>, <span class="number">1</span>)))</span><br></pre></td></tr></table></figure>
+<p>改成</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在根定义域下定义两个自定义域，命名为 input。这样</span></span><br><span class="line"><span class="comment">// 我们就能在根定义域下拥有 input/ 和 input_1/ 两个定义域了。</span></span><br><span class="line">A := op.Placeholder(root.SubScope(<span class="string">"input"</span>), tf.Int64, op.PlaceholderShape(tf.MakeShape(<span class="number">2</span>, <span class="number">2</span>)))</span><br><span class="line">x := op.Placeholder(root.SubScope(<span class="string">"input"</span>), tf.Int64, op.PlaceholderShape(tf.MakeShape(<span class="number">2</span>, <span class="number">1</span>)))</span><br><span class="line">fmt.Println(A.Op.Name(), x.Op.Name())</span><br></pre></td></tr></table></figure>
+<p>编译、运行： <code>go run attempt2.go</code>，输出结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">input/Placeholder input_1/Placeholder</span><br></pre></td></tr></table></figure>
+<h4 id="提问时间：-1"><a href="#提问时间：-1" class="headerlink" title="提问时间："></a>提问时间：</h4><ul>
+<li><p>关于 Tensorflow 的架构我们学到了什么？</p>
+<p><strong>节点完全由其定义所在的作用域标识。这个”作用域“是我们从图的根节点追溯到指定节点的一条路径。有两种方法来定义执行同一种操作的节点：1、将其定义放在不同的作用域中（Go 风格）2、改变操作名称（我们在 C++ 中可以这么做，Python 版会自动这么做）</strong></p>
+</li>
+</ul>
+<p>现在，我们已经解决了节点命名重复的问题，但是现在我们的控制台中出现了另一个问题：</p>
+<pre><code>panic: failed to add operation &quot;MatMul&quot;: Value for attr &#39;T&#39; of int64 is not in the list of allowed values: half, float, double, int32, complex64, complex128
+</code></pre><p>为什么 <code>MatMul</code> 节点的定义出错了？我们要做的仅仅是计算两个 <code>tf.int64</code> 矩阵的乘积而已！似乎 <code>MatMul</code> 偏偏不能接受 <code>int64</code> 的类型。</p>
+<blockquote>
+<p>Value for attr ‘T’ of int64 is not in the list of allowed values: half, float, double, int32, complex64, complex128</p>
+</blockquote>
+<p>上面这个列表是什么？为什么我们能计算 2 个 <code>int32</code> 矩阵的乘积却不能计算 <code>int64</code> 的乘积？</p>
+<p>下面我们将解决这个问题。</p>
+<h2 id="第-3-课：Tensorflow-类型系统"><a href="#第-3-课：Tensorflow-类型系统" class="headerlink" title="第 3 课：Tensorflow 类型系统"></a>第 3 课：Tensorflow 类型系统</h2><p>让我们深入研究 <a href="https://github.com/tensorflow/tensorflow/blob/r1.2/tensorflow/core/ops/math_ops.cc#L1048" target="_blank" rel="noopener">源代码</a> 来看 C++ 是如何定义 <code>MatMul</code> 操作的：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">REGISTER_OP(<span class="string">"MatMul"</span>)</span><br><span class="line">    .Input(<span class="string">"a: T"</span>)</span><br><span class="line">    .Input(<span class="string">"b: T"</span>)</span><br><span class="line">    .Output(<span class="string">"product: T"</span>)</span><br><span class="line">    .Attr(<span class="string">"transpose_a: bool = false"</span>)</span><br><span class="line">    .Attr(<span class="string">"transpose_b: bool = false"</span>)</span><br><span class="line">    .Attr(<span class="string">"T: &#123;half, float, double, int32, complex64, complex128&#125;"</span>)</span><br><span class="line">    .SetShapeFn(shape_inference::MatMulShape)</span><br><span class="line">    .Doc(R<span class="string">"doc(</span></span><br><span class="line"><span class="string">Multiply the matrix "</span>a<span class="string">" by the matrix "</span>b<span class="string">".</span></span><br><span class="line"><span class="string">The inputs must be two-dimensional matrices and the inner dimension of</span></span><br><span class="line"><span class="string">"</span>a<span class="string">" (after being transposed if transpose_a is true) must match the</span></span><br><span class="line"><span class="string">outer dimension of "</span>b<span class="string">" (after being transposed if transposed_b is</span></span><br><span class="line"><span class="string">true).</span></span><br><span class="line"><span class="string">*Note*: The default kernel implementation for MatMul on GPUs uses</span></span><br><span class="line"><span class="string">cublas.</span></span><br><span class="line"><span class="string">transpose_a: If true, "</span>a<span class="string">" is transposed before multiplication.</span></span><br><span class="line"><span class="string">transpose_b: If true, "</span>b<span class="string">" is transposed before multiplication.</span></span><br></pre></td></tr></table></figure>
+<p>这几行代码为 <code>MatMul</code> 操作定义了一个接口，由 <code>REGISTER_OP</code> 宏对此操作做出了如下描述：</p>
+<ul>
+<li>名称: <code>MatMul</code></li>
+<li>参数: <code>a</code>, <code>b</code></li>
+<li>属性（可选参数）: <code>transpose_a</code>, <code>transpose_b</code></li>
+<li>模版 <code>T</code> 支持的类型: <code>half, float, double, int32, complex64, complex128</code></li>
+<li>输出类型: 自动识别</li>
+<li>文档</li>
+</ul>
+<p>这个宏没有包含任何 C++ 代码，但是它告诉了我们<strong>当在定义一个操作的时候，即使它使用模版定义，我们也需要指定特定类型 <code>T</code> 支持的类型（或属性）列表。</strong></p>
+<p>实际上，属性 <code>.Attr(&quot;T: {half, float, double, int32, complex64, complex128}&quot;)</code> 将 <code>T</code> 的类型限制在了这个类型列表中。<br><a href="https://www.tensorflow.org/extend/adding_an_op" target="_blank" rel="noopener">tensorflow 教程</a>中提到，当时模版 <code>T</code> 时，我们需要对所有支持的重载运算在内核进行注册。这个内核会使用 CUDA 方式引用 C/C++ 函数，进行并发执行。</p>
+<p><code>MatMul</code> 的作者可能是出于以下 2 个原因仅支持上述类型而将 <code>int64</code> 排除在外的：</p>
+<ol>
+<li>疏忽：这个是有可能的，毕竟 Tensorflow 的作者也是人类呀！</li>
+<li>为了支持不能使用 <code>int64</code> 的设备，可能这个特性的内核实现不能在各种支持的硬件上运行。</li>
+</ol>
+<p>回到我们的问题中，已经很清楚如何解决问题了。我们需要将 <code>MatMul</code> 支持类型的参数传给它。</p>
+<p>让我们创建 <code>attempt3.go</code> ，将所有 <code>int64</code> 的地方都改成 <code>int32</code>。</p>
+<p>有一点需要注意：<strong>Go 封装版 tf 有自己的一套类型，基本与 Go 本身的类型 1:1 相映射。当我们要将值传入图中时，我们必须遵循这种映射关系（例如定义 <code>tf.Int32</code> 类型的 placeholder 时要传入 <code>int32</code>）。从图中取值同理。</strong></p>
+<p><code>*tf.Tensor</code> 类型将会返回一个张量 evaluation，它包含一个 <code>Value()</code> 方法，此方法将返回一个必须转换为正确类型的 <code>interface{}</code>（这是从图的结构了解到的）。</p>
+<p>运行 <code>go run attempt3.go</code>，得到结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">input/Placeholder input_1/Placeholder</span><br><span class="line">[[210] [-210]]</span><br></pre></td></tr></table></figure>
+<p>成功了！</p>
+<p>下面是 <code>attempt3</code> 的完整代码，你可以编译并运行它。（这是一个 Gist，如果你发现有啥可以改进的话欢迎来<a href="https://gist.github.com/galeone/09657143df49a90536f4ac4893c64696贡献代码）" target="_blank" rel="noopener">https://gist.github.com/galeone/09657143df49a90536f4ac4893c64696贡献代码）</a></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main                                        </span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (                                            </span><br><span class="line">	<span class="string">"fmt"</span>                                       </span><br><span class="line">	tf <span class="string">"github.com/tensorflow/tensorflow/tensorflow/go"</span>                                              </span><br><span class="line">	<span class="string">"github.com/tensorflow/tensorflow/tensorflow/go/op"</span>                                              </span><br><span class="line">)                                                   </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;                                       </span><br><span class="line">	<span class="comment">// 第一步：创建图</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 首先我们需要在 Runtime 定义两个 placeholder 进行占位</span></span><br><span class="line">	<span class="comment">// 第一个 placeholder A 将会被一个 [2, 2] 的 interger 类型张量代替</span></span><br><span class="line">	<span class="comment">// 第二个 placeholder x 将会被一个 [2, 1] 的 interger 类型张量代替</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 接下来我们要计算 Y = Ax</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 创建图的第一个节点：让这个空节点作为图的根</span></span><br><span class="line">	root := op.NewScope()                       </span><br><span class="line"></span><br><span class="line">	<span class="comment">// 定义两个 placeholder</span></span><br><span class="line">	<span class="comment">// 在根定义域下定义两个自定义域，命名为 input。这样</span></span><br><span class="line">	<span class="comment">// 我们就能在根定义域下拥有 input/ 和 input_1/ 两个定义域了。</span></span><br><span class="line">	A := op.Placeholder(root.SubScope(<span class="string">"input"</span>), tf.Int32, op.PlaceholderShape(tf.MakeShape(<span class="number">2</span>, <span class="number">2</span>)))   </span><br><span class="line">	x := op.Placeholder(root.SubScope(<span class="string">"input"</span>), tf.Int32, op.PlaceholderShape(tf.MakeShape(<span class="number">2</span>, <span class="number">1</span>)))   </span><br><span class="line">	fmt.Println(A.Op.Name(), x.Op.Name())       </span><br><span class="line"></span><br><span class="line">	<span class="comment">// 定义接受 A 与 x 输入的 op 节点</span></span><br><span class="line">	product := op.MatMul(root, A, x)            </span><br><span class="line"></span><br><span class="line">	<span class="comment">// 每次我们传递一个域给一个操作的时候，</span></span><br><span class="line">	<span class="comment">// 我们都要将操作放在在这个域下。</span></span><br><span class="line">	<span class="comment">// 如你所见，现在我们已经有了一个空作用域（由 newScope）创建。这个空作用域</span></span><br><span class="line">	<span class="comment">// 是我们图的根，我们可以用“/”表示它。</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// 现在让 tensorflow 按照我们的定义建立图吧。</span></span><br><span class="line">	<span class="comment">// 依据我们定义的 scope 与 op 结合起来的抽象图，程序会创建相应的常数图。</span></span><br><span class="line">	graph, err := root.Finalize()               </span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;                             </span><br><span class="line">		<span class="comment">// 如果我们错误地定义了图，我们必须手动修正相关定义，</span></span><br><span class="line">		<span class="comment">// 任何尝试自动处理错误的方法都是无用的。</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 就像 SQL 查询一样，如果查询不是有效的语法，我们只能重写它。</span></span><br><span class="line">		<span class="built_in">panic</span>(err.Error())                  </span><br><span class="line">	&#125;                                           </span><br><span class="line"></span><br><span class="line">	<span class="comment">// 如果到这一步，说明我们的图语法上是正确的。</span></span><br><span class="line">	<span class="comment">// 现在我们可以将它放在一个 Session 中并执行它了！</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> sess *tf.Session                        </span><br><span class="line">        sess, err = tf.NewSession(graph, &amp;tf.SessionOptions&#123;&#125;)                                           </span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;                             </span><br><span class="line">		<span class="built_in">panic</span>(err.Error())                  </span><br><span class="line">	&#125;                                           </span><br><span class="line"></span><br><span class="line">	<span class="comment">// 为了使用 placeholder，我们需要创建传入网络的值的张量             </span></span><br><span class="line">	<span class="keyword">var</span> matrix, column *tf.Tensor               </span><br><span class="line"></span><br><span class="line">	<span class="comment">// A = [ [1, 2], [-1, -2] ]                 </span></span><br><span class="line">	<span class="keyword">if</span> matrix, err = tf.NewTensor([<span class="number">2</span>][<span class="number">2</span>]<span class="keyword">int32</span>&#123;&#123;<span class="number">1</span>, <span class="number">2</span>&#125;, &#123;<span class="number">-1</span>, <span class="number">-2</span>&#125;&#125;); err != <span class="literal">nil</span> &#123;                       </span><br><span class="line">		<span class="built_in">panic</span>(err.Error())                  </span><br><span class="line">	&#125;                                           </span><br><span class="line">	<span class="comment">// x = [ [10], [100] ]                      </span></span><br><span class="line">	<span class="keyword">if</span> column, err = tf.NewTensor([<span class="number">2</span>][<span class="number">1</span>]<span class="keyword">int32</span>&#123;&#123;<span class="number">10</span>&#125;, &#123;<span class="number">100</span>&#125;&#125;); err != <span class="literal">nil</span> &#123;                            </span><br><span class="line">		<span class="built_in">panic</span>(err.Error())                  </span><br><span class="line">	&#125;                                           </span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> results []*tf.Tensor                    </span><br><span class="line">	<span class="keyword">if</span> results, err = sess.Run(<span class="keyword">map</span>[tf.Output]*tf.Tensor&#123;                                             </span><br><span class="line">		A: matrix,                          </span><br><span class="line">		x: column,                          </span><br><span class="line">	&#125;, []tf.Output&#123;product&#125;, <span class="literal">nil</span>); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="built_in">panic</span>(err.Error())                  </span><br><span class="line">	&#125;                                           </span><br><span class="line">	<span class="keyword">for</span> _, result := <span class="keyword">range</span> results &#123;            </span><br><span class="line">		fmt.Println(result.Value().([][]<span class="keyword">int32</span>))                                            </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="提问时间：-2"><a href="#提问时间：-2" class="headerlink" title="提问时间："></a>提问时间：</h4><p>关于 Tensorflow 的架构我们学到了什么？</p>
+<p><strong>每个操作都有自己的一组关联内核。Tensorflow 是一种强类型的描述性语言，它不仅遵循 C++ 类型规则，同时要求在 op 注册时需定义好类型才能实现其功能。</strong></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>使用 Go 来定义与处理一个图让我们能够更好地理解 Tensorflow 的底层结构。通过不断地试错，我们最终解决了这个简单的问题，一步一步地掌握了图、节点以及类型系统的知识。</p>
+<p>如果你觉得这篇文章有用，请点个赞或者分享给别人吧~</p>
+<blockquote>
+<p>发布于掘金 <a href="https://juejin.im/post/59420951128fe1006a1960f8" target="_blank" rel="noopener">https://juejin.im/post/59420951128fe1006a1960f8</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/06/11/Reinforcement-Learning-notes-1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2496,190 +2792,6 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/04/12/同中有异的-Webpack-与-Rollup/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/04/12/同中有异的-Webpack-与-Rollup/" class="post-title-link" itemprop="url">同中有异的 Webpack 与 Rollup</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-04-12 13:24:00" itemprop="dateCreated datePublished" datetime="2017-04-12T13:24:00+08:00">2017-04-12</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/images/pasted-120.png" alt="upload successful"></p>
-<p>本周，Facebook 将一个<a href="https://github.com/facebook/react/pull/9327" target="_blank" rel="noopener">非常大的 pull request</a> 合并到了 React 主分支。这个 PR 将 React 当前使用的构建工具替换成了 <a href="https://rollupjs.org/" target="_blank" rel="noopener">Rollup</a>。这让许多人感到不解，纷纷在推特上提问：“为什么你们选择 Rollup 而不选择 Webpack 呢？”<sub><a href="https://twitter.com/stanlemon/status/849366789825994752" target="_blank" rel="noopener">1</a></sub> <sub><a href="https://twitter.com/MrMohtas/status/849362334988595201" target="_blank" rel="noopener">2</a></sub> <sub><a href="https://twitter.com/kyleholzinger/status/849683292760797184" target="_blank" rel="noopener">3</a></sub></p>
-<p>有人问这个问题是很正常的。<a href="https://webpack.js.org/" target="_blank" rel="noopener">Webpack</a> 是现在 JavaScript 社区中最伟大的成功传奇之一，它有着数百万/月的下载量，驱动了成千上万的网站与应用。它有着巨大的生态系统、众多的贡献者，并且它与一般的社区开源项目不同——它有着<a href="https://opencollective.com/webpack" target="_blank" rel="noopener">意义非凡的经济支持</a>。</p>
-<p>相比之下，Rollup 是那么的微不足道。但是，除了 React 之外，Vue、Ember、Preact、D3、Three.js、Moment 等众多知名项目都使用了 Rollup。为什么会这样呢？为什么这些项目不使用大家一致认可的 JavaScript 模块打包工具呢？</p>
-<h3 id="这两个打包工具的优缺点"><a href="#这两个打包工具的优缺点" class="headerlink" title="这两个打包工具的优缺点"></a>这两个打包工具的优缺点</h3><p>Webpack 由 <a href="https://medium.com/@sokra" target="_blank" rel="noopener">Tobias Koppers</a> 在 2012 年创建，用于解决当时的工具不能处理的问题：构建复杂的单页应用（SPA）。尤其是它的两个特点改变了一切：</p>
-<ol>
-<li><strong>代码分割</strong>可以将你的 app 分割成许多个容易管理的分块，这些分块能够在用户使用你的 app 时按需加载。这意味着你的用户可以有更快的交互体验。因为访问那些没有使用代码分割的应用时，必须要等待整个应用都被下载并解析完成。当然，你<strong>也可以</strong>自己手动去进行代码分割，但是……总之，祝你好运。</li>
-<li><strong>静态资源</strong>的导入：图片、CSS 等静态资源可以直接导入到你的 app 中，就和其它的模块、节点一样能够进行依赖管理。因此，我们再也不用小心翼翼地将各个静态文件放在特定的文件夹中，然后再去用脚本给文件 URL 加上哈希串了。Webpack 已经帮你完成了这一切。</li>
-</ol>
-<p>而 Rollup 的开发理念则不同：它利用 ES2015 模块的巧妙设计，尽可能高效地构建精简且易分发的 JavaScript 库。而其它的模块打包器（包括 Webpack在内）都是通过将模块分别封装进函数中，然将这些函数通过能在浏览器中实现的 <code>require</code> 方法打包，最后依次处理这些函数。在你需要实现按需加载的时候，这种做法非常的方便，但是这样做引入了很多无关代码，比较浪费资源。当<a href="https://nolanlawson.com/2016/08/15/the-cost-of-small-modules/" target="_blank" rel="noopener">你有很多模块要打包的时候，这种情况会变得更糟糕</a>。</p>
-<p>ES2015 模块则启用了一种不同的实现方法，Rollup 用的也就是这种方法。所有代码都将被放置在同一个地方，并且会在一起进行处理。因此得到的最终代码相较而言会更加的精简，运行起来自然也就更快。你可以<a href="https://rollupjs.org/repl" target="_blank" rel="noopener">点击这儿亲自试试 Rollup 交互式解释器（REPL）</a>。</p>
-<p>但这儿也存在一些需要权衡的点：代码分割是一个很棘手的问题，而 Rollup 并不能做到这一点。同样的，Rollup 也不支持模块热替换（HMR）。而且对于打算使用 Rollup 的人来说，还有一个最大的痛点：它通过<a href="https://github.com/rollup/rollup-plugin-commonjs" target="_blank" rel="noopener">插件</a>处理大多数 CommonJS 文件的时候，一些代码将无法被翻译为 ES2015。而与之相反，你可以把这一切的事全部放心交给 Webpack 去处理。</p>
-<h3 id="那么我到底应该选用哪一个呢？"><a href="#那么我到底应该选用哪一个呢？" class="headerlink" title="那么我到底应该选用哪一个呢？"></a>那么我到底应该选用哪一个呢？</h3><p>到目前为止，我们已经清晰地了解了这两个工具共存并且相互支撑的原因 — 它们应用于不同的场景。那么，现在这个问题的答案简单来说就是：</p>
-<blockquote>
-<p>在开发应用时使用 Webpack，开发库时使用 Rollup</p>
-</blockquote>
-<p>当然这不是什么严格的规定——有很多的网站和 app 一样是使用 Rollup 构建的，同时也有很多的库使用 Webpack。不过，这是个很值得参考的经验之谈。</p>
-<p>如果你需要进行代码分割，或者你有很多的静态资源，再或者你做的东西深度依赖 CommonJS，毫无疑问 Webpack 是你的最佳选择。如果你的代码基于 ES2015 模块编写，并且你做的东西是准备给他人使用的，你或许可以考虑使用 Rollup。</p>
-<h3 id="对于包作者的建议：请使用-pkg-module！"><a href="#对于包作者的建议：请使用-pkg-module！" class="headerlink" title="对于包作者的建议：请使用 pkg.module！"></a>对于包作者的建议：请使用 <code>pkg.module</code>！</h3><p>在很长一段时间里，使用 JavaScript 库是一件有点风险的事，因为这意味着你必须和库的作者在模块系统上的意见保持一致。如果你使用 Browserify 而他更喜欢 AMD，你就不得不在 build 之前先强行将两者粘起来。<a href="https://github.com/umdjs/umd" target="_blank" rel="noopener">通用模块定义（UMD）</a>格式对这个问题进行了 <strong>部分</strong> 的修复，但是它没有强制要求在任何场景下都使用它，因此你无法预料你将会遇到什么坑。</p>
-<p>ES2015 改变了这一切，因为 <code>import</code> 与 <code>export</code> 就是语言规范本身的一部分。在未来，不再会有现在这种模棱两可的情况，所有东西都将更加无缝地配合工作。不幸的是，由于大多数浏览器和 Node 还不支持 <code>import</code> 和 <code>export</code>，我们仍然需要依靠 UMD 规范（如果你只写 Node 的话也可以用 CommonJS）。</p>
-<p>现在给你的库的 package.json 文件增加一个 <code>&quot;module&quot;: &quot;dist/my-library.es.js&quot;</code> 入口，可以让你的库同时支持 UMD 与 ES2015。<strong>这很重要，因为 Webpack 和 Rollup 都使用了 <code>pkg.module</code> 来尽可能的生成效率更高的代码</strong>——在一些情况下，它们都能使用 <a href="https://webpack.js.org/guides/tree-shaking/" target="_blank" rel="noopener">tree-shake</a> 来精简掉你的库中未使用的部分。</p>
-<p>*了解更多有关 <code>pkg.module</code> 的内容请访问 <a href="https://github.com/rollup/rollup/wiki/pkg.module" target="_blank" rel="noopener">Rollup wiki</a> 。*</p>
-<p>希望这篇文章能让你理清这两个开源项目之间的关系。如果你还有问题，可以在推特联系<a href="https://twitter.com/rich_harris" target="_blank" rel="noopener">rich_harris</a>、<a href="https://twitter.com/rollupjs" target="_blank" rel="noopener">rollupjs</a>、<a href="https://twitter.com/thelarkinn" target="_blank" rel="noopener">thelarkinn</a>。祝你打包快乐！</p>
-<p>感谢 Rich Harris 写了这篇文章。我们坚信开源协作是共同促进 web 技术前进的重要动力。</p>
-<p>没有时间为开源项目做贡献？想要以其它方式回馈吗？欢迎通过 <a href="https://opencollective.com/webpack" target="_blank" rel="noopener">Open Collective 进行捐赠</a>，成为 Webpack 的支持者或赞助商。Open Collective 不仅会资助核心团队，而且还会资助那些贡献出空闲时间帮助我们改进项目的贡献者们。</p>
-<blockquote>
-<p>发布于掘金 <a href="https://juejin.im/post/58edb865570c350057f199a7" target="_blank" rel="noopener">https://juejin.im/post/58edb865570c350057f199a7</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2727,7 +2839,7 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">145</span>
+                    <span class="site-state-item-count">146</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -3125,7 +3237,11 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
                     
                       
                     
-                    <span class="site-state-item-count">177</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">179</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

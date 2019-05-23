@@ -368,6 +368,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/21/探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/04/21/探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化/" class="post-title-link" itemprop="url">探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-04-21 10:36:00" itemprop="dateCreated datePublished" datetime="2016-04-21T10:36:00+08:00">2016-04-21</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在此之前没有接触过矩阵化运算，因此对于矩阵化运算的过程一头雾水。准备对于线性回归的代价函数进行矩阵化以探究其过程。</p>
+<hr>
+<p>CostFuction 数学表达式：</p>
+<script type="math/tex; mode=display">J(\theta)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2</script><p>根据数学式之前以for循环写了算法：<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:m</span><br><span class="line">J += (theta(<span class="number">1</span>)+ theta(<span class="number">2</span>)*X(<span class="built_in">i</span>,<span class="number">2</span>)-y(<span class="built_in">i</span>))^<span class="number">2</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">J = J/(<span class="number">2</span>*m);</span><br></pre></td></tr></table></figure></p>
+<p>很明确的循环符合数学式。</p>
+<p>尝试对齐进行矩阵化，首先看$h_\theta(x^{(i)})$</p>
+<script type="math/tex; mode=display">h_\theta(x)=\theta^T x = \theta_0 + \theta_1 x_1</script><p>对每个x(i)进行运算：</p>
+<p><img src="/images/pasted-54.png" alt="upload successful"></p>
+<p>对其进行sum与转置操作后可以得到</p>
+<script type="math/tex; mode=display">\sum((\theta'.*X)')-y'= \\ [\theta_1 x^{(1)}_1+\theta_2 x^{(1)}_2 -y^{(1)},\theta_1 x^{(2)}_1+\theta_2 x^{(2)}_2 -y^{(2)},...,\theta_1 x^{(m)}_1+\theta_2 x^{(m)}_2 -y^{(m)}]</script><p>因此可以得知代价函数的矩阵化函数式为：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">J = sum((sum((theta'.*X)')-y').^<span class="number">2</span>)/(<span class="number">2</span>*m);</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/21/js获取url中的参数传值/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1959,168 +2126,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/03/引用Js文件通过script中的src传值/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/04/03/引用Js文件通过script中的src传值/" class="post-title-link" itemprop="url">引用Js文件通过script中的src传值</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-04-03 17:27:00" itemprop="dateCreated datePublished" datetime="2016-04-03T17:27:00+08:00">2016-04-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>举例：</p>
-<script type="text/javascript" src="js/iflogin.js?url=cart.html"></script>
-
-<p>在 iflogin.js 中需要用到url这个参数。</p>
-<p>原理:<script>在 html 中也是标签，能通过 document.getElementsByTagName 访问到。然后通过 split 截断 src 中的字符串即可得到需要的值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> js = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"script"</span>);  </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; js.length; i++) &#123;  </span><br><span class="line">    <span class="keyword">if</span> (js[i].src.indexOf(<span class="string">"iflogin.js"</span>) &gt;= <span class="number">0</span>) &#123;  </span><br><span class="line">        <span class="keyword">var</span> url = <span class="keyword">new</span> <span class="built_in">Array</span>();  </span><br><span class="line">        url = js[i].src.split(<span class="string">'?'</span>);  </span><br><span class="line">        url = url[<span class="number">1</span>].split(<span class="string">'='</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如上所示，通过查找所有 script 标签，找到 iflogin.js 并读得后面所跟参数。</p>
-</script></p>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2168,7 +2173,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">145</span>
+                    <span class="site-state-item-count">146</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2566,7 +2571,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">177</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">179</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lsvih.com/"/>
-  <updated>2019-04-29T04:03:39.628Z</updated>
+  <updated>2019-05-23T14:48:31.920Z</updated>
   <id>https://lsvih.com/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>An Online Social Network-based Recommendation System 论文笔记</title>
+    <link href="https://lsvih.com/2019/05/23/An%20Online%20Social%20Network-based%20Recommendation%20System/"/>
+    <id>https://lsvih.com/2019/05/23/An Online Social Network-based Recommendation System/</id>
+    <published>2019-05-23T14:48:00.000Z</published>
+    <updated>2019-05-23T14:48:31.920Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本文发表于2007年，作者是来自多伦多大学计算机系的几位师生。虽然本文在领域内影响并不大，但我认为它的撰写非常清晰，有利于对“基于社会网络的推荐系统”这一课题的了解。</p></blockquote><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>作者提出了一种基于社会网络的推荐系统，这种推荐系统利用用户资料以及用户与用户之间的连接进行推荐（具体来说是通过用户的打分矩阵和对应的朋友关系来推荐）。</p><blockquote><p>本文的数据来源于一个名为 BoardGameGeek（BGG）的网站，在数据一节详细描述</p></blockquote><h2 id="背景与相关工作"><a href="#背景与相关工作" class="headerlink" title="背景与相关工作"></a>背景与相关工作</h2><p>所谓推荐系统，是一种基于用户以往数据、通过某些算法计算，向用户推送新内容的一种机制，在 20 世纪互联网经济发展中被广泛使用。最早利用推荐系统扩大利润的是电商 Amazon，他们利用用户曾经购买或评分的商品来预测用户之后可能会购买的商品并进行推送，从而促使用户购买更多的商品。</p><p>推荐系统最常用的方式就是基于内容的<strong>协同过滤</strong>方法（这种方式在今天也被广泛使用，好处是推荐较为准确，坏处是计算量极大），具体来说就是通过计算多个用户喜好的相似，来推荐对应的对象。</p><p>推荐系统研究的一个难点就是数据的获取，使用用户数据容易触及隐私问题，因此各个公司都是在利用用户的公开数据来进行推荐系统的研究。这又有另一个问题：很多用户的公开数据并不完全（比如获取不到用户间的联系），导致困难重重。此外，传统的算法的前提假设为用户是独立的存在，因此无法利用用户的结构信息来进行推荐。</p><p>作者通过对社会学和机器学习的研究，为 boardgaming 开发了一种 Online Social Network-based（OSN）推荐系统，实现了较好的推荐效果。</p><p>最后作者还对数据的隐私问题和算法的应用进行了讨论。</p><h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>BoardGameGeek（BGG）是一个知名的游戏站点，人们在其中讨论各种游戏机和卡带，并且会对各个游戏、主机等产品进行评价、打分。比较特殊的是，这个网站包含了大量的公开社交信息（玩家会公开加好友，并进行讨论），因此适合用来使用社会网络来构建推荐系统。</p><p>最终，作者使用的数据包括：</p><ul><li>大约 3 万条被用户评价过的游戏数据</li><li>大约 4 万条曾经评价过游戏的用户数据</li><li>所有的任意用户对任意游戏的评价数据</li><li>各个用户“愿望清单”的游戏列表</li><li>用户与用户之间的好友关系</li></ul><h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>作者使用了概率矩阵分解算法（probabilistic matrix factorization，简称 PMF 算法）。在此简单描述一下这个算法：</p><p>给定一个维数为 $M \times N$ 的评价矩阵 $R$，其中 $R_{ij}$ 可以表示用户 $i$ 对游戏 $j$ 的评价分数。而 PMF 算法的目的就是对评价矩阵 $R$ 进行矩阵分解，找到评价矩阵的因子：</p><script type="math/tex; mode=display">R \approx U G</script><p>其中 $U \in \mathcal { R } ^ { M \times D } $, $G \in \mathcal { R } ^ { D \times N }$。作者假设有一些“原型用户”（prototype user），这种用户具有评分和喜好的代表性。上式中的$D$就是这种“原型用户”的数量。因此上面的矩阵分解就能得出原型用户的评分矩阵。作者直接利用 FA、PCA 之类的矩阵分解算法，使用方差 $\left( \sum _ { i , j } R _ { i j } - U _ { i } ^ { T } G _ { j } \right) ^ { 2 }$ 作为损失函数，对矩阵分解算法进行优化。（注，这应该是非常稀疏的矩阵分析）</p><p>为了把社会网络的信息加入模型中，作者将社交信息定义为矩阵 $F$，其维数是 $M \times M$。在 $F$ 中，如果用户 $i$ 和 $j$ 是好友关系，则 $F_{ij} = 1$，否则为 0。由此，作者将前面的矩阵分析式子改写为：</p><script type="math/tex; mode=display">R \approx F U G</script><p>转换问题，写作：</p><script type="math/tex; mode=display">F^{-1} R \approx U G</script><p>这样就可以继续用前文的方法求出原型用户的评分了。</p><h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>作者使用 SE（方差）loss 对矩阵分解进行优化，在训练迭代过程中 loss 下降情况如下图所示：</p><p><img src="https://lsvih.com/images/15586229007735.jpg" alt="-w445"></p><p>可以看到算法确实收敛了。（个人觉得可能过拟合了）</p><p>这个实验因为没有标注数据，所以也不好进行评价。因此作者用少数的数据作为测试集来验证效果，发现结果不错，最后直接将这个 baseline 做成了一款 Web 应用。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文提出了一种同时利用社会网络信息和用户评分信息的推荐算法，改善了推荐系统的效果。其意义是找了一种方法来把简单的社会网络信息给整合进传统的评分矩阵分解法中。总体来说整个文章的方法非常简单，而且实验不够置信，但可以用来参考了解“基于社会网络的推荐系统”这一课题。</p><p>此外，这篇文献的年代其实比较久远，目前已经有各种各样利用 Network Embedding 的方法，利用各种异构网络信息去做推荐系统，但其实主要的方法还是这篇文章中的方法：将评分矩阵与网络表示矩阵进行合并，然后再做矩阵分析。区别是本文的 Social Network 的表示实质上就是最简单的 one-hot Network Embedding，如果换成现代先进的 node2vec、deep walk 之类的方法应该会有所提升。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;本文发表于2007年，作者是来自多伦多大学计算机系的几位师生。虽然本文在领域内影响并不大，但我认为它的撰写非常清晰，有利于对“基于社会网络的推荐系统”这一课题的了解。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#
+      
+    
+    </summary>
+    
+      <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
+    
+    
+      <category term="note" scheme="https://lsvih.com/tags/note/"/>
+    
+      <category term="Paper" scheme="https://lsvih.com/tags/Paper/"/>
+    
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="recommendation system" scheme="https://lsvih.com/tags/recommendation-system/"/>
+    
+      <category term="social network" scheme="https://lsvih.com/tags/social-network/"/>
+    
+  </entry>
   
   <entry>
     <title>使用 PyTorch 在 MNIST 数据集上进行逻辑回归</title>
@@ -72,11 +108,11 @@
     
       <category term="note" scheme="https://lsvih.com/tags/note/"/>
     
+      <category term="Paper" scheme="https://lsvih.com/tags/Paper/"/>
+    
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
     
       <category term="CNN" scheme="https://lsvih.com/tags/CNN/"/>
-    
-      <category term="Paper" scheme="https://lsvih.com/tags/Paper/"/>
     
       <category term="deep learning" scheme="https://lsvih.com/tags/deep-learning/"/>
     
@@ -232,9 +268,9 @@
     
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
-      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
-    
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
   </entry>
   
@@ -259,9 +295,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
-    
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
       <category term="Slide" scheme="https://lsvih.com/tags/Slide/"/>
     
@@ -290,9 +326,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
-    
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
       <category term="matrix" scheme="https://lsvih.com/tags/matrix/"/>
     
@@ -332,11 +368,11 @@
     
       <category term="note" scheme="https://lsvih.com/tags/note/"/>
     
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
       <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
       <category term="algorithm" scheme="https://lsvih.com/tags/algorithm/"/>
-    
-      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
     
       <category term="matrix" scheme="https://lsvih.com/tags/matrix/"/>
     
@@ -391,9 +427,9 @@
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
-      <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
-    
       <category term="python" scheme="https://lsvih.com/tags/python/"/>
+    
+      <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
     
   </entry>
   
@@ -635,56 +671,6 @@
       <category term="CI" scheme="https://lsvih.com/tags/CI/"/>
     
       <category term="GitLab" scheme="https://lsvih.com/tags/GitLab/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>为 JavaScript 程序员准备的 Flutter 指南</title>
-    <link href="https://lsvih.com/2018/04/04/%E4%B8%BA-JavaScript-%E7%A8%8B%E5%BA%8F%E5%91%98%E5%87%86%E5%A4%87%E7%9A%84-Flutter-%E6%8C%87%E5%8D%97/"/>
-    <id>https://lsvih.com/2018/04/04/为-JavaScript-程序员准备的-Flutter-指南/</id>
-    <published>2018-04-04T02:49:00.000Z</published>
-    <updated>2018-10-28T16:13:05.848Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://flutter.io/" target="_blank" rel="noopener">Flutter</a> 是一款用同一套代码构建高性能、高保真的 iOS 及安卓应用的跨平台移动端应用 SDK。</p><p><a href="https://flutter.io/technical-overview/" target="_blank" rel="noopener">文档</a>中提到：</p><blockquote><p>Flutter 包括一个 <strong>react 风格</strong>的框架、一个 2D 渲染引擎、一些预制的插件以及开发者工具。</p></blockquote><p><img src="https://lsvih.com/images/pasted-312.png" alt="upload successful"></p><p>文本希望能快速为 JavaScript 开发者们提供一个简练的入门指南，我会试着以 JS 与 npm 生态系统来类比 Flutter / Dart 与 <a href="https://pub.dartlang.org/" target="_blank" rel="noopener">Pub</a> 包库。</p><blockquote><p>如果你对最新的 Flutter 教程、库、公告及社区的更新感兴趣，我建议您订阅双周刊 <a href="http://flutternewsletter.com/" target="_blank" rel="noopener">Flutter Newsletter</a>。</p></blockquote><hr><p>我在 <a href="https://react-native.eu/" target="_blank" rel="noopener">React Native EU</a> 的演讲 <a href="https://www.youtube.com/watch?v=pFtvv0rJgPw" target="_blank" rel="noopener">React Native — 跨平台及超越</a>中讨论并演示了 React 生态系统中 <a href="https://github.com/necolas/react-native-web" target="_blank" rel="noopener">React Native Web</a>、<a href="https://github.com/lelandrichardson/react-primitives" target="_blank" rel="noopener">React Primitives</a> 和 <a href="https://microsoft.github.io/reactxp/" target="_blank" rel="noopener">ReactXP</a> 的不同之处，并且我也有机会讨论 <a href="https://weex.incubator.apache.org/" target="_blank" rel="noopener">Weex</a> 及 <a href="https://flutter.io/" target="_blank" rel="noopener">Flutter</a> 的不同之处。</p><p>在尝试 Flutter 之后，我认为它是近几年我所关注的前端技术中最让我激动的一个。在本文中，我将讨论为何它如此令我激动，并介绍如何尽可能快的入门 Flutter。</p><a id="more"></a><h4 id="如果你认识我，那么我知道你正在想什么…"><a href="#如果你认识我，那么我知道你正在想什么…" class="headerlink" title="如果你认识我，那么我知道你正在想什么…"></a>如果你认识我，那么我知道你正在想什么…</h4><p><img src="https://lsvih.com/images/pasted-313.png" alt="upload successful"></p><p>我是一名有着超过两年半经验的 React 与 React Native 开发者。现在，我仍然看好 React 和 React Native，并且我也知道有许多大公司正在使用它们，但我仍然乐于看到其他的能达到相同目的的想法方法，这无关乎我是否要去学习或改变技术栈。</p><h3 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h3><blockquote><p>我可以做个概括：Flutter 令人惊叹, 我相信近几年它会成为更多人的选择。</p></blockquote><p>在使用了几周 Flutter SDK 之后，我正在应用它制作我的第一个 App，我十分享受这个过程。</p><p>在我开始介绍如何入门 Flutter 前，我将首先回顾一下我对它的 SDK 的优缺点的看法。</p><p><img src="https://lsvih.com/images/pasted-314.png" alt="upload successful"></p><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul><li>内置由核心团队维护的 UI 库（Material 及 Cupertino）。</li><li>Dart 团队与 Flutter 团队紧密合作，专门针对 Flutter 优化移动设备的 Dart VM。</li><li>有着崭新的、酷炫的文档。</li><li>强大的 CLI。</li><li>我能轻松、顺利地入门与运行它，没有碰到各种障碍与 Bug。</li><li>开箱即用的热加载功能，使得调试的体验相当好。此外，还有<a href="https://flutter.io/debugging/" target="_blank" rel="noopener">一系列关于调试技术的很好的文档</a>。</li><li>有由核心团队构建并维护的 nav 库，可靠且有见地。</li><li>Dart 语言诞生 6 年了，相当成熟。虽然 Dart 是一种基于类的面向对象编程语言，但如果你想用函数式编程，Dart 也有着作为第一公民的函数，并且支持许多函数式编程结构。</li><li>Dart 比我想象中的更容易入门，我十分喜欢它。</li><li>Dart 是一种无需任何多余配置的开箱即用的强类型语言（比如：TypeScript、Flow）。</li><li>如果你用过 React，会发现它有类似的状态机制（比如 lifecycle 方法与 <code>setState</code>）。</li></ul><h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul><li>你要去学习 Dart（相信我，这很简单）。</li><li>仍在测试中。</li><li>目标平台仅为 iOS 和安卓。</li><li>插件生态系统还很稚嫩，<a href="https://pub.dartlang.org/flutter" target="_blank" rel="noopener">https://pub.dartlang.org/flutter</a> <a href="https://t.co/KMMwbnVM6M" title="http://pub.dartlang.org" target="_blank" rel="noopener"></a>在 2017 年 9 月还只有 70 余个包。</li><li>布局与编写样式需要学习一种全新的范式与 API。</li><li>需要学习不一样的项目配置（pubspec.yaml vs package.json）。</li></ul><h3 id="入门及其它观点"><a href="#入门及其它观点" class="headerlink" title="入门及其它观点"></a>入门及其它观点</h3><ul><li>Flutter 文档推荐了 VS Code 编辑器与 <a href="https://www.jetbrains.com/idea/" target="_blank" rel="noopener">IntelliJ IDE</a>。尽管 <a href="https://www.jetbrains.com/idea/" target="_blank" rel="noopener">IntelliJ IDE</a> 内置支持热加载、在线加载这些 VS Code 没有的功能，但我还是选择使用安装了 <a href="https://marketplace.visualstudio.com/items?itemName=DanTup.dart-code" target="_blank" rel="noopener">Dart Code extension</a> 插件的 VS Code 编辑器，并得到了很好的开发体验。</li><li>Flutter 有一个模块系统，或者叫包管理系统 —— <a href="https://pub.dartlang.org/" target="_blank" rel="noopener">Pub Dart Package Manager</a>，它与 npm 有很多不同点。它的好坏取决于你对 npm 的看法。</li><li>我之前并没有 Dart 相关的知识，但我很快就入门了。它让我想起了 TypeScript，并且与 JavaScript 也有一些相似之处。</li><li>文档中有几个相当不错的代码实验室与教程，建议去查阅一番：1. <a href="https://codelabs.developers.google.com/codelabs/flutter/index.html#0" target="_blank" rel="noopener">构建 UIS</a> 2. <a href="https://codelabs.developers.google.com/codelabs/flutter-firebase/index.html#0" target="_blank" rel="noopener">增加 Firebase</a> 3. <a href="https://flutter.io/tutorials/layout/" target="_blank" rel="noopener">构建布局</a> 4. <a href="https://flutter.io/tutorials/interactive/" target="_blank" rel="noopener">增加交互</a></li></ul><h4 id="说的够多了，现在让我们开始创建一个新的工程吧！"><a href="#说的够多了，现在让我们开始创建一个新的工程吧！" class="headerlink" title="说的够多了，现在让我们开始创建一个新的工程吧！"></a><strong>说的够多了，现在让我们开始创建一个新的工程吧！</strong></h4><h3 id="在-macOS-中安装-CLI"><a href="#在-macOS-中安装-CLI" class="headerlink" title="在 macOS 中安装 CLI"></a>在 macOS 中安装 CLI</h3><p>如果你使用的是 Windows，请查阅 <a href="https://flutter.io/setup/" target="_blank" rel="noopener">此文档</a>。</p><p>如需查看完整的 macOS 平台下的安装指南，请查看 <a href="https://flutter.io/setup-macos/" target="_blank" rel="noopener">此文档</a>。</p><p>首先，我们需要克隆包含 flutter CLI 二进制文件的 repo，然后将其添加到系统目录中。比如我将 repo 克隆到了专门用于存放二进制文件的目录下，然后将这个新目录加到了 <code>$HOME/.bashrc</code> 和 <code>$HOME/.zshrc</code> 文件中。</p><ol><li>克隆 repo：</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone -b alpha https://github.com/flutter/flutter.git</span><br></pre></td></tr></table></figure><ol><li>增加路径：</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$HOME/bin/flutter/bin:$PATH (或者填你选择的安装路径)</span><br></pre></td></tr></table></figure><ol><li>在命令行中运行 flutter doctor，检测 flutter 路径能被正确识别，并安装一切所需的依赖：</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter doctor</span><br></pre></td></tr></table></figure><h3 id="安装其它依赖"><a href="#安装其它依赖" class="headerlink" title="安装其它依赖"></a>安装其它依赖</h3><p>如果你要部署 iOS app，那么必须安装 Xcode；如果你要部署安卓 app，那么必须要安装 Android Studio。</p><p><strong>了解关于安装这两个不同平台的知识，请参阅文档</strong>：<a href="https://flutter.io/setup-macos/#platform-setup" target="_blank" rel="noopener">文档</a>。</p><h3 id="创建你的第一个-Flutter-app"><a href="#创建你的第一个-Flutter-app" class="headerlink" title="创建你的第一个 Flutter app"></a>创建你的第一个 Flutter app</h3><p>现在我们已经安装好了 flutter CLI，可以创建我们的第一个 app 了。请运行 flutter create 命令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter create myapp</span><br></pre></td></tr></table></figure><p>此命令会帮助你创建一个新的 app，进入新目录，打开 iOS 模拟器或安卓模拟器，运行以下命令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter run</span><br></pre></td></tr></table></figure><p><img src="https://lsvih.com/images/pasted-315.png" alt="upload successful"></p><p>此命令会在你打开的模拟器中运行 app。如果你同时打开了 iOS 与安卓模拟器，你可以用下面的命令来将程序传入指定的模拟器：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter run -d android / flutter run -d iPhone</span><br></pre></td></tr></table></figure><p>也可以同时运行：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flutter run -d all</span><br></pre></td></tr></table></figure><p>此时你应该在控制台中看到了关于重启 app 的信息：</p><p><img src="https://lsvih.com/images/pasted-316.png" alt="upload successful"></p><h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><p>你正在运行的代码处于 <code>lib/main.dart</code> 文件中。</p><p>你会发现有一个 andoird 文件夹和一个 iOS 文件夹，原生的项目存在这些目录中。</p><p>项目的配置在 <code>pubspec.yaml</code> 中，此文件与 JavaScript 生态系统中的 <code>package.json</code> 类似。</p><p>现在将目光转向 <code>lib/main.dart</code>。</p><p>在文件的头部，可以看见一个 import：</p><p><code>import ‘package:flutter/material.dart’;</code></p><p>这个依赖文件是哪儿来的？请查看 <code>pubspec.yaml</code> 文件，可以发现在依赖列表中单独有一个 flutter 依赖项，在这儿是引用的 <code>package:flutter/</code>。如果想添加或导入其它依赖项，那么需要将新的依赖加入 <code>pubspec.yaml</code>，然后用过 import 来使用它们。</p><p>在 <code>main.dart</code> 的头部，我们还可以看到有一个名为 main 的函数。在 Dart 中，<a href="https://www.dartlang.org/guides/language/language-tour#the-main-function" target="_blank" rel="noopener">main</a> 是一个特殊的、<strong>必要的</strong>、顶级的函数，也是 app 开始执行的地方。因为 Flutter 是由 Dart 构建的，main 也是这个工程的主入口。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void main() &#123;</span><br><span class="line">  runApp(new MyApp());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>此函数调用了 <code>new MyApp()</code>，这个类。与 React App 类似，有一个由多个组件组合而成的主组件，然后调用 <code>ReactDOM.render</code> 或 <code>AppRegistry.registerComponent</code> 进行渲染。</p><h3 id="Widget"><a href="#Widget" class="headerlink" title="Widget"></a>Widget</h3><p>Flutter <a href="https://flutter.io/technical-overview/" target="_blank" rel="noopener">技术总览</a>中的一个核心原则就是：“一切皆 Widget”。</p><blockquote><p>Widget 是每个 Flutter app 的最基本的构建模块。每个 Widget 都是用户界面的一个不可变定义。与其它框架分离视图、控制器、布局和其它属性不同，Flutter 有着统一的、一致的对象模型：Widget。</p></blockquote><p>类比 Web 术语或 JavaScript，你可以将 Widget 看成与 Component 类似的东西。Widget 通常由内部类构成，这些类可能包含或不包含一些本地状态（local state）或方法。</p><p>如果你观察 main.dart，可以发现类似 StatelessWidget、StatefulWidget、Center、Text 的类引用。这些都是 Widget。如果想了解所有可用的 Widget，请查阅<a href="https://docs.flutter.io/flutter/widgets/widgets-library.html" target="_blank" rel="noopener">文档</a>。</p><h3 id="布局与编写样式"><a href="#布局与编写样式" class="headerlink" title="布局与编写样式"></a>布局与编写样式</h3><p>虽然 Dart 和多数 Flutter 框架都很容易使用，但进行布局与编写样式让我最开始头疼了一阵子。</p><p>需要重点注意的是，与编写 Web 样式不同，以及与 React Native 的 View 会完成所有的布局和一些样式不同，Flutter 的布局由<strong>你选择的 Widget 类型</strong>及<strong>本身的布局与样式属性</strong>共同决定，也就是说它通常取决于你使用的 Widget。</p><p>例如，<a href="https://docs.flutter.io/flutter/widgets/Column-class.html" target="_blank" rel="noopener">Column</a> 能接收多个子 Widget，但不接受任何样式属性（<a href="https://docs.flutter.io/flutter/widgets/Flex/crossAxisAlignment.html" target="_blank" rel="noopener">CrossAxisAlignment</a> 及 <a href="https://docs.flutter.io/flutter/widgets/Flex/direction.html" target="_blank" rel="noopener">direction</a> 等布局属性除外）；而 <a href="https://docs.flutter.io/flutter/widgets/Container-class.html" target="_blank" rel="noopener">Container</a> 能接收各种布局及样式属性。</p><p>Flutter 还有一些布局专用的组件，比如 <a href="https://docs.flutter.io/flutter/widgets/Padding-class.html" target="_blank" rel="noopener">Padding</a>，它仅能接收一个子 Widget，但除了给子 Widget 添加 padding（边距）之外不会做其它任何事。</p><p>请参考这个完整的 <a href="https://flutter.io/widgets/layout/" target="_blank" rel="noopener">Widget 列表</a>，能帮你使用 Container、Row、Column、Center、GridView 及其它有着自己布局规范的组件实现布局。</p><h3 id="SetState-及生命周期函数"><a href="#SetState-及生命周期函数" class="headerlink" title="SetState 及生命周期函数"></a>SetState 及生命周期函数</h3><p>与 React 类似，Flutter 也有有状态、无状态组件或 Widget。有状态组件可以创建、更新、销毁状态，与 React 中使用的生命周期函数类似。</p><p>在 Flutter 中，也有一个名为 setState 的函数用来更新状态。你可以在我们刚才创建的项目的 <code>_incrementCounter</code> 方法中看到此函数。</p><p>更多信息请查阅：<a href="https://docs.flutter.io/flutter/widgets/StatefulWidget-class.html" target="_blank" rel="noopener">StatefulWidget</a>, <a href="https://docs.flutter.io/flutter/widgets/State-class.html" target="_blank" rel="noopener">State</a> 和 <a href="https://docs.flutter.io/flutter/widgets/StatelessWidget-class.html" target="_blank" rel="noopener">StatelessWidget</a>。</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>作为专门制作跨平台应用的开发者，我会保持关注 React Native 的竞争对手。对于客户来说，也多了一种选择，他们可能会因为某些原因而要求使用 Fluter。我认为 Flutter 为我的客户带来了一些他们想要的东西，比如内置的类型系统、一流的 UI 库、由核心团队维护的 nav 库等。</p><p>我会把 Flutter 加入我的技术栈中，当碰到 React Native 无法解决的问题和情况时，我将会使用 Flutter。只要我觉得可以将它用于生产环境，我会向客户展示我的第一个 Flutter app，供他们选择这个技术。</p><blockquote><p>掘金链接：<a href="https://juejin.im/post/5ac43c536fb9a028da7cbd59" target="_blank" rel="noopener">https://juejin.im/post/5ac43c536fb9a028da7cbd59</a></p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;https://flutter.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Flutter&lt;/a&gt; 是一款用同一套代码构建高性能、高保真的 iOS 及安卓应用的跨平台移动端应用 SDK。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://flutter.io/technical-overview/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;文档&lt;/a&gt;中提到：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Flutter 包括一个 &lt;strong&gt;react 风格&lt;/strong&gt;的框架、一个 2D 渲染引擎、一些预制的插件以及开发者工具。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;https://lsvih.com/images/pasted-312.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;
-&lt;p&gt;文本希望能快速为 JavaScript 开发者们提供一个简练的入门指南，我会试着以 JS 与 npm 生态系统来类比 Flutter / Dart 与 &lt;a href=&quot;https://pub.dartlang.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Pub&lt;/a&gt; 包库。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果你对最新的 Flutter 教程、库、公告及社区的更新感兴趣，我建议您订阅双周刊 &lt;a href=&quot;http://flutternewsletter.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Flutter Newsletter&lt;/a&gt;。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;p&gt;我在 &lt;a href=&quot;https://react-native.eu/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;React Native EU&lt;/a&gt; 的演讲 &lt;a href=&quot;https://www.youtube.com/watch?v=pFtvv0rJgPw&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;React Native — 跨平台及超越&lt;/a&gt;中讨论并演示了 React 生态系统中 &lt;a href=&quot;https://github.com/necolas/react-native-web&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;React Native Web&lt;/a&gt;、&lt;a href=&quot;https://github.com/lelandrichardson/react-primitives&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;React Primitives&lt;/a&gt; 和 &lt;a href=&quot;https://microsoft.github.io/reactxp/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;ReactXP&lt;/a&gt; 的不同之处，并且我也有机会讨论 &lt;a href=&quot;https://weex.incubator.apache.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Weex&lt;/a&gt; 及 &lt;a href=&quot;https://flutter.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Flutter&lt;/a&gt; 的不同之处。&lt;/p&gt;
-&lt;p&gt;在尝试 Flutter 之后，我认为它是近几年我所关注的前端技术中最让我激动的一个。在本文中，我将讨论为何它如此令我激动，并介绍如何尽可能快的入门 Flutter。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
-    
-    
-      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
-    
-      <category term="Front End" scheme="https://lsvih.com/tags/Front-End/"/>
-    
-      <category term="iOS" scheme="https://lsvih.com/tags/iOS/"/>
-    
-      <category term="Juejin" scheme="https://lsvih.com/tags/Juejin/"/>
-    
-      <category term="Flutter" scheme="https://lsvih.com/tags/Flutter/"/>
-    
-      <category term="Android" scheme="https://lsvih.com/tags/Android/"/>
-    
-      <category term="JavaScript" scheme="https://lsvih.com/tags/JavaScript/"/>
-    
-      <category term="Dart" scheme="https://lsvih.com/tags/Dart/"/>
-    
-      <category term="React Native" scheme="https://lsvih.com/tags/React-Native/"/>
     
   </entry>
   
