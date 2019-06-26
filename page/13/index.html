@@ -368,6 +368,1070 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/16/纯html-js-css做最简单的Flappy-Bird小游戏/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/05/16/纯html-js-css做最简单的Flappy-Bird小游戏/" class="post-title-link" itemprop="url">纯html,js,css做最简单的Flappy Bird小游戏</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-05-16 14:16:00" itemprop="dateCreated datePublished" datetime="2016-05-16T14:16:00+08:00">2016-05-16</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>效果：</p>
+<p><img src="/images/pasted-72.png" alt="upload successful"></p>
+<p><img src="/images/pasted-73.png" alt="upload successful"></p>
+<p><img src="/images/pasted-74.png" alt="upload successful"></p>
+<p>主要使用了定时器，做出速度与加速度的效果，并配合改变Bird的角度，达到想要的效果。</p>
+<p>检测游戏是否失败靠检测鸟的上下左右点是否在柱子内或者在地图外。</p>
+<p>Html:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">		&lt;title&gt;&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;div id=&quot;start&quot; onclick=&quot;start()&quot;&gt;start&lt;/div&gt;</span><br><span class="line">		&lt;div id=&quot;startbackground&quot;&gt;&lt;/div&gt;</span><br><span class="line">		&lt;div id=&quot;warp&quot; onclick=&quot;tap()&quot;&gt;</span><br><span class="line">			&lt;div id=&quot;bird&quot;&gt;&lt;/div&gt;</span><br><span class="line">			&lt;div id=&quot;pillar-up&quot;&gt;&lt;/div&gt;</span><br><span class="line">			&lt;div id=&quot;pillar-down&quot;&gt;&lt;/div&gt;</span><br><span class="line">			&lt;div id=&quot;background&quot;&gt;&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">	&lt;style&gt;</span><br><span class="line">	body&#123;</span><br><span class="line">		height: 500px;</span><br><span class="line">		width: 300px;</span><br><span class="line">	&#125;</span><br><span class="line">		#start &#123;</span><br><span class="line">			position: fixed;</span><br><span class="line">			z-index: 999;</span><br><span class="line">			top: 250px;</span><br><span class="line">			left: 150px;</span><br><span class="line">			border: 2px solid#eee;</span><br><span class="line">			background-color: #888;</span><br><span class="line">			height: 50px;</span><br><span class="line">			width: 150px;</span><br><span class="line">			margin-left: -75px;</span><br><span class="line">			text-align: center;</span><br><span class="line">			line-height: 50px;</span><br><span class="line">			font-size: 30px;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		#startbackground &#123;</span><br><span class="line">			position: fixed;</span><br><span class="line">			z-index: 888;</span><br><span class="line">			height: 500px;</span><br><span class="line">			width: 300px;</span><br><span class="line">			background-color: black;</span><br><span class="line">			opacity: 0.5;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		#warp &#123;</span><br><span class="line">			position: relative;</span><br><span class="line">			border: 1px solid#000;</span><br><span class="line">			height: 500px;</span><br><span class="line">			width: 300px;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		#bird &#123;</span><br><span class="line">			position: absolute;</span><br><span class="line">			height: 20px;/*鸟高 */</span><br><span class="line">			width: 30px;/*鸟长*/</span><br><span class="line">			background-color: red;</span><br><span class="line">			top: 100px;</span><br><span class="line">			left: 50px;</span><br><span class="line">			transform: rotate(0deg);</span><br><span class="line">			-ms-transform: rotate(0deg);</span><br><span class="line">			-moz-transform: rotate(0deg);</span><br><span class="line">			-webkit-transform: rotate(0deg);</span><br><span class="line">			-o-transform: rotate(0deg);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		#pillar-up &#123;</span><br><span class="line">			position: absolute;</span><br><span class="line">			height: 0;</span><br><span class="line">			width: 50px;</span><br><span class="line">			background-color: green;</span><br><span class="line">			top: 0;</span><br><span class="line">			right: -50px;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		#pillar-down &#123;</span><br><span class="line">			position: absolute;</span><br><span class="line">			height: 0;</span><br><span class="line">			width: 50px;</span><br><span class="line">			background-color: green;</span><br><span class="line">			bottom: 0;</span><br><span class="line">			right: -50px;</span><br><span class="line">		&#125;</span><br><span class="line">	&lt;/style&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">		var startX = 50;//角色距离左边x坐标</span><br><span class="line">		var startY = 100; //角色开始高度</span><br><span class="line">		var maxTop = 480; //地图高度500 角色碰撞高度20</span><br><span class="line">		var v_y = 0; //向下运动为正，每1个时间单位向下移动v_y个像素</span><br><span class="line">		var v_x = 2; //水平相对运动速度（实际上没有运动）</span><br><span class="line">		var g = 0.7; //重力加速度，每个时间单位速度向下加这么多</span><br><span class="line">		var Bird = document.getElementById(&quot;bird&quot;);</span><br><span class="line">		var startBtn = document.getElementById(&quot;start&quot;);</span><br><span class="line">		var pillarup = document.getElementById(&quot;pillar-up&quot;);</span><br><span class="line">		var pillardown = document.getElementById(&quot;pillar-down&quot;);</span><br><span class="line">		var pillarX = -50; //柱子初始位置</span><br><span class="line">		var gamestate = 0;</span><br><span class="line">		var pillarstate = 0;</span><br><span class="line">		var scorecount = 0;</span><br><span class="line">		var score = 0;//分数</span><br><span class="line">		function start() &#123;</span><br><span class="line">			if (gamestate == 1) &#123;</span><br><span class="line">				window.location.reload()</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				main();</span><br><span class="line">				startBtn.style.display = &quot;none&quot;;</span><br><span class="line">				document.getElementById(&quot;startbackground&quot;).style.display = &quot;none&quot;;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		function tap() &#123;</span><br><span class="line">			v_y = -12;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		function main() &#123;</span><br><span class="line">			var birdtimer = setInterval(function() &#123;</span><br><span class="line">					if (startY &gt; maxTop || startY &lt; 0) &#123; //角色碰撞上下边界</span><br><span class="line">						gameover();</span><br><span class="line">					&#125;</span><br><span class="line">					if ((pillarX&gt;220&amp;&amp;pillarX&lt;280&amp;&amp;startY&lt;pillarupH)||(pillarX&gt;220&amp;&amp;pillarX&lt;280&amp;&amp;startY&gt;(200+ pillarupH)))&#123;</span><br><span class="line">						gameover();</span><br><span class="line">					&#125;</span><br><span class="line">					startY += v_y;</span><br><span class="line">					v_y += g;</span><br><span class="line">					deg = Math.atan(v_y / v_x) / 1.57 * 60;</span><br><span class="line"></span><br><span class="line">					Bird.style.webkitTransform = &quot;rotate(&quot; + deg + &quot;deg)&quot;;</span><br><span class="line">					Bird.style.MozTransform = &quot;rotate(&quot; + deg + &quot;deg)&quot;;</span><br><span class="line">					Bird.style.msTransform = &quot;rotate(&quot; + deg + &quot;deg)&quot;;</span><br><span class="line">					Bird.style.OTransform = &quot;rotate(&quot; + deg + &quot;deg)&quot;;</span><br><span class="line">					Bird.style.transform = &quot;rotate(&quot; + deg + &quot;deg)&quot;;</span><br><span class="line">					Bird.style.top = startY + &quot;px&quot;;</span><br><span class="line">				&#125;, 20) //一次时间单位</span><br><span class="line">			var pillartimer = setInterval(function() &#123;</span><br><span class="line">					if (pillarstate == 0) &#123;</span><br><span class="line">						pillarup.style.right = &quot;-50px&quot;;</span><br><span class="line">						pillardown.style.right = &quot;-50px&quot;;</span><br><span class="line">						pillarupH = 300 * Math.random();</span><br><span class="line">						pillarup.style.height = pillarupH + &quot;px&quot;;</span><br><span class="line">						pillardown.style.height = (300 - pillarupH) + &quot;px&quot;;</span><br><span class="line">						pillarstate = 1;</span><br><span class="line">					&#125;</span><br><span class="line">					if (pillarX &gt;= 350) &#123;</span><br><span class="line">						pillarX = -50;</span><br><span class="line">						pillarstate = 0;</span><br><span class="line">						scorecount = 0;</span><br><span class="line">					&#125;</span><br><span class="line">					if(pillarX &gt;= 250&amp;&amp;scorecount == 0)&#123;</span><br><span class="line">						score++;</span><br><span class="line">						scorecount = 1;</span><br><span class="line">					&#125;</span><br><span class="line">					pillarX += v_x;</span><br><span class="line">					pillarup.style.right = pillarX - 50 + &quot;px&quot;;</span><br><span class="line">					pillardown.style.right = pillarX - 50 + &quot;px&quot;;</span><br><span class="line">				&#125;, 20) //一次时间单位</span><br><span class="line">			function gameover() &#123;</span><br><span class="line">				clearTimeout(birdtimer);</span><br><span class="line">				clearTimeout(pillartimer);</span><br><span class="line">				document.getElementById(&quot;startbackground&quot;).style.display = &quot;block&quot;</span><br><span class="line">				startBtn.innerText = &apos;失败，分数为&apos;+ score +&apos;，重新开始？&apos;;</span><br><span class="line">				startBtn.style.display = &apos;block&apos;;</span><br><span class="line">				startBtn.style.fontSize = &apos;11px&apos;;</span><br><span class="line">				gamestate = 1;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/10/机器学习学习笔记（十二）无监督学习K-means/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/05/10/机器学习学习笔记（十二）无监督学习K-means/" class="post-title-link" itemprop="url">机器学习学习笔记（十二）无监督学习K-means</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-05-10 14:30:35" itemprop="dateCreated datePublished" datetime="2016-05-10T14:30:35+08:00">2016-05-10</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>当给出一组未经标记的数据，让程序自己去对其数据结构进行分析与分类（加上标签），就是无监督学习。</p>
+<p>例如聚类就是无监督学习中的一个典型例子。</p>
+<h3 id="K-means算法"><a href="#K-means算法" class="headerlink" title="K-means算法"></a>K-means算法</h3><p>K-means算法(K均值算法)是现在使用最为广泛的聚类算法。</p>
+<p>使用步骤如下：</p>
+<p>首先随机选择两个点（分成两个聚类），称其为聚类中心；</p>
+<p>K-means是一个迭代算法，它将不断进行簇分配与聚类中心移动。</p>
+<p><img src="/images/pasted-63.png" alt="upload successful"></p>
+<p>1、簇分配</p>
+<p>根据数据集中的点距离哪个聚类中心更近从而将其分为两类，例如：</p>
+<p><img src="/images/pasted-64.png" alt="upload successful"></p>
+<p>2、移动聚类中心</p>
+<p>分别将之前的两个聚类中心移动到它那个聚类的均值处。如图：</p>
+<p><img src="/images/pasted-65.png" alt="upload successful"></p>
+<p>两个中心都移动到均值处。</p>
+<p><img src="/images/pasted-66.png" alt="upload successful"></p>
+<p>之后再次重复第一步簇分配，重新根据数据点距离聚类中心的距离重新分类，之后再次移动聚类中心……</p>
+<p>一直迭代下去，直到聚类中心不再移动，簇分配也不再变化，此时称此时K-means已经收敛了。</p>
+<hr>
+<p>以较科学的方式描述K-means</p>
+<p><img src="/images/pasted-67.png" alt="upload successful"></p>
+<p>K为簇数，即期望将未标记的数据分为几类的值；</p>
+<p>具体算法：</p>
+<p><img src="/images/pasted-69.png" alt="upload successful"></p>
+<p>1、随机初始化K个聚类中心Mu1,Mu2……MuK</p>
+<p>重复以下的事情：</p>
+<p>2、将x中的每个值根据距离Mu的距离分类（簇分配），距离公式如下：</p>
+<script type="math/tex; mode=display">min_k \left | x^{(i)}-\mu_k \right |^2</script><p>3、对于每个聚类中心重新规划在其对应聚类的平均值处。</p>
+<hr>
+<h3 id="K-means的实际用途"><a href="#K-means的实际用途" class="headerlink" title="K-means的实际用途"></a>K-means的实际用途</h3><p>例如市场细分：</p>
+<p><img src="/images/pasted-70.png" alt="upload successful"></p>
+<p>对于服装场来说，如果要将调查到的如上数据的人群分为大中小三个聚类，肉眼从图上看无法分开这三种尺寸。</p>
+<p>使用K-means可以将其顺利分为3个聚类，</p>
+<p><img src="/images/pasted-71.png" alt="upload successful"></p>
+<p>由此可以看到K均值的确可以比人更好的解决一些问题。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/03/机器学习学习笔记（十一）调试算法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/05/03/机器学习学习笔记（十一）调试算法/" class="post-title-link" itemprop="url">机器学习学习笔记（十一）调试算法</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-05-03 07:30:00" itemprop="dateCreated datePublished" datetime="2016-05-03T07:30:00+08:00">2016-05-03</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>当发现测试算法时预测的结果有非常大的误差时,有以下几种方法解决问题:</p>
+<ol>
+<li><p>使用更大的训练集</p>
+</li>
+<li><p>使用更少的特征值</p>
+</li>
+<li><p>使用更多的特征值</p>
+</li>
+<li><p>使用更高次幂的特征值</p>
+</li>
+<li><p>减少正则化参数</p>
+</li>
+<li><p>增加正则化参数</p>
+</li>
+</ol>
+<p>判断如何选择方法不应该”凭感觉”选择,而应该科学地使用机器学习诊断法进行判断,以更省时间,更有意义地改进算法.</p>
+<h3 id="过拟合与欠拟合"><a href="#过拟合与欠拟合" class="headerlink" title="过拟合与欠拟合"></a>过拟合与欠拟合</h3><p><img src="/images/pasted-56.png" alt="upload successful"></p>
+<p>(图为过拟合)</p>
+<p>过拟合与欠拟合都将不能很好的匹配新的数据.</p>
+<p>方法:将所有数据分为训练集与测试集.比例可以使用7:3.</p>
+<p>当训练集的$J(\theta )$很小,测试集的$J(\theta )$很大时,此时即为过拟合的情况.</p>
+<script type="math/tex; mode=display">J_{test}(\theta )=\frac{1}{2m_{test}}\sum_{i=1}^{m_{test}}(h_{\theta}(x_{test}^{i})-y_{test}^{i})^{2}</script><p>以上公式即为线性回归测试集误差计算公式;</p>
+<script type="math/tex; mode=display">J_{test}(\theta )=-\frac{1}{m_{test}}\sum_{i=1}^{m_{test}}y_{test}^{i}\log h_{\theta }(x_{test}^{i})+(1-y_{test}^{i})\log h_{\theta }(x_{test}^{i})</script><p>以上公式为逻辑回归测试误差公式;</p>
+<p>可以看到其实误差公式与代价函数的计算是一致的.</p>
+<p>通过以上计算公式可以量化测试集测试训练集的训练结果.</p>
+<hr>
+<h3 id="确定多项式的次数"><a href="#确定多项式的次数" class="headerlink" title="确定多项式的次数"></a>确定多项式的次数</h3><p>已经知道,当多项式的次数过高的时候,会发生过拟合现象.如何根据数据来确定多项式次数d呢?</p>
+<p>与之前加上验证集不同的是,将数据集分成三部分:训练集,测试集,交叉验证级.</p>
+<p>选择不同的多项式次数分别对验证集进行计算,</p>
+<script type="math/tex; mode=display">1. h_{\theta }(x)=\theta _{0}+\theta _{1}x\\2. h_{\theta }(x)=\theta _{0}+\theta _{1}x+\theta _{2}x^{2}\\3. h_{\theta }(x)=\theta _{0}+\theta _{1}x+...+\theta _{3}x^{3}\\\vdots \\10. h_{theta }(x)=\theta _{0}+\theta _{1}x+...+\theta _{10}x^{10}</script><p>得到各自的$J_{cv}(\theta )$,由此可以选择出最合适的多项式次数.</p>
+<hr>
+<p>因此,选择算法使用验证集进行模型选择,使用测试集来评价模型的好坏,这样就能找到合适的模型.</p>
+<h2 id="偏差-bias-与方差-variance"><a href="#偏差-bias-与方差-variance" class="headerlink" title="偏差(bias)与方差(variance)"></a>偏差(bias)与方差(variance)</h2><p><img src="/images/pasted-57.png" alt="upload successful"></p>
+<p>具体来说,欠拟合是高偏差情况,过拟合是高方差情况.</p>
+<p>分别对训练集和验证集的误差情况与多项式次数进行画图</p>
+<p><img src="/images/pasted-58.png" alt="upload successful"></p>
+<p>可以看到当项数次数过少时,错误相当的大,此时是高偏差情况;当项数次数过多时,训练集的误差变得非常小,呈现出过拟合的情况.但是交叉验证集的错误将急剧上升,此时的情况是高方差.</p>
+<p>直接描述就是:训练集误差小验证集误差大时,就是过拟合-高方差情况;</p>
+<h3 id="选择合适的正则化参数lambda"><a href="#选择合适的正则化参数lambda" class="headerlink" title="选择合适的正则化参数lambda"></a>选择合适的正则化参数lambda</h3><p>改变lambda时,训练集$J_{train}$与交叉验证集$J_{cv}$都会发生一定的变化.</p>
+<p>当参数过多过大时，后面的正则化项的值就会很大，因而导致$ J(\theta )$也变大，从而使这个预测方程得到更多的惩罚，使其像参数变量尽量小的地步靠拢。对正则化过程有影响的是lambda，当lambda数值大的时候，函数收到的惩罚更多，会更快地减少参数数值；当lambda为0的时候，函数则不会对参数进行正则化处理。</p>
+<p>如图所示</p>
+<p><img src="/images/pasted-59.png" alt="upload successful"></p>
+<p>当lambda过大时,会处于高偏差情况,$J_{train}$的值会很大,lambda值过小时会处于过拟合情况.</p>
+<p>因此,上图的左端对应着高方差,右端对应着高偏差问题,</p>
+<h3 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h3><p>用于判断算法的学习情况.可以判断此时处于高方差高偏差情况以对于算法进行修改.</p>
+<p>绘出$J_{train}(\theta )$与$J_{cv}(\theta )$的图像.</p>
+<p><img src="/images/pasted-60.png" alt="upload successful"></p>
+<p>上图为训练集大小与两个J的对应情况.</p>
+<p>当训练集过大时,$J_{train}$越来越难对与过大的训练集做出良好的拟合,因此在图上表现出m越大error越多.</p>
+<p>相反,当训练集大的时候,$J_{cv}$更能获得更好的泛化,即对新样品的适应更好,因此可以得到上述曲线.</p>
+<p>如果不使用多项式拟合而直接用一条直线,那么数据集的大小再大也于事无补,无法更加接近实际情况.此时$J_{train}$与$J_{cv}$会很接近,</p>
+<p><img src="/images/pasted-61.png" alt="upload successful"></p>
+<p>这种情况便是高偏差情况.</p>
+<p>反之,如果项数很大的话,学习曲线会如图所示:</p>
+<p><img src="/images/pasted-62.png" alt="upload successful"></p>
+<p>$J_{train}$与$J_{cv}$间会有很大的差距,这种情况是高方差.</p>
+<hr>
+<hr>
+<p>回到最开始的情况</p>
+<ol>
+<li><p>使用更大的训练集可以对于高方差的情况有所帮助(将学习曲线画出来可以看出)</p>
+</li>
+<li><p>使用更少的特征值可以修复一定的高方差情况.</p>
+</li>
+<li><p>使用更多的特征值可以修复高偏差情况</p>
+</li>
+<li><p>使用更高次幂的特征值可以修复高偏差情况</p>
+</li>
+<li><p>减少正则化参数可以修复高偏差</p>
+</li>
+<li><p>增加正则化参数可以修复高方差</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/03/爬虫python解析json与python下载图片/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/05/03/爬虫python解析json与python下载图片/" class="post-title-link" itemprop="url">爬虫python解析json与python下载图片</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-05-03 04:24:00" itemprop="dateCreated datePublished" datetime="2016-05-03T04:24:00+08:00">2016-05-03</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>目标:<a href="http://yun.kujiale.com/api/openfps?query=beijing&amp;start=1&amp;num=50" target="_blank" rel="noopener">http://yun.kujiale.com/api/openfps?query=beijing&amp;start=1&amp;num=50</a>  中的所有户型数据,将其户型图片下载到本地.</p>
+</blockquote>
+<p>目标中的数据以json形式存在,因此使用json.loads.</p>
+<p>全部代码如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> urllib </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">valifile</span><span class="params">(name)</span>:</span></span><br><span class="line">    rstr = <span class="string">r"[/\:*?"</span>&lt;&gt;|]<span class="string">"  # ';/:*?"</span>&lt;&gt;|<span class="string">';</span></span><br><span class="line"><span class="string">    valiname = re.sub(rstr, "", name)</span></span><br><span class="line"><span class="string">    return valiname</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">def getkjlimages():</span></span><br><span class="line"><span class="string">	for i in range(0,1000000):</span></span><br><span class="line"><span class="string">		print(i)</span></span><br><span class="line"><span class="string">		i = str(i*6)</span></span><br><span class="line">		surl = ';http://yun.kujiale.com/api/openfps?query=beijing&amp;amp;start=';+i+';&amp;amp;num=6';</span><br><span class="line">		ret=requests.get(url=surl) </span><br><span class="line">		ret.encoding=<span class="string">';utf-8'</span>;</span><br><span class="line">		kjl = json.loads(ret.text)</span><br><span class="line">		<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">49</span>):</span><br><span class="line">			itmes = kjl[<span class="string">';obsExFps'</span>;][j]</span><br><span class="line">			name = json.dumps(itmes[<span class="string">';name'</span>;])[<span class="number">1</span>:<span class="number">-1</span>].decode(<span class="string">"unicode-escape"</span>)</span><br><span class="line">			src = json.dumps(itmes[<span class="string">';pics'</span>;])[<span class="number">1</span>:<span class="number">-1</span>]</span><br><span class="line">			<span class="comment">##name和src后面加了[1:-1]的原因是json数据中包含了前后两个引号,要将其去掉</span></span><br><span class="line">			print(<span class="string">';img_src='</span>;+json.dumps(itmes[<span class="string">';pics'</span>;]))</span><br><span class="line">			img = urllib.urlopen(src).read()</span><br><span class="line">			f = file(<span class="string">';imgs/'</span>;+validateTitle(name)+<span class="string">';.jpg'</span>;,<span class="string">"wb"</span>)</span><br><span class="line">			f.write(img)</span><br><span class="line">			f.close</span><br><span class="line">getkjlimages()</span><br></pre></td></tr></table></figure></p>
+<p>其中,json.dumps出来的字符串为 uxxxx形式,需要用decode(“unicode-escape”)进行转换成中文.另外,由于爬下来的name要直接用于文件名,其中有””等符号,因此需要将name合法化.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">valifile</span><span class="params">(name)</span>:</span></span><br><span class="line">    rstr = <span class="string">r"[/\:*?"</span>&lt;&gt;|]<span class="string">"  # ';/:*?"</span>&lt;&gt;|<span class="string">';</span></span><br><span class="line"><span class="string">    valiname = re.sub(rstr, "", name)</span></span><br><span class="line"><span class="string">    return valiname</span></span><br></pre></td></tr></table></figure></p>
+<p>通过以上valifile可以将文件名在windows下合法化.</p>
+<p>运行结果:</p>
+<p><img src="/images/pasted-55.png" alt="upload successful"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/29/requests-pyquery爬虫体验/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/04/29/requests-pyquery爬虫体验/" class="post-title-link" itemprop="url">requests+pyquery爬虫体验</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-04-29 08:07:00" itemprop="dateCreated datePublished" datetime="2016-04-29T08:07:00+08:00">2016-04-29</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>目标网站:<a href="http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx" target="_blank" rel="noopener">http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx</a> </p>
+<p>需要将所有数据爬下放到数据库中.中途遇到了各种编码问题,因此使用了requests获取页面.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> MySQLdb</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pyq</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(text)</span>:</span></span><br><span class="line">    m = hashlib.md5()</span><br><span class="line">    m.update(text.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">    <span class="keyword">return</span> m.hexdigest()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getandupload</span><span class="params">()</span>:</span></span><br><span class="line">	conn=MySQLdb.connect(host=<span class="string">'localhost'</span>,user=<span class="string">'root'</span>,passwd=<span class="string">''</span>,port=<span class="number">3306</span>,charset=<span class="string">'utf8'</span>)</span><br><span class="line">	cur=conn.cursor()</span><br><span class="line">	conn.select_db(<span class="string">'pytest'</span>)</span><br><span class="line">	ret=requests.get(url=<span class="string">"http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx"</span>) </span><br><span class="line">	doc=pyq(ret.text)</span><br><span class="line">	date = re.findall(<span class="string">r'(w*[0-9]+)w*'</span>,doc.find(<span class="string">'#Label0'</span>).text())</span><br><span class="line">	<span class="comment">#正则,将数字提取出来(为了将yyyy年mm月dd日改成yyyy/mm/dd)</span></span><br><span class="line">	date = date[<span class="number">0</span>]+<span class="string">'/'</span>+date[<span class="number">1</span>]+<span class="string">'/'</span>+date[<span class="number">2</span>]</span><br><span class="line">	table = pyq(pyq(doc.find(<span class="string">'#marqueebox'</span>)).find(<span class="string">'table'</span>))</span><br><span class="line">	stations = re.findall(<span class="string">r'&lt;td style="width:126px"&gt;(.+?)&lt;/td&gt;'</span>,table.html())</span><br><span class="line">	aqis = re.findall(<span class="string">r'&lt;td style="width:90px"&gt;(.+?)&lt;/td&gt;'</span>,table.html())</span><br><span class="line">	<span class="comment">#通过正则将html代码中需要的数据提取出来并存在数组中.</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">35</span>):</span><br><span class="line">		value=[md5(date+stations[i][<span class="number">1</span>:]),date,stations[i][<span class="number">1</span>:],aqis[<span class="number">2</span>*i]]</span><br><span class="line">		cur.execute(<span class="string">'insert ignore into aqi_bjmemc values(%s,%s,%s,%s)'</span>,value)</span><br><span class="line">	        <span class="comment">#设置了md5id为主键,因此当传重复数据的时候md5id重复,避免了重复上传数据.</span></span><br><span class="line">	conn.commit()</span><br><span class="line">	cur.close()</span><br><span class="line">	conn.close()</span><br><span class="line">getandupload()</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/27/python对于时间（hh-mm）进行循环递增/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/04/27/python对于时间（hh-mm）进行循环递增/" class="post-title-link" itemprop="url">python对于时间（hh:mm）进行循环递增</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-04-27 02:52:00" itemprop="dateCreated datePublished" datetime="2016-04-27T02:52:00+08:00">2016-04-27</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>某数据写入数据表时，其中一个字段是time，具体内容是从00:00一直到23:30。因此打算用python对csv文件进行逐行处理，新建time列，其中的数据按照半小时递增。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment">#对于时间进行处理需要引入time</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">importcsv</span><span class="params">(filename,outfilename)</span>:</span></span><br><span class="line">    print(filename)</span><br><span class="line">    filenamerow = filename.split(<span class="string">'-'</span>)</span><br><span class="line">    filenamerow[<span class="number">2</span>] = filenamerow[<span class="number">2</span>][:<span class="number">-4</span>]</span><br><span class="line">    date = filenamerow[<span class="number">1</span>]</span><br><span class="line">    type = filenamerow[<span class="number">2</span>]</span><br><span class="line">    lctime = <span class="number">1325347200.0</span></span><br><span class="line">    <span class="comment">#设定一个时间戳，对应的是某一天的00:00</span></span><br><span class="line">    g=file(type+ <span class="string">'-'</span> +date+ <span class="string">'.csv'</span>,<span class="string">'w+'</span>)</span><br><span class="line">    <span class="keyword">with</span> open(filename, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        line = f.readline()</span><br><span class="line">        <span class="keyword">while</span> line:</span><br><span class="line">            line = line.replace(<span class="string">'n'</span>,<span class="string">''</span>)</span><br><span class="line">            line = line.replace(<span class="string">'r'</span>,<span class="string">''</span>)</span><br><span class="line">            line = line + <span class="string">',,'</span></span><br><span class="line">            row = line.split(<span class="string">','</span>)</span><br><span class="line">            row[<span class="number">2</span>] = row[<span class="number">0</span>]</span><br><span class="line">            x = time.localtime(lctime)</span><br><span class="line">            <span class="comment">#对时间戳进行处理,得到</span></span><br><span class="line">            <span class="comment">#time.struct_time(tm_year=2012, tm_mon=1, tm_mday=1, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=6, tm_yday=1, tm_isdst=0)</span></span><br><span class="line">            row[<span class="number">1</span>] = time.strftime(<span class="string">'%H:%M'</span>,x)</span><br><span class="line">            <span class="comment">#对以上的时间进行格式化并写入第二列。格式为HH:MM</span></span><br><span class="line">            row[<span class="number">0</span>] = date</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(row)<span class="number">-1</span>):</span><br><span class="line">                row[i] = row[i] + <span class="string">','</span></span><br><span class="line">            g.writelines(row)</span><br><span class="line">            g.writelines(<span class="string">'n'</span>)</span><br><span class="line">            lctime = lctime + <span class="number">1800.0</span></span><br><span class="line">            <span class="comment">#时间戳加上1800，相当于加上了1800s = 30min</span></span><br><span class="line">            line = f.readline()</span><br><span class="line">    g.close()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ListFiles</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(data_folder):</span><br><span class="line">        <span class="keyword">if</span> i.endswith(<span class="string">'.csv'</span>):</span><br><span class="line">            importcsv(i,i)</span><br></pre></td></tr></table></figure></p>
+<p>python中时间戳都是以s为单位，且格式为<strong>浮点</strong></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/21/探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1028,1109 +2092,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/20/Vuejs列表与过滤器的简单应用/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/04/20/Vuejs列表与过滤器的简单应用/" class="post-title-link" itemprop="url">Vuejs列表与过滤器的简单应用</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-04-20 06:51:00" itemprop="dateCreated datePublished" datetime="2016-04-20T06:51:00+08:00">2016-04-20</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>设置一组json数据<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> DATA = &#123;</span><br><span class="line">            <span class="string">"datas"</span>: [&#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类一的第一项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">2</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类一的第二项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">3</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类一的第三项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">4</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">2</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类二的第一项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">5</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">2</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类二的第二项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">6</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">3</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类三的第一项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">7</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">3</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类三的第二项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">8</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">3</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类三的第三项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">9</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">3</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类三的第四项"</span></span><br><span class="line">            &#125;]</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p>并进行列表的双向绑定，加上过滤器选择type为1的项。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">            el:<span class="string">'#type-1'</span>,</span><br><span class="line">            data:DATA</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"type-1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"data in datas|filterBy '1' in 'type'"</span>&gt;</span>&#123;&#123;data.data&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>可以看到结果是</p>
-<p><img src="/ueditor/php/upload/image/20160420/1461132398638230.png" alt="blob.png" title="1461132398638230.png"></p>
-<p>显然过滤器发挥了作用。在vuejs源码中可以看到filterby函数的代码如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Filter filter for arrays</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @param &#123;String&#125; search</span></span><br><span class="line"><span class="comment">   * @param &#123;String&#125; [delimiter]</span></span><br><span class="line"><span class="comment">   * @param &#123;String&#125; ...dataKeys</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">filterBy</span>(<span class="params">arr, search, delimiter</span>)</span>&#123;</span><br><span class="line">    arr = convertArray(arr);</span><br><span class="line">    <span class="keyword">if</span> (search == <span class="literal">null</span>)&#123;</span><br><span class="line">      <span class="keyword">return</span> arr;</span><br><span class="line">    &#125; <span class="comment">//如果没有指定过滤中搜索的值，则将arr原样返回</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> search === <span class="string">'function'</span>)&#123; <span class="comment">//“===”means 严格等于</span></span><br><span class="line">      <span class="keyword">return</span> arr.filter(search); <span class="comment">//在arr中直接用原生filter过滤出search的项</span></span><br><span class="line">    &#125;</span><br><span class="line">    search = (<span class="string">''</span> + search).toLowerCase();<span class="comment">//toLowerCase 将String转换为小写字符串</span></span><br><span class="line">    <span class="keyword">var</span> n = delimiter === <span class="string">'in'</span> ? <span class="number">3</span> : <span class="number">2</span>;<span class="comment">//x?y:z 若x为true,结果显示y,若x为false,则结果显示z。</span></span><br><span class="line">    <span class="comment">//如果delimiter是in,则n=3，否则n=2</span></span><br><span class="line">    <span class="keyword">var</span> keys=toArray(<span class="built_in">arguments</span>,n).reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev,cur</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> prev.concat(cur);<span class="comment">//concat用于连接数组的值或具体的值。</span></span><br><span class="line">    &#125;,[]);<span class="comment">//见reduce用法</span></span><br><span class="line">    <span class="keyword">var</span> res = [];</span><br><span class="line">    <span class="keyword">var</span> item,key,val,j;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, l = arr.length; i &lt; l; i++) &#123;<span class="comment">//遍历arr</span></span><br><span class="line">      item=arr[i];</span><br><span class="line">      val=item&amp;&amp;item.$value||item;</span><br><span class="line">      j=keys.length;</span><br><span class="line">      <span class="keyword">if</span>(j)&#123;</span><br><span class="line">        <span class="keyword">while</span> (j--) &#123;</span><br><span class="line">          key = keys[j];</span><br><span class="line">          <span class="keyword">if</span> (key === <span class="string">'$key'</span> &amp;&amp; contains$<span class="number">1</span>(item.$key, search) || contains$<span class="number">1</span>(getPath(val,key),search)) &#123;</span><br><span class="line">          <span class="comment">//如果在item中的delimiter找到了search，则将这个item放到res数组中</span></span><br><span class="line">            res.push(item);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span> (contains$<span class="number">1</span>(item,search)) &#123;<span class="comment">//遍历item各级搜索search,如果有则放入res</span></span><br><span class="line">        res.push(item);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;<span class="comment">//返回结果</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * String contain helper</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @param &#123;*&#125; val</span></span><br><span class="line"><span class="comment">   * @param &#123;String&#125; search</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">contains$1</span>(<span class="params">val, search</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">    <span class="keyword">if</span> (isPlainObject(val)) &#123;</span><br><span class="line">      <span class="keyword">var</span> keys = <span class="built_in">Object</span>.keys(val);</span><br><span class="line">      i = keys.length;</span><br><span class="line">      <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (contains$<span class="number">1</span>(val[keys[i]], search)) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isArray(val)) &#123;</span><br><span class="line">      i = val.length;</span><br><span class="line">      <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (contains$<span class="number">1</span>(val[i], search)) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val != <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> val.toString().toLowerCase().indexOf(search) &gt; <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/20/js中-与-的区别/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/04/20/js中-与-的区别/" class="post-title-link" itemprop="url">js中==与===的区别</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-04-20 06:23:00" itemprop="dateCreated datePublished" datetime="2016-04-20T06:23:00+08:00">2016-04-20</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>转自<a href="http://blog.csdn.net/wxdzxl/article/details/8502119" target="_blank" rel="noopener">http://blog.csdn.net/wxdzxl/article/details/8502119</a></p>
-</blockquote>
-<p>首先，== equality 等同，=== identity 恒等。<br>==， 两边值类型不同的时候，要先进行类型转换，再比较。<br>===，不做类型转换，类型不同的一定不等。</p>
-<p>下面分别说明：<br>先说 ===，这个比较简单。下面的规则用来判断两个值是否===相等：<br>1、如果类型不同，就[不相等]<br>2、如果两个都是数值，并且是同一个值，那么[相等]；(！例外)的是，如果其中至少一个是NaN，那么[不相等]。（判断一个值是否是NaN，只能用isNaN()来判断）<br>3、如果两个都是字符串，每个位置的字符都一样，那么[相等]；否则[不相等]。<br>4、如果两个值都是true，或者都是false，那么[相等]。<br>5、如果两个值都引用同一个对象或函数，那么[相等]；否则[不相等]。<br>6、如果两个值都是null，或者都是undefined，那么[相等]。<br>再说 ==，根据以下规则：<br>1、如果两个值类型相同，进行 === 比较。<br>2、如果两个值类型不同，他们可能相等。根据下面规则进行类型转换再比较：<br>  a、如果一个是null、一个是undefined，那么[相等]。<br>  b、如果一个是字符串，一个是数值，把字符串转换成数值再进行比较。<br>  c、如果任一值是 true，把它转换成 1 再比较；如果任一值是 false，把它转换成 0 再比较。<br>  d、如果一个是对象，另一个是数值或字符串，把对象转换成基础类型的值再比较。对象转换成基础类型，利用它的toString或者valueOf方法。js核心内置类，会尝试valueOf先于toString；例外的是Date，Date利用的是toString转换。非js核心的对象，令说（比较麻烦，我也不大懂）<br>  e、任何其他组合，都[不相等]。</p>
-<p>举例：<br>“1” == true<br> 类型不等，true会先转换成数值 1，现在变成 “1” == 1，再把”1”转换成 1，比较 1 == 1， 相等。</p>
-<p>= 赋值运算符<br>== 等于<br>=== 严格等于<br>例：<br>var a = 3;<br>var b = “3”;</p>
-<p>a==b 返回 true<br>a===b 返回 false</p>
-<p>因为a,b的类型不一样<br>===用来进行严格的比较判断</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/18/用js解决在url中传输带问号的url的问题/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/04/18/用js解决在url中传输带问号的url的问题/" class="post-title-link" itemprop="url">用js解决在url中传输带问号的url的问题</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-04-18 06:25:00" itemprop="dateCreated datePublished" datetime="2016-04-18T06:25:00+08:00">2016-04-18</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在业务中使用了如下逻辑：访问某页面时需要登陆，如果未登陆则跳转至登陆页面，登陆后返回这个页面。</p>
-<p>相关js如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!localStorage.userinfo) &#123;</span><br><span class="line">	<span class="built_in">window</span>.location.href = <span class="string">"login.html?lastpage="</span> + <span class="built_in">window</span>.location.href;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	xxx;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在login.html中有如下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lastpage;</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">window</span>.location.search;</span><br><span class="line"><span class="keyword">var</span> loc = url.substring(url.lastIndexOf(<span class="string">'='</span>) + <span class="number">1</span>, url.length);</span><br><span class="line"><span class="keyword">if</span> (loc == <span class="literal">null</span> || loc == <span class="string">""</span>) &#123;</span><br><span class="line">	lastpage = <span class="string">"usercenter.html"</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	lastpage = loc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在登陆的ajax的callback success中有<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = lastpage;</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>然而，在实际的使用中出现了问题：在访问类似 <code>http://xxx.com/product.html?id=1</code> 时，发现最终跳转到的页面是 <code>http://xxx.com/1</code>，自然出现了 404 错误。后面发现是在 <code>login.html?lastpage=http://xxx.com/product.html?id=1</code> 的时候，程序直接将 1 看成了 lastpage。</p>
-<p>有很多种方式可以解决问题，例如改进 login 中获取 url 参数的 js 等，但是我希望能够在之后也能使 url 不出现类似的错误，因此想到了对 url 进行转码。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = <span class="string">"login.html?lastpage="</span> + <span class="built_in">encodeURIComponent</span>(<span class="built_in">window</span>.location.href);</span><br></pre></td></tr></table></figure></p>
-<p>可以将<br><code>http://xxx.com/product.html?id=1</code><br>转换成<br><code>http%3A%2F%2Fxxx.com%2Fproduct.html%3Fid%3D1</code></p>
-<p>可是此时又会发现最终访问到的页面地址是<br><code>http://xxx.com/http%3A%2F%2Fxxx.com%2Fproduct.html%3Fid%3D1</code></p>
-<p>看来是浏览器将已经转码的url当成一个文件访问了。因此，在 login 的 callback 里对其重新进行解码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = <span class="built_in">unescape</span>(lastpage);</span><br></pre></td></tr></table></figure>
-<p>可以将转码过的url还原。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/18/在Centos下设置apache的虚拟目录/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/04/18/在Centos下设置apache的虚拟目录/" class="post-title-link" itemprop="url">在Centos下设置apache的虚拟目录</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-04-18 05:15:00" itemprop="dateCreated datePublished" datetime="2016-04-18T05:15:00+08:00">2016-04-18</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>登陆root</li>
-<li>更改httpd.conf<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/httpd/conf/http.conf</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>使用vi进行修改。用到的快捷键:<br>跳到文件第一行：gg<br>跳到文件最后一行：shift + g</p>
-<ol>
-<li>加入内容：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VirtualHost</span> <span class="attr">xxx.com</span>&gt;</span></span><br><span class="line">    ServerAdmin root@localhost</span><br><span class="line">    DocumentRoot /var/www/html/xxx</span><br><span class="line">    ServerName xxx.com</span><br><span class="line">        <span class="tag">&lt;<span class="name">Directory</span> /<span class="attr">var</span>/<span class="attr">www</span>/<span class="attr">html</span>/<span class="attr">xxxx</span>&gt;</span></span><br><span class="line">                Require all granted</span><br><span class="line">        <span class="tag">&lt;/<span class="name">Directory</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">VirtualHost</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>重启apache<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service httpd restart</span><br></pre></td></tr></table></figure></p>
-<p>然后即可设置xxx.com的域名解析到此服务器。</p>
-<blockquote>
-<p>使用过程中发现设置xxx.com的虚拟目录后，xxx.com能够成功解析到服务器，然而www.xxx.com不能成功解析，重新操作了一般，又添加了一个www.xxx.com的虚拟目录后能够成功解析。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/12/机器学习学习笔记（十）神经网络前向传播/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/04/12/机器学习学习笔记（十）神经网络前向传播/" class="post-title-link" itemprop="url">机器学习学习笔记（十）神经网络前向传播</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-04-12 13:42:00" itemprop="dateCreated datePublished" datetime="2016-04-12T13:42:00+08:00">2016-04-12</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/images/pasted-45.png" alt="upload successful"></p>
-<p>如同人的神经元一般，由输入端-神经元-输出这样一系列过程的信息处理方式，可以处理较为复杂的信息，并有一定的学习功能。</p>
-<p>神经网络一般分为：输入层、隐藏层、输出层。对于用户来说，只有输出层的输出是可知的，隐藏层可以完成许多间接的复杂运算，因此神经网络的计算复杂度比单层结构复杂的多。</p>
-<p><img src="/images/pasted-46.png" alt="upload successful"></p>
-<hr>
-<p>上图为一个有两层隐藏层的典型的神经网络,可以看到其基本结构.可以发现任何一个节点相当于收到上一层所有节点的影响.每个节点影响的程度可以以权值表示。</p>
-<p>以下面一个简单的神经网络举例，</p>
-<p><img src="/images/pasted-47.png" alt="upload successful"></p>
-<p>隐藏层(a(2)1,a(2)2,a(2)3)的值的计算为：</p>
-<script type="math/tex; mode=display">a^{(2)}_1 = g(\theta ^{(1)}_{10}x_0 + \theta ^{(1)}_{11}x_1 + \theta ^{(1)}_{12}x_2 + \theta ^{(1)}_{13}x_3)</script><script type="math/tex; mode=display">a^{(2)}_2 = g(\theta ^{(1)}_{20}x_0 + \theta ^{(1)}_{21}x_1 + \theta ^{(1)}_{22}x_2 + \theta ^{(1)}_{23}x_3)</script><script type="math/tex; mode=display">a^{(2)}_3 = g(\theta ^{(1)}_{30}x_0 + \theta ^{(1)}_{31}x_1 + \theta ^{(1)}_{32}x_2 + \theta ^{(1)}_{33}x_3)</script><p>$\theta$即表示相应层元素受到上一层“激励”的权值。（x0为加上的额外的偏度单元）</p>
-<p>g为S函数（解决逻辑回归问题）</p>
-<p>同理，输出层的值为</p>
-<script type="math/tex; mode=display">h_\theta(x)=a^{(3)}_1 = g(\theta ^{(2)}_{10}a_0 + \theta ^{(2)}_{11}a_1 + \theta ^{(2)}_{12}a_2 + \theta ^{(2)}_{13}a_3)</script><p>为前一层（隐藏层）的所以元素乘对应的权值的和的对应函数值。</p>
-<hr>
-<script type="math/tex; mode=display">a^{(2)}_1 = g(\theta ^{(1)}_{10}x_0 + \theta ^{(1)}_{11}x_1 + \theta ^{(1)}_{12}x_2 + \theta ^{(1)}_{13}x_3)</script><script type="math/tex; mode=display">a^{(2)}_2 = g(\theta ^{(1)}_{20}x_0 + \theta ^{(1)}_{21}x_1 + \theta ^{(1)}_{22}x_2 + \theta ^{(1)}_{23}x_3)</script><script type="math/tex; mode=display">a^{(2)}_3 = g(\theta ^{(1)}_{30}x_0 + \theta ^{(1)}_{31}x_1 + \theta ^{(1)}_{32}x_2 + \theta ^{(1)}_{33}x_3)</script><p>对于以上式子可以看成矩阵相乘的形式，</p>
-<script type="math/tex; mode=display">x=\begin{bmatrix}x_0\ x_1\ x_2\ x_3\end{bmatrix}</script><script type="math/tex; mode=display">z^{(2)}=\begin{bmatrix}z_1^{(2)}\ z_2^{(2)}\ z_3^{(2)}\end{bmatrix}</script><script type="math/tex; mode=display">z^{(2)} = \theta^{(1)}x</script><script type="math/tex; mode=display">a^{(2)}=g(z^{(2)})</script><p>z(2)为第二层元素值的向量形式。\theta(1)为输入层对应的权值的向量形式。</p>
-<script type="math/tex; mode=display">z^{(3)} = \theta^{(2)}a^{(2)}</script><script type="math/tex; mode=display">h_\theta(x)=a^{(3)}=g(z^{(3)})</script><p>\theta(2)为隐藏层对应权值的向量形式。</p>
-<blockquote>
-<p>神经网络中这种由训练输入送入网络中，获得激励响应的行为称为“前向传播”</p>
-</blockquote>
-<hr>
-<h3 id="神经网络解决实际问题"><a href="#神经网络解决实际问题" class="headerlink" title="神经网络解决实际问题"></a>神经网络解决实际问题</h3><p>例如下表：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>x1</th>
-<th>x2</th>
-<th>y</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>在神经网络中，可以以下形式表示</p>
-<p><img src="/images/pasted-48.png" alt="upload successful"></p>
-<p>计算一下，发现x1与x2等于0时z=-30，x1与x2等于1时z=10,x1与x2不相等时z=-10.</p>
-<p>将其放到S函数中，</p>
-<p><img src="/images/pasted-31.png" alt="upload successful"></p>
-<p>z=-30与z=-10时g(z)趋近与0，z=10时趋近与1，可以表示上表的值的关系。</p>
-<p>可以用y=x1 AND x2 （与）表示这个关系。</p>
-<hr>
-<p>下表用神经网络表示：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>x1</th>
-<th>x2</th>
-<th>y</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-</tr>
-<tr>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>这种“异或”问题可以看成一个“与”与一个“或”问题的结合，</p>
-<p><img src="/images/pasted-49.png" alt="upload successful"></p>
-<p>（NOT）</p>
-<p><img src="/images/pasted-50.png" alt="upload successful"></p>
-<p>(AND)</p>
-<p>(NOT x1)AND(NOT x2)</p>
-<p><img src="/images/pasted-51.png" alt="upload successful"></p>
-<p>可以得到上表内容。</p>
-<p>以上为神经网络表示“异或”运算。</p>
-<p>必须要两层网络才能解决异或运算问题。因为1层网络放在坐标图上可以看成是画了一条直线，而异或问题放在图上是这样的：</p>
-<p><img src="/images/pasted-52.png" alt="upload successful"></p>
-<p>不难发现没有一条直线能够完美地分开两类点。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/12/python批量处理csv文件/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/04/12/python批量处理csv文件/" class="post-title-link" itemprop="url">python批量处理csv文件</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-04-12 12:27:00" itemprop="dateCreated datePublished" datetime="2016-04-12T12:27:00+08:00">2016-04-12</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-  </span></span><br><span class="line"><span class="comment">#encoding:utf-8</span></span><br></pre></td></tr></table></figure>
-<p>为了使处理文件时用 utf-8 编码，做如上编码声明</p>
-<hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(text)</span>:</span></span><br><span class="line">    m = hashlib.md5()</span><br><span class="line">    m.update(text)</span><br><span class="line">    <span class="keyword">return</span> m.hexdigest()</span><br></pre></td></tr></table></figure>
-<p>利用 hashlib 进行 md5 编码</p>
-<hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">import_points_csv</span><span class="params">(filename,outfilename)</span>:</span></span><br><span class="line">    print(filename)</span><br><span class="line">    g=file(outfilename,&amp;quot;w+&amp;quot;)</span><br><span class="line">    <span class="comment">#使用w+(写入模式)打开文件outfilename</span></span><br><span class="line">    <span class="keyword">with</span> open(filename, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="comment">#读取filename</span></span><br><span class="line">        line = f.readline()</span><br><span class="line">        <span class="comment">#逐行读取f。因为要处理csv的列因此逐行处理</span></span><br><span class="line">        <span class="keyword">while</span> line:</span><br><span class="line">            line = line.replace(<span class="string">'n'</span>,<span class="string">''</span>)</span><br><span class="line">            line = line.replace(<span class="string">'r'</span>,<span class="string">''</span>)</span><br><span class="line">            <span class="comment">#处理每行的字符串，使其为单纯的一行以逗号分隔的文字</span></span><br><span class="line">            row = line.split(<span class="string">','</span>)</span><br><span class="line">            <span class="comment">#用逗号作为分隔符，对字符串line进行切片，以数组的形式存入row中</span></span><br><span class="line">            state = row[<span class="number">0</span>].strip()</span><br><span class="line">            date = row[<span class="number">20</span>]</span><br><span class="line">            thistype = <span class="string">'国控'</span></span><br><span class="line">            print(thistype)</span><br><span class="line">            name = row[<span class="number">1</span>].strip()</span><br><span class="line">            stationid = md5(name+state+thistype)</span><br><span class="line">            row[<span class="number">21</span>] = stationid</span><br><span class="line">            md5id = md5(date+stationid)</span><br><span class="line">            row[<span class="number">22</span>] = md5id</span><br><span class="line">            row[<span class="number">1</span>]</span><br><span class="line">            <span class="comment">#对数组row进行处理。</span></span><br><span class="line">            print(row)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(row)<span class="number">-1</span>):</span><br><span class="line">                row[i] = row[i] + <span class="string">','</span></span><br><span class="line">            <span class="comment">#对row进行拼接，分隔符为逗号</span></span><br><span class="line">            g.writelines(row)</span><br><span class="line">            g.writelines(<span class="string">'n'</span>)</span><br><span class="line">            <span class="comment">#逐行写入文件，每行的最后加上一个换行符。</span></span><br><span class="line">            line = f.readline()</span><br><span class="line">    g.close()</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import_points_csv(<span class="string">'国控2.csv'</span>.decode(<span class="string">'utf-8'</span>).encode(<span class="string">'gbk'</span>),<span class="string">'contry_2.csv'</span>)</span><br></pre></td></tr></table></figure>
-<p>由于文件名是中文，因此要将其编码才能被程序读取，不然在运行时显示文件名为乱码且无法读取</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2173,7 +2139,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">146</span>
+                    <span class="site-state-item-count">152</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2575,7 +2541,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">179</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">187</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

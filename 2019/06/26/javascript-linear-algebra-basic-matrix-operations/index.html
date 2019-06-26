@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '6U6P1RGK4F',
+      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
+      indexName: 'lsvih',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文是“JavaScript 线性代数”教程的一部分。">
+<meta name="keywords" content="Translate,juejin,Linear Algebra,React,线性代数,ThreeJS,SVG,Matrix,Animate,数据可视化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性代数：矩阵基本运算">
+<meta property="og:url" content="https://lsvih.com/2019/06/26/javascript-linear-algebra-basic-matrix-operations/index.html">
+<meta property="og:site_name" content="My note">
+<meta property="og:description" content="本文是“JavaScript 线性代数”教程的一部分。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://lsvih.com/images/15615137842832.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15615138080956.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15615138231502.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15615138461810.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15615138625927.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15615138875261.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15615139063445.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15615139284033.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15615139536351.jpg">
+<meta property="og:image" content="https://lsvih.com/images/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323330302f312a7937595f61716c476f2d4a31356877776c374e6766512e676966.gif">
+<meta property="og:image" content="https://lsvih.com/images/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323330302f312a4b396f324f7268746671574f324e4e6f34684b354e412e676966.gif">
+<meta property="og:updated_time" content="2019-06-26T01:53:57.737Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="线性代数：矩阵基本运算">
+<meta name="twitter:description" content="本文是“JavaScript 线性代数”教程的一部分。">
+<meta name="twitter:image" content="https://lsvih.com/images/15615137842832.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://lsvih.com/2019/06/26/javascript-linear-algebra-basic-matrix-operations/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>线性代数：矩阵基本运算 | My note</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4de170e51b04cee02fbdb1b7cb7a8a60";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/06/26/javascript-linear-algebra-basic-matrix-operations/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">线性代数：矩阵基本运算
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-26 09:05:00" itemprop="dateCreated datePublished" datetime="2019-06-26T09:05:00+08:00">2019-06-26</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文是“<a href="https://lsvih.com/2019/06/26/javascript-linear-algebra.html">JavaScript 线性代数</a>”教程的一部分。</p>
+<a id="more"></a>
+<p>在本文中，我们将介绍矩阵的大部分基本运算，依次是矩阵的加减法、矩阵的标量乘法、矩阵与矩阵的乘法、求转置矩阵，以及深入了解矩阵的行列式运算。本文将不会涉及逆矩阵、矩阵的秩等概念，将来再探讨它们。</p>
+<h2 id="矩阵的加减法"><a href="#矩阵的加减法" class="headerlink" title="矩阵的加减法"></a>矩阵的加减法</h2><p>矩阵的<strong>加法</strong>与<strong>减法</strong>运算将接收两个矩阵作为输入，并输出一个新的矩阵。矩阵的加法和减法都是在分量级别上进行的，因此要进行加减的矩阵必须有着相同的维数。</p>
+<p>为了避免重复编写加减法的代码，我们先创建一个可以接收运算函数的方法，这个方法将对两个矩阵的分量分别执行传入的某种运算。然后在加法、减法或者其它运算中直接调用它就行了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Matrix</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  componentWiseOperation(func, &#123; rows &#125;) &#123;</span><br><span class="line">    <span class="keyword">const</span> newRows = rows.map(<span class="function">(<span class="params">row, i</span>) =&gt;</span></span><br><span class="line">      row.map(<span class="function">(<span class="params">element, j</span>) =&gt;</span> func(<span class="keyword">this</span>.rows[i][j], element))</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Matrix(...newRows)</span><br><span class="line">  &#125;</span><br><span class="line">  add(other) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.componentWiseOperation(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b, other)</span><br><span class="line">  &#125;</span><br><span class="line">  subtract(other) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.componentWiseOperation(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b, other)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> one = <span class="keyword">new</span> Matrix(</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">)</span><br><span class="line"><span class="keyword">const</span> other = <span class="keyword">new</span> Matrix(</span><br><span class="line">  [<span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">  [<span class="number">7</span>, <span class="number">8</span>]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(one.add(other))</span><br><span class="line"><span class="comment">// Matrix &#123; rows: [ [ 6, 8 ], [ 10, 12 ] ] &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(other.subtract(one))</span><br><span class="line"><span class="comment">// Matrix &#123; rows: [ [ 4, 4 ], [ 4, 4 ] ] &#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="矩阵的标量乘法"><a href="#矩阵的标量乘法" class="headerlink" title="矩阵的标量乘法"></a>矩阵的标量乘法</h2><p>矩阵的标量乘法与向量的缩放类似，就是将矩阵中的每个元素都乘上标量：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Matrix</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  scaleBy(number) &#123;</span><br><span class="line">    <span class="keyword">const</span> newRows = <span class="keyword">this</span>.rows.map(<span class="function"><span class="params">row</span> =&gt;</span></span><br><span class="line">      row.map(<span class="function"><span class="params">element</span> =&gt;</span> element * number)</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Matrix(...newRows)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> matrix = <span class="keyword">new</span> Matrix(</span><br><span class="line">  [<span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">)</span><br><span class="line"><span class="built_in">console</span>.log(matrix.scaleBy(<span class="number">2</span>))</span><br><span class="line"><span class="comment">// Matrix &#123; rows: [ [ 4, 6 ], [ 8, 10 ] ] &#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h2><p>当 <strong>A</strong>、<strong>B</strong> 两个矩阵的维数是<strong>兼容</strong>的时候，就能对这两个矩阵进行矩阵乘法。所谓维数兼容，指的是 <strong>A</strong> 的列数与 <strong>B</strong> 的行数相同。矩阵乘法 <strong>AB</strong> 就是对举证 <strong>A</strong> 的每一行行与矩阵 <strong>B</strong> 的每一列分别进行点积运算：</p>
+<p><img src="/images/15615137842832.jpg" alt="matrix-matrix multiplication"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Matrix</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  multiply(other) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.rows[<span class="number">0</span>].length !== other.rows.length) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'The number of columns of this matrix is not equal to the number of rows of the given matrix.'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> columns = other.columns()</span><br><span class="line">    <span class="keyword">const</span> newRows = <span class="keyword">this</span>.rows.map(<span class="function"><span class="params">row</span> =&gt;</span> </span><br><span class="line">      columns.map(<span class="function"><span class="params">column</span> =&gt;</span> sum(row.map(<span class="function">(<span class="params">element, i</span>) =&gt;</span> element * column[i])))</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Matrix(...newRows)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> one = <span class="keyword">new</span> Matrix(</span><br><span class="line">  [<span class="number">3</span>, <span class="number">-4</span>],</span><br><span class="line">  [<span class="number">0</span>, <span class="number">-3</span>],</span><br><span class="line">  [<span class="number">6</span>, <span class="number">-2</span>],</span><br><span class="line">  [<span class="number">-1</span>, <span class="number">1</span>]</span><br><span class="line">)</span><br><span class="line"><span class="keyword">const</span> other = <span class="keyword">new</span> Matrix(</span><br><span class="line">  [<span class="number">3</span>,  <span class="number">2</span>, <span class="number">-4</span>],</span><br><span class="line">  [<span class="number">4</span>, <span class="number">-3</span>,  <span class="number">5</span>]</span><br><span class="line">)</span><br><span class="line"><span class="built_in">console</span>.log(one.multiply(other))</span><br><span class="line"><span class="comment">// Matrix &#123;</span></span><br><span class="line"><span class="comment">//   rows:</span></span><br><span class="line"><span class="comment">//    [ [ -7, 18, -32 ],</span></span><br><span class="line"><span class="comment">//      [ -12, 9, -15 ],</span></span><br><span class="line"><span class="comment">//      [ 10, 18, -34 ],</span></span><br><span class="line"><span class="comment">//      [ 1, -5, 9 ] ]&#125;</span></span><br></pre></td></tr></table></figure>
+<p>我们可以把矩阵乘法 <strong>AB</strong> 视为先后应用 <strong>A</strong> 和 <strong>B</strong> 两个线性变换矩阵。为了更好地理解这种概念，可以看一看我们的 <a href="https://rodionchachura.github.io/linear-algebra/" target="_blank" rel="noopener">linear-algebra-demo</a>。</p>
+<p>下图中黄色的部分就是对红色方块应用线性变换 <strong>C</strong> 的结果。而线性变换 <strong>C</strong> 就是矩阵乘法 <strong>AB</strong> 的结果，其中 <strong>A</strong> 是做相对于 y 轴进行反射的变换矩阵，<strong>B</strong> 是做剪切变换的矩阵。</p>
+<p><img src="/images/15615138080956.jpg" alt="先旋转再剪切变换"></p>
+<p>如果在矩阵乘法中调换 <strong>A</strong> 和 <strong>B</strong> 的顺序，我们会得到一个不同的结果，因为相当于先应用了 <strong>B</strong> 的剪切变换，再应用 <strong>A</strong> 的反射变换：</p>
+<p><img src="/images/15615138231502.jpg" alt="shear than rotate"></p>
+<h2 id="转置"><a href="#转置" class="headerlink" title="转置"></a>转置</h2><p><strong>转置</strong>矩阵 $A^T$ 由公式 $a^T_{ij}=a_{ji}$ 定义。换句话说，我们通过关于矩阵的对角线对其进行翻转来得到转置矩阵。需要注意的是，矩阵对角线上的元素不受转置运算影响。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Matrix</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  transpose() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Matrix(...this.columns())</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> matrix = <span class="keyword">new</span> Matrix(</span><br><span class="line">  [<span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>],</span><br><span class="line">  [<span class="number">3</span>,  <span class="number">4</span>,  <span class="number">5</span>],</span><br><span class="line">  [<span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>],</span><br><span class="line">  [<span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>]</span><br><span class="line">)</span><br><span class="line"><span class="built_in">console</span>.log(matrix.transpose())</span><br><span class="line"><span class="comment">// Matrix &#123;</span></span><br><span class="line"><span class="comment">//   rows: [</span></span><br><span class="line"><span class="comment">//     [ 0, 3, 6, 9 ],</span></span><br><span class="line"><span class="comment">//     [ 1, 4, 7, 10 ],</span></span><br><span class="line"><span class="comment">//     [ 2, 5, 8, 11 ]</span></span><br><span class="line"><span class="comment">//   ]</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="行列式运算"><a href="#行列式运算" class="headerlink" title="行列式运算"></a>行列式运算</h2><p>矩阵的<strong>行列式</strong>运算将计算矩阵中的所有系数，最后输出一个数字。准确地说，行列式可以描述一个由矩阵行构成的向量的相对几何指标（比如在欧式空间中的有向面积、体积等空间概念）。更准确地说，矩阵 <strong>A</strong> 的行列式相当于告诉你由 <strong>A</strong> 的行定义的方块的体积。$2\times 2$ 矩阵的行列式运算如下所示：</p>
+<p><img src="/images/15615138461810.jpg" alt="det(2×2 matrix)"></p>
+<p>$3\times 3$ 矩阵的行列式运算如下所示：</p>
+<p><img src="/images/15615138625927.jpg" alt="det(3×3 matrix)"></p>
+<p>我们的方法可以计算任意大小矩阵（只要其行列的数量相同）的行列式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Matrix</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  determinant() &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.rows.length !== <span class="keyword">this</span>.rows[<span class="number">0</span>].length) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'Only matrices with the same number of rows and columns are supported.'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.rows.length === <span class="number">2</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.rows[<span class="number">0</span>][<span class="number">0</span>] * <span class="keyword">this</span>.rows[<span class="number">1</span>][<span class="number">1</span>] - <span class="keyword">this</span>.rows[<span class="number">0</span>][<span class="number">1</span>] * <span class="keyword">this</span>.rows[<span class="number">1</span>][<span class="number">0</span>]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> parts = <span class="keyword">this</span>.rows[<span class="number">0</span>].map(<span class="function">(<span class="params">coef, index</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> matrixRows = <span class="keyword">this</span>.rows.slice(<span class="number">1</span>).map(<span class="function"><span class="params">row</span> =&gt;</span> [ ...row.slice(<span class="number">0</span>, index), ...row.slice(index + <span class="number">1</span>)])</span><br><span class="line">      <span class="keyword">const</span> matrix = <span class="keyword">new</span> Matrix(...matrixRows)</span><br><span class="line">      <span class="keyword">const</span> result = coef * matrix.determinant()</span><br><span class="line">      <span class="keyword">return</span> index % <span class="number">2</span> === <span class="number">0</span> ? result : -result</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sum(parts)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> matrix2 = <span class="keyword">new</span> Matrix(</span><br><span class="line">  [ <span class="number">0</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="number">-2</span>, <span class="number">1</span>]</span><br><span class="line">)</span><br><span class="line"><span class="built_in">console</span>.log(matrix2.determinant())</span><br><span class="line"><span class="comment">// 6</span></span><br><span class="line"><span class="keyword">const</span> matrix3 = <span class="keyword">new</span> Matrix(</span><br><span class="line">  [<span class="number">2</span>, <span class="number">-3</span>,  <span class="number">1</span>],</span><br><span class="line">  [<span class="number">2</span>,  <span class="number">0</span>, <span class="number">-1</span>],</span><br><span class="line">  [<span class="number">1</span>,  <span class="number">4</span>,  <span class="number">5</span>]</span><br><span class="line">)</span><br><span class="line"><span class="built_in">console</span>.log(matrix3.determinant())</span><br><span class="line"><span class="comment">// 49</span></span><br><span class="line"><span class="keyword">const</span> matrix4 = <span class="keyword">new</span> Matrix(</span><br><span class="line">  [<span class="number">3</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">-1</span>],</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">-2</span>],</span><br><span class="line">  [<span class="number">4</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">-3</span>],</span><br><span class="line">  [<span class="number">5</span>, <span class="number">0</span>, <span class="number">2</span>,  <span class="number">0</span>]</span><br><span class="line">)</span><br><span class="line"><span class="built_in">console</span>.log(matrix4.determinant())</span><br><span class="line"><span class="comment">// 20</span></span><br></pre></td></tr></table></figure>
+<p>行列式可以告诉我们变换时对象被拉伸的程度。因此我们可以将其视为一个线性变换对区域改变的一个因素。为了更好地理解这个概念，请参考 <a href="https://rodionchachura.github.io/linear-algebra/" target="_blank" rel="noopener">linear-algebra-demo</a>：</p>
+<p>在下图中，我们可以看到对红色的 <strong>1×1</strong> 方形进行线性变换后得到了一个 <strong>3×2</strong> 的长方形，面积从 <strong>1</strong> 变为了 <strong>6</strong>，这个数字与线性变换矩阵的行列式值相同。</p>
+<p><img src="/images/15615138875261.jpg" alt="det(scale transformation)"></p>
+<p>如果我们应用一个剪切变换，可以看到方形会变成一个面积不变的平行四边形。因此，剪切变换矩阵的行列式值等于 1：</p>
+<p><img src="/images/15615139063445.jpg" alt="det(shear transformation)"></p>
+<p>如果行列式的值是<strong>负数</strong>，则说明应用线性变换后，空间被反转了。比如在下图中，我们可以看到变换前 $\hat{\jmath}$ 在 $\hat{\imath}$ 的左边，而变换后 $\hat{\jmath}$ 在 $\hat{\imath}$ 的右边。</p>
+<p><img src="/images/15615139284033.jpg" alt="negative determinant"></p>
+<p>如果变换的行列式为 <strong>0</strong>，则表示它会将所有空间都压缩到一条线或一个点上。也就是说，计算一个给定矩阵的行列式是否为 0，可以判断这个矩阵对应的线性变换是否会将对象压缩到更小的维度去。</p>
+<p><img src="/images/15615139536351.jpg" alt="2D 中的 0 行列式"></p>
+<p>在三维空间里，行列式可以告诉你体积缩放了多少：</p>
+<p><img src="/images/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323330302f312a7937595f61716c476f2d4a31356877776c374e6766512e676966.gif" alt="det(scale transformation) in 3D"></p>
+<p>变换行列式等于 0，意味着原来的空间会被完全压缩成体积为 0 的空间。如前文所说，如果在 2 维空间中变换的行列式为 0，则意味着变换的结果将空间压缩成了一条线或一个点；而在 3 维空间中变换的行列式为 0 意味着一个物体会被压扁成一个平面，如下图所示：</p>
+<p><img src="/images/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323330302f312a4b396f324f7268746671574f324e4e6f34684b354e412e676966.gif" alt="3D 中的 0 行列式"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>lsvih</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    
+    <a href="https://lsvih.com/2019/06/26/javascript-linear-algebra-basic-matrix-operations/" title="线性代数：矩阵基本运算">https://lsvih.com/2019/06/26/javascript-linear-algebra-basic-matrix-operations/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Translate/" rel="tag"># Translate</a>
+          
+            <a href="/tags/juejin/" rel="tag"># juejin</a>
+          
+            <a href="/tags/Linear-Algebra/" rel="tag"># Linear Algebra</a>
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+            <a href="/tags/线性代数/" rel="tag"># 线性代数</a>
+          
+            <a href="/tags/ThreeJS/" rel="tag"># ThreeJS</a>
+          
+            <a href="/tags/SVG/" rel="tag"># SVG</a>
+          
+            <a href="/tags/Matrix/" rel="tag"># Matrix</a>
+          
+            <a href="/tags/Animate/" rel="tag"># Animate</a>
+          
+            <a href="/tags/数据可视化/" rel="tag"># 数据可视化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/26/javascript-linear-algebra-animating-linear-transformations-with-threejs/" rel="next" title="JavaScript 线性代数：使用 ThreeJS 制作线性变换动画">
+                <i class="fa fa-chevron-left"></i> JavaScript 线性代数：使用 ThreeJS 制作线性变换动画
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/26/javascript-linear-algebra/" rel="prev" title="Javascript 线性代数系列">
+                Javascript 线性代数系列 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lsvih</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">152</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">187</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lsvih" title="GitHub &rarr; https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:lsvih@qq.com" title="E-Mail &rarr; mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的加减法"><span class="nav-number">1.</span> <span class="nav-text">矩阵的加减法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的标量乘法"><span class="nav-number">2.</span> <span class="nav-text">矩阵的标量乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵乘法"><span class="nav-number">3.</span> <span class="nav-text">矩阵乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转置"><span class="nav-number">4.</span> <span class="nav-text">转置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行列式运算"><span class="nav-number">5.</span> <span class="nav-text">行列式运算</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">京ICP备18029472号 </a>&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lsvih</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.7.0"></script>
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

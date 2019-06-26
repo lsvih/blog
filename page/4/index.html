@@ -368,6 +368,1502 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/28/一份为-Node-js-应用准备的-Dockerfile-指南/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/02/28/一份为-Node-js-应用准备的-Dockerfile-指南/" class="post-title-link" itemprop="url">一份为 Node.js 应用准备的 Dockerfile 指南</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-02-28 11:55:00" itemprop="dateCreated datePublished" datetime="2018-02-28T11:55:00+08:00">2018-02-28</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="/images/pasted-306.png" alt="upload successful"></p>
+<h3 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h3><p>本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Node.js Web 应用的例子。以下为本指南的内容摘要：</p>
+<ul>
+<li>使用合适的基础镜像（开发环境使用 carbon，生产环境使用 alpine）。</li>
+<li>在开发时使用 <code>nodemon</code> 进行热加载。</li>
+<li>优化 Docker 的 cache layer（缓存层）—— 按照正确的顺序使用命令，仅在需要时运行 <code>npm install</code>。</li>
+<li>使用 <code>serve</code> 包部署静态文件（比如 React、Vue、Angular 生成的 bundle）。</li>
+<li>使用 <code>alpine</code> 进行生产环境下的多级构建，减少最终镜像文件的大小。</li>
+<li>#建议 — 1) 使用 COPY 代替 ADD 2) 使用 <code>init</code> 标识，处理 CTRL-C 等内核信号。</li>
+</ul>
+          <!--noindex-->
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/22/在-Swift-playground-中编写单元测试/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/02/22/在-Swift-playground-中编写单元测试/" class="post-title-link" itemprop="url">在 Swift playground 中编写单元测试</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-02-22 14:48:00" itemprop="dateCreated datePublished" datetime="2018-02-22T14:48:00+08:00">2018-02-22</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Swift playground 对于<a href="https://github.com/johnsundell/testdrive" target="_blank" rel="noopener">试用新的 framework</a>、<a href="https://github.com/ole/whats-new-in-swift-4" target="_blank" rel="noopener">探索语言的新特性</a>来说十分有用。它提供的实时反馈能让你快速尝试新的想法与解决方案，大大提高生产力。</p>
+<p>自 Swift 问世以来，无论是设计 framework API，还是给 app 开发新功能，我一直在不停地使用 playground，希望找到将它整合进工作流的办法。</p>
+<p>本周，让我们来了解如何将 Swift playground 应用于编写单元测试，以及如何让 <a href="https://en.wikipedia.org/wiki/Test-driven_development" target="_blank" rel="noopener">TDD - 测试驱动开发</a>（ish）工作流变得更加顺畅。</p>
+          <!--noindex-->
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/06/如何为-Flask-Web-应用配置-Nginx/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/02/06/如何为-Flask-Web-应用配置-Nginx/" class="post-title-link" itemprop="url">如何为 Flask Web 应用配置 Nginx</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-02-06 16:04:00" itemprop="dateCreated datePublished" datetime="2018-02-06T16:04:00+08:00">2018-02-06</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a><strong>简介</strong></h3><p>在本文中，我将介绍什么是 <a href="https://www.nginx.com/" target="_blank" rel="noopener">Nginx</a> 以及如何为 Flask Web 应用配置 Nginx。本文是<a href="http://www.patricksoftwareblog.com/all-posts/" target="_blank" rel="noopener">《部署 Flask 应用》</a>系列文章的一部分。我曾找到过多份关于 Nginx 及其配置的文章，但我希望能更深入其细节，了解如何使用 Nginx 为 Flask Web 应用服务以及如何为此进行配置。Nginx 的配置文件有点让人困惑，因为大多数的文档仅仅是简单罗列了一个配置文件，而没有对配置中每一步做了什么进行任何解释。希望本文能让你清晰地理解如何为你的应用配置 Nginx。</p>
+          <!--noindex-->
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/01/16/TML-5-2-有哪些新内容？/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/01/16/TML-5-2-有哪些新内容？/" class="post-title-link" itemprop="url">HTML 5.2 有哪些新内容？</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-01-16 15:40:08" itemprop="dateCreated datePublished" datetime="2018-01-16T15:40:08+08:00">2018-01-16</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>就在不到一个月前，HTML 5.2 正式成为了 W3C 的推荐标准（REC）。当一个规范到达 REC 阶段，就意味着它已经正式得到了 W3C 成员和理事长的认可。并且 W3C 将正式推荐浏览器厂商部署、web 开发者实现此规范。</p>
+<p>在 REC 阶段有个原则叫做<a href="https://www.slideshare.net/rachelandrew/where-does-css-come-from/27?src=clipshare" target="_blank" rel="noopener">“任何新事物都至少要有两种独立的实现”</a>，这对于我们 web 开发者来说是一个实践新特性的绝佳机会。</p>
+<p>在 HTML 5.2 中有一些添加和删除，具体改变可以参考官方的 <a href="https://www.w3.org/TR/html52/changes.html#changes" target="_blank" rel="noopener">HTML 5.2 变动内容</a>网页。本文将介绍一些我认为与我的开发有关的改动。</p>
+<h2 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h2><h3 id="原生的-lt-dialog-gt-元素"><a href="#原生的-lt-dialog-gt-元素" class="headerlink" title="原生的 &lt;dialog&gt; 元素"></a>原生的 <code>&lt;dialog&gt;</code> 元素</h3><p>在 HTML 5.2 的所有改动中，最让我激动的就是关于 <a href="https://www.w3.org/TR/html52/interactive-elements.html#elementdef-dialog" target="_blank" rel="noopener"><code>&lt;dialog&gt;</code> 元素</a>这个原生对话框的介绍。在 web 中，对话框比比皆是，但是它们的实现方式都各有不同。对话框很难实现可访问性，这导致大多数的对话框对那些不方便以视觉方式访问网页的用户来说都是不可用的。</p>
+<p>新的 <code>&lt;dialog&gt;</code> 元素旨在改变这种状况，它提供了一种简单的方式来实现模态对话框。之后我会单独写一篇文章专门介绍这个元素的工作方式，在此先简单介绍一下。</p>
+<p>由一个 <code>&lt;dialog&gt;</code> 元素创建对话框：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dialog</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Dialog Title<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Dialog content and other stuff will go here<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dialog</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>默认情况下，对话框会在视图中（以及 DOM 访问中）隐藏，只有设置 open 属性后，对话框才会显示。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dialog</span> <span class="attr">open</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>open</code> 属性可以通过调用 <code>show()</code> 与 <code>close()</code> 方法开启或关闭，任何 <code>HTMLDialogElement</code> 都可以调用这两个方法。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"open"</span>&gt;</span>Open Dialog<span class="tag">&lt;/<span class="name">button</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"close"</span>&gt;</span>Close Dialog<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dialog</span> <span class="attr">id</span>=<span class="string">"dialog"</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Dialog Title<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Dialog content and other stuff will go here<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dialog</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">  </span></span><br><span class="line"><span class="javascript"><span class="keyword">const</span> dialog = <span class="built_in">document</span>.getElementById(<span class="string">"dialog"</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="built_in">document</span>.getElementById(<span class="string">"open"</span>).addEventListener(<span class="string">"click"</span>, () =&gt; &#123;  </span></span><br><span class="line"><span class="undefined">  dialog.show();</span></span><br><span class="line"><span class="undefined">&#125;);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="built_in">document</span>.getElementById(<span class="string">"close"</span>).addEventListener(<span class="string">"click"</span>, () =&gt; &#123;  </span></span><br><span class="line"><span class="undefined">  dialog.close();</span></span><br><span class="line"><span class="undefined">&#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>目前，Chrome 浏览器已经支持 <code>&lt;dialog&gt;</code> 元素，Firefox 也即将支持（behind a flag）。 </p>
+<p><img src="/images/pasted-304.png" alt="upload successful"></p>
+<p>上图为 caniuse.com 关于 dialog 特性主流浏览器兼容情况的数据</p>
+<h3 id="在-iFrame-中使用-Payment-Request-API（支付请求-API）"><a href="#在-iFrame-中使用-Payment-Request-API（支付请求-API）" class="headerlink" title="在 iFrame 中使用 Payment Request API（支付请求 API）"></a>在 iFrame 中使用 Payment Request API（支付请求 API）</h3><p><a href="https://www.w3.org/TR/payment-request/" target="_blank" rel="noopener">Payment Request API</a> 是支付结算表单的原生替代方案。它将支付信息置于浏览器处理，用来代替之前各个网站各不相同的结算表单，旨在为用户提供一种标准、一致的支付方式。</p>
+<p>在 HTML 5.2 之前，这种支付请求无法在文档嵌入的 iframe 中使用，导致第三方嵌入式支付解决方案（如 Stripe, Paystack）基本不可能使用这个 API，因为它们通常是在 iframe 中处理支付接口。</p>
+<p>为此，HTML 5.2 引入了用于 iframe 的 <code>allowpaymentrequest</code> 属性，允许用户在宿主网页中访问 iframe 的 Payment Request API。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">allowpaymentrequest</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="苹果的图标尺寸"><a href="#苹果的图标尺寸" class="headerlink" title="苹果的图标尺寸"></a>苹果的图标尺寸</h3><p>如要定义网页图标，我们可以在文档的 head 中使用 <code>&lt;link rel=&quot;icon&quot;&gt;</code> 元素。如果要定义不同尺寸的图标，我们可以使用 <code>sizes</code> 属性。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"icon"</span> <span class="attr">sizes</span>=<span class="string">"16x16"</span> <span class="attr">href</span>=<span class="string">"path/to/icon16.png"</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"icon"</span> <span class="attr">sizes</span>=<span class="string">"32x32"</span> <span class="attr">href</span>=<span class="string">"path/to/icon32.png"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这个属性虽然纯粹是个建议，但如果提供了多种尺寸的图标，可以让用户代理（UA）决定使用哪种尺寸的图标。在大多数设备有着不同的“最佳”图标尺寸时尤为重要。</p>
+<p>在 HTML 5.2 之前，<code>sizes</code> 属性仅能用于 rel 为 <code>icon</code> 的 link 元素中。然而，苹果的 iOS 设备不支持 <code>sizes</code> 属性。为了解决这个问题，苹果自己引入了一个他们设备专用的 rel <code>appple-touch-icon</code> 用于定义他们设备上使用的图标。</p>
+<p>在 HTML 5.2 中，规范定义了 <code>sizes</code> 属性<strong>不再仅仅</strong>可用于 rel 为 <code>icon</code> 的元素，也能用于 rel 为 <code>apple-touch-icon</code> 的元素。这样可以让我们为不同的苹果设备提供不同尺寸的图标。不过直到现在为止，据我所知苹果的设备还是不支持 <code>sizes</code> 属性。在将来苹果最终支持此规范时，它将派上用场。</p>
+<h2 id="新的有效实践"><a href="#新的有效实践" class="headerlink" title="新的有效实践"></a>新的有效实践</h2><p>除了新特性之外，HTML 5.2 还将一些之前无效的 HTML 写法认定为有效。</p>
+<h3 id="多个-lt-main-gt-元素"><a href="#多个-lt-main-gt-元素" class="headerlink" title="多个 &lt;main&gt; 元素"></a>多个 <code>&lt;main&gt;</code> 元素</h3><p><code>&lt;main&gt;</code> 元素代表网页的主要内容。虽然不同网页的重复内容可以放在 header、section 或者其它元素中，但 <code>&lt;main&gt;</code> 元素是为页面上的特定内容保留的。因此在 HTML 5.2 之前，<code>&lt;main&gt;</code> 元素在 DOM 中必须唯一才能令页面有效。</p>
+<p>随着单页面应用（SPA）的普及，要坚持这个原则变得困难起来。在同一个网页的 DOM 中可能会有多个 <code>&lt;main&gt;</code> 元素，但在任意时刻只能给用户展示其中的一个。</p>
+<p>使用 HTML 5.2，我们只要保证同一时刻只有一个 <code>&lt;main&gt;</code> 元素可见，就能在我们的标签中使用多个 <code>&lt;main&gt;</code> 元素。与此同时其它的 <code>&lt;main&gt;</code> 元素必须使用 <code>hidden</code> 属性进行隐藏。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">main</span>&gt;</span>...<span class="tag">&lt;/<span class="name">main</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">main</span> <span class="attr">hidden</span>&gt;</span>...<span class="tag">&lt;/<span class="name">main</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">main</span> <span class="attr">hidden</span>&gt;</span>...<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们都知道，<a href="https://bitsofco.de/hiding-elements-with-css/" target="_blank" rel="noopener">通过 CSS 来隐藏元素的方法有很多</a>，但多余的 <code>&lt;main&gt;</code> 元素必须使用 <code>hidden</code> 属性进行隐藏。任何其它隐藏此元素的方法（如 <code>display: none;</code> 和 <code>visibility: hidden;</code>）都将无效。</p>
+<h3 id="在-lt-body-gt-中写样式"><a href="#在-lt-body-gt-中写样式" class="headerlink" title="在 &lt;body&gt; 中写样式"></a>在 <code>&lt;body&gt;</code> 中写样式</h3><p>一般来说，使用<code>&lt;style&gt;</code>元素定义的内联 CSS 样式会放置在 HTML 文档的 <code>&lt;head&gt;</code> 中。随着组件化开发的流行，开发者已经发现编写 style 并放置在与其相关的 html 中更加有益。</p>
+<p>在 HTML 5.2 中，可以在 HTML 文档 <code>&lt;body&gt;</code> 内的任何地方定义内联 <code>&lt;style&gt;</code> 样式块。这意味着样式定义可以离它们被使用的地方更近。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>I’m cornflowerblue!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        p &#123; color: cornflowerblue; &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>I’m cornflowerblue!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然而仍需注意的是，<strong>由于性能问题，样式还是应当优先考虑放在 <code>&lt;head&gt;</code> 中</strong>。参见 <a href="https://www.w3.org/TR/html52/document-metadata.html#elementdef-style" target="_blank" rel="noopener">规范</a>，</p>
+<blockquote>
+<p>样式元素最好用于文档的 head 中。在文档的 body 中使用样式可能导致重复定义样式，触发重布局、导致重绘，因此需要小心使用。</p>
+</blockquote>
+<p>此外还应该注意的是如示例所示，样式不存在作用域。后来在 HTML 文档中定义的内联样式仍然会应用于之前定义的元素，所以它可能会触发重绘。</p>
+<h3 id="lt-legend-gt-中的标题元素"><a href="#lt-legend-gt-中的标题元素" class="headerlink" title="&lt;legend&gt; 中的标题元素"></a><code>&lt;legend&gt;</code> 中的标题元素</h3><p>在表单中，<code>&lt;legend&gt;</code> 元素表示 <code>&lt;fieldset&gt;</code> 表单域中的标题。在 HTML 5.2 前，legend 元素的内容必须为纯文本。而现在，它可以包含标题元素（<code>&lt;h1&gt;</code>等）了。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Basic Information<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Form fields for basic information --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Contact Information<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Form fields for contact information --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>当我们想用 <code>fieldset</code> 对表单中不同部分进行分组时，这个特性非常有用。在这种情况下使用标题元素是有意义的，因为这能让那些依赖于文档大纲的用户可以轻松导航至表单的对应部分。</p>
+<h2 id="移除的特性"><a href="#移除的特性" class="headerlink" title="移除的特性"></a>移除的特性</h2><p>在 HTML 5.2 中移除了一些元素，具体为：</p>
+<ul>
+<li><code>keygen</code>：曾经用于帮助表单生成公钥</li>
+<li><code>menu</code> 与 <code>menuitem</code>：曾经用于创建导航与内容菜单</li>
+</ul>
+<h2 id="新的无效实践"><a href="#新的无效实践" class="headerlink" title="新的无效实践"></a>新的无效实践</h2><p>最后，一些开发实践方式被规定不再有效。</p>
+<h3 id="在-lt-p-gt-中不再能包含行内、浮动、块类型的子元素"><a href="#在-lt-p-gt-中不再能包含行内、浮动、块类型的子元素" class="headerlink" title="在 &lt;p&gt; 中不再能包含行内、浮动、块类型的子元素"></a>在 <code>&lt;p&gt;</code> 中不再能包含行内、浮动、块类型的子元素</h3><p>在 HTML 5.2 中，<code>&lt;p&gt;</code> 元素中唯一合法的子元素只能是文字内容。这也意味着以下类型的元素不再能嵌套于段落标签 <code>&lt;p&gt;</code> 内：</p>
+<ul>
+<li>行内块（Inline blocks）</li>
+<li>行内表格（Inline tables）</li>
+<li>浮动块与固定位置块</li>
+</ul>
+<h3 id="不再支持严格文档类型（Strict-Doctypes）"><a href="#不再支持严格文档类型（Strict-Doctypes）" class="headerlink" title="不再支持严格文档类型（Strict Doctypes）"></a>不再支持严格文档类型（Strict Doctypes）</h3><p>最后，我们终于可以和这些文档类型说再见了！</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>本文发布于掘金 <a href="https://juejin.im/post/5a5dab05518825734107edda#comment" target="_blank" rel="noopener">https://juejin.im/post/5a5dab05518825734107edda#comment</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/01/16/连接-cisco-anyconnect-后网络受限/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/01/16/连接-cisco-anyconnect-后网络受限/" class="post-title-link" itemprop="url">连接 cisco anyconnect 后网络受限</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-01-16 01:47:00" itemprop="dateCreated datePublished" datetime="2018-01-16T01:47:00+08:00">2018-01-16</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>原因是服务端未开启 NAT</p>
+<p>解决方案</p>
+<p>1、关闭 ocserv：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/ocserv stop</span><br></pre></td></tr></table></figure></p>
+<p>2、开启 NAT</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A POSTROUTING -j MASQUERADE</span><br></pre></td></tr></table></figure>
+<p>3、开启 ocserv：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ocserv -c /etc/ocserv/config</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/ocserv start</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/01/03/编辑距离及编辑距离算法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/01/03/编辑距离及编辑距离算法/" class="post-title-link" itemprop="url">编辑距离及编辑距离算法</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-01-03 15:00:00" itemprop="dateCreated datePublished" datetime="2018-01-03T15:00:00+08:00">2018-01-03</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>编辑距离又称为 Levenshtein 距离，指两个字串之间，由一个转成另一个所需的最少编辑操作次数。操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。（cite from <a href="https://baike.baidu.com/item/编辑距离/8010193?fr=aladdin" target="_blank" rel="noopener">baidu baike</a>）</p>
+<p>最小编辑距离在应用中常作为一种相似度计算方法。例如DNA分析、拼写纠错（Spell correction）、命名实体抽取（Named Entity Extraction）、实体共指（Entity Conference）、识别平行网页等。</p>
+<p>计算某两个字符串的编辑距离时，可以列下面的表：（如 apple 与 people）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>p</th>
+<th>e</th>
+<th>o</th>
+<th>p</th>
+<th>l</th>
+<th>e</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>a</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>p</td>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>p</td>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>l</td>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>e</td>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>从上到下，从左到右遍历，对于每一个空来说，它的值为：</p>
+<ul>
+<li>左边数字 +1</li>
+<li>上面数字 +1</li>
+<li>如对应的行头与列头的字母相等，则取左上角的数字；否则取左上角数字 +1</li>
+</ul>
+<p>这三者的最小值。反复遍历，如下所示：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>p</th>
+<th>e</th>
+<th>o</th>
+<th>p</th>
+<th>l</th>
+<th>e</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>a</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>p</td>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>p</td>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>l</td>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>e</td>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>p</th>
+<th>e</th>
+<th>o</th>
+<th>p</th>
+<th>l</th>
+<th>e</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>a</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>p</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>p</td>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>l</td>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>e</td>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>p</th>
+<th>e</th>
+<th>o</th>
+<th>p</th>
+<th>l</th>
+<th>e</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>a</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>p</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>p</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>l</td>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>e</td>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>p</th>
+<th>e</th>
+<th>o</th>
+<th>p</th>
+<th>l</th>
+<th>e</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>a</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>p</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>p</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>l</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>e</td>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>0</th>
+<th>p</th>
+<th>e</th>
+<th>o</th>
+<th>p</th>
+<th>l</th>
+<th>e</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>a</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr>
+<td>p</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>p</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr>
+<td>l</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>e</td>
+<td>5</td>
+<td>4</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>右下角数字为 3，则 apple 与 people 的编辑距离为 3。</p>
+<p>代码：<br>根据以上自然语言的描述，可以直接利用遍历写出相应代码。如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">literation</span><span class="params">(matrix)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(matrix)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>, len(matrix[<span class="number">0</span>])):</span><br><span class="line">            up_num = matrix[i - <span class="number">1</span>][j]</span><br><span class="line">            left_num = matrix[i][j - <span class="number">1</span>]</span><br><span class="line">            left_up_num = matrix[i - <span class="number">1</span>][j - <span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> matrix[<span class="number">0</span>][j] != matrix[i][<span class="number">0</span>]:</span><br><span class="line">                left_up_num += <span class="number">1</span></span><br><span class="line">            matrix[i][j] = min(up_num + <span class="number">1</span>, left_num + <span class="number">1</span>, left_up_num)</span><br><span class="line">            print_matrix(matrix)</span><br><span class="line">    <span class="keyword">return</span> matrix</span><br></pre></td></tr></table></figure>
+<p>完整代码放在 <a href="https://github.com/lsvih/algorithm-practice/blob/master/edit-distance/edit-distance.py" target="_blank" rel="noopener">github 上</a></p>
+<p>运行结果如下：</p>
+<p><img src="/images/pasted-303.png" alt="upload successful"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/01/03/How-to-write-an-introduction-for-a-paper/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1081,1361 +2577,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/12/04/为你的网站带上帽子-—-使用-helmet-保护-Express-应用/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/12/04/为你的网站带上帽子-—-使用-helmet-保护-Express-应用/" class="post-title-link" itemprop="url">为你的网站带上帽子 — 使用 helmet 保护 Express 应用</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-12-04 16:13:00" itemprop="dateCreated datePublished" datetime="2017-12-04T16:13:00+08:00">2017-12-04</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/images/pasted-281.png" alt="upload successful"><br><a href="https://expressjs.com/" target="_blank" rel="noopener">Express</a> 基于 <a href="https://nodejs.org/" target="_blank" rel="noopener">Node.js</a>，是一款用于构建 Web 服务的优秀框架。它很容易上手，且得益于其中间件的概念，可以很方便地进行配置与拓展。尽管现在有<a href="https://www.twilio.com/blog/2016/07/how-to-receive-a-post-request-in-node-js.html" target="_blank" rel="noopener">各种各样的用于创建 Web 应用的框架</a>，但我的第一选择始终是 Express。然而，直接使用 Express 不能完全遵循安全性的最佳实践。因此我们需要使用类似 <a href="https://helmetjs.github.io/" target="_blank" rel="noopener"><code>helmet</code></a> 的模块来改善应用的安全性。</p>
-<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>在开始之前，请确认你已经安装好了 Node.js 以及 npm（或 yarn）。你可以<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">在 Node.js 官网下载以及查看安装指南</a>。</p>
-<p>我们将以一个新的工程为例，不过你也可以将这些功能应用于现有的工程中。</p>
-<p>在命令行中运行以下命令创建一个新的工程：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir secure-express-demo</span><br><span class="line"><span class="built_in">cd</span> secure-express-demo</span><br><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
-<p>运行以下命令安装 Express 模块：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express --save</span><br></pre></td></tr></table></figure>
-<p>在 <code>secure-express-demo</code> 目录下创建一个名为 <code>index.js</code> 的文件，加入以下代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> PORT = process.env.PORT || <span class="number">3000</span>;</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</span><br><span class="line">  res.send(<span class="string">`&lt;h1&gt;Hello World&lt;/h1&gt;`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(PORT, () =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Listening on http://localhost:<span class="subst">$&#123;PORT&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>保存文件，试运行看看它是否能正常工作。运行以下命令启动服务：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node index.js</span><br></pre></td></tr></table></figure>
-<p>访问 <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a>，你应该可以看到 <code>Hello World</code>。</p>
-<p><img src="/images/pasted-282.png" alt="upload successful"></p>
-<h3 id="检查-Headers"><a href="#检查-Headers" class="headerlink" title="检查 Headers"></a>检查 Headers</h3><p><img src="/images/pasted-283.png" alt="upload successful"></p>
-<p>现在让我们通过增加与删除一些 HTTP headers 来改善应用安全性。你可以用一些工具来检查它的 headers，例如使用 <code>curl</code> 运行以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:3000 --include</span><br></pre></td></tr></table></figure>
-<p><code>--include</code> 标志可以让其输出 response 的 HTTP headers。如果你没有安装 <code>curl</code>，也可以用你最常用浏览器开发者工具的 network 面板代替。</p>
-<p>你可以看到在收到的 response 中包含的以下 HTTP headers：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">X-Powered-By: Express</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Content-Length: 20</span><br><span class="line">ETag: W/&quot;14-SsoazAISF4H46953FT6rSL7/tvU&quot;</span><br><span class="line">Date: Wed, 01 Nov 2017 13:36:10 GMT</span><br><span class="line">Connection: keep-alive</span><br></pre></td></tr></table></figure>
-<p>一般来说，由 <code>X-</code> 开头的 header 是非标准头部。请注意那个 <code>X-Powered-By</code> 的 header，它会暴露你使用的框架。对于攻击者来说，这可以降低攻击成本，因为他们只专注攻击此框架的已知漏洞即可。</p>
-<h3 id="戴上头盔（helmet）"><a href="#戴上头盔（helmet）" class="headerlink" title="戴上头盔（helmet）"></a>戴上头盔（helmet）</h3><p><img src="/images/pasted-284.png" alt="upload successful"></p>
-<p>来看看如果我们使用 <code>helmet</code> 会发生什么。运行以下命令安装 <code>helmet</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install helmet --save</span><br></pre></td></tr></table></figure>
-<p>将 <code>helmet</code> 中间件加入你的应用中。对 <code>index.js</code> 进行如下修改：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> helmet = <span class="built_in">require</span>(<span class="string">'helmet'</span>);</span><br><span class="line"><span class="keyword">const</span> PORT = process.env.PORT || <span class="number">3000</span>;</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line">app.use(helmet());</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</span><br><span class="line">  res.send(<span class="string">`&lt;h1&gt;Hello World&lt;/h1&gt;`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(PORT, () =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Listening on http://localhost:<span class="subst">$&#123;PORT&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>这样就使用了 <code>helmet</code> 的默认配置。接下来看看它做了什么事情。重启服务，再次通过以下命令检查 HTTP headers：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:3000 --inspect</span><br></pre></td></tr></table></figure>
-<p>新的 headers 会类似于下面这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">X-DNS-Prefetch-Control: off</span><br><span class="line">X-Frame-Options: SAMEORIGIN</span><br><span class="line">Strict-Transport-Security: max-age=15552000; includeSubDomains</span><br><span class="line">X-Download-Options: noopen</span><br><span class="line">X-Content-Type-Options: nosniff</span><br><span class="line">X-XSS-Protection: 1; mode=block</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Content-Length: 20</span><br><span class="line">ETag: W/&quot;14-SsoazAISF4H46953FT6rSL7/tvU&quot;</span><br><span class="line">Date: Wed, 01 Nov 2017 13:50:42 GMT</span><br><span class="line">Connection: keep-alive</span><br></pre></td></tr></table></figure>
-<p>首先值得庆祝的是 <code>X-Powered-By</code> header 不见了。但现在又多了好些新的 header，它们是做什么的呢？</p>
-<h4 id="X-DNS-Prefetch-Control"><a href="#X-DNS-Prefetch-Control" class="headerlink" title="X-DNS-Prefetch-Control"></a>X-DNS-Prefetch-Control</h4><p>这个 header 对增加安全性并没有太大作用。它的值为 <code>off</code> 时，将关闭浏览器对页面中 URL 的 DNS 预读取。DNS 预读取可以提高你的网站的性能，根据 MDN 描述，它可以<a href="https://developer.mozilla.org/zh-CN/docs/Controlling_DNS_prefetching" target="_blank" rel="noopener">增加 5% 或更高的图片加载速度</a>。不过开启这项功能也可能会使用户在多次访问同一个网页时缓存出现问题。</p>
-<blockquote>
-<p>译注：缓存问题未查到资料，如果您了解这块请留言</p>
-</blockquote>
-<p>它的默认值是 <code>off</code>，如果你希望通过它提升性能，可以在调用 <code>helmet()</code> 时传入 <code>{ dnsPrefetchControl: { allow: true }}</code> 开启 DNS 预读取。</p>
-<h4 id="X-Frame-Options"><a href="#X-Frame-Options" class="headerlink" title="X-Frame-Options"></a>X-Frame-Options</h4><p><code>X-Frame-Options</code> 可以让你控制页面是否能在 <code>&lt;frame/&gt;</code>、<code>&lt;iframe/&gt;</code> 或者 <code>&lt;object/&gt;</code> 之类的页框内加载。除非你的确需要通过这些方式来打开页面，否则请通过下面的配置完全禁用它：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app.use(helmet(&#123;</span><br><span class="line">  frameguard: &#123;</span><br><span class="line">    action: <span class="string">'deny'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
-<p><a href="http://caniuse.com/#feat=x-frame-options" target="_blank" rel="noopener">所有的现代浏览器都支持 <code>X-Frame-Options</code></a>。你也可以通过稍后将介绍的内容安全策略来控制它。</p>
-<h4 id="Strict-Transport-Security"><a href="#Strict-Transport-Security" class="headerlink" title="Strict-Transport-Security"></a>Strict-Transport-Security</h4><p>它也被称为 HSTS（严格安全 HTTP 传输），用于确保在访问 HTTPS 网站时不出现协议降级（回到 HTTP）的情况。如果用户一旦访问了带有此 header 的 HTTPS 网站，浏览器就会确保将来再次访问次网站时不允许使用 HTTP 进行通信。此功能有助于防范中间人攻击。</p>
-<p>有时，当你使用公共 WiFi 时尝试访问 <a href="https://google.com" target="_blank" rel="noopener">https://google.com</a> 之类的门户网页时就能看到此功能运作。WiFi 尝试将你重定向到他们的门户网站去，但你曾经通过 HTTPS 访问过 <code>google.com</code>，且它带有 <code>Strict-Transport-Security</code> 的 header，因此浏览器将阻止重定向。</p>
-<p>你可以访问 <a href="https://developer.mozilla.org/zh-CN/docs/Security/HTTP_Strict_Transport_Security" target="_blank" rel="noopener">MDN</a> 或者 <a href="https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet" target="_blank" rel="noopener">OWASP wiki</a> 查看更多相关信息。</p>
-<h4 id="X-Download-Options"><a href="#X-Download-Options" class="headerlink" title="X-Download-Options"></a>X-Download-Options</h4><p>这个 header 仅用于保护你的应用免受老版 IE 漏洞的困扰。一般来说，如果你部署了不能被信任的 HTTP 文件用于下载，用户可以直接打开这些文件（而不需要先保存到硬盘去）并且可以直接在你 app 的上下文中执行。这个 header 可以确保用户在访问这种文件前必须将其下载到本地，这样就能防止这些文件在你 app 的上下文中执行了。</p>
-<p>你可以访问 <a href="https://helmetjs.github.io/docs/ienoopen/" target="_blank" rel="noopener">helmet 文档</a>和 <a href="https://blogs.msdn.microsoft.com/ie/2008/07/02/ie8-security-part-v-comprehensive-protection/" target="_blank" rel="noopener">MSDN 博文</a>查看更多相关信息。</p>
-<h4 id="X-Content-Type-Options"><a href="#X-Content-Type-Options" class="headerlink" title="X-Content-Type-Options"></a>X-Content-Type-Options</h4><p>一些浏览器不使用服务器发送的 <code>Content-Type</code> 来判断文件类型，而使用“MIME 嗅探”，根据文件内容来判断内容类型并基于此执行文件。</p>
-<p>假设你在网页中提供了一个上传图片的途径，但攻击者上传了一些内容为 HTML 代码的图片文件，如果浏览器使用 MIME 嗅探则会将其作为 HTML 代码执行，攻击者就能执行成功的 XSS 攻击了。</p>
-<p>通过设置 header 为 <code>nosniff</code> 可以禁用这种 MIME 嗅探。</p>
-<h4 id="X-XSS-Protection"><a href="#X-XSS-Protection" class="headerlink" title="X-XSS-Protection"></a>X-XSS-Protection</h4><p>此 header 能在用户浏览器中开启基本的 XSS 防御。它不能避免一切 XSS 攻击，但它可以防范基本的 XSS。例如，如果浏览器检测到查询字符串中包含类似 <code>&lt;script&gt;</code> 标签之类的内容，则会阻止这种疑似 XSS 攻击代码的执行。这个 header 可以设置三种不同的值：<code>0</code>、<code>1</code> 和 <code>1; mode=block</code>。如果你想了解更多关于如何选择模式的知识，请查看 <a href="https://blog.innerht.ml/the-misunderstood-x-xss-protection/" target="_blank" rel="noopener"><code>X-XSS-Protection</code> 及其潜在危害</a> 一文。</p>
-<h4 id="升级你的-helmet"><a href="#升级你的-helmet" class="headerlink" title="升级你的 helmet"></a>升级你的 helmet</h4><p>以上只是 <a href="https://helmetjs.github.io/docs/" target="_blank" rel="noopener"><code>helmet</code></a> 提供的默认设置。除此之外，它还可以让你设置 <a href="https://helmetjs.github.io/docs/expect-ct/" target="_blank" rel="noopener"><code>Expect-CT</code></a>、<a href="https://helmetjs.github.io/docs/hpkp/" target="_blank" rel="noopener"><code>Public-Key-Pins</code></a>、<a href="https://helmetjs.github.io/docs/nocache/" target="_blank" rel="noopener"><code>Cache-Control</code></a> 和 <a href="https://helmetjs.github.io/docs/referrer-policy/" target="_blank" rel="noopener"><code>Referrer-Policy</code></a> 之类的 header。你可以在 <a href="https://helmetjs.github.io/docs/" target="_blank" rel="noopener"><code>helmet</code> 文档</a> 中查找更多相关配置。</p>
-<h3 id="保护你的网页免受非预期内容的侵害"><a href="#保护你的网页免受非预期内容的侵害" class="headerlink" title="保护你的网页免受非预期内容的侵害"></a>保护你的网页免受非预期内容的侵害</h3><p><img src="/images/pasted-285.png" alt="upload successful"></p>
-<p>跨站脚本执行对于 web 应用来说是无法根绝的威胁。如果攻击者可以在你的应用中注入并运行代码，其后果对于你和你的用户来说可能是一场噩梦。有一种能试图阻止在你网页中运行非预期代码的方案：<code>CSP</code>（内容安全策略）。</p>
-<p>CSP 允许你设定一组规则，以定义你的页面能够加载资源的来源。任何违反规则的资源都会被浏览器自动阻止。</p>
-<p>你可以通过修改 <code>Content-Security-Policy</code> HTTP header 来指定规则，或者你不能改 header 时也可以使用 meta 标签来设定。</p>
-<p>这个 header 类似于这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: default-src &apos;none&apos;;</span><br><span class="line">    script-src &apos;nonce-XQY ZwBUm/WV9iQ3PwARLw==&apos;;</span><br><span class="line">    style-src &apos;nonce-XQY ZwBUm/WV9iQ3PwARLw==&apos;;</span><br><span class="line">    img-src &apos;self&apos;;</span><br><span class="line">    font-src &apos;nonce-XQY ZwBUm/WV9iQ3PwARLw==&apos; fonts.gstatic.com;</span><br><span class="line">    object-src &apos;none&apos;;</span><br><span class="line">    block-all-mixed-content;</span><br><span class="line">    frame-ancestors &apos;none&apos;;</span><br></pre></td></tr></table></figure>
-<p>在这个例子中，你可以看到我们只允许从自己的域名或者 Google Fonts 的 fonts.gstatic.com 来获取字体；只允许加载本域名下的图片；只允许加载不指定来源，但必须包含指定 <code>nonce</code> 值的脚本及样式文件。这个 nonce 值需要用下面这样的方式指定：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"myscript.js"</span> <span class="attr">nonce</span>=<span class="string">"XQY ZwBUm/WV9iQ3PwARLw=="</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"mystyles.css"</span> <span class="attr">nonce</span>=<span class="string">"XQY ZwBUm/WV9iQ3PwARLw=="</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>当浏览器收到 HTML 时，为了安全起见它会清除所有的 nonce 值，其它的脚本无法得到这个值，也就无法添加进网页中了。</p>
-<p>你还可以禁止所有在 HTTPS 页面中包含的 HTTP 混合内容和所有 <code>&lt;object /&gt;</code> 元素，以及通过设置 <code>default-src</code> 为 <code>none</code> 来禁用一切不为图片、样式表以及脚本的内容。此外，你还可以通过 <code>frame-ancestors</code> 来禁用 iframe。</p>
-<p>你可以自己手动去编写这些 header，不过走运的是 Express 中已经有了许多现成的 CSP 解决方案。<a href="https://helmetjs.github.io/docs/csp/" target="_blank" rel="noopener"><code>helmet</code> 支持 CSP</a>，但 <code>nonce</code> 需要你自己去生成。我个人为此使用了一个名为 <code>express-csp-header</code> 的模块。</p>
-<p>安装及运行 <code>express-csp-header</code>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express-csp-header --save</span><br></pre></td></tr></table></figure>
-<p>为你的 <code>index.js</code> 添加并修改以下内容，启用 CSP：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> helmet = <span class="built_in">require</span>(<span class="string">'helmet'</span>);</span><br><span class="line"><span class="keyword">const</span> csp = <span class="built_in">require</span>(<span class="string">'express-csp-header'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PORT = process.env.PORT || <span class="number">3000</span>;</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> cspMiddleware = csp(&#123;</span><br><span class="line">  policies: &#123;</span><br><span class="line">    <span class="string">'default-src'</span>: [csp.NONE],</span><br><span class="line">    <span class="string">'script-src'</span>: [csp.NONCE],</span><br><span class="line">    <span class="string">'style-src'</span>: [csp.NONCE],</span><br><span class="line">    <span class="string">'img-src'</span>: [csp.SELF],</span><br><span class="line">    <span class="string">'font-src'</span>: [csp.NONCE, <span class="string">'fonts.gstatic.com'</span>],</span><br><span class="line">    <span class="string">'object-src'</span>: [csp.NONE],</span><br><span class="line">    <span class="string">'block-all-mixed-content'</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">'frame-ancestors'</span>: [csp.NONE]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(helmet());</span><br><span class="line">app.use(cspMiddleware);</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</span><br><span class="line">  res.send(<span class="string">`</span></span><br><span class="line"><span class="string">    &lt;h1&gt;Hello World&lt;/h1&gt;</span></span><br><span class="line"><span class="string">    &lt;style nonce=<span class="subst">$&#123;req.nonce&#125;</span>&gt;</span></span><br><span class="line"><span class="string">      .blue &#123; background: cornflowerblue; color: white; &#125;</span></span><br><span class="line"><span class="string">    &lt;/style&gt;</span></span><br><span class="line"><span class="string">    &lt;p class="blue"&gt;This should have a blue background because of the loaded styles&lt;/p&gt;</span></span><br><span class="line"><span class="string">    &lt;style&gt;</span></span><br><span class="line"><span class="string">      .red &#123; background: maroon; color: white; &#125;</span></span><br><span class="line"><span class="string">    &lt;/style&gt;</span></span><br><span class="line"><span class="string">    &lt;p class="red"&gt;This should not have a red background, the styles are not loaded because of the missing nonce.&lt;/p&gt;</span></span><br><span class="line"><span class="string">  `</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(PORT, () =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Listening on http://localhost:<span class="subst">$&#123;PORT&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>重启服务，访问 <a href="http://localhost:3000" target="_blank" rel="noopener">http://localhost:3000</a>，可以看到一个带有蓝色背景的段落，因为相关的样式成功被加载了。而另一个段落没有样式，因为其样式缺少了 nonce 值。</p>
-<p><img src="/images/pasted-286.png" alt="upload successful"></p>
-<p>CSP header 还可以设定报告违规的 URL，你还可以在严格启用 CSP 之前仅开启报告模式，收集相关数据。</p>
-<p>你可以在 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy__by_cnvoid" target="_blank" rel="noopener">MDN CSP 介绍</a>查看更多信息，并浏览 <a href="http://caniuse.com/#feat=contentsecuritypolicy" target="_blank" rel="noopener">“Can I Use” 网站查看 CSP 兼容性</a>。大多数主流浏览器都支持这项特性。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="/images/pasted-287.png" alt="upload successful"></p>
-<p>可惜的是，在安全性方面不存在所谓的万能方案，新的漏洞层出不穷。但是，你可以很轻松地在你的 web 应用中设置这些 HTTP header，显著地提升你应用的安全性，何乐而不为呢？如果你想了解更多有关 HTTP header 提高安全性的最佳实践，请浏览 <a href="https://securityheaders.io/" target="_blank" rel="noopener">securityheaders.io</a>。</p>
-<p>如果你想了解更多 web 安全方面的最佳实践，请访问 <a href="https://www.owasp.org/index.php/Main_Page" target="_blank" rel="noopener">Open Web Applications Security Project（OWASP）</a>，它涵盖了广泛的主题及有用的资源。</p>
-<p>如果你有任何问题，或有其它用于提升 Node.js web 应用的工具，请随时联系我：</p>
-<ul>
-<li>Twitter：<a href="https://twitter.com/dkundel" target="_blank" rel="noopener">@dkundel</a></li>
-<li>Email：<a href="mailto:dkundel@twilio.com" target="_blank" rel="noopener">dkundel@twilio.com</a></li>
-<li>GitHub：<a href="https://github.com/dkundel" target="_blank" rel="noopener">dkundel</a></li>
-</ul>
-<blockquote>
-<p>本文发布于掘金 <a href="https://juejin.im/post/5a24fd8f51882509e5438247" target="_blank" rel="noopener">https://juejin.im/post/5a24fd8f51882509e5438247</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/11/29/bash-批量查找替换文件内容/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/11/29/bash-批量查找替换文件内容/" class="post-title-link" itemprop="url">bash 批量查找替换文件内容</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-11-29 10:27:04" itemprop="dateCreated datePublished" datetime="2017-11-29T10:27:04+08:00">2017-11-29</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -rl <span class="string">"192.168.1.1"</span> |xargs -i sed -i <span class="string">'s/192.168.1.1/192.168.1.2/g'</span> <span class="string">"&#123;&#125;"</span></span><br></pre></td></tr></table></figure>
-<p>将目录下所有文件的192.168.1.1替换成192.168.1.2</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/11/12/前端-Console-调试小技巧/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/11/12/前端-Console-调试小技巧/" class="post-title-link" itemprop="url">前端 Console 调试小技巧</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-11-12 16:41:00" itemprop="dateCreated datePublished" datetime="2017-11-12T16:41:00+08:00">2017-11-12</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="/images/pasted-263.png" alt="upload successful"></p>
-<p>开发者们在开发的过程中会无意地产生一些 bug。bug 越老，找到并修复它的难度就越高。在本系列的文章中，我将试着向你展示如何使用 Google Chrome 开发者工具、Chrome 插件以及 WebStorm 进行调试。</p>
-<p>这篇文章将介绍最常用的调试工具 —— Chrome Console。请享用！</p>
-<h3 id="Console"><a href="#Console" class="headerlink" title="Console"></a>Console</h3><p>打开 Chrome 开发者工具的方法：</p>
-<ul>
-<li>在主菜单中选择“更多工具”菜单 &gt; 点击开发者工具。</li>
-<li>在页面任何元素上右键，选择“检查”。</li>
-<li>在 Mac 中，按下 Command+Option+I；在 Windows 与 Linux 中，按下 Ctrl+Shift+I。</li>
-</ul>
-<p>请观察 Console 选项卡中的内容。</p>
-<p><img src="/images/pasted-264.png" alt="upload successful"></p>
-<p>第一行：</p>
-<p><img src="/images/pasted-265.png" alt="upload successful"></p>
-<ul>
-<li>清空 console 控制台</li>
-</ul>
-<p><code>top</code> — 在默认状态下，Console 的上下文（context）为 top（顶级）。不过当你检查元素或使用 Chrome 插件上下文时，它会发生变化。<br>你可以在此更改 console 执行的上下文（页面的顶级 frame）。</p>
-<p><strong>过滤：</strong><br>对控制台的输出进行过滤。你可以根据输出严重级别、正则表达式对其进行过滤，也可以在此隐藏网络连接产生的消息。</p>
-<p><strong>设置：</strong><br><code>Hide network</code> — 隐藏诸如 404 之类的网络错误。<br><code>Preserve log</code> — 控制台将会在页面刷新或者跳转时不清空记录。<br><code>Selected context only</code> — 勾上后可以根据前面 top 选择的上下文来指定控制台的日志记录范围。<br><code>User messages only</code> — 隐藏浏览器产生的访问异常之类的警告。<br><code>Log XMLHttpRequests</code> — 顾名思义，记录 XMLHttpRequest 产生的信息。<br><code>Show timestamps</code> — 在控制台中显示时间戳信息。<br><code>Autocomplete from history</code> — Chrome 会记录你曾经输入过的命令，进行自动补全。</p>
-<h3 id="选择合适的-Console-API"><a href="#选择合适的-Console-API" class="headerlink" title="选择合适的 Console API"></a>选择合适的 Console API</h3><p>控制台会在你应用的上下文中运行你输入的 JS 代码。你可以轻松地通过控制台查看全局作用域中存储的东西，也可以直接输入并查看表达式的结果。例如：“null === 0”。</p>
-<h4 id="console-log-—-对象引用"><a href="#console-log-—-对象引用" class="headerlink" title="console.log — 对象引用"></a>console.log — 对象引用</h4><p>根据定义，console.log 将会在控制台中打印输出内容。除此之外，你还得知道，console.log 会对你展示的对象保持引用关系。请看下面的代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fruits = [&#123;<span class="attr">one</span>: <span class="number">1</span>&#125;, &#123;<span class="attr">two</span>: <span class="number">2</span>&#125;, &#123;<span class="attr">three</span>: <span class="number">3</span>&#125;];</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'fruits before modification: '</span>, fruits);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'fruits before modification - stringed: '</span>, <span class="built_in">JSON</span>.stringify(fruits));</span><br><span class="line">fruits.splice(<span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'fruits after modification: '</span>, fruits);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'fruits after modification - stringed : '</span>, <span class="built_in">JSON</span>.stringify(fruits))</span><br></pre></td></tr></table></figure>
-<p><img src="/images/pasted-266.png" alt="upload successful"></p>
-<p>当调试对象或数组时，你需要注意这点。我们可以看到 <code>fruits</code> 数组再被修改前包含 3 个对象，但之后发生了变化。如需要在特定时刻查看结果，可以使用 <code>JSON.stringify</code> 来展示信息。不过这种方法对于展示大对象来说并不方便。之后我们会介绍更好的解决方案。</p>
-<h4 id="console-log-—-对对象属性进行排序"><a href="#console-log-—-对对象属性进行排序" class="headerlink" title="console.log — 对对象属性进行排序"></a>console.log — 对对象属性进行排序</h4><p>JavaScript 是否能保证对象属性的顺序呢？</p>
-<blockquote>
-<p>4.3.3 Object — ECMAScript 第三版 (1999)</p>
-<p>对象是 Object 的成员，它是一组无序属性的集合，每个属性都包含一个原始值、对象或函数。称存储在对象属性中的函数为方法。</p>
-</blockquote>
-<p>但是…… 在 ES5 中它的定义发生了改变，属性可以有序 —— 但你还是不能确定你的对象属性是否能按顺序排列。浏览器通过各种方法实现了有序属性。在 Chrome 中运行下面的代码，可以看到令人困惑的结果：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> letters = &#123;</span><br><span class="line">  z: <span class="number">1</span>,</span><br><span class="line">  t: <span class="number">2</span>,</span><br><span class="line">  k: <span class="number">6</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'fruits'</span>, letters);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'fruits - stringify'</span>, <span class="built_in">JSON</span>.stringify(letters));</span><br></pre></td></tr></table></figure>
-<p><img src="/images/pasted-267.png" alt="upload successful"></p>
-<p>Chrome 按照字母表的顺序对属性进行了排序。没法说我们是否应该喜欢这种排序方式，但了解这儿发生了什么总没坏处。</p>
-<h4 id="console-assert-expression-message"><a href="#console-assert-expression-message" class="headerlink" title="console.assert(expression, message)"></a>console.assert(expression, message)</h4><p>如果 expression 表达式的结果为 <code>false</code>，<code>Console.assert</code> 将会抛出错误。关键的是，assert 函数不会由于报错而停止评估之后的代码。它可以帮助你调试冗长棘手的代码，或者找到多次迭代后函数自身产生的错误。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callAssert</span>(<span class="params">a,b</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.assert(a === b, <span class="string">'message: a !== b ***** a: '</span> + a +<span class="string">' b:'</span> +b);</span><br><span class="line">&#125;</span><br><span class="line">callAssert(<span class="number">5</span>,<span class="number">6</span>);</span><br><span class="line">callAssert(<span class="number">1</span>,<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-<p><img src="/images/pasted-268.png" alt="upload successful"></p>
-<h4 id="console-count-label"><a href="#console-count-label" class="headerlink" title="console.count(label)"></a>console.count(label)</h4><p>简而言之，它就是一个会计算相同表达式执行过多少次的 <code>console.log</code>。其它的都一样。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i =<span class="number">0</span>; i &lt;=<span class="number">3</span>; i++)&#123;</span><br><span class="line">	<span class="built_in">console</span>.count(i + <span class="string">' Can I go with you?'</span>);</span><br><span class="line">	<span class="built_in">console</span>.count(<span class="string">'No, no this time'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/images/pasted-269.png" alt="upload successful"></p>
-<p>如上面的例子所述，只有完全相同的表达式才会增加统计数字。</p>
-<h4 id="console-table"><a href="#console-table" class="headerlink" title="console.table()"></a>console.table()</h4><p>很好用的调试函数，但即使它会提高工作效率，我也一般懒得用它…… 别像我这样，咱要保持高效。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fruits = [</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'apple'</span>, <span class="attr">like</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'pear'</span>, <span class="attr">like</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'plum'</span>, <span class="attr">like</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">];</span><br><span class="line"><span class="built_in">console</span>.table(fruits);</span><br></pre></td></tr></table></figure>
-<p><img src="/images/pasted-270.png" alt="upload successful"></p>
-<p>它非常棒。第一，你可以将所有东西都整齐地放在表格中；第二，你也会得到 <code>console.log</code> 的结果。它在 Chrome 中可以正常工作，但是不保证兼容所有浏览器。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fruits = [</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'apple'</span>, <span class="attr">like</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'pear'</span>, <span class="attr">like</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">'plum'</span>, <span class="attr">like</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">];</span><br><span class="line"><span class="built_in">console</span>.table(fruits, [<span class="string">'name'</span>])</span><br></pre></td></tr></table></figure>
-<p><img src="/images/pasted-271.png" alt="upload successful"></p>
-<p>我们可以决定是完全展示数据内容还是只展示整个对象的某几列。这个表格是可排序的 —— 点击需要排序的列的表头，即可按此列对表格进行排序。</p>
-<h4 id="console-group-console-groupEnd"><a href="#console-group-console-groupEnd" class="headerlink" title="console.group() / console.groupEnd();"></a>console.group() / console.groupEnd();</h4><p>这次让我们直接从代码开始介绍。运行下面的代码看看控制台是如何进行分组的。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'iteration'</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> firstLevel = <span class="number">0</span>; firstLevel&lt;<span class="number">2</span>; firstLevel++)&#123;</span><br><span class="line">  <span class="built_in">console</span>.group(<span class="string">'First level: '</span>, firstLevel);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> secondLevel = <span class="number">0</span>; secondLevel&lt;<span class="number">2</span>; secondLevel++)&#123;</span><br><span class="line">	<span class="built_in">console</span>.group(<span class="string">'Second level: '</span>, secondLevel);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> thirdLevel = <span class="number">0</span>; thirdLevel&lt;<span class="number">2</span>; thirdLevel++)&#123;</span><br><span class="line">  	<span class="built_in">console</span>.log(<span class="string">'This is third level number: '</span>, thirdLevel);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">console</span>.groupEnd();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.groupEnd();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/images/pasted-272.png" alt="upload successful"></p>
-<p>它可以帮助你更好的处理数据。</p>
-<h4 id="console-trace"><a href="#console-trace" class="headerlink" title="console.trace();"></a>console.trace();</h4><p>console.trace 会将调用栈打印在控制台中。如果你正在构建库或框架时，它给出的信息将十分有用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  func2();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  func3();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.trace();</span><br><span class="line">&#125;</span><br><span class="line">func1();</span><br></pre></td></tr></table></figure>
-<p><img src="/images/pasted-274.png" alt="upload successful"></p>
-<h4 id="对比-console-log-与-console-dir"><a href="#对比-console-log-与-console-dir" class="headerlink" title="对比 console.log 与 console.dir"></a>对比 console.log 与 console.dir</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log([<span class="number">1</span>,<span class="number">2</span>]);</span><br><span class="line"><span class="built_in">console</span>.dir([<span class="number">1</span>,<span class="number">2</span>]);</span><br></pre></td></tr></table></figure>
-<p><img src="/images/pasted-275.png" alt="upload successful"></p>
-<p>它们的实现方式取决于浏览器。在最开始的时候，规范中建议 dir 要保持对对象的引用，而 log 不需要引用。（Log 会显示一个对象的副本）。但现在，如上图所示，log 也保持了对于对象的引用。它们展示对象的方式有所不同，但我们不再加以深究。不过 dir 在调试 HTML 对象的时候会非常有用。</p>
-<blockquote>
-<p>译注：console.dir 会详细打印一个对象的所有属性与方法。</p>
-</blockquote>
-<h4 id="0-—-4"><a href="#0-—-4" class="headerlink" title="$_, $0 — $4"></a>$_, $0 — $4</h4><p><code>$_</code> 会返回最近执行表达式的值。<br><code>$0 — $4</code> — 分别作为近 5 此检查元素时对 HTML 元素的引用。</p>
-<p><img src="/images/pasted-276.png" alt="upload successful"></p>
-<h4 id="getEventListeners-object"><a href="#getEventListeners-object" class="headerlink" title="getEventListeners(object)"></a>getEventListeners(object)</h4><p>返回指定 DOM 元素上注册的事件监听器。这儿还有一种更便捷的方法来设置事件监听，下次教程会介绍它。</p>
-<p><img src="/images/pasted-277.png" alt="upload successful"></p>
-<h3 id="monitorEvents-DOMElement-events-unmonitorEvents-DOMElement"><a href="#monitorEvents-DOMElement-events-unmonitorEvents-DOMElement" class="headerlink" title="monitorEvents(DOMElement, [events]) / unmonitorEvents(DOMElement)"></a>monitorEvents(DOMElement, [events]) / unmonitorEvents(DOMElement)</h3><p>在指定 DOM 元素上触发任何事件时，都可以在控制台中看到相关信息。直到取消对相应元素的监视。</p>
-<p><img src="/images/pasted-278.png" alt="upload successful"></p>
-<h3 id="在控制台中选择元素"><a href="#在控制台中选择元素" class="headerlink" title="在控制台中选择元素"></a>在控制台中选择元素</h3><p><img src="/images/pasted-279.png" alt="upload successful"></p>
-<p>在 Element 标签中按 ESC 键展开这个界面。</p>
-<p>在 <code>$</code> 没有另做它用的情况下：</p>
-<p><code>$()</code> — 相当于 <code>**document.querySelector()**</code>。它会返回匹配 CSS 选择器的第一个元素（例如 <code>$(&#39;span&#39;)</code> 会返回第一个 span）<br><code>$$()</code> — 相当于 <code>**document.querySelectorAll()**</code>。它会以数组的形式返回所有匹配 CSS 选择器的元素。</p>
-<h4 id="复制打印的数据"><a href="#复制打印的数据" class="headerlink" title="复制打印的数据"></a>复制打印的数据</h4><p>有时，当你处理数据时可能会想打个草稿，或者简单地看看两个对象是否有区别。全选之后再复制可能会很麻烦，在此介绍一种很方便的方法。</p>
-<p>在打印出的对象上点击右键，选择 copy（复制），或选择 Store as global element（将指定元素的引用存储在全局作用域中），然后你就可以在控制台中操作刚才存储的元素啦。</p>
-<p>控制台中的任何内容都可以通过使用 <code>copy(&#39;object-name&#39;)</code> 进行复制。</p>
-<h4 id="自定义控制台输出样式"><a href="#自定义控制台输出样式" class="headerlink" title="自定义控制台输出样式"></a>自定义控制台输出样式</h4><p>假设你正在开发一个库，或者在为公司、团队开发一个大模块。此时在开发模式下对一些日志进行高亮处理会很舒爽。你可以试试下面的代码：</p>
-<p><code>console.log(&#39;%c Truly hackers code! &#39;, &#39;background: #222; color: #bada55&#39;);</code></p>
-<p><img src="/images/pasted-280.png" alt="upload successful"></p>
-<p><code>%d</code> 或 <code>%i</code> — 整型值<br><code>%f</code> — 浮点值<br><code>%o</code> — 可展开的 DOM 元素<br><code>%O</code> — 可展开的 JS 对象<br><code>%c</code> — 使用 CSS 格式化输出</p>
-<p>以上就是本文的全部内容，但并不是 Console 这个话题的全部内容。你可以点击以下链接了解更多有关知识：</p>
-<ul>
-<li><a href="https://developers.google.com/web/tools/chrome-devtools/console/command-line-reference" target="_blank" rel="noopener">Command Line API Reference</a> by Google</li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Console" target="_blank" rel="noopener">Console API</a> by MDN</li>
-<li><a href="http://2ality.com/2013/10/console-api.html" target="_blank" rel="noopener">Console API</a> by 2ality</li>
-<li><a href="https://developer.mozilla.org/pl/docs/Web/CSS/CSS_Selectors" target="_blank" rel="noopener">CSS Selectors</a></li>
-</ul>
-<blockquote>
-<p>本文发布于掘金 <a href="https://juejin.im/post/5a08087f6fb9a04529363d71" target="_blank" rel="noopener">https://juejin.im/post/5a08087f6fb9a04529363d71</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/11/03/RNN-循环神经网络系列-5-自定义单元/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/11/03/RNN-循环神经网络系列-5-自定义单元/" class="post-title-link" itemprop="url">RNN 循环神经网络系列 5: 自定义单元</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-11-03 10:23:00" itemprop="dateCreated datePublished" datetime="2017-11-03T10:23:00+08:00">2017-11-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>本系列文章汇总</strong></p>
-<ol>
-<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-1-basic-rnn-char-rnn.md" target="_blank" rel="noopener">RNN 循环神经网络系列 1：基本 RNN 与 CHAR-RNN</a></li>
-<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-2-text-classification.md" target="_blank" rel="noopener">RNN 循环神经网络系列 2：文本分类</a></li>
-<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-3-encoder-decoder.md" target="_blank" rel="noopener">RNN 循环神经网络系列 3：编码、解码器</a></li>
-<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-network-rnn-part-4-attentional-interfaces.md" target="_blank" rel="noopener">RNN 循环神经网络系列 4：注意力机制</a></li>
-<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-network-rnn-part-5-custom-cells.md" target="_blank" rel="noopener">RNN 循环神经网络系列 5：自定义单元</a></li>
-</ol>
-<p>在本文中，我们将探索并尝试创建我们自己定义的 RNN 单元。不过在此之前，我们需要先仔细研究简单的 RNN，再逐步深入较为复杂的单元（如 LSTM 与 GRU）。我们会分析这些单元在 tensorflow 中的实现代码，最终参照这些代码来创建我们的自定义单元。本文将援引由 Chris Olah 所著，在 RNN、LSTM 方面非常棒的一篇文章中的图片。在此我强烈推荐你阅读<strong><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">这篇文章</a></strong>，本文中会重申其中许多相关内容，不过由于我们主要还是关注 tf 代码，所以这些内容将会较快地略过。将来当我要对 RNN 结构进行层规范化时，我还会引用本文中的代码。之后的文章可以在<strong><a href="https://theneuralperspective.com/2016/10/27/gradient-topics/" target="_blank" rel="noopener">这儿</a></strong>查看。</p>
-<h2 id="基本-RNN："><a href="#基本-RNN：" class="headerlink" title="基本 RNN："></a>基本 RNN：</h2><p>对于传统的 RNN 来说，最大的问题就在于每个单元的重复输入都是静态的，因此我们无法充分学习到长期的依赖情况。你回想一下基本 RNN 单元，就会发现所有操作都是单一的 tanh 运算。</p>
-<p><img src="/images/pasted-255.png" alt="upload successful"></p>
-<p>对于解决短期依赖情况的问题来说，这种结构已经够用了；但如果我们希望通过有效的长期记忆来预测目标，则需要使用更稳定强大的 RNN 单元 —— LSTM。</p>
-<h2 id="长短期记忆网络（LSTM）："><a href="#长短期记忆网络（LSTM）：" class="headerlink" title="长短期记忆网络（LSTM）："></a>长短期记忆网络（LSTM）：</h2><p>LSTM 的结构可以让我们在更多的操作中进行长期的信息控制。传统的 RNN 仅有一个输出，其既作为隐藏状态表示也作为此单元的输出端。</p>
-<p><img src="/images/pasted-256.png" alt="upload successful"></p>
-<p>这种结构缺乏对信息的控制，无法存住对许多步之后有用的信息。而 LSTM 有两种不同的输出。其中一种仍与前面的传统结构一样，既作为隐藏状态表示也作为单元输出；但 LSTM 单元还有另一种输出 - 单元状态 C。这也是 LSTM 精髓所在，让我们仔细研究它。</p>
-<p><img src="/images/pasted-257.png" alt="upload successful"></p>
-<h3 id="遗忘门："><a href="#遗忘门：" class="headerlink" title="遗忘门："></a>遗忘门：</h3><p>第一个要介绍的门就是遗忘门。这个门可以让我们选择性地传递信息以决定单元的状态。我将公式罗列在下，后面介绍其它的门时也会如此。</p>
-<p><img src="/images/pasted-258.png" alt="upload successful"></p>
-<p><img src="/images/pasted-259.png" alt="upload successful"></p>
-<p>你可以参考类似 tf 的 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/rnn_cell.py#867" target="_blank" rel="noopener">_linear</a> 函数来实现它。不过遗忘门的主要要点是对输入与隐藏状态前应用了 sigmoid。那么这个 sigmoid 的作用是什么？请回想一下，sigmoid 会输出在 [0, 1] 范围的值，在此我们将其应用于 [N X H] 的矩阵，因此会得到 NXH 个 sigmoid 算出的值。如果 sigmoid 得到 0 值，那么其对应的隐藏值就会失效；如果 sigmoid 得到 1 值，那么此隐藏值将会被应用在计算中。而处于 0 和 1 之间的值将会允许一部分的信息继续传递。这样就能很好地通过阻塞与选择性地传递输入单元的数据，以达到控制信息的目的。</p>
-<p>这就是遗忘门。它是我们的单元得到最终结果前的第一个步骤。下面介绍另一个操作：输入门。</p>
-<h3 id="输入门："><a href="#输入门：" class="headerlink" title="输入门："></a>输入门：</h3><p>输入门将获取我们的输入值 X 以及在前面的隐藏状态，并对它们进行两次运算。首先会通过 sigmoid 门来选择性地允许部分数据输入，接着将其与输入值的 tanh 值相乘。</p>
-<p><img src="/images/pasted-260.png" alt="upload successful"></p>
-<p>这儿的 tanh 与前面的 sigmoid 操作不同。请回忆一下，tanh 会将输入值改变为 [-1, 1] 范围内的值。它本质上通过非线性的方式改变了输入的表示。这一步与我们在基本 RNN 单元中进行的操作一致，不过在此我们将两值的乘积加上遗忘门得到的值得到本单元的状态值。</p>
-<p>遗忘门与输入门的操作可以看做同时保存了旧状态（C_{t-1}）的一部分与新变换（tanh）单元状态（C~_t）的一部分。这些权重将会通过我们数据的训练学到需要保存多少数据以及如何进行正确的变换。</p>
-<h3 id="输出门："><a href="#输出门：" class="headerlink" title="输出门："></a>输出门：</h3><p>最后一个门是输出门，它利用输入值、前面的隐藏状态值以及新单元状态值来共同决定新隐藏状态的表示。</p>
-<p><img src="/images/pasted-261.png" alt="upload successful"></p>
-<p>该步骤依旧涉及到了 sigmoid，将它的值与单元状态的 tanh 值相乘以决定信息的去留。需要注意这一步的 tanh 计算与输入门的 tanh 计算不同，此步不再是神经网络的计算，而仅仅是单纯、不带任何权重地计算单元状态值的 tanh 值。这样我们就能强制单元状态矩阵 [NXH] 的值处于 [-1, 1] 的范围内。</p>
-<h3 id="变体"><a href="#变体" class="headerlink" title="变体"></a>变体</h3><p>RNN 单元有许多种变体，在此再次建议去阅读 Chris Olah 的<strong><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">这篇博文</a></strong>学习更多相关知识。不过他在文中讨论的是 peehole 模型（在计算 C_{t-1} 或 C_t 时允许所有门都能观察到单元状态值）以及单元状态的 couple（更新与遗忘同时进行）。不过目前 LSTM 的竞争对手是正在被广泛使用的 GRU（Gated Recurrent Unit）。</p>
-<h2 id="GRU（Gated-Recurrent-Unit）："><a href="#GRU（Gated-Recurrent-Unit）：" class="headerlink" title="GRU（Gated Recurrent Unit）："></a>GRU（Gated Recurrent Unit）：</h2><p>GRU 的主要原理是将遗忘门与输入门结合成一个更新门。</p>
-<p><img src="/images/pasted-262.png" alt="upload successful"></p>
-<p>在实际使用中，GRU 的性能与 LSTM 相当，但其计算量更小，因此它现在日益流行。</p>
-<h2 id="原生-Tensorflow-实现："><a href="#原生-Tensorflow-实现：" class="headerlink" title="原生 Tensorflow 实现："></a>原生 Tensorflow 实现：</h2><p>我们先观察一下 Tensorflow 官方对于 GRU 单元的实现代码，主要关注其函数调用方式、输入以及输出。然后我们会复制它的结构用于创建我们自己的单元。如果你对其它的单元有兴趣，可以在<strong><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/rnn_cell.py" target="_blank" rel="noopener">这儿</a></strong>找到它们的实现。本文将主要关注 GRU，因为它在大多数情况下性能与 LSTM 相当且复杂度更低。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GRUCell</span><span class="params">(RNNCell)</span>:</span></span><br><span class="line">  <span class="string">"""Gated Recurrent Unit cell (cf. http://arxiv.org/abs/1406.1078)."""</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, num_units, input_size=None, activation=tanh)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> input_size <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">      logging.warn(<span class="string">"%s: The input_size parameter is deprecated."</span>, self)</span><br><span class="line">    self._num_units = num_units</span><br><span class="line">    self._activation = activation</span><br><span class="line"></span><br><span class="line"><span class="meta">  @property</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">state_size</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> self._num_units</span><br><span class="line"></span><br><span class="line"><span class="meta">  @property</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">output_size</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> self._num_units</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, inputs, state, scope=None)</span>:</span></span><br><span class="line">    <span class="string">"""Gated recurrent unit (GRU) with nunits cells."""</span></span><br><span class="line">    <span class="keyword">with</span> vs.variable_scope(scope <span class="keyword">or</span> type(self).__name__):  <span class="comment"># "GRUCell"</span></span><br><span class="line">      <span class="keyword">with</span> vs.variable_scope(<span class="string">"Gates"</span>):  <span class="comment"># Reset gate and update gate.</span></span><br><span class="line">        <span class="comment"># We start with bias of 1.0 to not reset and not update.</span></span><br><span class="line">        r, u = array_ops.split(<span class="number">1</span>, <span class="number">2</span>, _linear([inputs, state],</span><br><span class="line">                                             <span class="number">2</span> * self._num_units, <span class="keyword">True</span>, <span class="number">1.0</span>))</span><br><span class="line">        r, u = sigmoid(r), sigmoid(u)</span><br><span class="line">      <span class="keyword">with</span> vs.variable_scope(<span class="string">"Candidate"</span>):</span><br><span class="line">        c = self._activation(_linear([inputs, r * state],</span><br><span class="line">                                     self._num_units, <span class="keyword">True</span>))</span><br><span class="line">      new_h = u * state + (<span class="number">1</span> - u) * c</span><br><span class="line">    <span class="keyword">return</span> new_h, new_h</span><br></pre></td></tr></table></figure>
-<p>GRUCell 类由 <strong>init</strong> 函数开始执行。在 <strong>init</strong> 函数中定义了单元的数量与其使用的激活函数。其激活函数一般是 tanh，不过也可以使用 sigmoid 来使得值固定在 [0, 1] 范围内方便我们控制信息流。另外，它还有两个在调用时会返回 self._num_units 的属性。最后定义了 <strong>call</strong> 函数，它将处理输入值并得出新的隐藏值。回忆一下，GRU 没有类似 LSTM 的单元状态值。</p>
-<p>在 <strong>call</strong> 中，我们首先计算 r 和 u（u 是前面图中的 z）。在这步中，我们没有单独去计算它们，而是以乘以 2 倍 num_units 的形式合并了权重，再将结果分割成两份得到它们（split(dim, num_splits, value)）。然后对得到的值应用 sigmoid 激活函数，以选择性地控制信息流。接着计算 c 的值，用它计算新隐藏状态表示值。你可能发现它计算 new_h 的顺序和之前颠倒了，不过由于权重会同时进行训练，因此代码仍能正常运行。</p>
-<p>其它的单元代码都与此代码类似，你弄明白了上面的代码就能轻松解释其它单元的代码。</p>
-<blockquote>
-<p>本文发布于掘金 <a href="https://juejin.im/post/59fbd28b6fb9a045204b91f2" target="_blank" rel="noopener">https://juejin.im/post/59fbd28b6fb9a045204b91f2</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/11/03/Spotify-每周推荐功能：基于机器学习的音乐推荐/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/11/03/Spotify-每周推荐功能：基于机器学习的音乐推荐/" class="post-title-link" itemprop="url">Spotify 每周推荐功能：基于机器学习的音乐推荐</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-11-03 10:16:14" itemprop="dateCreated datePublished" datetime="2017-11-03T10:16:14+08:00">2017-11-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在每周周一，超过 1 亿位 Spotify 用户会收到一份新鲜的歌曲播放列表。这个自定义列表中包含了 30 首用户从来没听过，但可能会喜欢上的歌曲。这个神奇的功能被称为“每周推荐（Discover Weekly）”。</p>
-<p>我是 Spotify 的忠实粉丝，尤其喜欢它的每周推荐功能。因为，它让我感觉到我被<strong>重视</strong>着。它比谁都了解我的音乐品味，而且每周的推荐都<strong>刚好</strong>令我满足。如果没有它，我可能一辈子都找不到一些我非常喜欢的歌曲。</p>
-<p>如果你苦于找不到想听的音乐，请让我隆重介绍我最好的虚拟伙伴：</p>
-<p><img src="/images/pasted-241.png" alt="upload successful"></p>
-<p>事实证明，痴迷于每周推荐的用户不仅只有我一个 —— 许多用户都为它痴狂，这足以让 Spotify 重新思考其发展重点，将更多的资源投入播放列表推荐算法中。</p>
-<p>每周推荐功能于 2015 亮相，从那时开始，我就非常渴望了解它是如何运作的（我是他们公司的粉丝，所以常常假设自己在 Spotify 工作并研究他们的产品）。在经过三个星期的疯狂搜索之后，我得以瞟到了其帷幕后的一丝真容。</p>
-<p>那么 Spotify 是如何做出每周为每个用户选出 30 首歌这个惊人的工作的呢？让我们先看一看其它一些音乐服务商是如何进行音乐推荐的，然后分析为什么 Spotify 做的更好。</p>
-<hr>
-<p><img src="/images/pasted-242.png" alt="upload successful"></p>
-<p>早在 2000 年，Songza 就开始使用<strong>人工编辑</strong>来进行在线音乐策展（curation，策划并展示）。“人工编辑”意味着需要一些”音乐专家“团队或者其它管理员手动将他们认为很好听的歌放到歌单中去。（后来 Beats Music 也实行了同样的策略）。虽然人工编辑运作的很好，但是它需要手动操作并且过于简单，<strong>无法考虑到每个听众个人音乐品味的差别</strong>。</p>
-<p>如 Songza 一样，Pandora 也是音乐策展的元老之一。它采用的方法较为先进，使用<strong>人工标注歌曲属性</strong>的方法。也就是说，有一组人在听歌之后，为每首歌选择一些描述性的词，对各个曲目进行了标注。然后，Pandora 就能利用代码简单地对标注进行筛选，得到比较类似的歌单。</p>
-<p>与此同时，麻省理工学院媒体实验室开发出了名为”The Echo Nest“的智能音乐助手，开创了一种更加先进的个性化音乐推荐方式。The Echo Nest 使用<strong>算法分析各个音乐音频与文本的内容</strong>，使其能进行音乐识别、个性化推荐、创建歌单以及进行分析。</p>
-<p>此外，至今依然存在的 Last.fm 采用了一种名为<strong>协同过滤</strong>的不同的方法。它可以识别用户可能喜欢的音乐。稍后会详细提到它。</p>
-<hr>
-<p>以上就是<strong>其它</strong>音乐策展服务进行推荐的方法。那么 Spotify 是如何造出它们神奇的引擎，如何做出更加符合用户口味的推荐的呢？</p>
-<h2 id="Spotify-的-3-种推荐模型"><a href="#Spotify-的-3-种推荐模型" class="headerlink" title="Spotify 的 3 种推荐模型"></a>Spotify 的 3 种推荐模型</h2><p>实际上 Spotify 并没有使用某个革命性的推荐模型 —— 与此相反，<strong>他们是将一些其它服务中单一使用的最佳策略混合起来，创建了自己独特、强大的发现引擎。</strong></p>
-<p>Spotify 每周推荐的开发者主要采用了如下三种类型的推荐：</p>
-<ol>
-<li><strong>协同过滤</strong>模型（就是 Last.fm 最开始使用的模型），通过分析<strong>你的</strong>行为与<strong>他人</strong>的行为进行运作。</li>
-<li><strong>自然语言处理（NLP）</strong>模型，用于分析<strong>文本</strong>。 </li>
-<li><strong>音频</strong> 模型，用于分析<strong>原始音轨</strong>。</li>
-</ol>
-<p><img src="/images/pasted-243.png" alt="upload successful"></p>
-<p>下面让我们深入了解上述各个推荐模型吧！</p>
-<hr>
-<h2 id="推荐模型-1：协同过滤"><a href="#推荐模型-1：协同过滤" class="headerlink" title="推荐模型 #1：协同过滤"></a>推荐模型 #1：协同过滤</h2><p><img src="/images/pasted-244.png" alt="upload successful"></p>
-<p>首先简述一些背景：当人们听见”协同推荐“这个词的时候，大多会想起 <strong>Netflix</strong> 这个首批采用协同过滤推荐模型的公司。他们使用用户对影片的评星来确定将什么影片推荐给<strong>其它</strong>喜好相似的用户。</p>
-<p>当 Netflix 成功使用这种推荐方法之后，开始迅速发展。现在通常被认为是尝试使用推荐模型的鼻祖。</p>
-<p>与 Netflix 不同，Spotify 没有让用户对音乐进行评星。他们采用的数据是<strong>隐式反馈</strong> —— 具体来说，包括对用户听歌的<strong>流数据进行统计</strong>，以及收集一些其它的流数据，包括用户是否将歌曲保存到他们自己的歌单、在听完歌之后是否访问了歌手的主页等等。</p>
-<p>那么什么是协同过滤，它又是如何运作的呢？这儿用下面这个简短的对话来做个简述：</p>
-<p><img src="/images/pasted-245.png" alt="upload successful"></p>
-<p>图中发生了什么？图中的两个人都有一些喜欢的歌曲 - 左边的人喜欢歌曲 P、Q、R 及 S；右边的人喜欢歌曲 Q、R、S 及 T。</p>
-<p>协同过滤就像用这些数据说：</p>
-<p><strong>”Emmmmm，你们都喜欢 Q、R、S 三首歌，所以你们可能是类似的用户。所以，你应该会喜欢对方爱听而你还没听过的歌。“</strong></p>
-<p>也就是说，会建议右边的人去听歌曲 P 试试，建议左边的人去听听歌曲 T。这很简单吧！</p>
-<p>但 Spotify 是如何将这种方法落到实处，用于由<strong>百万级别用户</strong>的喜好歌曲来计算<strong>百万级别用户</strong>的推荐的呢？</p>
-<p><strong>……应用数学矩阵，然后使用 Python 库来实现。</strong></p>
-<p><img src="/images/pasted-246.png" alt="upload successful"></p>
-<p>在实际情况中，你在看到的这个矩阵是<strong>巨大无比</strong>的，<strong>矩阵中的每一行都代表了 Spotify 的 1.4 亿用户</strong>（如果你也用 Spotify，那你也会是这个矩阵的一行），<strong>每列代表了 Spotify 数据库中的 3000 万首歌</strong>。</p>
-<p>接着，Python 库会长时间、缓慢地对矩阵按照以下分离公式进行计算：</p>
-<p><img src="/images/pasted-247.png" alt="upload successful"></p>
-<p>在它完成计算之后，我们会得到两种向量，在这里用 X 与 Y 表示。<strong>X 是用户向量</strong>，代表了单个用户的口味；<strong>Y 是歌曲向量</strong>，代表了一首歌的属性。</p>
-<p><img src="/images/pasted-248.png" alt="upload successful"></p>
-<p>现在，我们有了 1.4 亿条用户向量以及 3000 万条歌曲向量。这些向量的内容实质上就是一堆数字，本身没有任何意义。但是对它们进行对比就能起到巨大的作用。</p>
-<p>为了找到哪些用户和我有着最相似的口味，协同过滤会将我的向量和其它每个用户的向量进行对比，最终找到与我最相近的用户。同样的，对 Y 向量进行比较，可以找到与你正在听的歌最相近的歌。</p>
-<p>协同过滤的效果相当不错，但 Spotify 没有满足于此，他们知道通过增加一些其它的引擎可以使得效果更好。下面让我们看看 NLP。</p>
-<hr>
-<h2 id="推荐模型-2：自然语言处理（NLP）"><a href="#推荐模型-2：自然语言处理（NLP）" class="headerlink" title="推荐模型 #2：自然语言处理（NLP）"></a>推荐模型 #2：自然语言处理（NLP）</h2><p>Spotify 采用的第二种推荐模型是<strong>自然语言处理（NLP）模型</strong>。顾名思义，这种模型的数据来源就是传统意义上的<strong>文字</strong> —— 这些文字来源于歌曲的元数据、新闻文章、博客，以及互联网中的其它文本。</p>
-<p><img src="/images/pasted-249.png" alt="upload successful"></p>
-<p>NLP 是一种让计算机理解人类语言的能力，是一个庞大的领域。在这儿可以采用一些情感分析 API 来实现。</p>
-<p>NLP 背后的机制已经超出了本文的讨论范围。不过我们可以这么来大致概括：Spotify 爬虫不断地查找与音乐有关的博客以及各种文本，并了解人们对特定艺术家及歌曲的看法 —— 谈到这些歌曲人们通常会用什么形容词和语言，以及会同时提到哪些<strong>其他</strong>的艺术家及歌曲。</p>
-<p>虽然我不知道 Spotify 处理数据的细节，但我知道 the Echo Nest 是如何与他们进行协同工作的。他们会将语言处理封装为“文化向量”或者“高频短语”。每个艺术家及歌曲都有着数以千计的高频短语，且每天都在变化。每个短语都有一个权重，用于表示这个短语的重要性（大致来说，就是某人描述这个音乐时会用这个短语的概率）。</p>
-<p><img src="/images/pasted-250.png" alt="upload successful"></p>
-<p>the Echo Nest 使用的“文化向量”与“高频短语”，Brian Whitman 提供表格</p>
-<p>接下来与协同过滤一样，NLP 模型会使用这些短语和权重为每首歌构建一个表示向量，这样就能判断两首歌是否相似了。酷不酷炫？</p>
-<hr>
-<h2 id="推荐模型-3：原始音频模型"><a href="#推荐模型-3：原始音频模型" class="headerlink" title="推荐模型 #3：原始音频模型"></a>推荐模型 #3：原始音频模型</h2><p><img src="/images/pasted-251.png" alt="upload successful"></p>
-<p>在开始本章之前，你可能会问：</p>
-<blockquote>
-<p>我们已经在前两个模型中应用了足够多的数据，为什么还需要分析音频本身呢？</p>
-</blockquote>
-<p>首先，引入这第三个模型能使这个惊人的推荐服务的准确率得到进一步的提升。但实际上，使用这个模型还有第二种目的：与前两个模型不同，<strong>原始音频模型可以用于处理*新*歌</strong>。</p>
-<p>举个例子，你的歌手朋友将他的新歌传上了 Spotify，然而他仅有 50 名听众，如果要使用协同过滤显然人数太少了。并且他还没有火起来，在互联网上任何角落都没有被提到过，因此 NLP 模型也没法为他发挥作用。不过幸运的是原始音频模型不会在乎这是新歌还是老歌，有了它的帮助，你朋友的歌就有可能和那些流行的歌一起被加入每周推荐歌单了！</p>
-<p>接下来解释“如何”对如此抽象的<strong>原始音频</strong>进行分析。</p>
-<p>…使用 <strong>卷积神经网络（CNN）</strong>!</p>
-<p>卷积神经网络正是人脸识别背后使用的技术。在 Spotify 这个场景中，工程师们使用音频数据来代替像素。下面是神经网络一中结构的实例：</p>
-<p><img src="/images/pasted-252.png" alt="upload successful"></p>
-<p>这个特制的神经网络有 4 层<strong>卷积层</strong>，它们在图的左边，看起来像很厚的木板；它还有 3 层<strong>全连接层</strong>，它们在图的右边，看起来像很窄的木板。输入值是音频帧的频率的表示，在图中以光谱图的形式表示。</p>
-<p>音频帧通过这些卷积层后，在最后一个卷积层边你可以看到一个“全局时间池化”层。这个池化层沿整个时间轴进行池化，高效地根据统计学找出在歌曲的时间序列中找到的特征。</p>
-<p>在此之后，神经网络会输出它对一首歌的理解，其中包括各种类似<strong>时间戳、调性、风格、节奏、音量</strong>等典型特征。下图为 Daft Punk 的 “Around the World” 一曲中截取 30 秒片段的数据。</p>
-<p><img src="/images/pasted-253.png" alt="upload successful"></p>
-<p>图片版权：<a href="http://docs.echonest.com.s3-website-us-east-1.amazonaws.com/_static/AnalyzeDocumentation.pdf" target="_blank" rel="noopener">Tristan Jehan &amp; David DesRoches (The Echo Nest)</a></p>
-<p>最终，这些由一首歌理解到的各种关键的信息可以让 Spotify 理解不同的歌中的一些本质的相似之处，由此基于用户的听歌历史推断出此用户可能会喜欢这首新歌。</p>
-<hr>
-<p>以上概况了推荐模型中的三个基本组成部分。正是由这些推荐模型组成的推荐 pipeline，最终构成了强大的每周推荐歌单功能！</p>
-<p><img src="/images/pasted-254.png" alt="upload successful"></p>
-<p>当然，这些推荐模型还与 Spotify 更大的生态系统息息相关，这个生态系统中包含了<strong>海量</strong>的数据，使用大量的 Hadoop 集群对推荐系统践行规模化运作，使得这些引擎能够在大尺度、无穷尽的互联网中顺利地分析音乐相关文章以及无比庞大的音频文件。</p>
-<p>我希望本文的信息能满足你的好奇心（就像我的好奇心被满足了一样）。现在我正在通过我个性化的每周推荐找到我喜欢的音乐，了解以及欣赏它背后的各种机器学习知识。🎶</p>
-<hr>
-<p>**资源：</p>
-<ul>
-<li><a href="https://www.slideshare.net/MrChrisJohnson/from-idea-to-execution-spotifys-discover-weekly/31-1_0_0_0_1" target="_blank" rel="noopener">From Idea to Execution: Spotify’s Discover Weekly</a> (Chris Johnson, ex-Spotify)</li>
-<li><a href="https://www.slideshare.net/erikbern/collaborative-filtering-at-spotify-16182818/10-Supervised_collaborative_filtering_is_pretty" target="_blank" rel="noopener">Collaborative Filtering at Spotify</a> (Erik Bernhardsson, ex-Spotify)</li>
-<li><a href="http://benanne.github.io/2014/08/05/spotify-cnns.html" target="_blank" rel="noopener">Recommending music on Spotify with deep learning</a> (Sander Dieleman)</li>
-<li><a href="https://notes.variogr.am/2012/12/11/how-music-recommendation-works-and-doesnt-work/" target="_blank" rel="noopener"> How music recommendation works — and doesn’t work</a> (Brian Whitman, co-founder of The Echo Nest)</li>
-<li><a href="http://blog.galvanize.com/spotify-discover-weekly-data-science/" target="_blank" rel="noopener">Ever Wonder How Spotify Discover Weekly Works? Data Science</a> (Galvanize)</li>
-<li><a href="https://qz.com/571007/the-magic-that-makes-spotifys-discover-weekly-playlists-so-damn-good/" target="_blank" rel="noopener">The magic that makes Spotify’s Discover Weekly playlists so damn good</a> (Quartz)</li>
-<li><a href="http://docs.echonest.com.s3-website-us-east-1.amazonaws.com/_static/AnalyzeDocumentation.pdf" target="_blank" rel="noopener">The Echo Nest’s Analyzer Documentation</a></li>
-</ul>
-<blockquote>
-<p>本文发布于掘金 <a href="https://juejin.im/post/59fbd0d9518825299a468a8b" target="_blank" rel="noopener">https://juejin.im/post/59fbd0d9518825299a468a8b</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/10/16/Keras-中构建神经网络的-5-个步骤/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/10/16/Keras-中构建神经网络的-5-个步骤/" class="post-title-link" itemprop="url">Keras 中构建神经网络的 5 个步骤</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-10-16 12:57:27" itemprop="dateCreated datePublished" datetime="2017-10-16T12:57:27+08:00">2017-10-16</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>使用 Keras 创建、评价深度神经网络非常的便捷，不过你需要严格地遵循几个步骤来构建模型。</p>
-<p>在本文中我们将一步步地探索在 Keras 中创建、训练、评价深度神经网络，并了解如何使用训练好的模型进行预测。</p>
-<p>在阅读完本文后你将了解：</p>
-<ul>
-<li>如何在 Keras 中定义、编译、训练以及评价一个深度神经网络。</li>
-<li>如何选择、使用默认的模型解决回归、分类预测问题。</li>
-<li><p>如何使用 Keras 开发并运行你的第一个多层感知机网络。</p>
-</li>
-<li><p><strong>2017 年 3 月更新</strong>：将示例更新至 Keras 2.0.2 / TensorFlow 1.0.1 / Theano 0.9.0。</p>
-</li>
-</ul>
-<p><img src="/images/pasted-240.png" alt="upload successful"></p>
-<p>题图版权由 <a href="https://www.flickr.com/photos/dxhawk/6842278135/" target="_blank" rel="noopener">Martin Stitchener</a> 所有。</p>
-<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>下面概括一下我们将要介绍的在 Keras 中构建神经网络模型的 5 个步骤。</p>
-<ol>
-<li>定义网络。</li>
-<li>编译网络。</li>
-<li>训练网络。</li>
-<li>评价网络。</li>
-<li>进行预测。</li>
-</ol>
-<p><img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2016/07/5-Step-Life-Cycle-for-Neural-Network-Models-in-Keras.png" alt="Keras 中构建神经网络的 5 个步骤"></p>
-<p>Keras 中构建神经网络的 5 个步骤</p>
-<h2 id="想要了解更多使用-Python-进行深度学习的知识？"><a href="#想要了解更多使用-Python-进行深度学习的知识？" class="headerlink" title="想要了解更多使用 Python 进行深度学习的知识？"></a>想要了解更多使用 Python 进行深度学习的知识？</h2><p>免费订阅 2 周，收取我的邮件，探索 MLP、CNN 以及 LSTM 吧！（附带样例代码）</p>
-<p>现在点击注册还能得到免费的 PDF 版教程。</p>
-<p><a href="https://machinelearningmastery.leadpages.co/leadbox/142d6e873f72a2%3A164f8be4f346dc/5657382461898752/" target="_blank" rel="noopener">点击这里开始你的小课程吧！</a></p>
-<h2 id="第一步：定义网络"><a href="#第一步：定义网络" class="headerlink" title="第一步：定义网络"></a>第一步：定义网络</h2><p>首先要做的就是定义你的神经网络。</p>
-<p>在 Keras 中，可以通过一系列的层来定义神经网络。这些层的容器就是 Sequential 类。（译注：序贯模型）</p>
-<p>第一步要做的就是创建 Sequential 类的实例。然后你就可以按照层的连接顺序创建你所需要的网络层了。</p>
-<p>例如，我们可以做如下两步：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential()</span><br><span class="line">model.add(Dense(2))</span><br></pre></td></tr></table></figure>
-<p>此外，我们也可以通过创建一个层的数组，并将其传给 Sequential 构造器来定义模型。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">layers = [Dense(2)]</span><br><span class="line">model = Sequential(layers)</span><br></pre></td></tr></table></figure>
-<p>网络的第一层必须要定义预期输入维数。指定这个参数的方式有许多种，取决于要建造的模型种类，不过在本文的多层感知机模型中我们将通过 <code>input_dim</code> 属性来指定它。</p>
-<p>例如，我们要定义一个小型的多层感知机模型，这个模型在可见层中具有 2 个输入，在隐藏层中有 5 个神经元，在输出层中有 1 个神经元。这个模型可以定义如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential()</span><br><span class="line">model.add(Dense(5, input_dim=2))</span><br><span class="line">model.add(Dense(1))</span><br></pre></td></tr></table></figure>
-<p>你可以将这个序贯模型看成一个管道，从一头喂入数据，从另一头得到预测。</p>
-<p>这种将通常互相连接的层分开，并作为单独的层加入模型是 Keras 中一个非常有用的概念，这样可以清晰地表明各层在数据从输入到输出的转换过程中起到的职责。例如，可以将用于将各个神经元中信号求和、转换的激活函数单独提取出来，并将这个 Activation 对象同层一样加入 Sequential 模型中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">model = Sequential()</span><br><span class="line">model.add(Dense(5, input_dim=2))</span><br><span class="line">model.add(Activation(&apos;relu&apos;))</span><br><span class="line">model.add(Dense(1))</span><br><span class="line">model.add(Activation(&apos;sigmoid&apos;))</span><br></pre></td></tr></table></figure>
-<p>输出层激活函数的选择尤为重要，它决定了预测值的格式。</p>
-<p>例如，以下是一些常用的预测建模问题类型，以及它们可以在输出层使用的结构和标准的激活函数：</p>
-<ul>
-<li><strong>回归问题</strong>：使用线性的激活函数 “linear”，并使用与与输出数量相匹配的神经元数量。</li>
-<li><strong>二分类问题</strong>：使用逻辑激活函数 “sigmoid”，在输出层仅设一个神经元。</li>
-<li><strong>多分类问题</strong>：使用 Softmax 激活函数 “softmax”；假如你使用的是 one-hot 编码的输出格式的话，那么每个输出对应一个神经元。</li>
-</ul>
-<h2 id="第二步：编译网络"><a href="#第二步：编译网络" class="headerlink" title="第二步：编译网络"></a>第二步：编译网络</h2><p>当我们定义好网络之后，必须要对它进行编译。</p>
-<p>编译是一个高效的步骤。它会将我们定义的层序列通过一系列高效的矩阵转换，根据 Keras 的配置转换成能在 GPU 或 CPU 上执行的格式。</p>
-<p>你可以将编译过程看成是对你网络的预计算。</p>
-<p>无论是要使用优化器方案进行训练，还是从保存的文件中加载一组预训练权重，只要是在定义模型之后都需要编译，因为编译步骤会将你的网络转换为适用于你的硬件的高效结构。此外，进行预测也是如此。</p>
-<p>编译步骤需要专门针对你的网络的训练设定一些参数，设定训练网络使用的优化算法 以及用于评价网络通过优化算法最小化结果的损失函数尤为重要。</p>
-<p>下面的例子对定义好的用于回归问题的模型进行编译时，指定了随机梯度下降（sgd）优化算法，以及均方差（mse）算是函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.compile(optimizer=&apos;sgd&apos;, loss=&apos;mse&apos;)</span><br></pre></td></tr></table></figure>
-<p>预测建模问题的种类也会限制可以使用的损失函数类型。</p>
-<p>例如，下面是几种不同的预测建模类型对应的标准损失函数：</p>
-<ul>
-<li><strong>回归问题</strong>：均方差误差 “_mse_”。</li>
-<li><strong>二分类问题</strong>：对数损失（也称为交叉熵）“_binary_crossentropy_”。</li>
-<li><strong>多分类问题</strong>：多类对数损失 “_categorical_crossentropy_”。</li>
-</ul>
-<p>你可以查阅 <a href="http://keras.io/objectives/" target="_blank" rel="noopener">Keras 支持的损失函数</a>。</p>
-<p>最常用的优化算法是随机梯度下降，不过 Keras 也支持<a href="http://keras.io/optimizers/" target="_blank" rel="noopener">其它的一些优化算法</a>。</p>
-<p>以下几种优化算法可能是最常用的优化算法，因为它们的性能一般都很好：</p>
-<ul>
-<li><strong>随机梯度下降</strong> “_sgd_” 需要对学习率以及动量参数进行调参。</li>
-<li><strong>ADAM</strong> “_adam_” 需要对学习率进行调参。</li>
-<li><strong>RMSprop</strong> “_rmsprop_” 需要对学习率进行调参。</li>
-</ul>
-<p>最后，你还可以指定在训练模型过程中除了损失函数值之外的特定指标。一般对于分类问题来说，最常收集的指标就是准确率。需要收集的指标由设定数组中的名称决定。</p>
-<p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.compile(optimizer=&apos;sgd&apos;, loss=&apos;mse&apos;, metrics=[&apos;accuracy&apos;])</span><br></pre></td></tr></table></figure>
-<h2 id="第三步：训练网络"><a href="#第三步：训练网络" class="headerlink" title="第三步：训练网络"></a>第三步：训练网络</h2><p>在网络编译完成后，就能对它进行训练了。这个过程也可以看成是调整权重以拟合训练数据集。</p>
-<p>训练网络需要制定训练数据，包括输入矩阵 X 以及相对应的输出 y。</p>
-<p>在此步骤，将使用反向传播算法对网络进行训练，并使用在编译时制定的优化算法以及损失函数来进行优化。</p>
-<p>反向传播算法需要指定训练的 Epoch（回合数、历元数）、对数据集的 exposure 数。</p>
-<p>每个 epoch 都可以被划分成多组数据输入输出对，它们也称为 batch（批次大小）。batch 设定的数字将会定义在每个 epoch 中更新权重之前输入输出对的数量。这种做法也是一种优化效率的方式，可以确保不会同时加载过多的输入输出对到内存（显存）中。</p>
-<p>以下是一个最简单的训练网络的例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.compile(optimizer=&apos;sgd&apos;, loss=&apos;mse&apos;, metrics=[&apos;accuracy&apos;])</span><br></pre></td></tr></table></figure>
-<p>在训练网络之后，会返回一个历史对象（History oject），其中包括了模型在训练中各项性能的摘要（包括每轮的损失函数值及在编译时制定收集的指标）。</p>
-<h2 id="第四步：评价网络"><a href="#第四步：评价网络" class="headerlink" title="第四步：评价网络"></a>第四步：评价网络</h2><p>在网络训练完毕之后，就可以对其进行评价。</p>
-<p>可以使用训练集的数据对网络进行评价，但这种做法得到的指标对于将网络进行预测并没有什么用。因为在训练时网络已经“看”到了这些数据。</p>
-<p>因此我们可以使用之前没有“看”到的额外数据集来评估网络性能。这将提供网络在未来对没有见过的数据进行预测的性能时的估测。</p>
-<p>评价模型将会评价所有测试集中的输入输出对的损失值，以及在模型编译时指定的其它指标（例如分类准确率）。本步骤将返回一组评价指标结果。</p>
-<p>例如，一个在编译时使用准确率作为指标的模型可以在新数据集上进行评价，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loss, accuracy = model.evaluate(X, y)</span><br></pre></td></tr></table></figure>
-<h2 id="第五步：进行预测"><a href="#第五步：进行预测" class="headerlink" title="第五步：进行预测"></a>第五步：进行预测</h2><p>最后，如果我们对训练后的模型的性能满意的话，就能用它来对新的数据做预测了。</p>
-<p>这一步非常简单，直接在模型上调用 predict() 函数，传入一组新的输入即可。</p>
-<p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">predictions = model.predict(x)</span><br></pre></td></tr></table></figure>
-<p>预测值将以网络输出层定义的格式返回。</p>
-<p>在回归问题中，这些由线性激活函数得到的预测值可能直接就符合问题需要的格式。</p>
-<p>对于二分类问题，预测值可能是一组概率值，这些概率说明了数据分到第一类的可能性。可以通过四舍五入（K.round）将这些概率值转换成 0 与 1。</p>
-<p>而对于多分类问题，得到的结果可能也是一组概率值（假设输出变量用的是 one-hot 编码方式），因此它还需要用 <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.argmax.html" target="_blank" rel="noopener">argmax 函数</a>将这些概率数组转换为所需要的单一类输出。</p>
-<h2 id="End-to-End-Worked-Example"><a href="#End-to-End-Worked-Example" class="headerlink" title="End-to-End Worked Example"></a>End-to-End Worked Example</h2><p>让我们用一个小例子将以上的所有内容结合起来。</p>
-<p>我们将以 Pima Indians 糖尿病发病二分类问题为例。你可以在 <a href="https://archive.ics.uci.edu/ml/datasets/Pima+Indians+Diabetes" target="_blank" rel="noopener">UCI 机器学习仓库</a>中下载此数据集。</p>
-<p>该问题有 8 个输入变量，需要输出 0 或 1 的分类值。</p>
-<p>我们将构建一个包含 8 个输入的可见层、12 个神经元的隐藏层、rectifier 激活函数、1 个神经元的输出层、sigmoid 激活函数的多层感知机神经网络。</p>
-<p>我们将对网络进行 100 epoch 次训练，batch 大小设为 10，使用 ADAM 优化算法以及对数损失函数。</p>
-<p>在训练之后，我们使用训练数据对模型进行评价，然后使用训练数据对模型进行单独的预测。这么做是为了方便起见，一般来说我们都会使用额外的测试数据集进行评价，用新的数据进行预测。</p>
-<p>完整代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># Keras 多层感知机神经网络样例</span><br><span class="line">from keras.models import Sequential</span><br><span class="line">from keras.layers import Dense</span><br><span class="line">import numpy</span><br><span class="line"># 加载数据</span><br><span class="line">dataset = numpy.loadtxt(&quot;pima-indians-diabetes.csv&quot;, delimiter=&quot;,&quot;)</span><br><span class="line">X = dataset[:,0:8]</span><br><span class="line">Y = dataset[:,8]</span><br><span class="line"># 1. 定义网络</span><br><span class="line">model = Sequential()</span><br><span class="line">model.add(Dense(12, input_dim=8, activation=&apos;relu&apos;))</span><br><span class="line">model.add(Dense(1, activation=&apos;sigmoid&apos;))</span><br><span class="line"># 2. 编译网络</span><br><span class="line">model.compile(loss=&apos;binary_crossentropy&apos;, optimizer=&apos;adam&apos;, metrics=[&apos;accuracy&apos;])</span><br><span class="line"># 3. 训练网络</span><br><span class="line">history = model.fit(X, Y, epochs=100, batch_size=10)</span><br><span class="line"># 4. 评价网络</span><br><span class="line">loss, accuracy = model.evaluate(X, Y)</span><br><span class="line">print(&quot;\nLoss: %.2f, Accuracy: %.2f%%&quot; % (loss, accuracy*100))</span><br><span class="line"># 5. 进行预测</span><br><span class="line">probabilities = model.predict(X)</span><br><span class="line">predictions = [float(round(x)) for x in probabilities]</span><br><span class="line">accuracy = numpy.mean(predictions == Y)</span><br><span class="line">print(&quot;Prediction Accuracy: %.2f%%&quot; % (accuracy*100))</span><br></pre></td></tr></table></figure>
-<p>运行样例，会得到以下输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">768/768 [==============================] - 0s - loss: 0.5219 - acc: 0.7591</span><br><span class="line">Epoch 99/100</span><br><span class="line">768/768 [==============================] - 0s - loss: 0.5250 - acc: 0.7474</span><br><span class="line">Epoch 100/100</span><br><span class="line">768/768 [==============================] - 0s - loss: 0.5416 - acc: 0.7331</span><br><span class="line">32/768 [&gt;.............................] - ETA: 0s</span><br><span class="line">Loss: 0.51, Accuracy: 74.87%</span><br><span class="line">Prediction Accuracy: 74.87%</span><br></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在本文中，我们探索了使用 Keras 库进行深度学习时构建神经网络的 5 个步骤。</p>
-<p>此外，你还学到了：</p>
-<ul>
-<li>如何在 Keras 中定义、编译、训练以及评价一个深度神经网络。</li>
-<li>如何选择、使用默认的模型解决回归、分类预测问题。</li>
-<li>如何使用 Keras 开发并运行你的第一个多层感知机网络。</li>
-</ul>
-<p>你对 Keras 的神经网络模型还有别的问题吗？或者你对本文还有什么建议吗？请在评论中留言，我会尽力回答。</p>
-<blockquote>
-<p>本文发布于掘金 <a href="https://juejin.im/post/59e43b5b6fb9a0452a3b5f4f" target="_blank" rel="noopener">https://juejin.im/post/59e43b5b6fb9a0452a3b5f4f</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2478,7 +2624,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">146</span>
+                    <span class="site-state-item-count">152</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2880,7 +3026,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">179</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">187</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

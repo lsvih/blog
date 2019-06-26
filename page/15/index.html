@@ -368,6 +368,1053 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/26/机器学习学习笔记（七）分类问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/03/26/机器学习学习笔记（七）分类问题/" class="post-title-link" itemprop="url">机器学习学习笔记（七）分类问题</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-03-26 22:21:00" itemprop="dateCreated datePublished" datetime="2016-03-26T22:21:00+08:00">2016-03-26</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>举例：电子邮件的垃圾邮件判断；在线翻译的正确与否；肿瘤的良性或恶性等。</p>
+<p>共性：都是要判断一个集y,</p>
+<script type="math/tex; mode=display">y \in \{0,1\}</script><p>y=0被称为负类，y=1被称为正类。通常上来说负类表示缺少某样东西(例如缺少而行肿瘤)</p>
+<p>实际情况多为多类分类（y为3或更多）</p>
+<hr>
+<p>实际分类举例：</p>
+<p><img src="/images/pasted-30.png" alt="upload successful"></p>
+<p>尝试用线性回归拟合这个训练集，发现通常会得到不好的预测结果。</p>
+<p>在二元分类中，线性回归预测方法并不适用。因为分类集只有0或1，而线性回归的预测往往会出现小于0与大于1出现。</p>
+<hr>
+<p>学习新算法：逻辑回归算法(Logistic Regression)：</p>
+<script type="math/tex; mode=display">0 \leq h_\theta(x)\leq 1</script><p>输出值不会小于0，也不会大于1.这个算法是一种分类算法，适用于y标签离散的情况。</p>
+<script type="math/tex; mode=display">h_\theta=g(\theta^T x)</script><script type="math/tex; mode=display">g(z)=\frac{1}{1+e^{-z}}</script><p>这个函数被称为S型函数。函数图形如下</p>
+<p><img src="/images/pasted-31.png" alt="upload successful"></p>
+<p>g(z)在z趋近负无穷的时候趋近于0，z趋近正无穷的时候趋近与1.</p>
+<p>使用这个假设函数来拟合离散的事件。</p>
+<p>由于二元分类问题只有0或1，因此可以与概率问题等同考虑。例如上面病人得肿瘤的例子，当知道他的肿瘤大小后，通过逻辑回归算法得到他得恶性肿瘤的概率为70%那么他得良性肿瘤的概率就是30%。</p>
+<hr>
+<h3 id="概念：决策边界-decision-boundary"><a href="#概念：决策边界-decision-boundary" class="headerlink" title="概念：决策边界(decision boundary)"></a>概念：决策边界(decision boundary)</h3><p>对于S行函数来说,当输出y=1的概率大于等于0.5时，可以预测输出为1；概率小于0.5时，预测输出为0。</p>
+<p>根据图像可以发现z&gt;0是g(z)&lt;0.5。</p>
+<p>因此$\theta^T x$大于等于0时就能预测输出为1，反之亦然。</p>
+<p>决策边界将样品集分为了两个部分，一个部分预测为1一个部分预测为0.</p>
+<p>决策边界是假设函数本身的属性，而不是数据集的属性。它包括假设函数的几个参数。</p>
+<p>多项式逻辑回归。与单项式相同，只是在式中多加上了多次项。举例：</p>
+<p><img src="/images/pasted-32.png" alt="upload successful"></p>
+<p>当$ -1+x^2_1+x^2_2 \geq 0 $时可以预测y=1</p>
+<p>它的决策边界是以原点为圆心，半径为1的圆。因此圆外的一切样本都将被预测为0.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/25/dedecms栏目设为外部链接不在菜单显示/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/03/25/dedecms栏目设为外部链接不在菜单显示/" class="post-title-link" itemprop="url">dedecms栏目设为外部链接不在菜单显示</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-03-25 17:01:00" itemprop="dateCreated datePublished" datetime="2016-03-25T17:01:00+08:00">2016-03-25</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在include/tag/lib/channel/artlist.lib.php中找到67行</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$tpsql = <span class="string">" reid=0 AND ispart&lt;&gt;2 AND ishidden&lt;&gt;1 AND channeltype&gt;0 "</span>;</span><br></pre></td></tr></table></figure>
+<p>改成<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$tpsql = <span class="string">" reid=0 AND ishidden&lt;&gt;1 AND channeltype&gt;0 "</span>;</span><br></pre></td></tr></table></figure></p>
+<p>即可</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/24/单变量线性回归的预测方程、代价函数与梯度下降/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/03/24/单变量线性回归的预测方程、代价函数与梯度下降/" class="post-title-link" itemprop="url">单变量线性回归的预测方程、代价函数与梯度下降</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-03-24 15:26:00" itemprop="dateCreated datePublished" datetime="2016-03-24T15:26:00+08:00">2016-03-24</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>此代码是未进行向量化的</p>
+</blockquote>
+<p>代价函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function J = computeCost(X, y, theta)</span><br><span class="line">m = length(y); % number of training examples</span><br><span class="line">J = 0;</span><br><span class="line">for i=1:m</span><br><span class="line">J += (theta(1)+ theta(2)*X(i,2)-y(i))^2;</span><br><span class="line">end</span><br><span class="line">J = J/(2*m);</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>梯度下降<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function [theta, J_history] = gradientDescent(X, y, theta, alpha, num_iters)</span><br><span class="line">m = length(y);</span><br><span class="line">J_history = zeros(num_iters, 1);</span><br><span class="line">for iter = 1:num_iters</span><br><span class="line">k = 0;</span><br><span class="line">o = 0;</span><br><span class="line">for i=1:m</span><br><span class="line">  k +=(theta(1)+ theta(2).*X(i,2)-y(i));</span><br><span class="line">  o +=(theta(1)+ theta(2).*X(i,2)-y(i)).*X(i,2);</span><br><span class="line">end</span><br><span class="line">    theta(1) -= (alpha/m).* k;</span><br><span class="line">    theta(2) -= (alpha/m).* o;</span><br><span class="line">    J_history(iter) = computeCost(X, y, theta);</span><br><span class="line">end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>运行结果</p>
+<p><img src="/images/pasted-27.png" alt="upload successful"></p>
+<p><img src="/images/pasted-28.png" alt="upload successful"></p>
+<p><img src="/images/pasted-29.png" alt="upload successful"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/24/取反符号的运用方法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/03/24/取反符号的运用方法/" class="post-title-link" itemprop="url">取反符号的运用方法</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-03-24 09:57:00" itemprop="dateCreated datePublished" datetime="2016-03-24T09:57:00+08:00">2016-03-24</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>常为javascript中的<code>indexOf</code>之类的函数返回值”-1”纠结，现用上取反符号</p>
+<p>对于javascript来说，取反符号的运算过程如下：首先将对取反的数值进行二进制转换，用0在数前补满32位；</p>
+<p>然后在32位二进制中按位取反，即1变0，0变1。如果取反的数是正数，则取反后32位二进制数第一位为负；反之亦然。总之，要对32位二进制数进行转换十进制负数的过程（先反码，加上1，在数前加上负号）</p>
+<p>实际例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(~<span class="number">2</span>)</span><br><span class="line"><span class="comment">//2的二进制为10</span></span><br><span class="line"><span class="comment">//补满32位&amp;nbsp;00000000000000000000000000000010</span></span><br><span class="line"><span class="comment">//反码，变成11111111111111111111111111111101</span></span><br><span class="line"><span class="comment">//第一位是1，因此转换成10进制时要反码</span></span><br><span class="line"><span class="comment">//00000000000000000000000000000010</span></span><br><span class="line"><span class="comment">//加1，换为10进制，在数前加上负号，得-3</span></span><br><span class="line"><span class="comment">//输出-3</span></span><br></pre></td></tr></table></figure></p>
+<p>而<code>indexOf</code>之类的函数返回值为-1，可以通过取反符号将-1化为0，有利于编写判断式。</p>
+<p>例如<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(~orders.indexOf(<span class="string">"item"</span>))&#123;alert(<span class="string">"Not found"</span>)&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/24/机器学习学习笔记（六）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/03/24/机器学习学习笔记（六）/" class="post-title-link" itemprop="url">机器学习学习笔记（六）</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-03-24 08:31:00" itemprop="dateCreated datePublished" datetime="2016-03-24T08:31:00+08:00">2016-03-24</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="正规方程"><a href="#正规方程" class="headerlink" title="正规方程"></a>正规方程</h3><p>在一些线性回归问题中，可以用正规方程方法更快地解决问题，直接解出参数值来。</p>
+<p>设特征矩阵为X（第一列是$x_0=1$）,训练集结果为向量y，能够带入公式</p>
+<script type="math/tex; mode=display">\theta = (X^T X)^{-1}X^T y</script><p>直接解出$\theta$的向量。</p>
+<p>举例：</p>
+<p><img src="/images/pasted-23.png" alt="upload successful"></p>
+<p>带入公式进行矩阵运算即可得出结果。<br>以此题为例，我使用 Octave 进行了运算</p>
+<p>先输入输入值X的矩阵</p>
+<p><img src="/images/pasted-24.png" alt="upload successful"></p>
+<p>输入输出值y的向量</p>
+<p><img src="/images/pasted-25.png" alt="upload successful"></p>
+<p>直接带入公式</p>
+<script type="math/tex; mode=display">\theta = (X^T X)^{-1}X^T y</script><p><img src="/images/pasted-26.png" alt="upload successful"></p>
+<hr>
+<h2 id="梯度下降法与正规方程的对比"><a href="#梯度下降法与正规方程的对比" class="headerlink" title="梯度下降法与正规方程的对比"></a>梯度下降法与正规方程的对比</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>梯度下降</th>
+<th>正规方程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需要选择学习率$\alpha$</td>
+<td>不需要</td>
+</tr>
+<tr>
+<td>需要多次迭代</td>
+<td>一次运算得出</td>
+</tr>
+<tr>
+<td>当特征数量 n 大时也能较好适用</td>
+<td>需要计算$(X^TX)^{-1}$ 如果特征数量 n 较大则运算代价大，因为矩阵逆的计算时间复杂度为 $O(n^3)$，通常来说当 n 小于 10000 时还可以接受</td>
+</tr>
+<tr>
+<td>适用于各种类型的模型</td>
+<td>只适用于线性模型，不适合逻辑回归模型等其它模型</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/24/机器学习学习笔记（五）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/03/24/机器学习学习笔记（五）/" class="post-title-link" itemprop="url">机器学习学习笔记（五）</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-03-24 07:01:00" itemprop="dateCreated datePublished" datetime="2016-03-24T07:01:00+08:00">2016-03-24</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="特征缩放（Feature-Scaling）"><a href="#特征缩放（Feature-Scaling）" class="headerlink" title="特征缩放（Feature Scaling）"></a>特征缩放（Feature Scaling）</h2><p>在线性回归的实际例子中中多数会遇到这样的情况，某两个特征值的数值相差很远，例如房价可能是100(万元)的数量级，房屋面积可能是100的数量级。表现在轮廓图上的形式就是如下图一样，</p>
+<p><img src="/images/pasted-7.png" alt="upload successful"></p>
+<p>等高线（代价函数J）的形状呈现出非常细长的椭圆。</p>
+<p><img src="/images/pasted-19.png" alt="upload successful"></p>
+<p>可以看到在这种情况下的梯度下降函数需要迭代很多次，在最小值附近震荡直到最后收敛。为了使梯度下降能够尽量朝着一个方向有效率地进行，我们需要对输入值中的某些特征值进行统一的缩放。</p>
+<p><img src="/images/pasted-20.png" alt="upload successful"></p>
+<p>这样的参数值接近的代价方程，梯度下降函数的迭代就会方便与均匀很多，从而达到减少迭代次数的目的。一般来说，将两个参数都缩放到-1，1之间较为合适。特征缩放可直接参照公式：</p>
+<script type="math/tex; mode=display">x_n=\frac{x_n-\mu _n}{S_n}</script><p>其中 $\mu_n$ 是平均值，$S_n$ 是标准差。</p>
+<blockquote>
+<p>为了简单方便，可以直接用最大值-最小值来代替标准差。</p>
+</blockquote>
+<h3 id="学习率"><a href="#学习率" class="headerlink" title="学习率"></a>学习率</h3><p>学习率α在梯度下降方程中起着重要的作用，梯度下降算法的每次迭代受到学习率的影响，如果学习率 α过小，则达到收敛所需的迭代次数会非常高；如果学习率α 过大，每次迭代可能不会减小代价函数，可能会越过局部最小值导致无法收敛。</p>
+<p>在一个线性回归情况中尝试多个学习率可以找到计算效率最高的学习率。通常可以考虑尝试些学习率：α=0.01，0.03，0.1，0.3，1，3，10 （它们都是3倍3倍地增加）</p>
+<h3 id="多项式回归"><a href="#多项式回归" class="headerlink" title="多项式回归"></a>多项式回归</h3><p>在现实情况中，往往线性回归是不足以很好的契合一个数据集的。</p>
+<p>例如</p>
+<p><img src="/images/pasted-21.png" alt="upload successful"></p>
+<p>用的三次方程，</p>
+<p>其实也可以化为线性方程看：</p>
+<p><img src="/images/pasted-22.png" alt="upload successful"></p>
+<p>但是经过平方立方之后，每个参数的差值会变得更大，因此特征缩放在这样的情况中更加的重要。</p>
+<p>比如上面如果size为1到1000的话，x2就是1到1000000，x3就是1到1000000000。不作处理会使算法很难正常进行下去。可以使x1=size/1000，x2=size^2/1000000,x3=size^3/1000000000这样就能使几个参数的值在近似的范围内。</p>
+<p>再例如</p>
+<script type="math/tex; mode=display">h_\theta(x)=\theta_0+\theta_1(size)+\theta_2\sqrt{(size)}</script><p>要看成</p>
+<script type="math/tex; mode=display">h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2</script><p>线性方程，size在1-1000间，那么$x_1=\frac{size}{1000},x_2=\frac{\sqrt{size}}{\sqrt{1000}}$</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/24/css控制文字自动换行并隐藏超出的部分/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1109,362 +2156,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/23/vuejs的嵌套列表绑定/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/03/23/vuejs的嵌套列表绑定/" class="post-title-link" itemprop="url">vuejs 的嵌套列表绑定</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-03-23 11:49:00" itemprop="dateCreated datePublished" datetime="2016-03-23T11:49:00+08:00">2016-03-23</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在项目中碰到了在v-for列表内还有一层列表的情况</p>
-<p>json结构如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">"orders"</span>:</span><br><span class="line">[&#123;<span class="string">"id"</span>:<span class="string">"1"</span>,</span><br><span class="line"><span class="string">"state"</span>:<span class="string">"0"</span>,</span><br><span class="line"><span class="string">"time"</span>:<span class="string">"2016-03-17"</span>,</span><br><span class="line"><span class="string">"goods"</span>:[&#123;<span class="string">"id"</span>:<span class="string">"1"</span>,<span class="string">"name"</span>:<span class="string">"物品1"</span>,<span class="string">"img"</span>:<span class="string">"xxx.jpg"</span>&#125;,</span><br><span class="line">&#123;<span class="string">"id"</span>:<span class="string">"1"</span>,<span class="string">"name"</span>:<span class="string">"物品1"</span>,<span class="string">"img"</span>:<span class="string">"xxx.jpg"</span>&#125;]&#125;,</span><br><span class="line">&#123;<span class="string">"id"</span>:<span class="string">"2"</span>,</span><br><span class="line"><span class="string">"state"</span>:<span class="string">"1"</span>,</span><br><span class="line"><span class="string">"time"</span>:<span class="string">"2016-03-17"</span>,</span><br><span class="line"><span class="string">"goods"</span>:[&#123;<span class="string">"id"</span>:<span class="string">"1"</span>,<span class="string">"name"</span>:<span class="string">"物品1"</span>,<span class="string">"img"</span>:<span class="string">"xxx.jpg"</span>&#125;,</span><br><span class="line">&#123;<span class="string">"id"</span>:<span class="string">"1"</span>,<span class="string">"name"</span>:<span class="string">"物品1"</span>,<span class="string">"img"</span>:<span class="string">"xxx.jpg"</span>&#125;]&#125;</span><br><span class="line">]&#125;</span><br></pre></td></tr></table></figure></p>
-<p>可以看到需要在列表内嵌另一个列表。绑定代码为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">	el: <span class="string">"#allorder"</span>,</span><br><span class="line">	data: order</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>html代码为<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"allorder"</span> <span class="attr">v-for</span>=<span class="string">"orders in orders"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"order-state"</span>&gt;</span>&#123;&#123;orders.state&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   订单号:<span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;orders.id&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">   下单日期:<span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;orders.ordertime&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"lineimg"</span> <span class="attr">v-for</span>=<span class="string">"good in orders.goods"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">"good.img_src"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/23/机器学习学习笔记（一）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/03/23/机器学习学习笔记（一）/" class="post-title-link" itemprop="url">机器学习学习笔记（一）</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-03-23 01:08:04" itemprop="dateCreated datePublished" datetime="2016-03-23T01:08:04+08:00">2016-03-23</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>the field of study that gives computers the ability to learn without being explicitly programmed</p>
-</blockquote>
-<p>机器学习让计算机有能力去自主学习，而不是被死板地编程，它发源于人工智能领域，在现在各个领域发挥了独特的作用。</p>
-<h4 id="应用示例"><a href="#应用示例" class="headerlink" title="应用示例"></a>应用示例</h4><p>谷歌百度等搜索引擎实现的学习算法学会如何对网页排名，从而让海量的网页有序地展示在用户面前；</p>
-<p>Iphone等手机与某些app在处理照片时，能够自动地识别出照片中的人；</p>
-<p>电子邮箱系统在用户对广告邮件等标记垃圾邮件后，垃圾邮件过滤器学会了如何自动甄选出垃圾邮件，让用户避免垃圾邮件的困扰；</p>
-<p>无人驾驶汽车通过图像或雷达等传感器学习大量正常驾驶时车辆的情景从而学会自己安全地驾驶；</p>
-<p>在通过对各种棋谱、棋局的研究学习后，下棋软件能够打败世界一流的棋手；</p>
-<p>等等…</p>
-<h4 id="机器学习的崛起"><a href="#机器学习的崛起" class="headerlink" title="机器学习的崛起"></a>机器学习的崛起</h4><p>机器学习的概念在很早之前就已经出现，例如神经元网络在1943年就已经被提出。 现在，网络技术与自动化技术飞速发展， 出现了大量的数据集可以运用与机器学习算法，例如网络企业的点击记录、医院的电子医疗记录、DNA测序等等；甚至机器学习算法已经被应用于探究人类的学习方式，并试图理解人类的大脑。</p>
-<h4 id="机器学习算法的分类"><a href="#机器学习算法的分类" class="headerlink" title="机器学习算法的分类"></a>机器学习算法的分类</h4><ol>
-<li><p>监督学习(Supervised learning)</p>
-</li>
-<li><p>无监督学习(Unsupervised learning)</p>
-</li>
-<li><p>强化学习(Reinforcement learning)等</p>
-</li>
-</ol>
-<h5 id="一、监督学习-Supervised-learning"><a href="#一、监督学习-Supervised-learning" class="headerlink" title="一、监督学习(Supervised learning)"></a>一、监督学习(Supervised learning)</h5><p>包括回归问题（预测）、根据特征参数分类等。</p>
-<p>举栗子：</p>
-<p>（1）在收集大量关于某地房价与房屋面积的数据后，可以大致判断出房价与面积成线性关系，并能预测出数据中未包含的面积大小对应的大致的房价。</p>
-<p><img src="/images/pasted-0.png" alt="upload successful"></p>
-<p>（2）在收集到大量某肿瘤病人的数据（如年龄与肿瘤大小）后，对病人的病情（如肿瘤良性恶性）进行输入，得到相关模型。之后的病人就可以根据其年龄、肿瘤大小直接预测出其所在分类（良性恶性）。</p>
-<p>总结：在监督学习中，对于数据集中的每个数据， 都有相应的正确答案，（训练集） 算法就是基于这些来做出预测。例如上面的房价和肿瘤性质。</p>
-<p>回归问题即预测一个连续值输出，分类问题即预测一个离散值输出。</p>
-<h5 id="二、无监督学习-Unsupervised-learning"><a href="#二、无监督学习-Unsupervised-learning" class="headerlink" title="二、无监督学习(Unsupervised learning)"></a>二、无监督学习(Unsupervised learning)</h5><p>无监督学习中没有监督学习数据集的属性、标签等，所有的数据都是一样的。</p>
-<p>例如，</p>
-<p>（1）聚类算法，在大量的没有明确标签的数据中，一些数据有着类似的特征或结构，通过聚类算法可以自动的找到这些数据中的类型。</p>
-<p><img src="/images/pasted-1.png" alt="upload successful"></p>
-<p>例如DNA测序，测到的数值量非常大，不同DNA段可能有类似的功能与性质，通过聚类算法找到它们相似的性质并进</p>
-<p>行分类。</p>
-<p><img src="/images/pasted-2.png" alt="upload successful"></p>
-<p>（2）鸡尾酒宴问题：当两个人在同时说话时，有多个话筒分别在不同的位置对他们的声音进行采集，得到多个样本。经过算法处理后可以将两个人同时说话的声音分离开来（奇异值分解）。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>对机器算法有了大概的认知与了解，对与监督学习与无监督学习的异同有了清楚的认识，能够正确地判断出某例是属于哪一类问题</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span>
+    <a class="extend prev" rel="prev" href="/page/14/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/16/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1507,7 +2203,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">146</span>
+                    <span class="site-state-item-count">152</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1909,7 +2605,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">179</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">187</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -2165,6 +2877,14 @@
 
   
   
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     

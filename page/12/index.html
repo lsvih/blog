@@ -368,6 +368,1272 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/06/27/禁止手机浏览器与微信浏览器的原生滚动/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/06/27/禁止手机浏览器与微信浏览器的原生滚动/" class="post-title-link" itemprop="url">禁止手机浏览器与微信浏览器的原生滚动</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-06-27 11:17:00" itemprop="dateCreated datePublished" datetime="2016-06-27T11:17:00+08:00">2016-06-27</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在微信浏览器中,如果页面内容到头或者到底,手指滑动时会拖动整个页面。如图所示</p>
+<p><img src="/images/pasted-85.png" alt="upload successful"></p>
+<p>在原生滑动过程中,页面中的所有动画(包括canvas动画、gif动图、css变幻、js计时器)会全部停止,在页面回弹到初始位置时才会继续运行,极大地影响了用户的体验。</p>
+<p>因此,在用户有拖动操作时需要将页面的上下原生滑动停止,至少要在用户拖动区域禁止原生滚动事件。</p>
+<p>例如我在项目中碰到需要用户左右滑动的操作,而如果用户向左下滑动,则会造成页面先向下滑动后回弹,然后定义的事件才会产生。</p>
+<p>因此需要使用preventDefault()来禁止原生touchstart动作。但是如果直接使用event.preventDefault()会使整个页面的滚动事件全部失效,达不到想要的效果,因此对其进行有条件的处理。js代码如下:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* </span></span><br><span class="line"><span class="comment">* 禁止微信原生上下滚动</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> overscroll = <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">	el.addEventListener(<span class="string">'touchstart'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	    <span class="keyword">var</span> top = el.scrollTop,</span><br><span class="line">		totalScroll = el.scrollHeight,</span><br><span class="line">		currentScroll = top + el.offsetHeight;</span><br><span class="line">	    <span class="keyword">if</span> (top === <span class="number">0</span>) &#123;</span><br><span class="line">    	el.scrollTop = <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (currentScroll === totalScroll) &#123;</span><br><span class="line">	        el.scrollTop = top - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    el.addEventListener(<span class="string">'touchmove'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (el.offsetHeight &lt; el.scrollHeight)</span><br><span class="line">      evt._isScroller = <span class="literal">true</span>;</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;</span><br><span class="line">overscroll(<span class="built_in">document</span>.querySelector(<span class="string">'#scroll'</span>));<span class="comment">//此处的scroll为需要禁止原生滚动的Object</span></span><br><span class="line"><span class="built_in">document</span>.body.addEventListener(<span class="string">'touchmove'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">evt</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!evt._isScroller) &#123;</span><br><span class="line">    evt.preventDefault();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/06/27/使用gulp构建前端工程/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/06/27/使用gulp构建前端工程/" class="post-title-link" itemprop="url">使用gulp构建前端工程</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-06-27 09:05:57" itemprop="dateCreated datePublished" datetime="2016-06-27T09:05:57+08:00">2016-06-27</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>gulp.js 是一个自动化构建工具,基于 Node.js。通过gulp可以省略前端开发中很多重复无意义的步骤,例如js/css的压缩、less/sass的编译等。</p>
+<p>在公司的项目中,需要在测试环境中反复调试一些内容(需求要求),而我在js中使用了es6的let声明关键词与严格模式,在测试容器—微信浏览器下无法顺利运行。因此使用gulp重新构建项目,利用其特性实现自动化压缩js/css,编译less,替换js中的let为var等功能。</p>
+<p>项目目录结构:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├─node_modules</span><br><span class="line">├─dist</span><br><span class="line">│   ├─css</span><br><span class="line">│   ├─fonts</span><br><span class="line">│   ├─images</span><br><span class="line">│   └─js</span><br><span class="line">└─src</span><br><span class="line">    ├─css</span><br><span class="line">    ├─fonts</span><br><span class="line">    ├─images</span><br><span class="line">    ├─js</span><br><span class="line">    └─less</span><br></pre></td></tr></table></figure></p>
+<p>dist目录为构建目录,src为工程目录;</p>
+<p>首先下载nodejs,其中也包含了npm包管理工具。</p>
+<p>切换到项目根目录下,输入:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --global gulp</span><br></pre></td></tr></table></figure></p>
+<p>全局安装gulp。</p>
+<p>输入:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp</span><br></pre></td></tr></table></figure></p>
+<p>使其作为项目的开发依赖安装。此时会自动创建目录node_modules;</p>
+<p>输入:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp-uglify gulp-minify-css gulp-sourcemaps gulp-less gulp-concat gulp-rename gulp-imagemin gulp-replace gulp-htmlmin --save-dev</span><br></pre></td></tr></table></figure></p>
+<p>安装项目所需要的插件。</p>
+<p>使用到的插件有:</p>
+<p>gulp-uglify:js混淆、压缩</p>
+<p>gulp-minify-css:css压缩</p>
+<p>gulp-sourcemaps:为less插件创建map</p>
+<p>gulp-less:编译less文件</p>
+<p>gulp-concat:文件合并</p>
+<p>gulp-rename:文件重命名</p>
+<p>gulp-imagemin:图片压缩</p>
+<p>gulp-replace:文本替换(正则式)</p>
+<p>gulp-htmlmin:html文件压缩(html中的css与js也会被压缩)</p>
+<p>在根目录创建gulpfile.js。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp=<span class="built_in">require</span>(<span class="string">"gulp"</span>);<span class="comment">//创建gulp模块</span></span><br><span class="line"><span class="keyword">var</span> uglify=<span class="built_in">require</span>(<span class="string">"gulp-uglify"</span>);<span class="comment">//创建js混淆压缩模块</span></span><br><span class="line"><span class="keyword">var</span> minify_css=<span class="built_in">require</span>(<span class="string">"gulp-minify-css"</span>);<span class="comment">//创建css混淆压缩模块</span></span><br><span class="line"><span class="keyword">var</span> less=<span class="built_in">require</span>(<span class="string">'gulp-less'</span>);</span><br><span class="line"><span class="keyword">var</span> gulp_concat=<span class="built_in">require</span>(<span class="string">'gulp-concat'</span>);<span class="comment">//创建文件合并模块</span></span><br><span class="line"><span class="keyword">var</span> del=<span class="built_in">require</span>(<span class="string">'del'</span>);</span><br><span class="line"><span class="keyword">var</span> rename=<span class="built_in">require</span>(<span class="string">'gulp-rename'</span>);</span><br><span class="line"><span class="keyword">var</span> imagemin=<span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>);<span class="comment">//压缩图片</span></span><br><span class="line"><span class="keyword">var</span> replace=<span class="built_in">require</span>(<span class="string">'gulp-replace'</span>);</span><br><span class="line"><span class="keyword">var</span> htmlmin=<span class="built_in">require</span>(<span class="string">'gulp-htmlmin'</span>);</span><br><span class="line"><span class="keyword">var</span> sourcemaps=<span class="built_in">require</span>(<span class="string">'gulp-sourcemaps'</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clean</span>(<span class="params">path</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Clean:'</span> + path)</span><br><span class="line">    del(path);</span><br><span class="line">&#125;</span><br><span class="line">gulp.task(<span class="string">'less'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.src(<span class="string">'./src/less/*.less'</span>)</span><br><span class="line">        .pipe(sourcemaps.init())</span><br><span class="line">        .pipe(less())</span><br><span class="line">        .pipe(sourcemaps.write())</span><br><span class="line">        .pipe(rename(&#123; <span class="attr">suffix</span>: <span class="string">'.min'</span> &#125;))</span><br><span class="line">        .pipe(minify_css())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'./dist/css'</span>));</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.src(<span class="string">'./src/css/*.css'</span>)</span><br><span class="line">   		.pipe(rename(&#123; <span class="attr">suffix</span>: <span class="string">'.min'</span> &#125;))</span><br><span class="line">        .pipe(minify_css())</span><br><span class="line">        .pipe(gulp.dest(<span class="string">'./dist/css'</span>));</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'javascripts'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  gulp.src(<span class="string">'./src/js/*.js'</span>)</span><br><span class="line">    .pipe(replace(<span class="string">'let '</span>, <span class="string">'var '</span>))<span class="comment">//微信不支持let用法因此换成var</span></span><br><span class="line">    .pipe(replace(<span class="string">'"use strict";'</span>, <span class="string">''</span>))<span class="comment">//微信不支持严格模式</span></span><br><span class="line">    .pipe(rename(&#123; <span class="attr">suffix</span>: <span class="string">'.min'</span> &#125;))</span><br><span class="line">    .pipe(uglify())</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'./dist/js'</span>));</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> options = &#123;</span><br><span class="line">        removeComments: <span class="literal">true</span>,<span class="comment">//清除HTML注释</span></span><br><span class="line">        collapseWhitespace: <span class="literal">true</span>,<span class="comment">//压缩HTML</span></span><br><span class="line">        collapseBooleanAttributes: <span class="literal">true</span>,<span class="comment">//省略布尔属性的值 &lt;input checked="true"/&gt; ==&gt; &lt;input /&gt;</span></span><br><span class="line">        removeEmptyAttributes: <span class="literal">true</span>,<span class="comment">//删除所有空格作属性值 &lt;input id="" /&gt; ==&gt; &lt;input /&gt;</span></span><br><span class="line">        removeScriptTypeAttributes: <span class="literal">true</span>,<span class="comment">//删除&lt;script&gt;的type="text/javascript"</span></span><br><span class="line">        removeStyleLinkTypeAttributes: <span class="literal">true</span>,<span class="comment">//删除&lt;style&gt;和&lt;link&gt;的type="text/css"</span></span><br><span class="line">        minifyJS: <span class="literal">true</span>,<span class="comment">//压缩页面JS</span></span><br><span class="line">        minifyCSS: <span class="literal">true</span><span class="comment">//压缩页面CSS</span></span><br><span class="line">    &#125;;</span><br><span class="line">    gulp.src(<span class="string">'./src/*.html'</span>)</span><br><span class="line">    .pipe(replace(<span class="string">'let '</span>, <span class="string">'var '</span>))<span class="comment">//微信不支持let用法因此换成var</span></span><br><span class="line">    .pipe(replace(<span class="string">'"use strict";'</span>, <span class="string">''</span>))<span class="comment">//微信不支持严格模式</span></span><br><span class="line">    .pipe(replace(<span class="string">'.css'</span>, <span class="string">'.min.css'</span>))<span class="comment">//将html引用的资源从css与js变成min.css与min.js</span></span><br><span class="line">    .pipe(replace(<span class="string">'.js'</span>, <span class="string">'.min.js'</span>))</span><br><span class="line">    .pipe(htmlmin(options))</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'./dist/'</span>));</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'images'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.src([<span class="string">'./src/images/*.*'</span>,<span class="string">'./src/images/**/*.*'</span>])</span><br><span class="line">    .pipe(imagemin())</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'./dist/images/'</span>));</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'fonts'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	gulp.src(<span class="string">'./src/fonts/*.*'</span>)</span><br><span class="line">	.pipe(gulp.dest(<span class="string">'./dist/fonts/'</span>));</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'clean'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    clean(<span class="string">'./dist/*'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'build'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    gulp.run(<span class="string">'less'</span>,<span class="string">'css'</span>,<span class="string">'javascripts'</span>,<span class="string">'html'</span>,<span class="string">'images'</span>,<span class="string">'fonts'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Done!'</span>)</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    gulp.run(<span class="string">'build'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Done!'</span>)</span><br><span class="line">    gulp.watch([<span class="string">'./src/less/*.less'</span>,<span class="string">'./src/js/*.js'</span>,<span class="string">'./src/css/*.css'</span>,<span class="string">'./src/*.html'</span>,<span class="string">'./src/images/*.*'</span>,<span class="string">'./src/images/*/*.*'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        gulp.run(<span class="string">'build'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>与gulp有关的方法主要有以下几种:</p>
+<p>gulp.task 定义gulp任务</p>
+<p>gulp.run 运行gulp任务</p>
+<p>gulp.watch 监控文件变化</p>
+<p>gulp.src 输入文件路径</p>
+<p>gulp.dest 指定处理完后文件输出的路径</p>
+<p>其中参数多是以数组形式输入,例如监控多个目录:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gulp.watch([<span class="string">'./src/less/*.less'</span>,<span class="string">'./src/js/*.js'</span>,<span class="string">'./src/css/*.css'</span>,<span class="string">'./src/*.html'</span>,<span class="string">'./src/images/*.*'</span>,<span class="string">'./src/images/*/*.*'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="comment">//检测到文件变化时执行的操作</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>gulp.task定义了任务的名称与过程。</p>
+<p>例如<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    gulp.run(<span class="string">'build'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Done!'</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>即定义了default任务,在执行default任务时,执行build任务并返回“Done”</p>
+<p>default任务是默认任务,执行时直接在项目目录执行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp</span><br></pre></td></tr></table></figure></p>
+<p>即为进行default任务。</p>
+<p>同时也可以通过gulp + 任务名 来运行指定任务,例如<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp clean</span><br></pre></td></tr></table></figure></p>
+<p>即为运行名称为clean的任务。</p>
+<p>在任务中,文件以“流”的形式在任务中流转,使用pipe可对其进行操作;.pipe可对与流通至此管道中的文件流进行相关操作。</p>
+<p>例如,输入src/images中的所有图片进行压缩后,输出到dist/images<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'images'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    gulp.src([<span class="string">'./src/images/*.*'</span>,<span class="string">'./src/images/**/*.*'</span>])</span><br><span class="line">    .pipe(imagemin())</span><br><span class="line">    .pipe(gulp.dest(<span class="string">'./dist/images/'</span>));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>gulp.src获取images与images子目录下的所有文件,传入管道中;文件流通过imagemin()管道时,其中的图片被分别压缩,最终输出到dist/images目录中。</p>
+<p>掌握gulp基本用法后就能够使用它进行一般的工程化构建了。当需要达到某种对文件流的处理效果时,可以在网上搜索相关插件,使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install gulp-xxx --save-dev</span><br></pre></td></tr></table></figure></p>
+<p>下载与保存,在gulpfile.js中以var xxx=require(‘gulp-xxx’)形式定义,即可在任务中使用这种插件了。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/06/12/洗牌算法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/06/12/洗牌算法/" class="post-title-link" itemprop="url">洗牌算法</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-06-12 12:57:00" itemprop="dateCreated datePublished" datetime="2016-06-12T12:57:00+08:00">2016-06-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>目的:将排列好的数据重新以随机的方式排列</p>
+<p>原理:从数组中随机选出一个元素，放入目标数组中后从原数组中删除这个元素。反复进行这个过程，直到原数组中所有的元素都进入了新的数组。此时目标数组中的元素为随机排列，达到了“洗牌”的效果。</p>
+<p>使用Python描述:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shuffle</span><span class="params">(list)</span>:</span>  </span><br><span class="line">  targetlist=[]</span><br><span class="line">  <span class="keyword">while</span> list:   </span><br><span class="line">    i=random.randrange(<span class="number">0</span>,len(list))</span><br><span class="line">    targetlist.append(list[i])    </span><br><span class="line">    list.pop(i)  </span><br><span class="line">  <span class="keyword">return</span> targetlist</span><br></pre></td></tr></table></figure>
+<p>random.randrange(0,len(list))为从0到list长度中随机生成一个整数。</p>
+<p>targetlist.append(list[i])为将list[i]元素放入targetlist数组中。</p>
+<p>list.pop(i)为从list中删除这个元素。</p>
+<p>可以通过这个算法实现对训练集与测试集的分配。例如:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shuffle_split_data</span><span class="params">(X, y)</span>:</span></span><br><span class="line">    <span class="string">""" Shuffles and splits data into 70% training and 30% testing subsets,</span></span><br><span class="line"><span class="string">        then returns the training and testing subsets. """</span></span><br><span class="line">    <span class="comment"># Shuffle and split the data</span></span><br><span class="line">    split_num = int(<span class="number">0.7</span> * len(X))</span><br><span class="line">    X_t = []</span><br><span class="line">    y_t = []</span><br><span class="line">    X = list(X)</span><br><span class="line">    <span class="keyword">while</span> X:</span><br><span class="line">        p = random.randrange(<span class="number">0</span>, len(X))</span><br><span class="line">        X_t.append(X[p])</span><br><span class="line">        y_t.append(y[p])</span><br><span class="line">        X.pop(p)</span><br><span class="line"></span><br><span class="line">    X_train = X_t[:split_num]</span><br><span class="line">    y_train = y_t[:split_num]</span><br><span class="line">    X_test = X_t[split_num:]</span><br><span class="line">    y_test = y_t[split_num:]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Return the training and testing data subsets</span></span><br><span class="line">    <span class="keyword">return</span> X_train, y_train, X_test, y_test</span><br></pre></td></tr></table></figure></p>
+<p>X为输入值，y为输出值，将70%的数据放入训练集，将30%的数据放入测试集</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/06/11/使用Numpy与Pandas进行简单数据处理/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/06/11/使用Numpy与Pandas进行简单数据处理/" class="post-title-link" itemprop="url">使用Numpy与Pandas进行简单数据处理</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-06-11 08:58:00" itemprop="dateCreated datePublished" datetime="2016-06-11T08:58:00+08:00">2016-06-11</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas <span class="keyword">import</span> DataFrame, Series</span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line">countries = [<span class="string">'Russian Fed.'</span>, <span class="string">'Norway'</span>, <span class="string">'Canada'</span>, <span class="string">'United States'</span>,</span><br><span class="line">            <span class="string">'Netherlands'</span>, <span class="string">'Germany'</span>, <span class="string">'Switzerland'</span>, <span class="string">'Belarus'</span>,</span><br><span class="line">            <span class="string">'Austria'</span>, <span class="string">'France'</span>, <span class="string">'Poland'</span>, <span class="string">'China'</span>, <span class="string">'Korea'</span>, </span><br><span class="line">            <span class="string">'Sweden'</span>, <span class="string">'Czech Republic'</span>, <span class="string">'Slovenia'</span>, <span class="string">'Japan'</span>,</span><br><span class="line">            <span class="string">'Finland'</span>, <span class="string">'Great Britain'</span>, <span class="string">'Ukraine'</span>, <span class="string">'Slovakia'</span>,</span><br><span class="line">            <span class="string">'Italy'</span>, <span class="string">'Latvia'</span>, <span class="string">'Australia'</span>, <span class="string">'Croatia'</span>, <span class="string">'Kazakhstan'</span>]</span><br><span class="line"></span><br><span class="line">gold = [<span class="number">13</span>, <span class="number">11</span>, <span class="number">10</span>, <span class="number">9</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">silver = [<span class="number">11</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line">bronze = [<span class="number">9</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">12</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<p>显示奖牌数据:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">olympic_medal_counts_df = DataFrame(</span><br><span class="line">         &#123;<span class="string">'country_name'</span>: countries,</span><br><span class="line">          <span class="string">'gold'</span>: gold,</span><br><span class="line">          <span class="string">'silver'</span>: silver,</span><br><span class="line">          <span class="string">'bronze'</span>: bronze&#125;) </span><br><span class="line"><span class="keyword">print</span> olympic_medal_counts_df</span><br><span class="line"></span><br><span class="line">df = olympic_medal_counts_df</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;</p>
+<p><img src="/images/pasted-82.png" alt="upload successful"></p>
+<p>计算至少获得一枚金牌的国家所获得铜牌的平均数：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">avg_bronze_at_least_one_gold = numpy.mean(df[df.gold &amp;gt; <span class="number">0</span>].bronze)</span><br><span class="line"><span class="keyword">print</span>  avg_bronze_at_least_one_gold</span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;4.2380952381</p>
+<p>计算金牌、银牌与铜牌的平均数：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">avg_medal_count=numpy.mean(df[[<span class="string">'gold'</span>,<span class="string">'silver'</span>,<span class="string">'bronze'</span>]])</span><br><span class="line"><span class="keyword">print</span> avg_medal_count</span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p><img src="/images/pasted-83.png" alt="upload successful"></p>
+<p>如果收获一枚金牌得4分，一枚银牌得2分，一枚铜牌得1分，计算所有国家的总分数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'points'</span>] = df[[<span class="string">'gold'</span>,<span class="string">'silver'</span>,<span class="string">'bronze'</span>]].dot([<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>])</span><br><span class="line">olympic_points_df = df[[<span class="string">'country_name'</span>,<span class="string">'points'</span>]]</span><br><span class="line"><span class="keyword">print</span> olympic_points_df</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;</p>
+<p><img src="/images/pasted-84.png" alt="upload successful"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/06/11/Numpy与Pandas学习记录/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/06/11/Numpy与Pandas学习记录/" class="post-title-link" itemprop="url">Numpy与Pandas学习记录</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-06-11 08:02:00" itemprop="dateCreated datePublished" datetime="2016-06-11T08:02:00+08:00">2016-06-11</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Numpy为Python下的科学计算库，用于快速处理数据、科学计算等。</p>
+<p>pandas 是基于 Numpy 构建的含有更高级数据结构和工具的数据分析包</p>
+<hr>
+<p>Numpy 库文档：<a href="https://docs.scipy.org/doc/numpy-dev/user/quickstart.html" target="_blank" rel="noopener">https://docs.scipy.org/doc/numpy-dev/user/quickstart.html</a></p>
+<p>Pandas 库文档：<a href="http://pandas.pydata.org/pandas-docs/version/0.17.0/" target="_blank" rel="noopener">http://pandas.pydata.org/pandas-docs/version/0.17.0/</a></p>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br></pre></td></tr></table></figure>
+<h3 id="Numpy的基本使用"><a href="#Numpy的基本使用" class="headerlink" title="Numpy的基本使用"></a>Numpy的基本使用</h3><h4 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array = np.array([<span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">8</span>], float)</span><br><span class="line"><span class="keyword">print</span> array</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;[ 1.  4.  5.  8.]</p>
+<p>np.array最后的参数表示数据类型为浮点。因此显示数组时整数后会有一个小数点。</p>
+<blockquote>
+<p>重建的数组中所有数据必须为相同的数据类型</p>
+<p>The array object class is the foundation of Numpy, and Numpy arrays are like lists in Python, except that every thing inside an array must be of the same type, like int or float.</p>
+</blockquote>
+<h4 id="创建二维数组"><a href="#创建二维数组" class="headerlink" title="创建二维数组"></a>创建二维数组</h4><p>同理：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]], float)  <span class="comment"># a 2D array/Matrix</span></span><br><span class="line"><span class="keyword">print</span> array</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;[[ 1.  2.  3.][ 4.  5.  6.]]</p>
+<h4 id="存取元素"><a href="#存取元素" class="headerlink" title="存取元素"></a>存取元素</h4><p>与Python基本用法一致</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array = np.array([<span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">8</span>], float)</span><br><span class="line"><span class="keyword">print</span> array</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;[ 1.  4.  5.  8.]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array[<span class="number">1</span>]<span class="comment">##显示数组中下标为1的数据</span></span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;4.0<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array[:<span class="number">2</span>]<span class="comment">##显示数组从下标0开始向后的2个数据</span></span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;[ 1.  4.]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array[<span class="number">1</span>]=<span class="number">5.0</span><span class="comment">##通过下标修改对应数据</span></span><br><span class="line"><span class="keyword">print</span> array[<span class="number">1</span>]</span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;5.0</p>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">two_D_array=np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]], float)<span class="comment">##创建2d数组</span></span><br><span class="line"><span class="keyword">print</span> two_D_array</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;[[ 1.  2.  3.][ 4.  5.  6.]]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> two_D_array[<span class="number">1</span>][<span class="number">1</span>]<span class="comment">##显示下标为1的数据组中的下标为1的数据</span></span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;5.0<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> two_D_array[<span class="number">1</span>, :]<span class="comment">##显示下标为1的数据组中所有数据</span></span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;[ 4.  5.  6.]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> two_D_array[:, <span class="number">2</span>]<span class="comment">##显示所有数据组中的下标为2的数据</span></span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;[ 3.  6.]</p>
+<h4 id="数组运算"><a href="#数组运算" class="headerlink" title="数组运算"></a>数组运算</h4><p>数组间的四则运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array_1 = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], float)</span><br><span class="line">array_2 = np.array([<span class="number">5</span>, <span class="number">2</span>, <span class="number">6</span>], float)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array_1 + array_2</span><br><span class="line"><span class="keyword">print</span> array_1 - array_2</span><br><span class="line"><span class="keyword">print</span> array_1 * array_2</span><br><span class="line"><span class="keyword">print</span> array_1 / array_2</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;[ 6.  4.  9.] </p>
+<p>output&gt;&gt;[-4.  0. -3.]</p>
+<p>output&gt;&gt;[ 5.   4.  18.]</p>
+<p>output&gt;&gt;[ 0.2  1.  0.5]</p>
+<p>二维数组间的四则运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array_1 = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]], float)</span><br><span class="line">array_2 = np.array([[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]], float)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array_1 + array_2</span><br><span class="line"><span class="keyword">print</span> array_1 - array_2</span><br><span class="line"><span class="keyword">print</span> array_1 * array_2</span><br><span class="line"><span class="keyword">print</span> array_1 / array_2</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;[[ 6.   8.][ 10.  12.]] </p>
+<p>output&gt;&gt;[[-4. -4.][-4. -4.]]</p>
+<p>output&gt;&gt;[[ 5.  12.][ 21.  32.]]</p>
+<p>output&gt;&gt;[[ 0.2   0.33333333][ 0.42857143  0.5]]</p>
+<h4 id="数据快速处理"><a href="#数据快速处理" class="headerlink" title="数据快速处理"></a>数据快速处理</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array_1 = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], float)</span><br><span class="line">array_2 = np.array([[<span class="number">6</span>], [<span class="number">7</span>], [<span class="number">8</span>]], float)</span><br></pre></td></tr></table></figure>
+<p>求和：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.sum(array_1)</span><br><span class="line"><span class="keyword">print</span> np.sum(array_2)</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;6.0</p>
+<p>output&gt;&gt;21.0</p>
+<p>求均值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.mean(array_1)</span><br><span class="line"><span class="keyword">print</span> np.mean(array_2)</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;2.0</p>
+<p>output&gt;&gt;7.0</p>
+<p>求方差：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.var(array_1)</span><br><span class="line"><span class="keyword">print</span> np.var(array_2)</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;0.666666666667</p>
+<p>output&gt;&gt;0.666666666667</p>
+<p>求标准差：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.std(array_1)</span><br><span class="line"><span class="keyword">print</span> np.std(array_2)</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;0.816496580928</p>
+<p>output&gt;&gt;0.816496580928</p>
+<p>求内积：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.dot(array_1, array_2)</span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;[ 44.]</p>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+<h3 id="Pandas的基本使用"><a href="#Pandas的基本使用" class="headerlink" title="Pandas的基本使用"></a>Pandas的基本使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">series = pd.Series([<span class="string">'Dave'</span>, <span class="string">'Cheng-Han'</span>, <span class="string">'Udacity'</span>, <span class="number">42</span>, <span class="number">-1789710578</span>])</span><br><span class="line"><span class="keyword">print</span> series</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>column</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Dave</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Cheng-Han</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Udacity</td>
+</tr>
+<tr>
+<td>3</td>
+<td>42</td>
+</tr>
+<tr>
+<td>4</td>
+<td>-1789710578</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dtype: object</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##通过Python字典对象创建一个数据系列，自动使用递增整型作为索引。</span></span><br><span class="line">series = pd.Series([<span class="string">'Dave'</span>, <span class="string">'Cheng-Han'</span>, <span class="number">359</span>, <span class="number">9001</span>],</span><br><span class="line">                     index=[<span class="string">'Instructor'</span>, <span class="string">'Curriculum Manager'</span>,</span><br><span class="line">                            <span class="string">'Course Number'</span>, <span class="string">'Power Level'</span>])</span><br><span class="line"><span class="keyword">print</span> series</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>column0</th>
+<th>column1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instructor</td>
+<td>Dave</td>
+</tr>
+<tr>
+<td>Curriculum Manager</td>
+<td>Cheng-Han</td>
+</tr>
+<tr>
+<td>Course Number</td>
+<td>359</td>
+</tr>
+<tr>
+<td>Power Level</td>
+<td>9001</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dtype: object</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##为数据添加了索引，此时可以通过索引来选择数据：</span></span><br><span class="line"><span class="keyword">print</span> series[<span class="string">'Instructor'</span>]</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;Dave<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> series[[<span class="string">'Instructor'</span>, <span class="string">'Curriculum Manager'</span>, <span class="string">'Course Number'</span>]]</span><br></pre></td></tr></table></figure></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>column0</th>
+<th>column1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instructor</td>
+<td>Dave</td>
+</tr>
+<tr>
+<td>Curriculum Manager</td>
+<td>Cheng-Han</td>
+</tr>
+<tr>
+<td>Course Number</td>
+<td>359</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dtype: object</p>
+<p>通过bool来显示数据是否满足筛选条件：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cuteness = pd.Series([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], index=[<span class="string">'Cockroach'</span>, <span class="string">'Fish'</span>, <span class="string">'Mini Pig'</span>,</span><br><span class="line">                          <span class="string">'Puppy'</span>, <span class="string">'Kitten'</span>])</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> cuteness &gt; <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>column0</th>
+<th>column1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cockroach</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Fish</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Mini Pig</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Puppy</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Kitten</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dtype: bool</p>
+<p>只显示满足条件的数据：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> cuteness[cuteness &gt; <span class="number">3</span>]</span><br></pre></td></tr></table></figure></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>column0</th>
+<th>column1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Puppy</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Kitten</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dtype: int64</p>
+<p>使用数据框架：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">data = &#123;<span class="string">'year'</span>: [<span class="number">2010</span>, <span class="number">2011</span>, <span class="number">2012</span>, <span class="number">2011</span>, <span class="number">2012</span>, <span class="number">2010</span>, <span class="number">2011</span>, <span class="number">2012</span>],</span><br><span class="line">     <span class="string">'team'</span>: [<span class="string">'Bears'</span>, <span class="string">'Bears'</span>, <span class="string">'Bears'</span>, <span class="string">'Packers'</span>, <span class="string">'Packers'</span>, <span class="string">'Lions'</span>,</span><br><span class="line">          <span class="string">'Lions'</span>, <span class="string">'Lions'</span>],</span><br><span class="line">     <span class="string">'wins'</span>: [<span class="number">11</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">11</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">4</span>],</span><br><span class="line">     <span class="string">'losses'</span>: [<span class="number">5</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">6</span>, <span class="number">12</span>]&#125;</span><br><span class="line">football = pd.DataFrame(data)</span><br><span class="line"><span class="keyword">print</span> football</span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p><img src="/images/pasted-77.png" alt="upload successful"></p>
+<p>显示数据框架各列数据格式：</p>
+<h2 id="to-get-the-datatype-for-each-column"><a href="#to-get-the-datatype-for-each-column" class="headerlink" title="to get the datatype for each column"></a>to get the datatype for each column</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football.dtypes</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;</p>
+<p>losses     int64 </p>
+<p>team      object </p>
+<p>wins       int64 </p>
+<p>year       int64 </p>
+<p>dtype: object</p>
+<p>对数据列进行快速统计与汇总：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## useful for seeing basic statistics of the dataframe's numerical columns</span></span><br><span class="line"><span class="keyword">print</span> football.describe()</span><br></pre></td></tr></table></figure>
+<p>output&gt;&gt;</p>
+<pre><code> losses        wins       year 
+</code></pre><p>count   8.000000   8.000000     8.000000##总数</p>
+<p>mean    6.625000   9.375000  2011.125000##均值</p>
+<p>std     3.377975   3.377975    0.834523##标准差</p>
+<p>min     1.000000   4.000000  2010.000000##最小值</p>
+<p>25%     5.000000   7.500000  2010.750000</p>
+<p>50%     6.000000  10.000000  2011.000000 </p>
+<p>75%     8.500000  11.000000  2012.000000 </p>
+<p>max    12.000000  15.000000  2012.000000##最大值</p>
+<p>显示前5行<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football.head()</span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p><img src="/images/pasted-78.png" alt="upload successful"></p>
+<p>显示后5行<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football.tail()</span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p><img src="/images/pasted-79.png" alt="upload successful"></p>
+<p>通过索引来访问对应列<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football[<span class="string">'year'</span>]<span class="comment">##显示year这一列</span></span><br><span class="line"><span class="comment">##也可用print football.year</span></span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p>0    2010<br>1    2011<br>2    2012<br>3    2011<br>4    2012<br>5    2010<br>6    2011<br>7    2012<br>Name: year, dtype: int64</p>
+<p>显示year wins losses三列<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football[[<span class="string">'year'</span>, <span class="string">'wins'</span>, <span class="string">'losses'</span>]]</span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p>  year  wins  losses<br>0  2010    11       5<br>1  2011     8       8<br>2  2012    10       6<br>3  2011    15       1<br>4  2012    11       5<br>5  2010     6      10<br>6  2011    10       6<br>7  2012     4      12</p>
+<p>显示第[0]行数据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football.loc[[<span class="number">0</span>]]</span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;<br>  losses   team  wins  year<br>0       5  Bears    11  2010</p>
+<p>显示从第[3]行到第[5]行<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football[<span class="number">3</span>:<span class="number">5</span>]</span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p>  losses     team  wins  year<br>3       1  Packers    15  2011<br>4       5  Packers    11  2012</p>
+<p>显示wins中大于10的行<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football[football.wins &gt; <span class="number">10</span>]</span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p><img src="/images/pasted-80.png" alt="upload successful"></p>
+<p>显示wins大于10且team为Packers的行<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football[(football.wins &gt; <span class="number">10</span>) &amp;amp; (football.team == <span class="string">"Packers"</span>)]</span><br></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p><img src="/images/pasted-81.png" alt="upload successful"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/30/mui两个webview间传输数据-调用函数/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/05/30/mui两个webview间传输数据-调用函数/" class="post-title-link" itemprop="url">mui两个webview间传输数据(调用函数)</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-05-30 11:08:00" itemprop="dateCreated datePublished" datetime="2016-05-30T11:08:00+08:00">2016-05-30</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>传出值页面：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> todo_page= plus.webview.currentWebview().opener();<span class="comment">//父页面，也可以是别的webviewObject</span></span><br><span class="line">mui.fire(todo_page,<span class="string">"id"</span>,&#123;<span class="attr">id</span>:<span class="number">1</span>&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>收到值/执行函数页面<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"price"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event.detail.price);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>得到:1</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/25/Python对句子中的单词出现次数排序/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1009,1075 +2275,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/16/纯html-js-css做最简单的Flappy-Bird小游戏/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/05/16/纯html-js-css做最简单的Flappy-Bird小游戏/" class="post-title-link" itemprop="url">纯html,js,css做最简单的Flappy Bird小游戏</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-05-16 14:16:00" itemprop="dateCreated datePublished" datetime="2016-05-16T14:16:00+08:00">2016-05-16</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>效果：</p>
-<p><img src="/images/pasted-72.png" alt="upload successful"></p>
-<p><img src="/images/pasted-73.png" alt="upload successful"></p>
-<p><img src="/images/pasted-74.png" alt="upload successful"></p>
-<p>主要使用了定时器，做出速度与加速度的效果，并配合改变Bird的角度，达到想要的效果。</p>
-<p>检测游戏是否失败靠检测鸟的上下左右点是否在柱子内或者在地图外。</p>
-<p>Html:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">	&lt;head&gt;</span><br><span class="line">		&lt;meta charset=&quot;utf-8&quot; /&gt;</span><br><span class="line">		&lt;title&gt;&lt;/title&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">	&lt;body&gt;</span><br><span class="line">		&lt;div id=&quot;start&quot; onclick=&quot;start()&quot;&gt;start&lt;/div&gt;</span><br><span class="line">		&lt;div id=&quot;startbackground&quot;&gt;&lt;/div&gt;</span><br><span class="line">		&lt;div id=&quot;warp&quot; onclick=&quot;tap()&quot;&gt;</span><br><span class="line">			&lt;div id=&quot;bird&quot;&gt;&lt;/div&gt;</span><br><span class="line">			&lt;div id=&quot;pillar-up&quot;&gt;&lt;/div&gt;</span><br><span class="line">			&lt;div id=&quot;pillar-down&quot;&gt;&lt;/div&gt;</span><br><span class="line">			&lt;div id=&quot;background&quot;&gt;&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">	&lt;style&gt;</span><br><span class="line">	body&#123;</span><br><span class="line">		height: 500px;</span><br><span class="line">		width: 300px;</span><br><span class="line">	&#125;</span><br><span class="line">		#start &#123;</span><br><span class="line">			position: fixed;</span><br><span class="line">			z-index: 999;</span><br><span class="line">			top: 250px;</span><br><span class="line">			left: 150px;</span><br><span class="line">			border: 2px solid#eee;</span><br><span class="line">			background-color: #888;</span><br><span class="line">			height: 50px;</span><br><span class="line">			width: 150px;</span><br><span class="line">			margin-left: -75px;</span><br><span class="line">			text-align: center;</span><br><span class="line">			line-height: 50px;</span><br><span class="line">			font-size: 30px;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		#startbackground &#123;</span><br><span class="line">			position: fixed;</span><br><span class="line">			z-index: 888;</span><br><span class="line">			height: 500px;</span><br><span class="line">			width: 300px;</span><br><span class="line">			background-color: black;</span><br><span class="line">			opacity: 0.5;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		#warp &#123;</span><br><span class="line">			position: relative;</span><br><span class="line">			border: 1px solid#000;</span><br><span class="line">			height: 500px;</span><br><span class="line">			width: 300px;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		#bird &#123;</span><br><span class="line">			position: absolute;</span><br><span class="line">			height: 20px;/*鸟高 */</span><br><span class="line">			width: 30px;/*鸟长*/</span><br><span class="line">			background-color: red;</span><br><span class="line">			top: 100px;</span><br><span class="line">			left: 50px;</span><br><span class="line">			transform: rotate(0deg);</span><br><span class="line">			-ms-transform: rotate(0deg);</span><br><span class="line">			-moz-transform: rotate(0deg);</span><br><span class="line">			-webkit-transform: rotate(0deg);</span><br><span class="line">			-o-transform: rotate(0deg);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		#pillar-up &#123;</span><br><span class="line">			position: absolute;</span><br><span class="line">			height: 0;</span><br><span class="line">			width: 50px;</span><br><span class="line">			background-color: green;</span><br><span class="line">			top: 0;</span><br><span class="line">			right: -50px;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		#pillar-down &#123;</span><br><span class="line">			position: absolute;</span><br><span class="line">			height: 0;</span><br><span class="line">			width: 50px;</span><br><span class="line">			background-color: green;</span><br><span class="line">			bottom: 0;</span><br><span class="line">			right: -50px;</span><br><span class="line">		&#125;</span><br><span class="line">	&lt;/style&gt;</span><br><span class="line">	&lt;script&gt;</span><br><span class="line">		var startX = 50;//角色距离左边x坐标</span><br><span class="line">		var startY = 100; //角色开始高度</span><br><span class="line">		var maxTop = 480; //地图高度500 角色碰撞高度20</span><br><span class="line">		var v_y = 0; //向下运动为正，每1个时间单位向下移动v_y个像素</span><br><span class="line">		var v_x = 2; //水平相对运动速度（实际上没有运动）</span><br><span class="line">		var g = 0.7; //重力加速度，每个时间单位速度向下加这么多</span><br><span class="line">		var Bird = document.getElementById(&quot;bird&quot;);</span><br><span class="line">		var startBtn = document.getElementById(&quot;start&quot;);</span><br><span class="line">		var pillarup = document.getElementById(&quot;pillar-up&quot;);</span><br><span class="line">		var pillardown = document.getElementById(&quot;pillar-down&quot;);</span><br><span class="line">		var pillarX = -50; //柱子初始位置</span><br><span class="line">		var gamestate = 0;</span><br><span class="line">		var pillarstate = 0;</span><br><span class="line">		var scorecount = 0;</span><br><span class="line">		var score = 0;//分数</span><br><span class="line">		function start() &#123;</span><br><span class="line">			if (gamestate == 1) &#123;</span><br><span class="line">				window.location.reload()</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				main();</span><br><span class="line">				startBtn.style.display = &quot;none&quot;;</span><br><span class="line">				document.getElementById(&quot;startbackground&quot;).style.display = &quot;none&quot;;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		function tap() &#123;</span><br><span class="line">			v_y = -12;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		function main() &#123;</span><br><span class="line">			var birdtimer = setInterval(function() &#123;</span><br><span class="line">					if (startY &gt; maxTop || startY &lt; 0) &#123; //角色碰撞上下边界</span><br><span class="line">						gameover();</span><br><span class="line">					&#125;</span><br><span class="line">					if ((pillarX&gt;220&amp;&amp;pillarX&lt;280&amp;&amp;startY&lt;pillarupH)||(pillarX&gt;220&amp;&amp;pillarX&lt;280&amp;&amp;startY&gt;(200+ pillarupH)))&#123;</span><br><span class="line">						gameover();</span><br><span class="line">					&#125;</span><br><span class="line">					startY += v_y;</span><br><span class="line">					v_y += g;</span><br><span class="line">					deg = Math.atan(v_y / v_x) / 1.57 * 60;</span><br><span class="line"></span><br><span class="line">					Bird.style.webkitTransform = &quot;rotate(&quot; + deg + &quot;deg)&quot;;</span><br><span class="line">					Bird.style.MozTransform = &quot;rotate(&quot; + deg + &quot;deg)&quot;;</span><br><span class="line">					Bird.style.msTransform = &quot;rotate(&quot; + deg + &quot;deg)&quot;;</span><br><span class="line">					Bird.style.OTransform = &quot;rotate(&quot; + deg + &quot;deg)&quot;;</span><br><span class="line">					Bird.style.transform = &quot;rotate(&quot; + deg + &quot;deg)&quot;;</span><br><span class="line">					Bird.style.top = startY + &quot;px&quot;;</span><br><span class="line">				&#125;, 20) //一次时间单位</span><br><span class="line">			var pillartimer = setInterval(function() &#123;</span><br><span class="line">					if (pillarstate == 0) &#123;</span><br><span class="line">						pillarup.style.right = &quot;-50px&quot;;</span><br><span class="line">						pillardown.style.right = &quot;-50px&quot;;</span><br><span class="line">						pillarupH = 300 * Math.random();</span><br><span class="line">						pillarup.style.height = pillarupH + &quot;px&quot;;</span><br><span class="line">						pillardown.style.height = (300 - pillarupH) + &quot;px&quot;;</span><br><span class="line">						pillarstate = 1;</span><br><span class="line">					&#125;</span><br><span class="line">					if (pillarX &gt;= 350) &#123;</span><br><span class="line">						pillarX = -50;</span><br><span class="line">						pillarstate = 0;</span><br><span class="line">						scorecount = 0;</span><br><span class="line">					&#125;</span><br><span class="line">					if(pillarX &gt;= 250&amp;&amp;scorecount == 0)&#123;</span><br><span class="line">						score++;</span><br><span class="line">						scorecount = 1;</span><br><span class="line">					&#125;</span><br><span class="line">					pillarX += v_x;</span><br><span class="line">					pillarup.style.right = pillarX - 50 + &quot;px&quot;;</span><br><span class="line">					pillardown.style.right = pillarX - 50 + &quot;px&quot;;</span><br><span class="line">				&#125;, 20) //一次时间单位</span><br><span class="line">			function gameover() &#123;</span><br><span class="line">				clearTimeout(birdtimer);</span><br><span class="line">				clearTimeout(pillartimer);</span><br><span class="line">				document.getElementById(&quot;startbackground&quot;).style.display = &quot;block&quot;</span><br><span class="line">				startBtn.innerText = &apos;失败，分数为&apos;+ score +&apos;，重新开始？&apos;;</span><br><span class="line">				startBtn.style.display = &apos;block&apos;;</span><br><span class="line">				startBtn.style.fontSize = &apos;11px&apos;;</span><br><span class="line">				gamestate = 1;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/10/机器学习学习笔记（十二）无监督学习K-means/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/05/10/机器学习学习笔记（十二）无监督学习K-means/" class="post-title-link" itemprop="url">机器学习学习笔记（十二）无监督学习K-means</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-05-10 14:30:35" itemprop="dateCreated datePublished" datetime="2016-05-10T14:30:35+08:00">2016-05-10</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>当给出一组未经标记的数据，让程序自己去对其数据结构进行分析与分类（加上标签），就是无监督学习。</p>
-<p>例如聚类就是无监督学习中的一个典型例子。</p>
-<h3 id="K-means算法"><a href="#K-means算法" class="headerlink" title="K-means算法"></a>K-means算法</h3><p>K-means算法(K均值算法)是现在使用最为广泛的聚类算法。</p>
-<p>使用步骤如下：</p>
-<p>首先随机选择两个点（分成两个聚类），称其为聚类中心；</p>
-<p>K-means是一个迭代算法，它将不断进行簇分配与聚类中心移动。</p>
-<p><img src="/images/pasted-63.png" alt="upload successful"></p>
-<p>1、簇分配</p>
-<p>根据数据集中的点距离哪个聚类中心更近从而将其分为两类，例如：</p>
-<p><img src="/images/pasted-64.png" alt="upload successful"></p>
-<p>2、移动聚类中心</p>
-<p>分别将之前的两个聚类中心移动到它那个聚类的均值处。如图：</p>
-<p><img src="/images/pasted-65.png" alt="upload successful"></p>
-<p>两个中心都移动到均值处。</p>
-<p><img src="/images/pasted-66.png" alt="upload successful"></p>
-<p>之后再次重复第一步簇分配，重新根据数据点距离聚类中心的距离重新分类，之后再次移动聚类中心……</p>
-<p>一直迭代下去，直到聚类中心不再移动，簇分配也不再变化，此时称此时K-means已经收敛了。</p>
-<hr>
-<p>以较科学的方式描述K-means</p>
-<p><img src="/images/pasted-67.png" alt="upload successful"></p>
-<p>K为簇数，即期望将未标记的数据分为几类的值；</p>
-<p>具体算法：</p>
-<p><img src="/images/pasted-69.png" alt="upload successful"></p>
-<p>1、随机初始化K个聚类中心Mu1,Mu2……MuK</p>
-<p>重复以下的事情：</p>
-<p>2、将x中的每个值根据距离Mu的距离分类（簇分配），距离公式如下：</p>
-<script type="math/tex; mode=display">min_k \left | x^{(i)}-\mu_k \right |^2</script><p>3、对于每个聚类中心重新规划在其对应聚类的平均值处。</p>
-<hr>
-<h3 id="K-means的实际用途"><a href="#K-means的实际用途" class="headerlink" title="K-means的实际用途"></a>K-means的实际用途</h3><p>例如市场细分：</p>
-<p><img src="/images/pasted-70.png" alt="upload successful"></p>
-<p>对于服装场来说，如果要将调查到的如上数据的人群分为大中小三个聚类，肉眼从图上看无法分开这三种尺寸。</p>
-<p>使用K-means可以将其顺利分为3个聚类，</p>
-<p><img src="/images/pasted-71.png" alt="upload successful"></p>
-<p>由此可以看到K均值的确可以比人更好的解决一些问题。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/03/机器学习学习笔记（十一）调试算法/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/05/03/机器学习学习笔记（十一）调试算法/" class="post-title-link" itemprop="url">机器学习学习笔记（十一）调试算法</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-05-03 07:30:00" itemprop="dateCreated datePublished" datetime="2016-05-03T07:30:00+08:00">2016-05-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>当发现测试算法时预测的结果有非常大的误差时,有以下几种方法解决问题:</p>
-<ol>
-<li><p>使用更大的训练集</p>
-</li>
-<li><p>使用更少的特征值</p>
-</li>
-<li><p>使用更多的特征值</p>
-</li>
-<li><p>使用更高次幂的特征值</p>
-</li>
-<li><p>减少正则化参数</p>
-</li>
-<li><p>增加正则化参数</p>
-</li>
-</ol>
-<p>判断如何选择方法不应该”凭感觉”选择,而应该科学地使用机器学习诊断法进行判断,以更省时间,更有意义地改进算法.</p>
-<h3 id="过拟合与欠拟合"><a href="#过拟合与欠拟合" class="headerlink" title="过拟合与欠拟合"></a>过拟合与欠拟合</h3><p><img src="/images/pasted-56.png" alt="upload successful"></p>
-<p>(图为过拟合)</p>
-<p>过拟合与欠拟合都将不能很好的匹配新的数据.</p>
-<p>方法:将所有数据分为训练集与测试集.比例可以使用7:3.</p>
-<p>当训练集的$J(\theta )$很小,测试集的$J(\theta )$很大时,此时即为过拟合的情况.</p>
-<script type="math/tex; mode=display">J_{test}(\theta )=\frac{1}{2m_{test}}\sum_{i=1}^{m_{test}}(h_{\theta}(x_{test}^{i})-y_{test}^{i})^{2}</script><p>以上公式即为线性回归测试集误差计算公式;</p>
-<script type="math/tex; mode=display">J_{test}(\theta )=-\frac{1}{m_{test}}\sum_{i=1}^{m_{test}}y_{test}^{i}\log h_{\theta }(x_{test}^{i})+(1-y_{test}^{i})\log h_{\theta }(x_{test}^{i})</script><p>以上公式为逻辑回归测试误差公式;</p>
-<p>可以看到其实误差公式与代价函数的计算是一致的.</p>
-<p>通过以上计算公式可以量化测试集测试训练集的训练结果.</p>
-<hr>
-<h3 id="确定多项式的次数"><a href="#确定多项式的次数" class="headerlink" title="确定多项式的次数"></a>确定多项式的次数</h3><p>已经知道,当多项式的次数过高的时候,会发生过拟合现象.如何根据数据来确定多项式次数d呢?</p>
-<p>与之前加上验证集不同的是,将数据集分成三部分:训练集,测试集,交叉验证级.</p>
-<p>选择不同的多项式次数分别对验证集进行计算,</p>
-<script type="math/tex; mode=display">1. h_{\theta }(x)=\theta _{0}+\theta _{1}x\\2. h_{\theta }(x)=\theta _{0}+\theta _{1}x+\theta _{2}x^{2}\\3. h_{\theta }(x)=\theta _{0}+\theta _{1}x+...+\theta _{3}x^{3}\\\vdots \\10. h_{theta }(x)=\theta _{0}+\theta _{1}x+...+\theta _{10}x^{10}</script><p>得到各自的$J_{cv}(\theta )$,由此可以选择出最合适的多项式次数.</p>
-<hr>
-<p>因此,选择算法使用验证集进行模型选择,使用测试集来评价模型的好坏,这样就能找到合适的模型.</p>
-<h2 id="偏差-bias-与方差-variance"><a href="#偏差-bias-与方差-variance" class="headerlink" title="偏差(bias)与方差(variance)"></a>偏差(bias)与方差(variance)</h2><p><img src="/images/pasted-57.png" alt="upload successful"></p>
-<p>具体来说,欠拟合是高偏差情况,过拟合是高方差情况.</p>
-<p>分别对训练集和验证集的误差情况与多项式次数进行画图</p>
-<p><img src="/images/pasted-58.png" alt="upload successful"></p>
-<p>可以看到当项数次数过少时,错误相当的大,此时是高偏差情况;当项数次数过多时,训练集的误差变得非常小,呈现出过拟合的情况.但是交叉验证集的错误将急剧上升,此时的情况是高方差.</p>
-<p>直接描述就是:训练集误差小验证集误差大时,就是过拟合-高方差情况;</p>
-<h3 id="选择合适的正则化参数lambda"><a href="#选择合适的正则化参数lambda" class="headerlink" title="选择合适的正则化参数lambda"></a>选择合适的正则化参数lambda</h3><p>改变lambda时,训练集$J_{train}$与交叉验证集$J_{cv}$都会发生一定的变化.</p>
-<p>当参数过多过大时，后面的正则化项的值就会很大，因而导致$ J(\theta )$也变大，从而使这个预测方程得到更多的惩罚，使其像参数变量尽量小的地步靠拢。对正则化过程有影响的是lambda，当lambda数值大的时候，函数收到的惩罚更多，会更快地减少参数数值；当lambda为0的时候，函数则不会对参数进行正则化处理。</p>
-<p>如图所示</p>
-<p><img src="/images/pasted-59.png" alt="upload successful"></p>
-<p>当lambda过大时,会处于高偏差情况,$J_{train}$的值会很大,lambda值过小时会处于过拟合情况.</p>
-<p>因此,上图的左端对应着高方差,右端对应着高偏差问题,</p>
-<h3 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h3><p>用于判断算法的学习情况.可以判断此时处于高方差高偏差情况以对于算法进行修改.</p>
-<p>绘出$J_{train}(\theta )$与$J_{cv}(\theta )$的图像.</p>
-<p><img src="/images/pasted-60.png" alt="upload successful"></p>
-<p>上图为训练集大小与两个J的对应情况.</p>
-<p>当训练集过大时,$J_{train}$越来越难对与过大的训练集做出良好的拟合,因此在图上表现出m越大error越多.</p>
-<p>相反,当训练集大的时候,$J_{cv}$更能获得更好的泛化,即对新样品的适应更好,因此可以得到上述曲线.</p>
-<p>如果不使用多项式拟合而直接用一条直线,那么数据集的大小再大也于事无补,无法更加接近实际情况.此时$J_{train}$与$J_{cv}$会很接近,</p>
-<p><img src="/images/pasted-61.png" alt="upload successful"></p>
-<p>这种情况便是高偏差情况.</p>
-<p>反之,如果项数很大的话,学习曲线会如图所示:</p>
-<p><img src="/images/pasted-62.png" alt="upload successful"></p>
-<p>$J_{train}$与$J_{cv}$间会有很大的差距,这种情况是高方差.</p>
-<hr>
-<hr>
-<p>回到最开始的情况</p>
-<ol>
-<li><p>使用更大的训练集可以对于高方差的情况有所帮助(将学习曲线画出来可以看出)</p>
-</li>
-<li><p>使用更少的特征值可以修复一定的高方差情况.</p>
-</li>
-<li><p>使用更多的特征值可以修复高偏差情况</p>
-</li>
-<li><p>使用更高次幂的特征值可以修复高偏差情况</p>
-</li>
-<li><p>减少正则化参数可以修复高偏差</p>
-</li>
-<li><p>增加正则化参数可以修复高方差</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/03/爬虫python解析json与python下载图片/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/05/03/爬虫python解析json与python下载图片/" class="post-title-link" itemprop="url">爬虫python解析json与python下载图片</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-05-03 04:24:00" itemprop="dateCreated datePublished" datetime="2016-05-03T04:24:00+08:00">2016-05-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>目标:<a href="http://yun.kujiale.com/api/openfps?query=beijing&amp;start=1&amp;num=50" target="_blank" rel="noopener">http://yun.kujiale.com/api/openfps?query=beijing&amp;start=1&amp;num=50</a>  中的所有户型数据,将其户型图片下载到本地.</p>
-</blockquote>
-<p>目标中的数据以json形式存在,因此使用json.loads.</p>
-<p>全部代码如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> urllib </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">valifile</span><span class="params">(name)</span>:</span></span><br><span class="line">    rstr = <span class="string">r"[/\:*?"</span>&lt;&gt;|]<span class="string">"  # ';/:*?"</span>&lt;&gt;|<span class="string">';</span></span><br><span class="line"><span class="string">    valiname = re.sub(rstr, "", name)</span></span><br><span class="line"><span class="string">    return valiname</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">def getkjlimages():</span></span><br><span class="line"><span class="string">	for i in range(0,1000000):</span></span><br><span class="line"><span class="string">		print(i)</span></span><br><span class="line"><span class="string">		i = str(i*6)</span></span><br><span class="line">		surl = ';http://yun.kujiale.com/api/openfps?query=beijing&amp;amp;start=';+i+';&amp;amp;num=6';</span><br><span class="line">		ret=requests.get(url=surl) </span><br><span class="line">		ret.encoding=<span class="string">';utf-8'</span>;</span><br><span class="line">		kjl = json.loads(ret.text)</span><br><span class="line">		<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">49</span>):</span><br><span class="line">			itmes = kjl[<span class="string">';obsExFps'</span>;][j]</span><br><span class="line">			name = json.dumps(itmes[<span class="string">';name'</span>;])[<span class="number">1</span>:<span class="number">-1</span>].decode(<span class="string">"unicode-escape"</span>)</span><br><span class="line">			src = json.dumps(itmes[<span class="string">';pics'</span>;])[<span class="number">1</span>:<span class="number">-1</span>]</span><br><span class="line">			<span class="comment">##name和src后面加了[1:-1]的原因是json数据中包含了前后两个引号,要将其去掉</span></span><br><span class="line">			print(<span class="string">';img_src='</span>;+json.dumps(itmes[<span class="string">';pics'</span>;]))</span><br><span class="line">			img = urllib.urlopen(src).read()</span><br><span class="line">			f = file(<span class="string">';imgs/'</span>;+validateTitle(name)+<span class="string">';.jpg'</span>;,<span class="string">"wb"</span>)</span><br><span class="line">			f.write(img)</span><br><span class="line">			f.close</span><br><span class="line">getkjlimages()</span><br></pre></td></tr></table></figure></p>
-<p>其中,json.dumps出来的字符串为 uxxxx形式,需要用decode(“unicode-escape”)进行转换成中文.另外,由于爬下来的name要直接用于文件名,其中有””等符号,因此需要将name合法化.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">valifile</span><span class="params">(name)</span>:</span></span><br><span class="line">    rstr = <span class="string">r"[/\:*?"</span>&lt;&gt;|]<span class="string">"  # ';/:*?"</span>&lt;&gt;|<span class="string">';</span></span><br><span class="line"><span class="string">    valiname = re.sub(rstr, "", name)</span></span><br><span class="line"><span class="string">    return valiname</span></span><br></pre></td></tr></table></figure></p>
-<p>通过以上valifile可以将文件名在windows下合法化.</p>
-<p>运行结果:</p>
-<p><img src="/images/pasted-55.png" alt="upload successful"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/29/requests-pyquery爬虫体验/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/04/29/requests-pyquery爬虫体验/" class="post-title-link" itemprop="url">requests+pyquery爬虫体验</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-04-29 08:07:00" itemprop="dateCreated datePublished" datetime="2016-04-29T08:07:00+08:00">2016-04-29</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>目标网站:<a href="http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx" target="_blank" rel="noopener">http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx</a> </p>
-<p>需要将所有数据爬下放到数据库中.中途遇到了各种编码问题,因此使用了requests获取页面.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> MySQLdb</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pyq</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(text)</span>:</span></span><br><span class="line">    m = hashlib.md5()</span><br><span class="line">    m.update(text.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">    <span class="keyword">return</span> m.hexdigest()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getandupload</span><span class="params">()</span>:</span></span><br><span class="line">	conn=MySQLdb.connect(host=<span class="string">'localhost'</span>,user=<span class="string">'root'</span>,passwd=<span class="string">''</span>,port=<span class="number">3306</span>,charset=<span class="string">'utf8'</span>)</span><br><span class="line">	cur=conn.cursor()</span><br><span class="line">	conn.select_db(<span class="string">'pytest'</span>)</span><br><span class="line">	ret=requests.get(url=<span class="string">"http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx"</span>) </span><br><span class="line">	doc=pyq(ret.text)</span><br><span class="line">	date = re.findall(<span class="string">r'(w*[0-9]+)w*'</span>,doc.find(<span class="string">'#Label0'</span>).text())</span><br><span class="line">	<span class="comment">#正则,将数字提取出来(为了将yyyy年mm月dd日改成yyyy/mm/dd)</span></span><br><span class="line">	date = date[<span class="number">0</span>]+<span class="string">'/'</span>+date[<span class="number">1</span>]+<span class="string">'/'</span>+date[<span class="number">2</span>]</span><br><span class="line">	table = pyq(pyq(doc.find(<span class="string">'#marqueebox'</span>)).find(<span class="string">'table'</span>))</span><br><span class="line">	stations = re.findall(<span class="string">r'&lt;td style="width:126px"&gt;(.+?)&lt;/td&gt;'</span>,table.html())</span><br><span class="line">	aqis = re.findall(<span class="string">r'&lt;td style="width:90px"&gt;(.+?)&lt;/td&gt;'</span>,table.html())</span><br><span class="line">	<span class="comment">#通过正则将html代码中需要的数据提取出来并存在数组中.</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">35</span>):</span><br><span class="line">		value=[md5(date+stations[i][<span class="number">1</span>:]),date,stations[i][<span class="number">1</span>:],aqis[<span class="number">2</span>*i]]</span><br><span class="line">		cur.execute(<span class="string">'insert ignore into aqi_bjmemc values(%s,%s,%s,%s)'</span>,value)</span><br><span class="line">	        <span class="comment">#设置了md5id为主键,因此当传重复数据的时候md5id重复,避免了重复上传数据.</span></span><br><span class="line">	conn.commit()</span><br><span class="line">	cur.close()</span><br><span class="line">	conn.close()</span><br><span class="line">getandupload()</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/27/python对于时间（hh-mm）进行循环递增/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/04/27/python对于时间（hh-mm）进行循环递增/" class="post-title-link" itemprop="url">python对于时间（hh:mm）进行循环递增</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-04-27 02:52:00" itemprop="dateCreated datePublished" datetime="2016-04-27T02:52:00+08:00">2016-04-27</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>某数据写入数据表时，其中一个字段是time，具体内容是从00:00一直到23:30。因此打算用python对csv文件进行逐行处理，新建time列，其中的数据按照半小时递增。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment">#对于时间进行处理需要引入time</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">importcsv</span><span class="params">(filename,outfilename)</span>:</span></span><br><span class="line">    print(filename)</span><br><span class="line">    filenamerow = filename.split(<span class="string">'-'</span>)</span><br><span class="line">    filenamerow[<span class="number">2</span>] = filenamerow[<span class="number">2</span>][:<span class="number">-4</span>]</span><br><span class="line">    date = filenamerow[<span class="number">1</span>]</span><br><span class="line">    type = filenamerow[<span class="number">2</span>]</span><br><span class="line">    lctime = <span class="number">1325347200.0</span></span><br><span class="line">    <span class="comment">#设定一个时间戳，对应的是某一天的00:00</span></span><br><span class="line">    g=file(type+ <span class="string">'-'</span> +date+ <span class="string">'.csv'</span>,<span class="string">'w+'</span>)</span><br><span class="line">    <span class="keyword">with</span> open(filename, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        line = f.readline()</span><br><span class="line">        <span class="keyword">while</span> line:</span><br><span class="line">            line = line.replace(<span class="string">'n'</span>,<span class="string">''</span>)</span><br><span class="line">            line = line.replace(<span class="string">'r'</span>,<span class="string">''</span>)</span><br><span class="line">            line = line + <span class="string">',,'</span></span><br><span class="line">            row = line.split(<span class="string">','</span>)</span><br><span class="line">            row[<span class="number">2</span>] = row[<span class="number">0</span>]</span><br><span class="line">            x = time.localtime(lctime)</span><br><span class="line">            <span class="comment">#对时间戳进行处理,得到</span></span><br><span class="line">            <span class="comment">#time.struct_time(tm_year=2012, tm_mon=1, tm_mday=1, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=6, tm_yday=1, tm_isdst=0)</span></span><br><span class="line">            row[<span class="number">1</span>] = time.strftime(<span class="string">'%H:%M'</span>,x)</span><br><span class="line">            <span class="comment">#对以上的时间进行格式化并写入第二列。格式为HH:MM</span></span><br><span class="line">            row[<span class="number">0</span>] = date</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(row)<span class="number">-1</span>):</span><br><span class="line">                row[i] = row[i] + <span class="string">','</span></span><br><span class="line">            g.writelines(row)</span><br><span class="line">            g.writelines(<span class="string">'n'</span>)</span><br><span class="line">            lctime = lctime + <span class="number">1800.0</span></span><br><span class="line">            <span class="comment">#时间戳加上1800，相当于加上了1800s = 30min</span></span><br><span class="line">            line = f.readline()</span><br><span class="line">    g.close()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ListFiles</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(data_folder):</span><br><span class="line">        <span class="keyword">if</span> i.endswith(<span class="string">'.csv'</span>):</span><br><span class="line">            importcsv(i,i)</span><br></pre></td></tr></table></figure></p>
-<p>python中时间戳都是以s为单位，且格式为<strong>浮点</strong></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2120,7 +2322,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">146</span>
+                    <span class="site-state-item-count">152</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2522,7 +2724,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">179</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">187</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

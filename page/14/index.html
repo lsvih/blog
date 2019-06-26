@@ -368,6 +368,1104 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/20/Vuejs列表与过滤器的简单应用/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/04/20/Vuejs列表与过滤器的简单应用/" class="post-title-link" itemprop="url">Vuejs列表与过滤器的简单应用</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-04-20 06:51:00" itemprop="dateCreated datePublished" datetime="2016-04-20T06:51:00+08:00">2016-04-20</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>设置一组json数据<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> DATA = &#123;</span><br><span class="line">            <span class="string">"datas"</span>: [&#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类一的第一项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">2</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类一的第二项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">3</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">1</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类一的第三项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">4</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">2</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类二的第一项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">5</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">2</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类二的第二项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">6</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">3</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类三的第一项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">7</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">3</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类三的第二项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">8</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">3</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类三的第三项"</span></span><br><span class="line">            &#125;, &#123;</span><br><span class="line">                <span class="string">"id"</span>: <span class="number">9</span>,</span><br><span class="line">                <span class="string">"type"</span>: <span class="number">3</span>,</span><br><span class="line">                <span class="string">"data"</span>: <span class="string">"这是分类三的第四项"</span></span><br><span class="line">            &#125;]</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<p>并进行列表的双向绑定，加上过滤器选择type为1的项。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">            el:<span class="string">'#type-1'</span>,</span><br><span class="line">            data:DATA</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"type-1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"data in datas|filterBy '1' in 'type'"</span>&gt;</span>&#123;&#123;data.data&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>可以看到结果是</p>
+<p><img src="/ueditor/php/upload/image/20160420/1461132398638230.png" alt="blob.png" title="1461132398638230.png"></p>
+<p>显然过滤器发挥了作用。在vuejs源码中可以看到filterby函数的代码如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Filter filter for arrays</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @param &#123;String&#125; search</span></span><br><span class="line"><span class="comment">   * @param &#123;String&#125; [delimiter]</span></span><br><span class="line"><span class="comment">   * @param &#123;String&#125; ...dataKeys</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">filterBy</span>(<span class="params">arr, search, delimiter</span>)</span>&#123;</span><br><span class="line">    arr = convertArray(arr);</span><br><span class="line">    <span class="keyword">if</span> (search == <span class="literal">null</span>)&#123;</span><br><span class="line">      <span class="keyword">return</span> arr;</span><br><span class="line">    &#125; <span class="comment">//如果没有指定过滤中搜索的值，则将arr原样返回</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> search === <span class="string">'function'</span>)&#123; <span class="comment">//“===”means 严格等于</span></span><br><span class="line">      <span class="keyword">return</span> arr.filter(search); <span class="comment">//在arr中直接用原生filter过滤出search的项</span></span><br><span class="line">    &#125;</span><br><span class="line">    search = (<span class="string">''</span> + search).toLowerCase();<span class="comment">//toLowerCase 将String转换为小写字符串</span></span><br><span class="line">    <span class="keyword">var</span> n = delimiter === <span class="string">'in'</span> ? <span class="number">3</span> : <span class="number">2</span>;<span class="comment">//x?y:z 若x为true,结果显示y,若x为false,则结果显示z。</span></span><br><span class="line">    <span class="comment">//如果delimiter是in,则n=3，否则n=2</span></span><br><span class="line">    <span class="keyword">var</span> keys=toArray(<span class="built_in">arguments</span>,n).reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev,cur</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> prev.concat(cur);<span class="comment">//concat用于连接数组的值或具体的值。</span></span><br><span class="line">    &#125;,[]);<span class="comment">//见reduce用法</span></span><br><span class="line">    <span class="keyword">var</span> res = [];</span><br><span class="line">    <span class="keyword">var</span> item,key,val,j;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, l = arr.length; i &lt; l; i++) &#123;<span class="comment">//遍历arr</span></span><br><span class="line">      item=arr[i];</span><br><span class="line">      val=item&amp;&amp;item.$value||item;</span><br><span class="line">      j=keys.length;</span><br><span class="line">      <span class="keyword">if</span>(j)&#123;</span><br><span class="line">        <span class="keyword">while</span> (j--) &#123;</span><br><span class="line">          key = keys[j];</span><br><span class="line">          <span class="keyword">if</span> (key === <span class="string">'$key'</span> &amp;&amp; contains$<span class="number">1</span>(item.$key, search) || contains$<span class="number">1</span>(getPath(val,key),search)) &#123;</span><br><span class="line">          <span class="comment">//如果在item中的delimiter找到了search，则将这个item放到res数组中</span></span><br><span class="line">            res.push(item);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span> (contains$<span class="number">1</span>(item,search)) &#123;<span class="comment">//遍历item各级搜索search,如果有则放入res</span></span><br><span class="line">        res.push(item);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;<span class="comment">//返回结果</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * String contain helper</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @param &#123;*&#125; val</span></span><br><span class="line"><span class="comment">   * @param &#123;String&#125; search</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">contains$1</span>(<span class="params">val, search</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i;</span><br><span class="line">    <span class="keyword">if</span> (isPlainObject(val)) &#123;</span><br><span class="line">      <span class="keyword">var</span> keys = <span class="built_in">Object</span>.keys(val);</span><br><span class="line">      i = keys.length;</span><br><span class="line">      <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (contains$<span class="number">1</span>(val[keys[i]], search)) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (isArray(val)) &#123;</span><br><span class="line">      i = val.length;</span><br><span class="line">      <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (contains$<span class="number">1</span>(val[i], search)) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (val != <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> val.toString().toLowerCase().indexOf(search) &gt; <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/20/js中-与-的区别/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/04/20/js中-与-的区别/" class="post-title-link" itemprop="url">js中==与===的区别</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-04-20 06:23:00" itemprop="dateCreated datePublished" datetime="2016-04-20T06:23:00+08:00">2016-04-20</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>转自<a href="http://blog.csdn.net/wxdzxl/article/details/8502119" target="_blank" rel="noopener">http://blog.csdn.net/wxdzxl/article/details/8502119</a></p>
+</blockquote>
+<p>首先，== equality 等同，=== identity 恒等。<br>==， 两边值类型不同的时候，要先进行类型转换，再比较。<br>===，不做类型转换，类型不同的一定不等。</p>
+<p>下面分别说明：<br>先说 ===，这个比较简单。下面的规则用来判断两个值是否===相等：<br>1、如果类型不同，就[不相等]<br>2、如果两个都是数值，并且是同一个值，那么[相等]；(！例外)的是，如果其中至少一个是NaN，那么[不相等]。（判断一个值是否是NaN，只能用isNaN()来判断）<br>3、如果两个都是字符串，每个位置的字符都一样，那么[相等]；否则[不相等]。<br>4、如果两个值都是true，或者都是false，那么[相等]。<br>5、如果两个值都引用同一个对象或函数，那么[相等]；否则[不相等]。<br>6、如果两个值都是null，或者都是undefined，那么[相等]。<br>再说 ==，根据以下规则：<br>1、如果两个值类型相同，进行 === 比较。<br>2、如果两个值类型不同，他们可能相等。根据下面规则进行类型转换再比较：<br>  a、如果一个是null、一个是undefined，那么[相等]。<br>  b、如果一个是字符串，一个是数值，把字符串转换成数值再进行比较。<br>  c、如果任一值是 true，把它转换成 1 再比较；如果任一值是 false，把它转换成 0 再比较。<br>  d、如果一个是对象，另一个是数值或字符串，把对象转换成基础类型的值再比较。对象转换成基础类型，利用它的toString或者valueOf方法。js核心内置类，会尝试valueOf先于toString；例外的是Date，Date利用的是toString转换。非js核心的对象，令说（比较麻烦，我也不大懂）<br>  e、任何其他组合，都[不相等]。</p>
+<p>举例：<br>“1” == true<br> 类型不等，true会先转换成数值 1，现在变成 “1” == 1，再把”1”转换成 1，比较 1 == 1， 相等。</p>
+<p>= 赋值运算符<br>== 等于<br>=== 严格等于<br>例：<br>var a = 3;<br>var b = “3”;</p>
+<p>a==b 返回 true<br>a===b 返回 false</p>
+<p>因为a,b的类型不一样<br>===用来进行严格的比较判断</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/18/用js解决在url中传输带问号的url的问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/04/18/用js解决在url中传输带问号的url的问题/" class="post-title-link" itemprop="url">用js解决在url中传输带问号的url的问题</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-04-18 06:25:00" itemprop="dateCreated datePublished" datetime="2016-04-18T06:25:00+08:00">2016-04-18</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在业务中使用了如下逻辑：访问某页面时需要登陆，如果未登陆则跳转至登陆页面，登陆后返回这个页面。</p>
+<p>相关js如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!localStorage.userinfo) &#123;</span><br><span class="line">	<span class="built_in">window</span>.location.href = <span class="string">"login.html?lastpage="</span> + <span class="built_in">window</span>.location.href;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	xxx;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在login.html中有如下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lastpage;</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">window</span>.location.search;</span><br><span class="line"><span class="keyword">var</span> loc = url.substring(url.lastIndexOf(<span class="string">'='</span>) + <span class="number">1</span>, url.length);</span><br><span class="line"><span class="keyword">if</span> (loc == <span class="literal">null</span> || loc == <span class="string">""</span>) &#123;</span><br><span class="line">	lastpage = <span class="string">"usercenter.html"</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	lastpage = loc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在登陆的ajax的callback success中有<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = lastpage;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>然而，在实际的使用中出现了问题：在访问类似 <code>http://xxx.com/product.html?id=1</code> 时，发现最终跳转到的页面是 <code>http://xxx.com/1</code>，自然出现了 404 错误。后面发现是在 <code>login.html?lastpage=http://xxx.com/product.html?id=1</code> 的时候，程序直接将 1 看成了 lastpage。</p>
+<p>有很多种方式可以解决问题，例如改进 login 中获取 url 参数的 js 等，但是我希望能够在之后也能使 url 不出现类似的错误，因此想到了对 url 进行转码。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = <span class="string">"login.html?lastpage="</span> + <span class="built_in">encodeURIComponent</span>(<span class="built_in">window</span>.location.href);</span><br></pre></td></tr></table></figure></p>
+<p>可以将<br><code>http://xxx.com/product.html?id=1</code><br>转换成<br><code>http%3A%2F%2Fxxx.com%2Fproduct.html%3Fid%3D1</code></p>
+<p>可是此时又会发现最终访问到的页面地址是<br><code>http://xxx.com/http%3A%2F%2Fxxx.com%2Fproduct.html%3Fid%3D1</code></p>
+<p>看来是浏览器将已经转码的url当成一个文件访问了。因此，在 login 的 callback 里对其重新进行解码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = <span class="built_in">unescape</span>(lastpage);</span><br></pre></td></tr></table></figure>
+<p>可以将转码过的url还原。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/18/在Centos下设置apache的虚拟目录/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/04/18/在Centos下设置apache的虚拟目录/" class="post-title-link" itemprop="url">在Centos下设置apache的虚拟目录</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-04-18 05:15:00" itemprop="dateCreated datePublished" datetime="2016-04-18T05:15:00+08:00">2016-04-18</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ol>
+<li>登陆root</li>
+<li>更改httpd.conf<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/httpd/conf/http.conf</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>使用vi进行修改。用到的快捷键:<br>跳到文件第一行：gg<br>跳到文件最后一行：shift + g</p>
+<ol>
+<li>加入内容：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VirtualHost</span> <span class="attr">xxx.com</span>&gt;</span></span><br><span class="line">    ServerAdmin root@localhost</span><br><span class="line">    DocumentRoot /var/www/html/xxx</span><br><span class="line">    ServerName xxx.com</span><br><span class="line">        <span class="tag">&lt;<span class="name">Directory</span> /<span class="attr">var</span>/<span class="attr">www</span>/<span class="attr">html</span>/<span class="attr">xxxx</span>&gt;</span></span><br><span class="line">                Require all granted</span><br><span class="line">        <span class="tag">&lt;/<span class="name">Directory</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">VirtualHost</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>重启apache<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service httpd restart</span><br></pre></td></tr></table></figure></p>
+<p>然后即可设置xxx.com的域名解析到此服务器。</p>
+<blockquote>
+<p>使用过程中发现设置xxx.com的虚拟目录后，xxx.com能够成功解析到服务器，然而www.xxx.com不能成功解析，重新操作了一般，又添加了一个www.xxx.com的虚拟目录后能够成功解析。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/12/机器学习学习笔记（十）神经网络前向传播/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/04/12/机器学习学习笔记（十）神经网络前向传播/" class="post-title-link" itemprop="url">机器学习学习笔记（十）神经网络前向传播</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-04-12 13:42:00" itemprop="dateCreated datePublished" datetime="2016-04-12T13:42:00+08:00">2016-04-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="/images/pasted-45.png" alt="upload successful"></p>
+<p>如同人的神经元一般，由输入端-神经元-输出这样一系列过程的信息处理方式，可以处理较为复杂的信息，并有一定的学习功能。</p>
+<p>神经网络一般分为：输入层、隐藏层、输出层。对于用户来说，只有输出层的输出是可知的，隐藏层可以完成许多间接的复杂运算，因此神经网络的计算复杂度比单层结构复杂的多。</p>
+<p><img src="/images/pasted-46.png" alt="upload successful"></p>
+<hr>
+<p>上图为一个有两层隐藏层的典型的神经网络,可以看到其基本结构.可以发现任何一个节点相当于收到上一层所有节点的影响.每个节点影响的程度可以以权值表示。</p>
+<p>以下面一个简单的神经网络举例，</p>
+<p><img src="/images/pasted-47.png" alt="upload successful"></p>
+<p>隐藏层(a(2)1,a(2)2,a(2)3)的值的计算为：</p>
+<script type="math/tex; mode=display">a^{(2)}_1 = g(\theta ^{(1)}_{10}x_0 + \theta ^{(1)}_{11}x_1 + \theta ^{(1)}_{12}x_2 + \theta ^{(1)}_{13}x_3)</script><script type="math/tex; mode=display">a^{(2)}_2 = g(\theta ^{(1)}_{20}x_0 + \theta ^{(1)}_{21}x_1 + \theta ^{(1)}_{22}x_2 + \theta ^{(1)}_{23}x_3)</script><script type="math/tex; mode=display">a^{(2)}_3 = g(\theta ^{(1)}_{30}x_0 + \theta ^{(1)}_{31}x_1 + \theta ^{(1)}_{32}x_2 + \theta ^{(1)}_{33}x_3)</script><p>$\theta$即表示相应层元素受到上一层“激励”的权值。（x0为加上的额外的偏度单元）</p>
+<p>g为S函数（解决逻辑回归问题）</p>
+<p>同理，输出层的值为</p>
+<script type="math/tex; mode=display">h_\theta(x)=a^{(3)}_1 = g(\theta ^{(2)}_{10}a_0 + \theta ^{(2)}_{11}a_1 + \theta ^{(2)}_{12}a_2 + \theta ^{(2)}_{13}a_3)</script><p>为前一层（隐藏层）的所以元素乘对应的权值的和的对应函数值。</p>
+<hr>
+<script type="math/tex; mode=display">a^{(2)}_1 = g(\theta ^{(1)}_{10}x_0 + \theta ^{(1)}_{11}x_1 + \theta ^{(1)}_{12}x_2 + \theta ^{(1)}_{13}x_3)</script><script type="math/tex; mode=display">a^{(2)}_2 = g(\theta ^{(1)}_{20}x_0 + \theta ^{(1)}_{21}x_1 + \theta ^{(1)}_{22}x_2 + \theta ^{(1)}_{23}x_3)</script><script type="math/tex; mode=display">a^{(2)}_3 = g(\theta ^{(1)}_{30}x_0 + \theta ^{(1)}_{31}x_1 + \theta ^{(1)}_{32}x_2 + \theta ^{(1)}_{33}x_3)</script><p>对于以上式子可以看成矩阵相乘的形式，</p>
+<script type="math/tex; mode=display">x=\begin{bmatrix}x_0\ x_1\ x_2\ x_3\end{bmatrix}</script><script type="math/tex; mode=display">z^{(2)}=\begin{bmatrix}z_1^{(2)}\ z_2^{(2)}\ z_3^{(2)}\end{bmatrix}</script><script type="math/tex; mode=display">z^{(2)} = \theta^{(1)}x</script><script type="math/tex; mode=display">a^{(2)}=g(z^{(2)})</script><p>z(2)为第二层元素值的向量形式。\theta(1)为输入层对应的权值的向量形式。</p>
+<script type="math/tex; mode=display">z^{(3)} = \theta^{(2)}a^{(2)}</script><script type="math/tex; mode=display">h_\theta(x)=a^{(3)}=g(z^{(3)})</script><p>\theta(2)为隐藏层对应权值的向量形式。</p>
+<blockquote>
+<p>神经网络中这种由训练输入送入网络中，获得激励响应的行为称为“前向传播”</p>
+</blockquote>
+<hr>
+<h3 id="神经网络解决实际问题"><a href="#神经网络解决实际问题" class="headerlink" title="神经网络解决实际问题"></a>神经网络解决实际问题</h3><p>例如下表：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>x1</th>
+<th>x2</th>
+<th>y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在神经网络中，可以以下形式表示</p>
+<p><img src="/images/pasted-48.png" alt="upload successful"></p>
+<p>计算一下，发现x1与x2等于0时z=-30，x1与x2等于1时z=10,x1与x2不相等时z=-10.</p>
+<p>将其放到S函数中，</p>
+<p><img src="/images/pasted-31.png" alt="upload successful"></p>
+<p>z=-30与z=-10时g(z)趋近与0，z=10时趋近与1，可以表示上表的值的关系。</p>
+<p>可以用y=x1 AND x2 （与）表示这个关系。</p>
+<hr>
+<p>下表用神经网络表示：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>x1</th>
+<th>x2</th>
+<th>y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这种“异或”问题可以看成一个“与”与一个“或”问题的结合，</p>
+<p><img src="/images/pasted-49.png" alt="upload successful"></p>
+<p>（NOT）</p>
+<p><img src="/images/pasted-50.png" alt="upload successful"></p>
+<p>(AND)</p>
+<p>(NOT x1)AND(NOT x2)</p>
+<p><img src="/images/pasted-51.png" alt="upload successful"></p>
+<p>可以得到上表内容。</p>
+<p>以上为神经网络表示“异或”运算。</p>
+<p>必须要两层网络才能解决异或运算问题。因为1层网络放在坐标图上可以看成是画了一条直线，而异或问题放在图上是这样的：</p>
+<p><img src="/images/pasted-52.png" alt="upload successful"></p>
+<p>不难发现没有一条直线能够完美地分开两类点。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/12/python批量处理csv文件/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/04/12/python批量处理csv文件/" class="post-title-link" itemprop="url">python批量处理csv文件</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-04-12 12:27:00" itemprop="dateCreated datePublished" datetime="2016-04-12T12:27:00+08:00">2016-04-12</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-  </span></span><br><span class="line"><span class="comment">#encoding:utf-8</span></span><br></pre></td></tr></table></figure>
+<p>为了使处理文件时用 utf-8 编码，做如上编码声明</p>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(text)</span>:</span></span><br><span class="line">    m = hashlib.md5()</span><br><span class="line">    m.update(text)</span><br><span class="line">    <span class="keyword">return</span> m.hexdigest()</span><br></pre></td></tr></table></figure>
+<p>利用 hashlib 进行 md5 编码</p>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">import_points_csv</span><span class="params">(filename,outfilename)</span>:</span></span><br><span class="line">    print(filename)</span><br><span class="line">    g=file(outfilename,&amp;quot;w+&amp;quot;)</span><br><span class="line">    <span class="comment">#使用w+(写入模式)打开文件outfilename</span></span><br><span class="line">    <span class="keyword">with</span> open(filename, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="comment">#读取filename</span></span><br><span class="line">        line = f.readline()</span><br><span class="line">        <span class="comment">#逐行读取f。因为要处理csv的列因此逐行处理</span></span><br><span class="line">        <span class="keyword">while</span> line:</span><br><span class="line">            line = line.replace(<span class="string">'n'</span>,<span class="string">''</span>)</span><br><span class="line">            line = line.replace(<span class="string">'r'</span>,<span class="string">''</span>)</span><br><span class="line">            <span class="comment">#处理每行的字符串，使其为单纯的一行以逗号分隔的文字</span></span><br><span class="line">            row = line.split(<span class="string">','</span>)</span><br><span class="line">            <span class="comment">#用逗号作为分隔符，对字符串line进行切片，以数组的形式存入row中</span></span><br><span class="line">            state = row[<span class="number">0</span>].strip()</span><br><span class="line">            date = row[<span class="number">20</span>]</span><br><span class="line">            thistype = <span class="string">'国控'</span></span><br><span class="line">            print(thistype)</span><br><span class="line">            name = row[<span class="number">1</span>].strip()</span><br><span class="line">            stationid = md5(name+state+thistype)</span><br><span class="line">            row[<span class="number">21</span>] = stationid</span><br><span class="line">            md5id = md5(date+stationid)</span><br><span class="line">            row[<span class="number">22</span>] = md5id</span><br><span class="line">            row[<span class="number">1</span>]</span><br><span class="line">            <span class="comment">#对数组row进行处理。</span></span><br><span class="line">            print(row)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(row)<span class="number">-1</span>):</span><br><span class="line">                row[i] = row[i] + <span class="string">','</span></span><br><span class="line">            <span class="comment">#对row进行拼接，分隔符为逗号</span></span><br><span class="line">            g.writelines(row)</span><br><span class="line">            g.writelines(<span class="string">'n'</span>)</span><br><span class="line">            <span class="comment">#逐行写入文件，每行的最后加上一个换行符。</span></span><br><span class="line">            line = f.readline()</span><br><span class="line">    g.close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import_points_csv(<span class="string">'国控2.csv'</span>.decode(<span class="string">'utf-8'</span>).encode(<span class="string">'gbk'</span>),<span class="string">'contry_2.csv'</span>)</span><br></pre></td></tr></table></figure>
+<p>由于文件名是中文，因此要将其编码才能被程序读取，不然在运行时显示文件名为乱码且无法读取</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/03/引用Js文件通过script中的src传值/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1059,1058 +2157,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/26/机器学习学习笔记（七）分类问题/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/03/26/机器学习学习笔记（七）分类问题/" class="post-title-link" itemprop="url">机器学习学习笔记（七）分类问题</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-03-26 22:21:00" itemprop="dateCreated datePublished" datetime="2016-03-26T22:21:00+08:00">2016-03-26</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>举例：电子邮件的垃圾邮件判断；在线翻译的正确与否；肿瘤的良性或恶性等。</p>
-<p>共性：都是要判断一个集y,</p>
-<script type="math/tex; mode=display">y \in \{0,1\}</script><p>y=0被称为负类，y=1被称为正类。通常上来说负类表示缺少某样东西(例如缺少而行肿瘤)</p>
-<p>实际情况多为多类分类（y为3或更多）</p>
-<hr>
-<p>实际分类举例：</p>
-<p><img src="/images/pasted-30.png" alt="upload successful"></p>
-<p>尝试用线性回归拟合这个训练集，发现通常会得到不好的预测结果。</p>
-<p>在二元分类中，线性回归预测方法并不适用。因为分类集只有0或1，而线性回归的预测往往会出现小于0与大于1出现。</p>
-<hr>
-<p>学习新算法：逻辑回归算法(Logistic Regression)：</p>
-<script type="math/tex; mode=display">0 \leq h_\theta(x)\leq 1</script><p>输出值不会小于0，也不会大于1.这个算法是一种分类算法，适用于y标签离散的情况。</p>
-<script type="math/tex; mode=display">h_\theta=g(\theta^T x)</script><script type="math/tex; mode=display">g(z)=\frac{1}{1+e^{-z}}</script><p>这个函数被称为S型函数。函数图形如下</p>
-<p><img src="/images/pasted-31.png" alt="upload successful"></p>
-<p>g(z)在z趋近负无穷的时候趋近于0，z趋近正无穷的时候趋近与1.</p>
-<p>使用这个假设函数来拟合离散的事件。</p>
-<p>由于二元分类问题只有0或1，因此可以与概率问题等同考虑。例如上面病人得肿瘤的例子，当知道他的肿瘤大小后，通过逻辑回归算法得到他得恶性肿瘤的概率为70%那么他得良性肿瘤的概率就是30%。</p>
-<hr>
-<h3 id="概念：决策边界-decision-boundary"><a href="#概念：决策边界-decision-boundary" class="headerlink" title="概念：决策边界(decision boundary)"></a>概念：决策边界(decision boundary)</h3><p>对于S行函数来说,当输出y=1的概率大于等于0.5时，可以预测输出为1；概率小于0.5时，预测输出为0。</p>
-<p>根据图像可以发现z&gt;0是g(z)&lt;0.5。</p>
-<p>因此$\theta^T x$大于等于0时就能预测输出为1，反之亦然。</p>
-<p>决策边界将样品集分为了两个部分，一个部分预测为1一个部分预测为0.</p>
-<p>决策边界是假设函数本身的属性，而不是数据集的属性。它包括假设函数的几个参数。</p>
-<p>多项式逻辑回归。与单项式相同，只是在式中多加上了多次项。举例：</p>
-<p><img src="/images/pasted-32.png" alt="upload successful"></p>
-<p>当$ -1+x^2_1+x^2_2 \geq 0 $时可以预测y=1</p>
-<p>它的决策边界是以原点为圆心，半径为1的圆。因此圆外的一切样本都将被预测为0.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/25/dedecms栏目设为外部链接不在菜单显示/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/03/25/dedecms栏目设为外部链接不在菜单显示/" class="post-title-link" itemprop="url">dedecms栏目设为外部链接不在菜单显示</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-03-25 17:01:00" itemprop="dateCreated datePublished" datetime="2016-03-25T17:01:00+08:00">2016-03-25</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在include/tag/lib/channel/artlist.lib.php中找到67行</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$tpsql = <span class="string">" reid=0 AND ispart&lt;&gt;2 AND ishidden&lt;&gt;1 AND channeltype&gt;0 "</span>;</span><br></pre></td></tr></table></figure>
-<p>改成<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$tpsql = <span class="string">" reid=0 AND ishidden&lt;&gt;1 AND channeltype&gt;0 "</span>;</span><br></pre></td></tr></table></figure></p>
-<p>即可</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/24/单变量线性回归的预测方程、代价函数与梯度下降/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/03/24/单变量线性回归的预测方程、代价函数与梯度下降/" class="post-title-link" itemprop="url">单变量线性回归的预测方程、代价函数与梯度下降</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-03-24 15:26:00" itemprop="dateCreated datePublished" datetime="2016-03-24T15:26:00+08:00">2016-03-24</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>此代码是未进行向量化的</p>
-</blockquote>
-<p>代价函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function J = computeCost(X, y, theta)</span><br><span class="line">m = length(y); % number of training examples</span><br><span class="line">J = 0;</span><br><span class="line">for i=1:m</span><br><span class="line">J += (theta(1)+ theta(2)*X(i,2)-y(i))^2;</span><br><span class="line">end</span><br><span class="line">J = J/(2*m);</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
-<p>梯度下降<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function [theta, J_history] = gradientDescent(X, y, theta, alpha, num_iters)</span><br><span class="line">m = length(y);</span><br><span class="line">J_history = zeros(num_iters, 1);</span><br><span class="line">for iter = 1:num_iters</span><br><span class="line">k = 0;</span><br><span class="line">o = 0;</span><br><span class="line">for i=1:m</span><br><span class="line">  k +=(theta(1)+ theta(2).*X(i,2)-y(i));</span><br><span class="line">  o +=(theta(1)+ theta(2).*X(i,2)-y(i)).*X(i,2);</span><br><span class="line">end</span><br><span class="line">    theta(1) -= (alpha/m).* k;</span><br><span class="line">    theta(2) -= (alpha/m).* o;</span><br><span class="line">    J_history(iter) = computeCost(X, y, theta);</span><br><span class="line">end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
-<p>运行结果</p>
-<p><img src="/images/pasted-27.png" alt="upload successful"></p>
-<p><img src="/images/pasted-28.png" alt="upload successful"></p>
-<p><img src="/images/pasted-29.png" alt="upload successful"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/24/取反符号的运用方法/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/03/24/取反符号的运用方法/" class="post-title-link" itemprop="url">取反符号的运用方法</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-03-24 09:57:00" itemprop="dateCreated datePublished" datetime="2016-03-24T09:57:00+08:00">2016-03-24</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>常为javascript中的<code>indexOf</code>之类的函数返回值”-1”纠结，现用上取反符号</p>
-<p>对于javascript来说，取反符号的运算过程如下：首先将对取反的数值进行二进制转换，用0在数前补满32位；</p>
-<p>然后在32位二进制中按位取反，即1变0，0变1。如果取反的数是正数，则取反后32位二进制数第一位为负；反之亦然。总之，要对32位二进制数进行转换十进制负数的过程（先反码，加上1，在数前加上负号）</p>
-<p>实际例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(~<span class="number">2</span>)</span><br><span class="line"><span class="comment">//2的二进制为10</span></span><br><span class="line"><span class="comment">//补满32位&amp;nbsp;00000000000000000000000000000010</span></span><br><span class="line"><span class="comment">//反码，变成11111111111111111111111111111101</span></span><br><span class="line"><span class="comment">//第一位是1，因此转换成10进制时要反码</span></span><br><span class="line"><span class="comment">//00000000000000000000000000000010</span></span><br><span class="line"><span class="comment">//加1，换为10进制，在数前加上负号，得-3</span></span><br><span class="line"><span class="comment">//输出-3</span></span><br></pre></td></tr></table></figure></p>
-<p>而<code>indexOf</code>之类的函数返回值为-1，可以通过取反符号将-1化为0，有利于编写判断式。</p>
-<p>例如<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(~orders.indexOf(<span class="string">"item"</span>))&#123;alert(<span class="string">"Not found"</span>)&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/24/机器学习学习笔记（六）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/03/24/机器学习学习笔记（六）/" class="post-title-link" itemprop="url">机器学习学习笔记（六）</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-03-24 08:31:00" itemprop="dateCreated datePublished" datetime="2016-03-24T08:31:00+08:00">2016-03-24</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="正规方程"><a href="#正规方程" class="headerlink" title="正规方程"></a>正规方程</h3><p>在一些线性回归问题中，可以用正规方程方法更快地解决问题，直接解出参数值来。</p>
-<p>设特征矩阵为X（第一列是$x_0=1$）,训练集结果为向量y，能够带入公式</p>
-<script type="math/tex; mode=display">\theta = (X^T X)^{-1}X^T y</script><p>直接解出$\theta$的向量。</p>
-<p>举例：</p>
-<p><img src="/images/pasted-23.png" alt="upload successful"></p>
-<p>带入公式进行矩阵运算即可得出结果。<br>以此题为例，我使用 Octave 进行了运算</p>
-<p>先输入输入值X的矩阵</p>
-<p><img src="/images/pasted-24.png" alt="upload successful"></p>
-<p>输入输出值y的向量</p>
-<p><img src="/images/pasted-25.png" alt="upload successful"></p>
-<p>直接带入公式</p>
-<script type="math/tex; mode=display">\theta = (X^T X)^{-1}X^T y</script><p><img src="/images/pasted-26.png" alt="upload successful"></p>
-<hr>
-<h2 id="梯度下降法与正规方程的对比"><a href="#梯度下降法与正规方程的对比" class="headerlink" title="梯度下降法与正规方程的对比"></a>梯度下降法与正规方程的对比</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>梯度下降</th>
-<th>正规方程</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>需要选择学习率$\alpha$</td>
-<td>不需要</td>
-</tr>
-<tr>
-<td>需要多次迭代</td>
-<td>一次运算得出</td>
-</tr>
-<tr>
-<td>当特征数量 n 大时也能较好适用</td>
-<td>需要计算$(X^TX)^{-1}$ 如果特征数量 n 较大则运算代价大，因为矩阵逆的计算时间复杂度为 $O(n^3)$，通常来说当 n 小于 10000 时还可以接受</td>
-</tr>
-<tr>
-<td>适用于各种类型的模型</td>
-<td>只适用于线性模型，不适合逻辑回归模型等其它模型</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/24/机器学习学习笔记（五）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/03/24/机器学习学习笔记（五）/" class="post-title-link" itemprop="url">机器学习学习笔记（五）</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-03-24 07:01:00" itemprop="dateCreated datePublished" datetime="2016-03-24T07:01:00+08:00">2016-03-24</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="特征缩放（Feature-Scaling）"><a href="#特征缩放（Feature-Scaling）" class="headerlink" title="特征缩放（Feature Scaling）"></a>特征缩放（Feature Scaling）</h2><p>在线性回归的实际例子中中多数会遇到这样的情况，某两个特征值的数值相差很远，例如房价可能是100(万元)的数量级，房屋面积可能是100的数量级。表现在轮廓图上的形式就是如下图一样，</p>
-<p><img src="/images/pasted-7.png" alt="upload successful"></p>
-<p>等高线（代价函数J）的形状呈现出非常细长的椭圆。</p>
-<p><img src="/images/pasted-19.png" alt="upload successful"></p>
-<p>可以看到在这种情况下的梯度下降函数需要迭代很多次，在最小值附近震荡直到最后收敛。为了使梯度下降能够尽量朝着一个方向有效率地进行，我们需要对输入值中的某些特征值进行统一的缩放。</p>
-<p><img src="/images/pasted-20.png" alt="upload successful"></p>
-<p>这样的参数值接近的代价方程，梯度下降函数的迭代就会方便与均匀很多，从而达到减少迭代次数的目的。一般来说，将两个参数都缩放到-1，1之间较为合适。特征缩放可直接参照公式：</p>
-<script type="math/tex; mode=display">x_n=\frac{x_n-\mu _n}{S_n}</script><p>其中 $\mu_n$ 是平均值，$S_n$ 是标准差。</p>
-<blockquote>
-<p>为了简单方便，可以直接用最大值-最小值来代替标准差。</p>
-</blockquote>
-<h3 id="学习率"><a href="#学习率" class="headerlink" title="学习率"></a>学习率</h3><p>学习率α在梯度下降方程中起着重要的作用，梯度下降算法的每次迭代受到学习率的影响，如果学习率 α过小，则达到收敛所需的迭代次数会非常高；如果学习率α 过大，每次迭代可能不会减小代价函数，可能会越过局部最小值导致无法收敛。</p>
-<p>在一个线性回归情况中尝试多个学习率可以找到计算效率最高的学习率。通常可以考虑尝试些学习率：α=0.01，0.03，0.1，0.3，1，3，10 （它们都是3倍3倍地增加）</p>
-<h3 id="多项式回归"><a href="#多项式回归" class="headerlink" title="多项式回归"></a>多项式回归</h3><p>在现实情况中，往往线性回归是不足以很好的契合一个数据集的。</p>
-<p>例如</p>
-<p><img src="/images/pasted-21.png" alt="upload successful"></p>
-<p>用的三次方程，</p>
-<p>其实也可以化为线性方程看：</p>
-<p><img src="/images/pasted-22.png" alt="upload successful"></p>
-<p>但是经过平方立方之后，每个参数的差值会变得更大，因此特征缩放在这样的情况中更加的重要。</p>
-<p>比如上面如果size为1到1000的话，x2就是1到1000000，x3就是1到1000000000。不作处理会使算法很难正常进行下去。可以使x1=size/1000，x2=size^2/1000000,x3=size^3/1000000000这样就能使几个参数的值在近似的范围内。</p>
-<p>再例如</p>
-<script type="math/tex; mode=display">h_\theta(x)=\theta_0+\theta_1(size)+\theta_2\sqrt{(size)}</script><p>要看成</p>
-<script type="math/tex; mode=display">h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2</script><p>线性方程，size在1-1000间，那么$x_1=\frac{size}{1000},x_2=\frac{\sqrt{size}}{\sqrt{1000}}$</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2153,7 +2204,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">146</span>
+                    <span class="site-state-item-count">152</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2555,7 +2606,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">179</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">187</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

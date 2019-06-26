@@ -368,6 +368,1274 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/07/04/使用多重赋值与元组解包提升-Python-代码的可读性/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/07/04/使用多重赋值与元组解包提升-Python-代码的可读性/" class="post-title-link" itemprop="url">使用多重赋值与元组解包提升 Python 代码的可读性</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-04 10:16:00" itemprop="dateCreated datePublished" datetime="2018-07-04T10:16:00+08:00">2018-07-04</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>无论是教导新手还是资深 Python 程序员，我都发现 <strong>很多 Python 程序员没有充分利用多重赋值这一特性</strong>。</p>
+<p>多重赋值（也经常被称为元组解包或者可迭代对象解包）能让你在一行代码内同时对多个变量进行赋值。这种特性在学习时看起来很简单，但在真正需要使用时再去回想它可能会比较麻烦。</p>
+<p>在本文中，将介绍什么是多重赋值，举一些常用的多重赋值的样例，并了解一些较少用、常被忽视的多重赋值用法。</p>
+<p>请注意在本文中会用到 <a href="https://cito.github.io/blog/f-strings/" target="_blank" rel="noopener">f-strings</a> 这种 Python 3.6 以上版本才有的特性，如果你的 Python 版本较老，可以使用字符串的 <code>format</code> 方法来代替这种特性。</p>
+<h2 id="多重赋值的实现原理"><a href="#多重赋值的实现原理" class="headerlink" title="多重赋值的实现原理"></a>多重赋值的实现原理</h2><p>在本文中，我将使用“多重赋值”、“元组解包”、“迭代对象解包”等不同的词，但他们其实表示的是同一个东西。</p>
+<p>Python 的多重赋值如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x, y = 10, 20</span><br></pre></td></tr></table></figure>
+<p>在这儿我们将 <code>x</code> 设为了 <code>10</code>，<code>y</code> 设为了 <code>20</code>。</p>
+<p>从更底层的角度看，我们其实是创建了一个 <code>10, 20</code> 的元组，然后遍历这个元组，将拿到的两个数字按照顺序分别赋给 <code>x</code> 与 <code>y</code>。</p>
+<p>写成下面这种语法应该更容易理解：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; (x, y) = (10, 20)</span><br></pre></td></tr></table></figure>
+<p>在 Python 中，元组周围的括号是可以忽略的，因此在“多重赋值”（写成上面这种元组形式的语法）时也可以省去。下面几行代码都是等价的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x, y = 10, 20</span><br><span class="line">&gt;&gt;&gt; x, y = (10, 20)</span><br><span class="line">&gt;&gt;&gt; (x, y) = 10, 20</span><br><span class="line">&gt;&gt;&gt; (x, y) = (10, 20)</span><br></pre></td></tr></table></figure>
+<p>多重赋值常被直接称为“元组解包”，因为它在大多数情况下都是用于元组。但其实我们可以用除了元组之外的任何可迭代对象进行多重赋值。下面是使用列表（list）的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x, y = [10, 20]</span><br><span class="line">&gt;&gt;&gt; x</span><br><span class="line">10</span><br><span class="line">&gt;&gt;&gt; y</span><br><span class="line">20</span><br></pre></td></tr></table></figure>
+<p>下面是使用字符串（string）的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x, y = &apos;hi&apos;</span><br><span class="line">&gt;&gt;&gt; x</span><br><span class="line">&apos;h&apos;</span><br><span class="line">&gt;&gt;&gt; y</span><br><span class="line">&apos;i&apos;</span><br></pre></td></tr></table></figure>
+<p>任何可以用于循环的东西都能和元组解包、多重赋值一样被“解开”。</p>
+<p>下面是另一个可以证明多重赋值能用于任何数量、任何变量（甚至是我们自己创建的对象）的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; point = 10, 20, 30</span><br><span class="line">&gt;&gt;&gt; x, y, z = point</span><br><span class="line">&gt;&gt;&gt; print(x, y, z)</span><br><span class="line">10 20 30</span><br><span class="line">&gt;&gt;&gt; (x, y, z) = (z, y, x)</span><br><span class="line">&gt;&gt;&gt; print(x, y, z)</span><br><span class="line">30 20 10</span><br></pre></td></tr></table></figure>
+<p>请注意，在上面例子中的最后一行我们仅交换了变量的名称。多重赋值可以让我们轻松地实现这种情形。</p>
+<p>下面我们将讨论如何使用多重赋值。</p>
+<h2 id="在-for-循环中解包"><a href="#在-for-循环中解包" class="headerlink" title="在 for 循环中解包"></a>在 for 循环中解包</h2><p>你会经常在 <code>for</code> 循环中看到多重赋值。下面举例说明：</p>
+<p>先创建一个字典（dict）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; person_dictionary = &#123;&apos;name&apos;: &quot;Trey&quot;, &apos;company&apos;: &quot;Truthful Technology LLC&quot;&#125;</span><br></pre></td></tr></table></figure>
+<p>下面这种循环遍历字典的方法比较少见：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for item in person_dictionary.items():</span><br><span class="line">    print(f&quot;Key &#123;item[0]&#125; has value &#123;item[1]&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>但你会经常看到 Python 程序员通过多重赋值来这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for key, value in person_dictionary.items():</span><br><span class="line">    print(f&quot;Key &#123;key&#125; has value &#123;value&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>当你在 for 循环中写 <code>for X in Y</code> 时，其实是告诉 Python 在循环的每次遍历时都对 <code>X</code> 做一次赋值。与用 <code>=</code> 符号赋值一样，这儿也可以使用多重赋值。</p>
+<p>这种写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for key, value in person_dictionary.items():</span><br><span class="line">    print(f&quot;Key &#123;key&#125; has value &#123;value&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>在本质上与这种写法是一致的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for item in person_dictionary.items():</span><br><span class="line">    key, value = item</span><br><span class="line">    print(f&quot;Key &#123;key&#125; has value &#123;value&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>与前一个例子相比，我们其实就是去掉了一个没有必要的额外赋值。</p>
+<p>因此，多重赋值在用于将字典元素解包为键值对时十分有用。此外，它还在其它地方也可以使用：</p>
+<p>在内置函数 <code>enumerate</code> 的值拆分成对时，也是多重赋值的一个很有用的场景：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for i, line in enumerate(my_file):</span><br><span class="line">    print(f&quot;Line &#123;i&#125;: &#123;line&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>还有 <code>zip</code> 函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for color, ratio in zip(colors, ratios):</span><br><span class="line">    print(f&quot;It&apos;s &#123;ratio*100&#125;% &#123;color&#125;.&quot;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for (product, price, color) in zip(products, prices, colors):</span><br><span class="line">    print(f&quot;&#123;product&#125; is &#123;color&#125; and costs $&#123;price:.2f&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>如果你还对 <code>enumerate</code> 和 <code>zip</code> 不熟悉，请参阅作者之前的文章 <a href="http://treyhunner.com/2016/04/how-to-loop-with-indexes-in-python/" target="_blank" rel="noopener">looping with indexes in Python</a>。</p>
+<p>有些 Python 新手经常在 <code>for</code> 循环中看到多重赋值，然后就认为它只能与循环一起使用。但其实，多重赋值不仅可以用在循环赋值时，还可以用在其它任何需要赋值的地方。</p>
+<h2 id="替代硬编码索引"><a href="#替代硬编码索引" class="headerlink" title="替代硬编码索引"></a>替代硬编码索引</h2><p>很少有人在代码中对索引进行硬编码（比如 <code>point[0]</code>、<code>items[1]</code>、<code>vals[-1]</code>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(f&quot;The first item is &#123;items[0]&#125; and the last item is &#123;items[-1]&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>当你在 Python 代码中看到有硬编码索引时，一般都可以设法<strong>使用多重赋值来让你的代码更具可读性</strong>。</p>
+<p>下面是一些使用了硬编码索引的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reformat_date</span><span class="params">(mdy_date_string)</span>:</span></span><br><span class="line">    <span class="string">"""Reformat MM/DD/YYYY string into YYYY-MM-DD string."""</span></span><br><span class="line">    date = mdy_date_string.split(<span class="string">'/'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f"<span class="subst">&#123;date[<span class="number">2</span>]&#125;</span>-<span class="subst">&#123;date[<span class="number">0</span>]&#125;</span>-<span class="subst">&#123;date[<span class="number">1</span>]&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<p>我们可以通过多重赋值，分别对月、天、年三个变量进行赋值，让代码更具可读性：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reformat_date</span><span class="params">(mdy_date_string)</span>:</span></span><br><span class="line">    <span class="string">"""Reformat MM/DD/YYYY string into YYYY-MM-DD string."""</span></span><br><span class="line">    month, day, year = mdy_date_string.split(<span class="string">'/'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f"<span class="subst">&#123;year&#125;</span>-<span class="subst">&#123;month&#125;</span>-<span class="subst">&#123;day&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<p>因此当你准备对索引进行硬编码时，请停下来想一想是不是应该用多重赋值来改善代码的可读性。</p>
+<h2 id="多重赋值是十分严格的"><a href="#多重赋值是十分严格的" class="headerlink" title="多重赋值是十分严格的"></a>多重赋值是十分严格的</h2><p>在我们对可迭代对象进行解包时，多重赋值的条件是非常严格的。</p>
+<p>如果将一个较大的可迭代对象解包到一组数量更小的对象中，会报下面的错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x, y = (10, 20, 30)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">    File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">ValueError: too many values to unpack (expected 2)</span><br></pre></td></tr></table></figure>
+<p>如果将一个较小的可迭代对象解包到一组数量更多的对象中，会报下面的错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; x, y, z = (10, 20)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">    File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">ValueError: not enough values to unpack (expected 3, got 2)</span><br></pre></td></tr></table></figure>
+<p>这种严格的限制其实很棒，如果我们在处理元素时出现了非预期的对象数量，多重赋值会直接报错，这样我们就能发现一些还没有被发现的 bug。</p>
+<p>举个例子。假设我们有一个简单的命令行程序，通过原始的方式接受参数，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line"></span><br><span class="line">new_file = sys.argv[1]</span><br><span class="line">old_file = sys.argv[2]</span><br><span class="line">print(f&quot;Copying &#123;new_file&#125; to &#123;old_file&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>这个程序希望接受两个参数，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ my_program.py file1.txt file2.txt</span><br><span class="line">Copying file1.txt to file2.txt</span><br></pre></td></tr></table></figure>
+<p>但如果在运行程序时输入了三个参数，也不会有任何报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ my_program.py file1.txt file2.txt file3.txt</span><br><span class="line">Copying file1.txt to file2.txt</span><br></pre></td></tr></table></figure>
+<p>由于我们没有验证接收到的参数是否为 2 个，因此不会报错。</p>
+<p>如果使用多重赋值来代替硬编码索引，在赋值时将会验证程序是否真的接收到了期望个数的参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import sys</span><br><span class="line"></span><br><span class="line">_, new_file, old_file = sys.argv</span><br><span class="line">print(f&quot;Copying &#123;new_file&#125; to &#123;old_file&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 我们用了一个名为 <code>_</code> 的变量，意思是我们不想关注 <code>sys.argv[0]</code>（对应的是我们程序的名称）。用 <code>_</code> 对象来忽略不需关注的变量是一种常用的语法。</p>
+<h2 id="替代数组拆分"><a href="#替代数组拆分" class="headerlink" title="替代数组拆分"></a>替代数组拆分</h2><p>根据上文，我们一直多重赋值可以用来代替硬编码的索引，并且它严格的条件可以确保我们处理的元组或可迭代对象的大小是正确的。</p>
+<p>此外，多重赋值还能用于代替硬编码的数组拆分。</p>
+<p>“拆分”是一种手动将 list 或其它序列中的部分元素取出的方法、</p>
+<p>下面是一种用数字索引进行“硬编码”拆分的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">all_after_first = items[1:]</span><br><span class="line">all_but_last_two = items[:-2]</span><br><span class="line">items_with_ends_removed = items[1:-1]</span><br></pre></td></tr></table></figure>
+<p>当你在拆分时发现没有在拆分索引中用到变量，那么就能用多重赋值来替代它。为了实现多重赋值拆分数组，我们将用到一个之前没提过的特性：<code>*</code> 符号。</p>
+<p><code>*</code> 符号于 Python 3 中加入了多重赋值的语法中，它可以让我们在解包时拿到“剩余”的元素：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; numbers = [1, 2, 3, 4, 5, 6]</span><br><span class="line">&gt;&gt;&gt; first, *rest = numbers</span><br><span class="line">&gt;&gt;&gt; rest</span><br><span class="line">[2, 3, 4, 5, 6]</span><br><span class="line">&gt;&gt;&gt; first</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<p>因此，<code>*</code> 可以让我们在取数组末尾时替换硬编码拆分。</p>
+<p>下面两行是等价的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; beginning, last = numbers[:-1], numbers[-1]</span><br><span class="line">&gt;&gt;&gt; *beginning, last = numbers</span><br></pre></td></tr></table></figure>
+<p>下面两行也是等价的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; head, middle, tail = numbers[0], numbers[1:-1], numbers[-1]</span><br><span class="line">&gt;&gt;&gt; head, *middle, tail = numbers</span><br></pre></td></tr></table></figure>
+<p>有了 <code>*</code> 和多重赋值之后，你可以替换一切类似于下面这样的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">main(sys.argv[0], sys.argv[1:])</span><br></pre></td></tr></table></figure>
+<p>可以写成下面这种更具自描述性的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">program_name, *arguments = sys.argv</span><br><span class="line">main(program_name, arguments)</span><br></pre></td></tr></table></figure>
+<p>总之，如果你写了硬编码的拆分代码，请考虑一下你可以用多重赋值来让这些拆分的逻辑更加清晰。</p>
+<h2 id="深度解包"><a href="#深度解包" class="headerlink" title="深度解包"></a>深度解包</h2><p>这个特性是 Python 程序员长期以来经常忽略的一个东西。它虽然不如我之前提到的几种多重复值用法常用，但是当你用到它的时候会深刻体会到它的好处。</p>
+<p>在前文，我们已经看到多重赋值用于解包元组或者其它的可迭代对象，但还没看过它<strong>更进一步</strong>地进行深度解包。</p>
+<p>下面例子中的多重赋值是<strong>浅度</strong>的，因为它只进行了一层的解包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; color, point = (&quot;red&quot;, (1, 2, 3))</span><br><span class="line">&gt;&gt;&gt; color</span><br><span class="line">&apos;red&apos;</span><br><span class="line">&gt;&gt;&gt; point</span><br><span class="line">(1, 2, 3)</span><br></pre></td></tr></table></figure>
+<p>而下面这种多重赋值可以认为是<strong>深度</strong>的，因为它将 <code>point</code> 元组也进一步解包成了 <code>x</code>、<code>y</code>、<code>z</code> 变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; color, (x, y, z) = (&quot;red&quot;, (1, 2, 3))</span><br><span class="line">&gt;&gt;&gt; color</span><br><span class="line">&apos;red&apos;</span><br><span class="line">&gt;&gt;&gt; x</span><br><span class="line">1</span><br><span class="line">&gt;&gt;&gt; y</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<p>上面的例子可能比较让人迷惑，所以我们在赋值语句两端加上括号来让这个例子更加明了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; (color, (x, y, z)) = (&quot;red&quot;, (1, 2, 3))</span><br></pre></td></tr></table></figure>
+<p>可以看到在第一层解包时得到了两个对象，但是这个语句将第二个对象再次解包，得到了另外的三个对象。然后将第一个对象及新解出的三个对象赋值给了新的对象（<code>color</code>、<code>x</code>、<code>y</code>、<code>z</code>）。</p>
+<p>下面以这两个 list 为例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">start_points = [(1, 2), (3, 4), (5, 6)]</span><br><span class="line">end_points = [(-1, -2), (-3, 4), (-6, -5)]</span><br></pre></td></tr></table></figure>
+<p>下面的代码是举例用浅层解包来处理上面的两个 list：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for start, end in zip(start_points, end_points):</span><br><span class="line">    if start[0] == -end[0] and start[1] == -end[1]:</span><br><span class="line">        print(f&quot;Point &#123;start[0]&#125;,&#123;start[1]&#125; was negated.&quot;)</span><br></pre></td></tr></table></figure>
+<p>下面用深度解包来做同样的事情：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (x1, y1), (x2, y2) in zip(start_points, end_points):</span><br><span class="line">    if x1 == -x2 and y1 == -y2:</span><br><span class="line">        print(f&quot;Point &#123;x1&#125;,&#123;y1&#125; was negated.&quot;)</span><br></pre></td></tr></table></figure>
+<p>请注意在第二个例子中，在处理对象时，对象的类型明显更加清晰易懂。深度解包让我们可以明显的看到，在每次循环中我们都会收到两个二元组。</p>
+<p>深度解包通常会在每次得到多个元素的嵌套循环中使用。例如，你能在同时使用 <code>enumerate</code> 与 <code>zip</code> 时应用深度多重赋值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">items = [1, 2, 3, 4, 2, 1]</span><br><span class="line">for i, (first, last) in enumerate(zip(items, reversed(items))):</span><br><span class="line">    if first != last:</span><br><span class="line">        raise ValueError(f&quot;Item &#123;i&#125; doesn&apos;t match: &#123;first&#125; != &#123;last&#125;&quot;)</span><br></pre></td></tr></table></figure>
+<p>前面我提到过多重赋值对于可迭代对象的大小以及解包的大小是非常严格的，在复读解包中我们也可以利用这点<strong>严格控制可迭代对象的大小</strong>。</p>
+<p>这么写可以正常运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; points = ((1, 2), (-1, -2))</span><br><span class="line">&gt;&gt;&gt; points[0][0] == -points[1][0] and points[0][1] == -point[1][1]</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<p>这种看起来 bug 的代码也能正常运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; points = ((1, 2, 4), (-1, -2, 3), (6, 4, 5))</span><br><span class="line">&gt;&gt;&gt; points[0][0] == -points[1][0] and points[0][1] == -point[1][1]</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<p>这种写法也能运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; points = ((1, 2), (-1, -2))</span><br><span class="line">&gt;&gt;&gt; (x1, y1), (x2, y2) = points</span><br><span class="line">&gt;&gt;&gt; x1 == -x2 and y1 == -y2</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<p>但是这样不行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; points = ((1, 2, 4), (-1, -2, 3), (6, 4, 5))</span><br><span class="line">&gt;&gt;&gt; (x1, y1), (x2, y2) = points</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">    File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">ValueError: too many values to unpack (expected 2)</span><br></pre></td></tr></table></figure>
+<p>在给变量多重赋值时我们其实也对可迭代对象做了一次特殊的断言（assert）。因此多重赋值既能让别人更容易理清你的代码（<strong>因为有着更好的代码可读性</strong>），也能让电脑更好地理解你的代码（<strong>因为对代码进行了确认保证了正确性</strong>）。</p>
+<h2 id="使用-list-类型语法"><a href="#使用-list-类型语法" class="headerlink" title="使用 list 类型语法"></a>使用 list 类型语法</h2><p>在前文我提到的多重赋值都用的是元组类型的语法（tuple-like），但其实多重赋值可以用于任何可迭代对象。而这种类似元组的语法也使得多重赋值常被称为“元组解包”。而更准确地来说，多重赋值应该叫做“可迭代对象解包”。</p>
+<p>前文中我还没有提到过，多重赋值可以写成 list 类型的语法（list-like）。</p>
+<p>下面是一个应用 list 语法的最简单多重赋值示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; [x, y, z] = 1, 2, 3</span><br><span class="line">&gt;&gt;&gt; x</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
+<p>这种写法看起来很奇怪。为什么在元组语法之外还要允许这种 list 语法呢？</p>
+<p>我也很少使用这种特性，但它在一些特殊情况下能让代码更加<strong>简洁</strong>。</p>
+<p>举例，假设我有下面这种代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def most_common(items):</span><br><span class="line">    return Counter(items).most_common(1)[0][0]</span><br></pre></td></tr></table></figure>
+<p>我们用心良苦的同事决定用深度多重赋值将代码重构成下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def most_common(items):</span><br><span class="line">    (value, times_seen), = Counter(items).most_common(1)</span><br><span class="line">    return value</span><br></pre></td></tr></table></figure>
+<p>看到赋值语句左侧的最后一个逗号了吗？很容易会将它漏掉，而且这个逗号让代码看起来不伦不类。这个逗号在这段代码中是做什么事的呢？</p>
+<p>此处的尾部逗号其实是构造了一个单元素的元组，然后对此处进行深度解包。</p>
+<p>可以将上面的代码换种写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def most_common(items):</span><br><span class="line">    ((value, times_seen),) = Counter(items).most_common(1)</span><br><span class="line">    return value</span><br></pre></td></tr></table></figure>
+<p>这种写法让深度解包的语法更加明显了。但我更喜欢下面这种写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def most_common(items):</span><br><span class="line">    [(value, times_seen)] = Counter(items).most_common(1)</span><br><span class="line">    return value</span><br></pre></td></tr></table></figure>
+<p>赋值中的 list 语法让它更加的清晰，可以明确看出我们将一个单元素可迭代对象进行了解包，并将单元素又解包并赋值给 <code>value</code> 与 <code>times_seen</code> 对象。</p>
+<p>当我看到这种代码时，可以非常确定我们解包的是一个单元组 list（事实上代码做的也正是这个）。我们在此处用了 collections 模组中的 <a href="https://docs.python.org/3/library/collections.html#collections.Counter" target="_blank" rel="noopener">Counter</a> 对象。<code>Counter</code> 对象的 <code>most_common</code> 方法可以让我们指定返回 list 的长度。在此处我们将 list 限制为仅返回一个元素。</p>
+<p>当你在解包有很多的值的结构（比如说 list）或者有确定个数值的结构（比如说元组）时，可以考虑用 list 语法来对这些类似 list 的结构进行解包，这样能让代码更加具有“语法正确性”。</p>
+<p>如果你乐意，还可以用对类 list 结构使用 list 语法解包时应用一些 list 的语法（常见的例子为在多重赋值时使用 <code>*</code> 符号）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; [first, *rest] = numbers</span><br></pre></td></tr></table></figure>
+<p>我自己其实不常用这种写法，因为我没有这个习惯。但如果你觉得这种写法有用，可以考虑在你自己的代码中用上它。</p>
+<p>结论：当你在代码中用多重赋值时，可以考虑在何时的时候用 list 语法来让你的代码更具自解释性并更加简洁。这有时也能提升代码的可读性。</p>
+<h2 id="不要忘记这些多重赋值的用法"><a href="#不要忘记这些多重赋值的用法" class="headerlink" title="不要忘记这些多重赋值的用法"></a>不要忘记这些多重赋值的用法</h2><p>多重赋值可以提高代码的可读性与正确性。它能使你代码<strong>更具自描述性</strong>，同时也可以对正在进行解包的可迭代对象的<strong>大小</strong>进行隐式断言。</p>
+<p>据我观察，人们经常忘记多重赋值可以<strong>替换硬编码索引</strong>，以及<strong>替换硬编码拆分</strong>（用 <code>*</code> 语法）。深度多重赋值，以及同时使用元组语法和 list 语法也常被忽视。</p>
+<p>认清并记住所有多重赋值的用例是很麻烦的。请随意使用本文作为你使用多重赋值的参考指南。</p>
+<blockquote>
+<p>juejin: <a href="https://juejin.im/post/5b3c2cf1e51d451925625b94" target="_blank" rel="noopener">https://juejin.im/post/5b3c2cf1e51d451925625b94</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/06/04/什么是-JavaScript-生成器？如何使用生成器？/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/06/04/什么是-JavaScript-生成器？如何使用生成器？/" class="post-title-link" itemprop="url">什么是 JavaScript 生成器？如何使用生成器？</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-04 16:47:00" itemprop="dateCreated datePublished" datetime="2018-06-04T16:47:00+08:00">2018-06-04</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://cdn-images-1.medium.com/max/2000/1*9XJAQFEiYvd2i1hv9tgwXA.jpeg" alt=""></p>
+<p>在本文中，我们将了解 ECMAScript 6 中引入的生成器（Generator）。先看一看它究竟是什么，然后用几个示例来说明它的用法。</p>
+<h3 id="什么是-JavaScript-生成器？"><a href="#什么是-JavaScript-生成器？" class="headerlink" title="什么是 JavaScript 生成器？"></a>什么是 JavaScript 生成器？</h3><p>生成器是一种可以用来控制迭代器（iterator）的函数，它可以随时暂停，并可以在任意时候恢复。</p>
+<p>上面的描述没法说明什么，让我们来看一些例子，解释什么是生成器，以及生成器与 <strong>for 循环</strong>之类的迭代器有什么区别。</p>
+<p>下面是一个 <strong>for 循环</strong>的例子，它会在执行后立刻返回一些值。这段代码其实就是简单地生成了 0-5 这些数字。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (let i = 0; i &lt; 5; i += 1) &#123;</span><br><span class="line">  console.log(i);</span><br><span class="line">&#125;</span><br><span class="line">// 它将会立刻返回 0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4</span><br></pre></td></tr></table></figure>
+<p>现在看看生成器函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function * generatorForLoop(num) &#123;</span><br><span class="line">  for (let i = 0; i &lt; num; i += 1) &#123;</span><br><span class="line">    yield console.log(i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const genForLoop = generatorForLoop(5);</span><br><span class="line"></span><br><span class="line">genForLoop.next(); // 首先 console.log - 0</span><br><span class="line">genForLoop.next(); // 1</span><br><span class="line">genForLoop.next(); // 2</span><br><span class="line">genForLoop.next(); // 3</span><br><span class="line">genForLoop.next(); // 4</span><br></pre></td></tr></table></figure>
+<p>它做了什么？它实际上只是对上面例子中的 <strong>for 循环</strong>做了一点改动，但产生了很大的变化。这种变化是由生成器最重要的特性造成的 —— 只有在需要的时候它才会产生下一个值，而不会一次性产生所有的值。在某些情景下，这种特性十分方便。</p>
+<h3 id="生成器语法"><a href="#生成器语法" class="headerlink" title="生成器语法"></a>生成器语法</h3><p>如何定义一个生成器函数呢？下面列出了各种可行的定义方法，不过万变不离其宗的是在函数关键词后加上一个星号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function * generator () &#123;&#125;</span><br><span class="line">function* generator () &#123;&#125;</span><br><span class="line">function *generator () &#123;&#125;</span><br><span class="line"></span><br><span class="line">let generator = function * () &#123;&#125;</span><br><span class="line">let generator = function* () &#123;&#125;</span><br><span class="line">let generator = function *() &#123;&#125;</span><br><span class="line"></span><br><span class="line">let generator = *() =&gt; &#123;&#125; // SyntaxError</span><br><span class="line">let generator = ()* =&gt; &#123;&#125; // SyntaxError</span><br><span class="line">let generator = (*) =&gt; &#123;&#125; // SyntaxError</span><br></pre></td></tr></table></figure>
+<p>如上面的例子所示，我们并不能使用箭头函数来创建一个生成器。</p>
+<p>下面将生成器作为方法（method）来创建。定义方法与定义函数的方式是一样的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class MyClass &#123;</span><br><span class="line">  *generator() &#123;&#125;</span><br><span class="line">  * generator() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const obj = &#123;</span><br><span class="line">  *generator() &#123;&#125;</span><br><span class="line">  * generator() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h4><p>现在让我们一起看看新的关键词 <code>yield</code>。它有些类似 <code>return</code>，但又不完全相同。<code>return</code> 会在完成函数调用后简单地将值返回，在 <code>return</code> 语句之后你无法进行任何操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function withReturn(a) &#123;</span><br><span class="line">  let b = 5;</span><br><span class="line">  return a + b;</span><br><span class="line">  b = 6; // 不可能重新定义 b 了</span><br><span class="line">  return a * b; // 这儿新的值没可能返回了</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">withReturn(6); // 11</span><br><span class="line">withReturn(6); // 11</span><br></pre></td></tr></table></figure>
+<p>而 <code>yield</code> 的工作方式却不同。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">function * withYield(a) &#123;</span><br><span class="line">  let b = 5;</span><br><span class="line">  yield a + b;</span><br><span class="line">  b = 6; // 在第一次调用后仍可以重新定义变量</span><br><span class="line">  yield a * b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const calcSix = withYield(6);</span><br><span class="line"></span><br><span class="line">calcSix.next().value; // 11</span><br><span class="line">calcSix.next().value; // 36</span><br></pre></td></tr></table></figure>
+<p>用 <code>yield</code> 返回的值只会返回一次，当你再次调用同一个函数的时候，它会执行至下一个 <code>yield</code> 语句处（译者注：前面的 <code>yield</code> 不再返回东西了）。</p>
+<p>在生成器中，我们通常会在输出时得到一个对象。这个对象有两个属性：<code>value</code> 与 <code>done</code>。如你所想，<code>value</code> 为返回值，<code>done</code> 则会显示生成器是否完成了它的工作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function * generator() &#123;</span><br><span class="line">  yield 5;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const gen = generator();</span><br><span class="line"></span><br><span class="line">gen.next(); // &#123;value: 5, done: false&#125;</span><br><span class="line">gen.next(); // &#123;value: undefined, done: true&#125;</span><br><span class="line">gen.next(); // &#123;value: undefined, done: true&#125; - 之后的任何调用都会返回相同的结果</span><br></pre></td></tr></table></figure>
+<p>在生成器中，不仅可以使用 <code>yield</code>，也可以使用 <code>return</code> 来返回同样的对象。但是，在函数执行到第一个 <code>return</code> 语句的时候，生成器将结束它的工作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function * generator() &#123;</span><br><span class="line">  yield 1;</span><br><span class="line">  return 2;</span><br><span class="line">  yield 3; // 到不了这个 yield 了</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const gen = generator();</span><br><span class="line"></span><br><span class="line">gen.next(); // &#123;value: 1, done: false&#125;</span><br><span class="line">gen.next(); // &#123;value: 2, done: true&#125;</span><br><span class="line">gen.next(); // &#123;value: undefined, done: true&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="yield-委托迭代"><a href="#yield-委托迭代" class="headerlink" title="yield 委托迭代"></a>yield 委托迭代</h4><p>带星号的 <code>yield</code> 可以将它的工作委托给另一个生成器。通过这种方式，你就能将多个生成器连接在一起。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function * anotherGenerator(i) &#123;</span><br><span class="line">  yield i + 1;</span><br><span class="line">  yield i + 2;</span><br><span class="line">  yield i + 3;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function * generator(i) &#123;</span><br><span class="line">  yield* anotherGenerator(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var gen = generator(1);</span><br><span class="line"></span><br><span class="line">gen.next().value; // 2</span><br><span class="line">gen.next().value; // 3</span><br><span class="line">gen.next().value; // 4</span><br></pre></td></tr></table></figure>
+<p>在开始下一节前，我们先观察一个第一眼看上去比较奇特的行为。</p>
+<p>下面是正常的代码，不会报出任何错误，这表明 <code>yield</code> 可以在 <code>next()</code> 方法调用后返回传递的值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function * generator(arr) &#123;</span><br><span class="line">  for (const i in arr) &#123;</span><br><span class="line">    yield i;</span><br><span class="line">    yield yield;</span><br><span class="line">    yield(yield);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const gen = generator([0,1]);</span><br><span class="line"></span><br><span class="line">gen.next(); // &#123;value: &quot;0&quot;, done: false&#125;</span><br><span class="line">gen.next(&apos;A&apos;); // &#123;value: undefined, done: false&#125;</span><br><span class="line">gen.next(&apos;A&apos;); // &#123;value: &quot;A&quot;, done: false&#125;</span><br><span class="line">gen.next(&apos;A&apos;); // &#123;value: undefined, done: false&#125;</span><br><span class="line">gen.next(&apos;A&apos;); // &#123;value: &quot;A&quot;, done: false&#125;</span><br><span class="line">gen.next(); // &#123;value: &quot;1&quot;, done: false&#125;</span><br><span class="line">gen.next(&apos;B&apos;); // &#123;value: undefined, done: false&#125;</span><br><span class="line">gen.next(&apos;B&apos;); // &#123;value: &quot;B&quot;, done: false&#125;</span><br><span class="line">gen.next(&apos;B&apos;); // &#123;value: undefined, done: false&#125;</span><br><span class="line">gen.next(&apos;B&apos;); // &#123;value: &quot;B&quot;, done: false&#125;</span><br><span class="line">gen.next(); // &#123;value: undefined, done: true&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，你可以看到 <code>yield</code> 默认是 <code>undefined</code>，但如果我们在调用 <code>yield</code> 时传递了任何值，它就会返回我们传入的值。我们将很快利用这个特性。</p>
+<h4 id="初始化与方法"><a href="#初始化与方法" class="headerlink" title="初始化与方法"></a>初始化与方法</h4><p>生成器是可以被复用的，但是你需要对它们进行初始化。还好初始化的方法十分简单。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function * generator(arg = &apos;Nothing&apos;) &#123;</span><br><span class="line">  yield arg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const gen0 = generator(); // OK</span><br><span class="line">const gen1 = generator(&apos;Hello&apos;); // OK</span><br><span class="line">const gen2 = new generator(); // 不 OK</span><br><span class="line"></span><br><span class="line">generator().next(); // 可以运行，但每次都会从头开始运行</span><br></pre></td></tr></table></figure>
+<p>如上所示，<code>gen0</code> 与 <code>gen1</code> 不会互相影响，<code>gen2</code> 完全不会运行（会报错）。因此初始化对于保证程序流程的状态是十分重要的。</p>
+<p>下面让我们一起看看生成器给我们提供的方法。</p>
+<p><strong>next() 方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function * generator() &#123;</span><br><span class="line">  yield 1;</span><br><span class="line">  yield 2;</span><br><span class="line">  yield 3;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const gen = generator();</span><br><span class="line"></span><br><span class="line">gen.next(); // &#123;value: 1, done: false&#125;</span><br><span class="line">gen.next(); // &#123;value: 2, done: false&#125;</span><br><span class="line">gen.next(); // &#123;value: 3, done: false&#125;</span><br><span class="line">gen.next(); // &#123;value: undefined, done: true&#125; 之后所有的 next 调用都会返回同样的输出</span><br></pre></td></tr></table></figure>
+<p>这是最常用的方法。它每次被调用时都会返回下一个对象。在生成器工作结束时，<code>next()</code> 会将 <code>done</code> 属性设为 <code>true</code>，<code>value</code> 属性设为 <code>undefined</code>。</p>
+<p>我们不仅可以用 <code>next()</code> 来迭代生成器，还可以用 <code>for of</code> 循环来一次得到生成器所有的值（而不是对象）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function * generator(arr) &#123;</span><br><span class="line">  for (const el in arr)</span><br><span class="line">    yield el;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const gen = generator([0, 1, 2]);</span><br><span class="line"></span><br><span class="line">for (const g of gen) &#123;</span><br><span class="line">  console.log(g); // 0 -&gt; 1 -&gt; 2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gen.next(); // &#123;value: undefined, done: true&#125;</span><br></pre></td></tr></table></figure>
+<p>但它不适用于 <code>for in</code> 循环，并且不能直接用数字下标来访问属性：<code>generator[0] = undefined</code>。</p>
+<p><strong>return() 方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function * generator() &#123;</span><br><span class="line">  yield 1;</span><br><span class="line">  yield 2;</span><br><span class="line">  yield 3;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const gen = generator();</span><br><span class="line"></span><br><span class="line">gen.return(); // &#123;value: undefined, done: true&#125;</span><br><span class="line">gen.return(&apos;Heeyyaa&apos;); // &#123;value: &quot;Heeyyaa&quot;, done: true&#125;</span><br><span class="line"></span><br><span class="line">gen.next(); // &#123;value: undefined, done: true&#125; - 在 return() 之后的所有 next() 调用都会返回相同的输出</span><br></pre></td></tr></table></figure>
+<p><code>return()</code> 将会忽略生成器中的任何代码。它会根据传值设定 <code>value</code>，并将 <code>done</code> 设为 <code>true</code>。任何在 <code>return()</code> 之后进行的 <code>next()</code> 调用都会返回 <code>done</code> 属性为 <code>true</code> 的对象。</p>
+<p><strong>throw() 方法</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function * generator() &#123;</span><br><span class="line">  yield 1;</span><br><span class="line">  yield 2;</span><br><span class="line">  yield 3;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const gen = generator();</span><br><span class="line"></span><br><span class="line">gen.throw(&apos;Something bad&apos;); // 会报错 Error Uncaught Something bad</span><br><span class="line">gen.next(); // &#123;value: undefined, done: true&#125;</span><br></pre></td></tr></table></figure>
+<p><code>throw()</code> 做的事非常简单 —— 就是抛出错误。我们可以用 <code>try-catch</code> 来处理。</p>
+<h4 id="自定义方法的实现"><a href="#自定义方法的实现" class="headerlink" title="自定义方法的实现"></a>自定义方法的实现</h4><p>由于我们无法直接访问 <code>Generator</code> 的 constructor，因此如何增加新的方法需要另外说明。下面是我的方法，你也可以用不同的方式实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function * generator() &#123;</span><br><span class="line">  yield 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">generator.prototype.__proto__; // Generator &#123;constructor: GeneratorFunction, next: ƒ, return: ƒ, throw: ƒ, Symbol(Symbol.toStringTag): &quot;Generator&quot;&#125;</span><br><span class="line"></span><br><span class="line">// 由于 Generator 不是一个全局变量，因此我们只能这么写：</span><br><span class="line">generator.prototype.__proto__.math = function(e = 0) &#123;</span><br><span class="line">  return e * Math.PI;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">generator.prototype.__proto__; // Generator &#123;math: ƒ, constructor: GeneratorFunction, next: ƒ, return: ƒ, throw: ƒ, …&#125;</span><br><span class="line"></span><br><span class="line">const gen = generator();</span><br><span class="line">gen.math(1); // 3.141592653589793</span><br></pre></td></tr></table></figure>
+<h4 id="生成器的用途"><a href="#生成器的用途" class="headerlink" title="生成器的用途"></a>生成器的用途</h4><p>在前面，我们用了已知迭代次数的生成器。但如果我们不知道要迭代多少次会怎么样呢？为了解决这个问题，需要在生成器函数中创建一个无限循环。下面以一个会返回随机数的函数为例进行演示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function * randomFrom(...arr) &#123;</span><br><span class="line">  while (true)</span><br><span class="line">    yield arr[Math.floor(Math.random() * arr.length)];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const getRandom = randomFrom(1, 2, 5, 9, 4);</span><br><span class="line"></span><br><span class="line">getRandom.next().value; // 返回随机的一个数</span><br></pre></td></tr></table></figure>
+<p>这是个简单的例子。下面来举一些更复杂的函数为例，我们要写一个节流（throttle）函数。如果你还不知道节流函数是什么，请参阅<a href="https://medium.com/@_jh3y/throttling-and-debouncing-in-javascript-b01cad5c8edf" target="_blank" rel="noopener">这篇文章</a>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function * throttle(func, time) &#123;</span><br><span class="line">  let timerID = null;</span><br><span class="line">  function throttled(arg) &#123;</span><br><span class="line">    clearTimeout(timerID);</span><br><span class="line">    timerID = setTimeout(func.bind(window, arg), time);</span><br><span class="line">  &#125;</span><br><span class="line">  while (true)</span><br><span class="line">    throttled(yield);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const thr = throttle(console.log, 1000);</span><br><span class="line"></span><br><span class="line">thr.next(); // &#123;value: undefined, done: false&#125;</span><br><span class="line">thr.next(&apos;hello&apos;); // 返回 &#123;value: undefined, done: false&#125; ，然后 1 秒后输出 &apos;hello&apos;</span><br></pre></td></tr></table></figure></p>
+<p>还有没有更好的利用生成器的例子呢？如果你了解递归，那你肯定听过<a href="https://en.wikipedia.org/wiki/Fibonacci_number" target="_blank" rel="noopener">斐波那契数列</a>。通常我们是用递归来解决这个问题的，但有了生成器后，可以这样写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function * fibonacci(seed1, seed2) &#123;</span><br><span class="line">  while (true) &#123;</span><br><span class="line">    yield (() =&gt; &#123;</span><br><span class="line">      seed2 = seed2 + seed1;</span><br><span class="line">      seed1 = seed2 - seed1;</span><br><span class="line">      return seed2;</span><br><span class="line">    &#125;)();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const fib = fibonacci(0, 1);</span><br><span class="line">fib.next(); // &#123;value: 1, done: false&#125;</span><br><span class="line">fib.next(); // &#123;value: 2, done: false&#125;</span><br><span class="line">fib.next(); // &#123;value: 3, done: false&#125;</span><br><span class="line">fib.next(); // &#123;value: 5, done: false&#125;</span><br><span class="line">fib.next(); // &#123;value: 8, done: false&#125;</span><br></pre></td></tr></table></figure>
+<p>不再需要递归了！我们可以在需要的时候获得数列中的下一个数字。</p>
+<h4 id="将生成器用在-HTML-上"><a href="#将生成器用在-HTML-上" class="headerlink" title="将生成器用在 HTML 上"></a>将生成器用在 HTML 上</h4><p>既然是讨论 JavaScript，那显然要用生成器来操作下 HTML。</p>
+<p>假设有一些 HTML 块需要处理，可以使用生成器来轻松实现。（当然除了生成器之外还有很多方法可以做到）</p>
+<p>我们只需要少许代码就能完成此需求。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const strings = document.querySelectorAll(&apos;.string&apos;);</span><br><span class="line">const btn = document.querySelector(&apos;#btn&apos;);</span><br><span class="line">const className = &apos;darker&apos;;</span><br><span class="line"></span><br><span class="line">function * addClassToEach(elements, className) &#123;</span><br><span class="line">  for (const el of Array.from(elements))</span><br><span class="line">    yield el.classList.add(className);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const addClassToStrings = addClassToEach(strings, className);</span><br><span class="line"></span><br><span class="line">btn.addEventListener(&apos;click&apos;, (el) =&gt; &#123;</span><br><span class="line">  if (addClassToStrings.next().done)</span><br><span class="line">    el.target.classList.add(className);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>仅有 5 行逻辑代码。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>还有更多使用生成器的方法。例如，在进行异步操作或者按需循环时生成器也非常有用。</p>
+<p>我希望这篇文章能帮你更好地理解 JavaScript 生成器。</p>
+<blockquote>
+<p>掘金地址：<a href="https://juejin.im/post/5b14faf2f265da6e4d5af3b9" target="_blank" rel="noopener">https://juejin.im/post/5b14faf2f265da6e4d5af3b9</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/05/19/可用但最不常见的-HTML5-标签/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/05/19/可用但最不常见的-HTML5-标签/" class="post-title-link" itemprop="url">可用但最不常见的 HTML5 标签</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-05-19 21:33:00" itemprop="dateCreated datePublished" datetime="2018-05-19T21:33:00+08:00">2018-05-19</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><code>&lt;!DOCTYPE html&gt;</code> HMLT5 于 2014 年 10 月由万维网联盟（W3C）发布，旨在通过改进 HTML 语言来支持最新的多媒体设备，在保证计算机与设备（如 Web 浏览器，解析器等）可解析的前提下增强对人类的可读性。</p>
+<p><img src="/images/pasted-321.png" alt="upload successful"></p>
+<p>我可以确定你们都已经在使用 HTML5 做网页了，并且会使用一些常见的标签，如 <code>&lt;header&gt;</code>、<code>&lt;section&gt;</code>、<code>&lt;article&gt;</code> 和 <code>&lt;footer&gt;</code> 等等，除此之外，还有一些不常用的标签是有助于正确使用 HTML5 的语义化开发。</p>
+<p>在此我将其中一些最重要的标签列出来，希望能帮助你遵循 HTML5 语义进行开发。</p>
+          <!--noindex-->
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/05/16/由-Node-js-发送-Web-推送通知/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/05/16/由-Node-js-发送-Web-推送通知/" class="post-title-link" itemprop="url">由 Node.js 发送 Web 推送通知</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-05-16 22:03:00" itemprop="dateCreated datePublished" datetime="2018-05-16T22:03:00+08:00">2018-05-16</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API" target="_blank" rel="noopener">service workers API</a> 可以让你直接由 Node.js 应用向 Chrome 浏览器发送推送通知。<a href="https://www.npmjs.com/package/web-push" target="_blank" rel="noopener"><code>web-push</code> npm 模组</a>可以让你免去 <a href="https://www.pubnub.com/" target="_blank" rel="noopener">PubNub</a> 之类的中间商，直接推送消息。本文将在前端使用原生 JavaScript，在后端使用 <a href="https://www.npmjs.com/package/express" target="_blank" rel="noopener">Express</a> 框架，通过一个“Hello, World”级别的样例来带你了解如何进行 web 推送通知。最终的效果如下图所示。本项目的全部源码可在 <a href="https://github.com/vkarpov15/web-push-demo" target="_blank" rel="noopener">GitHub</a> 查阅。</p>
+<p><img src="/images/pasted-318.png" alt="upload successful"></p>
+<h2 id="鉴权及配置服务端"><a href="#鉴权及配置服务端" class="headerlink" title="鉴权及配置服务端"></a>鉴权及配置服务端</h2><p>要设置 web 推送，必须先创建 <a href="https://blog.mozilla.org/services/2016/04/04/using-vapid-with-webpush/" target="_blank" rel="noopener">VAPID keys</a>。VAPID keys 用于识别是谁发送了推送消息。npm 的 <code>web-push</code> 模组能够<a href="https://www.npmjs.com/package/web-push#command-line" target="_blank" rel="noopener">帮助你生成 VAPID keys</a>，下面我们将安装 <code>web-push</code> 及其依赖，并使用 <code>web-push generate-vapid-keys</code> 来创建 VAPID keys。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ npm install express@4.16.3 web-push@3.3.0 body-parser@1.18.2 express-static@1.2.5</span><br><span class="line">+ express@4.16.3</span><br><span class="line">+ web-push@3.3.0</span><br><span class="line">+ body-parser@1.18.2</span><br><span class="line">+ express-static@1.2.5</span><br><span class="line">added 62 packages in 1.42s</span><br><span class="line">$</span><br><span class="line">$ ./node_modules/.bin/web-push generate-vapid-keys</span><br><span class="line">=======================================</span><br><span class="line">Public Key:</span><br><span class="line">BOynOrGhgkj8Bfk4hsFENAQYbnqqLSigUUkCNaBsAmNuH6U9EWywR1JIdxBVQOPDbIuTaj0tVAQbczNLkC5zftw</span><br><span class="line">Private Key:</span><br><span class="line">&lt;OMITTED&gt;</span><br><span class="line">=======================================</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+<p>如果你需要支持低版本浏览器，那么还要获取 <a href="https://medium.com/@jasminejacquelin/integrating-push-notifications-in-your-node-react-web-app-4e8d8190a52c#9a53" target="_blank" rel="noopener">GCM API key</a>，但在桌面版 Chrome 63 或更高版本中不需要它。</p>
+<p>下面创建 <code>index.js</code> 文件，其中包含你的服务。你需要使用 <code>require()</code> 导入 web-push 模组，并配置刚才的 VAPID keys。配置相当简单，将 VAPID keys 存放在 <code>PUBLIC_VAPID_KEY</code> 与 <code>PRIVATE_VAPID_KEY</code> 环境变量中即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpush = <span class="built_in">require</span>(<span class="string">'web-push'</span>);</span><br><span class="line"><span class="keyword">const</span> publicVapidKey = process.env.PUBLIC_VAPID_KEY;</span><br><span class="line"><span class="keyword">const</span> privateVapidKey = process.env.PRIVATE_VAPID_KEY;</span><br><span class="line"><span class="comment">// 此处换成你自己的邮箱</span></span><br><span class="line">webpush.setVapidDetails(<span class="string">'mailto:val@karpov.io'</span>, publicVapidKey, privateVapidKey);</span><br></pre></td></tr></table></figure>
+<p>下一步，为 Express 应用添加一个名为 <code>/subscribe</code> 的端点。浏览器中的 JavaScript 将会发送一个 body 中包含 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PushSubscription" target="_blank" rel="noopener"><code>PushSubscription</code> 对象</a>的 HTTP 请求。为了用 <code>webpush.sendNotification()</code> 发送推送通知，你需要获取 <code>PushSubscription</code> 对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line">app.use(<span class="built_in">require</span>(<span class="string">'body-parser'</span>).json());</span><br><span class="line">app.post(<span class="string">'/subscribe'</span>, (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> subscription = req.body;</span><br><span class="line">  res.status(<span class="number">201</span>).json(&#123;&#125;);</span><br><span class="line">  <span class="keyword">const</span> payload = <span class="built_in">JSON</span>.stringify(&#123; <span class="attr">title</span>: <span class="string">'test'</span> &#125;);</span><br><span class="line">  <span class="built_in">console</span>.log(subscription);</span><br><span class="line">  webpush.sendNotification(subscription, payload).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(error.stack);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>以上就是服务端需要做的全部配置。你可以在 <a href="https://github.com/vkarpov15/web-push-demo/blob/master/index.js" target="_blank" rel="noopener">GitHub</a> 查阅完整代码。现在，我们就要创建客户端 <code>client.js</code> 与一个 service worker —— <code>worker.js</code> 了。</p>
+<h2 id="客户端与-Service-Worker"><a href="#客户端与-Service-Worker" class="headerlink" title="客户端与 Service Worker"></a>客户端与 Service Worker</h2><p>首先，使用 <a href="http://npmjs.com/package/express-static" target="_blank" rel="noopener"><code>express-static</code> npm 模组</a>，<a href="https://github.com/vkarpov15/web-push-demo/blob/b356e53c1468c5611b9c4722411af3839bafc360/index.js#L26" target="_blank" rel="noopener">对 Express 应用进行配置</a>，为客户端部署静态资源，将静态资源部署在服务的最顶级目录下。<br>需要注意的是要在处理 <code>/subscribe</code> 路由之后再调用这个 <code>app.use()</code>，否则 Express 将不会根据你的配置处理路由，而是会去查找 <code>subscribe.html</code> 文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="built_in">require</span>(<span class="string">'express-static'</span>)(<span class="string">'./'</span>));</span><br></pre></td></tr></table></figure>
+<p>接着，创建 <code>index.html</code> 文件，这个文件将部署为你的应用的入口。文件中仅有的关键之处就是 <code>&lt;script&gt;</code> 标签，它将加载客户端 JavaScript 代码；其余部分都无关紧要。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Push Demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"application/javascript"</span> <span class="attr">src</span>=<span class="string">"/client.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    Service Worker Demo</span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>现在你的入口做好了。创建一个名为 <code>client.js</code> 的文件。<a href="https://github.com/vkarpov15/web-push-demo/blob/b356e53c1468c5611b9c4722411af3839bafc360/client.js" target="_blank" rel="noopener">这个文件</a> 将告知浏览器初始化你的 service worker 并向 <code>/subscribe</code> 发送 HTTP 请求。由于支持 service workers 的浏览器也应该能支持 async 与 await，因此上述示例中使用了 <a href="http://thecodebarbarian.com/80-20-guide-to-async-await-in-node.js.html" target="_blank" rel="noopener">async/await</a>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里写死的 public key 要换成你自己的。</span></span><br><span class="line"><span class="keyword">const</span> publicVapidKey = <span class="string">'BOynOrGhgkj8Bfk4hsFENAQYbnqqLSigUUkCNaBsAmNuH6U9EWywR1JIdxBVQOPDbIuTaj0tVAQbczNLkC5zftw'</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="string">'serviceWorker'</span> <span class="keyword">in</span> navigator) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registering service worker'</span>);</span><br><span class="line">  run().catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(error));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registering service worker'</span>);</span><br><span class="line">  <span class="keyword">const</span> registration = <span class="keyword">await</span> navigator.serviceWorker.</span><br><span class="line">    register(<span class="string">'/worker.js'</span>, &#123;<span class="attr">scope</span>: <span class="string">'/'</span>&#125;);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registered service worker'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registering push'</span>);</span><br><span class="line">  <span class="keyword">const</span> subscription = <span class="keyword">await</span> registration.pushManager.</span><br><span class="line">    subscribe(&#123;</span><br><span class="line">      userVisibleOnly: <span class="literal">true</span>,</span><br><span class="line">      <span class="comment">// `urlBase64ToUint8Array()` 函数与以下网址中的描述一致</span></span><br><span class="line">      <span class="comment">// https://www.npmjs.com/package/web-push#using-vapid-key-for-applicationserverkey</span></span><br><span class="line">      applicationServerKey: urlBase64ToUint8Array(publicVapidKey)</span><br><span class="line">    &#125;);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registered push'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Sending push'</span>);</span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'/subscribe'</span>, &#123;</span><br><span class="line">    method: <span class="string">'POST'</span>,</span><br><span class="line">    body: <span class="built_in">JSON</span>.stringify(subscription),</span><br><span class="line">    headers: &#123;</span><br><span class="line">      <span class="string">'content-type'</span>: <span class="string">'application/json'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Sent push'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，你需要实现 <code>client.js</code> 所加载的 <code>worker.js</code> 文件。<br>这个文件是 service worker 逻辑所在之处。当订阅者接受到一个推送消息时，service worker 将收到一个 <a href="https://developers.google.com/web/ilt/pwa/introduction-to-push-notifications#handling_the_push_event_in_the_service_worker" target="_blank" rel="noopener">‘push’ 事件</a>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'Loaded service worker!'</span>);</span><br><span class="line">self.addEventListener(<span class="string">'push'</span>, ev =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> data = ev.data.json();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Got push'</span>, data);</span><br><span class="line">  self.registration.showNotification(data.title, &#123;</span><br><span class="line">    body: <span class="string">'Hello, World!'</span>,</span><br><span class="line">    icon: <span class="string">'http://mongoosejs.com/docs/images/mongoose5_62x30_transparent.png'</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>好了！配置正确的环境变量并启动你的服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ env PUBLIC_VAPID_KEY=&apos;OMITTED&apos; env PRIVATE_VAPID_KEY=&apos;OMITTED&apos; node .</span><br></pre></td></tr></table></figure>
+<p>在 Chrome 中访问 <code>http://localhost:3000</code>，你应该可以看到下面的推送通知！</p>
+<p><img src="/images/pasted-319.png" alt="upload successful"></p>
+<p>这种通知不仅在 Chrome 中可用，在 <a href="https://support.mozilla.org/en-US/kb/push-notifications-firefox" target="_blank" rel="noopener">Firefox</a> 也可以用同样的代码实现。</p>
+<p><img src="/images/pasted-320.png" alt="upload successful"></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>Web 推送只是 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API" target="_blank" rel="noopener">service workers</a> 带来的诸多好处的其中一种。<br>通过一个 <a href="https://www.npmjs.com/package/web-push" target="_blank" rel="noopener">npm 模组</a>，你就能给大多数现代浏览器推送通知。下次你要为你的 web 应用增加推送通知功能的时候，记得用 service workers 哦！</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/05/11/Deconvolutional-Paragraph-Representation-Learning/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/05/11/Deconvolutional-Paragraph-Representation-Learning/" class="post-title-link" itemprop="url">Deconvolutional Paragraph Representation Learning</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-05-11 14:32:00" itemprop="dateCreated datePublished" datetime="2018-05-11T14:32:00+08:00">2018-05-11</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>在许多自然语言处理应用中，从长文本序列中学习其潜在的语义表示是重要的第一步。RNN 已经成为了这个任务的基石。然而，随着文本长度的增加，RNN 的解码重建（decoding、reconstraction）的质量也随之降低。因此，我们提出了一个 seq2seq、由纯粹的卷积与反卷积结构构成的自动编码框架，它没有上述 RNN 的问题，同时计算效率也很高。另外，此方法简单易行，可以在许多应用中作为一块积木使用。我们可以证明，此框架在重构长文本任务中的效果比 RNN 更好。同时，在半监督文本分类及文本摘要任务中的评价指标表明此框架能更好地利用无标注长文本数据。</p>
+<h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h3><p>学习句子或多个句子组成的段落是自然语言处理的一项重要任务，它常常是实现其它任务（如情感分析、机器翻译、对话系统、文本摘要等）的基础。从数据中学习句子的表示使用的是编码器 - 解码器结构。在标准的自动编码步骤中，首先由输入序列的 embedding 编码为向量表示，再解码到原始域重建输入序列。近期在 RNN 中，LSTM 及其变体在许多依赖句子表示的学习任务中取得了巨大的成功。</p>
+<p>基于 RNN 的方法通常将句子递归建模为含有隐藏单元的马尔可夫过程，其中每个输入句子的单词都是由前一个单词及隐藏单元的状态生成的，通过 emission 与 transition 运算建模为神经网络。原则上，输入序列的神经元表示应当包含了足够的输入序列结构的信息，才能在之后通过解码恢复原句。然而由于 RNN 的递归性质，基于 RNN 将句子完全表示为向量存在着挑战。典型的问题是，RNN 在训练时是基于之前的置信单词的状态来生成序列中的单词，而不是由编码后的向量表示解码整个句子。现在已经证明这种强制性的策略（teacher forcing training）是有必要的，因为它可以让 RNN 的输出接近于置信序列。然而，由于在重建序列时 RNN 允许解码器使用置信信息，削弱了编码器独立生成向量表示的能力，导致编码后的表示没能携带足够的信息来引导解码器在没有其它指引的情况下进行解码。为了解决这个问题，[19] 提出了一种在训练过程中的采样方法，从同时使用潜在表示与置信信号进行学习逐渐转换为仅用编码的潜在表示进行学习。但 [20] 表明，这种计划采样本质上是一种不一致训练策略，在实际使用中会产生不稳定的结果，最终导致训练无法收敛。</p>
+<p>在推理时，在遇到无法使用置信信号的句子时，仅能通过前一个单词及表示向量的状态来生成新的单词。此时，解码的错误随着序列长度的增加而成比例增加。这也意味着，在处理句子时，一旦出现一个错误，后续生成的句子将错的更离谱。这种现象是 [19] 中的 exposure bias 产生的。</p>
+<p>我们提出了一种简单而强大的纯卷积结构，用于学习句子的表示。比较方便的是，由于这个结构中不含 RNN，因此 teacher forcing training 与 exposure bias 的问题自然就不存在了。这种方法使用 CNN 作为编码器，deCNN 作为解码器。我们认为，这种结构通过多层 CNN 迫使潜在表示从整个句子中提取信息，由此在不适用 RNN 解码器的情况下实现较高的重建质量。这种多层 CNN 能够让表示向量从整个句子中抽取信息而无需考虑句子长度，这也使它可以应用于长句子或段落相关任务。此外，由于这种结构不涉及递归编码及解码，因此可以使用图形处理单元（GPU）的特定卷积原语进行高效并行化，与 RNN 模型相比显著减少了计算成本。</p>
+<h3 id="2-自动编码卷积文本模型"><a href="#2-自动编码卷积文本模型" class="headerlink" title="2 自动编码卷积文本模型"></a>2 自动编码卷积文本模型</h3><h4 id="2-1-卷积编码器"><a href="#2-1-卷积编码器" class="headerlink" title="2.1 卷积编码器"></a>2.1 卷积编码器</h4><p>用 $w^t$ 表示给定句子中的第 t 个词，将每个词 $w^t$ 进行 embedding，映射为 k 维的词向量 $x_t = W_e[w^t]$，其中 $ W_e \in \mathbb{R}^{k \times V} $ 为一个已经学习好的 Word embedding 矩阵，V 为单词数量；用 $ W_e[v]$ 来表示 $W_e$ 的第 v 列。$W_e$ 中的所有列都经过 l2-norm 处理，例如 $ ||W_e[v]||_2 = 1, \forall v $。在经过 embedding 之后，一个长度为 T 的句子（经过 padding）可以在将 embedding 进行 concat 后表示为 $X \in \mathbb{R}^{k \times T}$；其中 $x_t$ 为 X 的第 t 列。</p>
+<p>对于句子做编码，我们采用了类似 [24] 中的 CNN 结构，这个结构最初是为做图像处理任务设计的。这个 CNN 结构包含 L 个层（L - 1 个卷积层，第 L 层为全连接层），此结构最后可以将一个输入句子转化为一个定长的表示向量 h。层 $l \in {1, … ,L}$ 由学习到的滤波器 $p_l$ 组成。对于第一层中的第 i 个滤波器来说，相当于对 X 进行一个步长（stride）为 $r^{(1)}$、滤波器为 $W_c^{(i,1)} \in \mathbb{R}^{k \times h}$ 的卷积运算（式中的 h 代表卷积滤波器的大小）。这一系列操作会生成一个潜在特征映射：$c^{(i,1)}=\gamma(X * W_c^{(i,1)} + b^{(i,1)}) \in \mathbb{R}^{(T-h)/r^{(1)}+1}$，其中 $\gamma(.)$ 为非线性激活函数，$b^{(i,1)} \in \mathbb{R}^{(T-h)/r^{(1)}+1}$ ，* 符号代表了卷积操作。在我们的实验中，$\gamma(.)$ 为 ReLU。需要注意的是，最初的 embedding 维数 k 在经过第一层卷积层后就发生了变化，$c^{(i,1)} \in \mathbb{R}^{(T-h)/r^{(1)}+1}$ for i = 1,…,p1。在第一层将 p1 滤波器得到的结果进行拼接，就得到了一个特征映射，$C^{(1)}= [c^{(1,1)}… c^{(p1,1)}] \in \mathbb{R}^{p_1 \times [(T-h)/r^{(1)}+1]}$。</p>
+<p>在第一个卷积层之后，我们对得到的特征映射 $C^{(1)}$ 使用同样的滤波器大小 h 进行卷积操作，并在这 L - 1 层中不断重复此操作。每次操作都能将空间维数降低为 $T^{(l+1)}=[(T^{(l)} - h)/r^{(l)} + 1]$（$r^{(l)}$ 为步长，$T^{(l)}$ 为空间维数大小，l 为第 l 层，[] 为向下取整函数）。在最后一层 L 中，得到了特征映射 $C^{(L-1)}$，将其送入全连接层中制造潜在表示向量 h。在实现时，我们直接用了一个滤波器大小等于 $T^{(L-1)}$（不考虑 h）的卷积层，它就相当于一个全连接层。这个实现上的 trick 在 [24] 中有所使用。这个最后一层将所有的空间坐标 $T^{(L-1)}$ 汇聚成为标量特征，使用滤波器 ${W_c^{(i,l)}}$ for i=1,…,p1 and l=1,…,L 将句子的子结构依次封装为了向量表示。其中 $W_c^{(i,l)}$ 表示层 l 的滤波器 i。这也意味着提取出来的特征的维度是固定的，与输入句子的长度无关。</p>
+<p><img src="/images/pasted-317.png" alt="upload successful"></p>
+<p>图1，卷积自动编码结构。编码器：将输入序列展开为 embedding 矩阵 X，接着通过多个卷积层编码器压缩为表示向量 h，在最后一层中将向量折叠去除空间维度。解码器：将表示向量 h 送入多个反卷积解码器，以 X 为目标，使用余弦相似度交叉熵损失函数重建 $\hat{X}$。</p>
+<p>在最后一层有 $p_L$ 个滤波器，将会构造出 $p_L$ 维的表示向量。对于输入句子来说，也记为 $h=C^{(L)}$。例如，在图一中，编码器由 L=3 个层构成，句子长度为 T=60，embedding 维数为 k=300，不同层的步长 ${ r^{(1)},r^{(2)},r^{(3)} } = {2,2,1}$ ，滤波器大小 $h = {5,5,12}$，滤波器数量 ${p_1,p_2,p_3 }={300,600,500}$。中间层得到的特征映射 $C^{(1)}$ 和 $C^{(2)}$ 的大小分别为 ${28 \times 300,12 \times 600}$。最后的特征映射大小为 1 x 500，对应的正是潜在表示向量 h。</p>
+<p>从概念上看，较低层中的滤波器捕捉的是原始的句子信息（h-gram，类似于图像处理中的边缘信息），而叫高层中的滤波器捕捉的是更复杂的语言特征，比如语义和句法结构等（类似于图像处理中的图像元素）。这种自底向上的结构通过分层堆叠文本片段（h-gram）作为构建表示向量 h 的积木。这种方法在思路上类似于通过 concrete syntax trees [26] 对语言的语法结构进行建模。不过，我们没有事先去指定某种语法结构（比如英语），而是通过多层 CNN 网络提取此结构。</p>
+<h4 id="2-2-反卷积解码器"><a href="#2-2-反卷积解码器" class="headerlink" title="2.2 反卷积解码器"></a>2.2 反卷积解码器</h4><p>我们按照一定步长应用卷积的变体 - 反卷积操作（比如 convolutional transpose），用于解码表示向量 h，将其还原至原来的文本域。随着反卷积的不断进行，向量的空间高度也不断增加，如图1所示，和之前描述的卷积操作刚好相反。空间维数首先展开至与卷积层的 L-1 层相同，接着逐渐展开为 $T^{(l+1)} = (T^{(l)}-1)*r^{(l)} + h$ for l=1,…直到第 L 个反卷积层（此层与卷积编码器的输入层相对应）。第 L 反卷积层的输出目标是重建 Word embedding 矩阵 $\hat{X}$。与 $W_e$ 一样，$\hat{X}$ 的每一列都经由 l2-norm 处理。</p>
+<p>用 $\hat{w}^t$ 来表示重建后句子 $\hat{s}$ 中的第 t 个单词，$\hat{w}^t$ 为 v 的概率可表示为：</p>
+<script type="math/tex; mode=display">p(\hat{w}^t = v) = \frac{\exp[\tau^{-1}D_{cos}(\hat{x}^t,W_e[v])]}{\sum_{v'\in V}\exp[\tau^{-1}D_{cos}(\hat{x}^t,W_e[v'])]}</script><p>式中，$D_{cos}(x,y)$ 代表余弦相似度，计算方法为 $\frac{&lt;{x,y}&gt;}{||x||||y||}$ ，$W_e[v]$ 是 $W_e$ 的第 v 列，$\hat{x}^t$ 是 $\hat{X}$ 的第 t 列，$\tau$ 是一个正数，我们将其定义为 temperature parameter [27]。此参数类似于 Dirichlet 分布的浓度参数，控制着概率向量 $[p(\hat{w}^t = 1)…p(\hat{w}^t = V)]$ 的扩散，较大的 $\tau$ 值会鼓励概率均匀地分布，较小的 $\tau$ 值会鼓励概率稀疏并集中。在实验中，我们设定 $\tau = 0.01$。此外在我们的实验中，余弦相似度可直接由经由 l2-norm 的 $W_e$ 与 $\hat{X}$ 内积得到。</p>
+<h4 id="2-3-模型学习"><a href="#2-3-模型学习" class="headerlink" title="2.3 模型学习"></a>2.3 模型学习</h4><p>上述卷积自动编码器的目标可以记为所有句子（$s \in D$）的词级别的对数似然：</p>
+<script type="math/tex; mode=display">\iota^{\alpha e} = \sum_{d \in D} \sum_t \log p(\hat{w}^t_d = w^t_d)</script><p>上述式子中，D 表示句子的集合。为了简单起见，使用随机梯度下降对式中的最大对数似然进行优化。实现相关的细节将在实验一节中详细描述。请注意，上述工作与之前的相关工作有两处不同：i) [22,28] 中使用了池化与上池化（pooling,unpooling）操作，而我们用了卷积与反卷积；ii) 更重要的是，[22,28] 没有像我们前面的步骤一样使用余弦相似度来重建句子，而是使用了基于 RNN 的解码器。我们将在第 3 节中更详细地讨论相关工作。在早期的实验（论文中未写出）中，我们使用了池化与上池化，但是没有观察到显著的性能提升；而卷积/反卷积运算则在内存占用方面更具效率。与标准的 LSTM RNN 自动编码器进行对比，两者参数数量大致相同，但我们的结构在单片 NVIDIA TITAN X GPU 上计算速度相当快（详见实验一节）。原因是 CNN 通过 cuDNN 原语处理有着很高的并行效率。</p>
+<p><strong>反卷积解码器与 RNN 解码器的对比：</strong> 这种结构可以视为 NLP 模型的一种补充结构。与标准的基于 LSTM 的解码器相反，反卷积与 RNN 的区别在于它有着不严格的序列依赖性。具体来说，RNN 生成一个单词需要一个隐藏单元的向量，以递归的方式在整句中顺序地积累信息（长效信息主要依赖于向下权重）；而反卷积解码器，解码时的生成仅依赖一个封装了整个句子信息的表示向量，没有指定顺序结构。因此，对于语言生成任务，RNN 解码器会比反卷积解码器生成相关性更好的文本；与之相反，反卷积解码器在计算长句、远距离依赖的情况效果更好，因此在分类特征提取与文本摘要任务中更加有用。</p>
+<h4 id="2-4-半监督分类与摘要"><a href="#2-4-半监督分类与摘要" class="headerlink" title="2.4 半监督分类与摘要"></a>2.4 半监督分类与摘要</h4><p>识别相关主题或情绪以及从用户生成的内容（如博客、产品评论等）生成摘要最近获得了大量的关注[1, 3, 4, 30, 31, 13, 11]。在大多数实际情况下，未标注数据非常丰富，但实际上很少能充分发挥这些未标注数据的潜力。以此为契机，我们希望能补充一些稀缺但更有价值的标注数据，以提高监督学习模型的泛化能力。无论是标注数据还是未标注数据，上述模型可以通过提取未标注数据，学习它们的潜在表示，捕获其语义信息。这可以将任务分为两步，在监督训练之前进行上述步骤。近期，应用这种思路的基于 RNN 的方法已经被广泛使用，并在许多任务中获得了 state-of-the-art 的效果 [1, 3, 4, 30, 31]。此外，还可以构建一个分类器与自动编码解码器联合的分类模型，对潜在向量表示 h 进行分类，详见 [32, 33]。</p>
+<p>又比如，在产品评论中，每个评论可能包含了数百个词，这对基于 RNN 的序列编码器来说有着一定的困难。因为 RNN 需要在文本中滑动并抽取信息，这会导致信息的丢失，在长句子中更为严重[34]。另外，在训练过程中解码用到了置信的真实信息，这可能导致无法完全保留来自输入文本的所有信息，而这些丢失的信息对于重建句子、分类、摘要来说是至关重要的。</p>
+<p>我们考虑将这个卷积自动编码解码结构应用于长句、段落的半监督学习任务中。我们将半监督问题视作 [35] 中的多任务学习问题，同时训练序列编码器与监督模型，而不是像 [1, 3] 中那样预训练无监督模型。理论上来说，这种联合训练方法得到的段落 embedding 向量会保持重建与分类的能力。</p>
+<h3 id="3-相关工作"><a href="#3-相关工作" class="headerlink" title="3 相关工作"></a>3 相关工作</h3><p>之前的工作 [22, 28, 21, 38, 39] 已经考虑了将 CNN 用作为一些 NLP 任务的编码器了。一般来说，基于 CNN 的编码器结构会使用一个单一的卷积层再加上池化层。这种结构在给定卷积滤波窗口大小为 h 时，实质上就是做了一个识别特定 h-gram 结构的检测器。从原理看，我们这种架构中的深层结构可以让高层学习到更复杂的语言特征。</p>
+<h3 id="4-实验"><a href="#4-实验" class="headerlink" title="4 实验"></a>4 实验</h3><p>实验结果图：</p>
+<p><img src="/images/15258102755361.jpg" alt=""></p>
+<p><img src="/images/15258102868772.jpg" alt=""></p>
+<p><img src="/images/15258102990486.jpg" alt=""></p>
+<p><img src="/images/15258103106207.jpg" alt=""></p>
+<p><img src="/images/15258103206038.jpg" alt=""></p>
+<h3 id="5-结论"><a href="#5-结论" class="headerlink" title="5 结论"></a>5 结论</h3><p>我们提出了一种只使用卷积与反卷积运算的用于文本模型的通用结构。这种结构没有进行序列条件生成，因此避免了 teacher forcing training 与 exposure bias 问题。这种方法可以将段落完全压缩至潜在表示向量中，此向量也能解压缩重建原始输入序列。总的来说，这种方法实现了高质量的长段落重建，并优于现有的拼写矫正算法、半监督序列分类算法、文本摘要算法，且减少了计算成本。</p>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>[1] Andrew M Dai and Quoc V Le. Semi-supervised sequence learning. In NIPS, 2015.</p>
+<p>[2] Quoc Le and Tomas Mikolov. Distributed representations of sentences and documents. In ICML, 2014.</p>
+<p>[3] Rie Johnson and Tong Zhang. Supervised and Semi-Supervised Text Categorization using LSTM for Region Embeddings. arXiv, February 2016.</p>
+<p>[4] Takeru Miyato, Andrew M Dai, and Ian Goodfellow. Adversarial Training Methods for Semi-Supervised Text Classiﬁcation. In ICLR, May 2017.</p>
+<p>[5] Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural Machine Translation by Jointly Learning to Align and Translate. In ICLR, 2015.</p>
+<p>[6] Kyunghyun Cho, Bart Van Merriënboer, Caglar Gulcehre, Dzmitry Bahdanau, Fethi Bougares, Holger Schwenk, and Yoshua Bengio. Learning phrase representations using rnn encoder-decoder for statistical machine translation. In EMNLP, 2014.</p>
+<p>[7] Fandong Meng, Zhengdong Lu, Mingxuan Wang, Hang Li, Wenbin Jiang, and Qun Liu. Encoding source language with convolutional neural network for machine translation. In ACL, 2015.</p>
+<p>[8] Tsung-Hsien Wen, Milica Gasic, Nikola Mrksic, Pei-Hao Su, David Vandyke, and Steve Young. Semantically conditioned lstm-based natural language generation for spoken dialogue systems. arXiv, 2015.</p>
+<p>[9] Jiwei Li, Will Monroe, Alan Ritter, Michel Galley, Jianfeng Gao, and Dan Jurafsky. Deep reinforcement learning for dialogue generation. arXiv, 2016.</p>
+<p>[10] Jiwei Li, Will Monroe, Tianlin Shi, Alan Ritter, and Dan Jurafsky. Adversarial learning for neural dialogue generation. arXiv:1701.06547, 2017.</p>
+<p>[11] Ramesh Nallapati, Bowen Zhou, Cicero Nogueira dos santos, Caglar Gulcehre, and Bing Xiang. Abstractive Text Summarization Using Sequence-to-Sequence RNNs and Beyond. In CoNLL, 2016.</p>
+<p>[12] Shashi Narayan, Nikos Papasarantopoulos, Mirella Lapata, and Shay B Cohen. Neural Extractive Summarization with Side Information. arXiv, April 2017.</p>
+<p>[13] Alexander M Rush, Sumit Chopra, and Jason Weston. A Neural Attention Model for Abstractive Sentence Summarization. In EMNLP, 2015.</p>
+<p>[14] Ilya Sutskever, Oriol Vinyals, and Quoc V Le. Sequence to sequence learning with neural networks. In NIPS, 2014.</p>
+<p>[15] Tomas Mikolov, Martin Karaﬁát, Lukas Burget, Jan Cernock`y, and Sanjeev Khudanpur. Recurrent neural network based language model. In INTERSPEECH, 2010.</p>
+<p>[16] Sepp Hochreiter and Jürgen Schmidhuber. Long short-term memory. In Neural computation, 1997.</p>
+<p>[17] Junyoung Chung, Caglar Gulcehre, KyungHyun Cho, and Yoshua Bengio. Empirical evaluation of gated recurrent neural networks on sequence modeling. arXiv, 2014.</p>
+<p>[18] Ronald J Williams and David Zipser. A learning algorithm for continually running fully recurrent neural networks. Neural computation, 1(2):270–280, 1989.</p>
+<p>[19] Samy Bengio, Oriol Vinyals, Navdeep Jaitly, and Noam Shazeer. Scheduled sampling for sequence prediction with recurrent neural networks. In NIPS, 2015.</p>
+<p>[20] Ferenc Huszár. How (not) to train your generative model: Scheduled sampling, likelihood, adversary? arXiv, 2015.</p>
+<p>[21] Nal Kalchbrenner, Edward Grefenstette, and Phil Blunsom. A convolutional neural network for modelling sentences. In ACL, 2014.</p>
+<p>[22] Yoon Kim. Convolutional neural networks for sentence classiﬁcation. In EMNLP, 2014.</p>
+<p>[23] Ishaan Gulrajani, Kundan Kumar, Faruk Ahmed, Adrien Ali Taiga, Francesco Visin, David Vazquez, and Aaron Courville. Pixelvae: A latent variable model for natural images. arXiv, 2016.</p>
+<p>[24] Alec Radford, Luke Metz, and Soumith Chintala. Unsupervised representation learning with deep convolutional generative adversarial networks. arXiv, 2015.</p>
+<p>[25] Vinod Nair and Geoffrey E Hinton. Rectiﬁed linear units improve restricted boltzmann machines. In ICML, pages 807–814, 2010.</p>
+<p>[26] Ian Chiswell and Wilfrid Hodges. Mathematical logic, volume 3. OUP Oxford, 2007.</p>
+<p>[27] Emil Julius Gumbel and Julius Lieblein. Statistical theory of extreme values and some practical applications: a series of lectures. 1954.</p>
+<p>[28] Ronan Collobert, Jason Weston, Léon Bottou, Michael Karlen, Koray Kavukcuoglu, and Pavel Kuksa. Natural language processing (almost) from scratch. In JMLR, 2011.</p>
+<p>[29] Sharan Chetlur, Cliff Woolley, Philippe Vandermersch, Jonathan Cohen, John Tran, Bryan Catanzaro, and Evan Shelhamer. cudnn: Efﬁcient primitives for deep learning. arXiv, 2014.</p>
+<p>[30] Zichao Yang, Diyi Yang, Chris Dyer, Xiaodong He, Alex Smola, and Eduard Hovy. Hierarchical attention networks for document classiﬁcation. In NAACL, 2016.</p>
+<p>[31] Adji B Dieng, Chong Wang, Jianfeng Gao, and John Paisley. TopicRNN: A Recurrent Neural Network with Long-Range Semantic Dependency. In ICLR, 2016.</p>
+<p>[32] Diederik P Kingma, Shakir Mohamed, Danilo Jimenez Rezende, and Max Welling. Semi-supervised learning with deep generative models. In NIPS, 2014.</p>
+<p>[33] Yunchen Pu, Zhe Gan, Ricardo Henao, Xin Yuan, Chunyuan Li, Andrew Stevens, and Lawrence Carin.</p>
+<p>Variational autoencoder for deep learning of images, labels and captions. In NIPS, 2016.</p>
+<p>[34] Sepp Hochreiter, Yoshua Bengio, Paolo Frasconi, and Jürgen Schmidhuber. Gradient ﬂow in recurrent nets: the difﬁculty of learning long-term dependencies, 2001.</p>
+<p>[35] Richard Socher, Jeffrey Pennington, Eric H Huang, Andrew Y Ng, and Christopher D Manning. Semisupervised recursive autoencoders for predicting sentiment distributions. In EMNLP. Association for Computational Linguistics, 2011.</p>
+<p>[36] Samuel R Bowman, Luke Vilnis, Oriol Vinyals, Andrew M Dai, Rafal Jozefowicz, and Samy Bengio. Generating sentences from a continuous space. arXiv, 2015.</p>
+<p>[37] Zichao Yang, Zhiting Hu, Ruslan Salakhutdinov, and Taylor Berg-Kirkpatrick. Improved Variational Autoencoders for Text Modeling using Dilated Convolutions. arXiv, February 2017.</p>
+<p>[38] Baotian Hu, Zhengdong Lu, Hang Li, and Qingcai Chen. Convolutional neural network architectures for matching natural language sentences. In NIPS, 2014.</p>
+<p>[39] Rie Johnson and Tong Zhang. Effective use of word order for text categorization with convolutional neural networks. In NAACL HLT, 2015.</p>
+<p>[40] Jost Tobias Springenberg, Alexey Dosovitskiy, Thomas Brox, and Martin Riedmiller. Striving for simplicity: The all convolutional net. arXiv, 2014.</p>
+<p>[41] Karen Simonyan and Andrew Zisserman. Very deep convolutional networks for large-scale image recognition. In ICLR, 2015.</p>
+<p>[42] Stanislau Semeniuta, Aliaksei Severyn, and Erhardt Barth. A Hybrid Convolutional Variational Autoencoder for Text Generation. arXiv, February 2017.</p>
+<p>[43] Nal Kalchbrenner, Lasse Espeholt, Karen Simonyan, Aaron van den Oord, Alex Graves, and Koray Kavukcuoglu. Neural machine translation in linear time. arXiv, 2016.</p>
+<p>[44] Yann N Dauphin, Angela Fan, Michael Auli, and David Grangier. Language Modeling with Gated Convolutional Networks. arXiv, December 2016.</p>
+<p>[45] J. Gehring, M. Auli, D. Grangier, D. Yarats, and Y. N. Dauphin. Convolutional Sequence to Sequence Learning. arXiv, May 2017.</p>
+<p>[46] Aaron van den Oord, Nal Kalchbrenner, Lasse Espeholt, Oriol Vinyals, Alex Graves, et al. Conditional image generation with pixelcnn decoders. In NIPS, pages 4790–4798, 2016.</p>
+<p>[47] Jiwei Li, Minh-Thang Luong, and Dan Jurafsky. A hierarchical neural autoencoder for paragraphs and documents. In ACL, 2015.</p>
+<p>[48] Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. Distributed representations of words and phrases and their compositionality. In NIPS, 2013.</p>
+<p>[49] Kam-Fai Wong, Mingli Wu, and Wenjie Li. Extractive summarization using supervised and semi-supervised learning. In ICCL. Association for Computational Linguistics, 2008.</p>
+<p>[50] Chin-Yew Lin. Rouge: A package for automatic evaluation of summaries. In ACL workshop, 2004.</p>
+<p>[51] Kishore Papineni, Salim Roukos, Todd Ward, and Wei-Jing Zhu. Bleu: a method for automatic evaluation of machine translation. In ACL. Association for Computational Linguistics, 2002.</p>
+<p>[52] Xiang Zhang, Junbo Zhao, and Yann LeCun. Character-level convolutional networks for text classiﬁcation. In NIPS, pages 649–657, 2015.</p>
+<p>[53] Dzmitry Bahdanau, Philemon Brakel, Kelvin Xu, Anirudh Goyal, Ryan Lowe, Joelle Pineau, Aaron Courville, and Yoshua Bengio. An actor-critic algorithm for sequence prediction. arXiv, 2016.</p>
+<p>[54] JP Woodard and JT Nelson. An information theoretic measure of speech recognition performance. In Workshop on standardisation for speech I/O, 1982.</p>
+<p>[55] Diederik Kingma and Jimmy Ba. Adam: A method for stochastic optimization. In ICLR, 2015.</p>
+<p>[56] Xavier Glorot and Yoshua Bengio. Understanding the difﬁculty of training deep feedforward neural networks. In AISTATS, 2010.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/04/18/ssh-不用手动输密码远程执行命令/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/04/18/ssh-不用手动输密码远程执行命令/" class="post-title-link" itemprop="url">ssh 不用手动输密码远程执行命令</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-04-18 12:15:00" itemprop="dateCreated datePublished" datetime="2018-04-18T12:15:00+08:00">2018-04-18</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Note/" itemprop="url" rel="index"><span itemprop="name">Note</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>小组使用了 GitLab，在某项目中需要利用 CI 进行远程部署，但生产服务器是另一台远程服务器，而 CI Runner 的运行环境是 Docker。</p>
+<p>由于 ssh 的安全措施，在建立 ssh 连接时不允许自动化输入密码，必须在出现密码框后手动输入，因此在 CI 流程中无法实现；经过了解，一款名为 sshpass 的工具可以满足此需求；</p>
+<p>在本机测试时，使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install sshpass</span><br></pre></td></tr></table></figure></p>
+<p>提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">We won&apos;t add sshpass because it makes it too easy for novice SSH users to ruin SSH&apos;s security.</span><br></pre></td></tr></table></figure></p>
+<p>可知此工具的确是破坏了 ssh 的安全性。</p>
+<p>但在内部机器的 CI Runner Docker 中，不考虑这个问题。Gitlab CI Runner 默认使用的是 <code>alpine:latest</code>，需要事先安装依赖及 sshpass，因此在 before_script 中加上 <code>apk add --update --no-cache openssh sshpass</code> 安装此工具。</p>
+<p>在后续的 job/stage 中，加入远程执行命令脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sshpass -p <span class="string">'password'</span> ssh -T -o StrictHostKeyChecking=no username@192.168.xxx.xxx <span class="string">'sh /home/remote/script.sh'</span></span><br></pre></td></tr></table></figure>
+<p>即可绕过手动输入密码步骤，在 CI 中运行远程 sh 脚本。</p>
+<blockquote>
+<p>在联网环境慎用，防止泄密</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/04/04/为-JavaScript-程序员准备的-Flutter-指南/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1010,1507 +2278,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/28/一份为-Node-js-应用准备的-Dockerfile-指南/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/02/28/一份为-Node-js-应用准备的-Dockerfile-指南/" class="post-title-link" itemprop="url">一份为 Node.js 应用准备的 Dockerfile 指南</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-02-28 11:55:00" itemprop="dateCreated datePublished" datetime="2018-02-28T11:55:00+08:00">2018-02-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="/images/pasted-306.png" alt="upload successful"></p>
-<h3 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h3><p>本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Node.js Web 应用的例子。以下为本指南的内容摘要：</p>
-<ul>
-<li>使用合适的基础镜像（开发环境使用 carbon，生产环境使用 alpine）。</li>
-<li>在开发时使用 <code>nodemon</code> 进行热加载。</li>
-<li>优化 Docker 的 cache layer（缓存层）—— 按照正确的顺序使用命令，仅在需要时运行 <code>npm install</code>。</li>
-<li>使用 <code>serve</code> 包部署静态文件（比如 React、Vue、Angular 生成的 bundle）。</li>
-<li>使用 <code>alpine</code> 进行生产环境下的多级构建，减少最终镜像文件的大小。</li>
-<li>#建议 — 1) 使用 COPY 代替 ADD 2) 使用 <code>init</code> 标识，处理 CTRL-C 等内核信号。</li>
-</ul>
-          <!--noindex-->
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/22/在-Swift-playground-中编写单元测试/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/02/22/在-Swift-playground-中编写单元测试/" class="post-title-link" itemprop="url">在 Swift playground 中编写单元测试</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-02-22 14:48:00" itemprop="dateCreated datePublished" datetime="2018-02-22T14:48:00+08:00">2018-02-22</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Swift playground 对于<a href="https://github.com/johnsundell/testdrive" target="_blank" rel="noopener">试用新的 framework</a>、<a href="https://github.com/ole/whats-new-in-swift-4" target="_blank" rel="noopener">探索语言的新特性</a>来说十分有用。它提供的实时反馈能让你快速尝试新的想法与解决方案，大大提高生产力。</p>
-<p>自 Swift 问世以来，无论是设计 framework API，还是给 app 开发新功能，我一直在不停地使用 playground，希望找到将它整合进工作流的办法。</p>
-<p>本周，让我们来了解如何将 Swift playground 应用于编写单元测试，以及如何让 <a href="https://en.wikipedia.org/wiki/Test-driven_development" target="_blank" rel="noopener">TDD - 测试驱动开发</a>（ish）工作流变得更加顺畅。</p>
-          <!--noindex-->
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/06/如何为-Flask-Web-应用配置-Nginx/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/02/06/如何为-Flask-Web-应用配置-Nginx/" class="post-title-link" itemprop="url">如何为 Flask Web 应用配置 Nginx</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-02-06 16:04:00" itemprop="dateCreated datePublished" datetime="2018-02-06T16:04:00+08:00">2018-02-06</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a><strong>简介</strong></h3><p>在本文中，我将介绍什么是 <a href="https://www.nginx.com/" target="_blank" rel="noopener">Nginx</a> 以及如何为 Flask Web 应用配置 Nginx。本文是<a href="http://www.patricksoftwareblog.com/all-posts/" target="_blank" rel="noopener">《部署 Flask 应用》</a>系列文章的一部分。我曾找到过多份关于 Nginx 及其配置的文章，但我希望能更深入其细节，了解如何使用 Nginx 为 Flask Web 应用服务以及如何为此进行配置。Nginx 的配置文件有点让人困惑，因为大多数的文档仅仅是简单罗列了一个配置文件，而没有对配置中每一步做了什么进行任何解释。希望本文能让你清晰地理解如何为你的应用配置 Nginx。</p>
-          <!--noindex-->
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/01/16/TML-5-2-有哪些新内容？/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/01/16/TML-5-2-有哪些新内容？/" class="post-title-link" itemprop="url">HTML 5.2 有哪些新内容？</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-01-16 15:40:08" itemprop="dateCreated datePublished" datetime="2018-01-16T15:40:08+08:00">2018-01-16</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>就在不到一个月前，HTML 5.2 正式成为了 W3C 的推荐标准（REC）。当一个规范到达 REC 阶段，就意味着它已经正式得到了 W3C 成员和理事长的认可。并且 W3C 将正式推荐浏览器厂商部署、web 开发者实现此规范。</p>
-<p>在 REC 阶段有个原则叫做<a href="https://www.slideshare.net/rachelandrew/where-does-css-come-from/27?src=clipshare" target="_blank" rel="noopener">“任何新事物都至少要有两种独立的实现”</a>，这对于我们 web 开发者来说是一个实践新特性的绝佳机会。</p>
-<p>在 HTML 5.2 中有一些添加和删除，具体改变可以参考官方的 <a href="https://www.w3.org/TR/html52/changes.html#changes" target="_blank" rel="noopener">HTML 5.2 变动内容</a>网页。本文将介绍一些我认为与我的开发有关的改动。</p>
-<h2 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h2><h3 id="原生的-lt-dialog-gt-元素"><a href="#原生的-lt-dialog-gt-元素" class="headerlink" title="原生的 &lt;dialog&gt; 元素"></a>原生的 <code>&lt;dialog&gt;</code> 元素</h3><p>在 HTML 5.2 的所有改动中，最让我激动的就是关于 <a href="https://www.w3.org/TR/html52/interactive-elements.html#elementdef-dialog" target="_blank" rel="noopener"><code>&lt;dialog&gt;</code> 元素</a>这个原生对话框的介绍。在 web 中，对话框比比皆是，但是它们的实现方式都各有不同。对话框很难实现可访问性，这导致大多数的对话框对那些不方便以视觉方式访问网页的用户来说都是不可用的。</p>
-<p>新的 <code>&lt;dialog&gt;</code> 元素旨在改变这种状况，它提供了一种简单的方式来实现模态对话框。之后我会单独写一篇文章专门介绍这个元素的工作方式，在此先简单介绍一下。</p>
-<p>由一个 <code>&lt;dialog&gt;</code> 元素创建对话框：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dialog</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Dialog Title<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Dialog content and other stuff will go here<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dialog</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>默认情况下，对话框会在视图中（以及 DOM 访问中）隐藏，只有设置 open 属性后，对话框才会显示。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dialog</span> <span class="attr">open</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><code>open</code> 属性可以通过调用 <code>show()</code> 与 <code>close()</code> 方法开启或关闭，任何 <code>HTMLDialogElement</code> 都可以调用这两个方法。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"open"</span>&gt;</span>Open Dialog<span class="tag">&lt;/<span class="name">button</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"close"</span>&gt;</span>Close Dialog<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dialog</span> <span class="attr">id</span>=<span class="string">"dialog"</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Dialog Title<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Dialog content and other stuff will go here<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dialog</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">  </span></span><br><span class="line"><span class="javascript"><span class="keyword">const</span> dialog = <span class="built_in">document</span>.getElementById(<span class="string">"dialog"</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="built_in">document</span>.getElementById(<span class="string">"open"</span>).addEventListener(<span class="string">"click"</span>, () =&gt; &#123;  </span></span><br><span class="line"><span class="undefined">  dialog.show();</span></span><br><span class="line"><span class="undefined">&#125;);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="built_in">document</span>.getElementById(<span class="string">"close"</span>).addEventListener(<span class="string">"click"</span>, () =&gt; &#123;  </span></span><br><span class="line"><span class="undefined">  dialog.close();</span></span><br><span class="line"><span class="undefined">&#125;);</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>目前，Chrome 浏览器已经支持 <code>&lt;dialog&gt;</code> 元素，Firefox 也即将支持（behind a flag）。 </p>
-<p><img src="/images/pasted-304.png" alt="upload successful"></p>
-<p>上图为 caniuse.com 关于 dialog 特性主流浏览器兼容情况的数据</p>
-<h3 id="在-iFrame-中使用-Payment-Request-API（支付请求-API）"><a href="#在-iFrame-中使用-Payment-Request-API（支付请求-API）" class="headerlink" title="在 iFrame 中使用 Payment Request API（支付请求 API）"></a>在 iFrame 中使用 Payment Request API（支付请求 API）</h3><p><a href="https://www.w3.org/TR/payment-request/" target="_blank" rel="noopener">Payment Request API</a> 是支付结算表单的原生替代方案。它将支付信息置于浏览器处理，用来代替之前各个网站各不相同的结算表单，旨在为用户提供一种标准、一致的支付方式。</p>
-<p>在 HTML 5.2 之前，这种支付请求无法在文档嵌入的 iframe 中使用，导致第三方嵌入式支付解决方案（如 Stripe, Paystack）基本不可能使用这个 API，因为它们通常是在 iframe 中处理支付接口。</p>
-<p>为此，HTML 5.2 引入了用于 iframe 的 <code>allowpaymentrequest</code> 属性，允许用户在宿主网页中访问 iframe 的 Payment Request API。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">allowpaymentrequest</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="苹果的图标尺寸"><a href="#苹果的图标尺寸" class="headerlink" title="苹果的图标尺寸"></a>苹果的图标尺寸</h3><p>如要定义网页图标，我们可以在文档的 head 中使用 <code>&lt;link rel=&quot;icon&quot;&gt;</code> 元素。如果要定义不同尺寸的图标，我们可以使用 <code>sizes</code> 属性。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"icon"</span> <span class="attr">sizes</span>=<span class="string">"16x16"</span> <span class="attr">href</span>=<span class="string">"path/to/icon16.png"</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"icon"</span> <span class="attr">sizes</span>=<span class="string">"32x32"</span> <span class="attr">href</span>=<span class="string">"path/to/icon32.png"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>这个属性虽然纯粹是个建议，但如果提供了多种尺寸的图标，可以让用户代理（UA）决定使用哪种尺寸的图标。在大多数设备有着不同的“最佳”图标尺寸时尤为重要。</p>
-<p>在 HTML 5.2 之前，<code>sizes</code> 属性仅能用于 rel 为 <code>icon</code> 的 link 元素中。然而，苹果的 iOS 设备不支持 <code>sizes</code> 属性。为了解决这个问题，苹果自己引入了一个他们设备专用的 rel <code>appple-touch-icon</code> 用于定义他们设备上使用的图标。</p>
-<p>在 HTML 5.2 中，规范定义了 <code>sizes</code> 属性<strong>不再仅仅</strong>可用于 rel 为 <code>icon</code> 的元素，也能用于 rel 为 <code>apple-touch-icon</code> 的元素。这样可以让我们为不同的苹果设备提供不同尺寸的图标。不过直到现在为止，据我所知苹果的设备还是不支持 <code>sizes</code> 属性。在将来苹果最终支持此规范时，它将派上用场。</p>
-<h2 id="新的有效实践"><a href="#新的有效实践" class="headerlink" title="新的有效实践"></a>新的有效实践</h2><p>除了新特性之外，HTML 5.2 还将一些之前无效的 HTML 写法认定为有效。</p>
-<h3 id="多个-lt-main-gt-元素"><a href="#多个-lt-main-gt-元素" class="headerlink" title="多个 &lt;main&gt; 元素"></a>多个 <code>&lt;main&gt;</code> 元素</h3><p><code>&lt;main&gt;</code> 元素代表网页的主要内容。虽然不同网页的重复内容可以放在 header、section 或者其它元素中，但 <code>&lt;main&gt;</code> 元素是为页面上的特定内容保留的。因此在 HTML 5.2 之前，<code>&lt;main&gt;</code> 元素在 DOM 中必须唯一才能令页面有效。</p>
-<p>随着单页面应用（SPA）的普及，要坚持这个原则变得困难起来。在同一个网页的 DOM 中可能会有多个 <code>&lt;main&gt;</code> 元素，但在任意时刻只能给用户展示其中的一个。</p>
-<p>使用 HTML 5.2，我们只要保证同一时刻只有一个 <code>&lt;main&gt;</code> 元素可见，就能在我们的标签中使用多个 <code>&lt;main&gt;</code> 元素。与此同时其它的 <code>&lt;main&gt;</code> 元素必须使用 <code>hidden</code> 属性进行隐藏。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">main</span>&gt;</span>...<span class="tag">&lt;/<span class="name">main</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">main</span> <span class="attr">hidden</span>&gt;</span>...<span class="tag">&lt;/<span class="name">main</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">main</span> <span class="attr">hidden</span>&gt;</span>...<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>我们都知道，<a href="https://bitsofco.de/hiding-elements-with-css/" target="_blank" rel="noopener">通过 CSS 来隐藏元素的方法有很多</a>，但多余的 <code>&lt;main&gt;</code> 元素必须使用 <code>hidden</code> 属性进行隐藏。任何其它隐藏此元素的方法（如 <code>display: none;</code> 和 <code>visibility: hidden;</code>）都将无效。</p>
-<h3 id="在-lt-body-gt-中写样式"><a href="#在-lt-body-gt-中写样式" class="headerlink" title="在 &lt;body&gt; 中写样式"></a>在 <code>&lt;body&gt;</code> 中写样式</h3><p>一般来说，使用<code>&lt;style&gt;</code>元素定义的内联 CSS 样式会放置在 HTML 文档的 <code>&lt;head&gt;</code> 中。随着组件化开发的流行，开发者已经发现编写 style 并放置在与其相关的 html 中更加有益。</p>
-<p>在 HTML 5.2 中，可以在 HTML 文档 <code>&lt;body&gt;</code> 内的任何地方定义内联 <code>&lt;style&gt;</code> 样式块。这意味着样式定义可以离它们被使用的地方更近。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>I’m cornflowerblue!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">        p &#123; color: cornflowerblue; &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>I’m cornflowerblue!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>然而仍需注意的是，<strong>由于性能问题，样式还是应当优先考虑放在 <code>&lt;head&gt;</code> 中</strong>。参见 <a href="https://www.w3.org/TR/html52/document-metadata.html#elementdef-style" target="_blank" rel="noopener">规范</a>，</p>
-<blockquote>
-<p>样式元素最好用于文档的 head 中。在文档的 body 中使用样式可能导致重复定义样式，触发重布局、导致重绘，因此需要小心使用。</p>
-</blockquote>
-<p>此外还应该注意的是如示例所示，样式不存在作用域。后来在 HTML 文档中定义的内联样式仍然会应用于之前定义的元素，所以它可能会触发重绘。</p>
-<h3 id="lt-legend-gt-中的标题元素"><a href="#lt-legend-gt-中的标题元素" class="headerlink" title="&lt;legend&gt; 中的标题元素"></a><code>&lt;legend&gt;</code> 中的标题元素</h3><p>在表单中，<code>&lt;legend&gt;</code> 元素表示 <code>&lt;fieldset&gt;</code> 表单域中的标题。在 HTML 5.2 前，legend 元素的内容必须为纯文本。而现在，它可以包含标题元素（<code>&lt;h1&gt;</code>等）了。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Basic Information<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Form fields for basic information --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Contact Information<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Form fields for contact information --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>当我们想用 <code>fieldset</code> 对表单中不同部分进行分组时，这个特性非常有用。在这种情况下使用标题元素是有意义的，因为这能让那些依赖于文档大纲的用户可以轻松导航至表单的对应部分。</p>
-<h2 id="移除的特性"><a href="#移除的特性" class="headerlink" title="移除的特性"></a>移除的特性</h2><p>在 HTML 5.2 中移除了一些元素，具体为：</p>
-<ul>
-<li><code>keygen</code>：曾经用于帮助表单生成公钥</li>
-<li><code>menu</code> 与 <code>menuitem</code>：曾经用于创建导航与内容菜单</li>
-</ul>
-<h2 id="新的无效实践"><a href="#新的无效实践" class="headerlink" title="新的无效实践"></a>新的无效实践</h2><p>最后，一些开发实践方式被规定不再有效。</p>
-<h3 id="在-lt-p-gt-中不再能包含行内、浮动、块类型的子元素"><a href="#在-lt-p-gt-中不再能包含行内、浮动、块类型的子元素" class="headerlink" title="在 &lt;p&gt; 中不再能包含行内、浮动、块类型的子元素"></a>在 <code>&lt;p&gt;</code> 中不再能包含行内、浮动、块类型的子元素</h3><p>在 HTML 5.2 中，<code>&lt;p&gt;</code> 元素中唯一合法的子元素只能是文字内容。这也意味着以下类型的元素不再能嵌套于段落标签 <code>&lt;p&gt;</code> 内：</p>
-<ul>
-<li>行内块（Inline blocks）</li>
-<li>行内表格（Inline tables）</li>
-<li>浮动块与固定位置块</li>
-</ul>
-<h3 id="不再支持严格文档类型（Strict-Doctypes）"><a href="#不再支持严格文档类型（Strict-Doctypes）" class="headerlink" title="不再支持严格文档类型（Strict Doctypes）"></a>不再支持严格文档类型（Strict Doctypes）</h3><p>最后，我们终于可以和这些文档类型说再见了！</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>本文发布于掘金 <a href="https://juejin.im/post/5a5dab05518825734107edda#comment" target="_blank" rel="noopener">https://juejin.im/post/5a5dab05518825734107edda#comment</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/01/16/连接-cisco-anyconnect-后网络受限/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/01/16/连接-cisco-anyconnect-后网络受限/" class="post-title-link" itemprop="url">连接 cisco anyconnect 后网络受限</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-01-16 01:47:00" itemprop="dateCreated datePublished" datetime="2018-01-16T01:47:00+08:00">2018-01-16</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>原因是服务端未开启 NAT</p>
-<p>解决方案</p>
-<p>1、关闭 ocserv：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/ocserv stop</span><br></pre></td></tr></table></figure></p>
-<p>2、开启 NAT</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -t nat -A POSTROUTING -j MASQUERADE</span><br></pre></td></tr></table></figure>
-<p>3、开启 ocserv：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ocserv -c /etc/ocserv/config</span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/ocserv start</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/01/03/编辑距离及编辑距离算法/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/01/03/编辑距离及编辑距离算法/" class="post-title-link" itemprop="url">编辑距离及编辑距离算法</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-01-03 15:00:00" itemprop="dateCreated datePublished" datetime="2018-01-03T15:00:00+08:00">2018-01-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>编辑距离又称为 Levenshtein 距离，指两个字串之间，由一个转成另一个所需的最少编辑操作次数。操作包括将一个字符替换成另一个字符，插入一个字符，删除一个字符。一般来说，编辑距离越小，两个串的相似度越大。（cite from <a href="https://baike.baidu.com/item/编辑距离/8010193?fr=aladdin" target="_blank" rel="noopener">baidu baike</a>）</p>
-<p>最小编辑距离在应用中常作为一种相似度计算方法。例如DNA分析、拼写纠错（Spell correction）、命名实体抽取（Named Entity Extraction）、实体共指（Entity Conference）、识别平行网页等。</p>
-<p>计算某两个字符串的编辑距离时，可以列下面的表：（如 apple 与 people）</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>0</th>
-<th>p</th>
-<th>e</th>
-<th>o</th>
-<th>p</th>
-<th>l</th>
-<th>e</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td>6</td>
-</tr>
-<tr>
-<td>a</td>
-<td>1</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>p</td>
-<td>2</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>p</td>
-<td>3</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>l</td>
-<td>4</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>e</td>
-<td>5</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>从上到下，从左到右遍历，对于每一个空来说，它的值为：</p>
-<ul>
-<li>左边数字 +1</li>
-<li>上面数字 +1</li>
-<li>如对应的行头与列头的字母相等，则取左上角的数字；否则取左上角数字 +1</li>
-</ul>
-<p>这三者的最小值。反复遍历，如下所示：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>0</th>
-<th>p</th>
-<th>e</th>
-<th>o</th>
-<th>p</th>
-<th>l</th>
-<th>e</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td>6</td>
-</tr>
-<tr>
-<td>a</td>
-<td>1</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td>6</td>
-</tr>
-<tr>
-<td>p</td>
-<td>2</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>p</td>
-<td>3</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>l</td>
-<td>4</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>e</td>
-<td>5</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>0</th>
-<th>p</th>
-<th>e</th>
-<th>o</th>
-<th>p</th>
-<th>l</th>
-<th>e</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td>6</td>
-</tr>
-<tr>
-<td>a</td>
-<td>1</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td>6</td>
-</tr>
-<tr>
-<td>p</td>
-<td>2</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-</tr>
-<tr>
-<td>p</td>
-<td>3</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>l</td>
-<td>4</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>e</td>
-<td>5</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>0</th>
-<th>p</th>
-<th>e</th>
-<th>o</th>
-<th>p</th>
-<th>l</th>
-<th>e</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td>6</td>
-</tr>
-<tr>
-<td>a</td>
-<td>1</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td>6</td>
-</tr>
-<tr>
-<td>p</td>
-<td>2</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-</tr>
-<tr>
-<td>p</td>
-<td>3</td>
-<td>2</td>
-<td>2</td>
-<td>3</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-</tr>
-<tr>
-<td>l</td>
-<td>4</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>e</td>
-<td>5</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>0</th>
-<th>p</th>
-<th>e</th>
-<th>o</th>
-<th>p</th>
-<th>l</th>
-<th>e</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td>6</td>
-</tr>
-<tr>
-<td>a</td>
-<td>1</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td>6</td>
-</tr>
-<tr>
-<td>p</td>
-<td>2</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-</tr>
-<tr>
-<td>p</td>
-<td>3</td>
-<td>2</td>
-<td>2</td>
-<td>3</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-</tr>
-<tr>
-<td>l</td>
-<td>4</td>
-<td>3</td>
-<td>3</td>
-<td>3</td>
-<td>4</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td>e</td>
-<td>5</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>0</th>
-<th>p</th>
-<th>e</th>
-<th>o</th>
-<th>p</th>
-<th>l</th>
-<th>e</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td>6</td>
-</tr>
-<tr>
-<td>a</td>
-<td>1</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td>6</td>
-</tr>
-<tr>
-<td>p</td>
-<td>2</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-</tr>
-<tr>
-<td>p</td>
-<td>3</td>
-<td>2</td>
-<td>2</td>
-<td>3</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-</tr>
-<tr>
-<td>l</td>
-<td>4</td>
-<td>3</td>
-<td>3</td>
-<td>3</td>
-<td>4</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td>e</td>
-<td>5</td>
-<td>4</td>
-<td>3</td>
-<td>4</td>
-<td>4</td>
-<td>4</td>
-<td>3</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>右下角数字为 3，则 apple 与 people 的编辑距离为 3。</p>
-<p>代码：<br>根据以上自然语言的描述，可以直接利用遍历写出相应代码。如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">literation</span><span class="params">(matrix)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, len(matrix)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>, len(matrix[<span class="number">0</span>])):</span><br><span class="line">            up_num = matrix[i - <span class="number">1</span>][j]</span><br><span class="line">            left_num = matrix[i][j - <span class="number">1</span>]</span><br><span class="line">            left_up_num = matrix[i - <span class="number">1</span>][j - <span class="number">1</span>]</span><br><span class="line">            <span class="keyword">if</span> matrix[<span class="number">0</span>][j] != matrix[i][<span class="number">0</span>]:</span><br><span class="line">                left_up_num += <span class="number">1</span></span><br><span class="line">            matrix[i][j] = min(up_num + <span class="number">1</span>, left_num + <span class="number">1</span>, left_up_num)</span><br><span class="line">            print_matrix(matrix)</span><br><span class="line">    <span class="keyword">return</span> matrix</span><br></pre></td></tr></table></figure>
-<p>完整代码放在 <a href="https://github.com/lsvih/algorithm-practice/blob/master/edit-distance/edit-distance.py" target="_blank" rel="noopener">github 上</a></p>
-<p>运行结果如下：</p>
-<p><img src="/images/pasted-303.png" alt="upload successful"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2553,7 +2325,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">146</span>
+                    <span class="site-state-item-count">152</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2955,7 +2727,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">179</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">187</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
