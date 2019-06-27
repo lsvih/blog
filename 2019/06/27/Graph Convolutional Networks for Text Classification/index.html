@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '6U6P1RGK4F',
+      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
+      indexName: 'lsvih',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文作于 2018 年，被 AAAI 2019 接收。作者是浙大博士，在 Northwestern University 做博后期间做出了此工作。文章中开源了实现代码：https://github.com/yao8839836/text_gcn   概述本文解决的是自然语言处理中最基础的任务 - 文本分类任务。利用近年大火的图神经网络，作者通过词与文章的共现信息和 TF-IDF 权重和互信息权重">
+<meta name="keywords" content="note,machine learning,Paper,GNN,GCN,NLP,Text classification">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Graph Convolutional Networks for Text Classification 论文笔记">
+<meta property="og:url" content="https://lsvih.com/2019/06/27/Graph Convolutional Networks for Text Classification/index.html">
+<meta property="og:site_name" content="My note">
+<meta property="og:description" content="本文作于 2018 年，被 AAAI 2019 接收。作者是浙大博士，在 Northwestern University 做博后期间做出了此工作。文章中开源了实现代码：https://github.com/yao8839836/text_gcn   概述本文解决的是自然语言处理中最基础的任务 - 文本分类任务。利用近年大火的图神经网络，作者通过词与文章的共现信息和 TF-IDF 权重和互信息权重">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://lsvih.com/images/15616083187154.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15616083306904.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15616083449147.jpg">
+<meta property="og:image" content="https://lsvih.com/images/15616083604339.jpg">
+<meta property="og:updated_time" content="2019-06-27T04:06:42.691Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Graph Convolutional Networks for Text Classification 论文笔记">
+<meta name="twitter:description" content="本文作于 2018 年，被 AAAI 2019 接收。作者是浙大博士，在 Northwestern University 做博后期间做出了此工作。文章中开源了实现代码：https://github.com/yao8839836/text_gcn   概述本文解决的是自然语言处理中最基础的任务 - 文本分类任务。利用近年大火的图神经网络，作者通过词与文章的共现信息和 TF-IDF 权重和互信息权重">
+<meta name="twitter:image" content="https://lsvih.com/images/15616083187154.jpg">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://lsvih.com/2019/06/27/Graph Convolutional Networks for Text Classification/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Graph Convolutional Networks for Text Classification 论文笔记 | My note</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4de170e51b04cee02fbdb1b7cb7a8a60";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My note</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/06/27/Graph Convolutional Networks for Text Classification/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Graph Convolutional Networks for Text Classification 论文笔记
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-27 12:04:00" itemprop="dateCreated datePublished" datetime="2019-06-27T12:04:00+08:00">2019-06-27</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文作于 2018 年，被 AAAI 2019 接收。作者是浙大博士，在 Northwestern University 做博后期间做出了此工作。文章中开源了实现代码：<a href="https://github.com/yao8839836/text_gcn" target="_blank" rel="noopener">https://github.com/yao8839836/text_gcn</a> </p>
+</blockquote>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>本文解决的是自然语言处理中最基础的任务 - 文本分类任务。利用近年大火的图神经网络，作者通过词与文章的共现信息和 TF-IDF 权重和互信息权重将无结构数据文本进行了构图，并利用 Graph Convolutional Network（GCN）捕获图中的文档-词、词-词、文档-文档关系，从而进行文本分类。</p>
+<p>具体来说，本文主要有以下两个贡献点：</p>
+<ol>
+<li>提出了使用图神经网络来解决文本分类问题，有效利用了文档、词等的异构信息</li>
+<li>在 benchmark 上达到了 state-of-the-art 的效果</li>
+</ol>
+<h2 id="背景与相关工作"><a href="#背景与相关工作" class="headerlink" title="背景与相关工作"></a>背景与相关工作</h2><h3 id="文本分类"><a href="#文本分类" class="headerlink" title="文本分类"></a>文本分类</h3><p>传统的文本分类方法主要依靠特征工程，在深度学习兴起后，各种深度学习框架代替了这个步骤。人们利用文本的分布式表示（embedding），使用各种 CNN、RNN、LSTM 等神经网络来捕获 embedding 中的语义信息，进行分类。本文就是在此基础之上，用 GCN 来捕获 Graph 中的 语义信息从而实现准确分类。</p>
+<h3 id="图网络"><a href="#图网络" class="headerlink" title="图网络"></a>图网络</h3><p>近些年为了突破传统神经网络只能应用于对齐的 grid 数据的限制，出现了可以应用于 Graph 的图神经网络。其中，GCN 方法简单有效，在图的各个节点上计算其邻居的聚合信息表示。因此，作者 employ 了 GCN 方法，将其用于图结构的学习。</p>
+<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>作者在 5 个常用的公开数据集上进行了实验。这 5 个数据集的基本信息如下：</p>
+<p><img src="/images/15616083187154.jpg" alt="-w692"></p>
+<p>在实验前，作者利用 NLTK 去除了前 4 个数据集的停用词，并去除了频次小于 5 的低频次。MR 数据集因为句子太短了，没有必要再删。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="构图方法"><a href="#构图方法" class="headerlink" title="构图方法"></a>构图方法</h3><p>作者最终构成的图结构如下图所示：</p>
+<p><img src="/images/15616083306904.jpg" alt="-w922"></p>
+<p>在图中，左边是文本构成的图，右边是经过 GCN 得到的图表示。在左图中，以“O”开头的节点是文档节点，白色圈里有单词的节点是单词节点，黑色的线是文档-单词关系，灰色的线是单词-单词关系。右图中的$R(x)$表示文档或单词$x$的表示。</p>
+<p>具体来说，在这个情景中，构图主要在于如何对文档-单词和单词-单词的边赋权。作者使用了下面公式所示的构图方式：</p>
+<script type="math/tex; mode=display">
+A _ { i j } = \left\{ \begin{array} { c } { \operatorname { PMI } ( i , j ) } \space \text{i,j 是单词，且 PMI(i,j)>0} \\ { \mathrm { TF } - \mathrm { IDF } _ { i j } } \space \text{i是单词，j是文档} \\ { 1 } \space i =j \\ { 0 } \space otherwise \end{array} \right.</script><p>$A_{ij}$表示从节点 i 连到节点 j 的边的权重。简单来说，就是对文档-单词的边算 TF-IDF 作为权重，对单词-单词的边使用 PMI 做权重。PMI 是单词与单词的互信息，具体计算方式是：</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \operatorname { PMI } ( i , j ) = & \log \frac { p ( i , j ) } { p ( i ) p ( j ) } \\ p ( i , j ) = & \frac { \# W ( i , j ) } { \# W } \\ p ( i ) = & \frac { \# W ( i ) } { \# W } \end{aligned}</script><p>其中，#W 是滑动窗口，具体来说，PMI 就是算单词 i 和单词 j 同时出现的概率比上单词 i 和单词 j 单独出现的概率。</p>
+<h3 id="分类算法"><a href="#分类算法" class="headerlink" title="分类算法"></a>分类算法</h3><p>在 GCN 框架内，使用 BP 算法来优化节点表示，并在 GCN 后加一层 Dense 层和激活层，利用 softmax 来进行分类。作者将其表示如下：</p>
+<script type="math/tex; mode=display">Z = \operatorname { softmax } \left( \tilde { A } \operatorname { ReL } \mathbf { U } \left( \tilde { A } X W _ { 0 } \right) W _ { 1 } \right)</script><p>其中，$ \tilde { A } X W _ { 0 } $ 和前面的公式 $L ^ { ( 1 ) } = \rho \left( \tilde { A } X W _ { 0 } \right)$ 一致，都是通过对 W 的优化来进行节点的表示。对上面的公式进一步拆解，可以记为：</p>
+<script type="math/tex; mode=display">E _ { 1 } = \tilde { A } X W _ { 0 }</script><p>$E_1$ 就是对单词和文档节点的表示。</p>
+<script type="math/tex; mode=display">E _ { 2 } = \tilde { A } \operatorname { ReLU } \left( \tilde { A } X W _ { 0 } \right) W _ { 1 }</script><p>$E_2$ 就是对节点的第二层级表示。因此，本文相当于用了 2 层 GCN 进行图表示，然后用 softmax 进行分类。在分类优化时，采用了交叉熵损失函数：</p>
+<script type="math/tex; mode=display">
+\mathcal { L } = - \sum _ { d \in \mathcal { Y } _ { D } } \sum _ { f = 1 } ^ { F } Y _ { d f } \ln Z _ { d f }</script><h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="baseline-设置"><a href="#baseline-设置" class="headerlink" title="baseline 设置"></a>baseline 设置</h3><p>作者设置了多种 baseline，包括：</p>
+<ul>
+<li>TF-IDF + 线性分类器</li>
+<li>CNN 文本分类（Convolutional neural networks for sentence classification，EMNLP）</li>
+<li>LSTM 文本分类（Recurrent neural network for text classiﬁcation with multi-task learning，IJCAI）</li>
+<li>Bi-LSTM</li>
+<li>PV-DBOW（Distributed representations of sentences and documents，ICML）</li>
+<li>PV-DM（同上）</li>
+<li>PTE（Automatic lymphoma classiﬁcation with sentence subgraph mining from pathology reports）</li>
+<li>FastText（Bag of tricks for efﬁcient text classiﬁcation，EACL）</li>
+<li>SWEM（Baseline needs more love: On simple wordembedding-based models and associated pooling mechanisms，ACL）</li>
+<li>LEAM（Joint embedding of words and labels for text classiﬁcation，ACL）</li>
+<li>Graph-CNN-C（Convolutional neural networks on graphs with fast localized spectral ﬁltering，NIPS）</li>
+<li>Graph-CNN-S（Spectral networks and locally connected networks on graphs，ICLR）</li>
+<li>Graph-CNN-F（Deep convolutional networks on graphstructured data）</li>
+</ul>
+<p>可以看到，作者的实验非常完善且置信，应用了当时几乎全部的文本分类方法来进行对比。</p>
+<h3 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h3><p>作者用了 200 维作为 embedding 维数，20 作为滑动窗口大小，学习率设为 0.02，Dorpout 设为 0.5，分别随机采样 10 % 数据作为验证集和测试集。</p>
+<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p>最终，得到了如下表所示的实验结果：</p>
+<p><img src="/images/15616083449147.jpg" alt="-w1067"></p>
+<p>该表有两个维度，数据集和模型。从此也可以看出，作者实验做的非常充分。</p>
+<h3 id="结果分析"><a href="#结果分析" class="headerlink" title="结果分析"></a>结果分析</h3><p>从上表可以看到，除了 MR 数据集外，作者提出的 Text GCN 方法在其余全部数据集上都得到了最好的结果。猜测可能是由于 MR 数据集中数据过于短，构图效果不佳造成的。</p>
+<p>此外，作者利用 t-SNE 方法（Visualizing data using t-sne，JMLR）对结果进行了可视化，用于分析训练得到的 embedding 的效果。结果如下：</p>
+<p><img src="/images/15616083604339.jpg" alt="-w513"></p>
+<p>可以看到，作者提出的 Text GCN 方法得到的文档表示在 t-SNE 表现是可分的，类间距离较大，优于用来对比的其余两种方法。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>作者提出的 Text GCN 方法在文本分类任务中，在多个数据集上得到了最好的结果。我认为其最大创新点在于：1、引入了 GCN 来做文本分类 2、提出了这种构建带权边图的方式。整个工作非常完备，应该要做的实验基本都做了，令人信服，我们做文本分类应当也要学习本文的实验方式。此外，文章最后的节点表示可视化也很有说服力。</p>
+<p>对于后续工作，我觉得一个是可以 follow 一些新的构图方式和 GNN 框架，再有就是在 loss 方面进行改进，优化表示的空间分布。此外，可以考虑结合一些最新的语言模型方法（BERT、XLNET 等）改善结果。以及，可以对分类器那块进行一些改进，比如引入 Attention 等方法可能可以提升效果。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>lsvih</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    
+    <a href="https://lsvih.com/2019/06/27/Graph Convolutional Networks for Text Classification/" title="Graph Convolutional Networks for Text Classification 论文笔记">https://lsvih.com/2019/06/27/Graph Convolutional Networks for Text Classification/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/note/" rel="tag"># note</a>
+          
+            <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+          
+            <a href="/tags/Paper/" rel="tag"># Paper</a>
+          
+            <a href="/tags/GNN/" rel="tag"># GNN</a>
+          
+            <a href="/tags/GCN/" rel="tag"># GCN</a>
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+            <a href="/tags/Text-classification/" rel="tag"># Text classification</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/26/javascript-linear-algebra/" rel="next" title="Javascript 线性代数系列">
+                <i class="fa fa-chevron-left"></i> Javascript 线性代数系列
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">lsvih</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">153</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">190</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lsvih" title="GitHub &rarr; https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:lsvih@qq.com" title="E-Mail &rarr; mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景与相关工作"><span class="nav-number">2.</span> <span class="nav-text">背景与相关工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文本分类"><span class="nav-number">2.1.</span> <span class="nav-text">文本分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图网络"><span class="nav-number">2.2.</span> <span class="nav-text">图网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据"><span class="nav-number">3.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">4.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构图方法"><span class="nav-number">4.1.</span> <span class="nav-text">构图方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类算法"><span class="nav-number">4.2.</span> <span class="nav-text">分类算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">5.</span> <span class="nav-text">实验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#baseline-设置"><span class="nav-number">5.1.</span> <span class="nav-text">baseline 设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验设置"><span class="nav-number">5.2.</span> <span class="nav-text">实验设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验结果"><span class="nav-number">5.3.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果分析"><span class="nav-number">5.4.</span> <span class="nav-text">结果分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">京ICP备18029472号 </a>&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lsvih</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.7.0"></script>
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
