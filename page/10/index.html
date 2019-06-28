@@ -366,6 +366,206 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/11/30/Key-to-‘JavaScript-Puzzlers-3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/11/30/Key-to-‘JavaScript-Puzzlers-3/" class="post-title-link" itemprop="url">Key to ‘JavaScript Puzzlers'(3)</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-11-30 07:38:00" itemprop="dateCreated datePublished" datetime="2016-11-30T07:38:00+08:00">2016-11-30</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="4-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#4-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="4.What is the result of this expression? (or multiple ones)"></a>4.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> END = <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>);</span><br><span class="line"><span class="keyword">var</span> START = END - <span class="number">100</span>;</span><br><span class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = START; i &lt;= END; i++) &#123;</span><br><span class="line">    count++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(count);</span><br></pre></td></tr></table></figure>
+<p>A    0</p>
+<p>B    100</p>
+<p>C    101</p>
+<p>D    other</p>
+<p>Correct answer is D.2<sup>53</sup> is the largest number in javascript,so that i never become lager than START.This code will cause infinite loop.</p>
+<h4 id="5-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#5-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="5.What is the result of this expression? (or multiple ones)"></a>5.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ary = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line">ary[<span class="number">10</span>] = <span class="number">10</span>;</span><br><span class="line">ary.filter(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123; <span class="keyword">return</span> x === <span class="literal">undefined</span>;&#125;);</span><br></pre></td></tr></table></figure>
+<p>A    [undefined x 7]</p>
+<p>B    [0,1,2,10]</p>
+<p>C    []</p>
+<p>D    [undefined]</p>
+<p>C is correct answer.The ary looks like [0,1,2,undefined x 7,10] , but in fact array.prototype.filter() ignore undefined element.So it returned []</p>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank" rel="noopener">See more information about array.prototype.filter()</a></p>
+</blockquote>
+<h4 id="6-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#6-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="6.What is the result of this expression? (or multiple ones)"></a>6.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> two   = <span class="number">0.2</span></span><br><span class="line"><span class="keyword">var</span> one   = <span class="number">0.1</span></span><br><span class="line"><span class="keyword">var</span> eight = <span class="number">0.8</span></span><br><span class="line"><span class="keyword">var</span> six   = <span class="number">0.6</span></span><br><span class="line">[two - one == one, eight - six == two]</span><br></pre></td></tr></table></figure>
+<p>A    [true,true]</p>
+<p>B    [false,false]</p>
+<p>C    [true,false]</p>
+<p>D    other</p>
+<p>Is C.</p>
+<p>Javascript hasn’t ability of precise calculation,so that float number will be calculated in a imprecise mode.</p>
+<p>&gt; 0.8-0.6 = 0.20000000000000007</p>
+<p>Specially, 0.2-0.1 = 0.1</p>
+<h4 id="7-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#7-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="7.What is the result of this expression? (or multiple ones)"></a>7.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCase2</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(value) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Case A'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'B'</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Case B'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="literal">undefined</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'undefined'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Do not know!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">showCase2(<span class="built_in">String</span>(<span class="string">'A'</span>));</span><br></pre></td></tr></table></figure>
+<p>A    Case A</p>
+<p>B    Case B</p>
+<p>C    Do not know!</p>
+<p>D    undefined</p>
+<p>swith() method uses ‘===’ to judge condition,new String(A) construct a new string object, </p>
+<p>new String(‘a’) == ‘a’ but new String(‘a’) !== ‘a’.</p>
+<p>So this question’s answer is C</p>
+<p>let a = new String(“b”)</p>
+<p>typeof a === ‘object’</p>
+<p>8.What is the result of this expression? (or multiple ones)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCase2</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(value) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'A'</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Case A'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'B'</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Case B'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="literal">undefined</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'undefined'</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Do not know!'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">showCase2(<span class="built_in">String</span>(<span class="string">'A'</span>));</span><br></pre></td></tr></table></figure>
+<p>A    Case A</p>
+<p>B    Case B</p>
+<p>C    Do not know!</p>
+<p>D    undefined</p>
+<p>Correct is A.</p>
+<p>String(‘A’) === ‘A’</p>
+<p>let a  = String(‘b’)</p>
+<p>typeof a === ‘string’</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/11/28/Key-to-JavaScript-Puzzlers-2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1909,183 +2109,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/03/在less中使用calc/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/10/03/在less中使用calc/" class="post-title-link" itemprop="url">在less中使用calc()</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-10-03 04:22:00" itemprop="dateCreated datePublished" datetime="2016-10-03T04:22:00+08:00">2016-10-03</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>calc()在css中可以很方便的使用，但是在使用less时calc()内的东西会被编译器当作算式进行计算，例如</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:calc(</span> 100% <span class="selector-tag">-</span> 20<span class="selector-tag">px</span> );</span><br></pre></td></tr></table></figure>
-<p>会被编译成<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:calc</span> ( 80% );</span><br></pre></td></tr></table></figure></p>
-<p>此时，需要用到less的e()字符串函数来让其以css方式解析</p>
-<blockquote>
-<h3 id="e"><a href="#e" class="headerlink" title="e"></a>e<a href="http://lesscss.cn/functions/#string-functions-e" target="_blank" rel="noopener"></a></h3><p>CSS escaping, replaced with <code>~&quot;value&quot;</code> syntax.</p>
-<p>It expects string as a parameter and return its content as is, but without quotes. It can be used to output CSS value which is either not valid CSS syntax, or uses proprietary syntax which Less doesn’t recognize.</p>
-<p>Parameters: <code>string</code> - a string to escape.</p>
-<p>Returns: <code>string</code> - the escaped string, without quotes.</p>
-<p>Example:</p>
-<pre style="box-sizing: border-box; font-family: Monaco, Menlo, Consolas, 'Courier New', monospace; font-size: 13px; white-space: pre-wrap; padding: 9.5px; margin-top: 0px; margin-bottom: 10px; line-height: 1.42857; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(245, 245, 245);">filter: e("ms:alwaysHasItsOwnSyntax.For.Stuff()");</pre>
-
-<p>Output:</p>
-<pre style="box-sizing: border-box; font-family: Monaco, Menlo, Consolas, 'Courier New', monospace; font-size: 13px; white-space: pre-wrap; padding: 9.5px; margin-top: 0px; margin-bottom: 10px; line-height: 1.42857; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(245, 245, 245);">filter: ms:alwaysHasItsOwnSyntax.For.Stuff();</pre>
-
-<p>Note: The function accepts also <code>~&quot;&quot;</code> escaped values and numbers as parameters. Anything else returns an error.</p>
-</blockquote>
-<p>因此，需要这样写<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span>: <span class="selector-tag">calc</span>( <span class="selector-tag">e</span>("100% <span class="selector-tag">-</span> 20<span class="selector-tag">px</span>") );</span><br></pre></td></tr></table></figure></p>
-<p>或<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span>: <span class="selector-tag">calc</span>(~"100% <span class="selector-tag">-</span> 20<span class="selector-tag">px</span>");</span><br></pre></td></tr></table></figure></p>
-<p>这时就能满足需求，编译成css后会保持<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span>: <span class="selector-tag">calc</span>( 100% <span class="selector-tag">-</span> 20<span class="selector-tag">px</span> );</span><br></pre></td></tr></table></figure></p>
-<p>的样子。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2133,7 +2156,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">153</span>
+                    <span class="site-state-item-count">154</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2557,7 +2580,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">190</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">193</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

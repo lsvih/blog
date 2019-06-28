@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lsvih.com/"/>
-  <updated>2019-06-27T04:06:42.691Z</updated>
+  <updated>2019-06-28T03:12:13.013Z</updated>
   <id>https://lsvih.com/</id>
   
   <author>
@@ -15,6 +15,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在机器学习中为什么要进行 One-Hot 编码？</title>
+    <link href="https://lsvih.com/2019/06/28/why-one-hot-encode-data-in-machine-learning/"/>
+    <id>https://lsvih.com/2019/06/28/why-one-hot-encode-data-in-machine-learning/</id>
+    <published>2019-06-28T03:10:00.000Z</published>
+    <updated>2019-06-28T03:12:13.013Z</updated>
+    
+    <content type="html"><![CDATA[<p>入门机器学习应用，尤其是需要对实际数据进行处理时，是很困难的。</p><p>一般来说，机器学习教程会推荐你或要求你，在开始拟合模型之前，先以特定的方式准备好数据。</p><p>其中，一个很好的例子就是对类别数据（Categorical data）进行 One-Hot 编码（又称独热编码）。</p><ul><li>为什么 One-Hot 编码是必要的？</li><li>为什么你不能直接使用数据来拟合模型？</li></ul><p>在本文中，你将得到上述重要问题的答案，并能更好地理解机器学习应用中的数据准备工作。</p><a id="more"></a><p>让我们开始吧！</p><p><img src="https://lsvih.com/images/Why-One-Hot-Encode-Data-in-Machine-Learning.jpg" alt=""></p><p><a href="https://www.flickr.com/photos/jiangkeren/8263176332/" target="_blank" rel="noopener">题图 by Karan Jain，保留部分权利</a></p><h2 id="什么是类别数据？"><a href="#什么是类别数据？" class="headerlink" title="什么是类别数据？"></a>什么是类别数据？</h2><p>类别数据是一种只有标签值而没有数值的变量。</p><p>它的值通常属于一个大小固定且有限的集合。</p><p>类别变量也常被称为<a href="https://en.wikipedia.org/wiki/Nominal_category" target="_blank" rel="noopener">标称值（nominal）</a>。</p><p>下面举例说明：</p><ul><li>宠物（pet）变量包含以下几种值：狗（dog）、猫（cat）。</li><li>颜色（color）变量包含以下几种值：红（red）、绿（green）、蓝（blue）。</li><li>位次（place）变量包含以下几种值：第一（first）、第二（second）和第三（third）。</li></ul><p>以上例子中的每个值都代表着一个不同的类别。</p><p>有些类别彼此间存在一定的自然关系，比如自然的排序关系。</p><p>上述例子中，位次（place）变量的值就有这种自然的排序关系。这种变量被称为序数变量（ordinal variable）。</p><h2 id="类别数据有什么问题？"><a href="#类别数据有什么问题？" class="headerlink" title="类别数据有什么问题？"></a>类别数据有什么问题？</h2><p>有些算法可以直接应用于类别数据。</p><p>比如，你可以不进行任何数据转换，将决策树算法直接应用于类别数据上（取决于具体实现方式）。</p><p>但还有许多机器学习算法并不能直接操作标签数据。这些算法要求所有的输入输出变量都是数值（numeric）。</p><p>通常来说，这种限制主要是因为这些机器学习算法的高效实现造成的，而不是算法本身的限制。</p><p>但这也意味着我们需要把类别数据转换成数值形式。如果输出变量是类别变量，那你可能还得将模型的预测值转换回类别形式，以便在一些应用中展示或使用它们。</p><h2 id="如何将类别数据转换成数值数据？"><a href="#如何将类别数据转换成数值数据？" class="headerlink" title="如何将类别数据转换成数值数据？"></a>如何将类别数据转换成数值数据？</h2><p>这包含两个步骤：</p><ol><li>整数编码</li><li>One-Hot 编码</li></ol><h3 id="1-整数编码"><a href="#1-整数编码" class="headerlink" title="1. 整数编码"></a>1. 整数编码</h3><p>第一步，先要给每个类别值都分配一个整数值。</p><p>比如，用 1 表示红色（red），2 表示绿色（green），3 表示蓝色（blue）。</p><p>这种方式被称为标签编码或者整数编码，可以很轻松地将它还原回类别值。</p><p>对于某些变量来说，这种编码就足够了。</p><p>整数之间存在自然的排序关系，机器学习算法也许可以理解并利用这种关系。</p><p>比如，前面的位次（place）例子中的序数变量就是一个很好的例子。对于它我们只需要进行标签编码就够了。</p><h3 id="2-One-Hot-编码"><a href="#2-One-Hot-编码" class="headerlink" title="2. One-Hot 编码"></a>2. One-Hot 编码</h3><p>但对于不存在次序关系的类别变量，仅使用上述的整数编码是不够的。</p><p>实际上，使用整数编码会让模型假设类别间存在自然的次序关系，从而导致结果不佳或得到意外的结果（预测值落在两个类别的中间）。</p><p>这种情况下，就要对整数表示使用 One-Hot 编码了。One-Hot 编码会去除整数编码，并为每个整数值都创建一个二值变量。</p><p>在颜色（color）的示例中，有 3 种类别，因此需要 3 个二值变量进行编码。对应的颜色位置上将被标为“1”，其它颜色位置上会被标为“0”。</p><p>比如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">red, green, blue</span><br><span class="line">1, 0, 0</span><br><span class="line">0, 1, 0</span><br><span class="line">0, 0, 1</span><br></pre></td></tr></table></figure><p>在统计学等领域中，这种二值变量通常被称为“虚拟变量”或“哑变量”（dummy variable）。</p><h2 id="One-Hot-编码教程"><a href="#One-Hot-编码教程" class="headerlink" title="One-Hot 编码教程"></a>One-Hot 编码教程</h2><p>如果你想了解如何在 Python 对你的数据进行 One-Hot 编码，请参阅：</p><ul><li><a href="https://machinelearningmastery.com/data-preparation-gradient-boosting-xgboost-python/" target="_blank" rel="noopener">Data Preparation for Gradient Boosting with XGBoost in Python</a> — 在 Python 中使用 XGBoost 梯度提升法前的数据准备</li><li><a href="https://machinelearningmastery.com/how-to-one-hot-encode-sequence-data-in-python/" target="_blank" rel="noopener">How to One Hot Encode Sequence Data in Python</a> — 如何使用 Python 对序列数据进行 One-Hot 编码</li></ul><h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><ul><li><a href="https://en.wikipedia.org/wiki/Categorical_variable" target="_blank" rel="noopener">类别变量（Categorical variable）</a>，Wikipedia</li><li><a href="https://en.wikipedia.org/wiki/Nominal_category" target="_blank" rel="noopener">标称分类（Nominal category）</a>，Wikipedia</li><li><a href="https://en.wikipedia.org/wiki/Dummy_variable_(statistics" target="_blank" rel="noopener">虚拟变量，哑变量（Dummy variable）</a>)，Wikipedia</li></ul><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在本文中，你应该了解了为什么在使用机器学习算法时通常要对类别数据进行编码。</p><p>特别要注意：</p><ul><li>类别数据的定义是由一组有限集合中的值构成的变量。</li><li>大多数机器学习算法都需要输入数值变量，并会输出数值变量。</li><li>通过整数编码与 One-Hot 编码可以将类别数据转换为整型数据。</li></ul><p>文章首发于掘金：<a href="https://juejin.im/post/5d15840e5188255c23553204" target="_blank" rel="noopener">https://juejin.im/post/5d15840e5188255c23553204</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;入门机器学习应用，尤其是需要对实际数据进行处理时，是很困难的。&lt;/p&gt;
+&lt;p&gt;一般来说，机器学习教程会推荐你或要求你，在开始拟合模型之前，先以特定的方式准备好数据。&lt;/p&gt;
+&lt;p&gt;其中，一个很好的例子就是对类别数据（Categorical data）进行 One-Hot 编码（又称独热编码）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;为什么 One-Hot 编码是必要的？&lt;/li&gt;
+&lt;li&gt;为什么你不能直接使用数据来拟合模型？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在本文中，你将得到上述重要问题的答案，并能更好地理解机器学习应用中的数据准备工作。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
+    
+    
+      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
+    
+      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
+    
+      <category term="Machine Learning" scheme="https://lsvih.com/tags/Machine-Learning/"/>
+    
+      <category term="One Hot" scheme="https://lsvih.com/tags/One-Hot/"/>
+    
+      <category term="Tutorial" scheme="https://lsvih.com/tags/Tutorial/"/>
+    
+      <category term="Deep Learning" scheme="https://lsvih.com/tags/Deep-Learning/"/>
+    
+  </entry>
   
   <entry>
     <title>Graph Convolutional Networks for Text Classification 论文笔记</title>
@@ -107,13 +146,11 @@
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
-      <category term="线性代数" scheme="https://lsvih.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
-    
-      <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
       <category term="Linear Algebra" scheme="https://lsvih.com/tags/Linear-Algebra/"/>
     
       <category term="React" scheme="https://lsvih.com/tags/React/"/>
+    
+      <category term="线性代数" scheme="https://lsvih.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
     
       <category term="ThreeJS" scheme="https://lsvih.com/tags/ThreeJS/"/>
     
@@ -122,6 +159,8 @@
       <category term="Matrix" scheme="https://lsvih.com/tags/Matrix/"/>
     
       <category term="Animate" scheme="https://lsvih.com/tags/Animate/"/>
+    
+      <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
   </entry>
   
@@ -147,17 +186,17 @@
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
-      <category term="线性代数" scheme="https://lsvih.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
-    
-      <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
       <category term="Linear Algebra" scheme="https://lsvih.com/tags/Linear-Algebra/"/>
     
       <category term="React" scheme="https://lsvih.com/tags/React/"/>
     
+      <category term="线性代数" scheme="https://lsvih.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
+    
       <category term="ThreeJS" scheme="https://lsvih.com/tags/ThreeJS/"/>
     
       <category term="Animate" scheme="https://lsvih.com/tags/Animate/"/>
+    
+      <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
   </entry>
   
@@ -183,13 +222,13 @@
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
-      <category term="线性代数" scheme="https://lsvih.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
-    
-      <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
       <category term="Linear Algebra" scheme="https://lsvih.com/tags/Linear-Algebra/"/>
     
       <category term="React" scheme="https://lsvih.com/tags/React/"/>
+    
+      <category term="线性代数" scheme="https://lsvih.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
+    
+      <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
   </entry>
   
@@ -215,15 +254,15 @@
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
-      <category term="线性代数" scheme="https://lsvih.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
-    
-      <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
       <category term="Linear Algebra" scheme="https://lsvih.com/tags/Linear-Algebra/"/>
     
       <category term="React" scheme="https://lsvih.com/tags/React/"/>
     
+      <category term="线性代数" scheme="https://lsvih.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
+    
       <category term="SVG" scheme="https://lsvih.com/tags/SVG/"/>
+    
+      <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
   </entry>
   
@@ -249,13 +288,13 @@
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
-      <category term="线性代数" scheme="https://lsvih.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
-    
-      <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
       <category term="Linear Algebra" scheme="https://lsvih.com/tags/Linear-Algebra/"/>
     
       <category term="React" scheme="https://lsvih.com/tags/React/"/>
+    
+      <category term="线性代数" scheme="https://lsvih.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
+    
+      <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
   </entry>
   
@@ -315,11 +354,11 @@
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
-    
-      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
     
       <category term="pytorch" scheme="https://lsvih.com/tags/pytorch/"/>
     
@@ -349,13 +388,13 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="CNN" scheme="https://lsvih.com/tags/CNN/"/>
-    
       <category term="note" scheme="https://lsvih.com/tags/note/"/>
     
       <category term="Paper" scheme="https://lsvih.com/tags/Paper/"/>
     
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="CNN" scheme="https://lsvih.com/tags/CNN/"/>
     
       <category term="deep learning" scheme="https://lsvih.com/tags/deep-learning/"/>
     
@@ -509,9 +548,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
-    
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
       <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
@@ -607,11 +646,11 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
-    
       <category term="note" scheme="https://lsvih.com/tags/note/"/>
     
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
       <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
@@ -645,34 +684,6 @@
     
     
       <category term="note" scheme="https://lsvih.com/tags/note/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Python 的多线程与多进程</title>
-    <link href="https://lsvih.com/2018/08/28/Python-%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B/"/>
-    <id>https://lsvih.com/2018/08/28/Python-的多线程与多进程/</id>
-    <published>2018-08-28T07:04:00.000Z</published>
-    <updated>2018-10-28T16:12:59.556Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="初学者的并行编程指南"><a href="#初学者的并行编程指南" class="headerlink" title="初学者的并行编程指南"></a>初学者的并行编程指南</h2><p><img src="https://lsvih.com/images/pasted-322.png" alt="upload successful"></p><p>在参加 Kaggle 的 <a href="https://www.kaggle.com/c/planet-understanding-the-amazon-from-space" target="_blank" rel="noopener">Understanding the Amazon from Space</a> 比赛时，我试图对自己代码的各个部分进行加速。速度在 Kaggle 比赛中至关重要。高排名常常需要尝试数百种模型结构与超参组合，能在一个持续一分钟的 epoch 中省出 10 秒都是一个巨大的胜利。</p><p>让我吃惊的是，数据处理是最大的瓶颈。我用了 Numpy 的矩阵旋转、矩阵翻转、缩放及裁切等操作，在 CPU 上进行运算。Numpy 和 Pytorch 的 DataLoader 在某些情况中使用了并行处理。我同时会运行 3 到 5 个实验，每个实验都各自进行数据处理。但这种处理方式看起来效率不高，我希望知道我是否能用并行处理来加快所有实验的运行速度。</p><a id="more"></a><h3 id="什么是并行处理？"><a href="#什么是并行处理？" class="headerlink" title="什么是并行处理？"></a>什么是并行处理？</h3><p>简单来说就是在同一时刻做两件事情，也可以是在不同的 CPU 上分别运行代码，或者说当程序等待外部资源（文件加载、API 调用等）时把“浪费”的 CPU 周期充分利用起来提高效率。</p><p>下面的例子是一个“正常”的程序。它会使用单线程，依次进行下载一个 URL 列表的内容。</p><p><img src="https://lsvih.com/images/pasted-323.png" alt="upload successful"></p><p>下面是一个同样的程序，不过使用了 2 个线程。它把 URL 列表分给不同的线程，处理速度几乎翻倍。</p><p><img src="https://lsvih.com/images/pasted-324.png" alt="upload successful"></p><p>如果你对如何绘制以上图表感到好奇，可以参考<a href="https://github.com/bfortuner/ml-study/blob/master/multitasking_python.ipynb" target="_blank" rel="noopener">源码</a>，下面也简单介绍一下：</p><ol><li>在你函数内部加上一个计时器，并返回函数执行的起始与结束时间</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">URLS = [url1, url2, url3, ...]</span><br><span class="line">def download(url, base):</span><br><span class="line">    start = time.time() - base</span><br><span class="line">    resp = urlopen(url)</span><br><span class="line">    stop = time.time() - base</span><br><span class="line">    return start,stop</span><br></pre></td></tr></table></figure><ol><li>单线程程序的可视化如下：多次执行你的函数，并将多个开始结束的时间存储下来</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">results = [download(url, 1) for url in URLS]</span><br></pre></td></tr></table></figure><ol><li>将 [start, stop] 的结果数组进行转置，绘制柱状图</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def visualize_runtimes(results):</span><br><span class="line">    start,stop = np.array(results).T</span><br><span class="line">    plt.barh(range(len(start)), stop-start, left=start)</span><br><span class="line">    plt.grid(axis=’x’)</span><br><span class="line">    plt.ylabel(&quot;Tasks&quot;)</span><br><span class="line">    plt.xlabel(&quot;Seconds&quot;)</span><br></pre></td></tr></table></figure><p>多线程的图表生成方式与此类似。Python 的并发库一样可以返回结果数组。</p><h3 id="进程-vs-线程"><a href="#进程-vs-线程" class="headerlink" title="进程 vs 线程"></a><strong>进程 vs 线程</strong></h3><p>一个<strong>进程</strong>就是一个程序的实例（比如 Jupyter notebook 或 Python 解释器）。进程启动<strong>线程</strong>（子进程）来处理一些子任务（比如按键、加载 HTML 页面、保存文件等）。线程存活于进程内部，线程间共享相同的内存空间。</p><p><strong>举例：Microsoft Word</strong><br>当你打开 Word 时，你其实就是创建了一个进程。当你开始打字时，进程启动了一些线程：一个线程专门用于获取键盘输入，一个线程用于显示文本，一个线程用于自动保存文件，还有一个线程用于拼写检查。在启动这些线程之后，Word 就能更好的利用空闲的 CPU 时间（等待键盘输入或文件加载的时间）让你有更高的工作效率。</p><h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a><strong>进程</strong></h4><ul><li>由操作系统创建，以运行程序</li><li>一个进程可以包括多个线程</li><li>两个进程可以在 Python 程序中同时执行代码</li><li>启动与终止进程需要花费更多的时间，因此用进程比用线程的开销更大</li><li>由于进程不共享内存空间，因此进程间交换信息比线程间交换信息要慢很多。在 Python 中，用序列化数据结构（如数组）的方法进行信息交换会花费 IO 处理级别的时间。</li></ul><h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a><strong>线程</strong></h4><ul><li>线程是在进程内部的类似迷你进程的东西</li><li>不同的线程共享同样的内存空间，可以高效地读写相同的变量</li><li>两个线程不能在同一个 Python 程序中执行代码（有解决这个问题的方法<code>*</code>）</li></ul><h4 id="CPU-vs-核"><a href="#CPU-vs-核" class="headerlink" title="CPU vs 核"></a>CPU vs 核</h4><p><strong>CPU</strong>，或者说处理器，管理着计算机最基本的运算工作。CPU 有一个或着多个<strong>核</strong>，可以让 CPU 同时执行代码。</p><p>如果只有一个核，那么对 CPU 密集型任务（比如循环、运算等）不会有速度的提升。操作系统需要在很小的时间片在不同的任务间来回切换调度。因此，做一些很琐碎的操作（比如下载一些图片）时，多任务处理反而会降低处理性能。这个现象的原因是在启动与维护多个任务时也有性能的开销。</p><h4 id="Python-的-GIL-锁问题"><a href="#Python-的-GIL-锁问题" class="headerlink" title="Python 的 GIL 锁问题"></a><strong>Python 的 GIL 锁问题</strong></h4><p>CPython（python 的标准实现）有一个叫做 <a href="https://wiki.python.org/moin/GlobalInterpreterLock" target="_blank" rel="noopener">GIL</a>（全局解释锁）的东西，会阻止在程序中同时执行两个线程。一些人非常不喜欢它，但也有一些人喜欢它。目前有一些解决它的方法，不过 Numpy 之类的库大都是通过执行外部 C 语言代码来绕过这种限制。</p><h4 id="何时使用线程，何时使用进程？"><a href="#何时使用线程，何时使用进程？" class="headerlink" title="何时使用线程，何时使用进程？"></a><strong>何时使用线程，何时使用进程？</strong></h4><ul><li>得益于多核与不存在 GIL，<strong>多进程</strong>可以加速 CPU 密集型的 Python 程序。</li><li><strong>多线程</strong>可以很好的处理 IO 任务或涉及外部系统的任务，因为线程可以将不同的工作高效地结合起来。而进程需要对结果进行序列化才能汇聚多个结果，这需要消耗额外的时间。</li><li>由于 GIL 的存在，<strong>多线程</strong>对 CPU 密集的 Python 程序没有什么帮助。</li></ul><p><code>*</code>对于点积等某些运算，Numpy 绕过了 Python 的 GIL 锁，能够并行执行代码。</p><h3 id="并行处理示例"><a href="#并行处理示例" class="headerlink" title="并行处理示例"></a>并行处理示例</h3><p>Python 的 <a href="https://docs.python.org/3/library/concurrent.futures.html" target="_blank" rel="noopener">concurrent.futures 库</a>用起来轻松愉快。你只需要简单的将函数、待处理的对象列表和并发的数量传给它即可。在下面几节中，我会以几种实验来演示何时使用线程何时使用进程。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def multithreading(func, args, </span><br><span class="line">                   workers):</span><br><span class="line">    with ThreadPoolExecutor(workers) as ex:</span><br><span class="line">        res = ex.map(func, args)</span><br><span class="line">    return list(res)</span><br><span class="line"></span><br><span class="line">def multiprocessing(func, args, </span><br><span class="line">                    workers):</span><br><span class="line">    with ProcessPoolExecutor(work) as ex:</span><br><span class="line">        res = ex.map(func, args)</span><br><span class="line">    return list(res)</span><br></pre></td></tr></table></figure><h4 id="API-调用"><a href="#API-调用" class="headerlink" title="API 调用"></a><strong>API 调用</strong></h4><p>对于 API 调用，多线程明显比串行处理与多进程速度要快很多。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def download(url):</span><br><span class="line">    try:</span><br><span class="line">        resp = urlopen(url)</span><br><span class="line">    except Exception as e:</span><br><span class="line">        print (&apos;ERROR: %s&apos; % e)</span><br></pre></td></tr></table></figure><p><img src="https://lsvih.com/images/pasted-325.png" alt="upload successful"></p><p><strong>2 个线程</strong></p><p><img src="https://lsvih.com/images/pasted-326.png" alt="upload successful"></p><p><strong>4 个线程</strong></p><p><img src="https://lsvih.com/images/pasted-327.png" alt="upload successful"></p><p><strong>2 个进程</strong></p><p><img src="https://lsvih.com/images/pasted-328.png" alt="upload successful"></p><p><strong>4 个进程</strong></p><p><img src="https://lsvih.com/images/pasted-329.png" alt="upload successful"></p><h4 id="IO-密集型任务"><a href="#IO-密集型任务" class="headerlink" title="IO 密集型任务"></a><strong>IO 密集型任务</strong></h4><p>我传入了一个巨大的文本，以观测线程与进程的写入性能。线程效果较好，但多进程也让速度有所提升。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def io_heavy(text):</span><br><span class="line">    f = open(&apos;output.txt&apos;, &apos;wt&apos;, encoding=&apos;utf-8&apos;)</span><br><span class="line">    f.write(text)</span><br><span class="line">    f.close()</span><br></pre></td></tr></table></figure><p><strong>串行</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%timeit -n 1 [io_heavy(TEXT,1) for i in range(N)]</span><br><span class="line">&gt;&gt; 1 loop, best of 3: 1.37 s per loop</span><br></pre></td></tr></table></figure><p><strong>4 个线程</strong></p><p><img src="https://lsvih.com/images/pasted-330.png" alt="upload successful"></p><p><strong>4 个进程</strong></p><p><img src="https://lsvih.com/images/pasted-331.png" alt="upload successful"></p><h4 id="CPU-密集型任务"><a href="#CPU-密集型任务" class="headerlink" title="CPU 密集型任务"></a>CPU 密集型任务</h4><p>由于没有 GIL，可以在多核上同时执行代码，多进程理所当然的胜出。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def cpu_heavy(n):</span><br><span class="line">    count = 0</span><br><span class="line">    for i in range(n):</span><br><span class="line">        count += i</span><br></pre></td></tr></table></figure><p><img src="https://lsvih.com/images/pasted-332.png" alt="upload successful"></p><p><strong>串行：</strong> 4.2 秒<br><strong>4 个线程：</strong> 6.5 秒<br><strong>4 个进程：</strong> 1.9 秒</p><h4 id="Numpy-中的点积"><a href="#Numpy-中的点积" class="headerlink" title="Numpy 中的点积"></a>Numpy 中的点积</h4><p>不出所料，无论是用多线程还是多进程都不会对此代码有什么帮助。Numpy 在幕后执行外部的 C 语言代码，绕开了 GIL。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def dot_product(i, base):</span><br><span class="line">    start = time.time() - base</span><br><span class="line">    res = np.dot(a,b)</span><br><span class="line">    stop = time.time() - base</span><br><span class="line">    return start,stop</span><br></pre></td></tr></table></figure><p><strong>串行：</strong> 2.8 秒<br><strong>2 个线程：</strong> 3.4 秒<br><strong>2 个进程：</strong> 3.3 秒</p><p>以上实验的 Notebook 请<a href="https://github.com/bfortuner/ml-study/blob/master/multitasking_python.ipynb" target="_blank" rel="noopener">参考此处</a>，你可以自己来复现这些实验。</p><h3 id="相关资源"><a href="#相关资源" class="headerlink" title="相关资源"></a><strong>相关资源</strong></h3><p>以下是我在探索这个主题时的一些参考文章。特别推荐 Nathan Grigg 的<a href="https://nathangrigg.com/2015/04/python-threading-vs-processes" target="_blank" rel="noopener">这篇博客</a>，给了我可视化方法的灵感。</p><ul><li><p><a href="http://stackoverflow.com/questions/3044580/multiprocessing-vs-threading-python" target="_blank" rel="noopener"><strong>Multiprocessing vs Threading Python</strong>: I am trying to understand the advantages of multiprocessing over threading. I know that multiprocessing gets around the…</a></p></li><li><p><a href="http://stackoverflow.com/questions/5260068/multithreaded-blas-in-python-numpy" target="_blank" rel="noopener"><strong>multithreaded blas in python/numpy</strong>: I re-run the the benchmark on our new HPC. Both the hardware as well as the software stack changed from the setup in…</a></p></li><li><p><a href="https://en.wikipedia.org/wiki/Amdahl%27s_law" target="_blank" rel="noopener"><strong>Amdahl’s law - Wikipedia</strong>: In computer architecture, Amdahl’s law (or Amdahl’s argument) is a formula which gives the theoretical speedup in…</a></p></li><li><p><a href="http://stackoverflow.com/questions/8463741/how-linux-handles-threads-and-process-scheduling" target="_blank" rel="noopener"><strong>How Linux handles threads and process scheduling</strong>: The Linux kernel scheduler is actually scheduling tasks, and these are either threads or (single-threaded) processes…</a></p></li><li><p><a href="http://stackoverflow.com/questions/1718465/optimal-number-of-threads-per-core/10670440#10670440" target="_blank" rel="noopener"><strong>Optimal number of threads per core</strong>: Let’s say I have a 4-core CPU, and I want to run some process in the minimum amount of time. The process is ideally…</a></p></li><li><p><a href="http://stackoverflow.com/questions/481970/how-many-threads-is-too-many" target="_blank" rel="noopener"><strong>How many threads is too many?</strong>: I am writing a server, and I branch each action of into a thread when the request is incoming. I do this because almost…</a></p></li></ul><blockquote><p>juejin:<a href="https://juejin.im/post/5b84f3086fb9a01a1a27cedb#heading-14" target="_blank" rel="noopener">https://juejin.im/post/5b84f3086fb9a01a1a27cedb#heading-14</a></p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;初学者的并行编程指南&quot;&gt;&lt;a href=&quot;#初学者的并行编程指南&quot; class=&quot;headerlink&quot; title=&quot;初学者的并行编程指南&quot;&gt;&lt;/a&gt;初学者的并行编程指南&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://lsvih.com/images/pasted-322.png&quot; alt=&quot;upload successful&quot;&gt;&lt;/p&gt;
-&lt;p&gt;在参加 Kaggle 的 &lt;a href=&quot;https://www.kaggle.com/c/planet-understanding-the-amazon-from-space&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Understanding the Amazon from Space&lt;/a&gt; 比赛时，我试图对自己代码的各个部分进行加速。速度在 Kaggle 比赛中至关重要。高排名常常需要尝试数百种模型结构与超参组合，能在一个持续一分钟的 epoch 中省出 10 秒都是一个巨大的胜利。&lt;/p&gt;
-&lt;p&gt;让我吃惊的是，数据处理是最大的瓶颈。我用了 Numpy 的矩阵旋转、矩阵翻转、缩放及裁切等操作，在 CPU 上进行运算。Numpy 和 Pytorch 的 DataLoader 在某些情况中使用了并行处理。我同时会运行 3 到 5 个实验，每个实验都各自进行数据处理。但这种处理方式看起来效率不高，我希望知道我是否能用并行处理来加快所有实验的运行速度。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
-    
-    
-      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
-    
-      <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
-    
-      <category term="python" scheme="https://lsvih.com/tags/python/"/>
     
   </entry>
   

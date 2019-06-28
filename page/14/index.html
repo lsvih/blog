@@ -366,6 +366,176 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/20/根据Vuejs制作的可查找多个数值的过滤器/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2016/04/20/根据Vuejs制作的可查找多个数值的过滤器/" class="post-title-link" itemprop="url">根据Vuejs制作的可查找多个数值的过滤器</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-04-20 14:23:00" itemprop="dateCreated datePublished" datetime="2016-04-20T14:23:00+08:00">2016-04-20</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在实际项目中，需要制作”我的订单”功能。功能逻辑如下：使用ajax将所有订单数据下载到json数组中，将json数组与div绑定。</p>
+<p>且订单有多个状态，如state=1是待确认订单，state=2是待付款订单，state=3是待配送订单，state=4是待评价订单。</p>
+<p>但是在调支付接口时，发现已付款订单有两种状态:同步状态与异步状态（交易平台需要一定时间确认后才能将确认消息异步发送给服务端），为了用户体验，拟使同步与异步状态的订单都归类在“已付款订单”中，因此Vue原生自带的单个数值搜索的过滤器不足以满足需求，需要一个能够同时搜索多个数值的过滤器来进行过滤。</p>
+<p>过滤器代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * Filter filter array for arrays</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * @param &#123;String&#125; arr</span></span><br><span class="line"><span class="comment">  * @param &#123;String&#125; searcharr</span></span><br><span class="line"><span class="comment">  * @param &#123;String&#125; feature</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">filtersBy</span>(<span class="params">arr, searcharr, feature</span>) </span>&#123;</span><br><span class="line">     searcharr = convertArray(searcharr);</span><br><span class="line">     arr = convertArray(arr);</span><br><span class="line">     <span class="keyword">var</span> res = [];</span><br><span class="line">     <span class="keyword">var</span> item, searchitem;</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; searcharr.length; j++) &#123;</span><br><span class="line">             item = arr[i];</span><br><span class="line">             searchitem = searcharr[j];</span><br><span class="line">             <span class="built_in">console</span>.log(feature)</span><br><span class="line">             <span class="keyword">if</span> (item[feature] == searchitem) &#123;</span><br><span class="line">                 res.push(item);</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> res;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>插入源码后注册即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> filters = &#123;</span><br><span class="line">    orderBy: orderBy,</span><br><span class="line">    filterBy: filterBy,</span><br><span class="line">    filtersBy: filtersBy,</span><br><span class="line">    limitBy: limitBy</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>运行效果：</p>
+<p>数据:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> DATA = &#123;</span><br><span class="line">	<span class="string">"datas"</span>: [&#123;</span><br><span class="line">	<span class="string">"id"</span>: <span class="number">1</span>,</span><br><span class="line">	<span class="string">"type"</span>: <span class="number">1</span>,</span><br><span class="line">	<span class="string">"data"</span>: <span class="string">"这是分类一的第一项"</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">"id"</span>: <span class="number">2</span>,</span><br><span class="line">	<span class="string">"type"</span>: <span class="number">1</span>,</span><br><span class="line">	<span class="string">"data"</span>: <span class="string">"这是分类一的第二项"</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">"id"</span>: <span class="number">3</span>,</span><br><span class="line">	<span class="string">"type"</span>: <span class="number">1</span>,</span><br><span class="line">	<span class="string">"data"</span>: <span class="string">"这是分类一的第三项"</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">"id"</span>: <span class="number">4</span>,</span><br><span class="line">	<span class="string">"type"</span>: <span class="number">2</span>,</span><br><span class="line">	<span class="string">"data"</span>: <span class="string">"这是分类二的第一项"</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">"id"</span>: <span class="number">5</span>,</span><br><span class="line">	<span class="string">"type"</span>: <span class="number">2</span>,</span><br><span class="line">	<span class="string">"data"</span>: <span class="string">"这是分类二的第二项"</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">"id"</span>: <span class="number">6</span>,</span><br><span class="line">	<span class="string">"type"</span>: <span class="number">3</span>,</span><br><span class="line">        <span class="string">"data"</span>: <span class="string">"这是分类三的第一项"</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">"id"</span>: <span class="number">7</span>,</span><br><span class="line">	<span class="string">"type"</span>: <span class="number">3</span>,</span><br><span class="line">	<span class="string">"data"</span>: <span class="string">"这是分类三的第二项"</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">"id"</span>: <span class="number">8</span>,</span><br><span class="line">	<span class="string">"type"</span>: <span class="number">3</span>,</span><br><span class="line">	<span class="string">"data"</span>: <span class="string">"这是分类三的第三项"</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">"id"</span>: <span class="number">9</span>,</span><br><span class="line">	<span class="string">"type"</span>: <span class="number">3</span>,</span><br><span class="line">	<span class="string">"data"</span>: <span class="string">"这是分类三的第四项"</span></span><br><span class="line">	&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>html:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"type-1"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"data in datas | filtersBy '[2,3]' 'type'"</span> <span class="attr">track-by</span>=<span class="string">"item.id"</span>&gt;</span>&#123;&#123;data.data&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>js:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#type-1'</span>,</span><br><span class="line">    data: DATA</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>结果:</p>
+<p><img src="/images/pasted-53.png" alt="upload successful"></p>
+<p>可以满足需求，在数据中搜索多项并过滤。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/20/js中reduce的用法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1977,171 +2147,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/30/让网页菜单上拉出现下拉消失——简单有趣的headroom-js/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2016/03/30/让网页菜单上拉出现下拉消失——简单有趣的headroom-js/" class="post-title-link" itemprop="url">让网页菜单上拉出现下拉消失——简单有趣的headroom.js</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-03-30 19:19:00" itemprop="dateCreated datePublished" datetime="2016-03-30T19:19:00+08:00">2016-03-30</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Headroom.js 是一个轻量级、高性能的JS小工具,通过在指定的div class中加上”headroom”，”headroom headroom—unpinned”,”headroom headroom—pinned”来使用户能够方便地基于网页上下滚动控制菜单样式。</p>
-<p>使用时，只需在网页中引用js库（jquery版需要同时引用 jQuery.headroom.min.js 与 headroom.min.js）,将事件绑定在元素上</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#header"</span>).headroom();</span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myElement = <span class="built_in">document</span>.querySelector(<span class="string">"header"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> headroom  = <span class="keyword">new</span> Headroom(myElement);</span><br><span class="line"></span><br><span class="line">headroom.init();</span><br></pre></td></tr></table></figure>
-<p>即可方便使用。</p>
-<p>成功使用时，可以在调试台看到页面上下滚动时设置的元素的class也同时在变化。由class的变化可以在css中添加样式与动画，达到想要的效果。例如<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.headroom</span> &#123;</span><br><span class="line">    <span class="attribute">will-change</span>: transform;</span><br><span class="line">    <span class="attribute">transition</span>: transform <span class="number">200ms</span> linear;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.headroom--pinned</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(0%);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.headroom--unpinned</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-100%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>以上代码简单实现了菜单栏随着页面上下滚动的显示与隐藏效果。</p>
-<p>cdn 地址：<a href="http://www.bootcdn.cn/headroom/" target="_blank" rel="noopener">http://www.bootcdn.cn/headroom/</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2189,7 +2194,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">153</span>
+                    <span class="site-state-item-count">154</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2613,7 +2618,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">190</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">193</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
