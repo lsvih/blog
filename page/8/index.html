@@ -1,96 +1,49 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html class="theme-next pisces" lang="">
+<html lang="">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0"/>
-
-<link rel="stylesheet" href="/css/main.css?v=7.1.2"/>
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    hostname: new URL('https://lsvih.com').hostname,
     root: '/',
     scheme: 'Pisces',
-    version: '7.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: false,
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: false,
-    fastclick: false,
+    mediumzoom: false,
     lazyload: false,
-    tabs: true,
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    pangu: false,
     algolia: {
-      applicationID: '6U6P1RGK4F',
+      appID: '6U6P1RGK4F',
       apiKey: 'b14e73cdd627eabe947b5decbe14850f',
       indexName: 'lsvih',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
-
-
-  
-
-
-
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="My note">
@@ -99,43 +52,31 @@
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 
+<link rel="canonical" href="https://lsvih.com/page/8/">
 
 
-  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml"/>
-
-
-
-  
-  
-  <link rel="canonical" href="https://lsvih.com/page/8/"/>
-
-
-
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
   };
 </script>
 
   <title>My note - lsvih</title>
   
-
-
-
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142893470-1"></script>
-  <script>
-    var host = window.location.hostname;
-    if (host !== "localhost" || !true) {
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-142893470-1');
-    }
-  </script>
-
-
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142893470-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-142893470-1');
+      }
+    </script>
 
 
 
@@ -144,7 +85,6 @@
 
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -153,9 +93,8 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -167,288 +106,156 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
-    
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">My note</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
-      
         <h1 class="site-subtitle" itemprop="description">lsvih</h1>
       
-    
-    
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 </div>
-
 
 
 <nav class="site-nav">
   
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
 
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-tags">
 
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-categories">
 
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-archives">
 
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
 
-      
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
-        </li>
-      
-    </ul>
-  
-
-  
-
-  
-    <div class="site-search">
-      
-  <div class="algolia-popup popup search-popup">
-  <div class="algolia-search">
-    <div class="algolia-search-input-icon">
-      <i class="fa fa-search"></i>
-    </div>
-    <div class="algolia-search-input" id="algolia-search-input"></div>
-  </div>
-
-  <div class="algolia-results">
-    <div id="algolia-stats"></div>
-    <div id="algolia-hits"></div>
-    <div id="algolia-pagination" class="algolia-pagination"></div>
-  </div>
-
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input" id="search-input"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-
-
-
-    </div>
-  
-</nav>
-
-
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
 
   
+</div>
+<div class="search-pop-overlay"></div>
 
-
-
+  </div>
 </div>
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
 
 
-    <main id="main" class="main">
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
           
+
+          <div class="content">
             
 
-          
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
+  <div class="posts-expand">
+        
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/06/11/Reinforcement-Learning-notes-1/"/>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/06/11/Reinforcement-Learning-notes-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note"/>
+      <meta itemprop="name" content="My note">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/06/11/Reinforcement-Learning-notes-1/" class="post-title-link" itemprop="url">Reinforcement Learning notes(1)</a>
-              
-            
-          </h2>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/06/11/Reinforcement-Learning-notes-1/" class="post-title-link" itemprop="url">Reinforcement Learning notes(1)</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2017-06-11 14:33:00" itemprop="dateCreated datePublished" datetime="2017-06-11T14:33:00+08:00">2017-06-11</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+            </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -456,12 +263,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>Stanford CS229 notes 12: <a href="http://cs229.stanford.edu/notes/cs229-notes12.pdf" target="_blank" rel="noopener">http://cs229.stanford.edu/notes/cs229-notes12.pdf</a></p>
+          <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>Stanford CS229 notes 12: <a href="http://cs229.stanford.edu/notes/cs229-notes12.pdf" target="_blank" rel="noopener">http://cs229.stanford.edu/notes/cs229-notes12.pdf</a></p>
 <p><a href="//lsivh.com/img/1496555948888450.pdf">cs229-notes12.pdf</a></p>
 <h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>在CS229 notes 中提到了强化学习的意义：</p>
 <p>In the reinforcement learning framework, we will instead provide our algorithms only a reward function, which indicates to the learning agent when it is doing well, and when it is doing poorly.</p>
@@ -502,149 +304,66 @@ V(s) = \max_a \sum_{s_{t+1}} P(s_{t+1}|s_t,\pi(s))[R(s_t,\pi(s),s_{t+1}) +\gamma
 <h3 id="值迭代"><a href="#值迭代" class="headerlink" title="值迭代"></a>值迭代</h3><p><img src="/images/pasted-164.png" alt="upload successful"></p>
 <h3 id="值迭代与策略迭代的区别"><a href="#值迭代与策略迭代的区别" class="headerlink" title="值迭代与策略迭代的区别"></a>值迭代与策略迭代的区别</h3><p><a href="https://www.zhihu.com/question/41477987" target="_blank" rel="noopener">https://www.zhihu.com/question/41477987</a></p>
 
-          
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/06/09/%E8%A7%A3%E5%86%B3flask%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98-%E4%BB%A5%E5%8F%8A%E5%BC%80%E5%90%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8B%E5%90%8Ejpype%E7%9A%84%E9%94%99%E8%AF%AF/"/>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/06/09/%E8%A7%A3%E5%86%B3flask%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98-%E4%BB%A5%E5%8F%8A%E5%BC%80%E5%90%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8B%E5%90%8Ejpype%E7%9A%84%E9%94%99%E8%AF%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note"/>
+      <meta itemprop="name" content="My note">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/06/09/%E8%A7%A3%E5%86%B3flask%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98-%E4%BB%A5%E5%8F%8A%E5%BC%80%E5%90%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8B%E5%90%8Ejpype%E7%9A%84%E9%94%99%E8%AF%AF/" class="post-title-link" itemprop="url">解决flask慢的问题,以及开启多线程之后jpype的错误</a>
-              
-            
-          </h2>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/06/09/%E8%A7%A3%E5%86%B3flask%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98-%E4%BB%A5%E5%8F%8A%E5%BC%80%E5%90%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B9%8B%E5%90%8Ejpype%E7%9A%84%E9%94%99%E8%AF%AF/" class="post-title-link" itemprop="url">解决flask慢的问题,以及开启多线程之后jpype的错误</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2017-06-09 15:54:00" itemprop="dateCreated datePublished" datetime="2017-06-09T15:54:00+08:00">2017-06-09</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+            </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Back-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Back End</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -652,12 +371,7 @@ V(s) = \max_a \sum_{s_{t+1}} P(s_{t+1}|s_t,\pi(s))[R(s_t,\pi(s),s_{t+1}) +\gamma
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>用 flask 做 API 时，发现在 client 的请求需要很长的时间才能得到响应（差不多要 20 多秒）。Google 之后得到解决方案，使用配置</p>
+          <p>用 flask 做 API 时，发现在 client 的请求需要很长的时间才能得到响应（差不多要 20 多秒）。Google 之后得到解决方案，使用配置</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">app.run(threaded=<span class="keyword">True</span>)</span></pre></td></tr></table></figure>
 <p>开启多线程模式。</p>
 <p>然而这个服务是使用 java 做的底层，用 jpype 让 python 能调用 java 的方法。flask 开启多线程之后服务报错。经过研究发现是 JVM 并没有能为新开启的线程提供服务。查阅 jpype 的文档，找到 python 线程相关部分：<a href="http://jpype.sourceforge.net/doc/user-guide/userguide.html#python_threads" target="_blank" rel="noopener">http://jpype.sourceforge.net/doc/user-guide/userguide.html#python_threads</a></p>
@@ -668,149 +382,66 @@ V(s) = \max_a \sum_{s_{t+1}} P(s_{t+1}|s_t,\pi(s))[R(s_t,\pi(s),s_{t+1}) +\gamma
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">app.run(debug&#x3D;False)</span></pre></td></tr></table></figure>
 <p>关闭 Debug 模式，再连接发现响应时间大大减小了，从 20 多秒减到了几百毫秒。</p>
 
-          
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/06/05/RxJS-%E7%AE%80%E4%BB%8B%EF%BC%9A%E5%8F%AF%E8%A7%82%E5%AF%9F%E5%AF%B9%E8%B1%A1%E3%80%81%E8%A7%82%E5%AF%9F%E8%80%85%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%AC%A6/"/>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/06/05/RxJS-%E7%AE%80%E4%BB%8B%EF%BC%9A%E5%8F%AF%E8%A7%82%E5%AF%9F%E5%AF%B9%E8%B1%A1%E3%80%81%E8%A7%82%E5%AF%9F%E8%80%85%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%AC%A6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note"/>
+      <meta itemprop="name" content="My note">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/06/05/RxJS-%E7%AE%80%E4%BB%8B%EF%BC%9A%E5%8F%AF%E8%A7%82%E5%AF%9F%E5%AF%B9%E8%B1%A1%E3%80%81%E8%A7%82%E5%AF%9F%E8%80%85%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%AC%A6/" class="post-title-link" itemprop="url">RxJS 简介：可观察对象、观察者与操作符</a>
-              
-            
-          </h2>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/06/05/RxJS-%E7%AE%80%E4%BB%8B%EF%BC%9A%E5%8F%AF%E8%A7%82%E5%AF%9F%E5%AF%B9%E8%B1%A1%E3%80%81%E8%A7%82%E5%AF%9F%E8%80%85%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%AC%A6/" class="post-title-link" itemprop="url">RxJS 简介：可观察对象、观察者与操作符</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2017-06-05 11:41:47" itemprop="dateCreated datePublished" datetime="2017-06-05T11:41:47+08:00">2017-06-05</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+            </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Translate/" itemprop="url" rel="index">
+                    <span itemprop="name">Translate</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -818,12 +449,7 @@ V(s) = \max_a \sum_{s_{t+1}} P(s_{t+1}|s_t,\pi(s))[R(s_t,\pi(s),s_{t+1}) +\gamma
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>对于响应式编程来说，RxJS 是一个不可思议的工具。今天我们将深入探讨什么是 Observable（可观察对象）和 observer（观察者），然后了解如何创建自己的 operator（操作符）。</p>
+          <p>对于响应式编程来说，RxJS 是一个不可思议的工具。今天我们将深入探讨什么是 Observable（可观察对象）和 observer（观察者），然后了解如何创建自己的 operator（操作符）。</p>
 <p>如果你之前用过 RxJS，想了解它的内部工作原理，以及 Observable、operator 是如何运作的，这篇文章将很适合你阅读。</p>
 <h3 id="什么是-Observable（可观察对象）？"><a href="#什么是-Observable（可观察对象）？" class="headerlink" title="什么是 Observable（可观察对象）？"></a>什么是 Observable（可观察对象）？</h3><p>可观察对象其实就是一个比较特别的函数，它接受一个“观察者”（observer）对象作为参数（在这个观察者对象中有 “next”、“error”、“complete”等方法），以及它会返回一种解除与观察者关系的逻辑。例如我们自己实现的时候会使用一个简单的 “unsubscribe” 函数来实现退订功能（即解除与观察者绑定关系的逻辑）。而在 RxJS 中， 它是一个包含 <code>unsubsribe</code> 方法的订阅对象（Subscription）。</p>
 <p>可观察对象会创建观察者对象（稍后我们将详细介绍它），并将它和我们希望获取数据值的“东西”连接起来。这个“东西”就是生产者（producer），它可能来自于 <code>click</code> 或者 <code>input</code> 之类的 DOM 事件，是数据值的来源。当然，它也可以是一些更复杂的情况，比如通过 HTTP 与服务器交流的事件。</p>
@@ -910,149 +536,66 @@ V(s) = \max_a \sum_{s_{t+1}} P(s_{t+1}|s_t,\pi(s))[R(s_t,\pi(s),s_{t+1}) +\gamma
 <p>发布于掘金 <a href="https://juejin.im/post/5934d2532f301e00585ea5f3" target="_blank" rel="noopener">https://juejin.im/post/5934d2532f301e00585ea5f3</a></p>
 </blockquote>
 
-          
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/06/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/06/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note"/>
+      <meta itemprop="name" content="My note">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/06/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">动态规划</a>
-              
-            
-          </h2>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/06/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-title-link" itemprop="url">动态规划</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2017-06-04 16:36:00" itemprop="dateCreated datePublished" datetime="2017-06-04T16:36:00+08:00">2017-06-04</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+            </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1060,12 +603,7 @@ V(s) = \max_a \sum_{s_{t+1}} P(s_{t+1}|s_t,\pi(s))[R(s_t,\pi(s),s_{t+1}) +\gamma
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <blockquote>
+          <blockquote>
 <p>拿着以前的笔记复习一下~</p>
 </blockquote>
 <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>决策可以分为静态决策与动态决策。</p>
@@ -1130,149 +668,66 @@ x_1 确定, &R^* = f_1(x_1) \qquad u^*_1(x_1) = u_1^\prime(x_1) \\
 x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
 & 得 x_1^*,带入求 x_2^,以此类推得 x_n^*,x_{n+1}^*
 \end{aligned}</script>
-          
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/05/12/%E5%88%AB%E8%AE%A9%E4%BD%A0%E7%9A%84%E5%81%8F%E7%88%B1%E6%8B%96%E4%BA%86%E5%90%8E%E8%85%BF%EF%BC%9A%E5%BF%AB%E6%8B%A5%E6%8A%B1%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%90%A7%EF%BC%81/"/>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/05/12/%E5%88%AB%E8%AE%A9%E4%BD%A0%E7%9A%84%E5%81%8F%E7%88%B1%E6%8B%96%E4%BA%86%E5%90%8E%E8%85%BF%EF%BC%9A%E5%BF%AB%E6%8B%A5%E6%8A%B1%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%90%A7%EF%BC%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note"/>
+      <meta itemprop="name" content="My note">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/05/12/%E5%88%AB%E8%AE%A9%E4%BD%A0%E7%9A%84%E5%81%8F%E7%88%B1%E6%8B%96%E4%BA%86%E5%90%8E%E8%85%BF%EF%BC%9A%E5%BF%AB%E6%8B%A5%E6%8A%B1%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%90%A7%EF%BC%81/" class="post-title-link" itemprop="url">别让你的偏爱拖了后腿：快拥抱箭头函数吧！</a>
-              
-            
-          </h2>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/05/12/%E5%88%AB%E8%AE%A9%E4%BD%A0%E7%9A%84%E5%81%8F%E7%88%B1%E6%8B%96%E4%BA%86%E5%90%8E%E8%85%BF%EF%BC%9A%E5%BF%AB%E6%8B%A5%E6%8A%B1%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%90%A7%EF%BC%81/" class="post-title-link" itemprop="url">别让你的偏爱拖了后腿：快拥抱箭头函数吧！</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2017-05-12 19:12:00" itemprop="dateCreated datePublished" datetime="2017-05-12T19:12:00+08:00">2017-05-12</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+            </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Translate/" itemprop="url" rel="index">
+                    <span itemprop="name">Translate</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1280,12 +735,7 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p><img src="/images/pasted-153.png" alt="upload successful"></p>
+          <p><img src="/images/pasted-153.png" alt="upload successful"></p>
 <p>我以教 JavaScript 为生。最近我给学生上了柯里化箭头函数这个课程——这还是最开始的几节课。我认为它是一个很好用的技能，因此将这个内容提到了课程的前面。而学生们没有让我失望，比我想象中地<strong>更快地</strong>掌握了使用箭头函数进行柯里化。</p>
 <p>如果学生们能够理解它，并且能尽快由它获益，为什么不早点将箭头函数教给他们呢？</p>
 <blockquote>
@@ -1385,149 +835,66 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
 <p>发布于掘金 <a href="https://juejin.im/post/59158c92a0bb9f005fd58fd7" target="_blank" rel="noopener">https://juejin.im/post/59158c92a0bb9f005fd58fd7</a></p>
 </blockquote>
 
-          
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/05/04/%E5%9C%A8-Swift-%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E5%AE%9E%E7%8E%B0%E6%87%92%E5%8A%A0%E8%BD%BD/"/>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/05/04/%E5%9C%A8-Swift-%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E5%AE%9E%E7%8E%B0%E6%87%92%E5%8A%A0%E8%BD%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note"/>
+      <meta itemprop="name" content="My note">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/05/04/%E5%9C%A8-Swift-%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E5%AE%9E%E7%8E%B0%E6%87%92%E5%8A%A0%E8%BD%BD/" class="post-title-link" itemprop="url">在 Swift 中使用闭包实现懒加载</a>
-              
-            
-          </h2>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/05/04/%E5%9C%A8-Swift-%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E5%AE%9E%E7%8E%B0%E6%87%92%E5%8A%A0%E8%BD%BD/" class="post-title-link" itemprop="url">在 Swift 中使用闭包实现懒加载</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2017-05-04 11:29:38" itemprop="dateCreated datePublished" datetime="2017-05-04T11:29:38+08:00">2017-05-04</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+            </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Translate/" itemprop="url" rel="index">
+                    <span itemprop="name">Translate</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1535,12 +902,7 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h2 id="学习如何兼顾模块化与可读性来创建对象"><a href="#学习如何兼顾模块化与可读性来创建对象" class="headerlink" title="学习如何兼顾模块化与可读性来创建对象"></a>学习如何兼顾模块化与可读性来创建对象</h2><h3 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h3><p>在我刚开始学习 iOS 开发的时候，我在 YouTube 上找了一些教程。我发现这些教程有时候会用下面这种方式来创建 UI 对象:</p>
+          <h2 id="学习如何兼顾模块化与可读性来创建对象"><a href="#学习如何兼顾模块化与可读性来创建对象" class="headerlink" title="学习如何兼顾模块化与可读性来创建对象"></a>学习如何兼顾模块化与可读性来创建对象</h2><h3 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h3><p>在我刚开始学习 iOS 开发的时候，我在 YouTube 上找了一些教程。我发现这些教程有时候会用下面这种方式来创建 UI 对象:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">let makeBox: UIView &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"> let view &#x3D; UIView()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"> return view</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;()</span></pre></td></tr></table></figure>
 <p>作为一个初学者，我自然而然地复制并使用了这个例子。直到有一天，我的一个读者问我：“为什么你要加上<code>{}</code>呢？最后为什么要加上一对<code>()</code>呢？这是一个计算属性吗？”我哑口无言，因为我自己也不知道答案。</p>
 <p>因此，我为过去年轻的自己写下了这份教程。说不定还能帮上其他人的忙。</p>
@@ -1633,149 +995,66 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
 <p>发布于掘金 <a href="https://juejin.im/post/590a9eeab123db00549776ee" target="_blank" rel="noopener">https://juejin.im/post/590a9eeab123db00549776ee</a></p>
 </blockquote>
 
-          
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/05/04/ES6-%E6%A8%A1%E5%9D%97%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%90%BD%E5%9C%B0%EF%BC%8C%E6%98%AF%E6%97%B6%E5%80%99%E8%AF%A5%E9%87%8D%E6%96%B0%E8%80%83%E8%99%91%E6%89%93%E5%8C%85%E4%BA%86%E5%90%97%EF%BC%9F/"/>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/05/04/ES6-%E6%A8%A1%E5%9D%97%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%90%BD%E5%9C%B0%EF%BC%8C%E6%98%AF%E6%97%B6%E5%80%99%E8%AF%A5%E9%87%8D%E6%96%B0%E8%80%83%E8%99%91%E6%89%93%E5%8C%85%E4%BA%86%E5%90%97%EF%BC%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note"/>
+      <meta itemprop="name" content="My note">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/05/04/ES6-%E6%A8%A1%E5%9D%97%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%90%BD%E5%9C%B0%EF%BC%8C%E6%98%AF%E6%97%B6%E5%80%99%E8%AF%A5%E9%87%8D%E6%96%B0%E8%80%83%E8%99%91%E6%89%93%E5%8C%85%E4%BA%86%E5%90%97%EF%BC%9F/" class="post-title-link" itemprop="url">ES6 模块原生支持在浏览器中落地，是时候该重新考虑打包了吗？</a>
-              
-            
-          </h2>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/05/04/ES6-%E6%A8%A1%E5%9D%97%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%90%BD%E5%9C%B0%EF%BC%8C%E6%98%AF%E6%97%B6%E5%80%99%E8%AF%A5%E9%87%8D%E6%96%B0%E8%80%83%E8%99%91%E6%89%93%E5%8C%85%E4%BA%86%E5%90%97%EF%BC%9F/" class="post-title-link" itemprop="url">ES6 模块原生支持在浏览器中落地，是时候该重新考虑打包了吗？</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2017-05-04 11:17:00" itemprop="dateCreated datePublished" datetime="2017-05-04T11:17:00+08:00">2017-05-04</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+            </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Translate/" itemprop="url" rel="index">
+                    <span itemprop="name">Translate</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1783,12 +1062,7 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p><img src="/images/pasted-145.png" alt="upload successful"></p>
+          <p><img src="/images/pasted-145.png" alt="upload successful"></p>
 <p>最近一段日子，编写高效的 JavaScript 应用变得越来越复杂。早在几年前，大家都开始合并脚本来减少 HTTP 请求数；后来有了压缩工具，人们为了压缩代码而缩短变量名，甚至连代码的最后一字节都要省出来。</p>
 <p>今天，我们有了 <a href="https://blog.engineyard.com/2016/tree-shaking" target="_blank" rel="noopener">tree shaking</a> 和各种模块打包器，我们为了不在首屏加载时阻塞主进程又开始进行代码分割，加快<a href="https://developers.google.com/web/tools/lighthouse/audits/time-to-interactive" target="_blank" rel="noopener">交互时间</a>。我们还开始转译一切东西：感谢 Babel，让我们能够在现在就使用未来的特性。</p>
 <p>ES6 模块由 ECMAScript 标准制定，<a href="http://2ality.com/2014/09/es6-modules-final.html" target="_blank" rel="noopener">定稿有些时日了</a>。社区为它写了很多的文章，讲解如何通过 Babel 使用它们，以及 <code>import</code> 和 Node.js 的  <code>require</code> 的区别。但是要在浏览器中真正实现它还需要一点时间。我惊喜地发现 Safari 在它的 technology preview 版本中第一个装载了 ES6 模块，并且 Edge 和 Firefox Nightly 版本也将要支持 ES6 模块——虽然目前还不支持。在使用 <code>RequireJS</code> 和 <code>Browserify</code> 之类的工具后（还记得关于 <a href="https://addyosmani.com/writing-modular-js/" target="_blank" rel="noopener">AMD 与 CommonJS  的讨论吗</a>？），至少看起来浏览器终于能支持模块了。让我们来看看明朗的未来带来了怎样的礼物吧！🎉</p>
@@ -1876,149 +1150,66 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
 <p>发布于掘金 <a href="https://juejin.im/post/590a990a5c497d005852cf61" target="_blank" rel="noopener">https://juejin.im/post/590a990a5c497d005852cf61</a></p>
 </blockquote>
 
-          
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/04/27/%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E8%AF%80%E7%AA%8D/"/>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/04/27/%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E8%AF%80%E7%AA%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note"/>
+      <meta itemprop="name" content="My note">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/04/27/%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E8%AF%80%E7%AA%8D/" class="post-title-link" itemprop="url">前端调试技巧与诀窍</a>
-              
-            
-          </h2>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/04/27/%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E8%AF%80%E7%AA%8D/" class="post-title-link" itemprop="url">前端调试技巧与诀窍</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2017-04-27 21:54:00" itemprop="dateCreated datePublished" datetime="2017-04-27T21:54:00+08:00">2017-04-27</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+            </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Translate/" itemprop="url" rel="index">
+                    <span itemprop="name">Translate</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -2026,12 +1217,7 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p>编写代码其实只是开发者的一小部分工作。为了让工作更有效率，我们还必须精通 debug。我发现，花一些时间学习新的调试技巧，往往能让我能更快地完成工作，对我的团队做出更大的贡献。关于调试这方面我有一些自己重度依赖的技巧与诀窍，同时我在 workshop 中经常建议大家使用这些技巧，因此我对它们进行了一个汇总（其中有一些来自于社区）。我们将从一些核心概念开始讲解，然后深入探讨一些具体的例子。</p>
+          <p>编写代码其实只是开发者的一小部分工作。为了让工作更有效率，我们还必须精通 debug。我发现，花一些时间学习新的调试技巧，往往能让我能更快地完成工作，对我的团队做出更大的贡献。关于调试这方面我有一些自己重度依赖的技巧与诀窍，同时我在 workshop 中经常建议大家使用这些技巧，因此我对它们进行了一个汇总（其中有一些来自于社区）。我们将从一些核心概念开始讲解，然后深入探讨一些具体的例子。</p>
 <h3 id="主要概念"><a href="#主要概念" class="headerlink" title="主要概念"></a>主要概念</h3><h4 id="隔离问题"><a href="#隔离问题" class="headerlink" title="隔离问题"></a>隔离问题</h4><p>隔离问题大概是 debug 中最重要的核心概念。我们的代码库是由不同的类库、框架组成的，它们有着许多的贡献者，甚至还有一些不再参与项目的人，因此我们的代码库是杂乱无章的。隔离问题可以帮助我们逐步剥离与问题无关的部分以便我们可以把注意力放在解决方案上。</p>
 <p>隔离问题的好处包括但不限于以下几条：</p>
 <ul>
@@ -2158,149 +1344,66 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
 <p>发布于掘金 <a href="https://juejin.im/post/5901e8d6a0bb9f0065e64f63" target="_blank" rel="noopener">https://juejin.im/post/5901e8d6a0bb9f0065e64f63</a></p>
 </blockquote>
 
-          
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/04/24/%E6%88%91%E7%BB%8F%E5%B8%B8%E5%90%AC%E5%88%B0%E7%9A%84-GraphQL-%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/"/>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/04/24/%E6%88%91%E7%BB%8F%E5%B8%B8%E5%90%AC%E5%88%B0%E7%9A%84-GraphQL-%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note"/>
+      <meta itemprop="name" content="My note">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/04/24/%E6%88%91%E7%BB%8F%E5%B8%B8%E5%90%AC%E5%88%B0%E7%9A%84-GraphQL-%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" class="post-title-link" itemprop="url">我经常听到的 GraphQL 到底是什么？</a>
-              
-            
-          </h2>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/04/24/%E6%88%91%E7%BB%8F%E5%B8%B8%E5%90%AC%E5%88%B0%E7%9A%84-GraphQL-%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" class="post-title-link" itemprop="url">我经常听到的 GraphQL 到底是什么？</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2017-04-24 11:41:00" itemprop="dateCreated datePublished" datetime="2017-04-24T11:41:00+08:00">2017-04-24</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+            </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Translate/" itemprop="url" rel="index">
+                    <span itemprop="name">Translate</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -2308,12 +1411,7 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p><img src="/images/pasted-121.png" alt="upload successful"></p>
+          <p><img src="/images/pasted-121.png" alt="upload successful"></p>
 <p>当听说出了一门新技术的时候，你可能会和我一样有以下 3 种反应：</p>
 <h4 id="1-嫌弃"><a href="#1-嫌弃" class="headerlink" title="1. 嫌弃"></a>1. 嫌弃</h4><blockquote>
 <p>又来一个 JavaScript 类库？反正我只用 JQuery 就行了。</p>
@@ -2449,149 +1547,66 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
 <p>发布于掘金 <a href="https://juejin.im/post/58fd6d121b69e600589ec740" target="_blank" rel="noopener">https://juejin.im/post/58fd6d121b69e600589ec740</a></p>
 </blockquote>
 
-          
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/04/12/%E5%90%8C%E4%B8%AD%E6%9C%89%E5%BC%82%E7%9A%84-Webpack-%E4%B8%8E-Rollup/"/>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/04/12/%E5%90%8C%E4%B8%AD%E6%9C%89%E5%BC%82%E7%9A%84-Webpack-%E4%B8%8E-Rollup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note"/>
+      <meta itemprop="name" content="My note">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/04/12/%E5%90%8C%E4%B8%AD%E6%9C%89%E5%BC%82%E7%9A%84-Webpack-%E4%B8%8E-Rollup/" class="post-title-link" itemprop="url">同中有异的 Webpack 与 Rollup</a>
-              
-            
-          </h2>
-        
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/04/12/%E5%90%8C%E4%B8%AD%E6%9C%89%E5%BC%82%E7%9A%84-Webpack-%E4%B8%8E-Rollup/" class="post-title-link" itemprop="url">同中有异的 Webpack 与 Rollup</a>
+        </h2>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2017-04-12 13:24:00" itemprop="dateCreated datePublished" datetime="2017-04-12T13:24:00+08:00">2017-04-12</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+            </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Translate/" itemprop="url" rel="index">
+                    <span itemprop="name">Translate</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -2599,12 +1614,7 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <p><img src="/images/pasted-120.png" alt="upload successful"></p>
+          <p><img src="/images/pasted-120.png" alt="upload successful"></p>
 <p>本周，Facebook 将一个<a href="https://github.com/facebook/react/pull/9327" target="_blank" rel="noopener">非常大的 pull request</a> 合并到了 React 主分支。这个 PR 将 React 当前使用的构建工具替换成了 <a href="https://rollupjs.org/" target="_blank" rel="noopener">Rollup</a>。这让许多人感到不解，纷纷在推特上提问：“为什么你们选择 Rollup 而不选择 Webpack 呢？”<sub><a href="https://twitter.com/stanlemon/status/849366789825994752" target="_blank" rel="noopener">1</a></sub> <sub><a href="https://twitter.com/MrMohtas/status/849362334988595201" target="_blank" rel="noopener">2</a></sub> <sub><a href="https://twitter.com/kyleholzinger/status/849683292760797184" target="_blank" rel="noopener">3</a></sub></p>
 <p>有人问这个问题是很正常的。<a href="https://webpack.js.org/" target="_blank" rel="noopener">Webpack</a> 是现在 JavaScript 社区中最伟大的成功传奇之一，它有着数百万/月的下载量，驱动了成千上万的网站与应用。它有着巨大的生态系统、众多的贡献者，并且它与一般的社区开源项目不同——它有着<a href="https://opencollective.com/webpack" target="_blank" rel="noopener">意义非凡的经济支持</a>。</p>
 <p>相比之下，Rollup 是那么的微不足道。但是，除了 React 之外，Vue、Ember、Preact、D3、Three.js、Moment 等众多知名项目都使用了 Rollup。为什么会这样呢？为什么这些项目不使用大家一致认可的 JavaScript 模块打包工具呢？</p>
@@ -2633,51 +1643,25 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
 <p>发布于掘金 <a href="https://juejin.im/post/58edb865570c350057f199a7" target="_blank" rel="noopener">https://juejin.im/post/58edb865570c350057f199a7</a></p>
 </blockquote>
 
-          
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
-  </section>
+  </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot; aria-label&#x3D;&quot;Previous page&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/9/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot; aria-label&#x3D;&quot;Next page&quot;&gt;&lt;&#x2F;i&gt;</a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2686,588 +1670,106 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
           
 
         </div>
-        
           
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-      
-
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">lsvih</p>
-              <div class="site-description motion-element" itemprop="description"></div>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/%20%7C%7C%20archive">
-                
-                    <span class="site-state-item-count">155</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                      <a href="/categories/%20%7C%7C%20th">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">9</span>
-                    <span class="site-state-item-name">categories</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/%20%7C%7C%20tags">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">194</span>
-                    <span class="site-state-item-name">tags</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/lsvih" title="GitHub &rarr; https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="mailto:lsvih@qq.com" title="E-Mail &rarr; mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-            </div>
-          
-
-          
-             <div class="cc-license motion-element" itemprop="license">
-              
-              
-                
-              
-              
-              
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"/></a>
-             </div>
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
       </div>
+      <!--/noindex-->
 
-      
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lsvih</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">155</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">194</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → /atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
 
-      
+
+
+      </div>
 
     </div>
   </aside>
-  
+  <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号 </a>&copy; 2016 – <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
+        
+  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号 </a>
+  </div>
+
+<div class="copyright">
+  
+  &copy; 2016 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
-
-  
-
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0</div>
-
-
-
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.2</div>
-
-
-
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
+  </div>
 
         
 
@@ -3278,205 +1780,17 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
 
 
 
-        
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
   </div>
 
   
+  <script src="/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
 
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/reading_progress/reading_progress.js"></script>
-
-
-  
-
-
-  <script src="/js/utils.js?v=7.1.2"></script>
-
-  <script src="/js/motion.js?v=7.1.2"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/affix.js?v=7.1.2"></script>
-
-  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
-
-
-
-  
-
-  
-
-
-  <script src="/js/next-boot.js?v=7.1.2"></script>
-
-
-  
-
-  
-
-  
-
-  
-
-
-
-  
-
-
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css"/>
-
-  
-  
-  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
-  
-
-  <script src="/js/algolia-search.js?v=7.1.2"></script>
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
-
-  
-    
-      <script type="text/x-mathjax-config">
-  
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
-        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
-      }
-    });
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    
-  
-
-
-  
-
-  
 
   
   <script>
@@ -3490,15 +1804,23 @@ x_1 不确定, &R^* = \text{opt}_{x_1 \in X_1}\{f_1(x_1)\} = f_1(x_1^*) \\
   </script>
 
 
-  
+
 
   
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
 
-  
 
-  
 
-  
+
+
+
+
+
+
+
+
+
 
   
 
