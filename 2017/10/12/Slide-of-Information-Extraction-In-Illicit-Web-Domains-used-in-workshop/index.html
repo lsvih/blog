@@ -45,7 +45,7 @@
   };
 </script>
 
-  <meta name="keywords" content="machine learning,paper,Slide,workshop">
+  <meta name="keywords" content="paper,machine learning,Slide,workshop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Slide of &#39;Information Extraction In Illicit Web Domains&#39; used in workshop.">
 <meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2017&#x2F;10&#x2F;12&#x2F;Slide-of-Information-Extraction-In-Illicit-Web-Domains-used-in-workshop&#x2F;index.html">
@@ -290,8 +290,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
               <a href="/tags/paper/" rel="tag"># paper</a>
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
               <a href="/tags/Slide/" rel="tag"># Slide</a>
               <a href="/tags/workshop/" rel="tag"># workshop</a>
           </div>
@@ -479,6 +479,54 @@
   
 
   
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
 
   
 

@@ -46,7 +46,7 @@
 </script>
 
   <meta name="description" content="NIPS 2000 经典论文 非负矩阵分解算法 翻译  摘要非负矩阵分解（NMF）是一种可以有效处理多变量数据的方法。本文介绍、分析了两种不同的 NMF 算法，这两种算法仅在更新规则（update rule）中使用的乘性因子（multiplicative factor）有所区别。其中一种可以对传统的最小二乘误差进行最小化（minimize），而另一种可以对广义 Kullback-Leibler">
-<meta name="keywords" content="note,machine learning,paper,algorithm,matrix,gradient descent,Translate">
+<meta name="keywords" content="note,paper,algorithm,machine learning,matrix,gradient descent,Translate">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Algorithms for Non-negative Matrix Factorization，非负矩阵分解 论文翻译">
 <meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2018&#x2F;10&#x2F;30&#x2F;Algorithms%20for%20Non-negative%20Matrix%20Factorization&#x2F;index.html">
@@ -370,9 +370,9 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/note/" rel="tag"># note</a>
-              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
               <a href="/tags/paper/" rel="tag"># paper</a>
               <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
               <a href="/tags/matrix/" rel="tag"># matrix</a>
               <a href="/tags/gradient-descent/" rel="tag"># gradient descent</a>
               <a href="/tags/Translate/" rel="tag"># Translate</a>
@@ -562,6 +562,54 @@
   
 
   
+      
+<script type="text/x-mathjax-config">
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
 
   
 
