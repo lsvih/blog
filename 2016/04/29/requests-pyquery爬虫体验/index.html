@@ -13,11 +13,11 @@
 
 
 <html class="theme-next pisces" lang="">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -40,9 +40,9 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0"/>
 
-<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2"/>
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
@@ -92,28 +92,26 @@
 
 
 
-  <meta name="description" content="目标网站:http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx  需要将所有数据爬下放到数据库中.中途遇到了各种编码问题,因此使用了requests获取页面. 123456789101112131415161718192021222324252627282930313233#coding=utf-8#encoding=utf-8imp">
+  <meta name="description" content="目标网站:http:&#x2F;&#x2F;jc.bjmemc.com.cn&#x2F;IndexAirReport&#x2F;AirDailyReport.aspx  需要将所有数据爬下放到数据库中.中途遇到了各种编码问题,因此使用了requests获取页面. 1#coding&#x3D;utf-82#encoding&#x3D;utf-83import re4import requests5import MySQLdb6import hashlib7f">
 <meta name="keywords" content="code,python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="requests+pyquery爬虫体验">
-<meta property="og:url" content="https://lsvih.com/2016/04/29/requests-pyquery爬虫体验/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2016&#x2F;04&#x2F;29&#x2F;requests-pyquery%E7%88%AC%E8%99%AB%E4%BD%93%E9%AA%8C&#x2F;index.html">
 <meta property="og:site_name" content="My note">
-<meta property="og:description" content="目标网站:http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx  需要将所有数据爬下放到数据库中.中途遇到了各种编码问题,因此使用了requests获取页面. 123456789101112131415161718192021222324252627282930313233#coding=utf-8#encoding=utf-8imp">
+<meta property="og:description" content="目标网站:http:&#x2F;&#x2F;jc.bjmemc.com.cn&#x2F;IndexAirReport&#x2F;AirDailyReport.aspx  需要将所有数据爬下放到数据库中.中途遇到了各种编码问题,因此使用了requests获取页面. 1#coding&#x3D;utf-82#encoding&#x3D;utf-83import re4import requests5import MySQLdb6import hashlib7f">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-10-28T16:13:00.727Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="requests+pyquery爬虫体验">
-<meta name="twitter:description" content="目标网站:http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx  需要将所有数据爬下放到数据库中.中途遇到了各种编码问题,因此使用了requests获取页面. 123456789101112131415161718192021222324252627282930313233#coding=utf-8#encoding=utf-8imp">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml"/>
 
 
 
   
   
-  <link rel="canonical" href="https://lsvih.com/2016/04/29/requests-pyquery爬虫体验/">
+  <link rel="canonical" href="https://lsvih.com/2016/04/29/requests-pyquery%E7%88%AC%E8%99%AB%E4%BD%93%E9%AA%8C/"/>
 
 
 
@@ -175,7 +173,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -185,7 +183,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -233,7 +231,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
 
   </li>
         
@@ -249,7 +247,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
 
   </li>
         
@@ -265,7 +263,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
 
   </li>
         
@@ -281,7 +279,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
 
   </li>
 
@@ -289,10 +287,10 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="javascript:;" class="popup-trigger">
+            <a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
         </li>
       
     </ul>
@@ -363,21 +361,21 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/29/requests-pyquery爬虫体验/">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/29/requests-pyquery%E7%88%AC%E8%99%AB%E4%BD%93%E9%AA%8C/"/>
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note"/>
     </span>
 
     
@@ -429,7 +427,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
 
                 
                 
@@ -466,7 +464,7 @@
       
         <p>目标网站:<a href="http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx" target="_blank" rel="noopener">http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx</a> </p>
 <p>需要将所有数据爬下放到数据库中.中途遇到了各种编码问题,因此使用了requests获取页面.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> MySQLdb</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pyq</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(text)</span>:</span></span><br><span class="line">    m = hashlib.md5()</span><br><span class="line">    m.update(text.encode(<span class="string">'utf-8'</span>))</span><br><span class="line">    <span class="keyword">return</span> m.hexdigest()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getandupload</span><span class="params">()</span>:</span></span><br><span class="line">	conn=MySQLdb.connect(host=<span class="string">'localhost'</span>,user=<span class="string">'root'</span>,passwd=<span class="string">''</span>,port=<span class="number">3306</span>,charset=<span class="string">'utf8'</span>)</span><br><span class="line">	cur=conn.cursor()</span><br><span class="line">	conn.select_db(<span class="string">'pytest'</span>)</span><br><span class="line">	ret=requests.get(url=<span class="string">"http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx"</span>) </span><br><span class="line">	doc=pyq(ret.text)</span><br><span class="line">	date = re.findall(<span class="string">r'(w*[0-9]+)w*'</span>,doc.find(<span class="string">'#Label0'</span>).text())</span><br><span class="line">	<span class="comment">#正则,将数字提取出来(为了将yyyy年mm月dd日改成yyyy/mm/dd)</span></span><br><span class="line">	date = date[<span class="number">0</span>]+<span class="string">'/'</span>+date[<span class="number">1</span>]+<span class="string">'/'</span>+date[<span class="number">2</span>]</span><br><span class="line">	table = pyq(pyq(doc.find(<span class="string">'#marqueebox'</span>)).find(<span class="string">'table'</span>))</span><br><span class="line">	stations = re.findall(<span class="string">r'&lt;td style="width:126px"&gt;(.+?)&lt;/td&gt;'</span>,table.html())</span><br><span class="line">	aqis = re.findall(<span class="string">r'&lt;td style="width:90px"&gt;(.+?)&lt;/td&gt;'</span>,table.html())</span><br><span class="line">	<span class="comment">#通过正则将html代码中需要的数据提取出来并存在数组中.</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">35</span>):</span><br><span class="line">		value=[md5(date+stations[i][<span class="number">1</span>:]),date,stations[i][<span class="number">1</span>:],aqis[<span class="number">2</span>*i]]</span><br><span class="line">		cur.execute(<span class="string">'insert ignore into aqi_bjmemc values(%s,%s,%s,%s)'</span>,value)</span><br><span class="line">	        <span class="comment">#设置了md5id为主键,因此当传重复数据的时候md5id重复,避免了重复上传数据.</span></span><br><span class="line">	conn.commit()</span><br><span class="line">	cur.close()</span><br><span class="line">	conn.close()</span><br><span class="line">getandupload()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding=utf-8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> MySQLdb</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pyq</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(text)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    m = hashlib.md5()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    m.update(text.encode(<span class="string">'utf-8'</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> m.hexdigest()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getandupload</span><span class="params">()</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">	conn=MySQLdb.connect(host=<span class="string">'localhost'</span>,user=<span class="string">'root'</span>,passwd=<span class="string">''</span>,port=<span class="number">3306</span>,charset=<span class="string">'utf8'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">	cur=conn.cursor()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">	conn.select_db(<span class="string">'pytest'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">	ret=requests.get(url=<span class="string">"http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx"</span>) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">	doc=pyq(ret.text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">	date = re.findall(<span class="string">r'(w*[0-9]+)w*'</span>,doc.find(<span class="string">'#Label0'</span>).text())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">	<span class="comment">#正则,将数字提取出来(为了将yyyy年mm月dd日改成yyyy/mm/dd)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">	date = date[<span class="number">0</span>]+<span class="string">'/'</span>+date[<span class="number">1</span>]+<span class="string">'/'</span>+date[<span class="number">2</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">	table = pyq(pyq(doc.find(<span class="string">'#marqueebox'</span>)).find(<span class="string">'table'</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">	stations = re.findall(<span class="string">r'&lt;td style="width:126px"&gt;(.+?)&lt;/td&gt;'</span>,table.html())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">	aqis = re.findall(<span class="string">r'&lt;td style="width:90px"&gt;(.+?)&lt;/td&gt;'</span>,table.html())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">	<span class="comment">#通过正则将html代码中需要的数据提取出来并存在数组中.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">35</span>):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">		value=[md5(date+stations[i][<span class="number">1</span>:]),date,stations[i][<span class="number">1</span>:],aqis[<span class="number">2</span>*i]]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">		cur.execute(<span class="string">'insert ignore into aqi_bjmemc values(%s,%s,%s,%s)'</span>,value)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">	        <span class="comment">#设置了md5id为主键,因此当传重复数据的时候md5id重复,避免了重复上传数据.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">	conn.commit()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">	cur.close()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">	conn.close()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">getandupload()</span></pre></td></tr></table></figure>
 
       
     </div>
@@ -501,7 +499,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="https://lsvih.com/2016/04/29/requests-pyquery爬虫体验/" title="requests+pyquery爬虫体验">https://lsvih.com/2016/04/29/requests-pyquery爬虫体验/</a>
+    <a href="/https:/lsvih.com/2016/04/29/requests-pyquery%E7%88%AC%E8%99%AB%E4%BD%93%E9%AA%8C/" title="requests+pyquery爬虫体验">https://lsvih.com/2016/04/29/requests-pyquery%E7%88%AC%E8%99%AB%E4%BD%93%E9%AA%8C/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
@@ -532,7 +530,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/27/python对于时间（hh-mm）进行循环递增/" rel="next" title="python对于时间（hh:mm）进行循环递增">
+              <a href="/2016/04/27/python%E5%AF%B9%E4%BA%8E%E6%97%B6%E9%97%B4%EF%BC%88hh-mm%EF%BC%89%E8%BF%9B%E8%A1%8C%E5%BE%AA%E7%8E%AF%E9%80%92%E5%A2%9E/" rel="next" title="python对于时间（hh:mm）进行循环递增">
                 <i class="fa fa-chevron-left"></i> python对于时间（hh:mm）进行循环递增
               </a>
             
@@ -542,7 +540,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/03/爬虫python解析json与python下载图片/" rel="prev" title="爬虫python解析json与python下载图片">
+              <a href="/2016/05/03/%E7%88%AC%E8%99%ABpython%E8%A7%A3%E6%9E%90json%E4%B8%8Epython%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87/" rel="prev" title="爬虫python解析json与python下载图片">
                 爬虫python解析json与python下载图片 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -591,7 +589,7 @@
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">lsvih</p>
               <div class="site-description motion-element" itemprop="description"></div>
@@ -602,7 +600,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives/%20%7C%7C%20archive">
                 
                     <span class="site-state-item-count">155</span>
                     <span class="site-state-item-name">posts</span>
@@ -616,7 +614,7 @@
                 <div class="site-state-item site-state-categories">
                   
                     
-                      <a href="/categories/">
+                      <a href="/categories/%20%7C%7C%20th">
                     
                   
                     
@@ -651,7 +649,7 @@
                 <div class="site-state-item site-state-tags">
                   
                     
-                      <a href="/tags/">
+                      <a href="/tags/%20%7C%7C%20tags">
                     
                   
                     
@@ -1099,7 +1097,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"/></a>
              </div>
           
 
@@ -1141,7 +1139,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0</div>
 
 
 
@@ -1279,7 +1277,7 @@
   
   
   
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css"/>
 
   
   

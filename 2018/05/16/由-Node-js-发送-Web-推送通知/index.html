@@ -13,11 +13,11 @@
 
 
 <html class="theme-next pisces" lang="">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -40,9 +40,9 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0"/>
 
-<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2"/>
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
@@ -96,28 +96,26 @@
 <meta name="keywords" content="Translate,juejin,Node.js,Service Worker,Web push">
 <meta property="og:type" content="article">
 <meta property="og:title" content="由 Node.js 发送 Web 推送通知">
-<meta property="og:url" content="https://lsvih.com/2018/05/16/由-Node-js-发送-Web-推送通知/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2018&#x2F;05&#x2F;16&#x2F;%E7%94%B1-Node-js-%E5%8F%91%E9%80%81-Web-%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5&#x2F;index.html">
 <meta property="og:site_name" content="My note">
 <meta property="og:description" content="使用 service workers API 可以让你直接由 Node.js 应用向 Chrome 浏览器发送推送通知。web-push npm 模组可以让你免去 PubNub 之类的中间商，直接推送消息。本文将在前端使用原生 JavaScript，在后端使用 Express 框架，通过一个“Hello, World”级别的样例来带你了解如何进行 web 推送通知。最终的效果如下图所示。本项目的全">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://lsvih.com/images/pasted-318.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-319.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-320.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-318.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-319.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-320.png">
 <meta property="og:updated_time" content="2018-10-28T16:13:18.674Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="由 Node.js 发送 Web 推送通知">
-<meta name="twitter:description" content="使用 service workers API 可以让你直接由 Node.js 应用向 Chrome 浏览器发送推送通知。web-push npm 模组可以让你免去 PubNub 之类的中间商，直接推送消息。本文将在前端使用原生 JavaScript，在后端使用 Express 框架，通过一个“Hello, World”级别的样例来带你了解如何进行 web 推送通知。最终的效果如下图所示。本项目的全">
-<meta name="twitter:image" content="https://lsvih.com/images/pasted-318.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-318.png">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml"/>
 
 
 
   
   
-  <link rel="canonical" href="https://lsvih.com/2018/05/16/由-Node-js-发送-Web-推送通知/">
+  <link rel="canonical" href="https://lsvih.com/2018/05/16/%E7%94%B1-Node-js-%E5%8F%91%E9%80%81-Web-%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5/"/>
 
 
 
@@ -179,7 +177,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -189,7 +187,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -237,7 +235,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
 
   </li>
         
@@ -253,7 +251,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
 
   </li>
         
@@ -269,7 +267,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
 
   </li>
         
@@ -285,7 +283,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
 
   </li>
 
@@ -293,10 +291,10 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="javascript:;" class="popup-trigger">
+            <a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
         </li>
       
     </ul>
@@ -367,21 +365,21 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/05/16/由-Node-js-发送-Web-推送通知/">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/05/16/%E7%94%B1-Node-js-%E5%8F%91%E9%80%81-Web-%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5/"/>
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note"/>
     </span>
 
     
@@ -433,7 +431,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
 
                 
                 
@@ -471,23 +469,23 @@
         <p>使用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API" target="_blank" rel="noopener">service workers API</a> 可以让你直接由 Node.js 应用向 Chrome 浏览器发送推送通知。<a href="https://www.npmjs.com/package/web-push" target="_blank" rel="noopener"><code>web-push</code> npm 模组</a>可以让你免去 <a href="https://www.pubnub.com/" target="_blank" rel="noopener">PubNub</a> 之类的中间商，直接推送消息。本文将在前端使用原生 JavaScript，在后端使用 <a href="https://www.npmjs.com/package/express" target="_blank" rel="noopener">Express</a> 框架，通过一个“Hello, World”级别的样例来带你了解如何进行 web 推送通知。最终的效果如下图所示。本项目的全部源码可在 <a href="https://github.com/vkarpov15/web-push-demo" target="_blank" rel="noopener">GitHub</a> 查阅。</p>
 <p><img src="/images/pasted-318.png" alt="upload successful"></p>
 <h2 id="鉴权及配置服务端"><a href="#鉴权及配置服务端" class="headerlink" title="鉴权及配置服务端"></a>鉴权及配置服务端</h2><p>要设置 web 推送，必须先创建 <a href="https://blog.mozilla.org/services/2016/04/04/using-vapid-with-webpush/" target="_blank" rel="noopener">VAPID keys</a>。VAPID keys 用于识别是谁发送了推送消息。npm 的 <code>web-push</code> 模组能够<a href="https://www.npmjs.com/package/web-push#command-line" target="_blank" rel="noopener">帮助你生成 VAPID keys</a>，下面我们将安装 <code>web-push</code> 及其依赖，并使用 <code>web-push generate-vapid-keys</code> 来创建 VAPID keys。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ npm install express@4.16.3 web-push@3.3.0 body-parser@1.18.2 express-static@1.2.5</span><br><span class="line">+ express@4.16.3</span><br><span class="line">+ web-push@3.3.0</span><br><span class="line">+ body-parser@1.18.2</span><br><span class="line">+ express-static@1.2.5</span><br><span class="line">added 62 packages in 1.42s</span><br><span class="line">$</span><br><span class="line">$ ./node_modules/.bin/web-push generate-vapid-keys</span><br><span class="line">=======================================</span><br><span class="line">Public Key:</span><br><span class="line">BOynOrGhgkj8Bfk4hsFENAQYbnqqLSigUUkCNaBsAmNuH6U9EWywR1JIdxBVQOPDbIuTaj0tVAQbczNLkC5zftw</span><br><span class="line">Private Key:</span><br><span class="line">&lt;OMITTED&gt;</span><br><span class="line">=======================================</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ npm install express@4.16.3 web-push@3.3.0 body-parser@1.18.2 express-static@1.2.5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">+ express@4.16.3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">+ web-push@3.3.0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">+ body-parser@1.18.2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">+ express-static@1.2.5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">added 62 packages in 1.42s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">$</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">$ .&#x2F;node_modules&#x2F;.bin&#x2F;web-push generate-vapid-keys</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">Public Key:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">BOynOrGhgkj8Bfk4hsFENAQYbnqqLSigUUkCNaBsAmNuH6U9EWywR1JIdxBVQOPDbIuTaj0tVAQbczNLkC5zftw</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">Private Key:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&lt;OMITTED&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">$</span></pre></td></tr></table></figure>
 <p>如果你需要支持低版本浏览器，那么还要获取 <a href="https://medium.com/@jasminejacquelin/integrating-push-notifications-in-your-node-react-web-app-4e8d8190a52c#9a53" target="_blank" rel="noopener">GCM API key</a>，但在桌面版 Chrome 63 或更高版本中不需要它。</p>
 <p>下面创建 <code>index.js</code> 文件，其中包含你的服务。你需要使用 <code>require()</code> 导入 web-push 模组，并配置刚才的 VAPID keys。配置相当简单，将 VAPID keys 存放在 <code>PUBLIC_VAPID_KEY</code> 与 <code>PRIVATE_VAPID_KEY</code> 环境变量中即可。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpush = <span class="built_in">require</span>(<span class="string">'web-push'</span>);</span><br><span class="line"><span class="keyword">const</span> publicVapidKey = process.env.PUBLIC_VAPID_KEY;</span><br><span class="line"><span class="keyword">const</span> privateVapidKey = process.env.PRIVATE_VAPID_KEY;</span><br><span class="line"><span class="comment">// 此处换成你自己的邮箱</span></span><br><span class="line">webpush.setVapidDetails(<span class="string">'mailto:val@karpov.io'</span>, publicVapidKey, privateVapidKey);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpush = <span class="built_in">require</span>(<span class="string">'web-push'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> publicVapidKey = process.env.PUBLIC_VAPID_KEY;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> privateVapidKey = process.env.PRIVATE_VAPID_KEY;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此处换成你自己的邮箱</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">webpush.setVapidDetails(<span class="string">'mailto:val@karpov.io'</span>, publicVapidKey, privateVapidKey);</span></pre></td></tr></table></figure>
 <p>下一步，为 Express 应用添加一个名为 <code>/subscribe</code> 的端点。浏览器中的 JavaScript 将会发送一个 body 中包含 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PushSubscription" target="_blank" rel="noopener"><code>PushSubscription</code> 对象</a>的 HTTP 请求。为了用 <code>webpush.sendNotification()</code> 发送推送通知，你需要获取 <code>PushSubscription</code> 对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line">app.use(<span class="built_in">require</span>(<span class="string">'body-parser'</span>).json());</span><br><span class="line">app.post(<span class="string">'/subscribe'</span>, (req, res) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> subscription = req.body;</span><br><span class="line">  res.status(<span class="number">201</span>).json(&#123;&#125;);</span><br><span class="line">  <span class="keyword">const</span> payload = <span class="built_in">JSON</span>.stringify(&#123; <span class="attr">title</span>: <span class="string">'test'</span> &#125;);</span><br><span class="line">  <span class="built_in">console</span>.log(subscription);</span><br><span class="line">  webpush.sendNotification(subscription, payload).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(error.stack);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = express();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">app.use(<span class="built_in">require</span>(<span class="string">'body-parser'</span>).json());</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">app.post(<span class="string">'/subscribe'</span>, (req, res) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> subscription = req.body;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  res.status(<span class="number">201</span>).json(&#123;&#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> payload = <span class="built_in">JSON</span>.stringify(&#123; <span class="attr">title</span>: <span class="string">'test'</span> &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(subscription);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  webpush.sendNotification(subscription, payload).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.error(error.stack);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure>
 <p>以上就是服务端需要做的全部配置。你可以在 <a href="https://github.com/vkarpov15/web-push-demo/blob/master/index.js" target="_blank" rel="noopener">GitHub</a> 查阅完整代码。现在，我们就要创建客户端 <code>client.js</code> 与一个 service worker —— <code>worker.js</code> 了。</p>
 <h2 id="客户端与-Service-Worker"><a href="#客户端与-Service-Worker" class="headerlink" title="客户端与 Service Worker"></a>客户端与 Service Worker</h2><p>首先，使用 <a href="http://npmjs.com/package/express-static" target="_blank" rel="noopener"><code>express-static</code> npm 模组</a>，<a href="https://github.com/vkarpov15/web-push-demo/blob/b356e53c1468c5611b9c4722411af3839bafc360/index.js#L26" target="_blank" rel="noopener">对 Express 应用进行配置</a>，为客户端部署静态资源，将静态资源部署在服务的最顶级目录下。<br>需要注意的是要在处理 <code>/subscribe</code> 路由之后再调用这个 <code>app.use()</code>，否则 Express 将不会根据你的配置处理路由，而是会去查找 <code>subscribe.html</code> 文件。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="built_in">require</span>(<span class="string">'express-static'</span>)(<span class="string">'./'</span>));</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">app.use(<span class="built_in">require</span>(<span class="string">'express-static'</span>)(<span class="string">'./'</span>));</span></pre></td></tr></table></figure>
 <p>接着，创建 <code>index.html</code> 文件，这个文件将部署为你的应用的入口。文件中仅有的关键之处就是 <code>&lt;script&gt;</code> 标签，它将加载客户端 JavaScript 代码；其余部分都无关紧要。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Push Demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"application/javascript"</span> <span class="attr">src</span>=<span class="string">"/client.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    Service Worker Demo</span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Push Demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"application/javascript"</span> <span class="attr">src</span>=<span class="string">"/client.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    Service Worker Demo</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></pre></td></tr></table></figure>
 <p>现在你的入口做好了。创建一个名为 <code>client.js</code> 的文件。<a href="https://github.com/vkarpov15/web-push-demo/blob/b356e53c1468c5611b9c4722411af3839bafc360/client.js" target="_blank" rel="noopener">这个文件</a> 将告知浏览器初始化你的 service worker 并向 <code>/subscribe</code> 发送 HTTP 请求。由于支持 service workers 的浏览器也应该能支持 async 与 await，因此上述示例中使用了 <a href="http://thecodebarbarian.com/80-20-guide-to-async-await-in-node.js.html" target="_blank" rel="noopener">async/await</a>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里写死的 public key 要换成你自己的。</span></span><br><span class="line"><span class="keyword">const</span> publicVapidKey = <span class="string">'BOynOrGhgkj8Bfk4hsFENAQYbnqqLSigUUkCNaBsAmNuH6U9EWywR1JIdxBVQOPDbIuTaj0tVAQbczNLkC5zftw'</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="string">'serviceWorker'</span> <span class="keyword">in</span> navigator) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registering service worker'</span>);</span><br><span class="line">  run().catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(error));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registering service worker'</span>);</span><br><span class="line">  <span class="keyword">const</span> registration = <span class="keyword">await</span> navigator.serviceWorker.</span><br><span class="line">    register(<span class="string">'/worker.js'</span>, &#123;<span class="attr">scope</span>: <span class="string">'/'</span>&#125;);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registered service worker'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registering push'</span>);</span><br><span class="line">  <span class="keyword">const</span> subscription = <span class="keyword">await</span> registration.pushManager.</span><br><span class="line">    subscribe(&#123;</span><br><span class="line">      userVisibleOnly: <span class="literal">true</span>,</span><br><span class="line">      <span class="comment">// `urlBase64ToUint8Array()` 函数与以下网址中的描述一致</span></span><br><span class="line">      <span class="comment">// https://www.npmjs.com/package/web-push#using-vapid-key-for-applicationserverkey</span></span><br><span class="line">      applicationServerKey: urlBase64ToUint8Array(publicVapidKey)</span><br><span class="line">    &#125;);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registered push'</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Sending push'</span>);</span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'/subscribe'</span>, &#123;</span><br><span class="line">    method: <span class="string">'POST'</span>,</span><br><span class="line">    body: <span class="built_in">JSON</span>.stringify(subscription),</span><br><span class="line">    headers: &#123;</span><br><span class="line">      <span class="string">'content-type'</span>: <span class="string">'application/json'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Sent push'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里写死的 public key 要换成你自己的。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> publicVapidKey = <span class="string">'BOynOrGhgkj8Bfk4hsFENAQYbnqqLSigUUkCNaBsAmNuH6U9EWywR1JIdxBVQOPDbIuTaj0tVAQbczNLkC5zftw'</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="string">'serviceWorker'</span> <span class="keyword">in</span> navigator) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registering service worker'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  run().catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(error));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registering service worker'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> registration = <span class="keyword">await</span> navigator.serviceWorker.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    register(<span class="string">'/worker.js'</span>, &#123;<span class="attr">scope</span>: <span class="string">'/'</span>&#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registered service worker'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registering push'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> subscription = <span class="keyword">await</span> registration.pushManager.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    subscribe(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      userVisibleOnly: <span class="literal">true</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      <span class="comment">// `urlBase64ToUint8Array()` 函数与以下网址中的描述一致</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      <span class="comment">// https://www.npmjs.com/package/web-push#using-vapid-key-for-applicationserverkey</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">      applicationServerKey: urlBase64ToUint8Array(publicVapidKey)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registered push'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Sending push'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'/subscribe'</span>, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    method: <span class="string">'POST'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    body: <span class="built_in">JSON</span>.stringify(subscription),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    headers: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">      <span class="string">'content-type'</span>: <span class="string">'application/json'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Sent push'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>最后，你需要实现 <code>client.js</code> 所加载的 <code>worker.js</code> 文件。<br>这个文件是 service worker 逻辑所在之处。当订阅者接受到一个推送消息时，service worker 将收到一个 <a href="https://developers.google.com/web/ilt/pwa/introduction-to-push-notifications#handling_the_push_event_in_the_service_worker" target="_blank" rel="noopener">‘push’ 事件</a>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'Loaded service worker!'</span>);</span><br><span class="line">self.addEventListener(<span class="string">'push'</span>, ev =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> data = ev.data.json();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Got push'</span>, data);</span><br><span class="line">  self.registration.showNotification(data.title, &#123;</span><br><span class="line">    body: <span class="string">'Hello, World!'</span>,</span><br><span class="line">    icon: <span class="string">'http://mongoosejs.com/docs/images/mongoose5_62x30_transparent.png'</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'Loaded service worker!'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">'push'</span>, ev =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> data = ev.data.json();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Got push'</span>, data);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  self.registration.showNotification(data.title, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    body: <span class="string">'Hello, World!'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    icon: <span class="string">'http://mongoosejs.com/docs/images/mongoose5_62x30_transparent.png'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure>
 <p>好了！配置正确的环境变量并启动你的服务：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ env PUBLIC_VAPID_KEY=&apos;OMITTED&apos; env PRIVATE_VAPID_KEY=&apos;OMITTED&apos; node .</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ env PUBLIC_VAPID_KEY&#x3D;&#39;OMITTED&#39; env PRIVATE_VAPID_KEY&#x3D;&#39;OMITTED&#39; node .</span></pre></td></tr></table></figure>
 <p>在 Chrome 中访问 <code>http://localhost:3000</code>，你应该可以看到下面的推送通知！</p>
 <p><img src="/images/pasted-319.png" alt="upload successful"></p>
 <p>这种通知不仅在 Chrome 中可用，在 <a href="https://support.mozilla.org/en-US/kb/push-notifications-firefox" target="_blank" rel="noopener">Firefox</a> 也可以用同样的代码实现。</p>
@@ -527,7 +525,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="https://lsvih.com/2018/05/16/由-Node-js-发送-Web-推送通知/" title="由 Node.js 发送 Web 推送通知">https://lsvih.com/2018/05/16/由-Node-js-发送-Web-推送通知/</a>
+    <a href="/https:/lsvih.com/2018/05/16/%E7%94%B1-Node-js-%E5%8F%91%E9%80%81-Web-%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5/" title="由 Node.js 发送 Web 推送通知">https://lsvih.com/2018/05/16/%E7%94%B1-Node-js-%E5%8F%91%E9%80%81-Web-%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
@@ -574,7 +572,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/19/可用但最不常见的-HTML5-标签/" rel="prev" title="可用但最不常见的 HTML5 标签">
+              <a href="/2018/05/19/%E5%8F%AF%E7%94%A8%E4%BD%86%E6%9C%80%E4%B8%8D%E5%B8%B8%E8%A7%81%E7%9A%84-HTML5-%E6%A0%87%E7%AD%BE/" rel="prev" title="可用但最不常见的 HTML5 标签">
                 可用但最不常见的 HTML5 标签 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -632,7 +630,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">lsvih</p>
               <div class="site-description motion-element" itemprop="description"></div>
@@ -643,7 +641,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives/%20%7C%7C%20archive">
                 
                     <span class="site-state-item-count">155</span>
                     <span class="site-state-item-name">posts</span>
@@ -657,7 +655,7 @@
                 <div class="site-state-item site-state-categories">
                   
                     
-                      <a href="/categories/">
+                      <a href="/categories/%20%7C%7C%20th">
                     
                   
                     
@@ -692,7 +690,7 @@
                 <div class="site-state-item site-state-tags">
                   
                     
-                      <a href="/tags/">
+                      <a href="/tags/%20%7C%7C%20tags">
                     
                   
                     
@@ -1140,7 +1138,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"/></a>
              </div>
           
 
@@ -1199,7 +1197,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0</div>
 
 
 
@@ -1337,7 +1335,7 @@
   
   
   
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css"/>
 
   
   

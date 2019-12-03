@@ -13,11 +13,11 @@
 
 
 <html class="theme-next pisces" lang="">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -40,9 +40,9 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0"/>
 
-<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2"/>
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
@@ -96,42 +96,40 @@
 <meta name="keywords" content="Translate,juejin,Front End,Back End,GraphQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我经常听到的 GraphQL 到底是什么？">
-<meta property="og:url" content="https://lsvih.com/2017/04/24/我经常听到的-GraphQL-到底是什么？/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2017&#x2F;04&#x2F;24&#x2F;%E6%88%91%E7%BB%8F%E5%B8%B8%E5%90%AC%E5%88%B0%E7%9A%84-GraphQL-%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F&#x2F;index.html">
 <meta property="og:site_name" content="My note">
 <meta property="og:description" content="当听说出了一门新技术的时候，你可能会和我一样有以下 3 种反应： 1. 嫌弃 又来一个 JavaScript 类库？反正我只用 JQuery 就行了。  2. 感兴趣 嗯，也许我应该去了解一下这个我总是听别人说到的新库。  3. 恐慌 救命啊！我必须马上去学这个新库，否则我就会被淘汰了！  在这个迅速发展的时代，让你保持理智的方法就是保持上述第二或第三种态度去学一些新的知识，走在潮流之前的同时激">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://lsvih.com/images/pasted-121.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-122.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-123.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-124.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-125.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-126.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-127.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-129.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-130.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-131.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-132.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-133.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-134.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-135.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-136.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-137.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-138.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-121.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-122.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-123.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-124.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-125.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-126.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-127.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-129.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-130.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-131.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-132.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-133.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-134.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-135.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-136.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-137.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-138.png">
 <meta property="og:updated_time" content="2018-10-28T16:13:14.968Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我经常听到的 GraphQL 到底是什么？">
-<meta name="twitter:description" content="当听说出了一门新技术的时候，你可能会和我一样有以下 3 种反应： 1. 嫌弃 又来一个 JavaScript 类库？反正我只用 JQuery 就行了。  2. 感兴趣 嗯，也许我应该去了解一下这个我总是听别人说到的新库。  3. 恐慌 救命啊！我必须马上去学这个新库，否则我就会被淘汰了！  在这个迅速发展的时代，让你保持理智的方法就是保持上述第二或第三种态度去学一些新的知识，走在潮流之前的同时激">
-<meta name="twitter:image" content="https://lsvih.com/images/pasted-121.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-121.png">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml"/>
 
 
 
   
   
-  <link rel="canonical" href="https://lsvih.com/2017/04/24/我经常听到的-GraphQL-到底是什么？/">
+  <link rel="canonical" href="https://lsvih.com/2017/04/24/%E6%88%91%E7%BB%8F%E5%B8%B8%E5%90%AC%E5%88%B0%E7%9A%84-GraphQL-%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/"/>
 
 
 
@@ -193,7 +191,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -203,7 +201,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -251,7 +249,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
 
   </li>
         
@@ -267,7 +265,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
 
   </li>
         
@@ -283,7 +281,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
 
   </li>
         
@@ -299,7 +297,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
 
   </li>
 
@@ -307,10 +305,10 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="javascript:;" class="popup-trigger">
+            <a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
         </li>
       
     </ul>
@@ -381,21 +379,21 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/04/24/我经常听到的-GraphQL-到底是什么？/">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/04/24/%E6%88%91%E7%BB%8F%E5%B8%B8%E5%90%AC%E5%88%B0%E7%9A%84-GraphQL-%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/"/>
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note"/>
     </span>
 
     
@@ -447,7 +445,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a></span>
 
                 
                 
@@ -521,18 +519,18 @@
 <p><img src="/images/pasted-127.png" alt="upload successful"></p>
 <p>理论上，一个 GraphQL API 主要由三个部分组成：<strong>schema（类型）</strong>，<strong>queries（查询）</strong> 以及 <strong>resolvers（解析器）</strong>。</p>
 <h3 id="查询（Queries）"><a href="#查询（Queries）" class="headerlink" title="查询（Queries）"></a>查询（Queries）</h3><p>你向你的 GraphQL 私人助理提出的请求就是 <code>query</code> ，query 的形式如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">query &#123;</span><br><span class="line">  stuff</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">query &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  stuff</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>在这里，我们用 <code>query</code> 关键字定义了一个新的查询，它将取出名叫 <code>stuff</code> 的字段。GraphQL 查询（Queries）最棒之处就是它支持多个字段嵌套查询，我们可以在上面的基础上加深一个层级：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">query&#123;</span><br><span class="line">  stuff &#123;</span><br><span class="line">    eggs</span><br><span class="line">    shirt</span><br><span class="line">    pizza</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">query&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  stuff &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    eggs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    shirt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    pizza</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>正如你所见，客户端在查询的时候不需要关心数据是来自于哪一个“商店”的。你只需要请求你要的数据，GraphQL 服务端将会完成其它所有的工作。</p>
 <p>还有一点值得注意，query 字段也可以指向一个数组。例如，以下是一个查询一个文章列表的常用模式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">query &#123;</span><br><span class="line">  posts &#123; # this is an array</span><br><span class="line">    title</span><br><span class="line">    body</span><br><span class="line">    author &#123; # we can go deeper!</span><br><span class="line">      name</span><br><span class="line">      avatarUrl</span><br><span class="line">      profileUrl</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">query &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  posts &#123; # this is an array</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    title</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    body</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    author &#123; # we can go deeper!</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      name</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      avatarUrl</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      profileUrl</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>Query 字段也支持使用<strong>参数</strong>。如果我想展示一篇特别的文章，我可以将 <code>id</code> 参数放在 <code>post</code> 字段中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">query &#123;</span><br><span class="line">  post(id: &quot;123foo&quot;)&#123;</span><br><span class="line">    title</span><br><span class="line">    body</span><br><span class="line">    author&#123;</span><br><span class="line">      name</span><br><span class="line">      avatarUrl</span><br><span class="line">      profileUrl</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">query &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  post(id: &quot;123foo&quot;)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    title</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    body</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    author&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      name</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      avatarUrl</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      profileUrl</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>最后，如果我想让 <code>id</code> 参数能动态改变，我可以定义一个<strong>变量</strong>，然后在 query 字段中重用它。（请注意，我们在 query 字段处也要定义一次这个变量的名字）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">query getMyPost($id: String) &#123;</span><br><span class="line">  post(id: $id)&#123;</span><br><span class="line">    title</span><br><span class="line">    body</span><br><span class="line">    author&#123;</span><br><span class="line">      name</span><br><span class="line">      avatarUrl</span><br><span class="line">      profileUrl</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">query getMyPost($id: String) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  post(id: $id)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    title</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    body</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    author&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      name</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      avatarUrl</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      profileUrl</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>有个很好的方式来实践这些方法：使用  <a href="https://developer.github.com/early-access/graphql/explorer/" target="_blank" rel="noopener">GitHub’s GraphQL API Explorer</a> 。例如，你可以尝试下面的查询：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">query &#123;</span><br><span class="line">  repository(owner: &quot;graphql&quot;, name: &quot;graphql-js&quot;)&#123;</span><br><span class="line">    name</span><br><span class="line">    description</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">query &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  repository(owner: &quot;graphql&quot;, name: &quot;graphql-js&quot;)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    name</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    description</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p><img src="/images/pasted-129.png" alt="upload successful"></p>
 <p>GraphQL 的自动补全功能</p>
 <p>当你尝试在下面输入一个名为 <code>description</code> 的新字段名时，你可能会注意到 IDE 会根据 GraphQL API 将可选的字段名自动补全。真棒！</p>
@@ -542,11 +540,11 @@
 <h3 id="解释器（Resolvers）"><a href="#解释器（Resolvers）" class="headerlink" title="解释器（Resolvers）"></a>解释器（Resolvers）</h3><p>除非你给他们地址，否则即使是这个世界上最好的私人助理也不能去拿到干洗衣物。</p>
 <p>同样的，GraphQL 服务端并不知道要对一个即将到来的查询做什么处理，除非你使用 <strong>resolver</strong> 来告诉他。</p>
 <p>一个 resolver 会告诉 GraphQL 在哪里以及如何去取到对应字段的数据。例如，下面是之前我们取出 <code>post</code> 字段例子的 resolver（使用了 Apollo 的 <a href="https://github.com/apollographql/graphql-tools" target="_blank" rel="noopener">GraphQL-Tools</a> ）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Query: &#123;</span><br><span class="line">  post(root, args) &#123;</span><br><span class="line">    return Posts.find(&#123; id: args.id &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Query: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  post(root, args) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    return Posts.find(&#123; id: args.id &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>在这个例子中，我们将 resolver 放在 <code>Query</code> 中，因为我们想要直接在根层级查询 <code>post</code>。但你也可以将 resolver 放在子字段中，例如查询 <code>post</code>（文章）的 <code>author</code>（作者）字段可以按照下面的形式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Query: &#123;</span><br><span class="line">  post(root, args) &#123;</span><br><span class="line">    return Posts.find(&#123; id: args.id &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">Post: &#123;</span><br><span class="line">  author(post) &#123;</span><br><span class="line">    return Users.find(&#123; id: post.authorId&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Query: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  post(root, args) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    return Posts.find(&#123; id: args.id &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">Post: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  author(post) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    return Users.find(&#123; id: post.authorId&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>还有，resolver 不仅仅只能返回数据库里的内容，例如，如果你想为你的 <code>Post</code> 类型加上一个 <code>commentsCount</code>（评论数量）属性，可以这么做：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Post: &#123;</span><br><span class="line">  author(post) &#123;</span><br><span class="line">    return Users.find(&#123; id: post.authorId&#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  commentsCount(post) &#123;</span><br><span class="line">    return Comments.find(&#123; postId: post.id&#125;).count() </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Post: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  author(post) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    return Users.find(&#123; id: post.authorId&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  commentsCount(post) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    return Comments.find(&#123; postId: post.id&#125;).count() </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>理解这里的关键在于：对于 GraphQL，<strong>你的 API 结构与你的数据库结构是解耦的</strong>。换一种说法，我们的数据库中可能根本就没有 <code>author</code> 和 <code>commentsCount</code> 这两个字段，但是我们可以通过 resolver 的力量将它们“模拟”出来。</p>
 <p>正如你所见，我们可以在 resolver 中写任何你想写的代码。因此，你可以通过<strong>改变</strong> resolver 任意地<strong>修改</strong>数据库中的内容，这种形式也被称为 <strong>mutation</strong> resolver。</p>
 <h3 id="类型（Schema）"><a href="#类型（Schema）" class="headerlink" title="类型（Schema）"></a>类型（Schema）</h3><p>GraphQL 的类型结构系统可以让很多事情都变得可行。我今天的目标仅仅是给你做一个快速的概述而不是详细的介绍，所以我不会在这个内容上继续深入。</p>
@@ -651,7 +649,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="https://lsvih.com/2017/04/24/我经常听到的-GraphQL-到底是什么？/" title="我经常听到的 GraphQL 到底是什么？">https://lsvih.com/2017/04/24/我经常听到的-GraphQL-到底是什么？/</a>
+    <a href="/https:/lsvih.com/2017/04/24/%E6%88%91%E7%BB%8F%E5%B8%B8%E5%90%AC%E5%88%B0%E7%9A%84-GraphQL-%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" title="我经常听到的 GraphQL 到底是什么？">https://lsvih.com/2017/04/24/%E6%88%91%E7%BB%8F%E5%B8%B8%E5%90%AC%E5%88%B0%E7%9A%84-GraphQL-%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
@@ -688,7 +686,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/12/同中有异的-Webpack-与-Rollup/" rel="next" title="同中有异的 Webpack 与 Rollup">
+              <a href="/2017/04/12/%E5%90%8C%E4%B8%AD%E6%9C%89%E5%BC%82%E7%9A%84-Webpack-%E4%B8%8E-Rollup/" rel="next" title="同中有异的 Webpack 与 Rollup">
                 <i class="fa fa-chevron-left"></i> 同中有异的 Webpack 与 Rollup
               </a>
             
@@ -698,7 +696,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/27/前端调试技巧与诀窍/" rel="prev" title="前端调试技巧与诀窍">
+              <a href="/2017/04/27/%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E8%AF%80%E7%AA%8D/" rel="prev" title="前端调试技巧与诀窍">
                 前端调试技巧与诀窍 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -756,7 +754,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">lsvih</p>
               <div class="site-description motion-element" itemprop="description"></div>
@@ -767,7 +765,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives/%20%7C%7C%20archive">
                 
                     <span class="site-state-item-count">155</span>
                     <span class="site-state-item-name">posts</span>
@@ -781,7 +779,7 @@
                 <div class="site-state-item site-state-categories">
                   
                     
-                      <a href="/categories/">
+                      <a href="/categories/%20%7C%7C%20th">
                     
                   
                     
@@ -816,7 +814,7 @@
                 <div class="site-state-item site-state-tags">
                   
                     
-                      <a href="/tags/">
+                      <a href="/tags/%20%7C%7C%20tags">
                     
                   
                     
@@ -1264,7 +1262,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"/></a>
              </div>
           
 
@@ -1290,7 +1288,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-嫌弃"><span class="nav-number">1.</span> <span class="nav-text">1. 嫌弃</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-感兴趣"><span class="nav-number">2.</span> <span class="nav-text">2. 感兴趣</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-恐慌"><span class="nav-number">3.</span> <span class="nav-text">3. 恐慌</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#基础"><span class="nav-number"></span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number"></span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的方案"><span class="nav-number"></span> <span class="nav-text">解决的方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询（Queries）"><span class="nav-number"></span> <span class="nav-text">查询（Queries）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释器（Resolvers）"><span class="nav-number"></span> <span class="nav-text">解释器（Resolvers）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型（Schema）"><span class="nav-number"></span> <span class="nav-text">类型（Schema）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见问题"><span class="nav-number"></span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphQL-与图形数据库有什么关系？"><span class="nav-number">1.</span> <span class="nav-text">GraphQL 与图形数据库有什么关系？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我用-REST-用的很开心，为什么我要切换成-GraphQL-呢？"><span class="nav-number">2.</span> <span class="nav-text">我用 REST 用的很开心，为什么我要切换成 GraphQL 呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果我不用-React、Relay-等框架，我能使用-GraphQL-吗？"><span class="nav-number">3.</span> <span class="nav-text">如果我不用 React、Relay 等框架，我能使用 GraphQL 吗？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphQL-是-Facebook-做的，但是我不信任-Facebook"><span class="nav-number">4.</span> <span class="nav-text">GraphQL 是 Facebook 做的，但是我不信任 Facebook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“让客户端自己请求需要的数据”这整件事情听起来似乎不怎么安全……"><span class="nav-number">5.</span> <span class="nav-text">“让客户端自己请求需要的数据”这整件事情听起来似乎不怎么安全……</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#那么我如何上手-GraphQL？"><span class="nav-number">6.</span> <span class="nav-text">那么我如何上手 GraphQL？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GraphQL-服务端"><span class="nav-number"></span> <span class="nav-text">GraphQL 服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphQL-JS-Node"><span class="nav-number">1.</span> <span class="nav-text">GraphQL-JS  (Node)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphQL-Server-Node"><span class="nav-number">2.</span> <span class="nav-text">GraphQL-Server (Node)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它平台"><span class="nav-number">3.</span> <span class="nav-text">其它平台</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GraphQL-客户端"><span class="nav-number"></span> <span class="nav-text">GraphQL 客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Relay"><span class="nav-number">1.</span> <span class="nav-text">Relay</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apollo-Client"><span class="nav-number">2.</span> <span class="nav-text">Apollo Client</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开源-App"><span class="nav-number"></span> <span class="nav-text">开源 App</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VulcanJS"><span class="nav-number">1.</span> <span class="nav-text">VulcanJS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gatsby"><span class="nav-number">2.</span> <span class="nav-text">Gatsby</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它的-GraphQL-工具"><span class="nav-number"></span> <span class="nav-text">其它的 GraphQL 工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphiQL"><span class="nav-number">1.</span> <span class="nav-text">GraphiQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DataLoader"><span class="nav-number">2.</span> <span class="nav-text">DataLoader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Create-GraphQL-Server"><span class="nav-number">3.</span> <span class="nav-text">Create GraphQL Server</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GraphQL-服务"><span class="nav-number"></span> <span class="nav-text">GraphQL 服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphCool"><span class="nav-number">1.</span> <span class="nav-text">GraphCool</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scaphold"><span class="nav-number">2.</span> <span class="nav-text">Scaphold</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphQL-org"><span class="nav-number">3.</span> <span class="nav-text">GraphQL.org</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LearnGraphQL"><span class="nav-number">4.</span> <span class="nav-text">LearnGraphQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LearnApollo"><span class="nav-number">5.</span> <span class="nav-text">LearnApollo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apollo-博客"><span class="nav-number">6.</span> <span class="nav-text">Apollo 博客</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphQL-周报"><span class="nav-number">7.</span> <span class="nav-text">GraphQL 周报</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hashbang-周报"><span class="nav-number">8.</span> <span class="nav-text">Hashbang 周报</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Awesome-GraphQL"><span class="nav-number">9.</span> <span class="nav-text">Awesome GraphQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apollo-Graphcool-Next-js"><span class="nav-number">10.</span> <span class="nav-text">Apollo + Graphcool + Next.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VulcanJS-1"><span class="nav-number">11.</span> <span class="nav-text">VulcanJS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphQL-amp-React-教程"><span class="nav-number">12.</span> <span class="nav-text">GraphQL &amp; React 教程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-嫌弃"><span class="nav-number">1.</span> <span class="nav-text">1. 嫌弃</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-感兴趣"><span class="nav-number">2.</span> <span class="nav-text">2. 感兴趣</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-恐慌"><span class="nav-number">3.</span> <span class="nav-text">3. 恐慌</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础"><span class="nav-number"></span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number"></span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决的方案"><span class="nav-number"></span> <span class="nav-text">解决的方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询（Queries）"><span class="nav-number"></span> <span class="nav-text">查询（Queries）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释器（Resolvers）"><span class="nav-number"></span> <span class="nav-text">解释器（Resolvers）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型（Schema）"><span class="nav-number"></span> <span class="nav-text">类型（Schema）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见问题"><span class="nav-number"></span> <span class="nav-text">常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphQL-与图形数据库有什么关系？"><span class="nav-number">1.</span> <span class="nav-text">GraphQL 与图形数据库有什么关系？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我用-REST-用的很开心，为什么我要切换成-GraphQL-呢？"><span class="nav-number">2.</span> <span class="nav-text">我用 REST 用的很开心，为什么我要切换成 GraphQL 呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果我不用-React、Relay-等框架，我能使用-GraphQL-吗？"><span class="nav-number">3.</span> <span class="nav-text">如果我不用 React、Relay 等框架，我能使用 GraphQL 吗？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphQL-是-Facebook-做的，但是我不信任-Facebook"><span class="nav-number">4.</span> <span class="nav-text">GraphQL 是 Facebook 做的，但是我不信任 Facebook</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“让客户端自己请求需要的数据”这整件事情听起来似乎不怎么安全……"><span class="nav-number">5.</span> <span class="nav-text">“让客户端自己请求需要的数据”这整件事情听起来似乎不怎么安全……</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#那么我如何上手-GraphQL？"><span class="nav-number">6.</span> <span class="nav-text">那么我如何上手 GraphQL？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GraphQL-服务端"><span class="nav-number"></span> <span class="nav-text">GraphQL 服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphQL-JS-Node"><span class="nav-number">1.</span> <span class="nav-text">GraphQL-JS  (Node)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphQL-Server-Node"><span class="nav-number">2.</span> <span class="nav-text">GraphQL-Server (Node)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它平台"><span class="nav-number">3.</span> <span class="nav-text">其它平台</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GraphQL-客户端"><span class="nav-number"></span> <span class="nav-text">GraphQL 客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Relay"><span class="nav-number">1.</span> <span class="nav-text">Relay</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apollo-Client"><span class="nav-number">2.</span> <span class="nav-text">Apollo Client</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开源-App"><span class="nav-number"></span> <span class="nav-text">开源 App</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VulcanJS"><span class="nav-number">1.</span> <span class="nav-text">VulcanJS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gatsby"><span class="nav-number">2.</span> <span class="nav-text">Gatsby</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它的-GraphQL-工具"><span class="nav-number"></span> <span class="nav-text">其它的 GraphQL 工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphiQL"><span class="nav-number">1.</span> <span class="nav-text">GraphiQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DataLoader"><span class="nav-number">2.</span> <span class="nav-text">DataLoader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Create-GraphQL-Server"><span class="nav-number">3.</span> <span class="nav-text">Create GraphQL Server</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GraphQL-服务"><span class="nav-number"></span> <span class="nav-text">GraphQL 服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphCool"><span class="nav-number">1.</span> <span class="nav-text">GraphCool</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scaphold"><span class="nav-number">2.</span> <span class="nav-text">Scaphold</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphQL-org"><span class="nav-number">3.</span> <span class="nav-text">GraphQL.org</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LearnGraphQL"><span class="nav-number">4.</span> <span class="nav-text">LearnGraphQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LearnApollo"><span class="nav-number">5.</span> <span class="nav-text">LearnApollo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apollo-博客"><span class="nav-number">6.</span> <span class="nav-text">Apollo 博客</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphQL-周报"><span class="nav-number">7.</span> <span class="nav-text">GraphQL 周报</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hashbang-周报"><span class="nav-number">8.</span> <span class="nav-text">Hashbang 周报</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Awesome-GraphQL"><span class="nav-number">9.</span> <span class="nav-text">Awesome GraphQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apollo-Graphcool-Next-js"><span class="nav-number">10.</span> <span class="nav-text">Apollo + Graphcool + Next.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VulcanJS-1"><span class="nav-number">11.</span> <span class="nav-text">VulcanJS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GraphQL-amp-React-教程"><span class="nav-number">12.</span> <span class="nav-text">GraphQL &amp; React 教程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a></div>
             
 
           </div>
@@ -1323,7 +1321,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0</div>
 
 
 
@@ -1461,7 +1459,7 @@
   
   
   
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css"/>
 
   
   

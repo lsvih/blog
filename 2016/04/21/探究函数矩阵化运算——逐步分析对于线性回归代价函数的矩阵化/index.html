@@ -13,11 +13,11 @@
 
 
 <html class="theme-next pisces" lang="">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -40,9 +40,9 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0"/>
 
-<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2"/>
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
@@ -92,30 +92,28 @@
 
 
 
-  <meta name="description" content="在此之前没有接触过矩阵化运算，因此对于矩阵化运算的过程一头雾水。准备对于线性回归的代价函数进行矩阵化以探究其过程。  CostFuction 数学表达式： J(\theta)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2根据数学式之前以for循环写了算法：1234for i=1:mJ += (theta(1)+ theta(2)*X(i">
+  <meta name="description" content="在此之前没有接触过矩阵化运算，因此对于矩阵化运算的过程一头雾水。准备对于线性回归的代价函数进行矩阵化以探究其过程。  CostFuction 数学表达式： J(\theta)&#x3D;\frac{1}{2m}\sum^m_{i&#x3D;1}(h_\theta(x^{(i)})-y^{(i)})^2根据数学式之前以for循环写了算法：1for i&#x3D;1:m2J +&#x3D; (theta(1)+ theta(2)*X(i,2">
 <meta name="keywords" content="note,machine learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化">
-<meta property="og:url" content="https://lsvih.com/2016/04/21/探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2016&#x2F;04&#x2F;21&#x2F;%E6%8E%A2%E7%A9%B6%E5%87%BD%E6%95%B0%E7%9F%A9%E9%98%B5%E5%8C%96%E8%BF%90%E7%AE%97%E2%80%94%E2%80%94%E9%80%90%E6%AD%A5%E5%88%86%E6%9E%90%E5%AF%B9%E4%BA%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0%E7%9A%84%E7%9F%A9%E9%98%B5%E5%8C%96&#x2F;index.html">
 <meta property="og:site_name" content="My note">
-<meta property="og:description" content="在此之前没有接触过矩阵化运算，因此对于矩阵化运算的过程一头雾水。准备对于线性回归的代价函数进行矩阵化以探究其过程。  CostFuction 数学表达式： J(\theta)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2根据数学式之前以for循环写了算法：1234for i=1:mJ += (theta(1)+ theta(2)*X(i">
+<meta property="og:description" content="在此之前没有接触过矩阵化运算，因此对于矩阵化运算的过程一头雾水。准备对于线性回归的代价函数进行矩阵化以探究其过程。  CostFuction 数学表达式： J(\theta)&#x3D;\frac{1}{2m}\sum^m_{i&#x3D;1}(h_\theta(x^{(i)})-y^{(i)})^2根据数学式之前以for循环写了算法：1for i&#x3D;1:m2J +&#x3D; (theta(1)+ theta(2)*X(i,2">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://lsvih.com/images/pasted-54.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-54.png">
 <meta property="og:updated_time" content="2018-10-28T16:13:15.139Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化">
-<meta name="twitter:description" content="在此之前没有接触过矩阵化运算，因此对于矩阵化运算的过程一头雾水。准备对于线性回归的代价函数进行矩阵化以探究其过程。  CostFuction 数学表达式： J(\theta)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2根据数学式之前以for循环写了算法：1234for i=1:mJ += (theta(1)+ theta(2)*X(i">
-<meta name="twitter:image" content="https://lsvih.com/images/pasted-54.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-54.png">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml"/>
 
 
 
   
   
-  <link rel="canonical" href="https://lsvih.com/2016/04/21/探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化/">
+  <link rel="canonical" href="https://lsvih.com/2016/04/21/%E6%8E%A2%E7%A9%B6%E5%87%BD%E6%95%B0%E7%9F%A9%E9%98%B5%E5%8C%96%E8%BF%90%E7%AE%97%E2%80%94%E2%80%94%E9%80%90%E6%AD%A5%E5%88%86%E6%9E%90%E5%AF%B9%E4%BA%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0%E7%9A%84%E7%9F%A9%E9%98%B5%E5%8C%96/"/>
 
 
 
@@ -177,7 +175,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -187,7 +185,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -235,7 +233,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
 
   </li>
         
@@ -251,7 +249,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
 
   </li>
         
@@ -267,7 +265,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
 
   </li>
         
@@ -283,7 +281,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
 
   </li>
 
@@ -291,10 +289,10 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="javascript:;" class="popup-trigger">
+            <a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
         </li>
       
     </ul>
@@ -365,21 +363,21 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/21/探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化/">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/21/%E6%8E%A2%E7%A9%B6%E5%87%BD%E6%95%B0%E7%9F%A9%E9%98%B5%E5%8C%96%E8%BF%90%E7%AE%97%E2%80%94%E2%80%94%E9%80%90%E6%AD%A5%E5%88%86%E6%9E%90%E5%AF%B9%E4%BA%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0%E7%9A%84%E7%9F%A9%E9%98%B5%E5%8C%96/"/>
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note"/>
     </span>
 
     
@@ -431,7 +429,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
 
                 
                 
@@ -469,14 +467,14 @@
         <p>在此之前没有接触过矩阵化运算，因此对于矩阵化运算的过程一头雾水。准备对于线性回归的代价函数进行矩阵化以探究其过程。</p>
 <hr>
 <p>CostFuction 数学表达式：</p>
-<script type="math/tex; mode=display">J(\theta)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2</script><p>根据数学式之前以for循环写了算法：<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:m</span><br><span class="line">J += (theta(<span class="number">1</span>)+ theta(<span class="number">2</span>)*X(<span class="built_in">i</span>,<span class="number">2</span>)-y(<span class="built_in">i</span>))^<span class="number">2</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">J = J/(<span class="number">2</span>*m);</span><br></pre></td></tr></table></figure></p>
+<script type="math/tex; mode=display">J(\theta)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2</script><p>根据数学式之前以for循环写了算法：<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:m</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">J += (theta(<span class="number">1</span>)+ theta(<span class="number">2</span>)*X(<span class="built_in">i</span>,<span class="number">2</span>)-y(<span class="built_in">i</span>))^<span class="number">2</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">J = J/(<span class="number">2</span>*m);</span></pre></td></tr></table></figure></p>
 <p>很明确的循环符合数学式。</p>
 <p>尝试对齐进行矩阵化，首先看$h_\theta(x^{(i)})$</p>
 <script type="math/tex; mode=display">h_\theta(x)=\theta^T x = \theta_0 + \theta_1 x_1</script><p>对每个x(i)进行运算：</p>
 <p><img src="/images/pasted-54.png" alt="upload successful"></p>
 <p>对其进行sum与转置操作后可以得到</p>
 <script type="math/tex; mode=display">\sum((\theta'.*X)')-y'= \\ [\theta_1 x^{(1)}_1+\theta_2 x^{(1)}_2 -y^{(1)},\theta_1 x^{(2)}_1+\theta_2 x^{(2)}_2 -y^{(2)},...,\theta_1 x^{(m)}_1+\theta_2 x^{(m)}_2 -y^{(m)}]</script><p>因此可以得知代价函数的矩阵化函数式为：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">J = sum((sum((theta'.*X)')-y').^<span class="number">2</span>)/(<span class="number">2</span>*m);</span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">J = sum((sum((theta'.*X)')-y').^<span class="number">2</span>)/(<span class="number">2</span>*m);</span></pre></td></tr></table></figure>
 
       
     </div>
@@ -511,7 +509,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="https://lsvih.com/2016/04/21/探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化/" title="探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化">https://lsvih.com/2016/04/21/探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化/</a>
+    <a href="/https:/lsvih.com/2016/04/21/%E6%8E%A2%E7%A9%B6%E5%87%BD%E6%95%B0%E7%9F%A9%E9%98%B5%E5%8C%96%E8%BF%90%E7%AE%97%E2%80%94%E2%80%94%E9%80%90%E6%AD%A5%E5%88%86%E6%9E%90%E5%AF%B9%E4%BA%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0%E7%9A%84%E7%9F%A9%E9%98%B5%E5%8C%96/" title="探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化">https://lsvih.com/2016/04/21/%E6%8E%A2%E7%A9%B6%E5%87%BD%E6%95%B0%E7%9F%A9%E9%98%B5%E5%8C%96%E8%BF%90%E7%AE%97%E2%80%94%E2%80%94%E9%80%90%E6%AD%A5%E5%88%86%E6%9E%90%E5%AF%B9%E4%BA%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0%E7%9A%84%E7%9F%A9%E9%98%B5%E5%8C%96/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
@@ -542,7 +540,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/21/js获取url中的参数传值/" rel="next" title="js获取url中的参数传值">
+              <a href="/2016/04/21/js%E8%8E%B7%E5%8F%96url%E4%B8%AD%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E5%80%BC/" rel="next" title="js获取url中的参数传值">
                 <i class="fa fa-chevron-left"></i> js获取url中的参数传值
               </a>
             
@@ -552,7 +550,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/27/python对于时间（hh-mm）进行循环递增/" rel="prev" title="python对于时间（hh:mm）进行循环递增">
+              <a href="/2016/04/27/python%E5%AF%B9%E4%BA%8E%E6%97%B6%E9%97%B4%EF%BC%88hh-mm%EF%BC%89%E8%BF%9B%E8%A1%8C%E5%BE%AA%E7%8E%AF%E9%80%92%E5%A2%9E/" rel="prev" title="python对于时间（hh:mm）进行循环递增">
                 python对于时间（hh:mm）进行循环递增 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -601,7 +599,7 @@
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">lsvih</p>
               <div class="site-description motion-element" itemprop="description"></div>
@@ -612,7 +610,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives/%20%7C%7C%20archive">
                 
                     <span class="site-state-item-count">155</span>
                     <span class="site-state-item-name">posts</span>
@@ -626,7 +624,7 @@
                 <div class="site-state-item site-state-categories">
                   
                     
-                      <a href="/categories/">
+                      <a href="/categories/%20%7C%7C%20th">
                     
                   
                     
@@ -661,7 +659,7 @@
                 <div class="site-state-item site-state-tags">
                   
                     
-                      <a href="/tags/">
+                      <a href="/tags/%20%7C%7C%20tags">
                     
                   
                     
@@ -1109,7 +1107,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"/></a>
              </div>
           
 
@@ -1151,7 +1149,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0</div>
 
 
 
@@ -1289,7 +1287,7 @@
   
   
   
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css"/>
 
   
   

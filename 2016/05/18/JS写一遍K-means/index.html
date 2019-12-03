@@ -13,11 +13,11 @@
 
 
 <html class="theme-next pisces" lang="">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -40,9 +40,9 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0"/>
 
-<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2"/>
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
@@ -92,31 +92,29 @@
 
 
 
-  <meta name="description" content="数据可视化用的highcharts. 运行结果:  在html头部加上highcharts的cdn1234&amp;lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script type=&quot;text/javascript&quot; src=&quot;h">
+  <meta name="description" content="数据可视化用的highcharts. 运行结果:  在html头部加上highcharts的cdn1&amp;lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;http:&#x2F;&#x2F;cdn.hcharts.cn&#x2F;jquery&#x2F;jquery-1.8.3.min.js&quot;&amp;gt;2&amp;lt;&#x2F;script&amp;gt;3&amp;lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;ht">
 <meta name="keywords" content="machine learning,Front End,code,Javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS写一遍K-means">
-<meta property="og:url" content="https://lsvih.com/2016/05/18/JS写一遍K-means/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2016&#x2F;05&#x2F;18&#x2F;JS%E5%86%99%E4%B8%80%E9%81%8DK-means&#x2F;index.html">
 <meta property="og:site_name" content="My note">
-<meta property="og:description" content="数据可视化用的highcharts. 运行结果:  在html头部加上highcharts的cdn1234&amp;lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script type=&quot;text/javascript&quot; src=&quot;h">
+<meta property="og:description" content="数据可视化用的highcharts. 运行结果:  在html头部加上highcharts的cdn1&amp;lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;http:&#x2F;&#x2F;cdn.hcharts.cn&#x2F;jquery&#x2F;jquery-1.8.3.min.js&quot;&amp;gt;2&amp;lt;&#x2F;script&amp;gt;3&amp;lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;ht">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://lsvih.com/images/pasted-75.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-76.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-75.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-76.png">
 <meta property="og:updated_time" content="2018-10-28T16:12:56.679Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS写一遍K-means">
-<meta name="twitter:description" content="数据可视化用的highcharts. 运行结果:  在html头部加上highcharts的cdn1234&amp;lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;script type=&quot;text/javascript&quot; src=&quot;h">
-<meta name="twitter:image" content="https://lsvih.com/images/pasted-75.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-75.png">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml"/>
 
 
 
   
   
-  <link rel="canonical" href="https://lsvih.com/2016/05/18/JS写一遍K-means/">
+  <link rel="canonical" href="https://lsvih.com/2016/05/18/JS%E5%86%99%E4%B8%80%E9%81%8DK-means/"/>
 
 
 
@@ -178,7 +176,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -188,7 +186,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -236,7 +234,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
 
   </li>
         
@@ -252,7 +250,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
 
   </li>
         
@@ -268,7 +266,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
 
   </li>
         
@@ -284,7 +282,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
 
   </li>
 
@@ -292,10 +290,10 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="javascript:;" class="popup-trigger">
+            <a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
         </li>
       
     </ul>
@@ -366,21 +364,21 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/18/JS写一遍K-means/">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/18/JS%E5%86%99%E4%B8%80%E9%81%8DK-means/"/>
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note"/>
     </span>
 
     
@@ -432,7 +430,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
 
                 
                 
@@ -470,10 +468,10 @@
         <p>数据可视化用的highcharts.</p>
 <p>运行结果:</p>
 <p><img src="/images/pasted-75.png" alt="upload successful"></p>
-<p>在html头部加上highcharts的cdn<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://cdn.hcharts.cn/highcharts/highcharts.js"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>数据如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        name: 'Female',</span><br><span class="line">        color: 'rgba(223,83,83,.5)',</span><br><span class="line">        data: [[161.2, 51.6],[167.5, 59.0],[159.5, 49.2],</span><br><span class="line">        [157.0, 63.0],[155.8, 53.6]...]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name: 'Male',</span><br><span class="line">        color: 'rgba(119,152,191,.5)',</span><br><span class="line">        data:  [[174.0, 65.6],[175.3, 71.8],[193.5, 80.7],</span><br><span class="line">        [186.5, 72.6],[187.2, 78.8]...]</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>在html头部加上highcharts的cdn<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"</span>&gt;</span><span class="undefined"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://cdn.hcharts.cn/highcharts/highcharts.js"</span>&gt;</span><span class="undefined"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure></p>
+<p>数据如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        name: 'Female',</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        color: 'rgba(223,83,83,.5)',</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        data: [[161.2, 51.6],[167.5, 59.0],[159.5, 49.2],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        [157.0, 63.0],[155.8, 53.6]...]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        name: 'Male',</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        color: 'rgba(119,152,191,.5)',</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        data:  [[174.0, 65.6],[175.3, 71.8],[193.5, 80.7],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        [186.5, 72.6],[187.2, 78.8]...]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">]</span></pre></td></tr></table></figure></p>
 <p>共有507个样本的身高与体重数据，标签分为男女。</p>
-<p>====代码====<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Dot_1, Dot_2, temp_group_1, temp_group_2 = <span class="keyword">new</span> <span class="built_in">Array</span>;</span><br><span class="line"><span class="keyword">var</span> temp_data</span><br><span class="line"><span class="keyword">var</span> dataTotel = hasntlabel_data.length;</span><br><span class="line"><span class="keyword">var</span> TempDot = [<span class="number">0</span>, <span class="number">0</span>];</span><br><span class="line">random_dot();</span><br><span class="line">initgroup();</span><br><span class="line">k_means()</span><br><span class="line"><span class="comment">//主要代码</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123; <span class="comment">//初始化</span></span><br><span class="line">  group_1 = [];</span><br><span class="line">  group_2 = [];</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"init"</span>) <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dataTotel; i++) &#123;</span><br><span class="line">    distance(Dot_1,hasntlabel_data[i])&gt;distance(Dot_2,hasntlabel_data[i])?</span><br><span class="line">    group_2.push(hasntlabel_data[i]):group_1.push(hasntlabel_data[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">random_dot</span>(<span class="params"></span>) </span>&#123; <span class="comment">//随机定两个点</span></span><br><span class="line">  Dot_1=[<span class="built_in">Math</span>.random()*<span class="number">7</span>,<span class="built_in">Math</span>.random()*<span class="number">7</span>]Dot_2=[<span class="built_in">Math</span>.random()*<span class="number">7</span>,<span class="built_in">Math</span>.random()*<span class="number">7</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">k_means</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(group_1.length + <span class="string">','</span> + group_2.length);</span><br><span class="line">  <span class="keyword">if</span> (!group_1.length || !group_2.length) &#123;</span><br><span class="line">    random_dot();</span><br><span class="line">    init();</span><br><span class="line">    k_means()</span><br><span class="line">  &#125;</span><br><span class="line">  data_1_x_sum = <span class="number">0</span>;</span><br><span class="line">  data_1_y_sum = <span class="number">0</span>;</span><br><span class="line">  data_2_x_sum = <span class="number">0</span>;</span><br><span class="line">  data_2_y_sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; group_1.length; i++) &#123;</span><br><span class="line">    data_1_x_sum += group_1[i][<span class="number">0</span>];</span><br><span class="line">    data_1_y_sum += group_1[i][<span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; group_2.length; i++) &#123;</span><br><span class="line">    data_2_x_sum += group_2[i][<span class="number">0</span>];</span><br><span class="line">    data_2_y_sum += group_2[i][<span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  TempDot[<span class="number">0</span>] = Dot_1;</span><br><span class="line">  TempDot[<span class="number">1</span>] = Dot_2;</span><br><span class="line">  Dot_1 = [(data_1_x_sum / group_1.length), (data_1_y_sum / group_1.length)];</span><br><span class="line">  Dot_2 = [(data_2_x_sum / group_2.length), (data_2_y_sum / group_2.length)];</span><br><span class="line">  <span class="keyword">if</span>(Dot_1[<span class="number">0</span>]==TempDot[<span class="number">0</span>][<span class="number">0</span>]&amp;&amp;Dot_1[<span class="number">1</span>]==TempDot[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">  &amp;&amp;Dot_2[<span class="number">0</span>]==TempDot[<span class="number">1</span>][<span class="number">0</span>]&amp;&amp;Dot_2[<span class="number">1</span>]==TempDot[<span class="number">1</span>][<span class="number">1</span>])&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  group_1 = [];</span><br><span class="line">  group_2 = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dataTotel; i++) &#123;</span><br><span class="line">    distance(Dot_1,hasntlabel_data[i])&gt;distance(Dot_2,hasntlabel_data[i])</span><br><span class="line">    ?group_2.push(hasntlabel_data[i]):group_1.push(hasntlabel_data[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  k_means()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params">e, f</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(<span class="built_in">Math</span>.pow((f[<span class="number">0</span>] - e[<span class="number">0</span>]), <span class="number">2</span>) + <span class="built_in">Math</span>.pow((f[<span class="number">1</span>] - e[<span class="number">1</span>]), <span class="number">2</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>====代码====<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Dot_1, Dot_2, temp_group_1, temp_group_2 = <span class="keyword">new</span> <span class="built_in">Array</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> temp_data</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dataTotel = hasntlabel_data.length;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> TempDot = [<span class="number">0</span>, <span class="number">0</span>];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">random_dot();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">initgroup();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">k_means()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="comment">//主要代码</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123; <span class="comment">//初始化</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  group_1 = [];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  group_2 = [];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">"init"</span>) <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dataTotel; i++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    distance(Dot_1,hasntlabel_data[i])&gt;distance(Dot_2,hasntlabel_data[i])?</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    group_2.push(hasntlabel_data[i]):group_1.push(hasntlabel_data[i]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">random_dot</span>(<span class="params"></span>) </span>&#123; <span class="comment">//随机定两个点</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  Dot_1=[<span class="built_in">Math</span>.random()*<span class="number">7</span>,<span class="built_in">Math</span>.random()*<span class="number">7</span>]Dot_2=[<span class="built_in">Math</span>.random()*<span class="number">7</span>,<span class="built_in">Math</span>.random()*<span class="number">7</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">k_means</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(group_1.length + <span class="string">','</span> + group_2.length);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span> (!group_1.length || !group_2.length) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    random_dot();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    init();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    k_means()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">  data_1_x_sum = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">  data_1_y_sum = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">  data_2_x_sum = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">  data_2_y_sum = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; group_1.length; i++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    data_1_x_sum += group_1[i][<span class="number">0</span>];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    data_1_y_sum += group_1[i][<span class="number">1</span>];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; group_2.length; i++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    data_2_x_sum += group_2[i][<span class="number">0</span>];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">    data_2_y_sum += group_2[i][<span class="number">1</span>];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">  TempDot[<span class="number">0</span>] = Dot_1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">  TempDot[<span class="number">1</span>] = Dot_2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">  Dot_1 = [(data_1_x_sum / group_1.length), (data_1_y_sum / group_1.length)];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">  Dot_2 = [(data_2_x_sum / group_2.length), (data_2_y_sum / group_2.length)];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span>(Dot_1[<span class="number">0</span>]==TempDot[<span class="number">0</span>][<span class="number">0</span>]&amp;&amp;Dot_1[<span class="number">1</span>]==TempDot[<span class="number">0</span>][<span class="number">1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">  &amp;&amp;Dot_2[<span class="number">0</span>]==TempDot[<span class="number">1</span>][<span class="number">0</span>]&amp;&amp;Dot_2[<span class="number">1</span>]==TempDot[<span class="number">1</span>][<span class="number">1</span>])&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">  group_1 = [];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">  group_2 = [];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dataTotel; i++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">    distance(Dot_1,hasntlabel_data[i])&gt;distance(Dot_2,hasntlabel_data[i])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">    ?group_2.push(hasntlabel_data[i]):group_1.push(hasntlabel_data[i]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">  k_means()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params">e, f</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(<span class="built_in">Math</span>.pow((f[<span class="number">0</span>] - e[<span class="number">0</span>]), <span class="number">2</span>) + <span class="built_in">Math</span>.pow((f[<span class="number">1</span>] - e[<span class="number">1</span>]), <span class="number">2</span>));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
 <hr>
 <p>当多次运行代码时，可以看到不同的结果</p>
 <p><img src="/images/pasted-76.png" alt="upload successful"></p>
@@ -514,7 +512,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="https://lsvih.com/2016/05/18/JS写一遍K-means/" title="JS写一遍K-means">https://lsvih.com/2016/05/18/JS写一遍K-means/</a>
+    <a href="/https:/lsvih.com/2016/05/18/JS%E5%86%99%E4%B8%80%E9%81%8DK-means/" title="JS写一遍K-means">https://lsvih.com/2016/05/18/JS%E5%86%99%E4%B8%80%E9%81%8DK-means/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
@@ -549,7 +547,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/17/使用Python-selenium轻松实现自动化操作/" rel="next" title="使用Python selenium轻松实现自动化操作">
+              <a href="/2016/05/17/%E4%BD%BF%E7%94%A8Python-selenium%E8%BD%BB%E6%9D%BE%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E6%93%8D%E4%BD%9C/" rel="next" title="使用Python selenium轻松实现自动化操作">
                 <i class="fa fa-chevron-left"></i> 使用Python selenium轻松实现自动化操作
               </a>
             
@@ -559,7 +557,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/25/Python对句子中的单词出现次数排序/" rel="prev" title="Python对句子中的单词出现次数排序">
+              <a href="/2016/05/25/Python%E5%AF%B9%E5%8F%A5%E5%AD%90%E4%B8%AD%E7%9A%84%E5%8D%95%E8%AF%8D%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0%E6%8E%92%E5%BA%8F/" rel="prev" title="Python对句子中的单词出现次数排序">
                 Python对句子中的单词出现次数排序 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -608,7 +606,7 @@
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">lsvih</p>
               <div class="site-description motion-element" itemprop="description"></div>
@@ -619,7 +617,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives/%20%7C%7C%20archive">
                 
                     <span class="site-state-item-count">155</span>
                     <span class="site-state-item-name">posts</span>
@@ -633,7 +631,7 @@
                 <div class="site-state-item site-state-categories">
                   
                     
-                      <a href="/categories/">
+                      <a href="/categories/%20%7C%7C%20th">
                     
                   
                     
@@ -668,7 +666,7 @@
                 <div class="site-state-item site-state-tags">
                   
                     
-                      <a href="/tags/">
+                      <a href="/tags/%20%7C%7C%20tags">
                     
                   
                     
@@ -1116,7 +1114,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"/></a>
              </div>
           
 
@@ -1158,7 +1156,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0</div>
 
 
 
@@ -1296,7 +1294,7 @@
   
   
   
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css"/>
 
   
   

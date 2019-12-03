@@ -13,11 +13,11 @@
 
 
 <html class="theme-next pisces" lang="">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -40,9 +40,9 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0"/>
 
-<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2"/>
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
@@ -96,24 +96,22 @@
 <meta name="keywords" content="Note,Tool,ssh,sshpass,Docker,alpine,CI,GitLab">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ssh 不用手动输密码远程执行命令">
-<meta property="og:url" content="https://lsvih.com/2018/04/18/ssh-不用手动输密码远程执行命令/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2018&#x2F;04&#x2F;18&#x2F;ssh-%E4%B8%8D%E7%94%A8%E6%89%8B%E5%8A%A8%E8%BE%93%E5%AF%86%E7%A0%81%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4&#x2F;index.html">
 <meta property="og:site_name" content="My note">
 <meta property="og:description" content="小组使用了 GitLab，在某项目中需要利用 CI 进行远程部署，但生产服务器是另一台远程服务器，而 CI Runner 的运行环境是 Docker。 由于 ssh 的安全措施，在建立 ssh 连接时不允许自动化输入密码，必须在出现密码框后手动输入，因此在 CI 流程中无法实现；经过了解，一款名为 sshpass 的工具可以满足此需求； 在本机测试时，使用1brew install sshpass">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-10-28T16:13:02.317Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ssh 不用手动输密码远程执行命令">
-<meta name="twitter:description" content="小组使用了 GitLab，在某项目中需要利用 CI 进行远程部署，但生产服务器是另一台远程服务器，而 CI Runner 的运行环境是 Docker。 由于 ssh 的安全措施，在建立 ssh 连接时不允许自动化输入密码，必须在出现密码框后手动输入，因此在 CI 流程中无法实现；经过了解，一款名为 sshpass 的工具可以满足此需求； 在本机测试时，使用1brew install sshpass">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml"/>
 
 
 
   
   
-  <link rel="canonical" href="https://lsvih.com/2018/04/18/ssh-不用手动输密码远程执行命令/">
+  <link rel="canonical" href="https://lsvih.com/2018/04/18/ssh-%E4%B8%8D%E7%94%A8%E6%89%8B%E5%8A%A8%E8%BE%93%E5%AF%86%E7%A0%81%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4/"/>
 
 
 
@@ -175,7 +173,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -185,7 +183,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -233,7 +231,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
 
   </li>
         
@@ -249,7 +247,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
 
   </li>
         
@@ -265,7 +263,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
 
   </li>
         
@@ -281,7 +279,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
 
   </li>
 
@@ -289,10 +287,10 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="javascript:;" class="popup-trigger">
+            <a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
         </li>
       
     </ul>
@@ -363,21 +361,21 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/04/18/ssh-不用手动输密码远程执行命令/">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/04/18/ssh-%E4%B8%8D%E7%94%A8%E6%89%8B%E5%8A%A8%E8%BE%93%E5%AF%86%E7%A0%81%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4/"/>
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note"/>
     </span>
 
     
@@ -429,7 +427,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Note/" itemprop="url" rel="index"><span itemprop="name">Note</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Note/" itemprop="url" rel="index"><span itemprop="name">Note</span></a></span>
 
                 
                 
@@ -466,12 +464,10 @@
       
         <p>小组使用了 GitLab，在某项目中需要利用 CI 进行远程部署，但生产服务器是另一台远程服务器，而 CI Runner 的运行环境是 Docker。</p>
 <p>由于 ssh 的安全措施，在建立 ssh 连接时不允许自动化输入密码，必须在出现密码框后手动输入，因此在 CI 流程中无法实现；经过了解，一款名为 sshpass 的工具可以满足此需求；</p>
-<p>在本机测试时，使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install sshpass</span><br></pre></td></tr></table></figure></p>
-<p>提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">We won&apos;t add sshpass because it makes it too easy for novice SSH users to ruin SSH&apos;s security.</span><br></pre></td></tr></table></figure></p>
-<p>可知此工具的确是破坏了 ssh 的安全性。</p>
+<p>在本机测试时，使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">brew install sshpass</span></pre></td></tr></table></figure><br>提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">We won&#39;t add sshpass because it makes it too easy for novice SSH users to ruin SSH&#39;s security.</span></pre></td></tr></table></figure><br>可知此工具的确是破坏了 ssh 的安全性。</p>
 <p>但在内部机器的 CI Runner Docker 中，不考虑这个问题。Gitlab CI Runner 默认使用的是 <code>alpine:latest</code>，需要事先安装依赖及 sshpass，因此在 before_script 中加上 <code>apk add --update --no-cache openssh sshpass</code> 安装此工具。</p>
 <p>在后续的 job/stage 中，加入远程执行命令脚本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sshpass -p <span class="string">'password'</span> ssh -T -o StrictHostKeyChecking=no username@192.168.xxx.xxx <span class="string">'sh /home/remote/script.sh'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sshpass -p <span class="string">'password'</span> ssh -T -o StrictHostKeyChecking=no username@192.168.xxx.xxx <span class="string">'sh /home/remote/script.sh'</span></span></pre></td></tr></table></figure>
 <p>即可绕过手动输入密码步骤，在 CI 中运行远程 sh 脚本。</p>
 <blockquote>
 <p>在联网环境慎用，防止泄密</p>
@@ -510,7 +506,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="https://lsvih.com/2018/04/18/ssh-不用手动输密码远程执行命令/" title="ssh 不用手动输密码远程执行命令">https://lsvih.com/2018/04/18/ssh-不用手动输密码远程执行命令/</a>
+    <a href="/https:/lsvih.com/2018/04/18/ssh-%E4%B8%8D%E7%94%A8%E6%89%8B%E5%8A%A8%E8%BE%93%E5%AF%86%E7%A0%81%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4/" title="ssh 不用手动输密码远程执行命令">https://lsvih.com/2018/04/18/ssh-%E4%B8%8D%E7%94%A8%E6%89%8B%E5%8A%A8%E8%BE%93%E5%AF%86%E7%A0%81%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
@@ -553,7 +549,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/04/为-JavaScript-程序员准备的-Flutter-指南/" rel="next" title="为 JavaScript 程序员准备的 Flutter 指南">
+              <a href="/2018/04/04/%E4%B8%BA-JavaScript-%E7%A8%8B%E5%BA%8F%E5%91%98%E5%87%86%E5%A4%87%E7%9A%84-Flutter-%E6%8C%87%E5%8D%97/" rel="next" title="为 JavaScript 程序员准备的 Flutter 指南">
                 <i class="fa fa-chevron-left"></i> 为 JavaScript 程序员准备的 Flutter 指南
               </a>
             
@@ -612,7 +608,7 @@
 
       <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">lsvih</p>
               <div class="site-description motion-element" itemprop="description"></div>
@@ -623,7 +619,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives/%20%7C%7C%20archive">
                 
                     <span class="site-state-item-count">155</span>
                     <span class="site-state-item-name">posts</span>
@@ -637,7 +633,7 @@
                 <div class="site-state-item site-state-categories">
                   
                     
-                      <a href="/categories/">
+                      <a href="/categories/%20%7C%7C%20th">
                     
                   
                     
@@ -672,7 +668,7 @@
                 <div class="site-state-item site-state-tags">
                   
                     
-                      <a href="/tags/">
+                      <a href="/tags/%20%7C%7C%20tags">
                     
                   
                     
@@ -1120,7 +1116,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"/></a>
              </div>
           
 
@@ -1162,7 +1158,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0</div>
 
 
 
@@ -1300,7 +1296,7 @@
   
   
   
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css"/>
 
   
   

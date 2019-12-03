@@ -13,11 +13,11 @@
 
 
 <html class="theme-next pisces" lang="">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -40,9 +40,9 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0"/>
 
-<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2"/>
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
@@ -92,36 +92,34 @@
 
 
 
-  <meta name="description" content="图片是由许多像素组成的，每个像素都有r，g，b，a4个值。如果对像素的这些值进行改变，就会改变像素的颜色或透明度。 对整个图片的像素进行有选择的改变就能改变整个图片的现实效果(图片滤镜) 首先要确定，rgba值的数据格式是UInt8，不能随意和Int值进行计算，因此在一些求平均值的情况要先将rgba用Int()将这些值转换为int再计算。 源码地址：https://github.com/lsvih">
+  <meta name="description" content="图片是由许多像素组成的，每个像素都有r，g，b，a4个值。如果对像素的这些值进行改变，就会改变像素的颜色或透明度。 对整个图片的像素进行有选择的改变就能改变整个图片的现实效果(图片滤镜) 首先要确定，rgba值的数据格式是UInt8，不能随意和Int值进行计算，因此在一些求平均值的情况要先将rgba用Int()将这些值转换为int再计算。 源码地址：https:&#x2F;&#x2F;github.com&#x2F;lsvih">
 <meta name="keywords" content="swift,image,filter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用swift制作简易图片滤镜">
-<meta property="og:url" content="https://lsvih.com/2016/08/14/使用swift制作简易图片滤镜/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2016&#x2F;08&#x2F;14&#x2F;%E4%BD%BF%E7%94%A8swift%E5%88%B6%E4%BD%9C%E7%AE%80%E6%98%93%E5%9B%BE%E7%89%87%E6%BB%A4%E9%95%9C&#x2F;index.html">
 <meta property="og:site_name" content="My note">
-<meta property="og:description" content="图片是由许多像素组成的，每个像素都有r，g，b，a4个值。如果对像素的这些值进行改变，就会改变像素的颜色或透明度。 对整个图片的像素进行有选择的改变就能改变整个图片的现实效果(图片滤镜) 首先要确定，rgba值的数据格式是UInt8，不能随意和Int值进行计算，因此在一些求平均值的情况要先将rgba用Int()将这些值转换为int再计算。 源码地址：https://github.com/lsvih">
+<meta property="og:description" content="图片是由许多像素组成的，每个像素都有r，g，b，a4个值。如果对像素的这些值进行改变，就会改变像素的颜色或透明度。 对整个图片的像素进行有选择的改变就能改变整个图片的现实效果(图片滤镜) 首先要确定，rgba值的数据格式是UInt8，不能随意和Int值进行计算，因此在一些求平均值的情况要先将rgba用Int()将这些值转换为int再计算。 源码地址：https:&#x2F;&#x2F;github.com&#x2F;lsvih">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://lsvih.com/images/pasted-97.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-98.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-99.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-100.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-101.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-102.png">
-<meta property="og:image" content="https://lsvih.com/images/pasted-103.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-97.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-98.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-99.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-100.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-101.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-102.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-103.png">
 <meta property="og:updated_time" content="2018-10-28T16:13:09.147Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用swift制作简易图片滤镜">
-<meta name="twitter:description" content="图片是由许多像素组成的，每个像素都有r，g，b，a4个值。如果对像素的这些值进行改变，就会改变像素的颜色或透明度。 对整个图片的像素进行有选择的改变就能改变整个图片的现实效果(图片滤镜) 首先要确定，rgba值的数据格式是UInt8，不能随意和Int值进行计算，因此在一些求平均值的情况要先将rgba用Int()将这些值转换为int再计算。 源码地址：https://github.com/lsvih">
-<meta name="twitter:image" content="https://lsvih.com/images/pasted-97.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-97.png">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml"/>
 
 
 
   
   
-  <link rel="canonical" href="https://lsvih.com/2016/08/14/使用swift制作简易图片滤镜/">
+  <link rel="canonical" href="https://lsvih.com/2016/08/14/%E4%BD%BF%E7%94%A8swift%E5%88%B6%E4%BD%9C%E7%AE%80%E6%98%93%E5%9B%BE%E7%89%87%E6%BB%A4%E9%95%9C/"/>
 
 
 
@@ -183,7 +181,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -193,7 +191,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -241,7 +239,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
 
   </li>
         
@@ -257,7 +255,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
 
   </li>
         
@@ -273,7 +271,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
 
   </li>
         
@@ -289,7 +287,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
 
   </li>
 
@@ -297,10 +295,10 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="javascript:;" class="popup-trigger">
+            <a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
         </li>
       
     </ul>
@@ -371,21 +369,21 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/08/14/使用swift制作简易图片滤镜/">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/08/14/%E4%BD%BF%E7%94%A8swift%E5%88%B6%E4%BD%9C%E7%AE%80%E6%98%93%E5%9B%BE%E7%89%87%E6%BB%A4%E9%95%9C/"/>
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note"/>
     </span>
 
     
@@ -437,7 +435,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
 
                 
                 
@@ -477,34 +475,34 @@
 <p>首先要确定，rgba值的数据格式是UInt8，不能随意和Int值进行计算，因此在一些求平均值的情况要先将rgba用Int()将这些值转换为int再计算。</p>
 <p>源码地址：<a href="https://github.com/lsvih/ImageProcessor" target="_blank" rel="noopener">https://github.com/lsvih/ImageProcessor</a></p>
 <p>首先读取图片</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> image = <span class="type">UIImage</span>(named: <span class="string">"sample"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> image = <span class="type">UIImage</span>(named: <span class="string">"sample"</span>)</span></pre></td></tr></table></figure>
 <p>运行结果:</p>
 <p><img src="/images/pasted-97.png" alt="upload successful"></p>
-<p>写一个滤镜，用于在遍历像素时去掉照片中所有的红色<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeRed</span><span class="params">(<span class="keyword">var</span> pixel: Pixel)</span></span> -&gt;<span class="type">Pixel</span>&#123;</span><br><span class="line">    pixel.red = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> pixel</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>写一个滤镜，用于在遍历像素时去掉照片中所有的红色<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeRed</span><span class="params">(<span class="keyword">var</span> pixel: Pixel)</span></span> -&gt;<span class="type">Pixel</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    pixel.red = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> pixel</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
 <p>上述函数的作用为将每个读取到的像素的red值设为0之后再返回。</p>
 <p>测试一下这个滤镜：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">testRemoveRedFilter</span><span class="params">(image: UIImage)</span></span> -&gt; <span class="type">UIImage</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> thisImage = <span class="type">RGBAImage</span>(image: image)!</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> <span class="number">0</span>..&lt;thisImage.height &#123;</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> <span class="number">0</span>..&lt;thisImage.width &#123;</span><br><span class="line">            <span class="keyword">let</span> sub = y * thisImage.width + x</span><br><span class="line">            <span class="keyword">let</span> pixel = thisImage.pixels[sub]<span class="comment">//遍历每个像素</span></span><br><span class="line">            thisImage.pixels[sub] = removeRed(pixel)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> thisImage.toUIImage()!</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">testRemoveRedFilter</span><span class="params">(image: UIImage)</span></span> -&gt; <span class="type">UIImage</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> thisImage = <span class="type">RGBAImage</span>(image: image)!</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> <span class="number">0</span>..&lt;thisImage.height &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> <span class="number">0</span>..&lt;thisImage.width &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">let</span> sub = y * thisImage.width + x</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">let</span> pixel = thisImage.pixels[sub]<span class="comment">//遍历每个像素</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            thisImage.pixels[sub] = removeRed(pixel)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> thisImage.toUIImage()!</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>上述函数作用为遍历图片中的每一个像素，应用上面取出红色的函数后，将像素返回图片。最终得到了如下图片：</p>
 <p><img src="/images/pasted-98.png" alt="upload successful"></p>
 <p>根据这个原理，可以进行各种滤镜的编写。</p>
-<h3 id="1、去除指定颜色"><a href="#1、去除指定颜色" class="headerlink" title="1、去除指定颜色"></a>1、去除指定颜色</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeColor</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,conf:Int)</span></span> -&gt; <span class="type">Pixel</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(conf == <span class="number">0</span>)&#123;</span><br><span class="line">        pixel.red = <span class="number">0</span></span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(conf == <span class="number">1</span>)&#123;</span><br><span class="line">        pixel.green = <span class="number">0</span></span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(conf == <span class="number">2</span>)&#123;</span><br><span class="line">        pixel.blue = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pixel</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1、去除指定颜色"><a href="#1、去除指定颜色" class="headerlink" title="1、去除指定颜色"></a>1、去除指定颜色</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeColor</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,conf:Int)</span></span> -&gt; <span class="type">Pixel</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span>(conf == <span class="number">0</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        pixel.red = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(conf == <span class="number">1</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        pixel.green = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(conf == <span class="number">2</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        pixel.blue = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> pixel</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>传值0为去除红色，1为去除绿色，2为去除蓝色</p>
 <p>运行结果如下</p>
 <p><img src="/images/pasted-99.png" alt="upload successful"></p>
-<h3 id="2、灰度图"><a href="#2、灰度图" class="headerlink" title="2、灰度图"></a>2、灰度图</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">grayScale</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,conf:Int)</span></span>-&gt;<span class="type">Pixel</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> gray = <span class="type">UInt8</span>((<span class="type">Int</span>(pixel.red)+<span class="type">Int</span>(pixel.green)+<span class="type">Int</span>(pixel.blue))/conf)</span><br><span class="line">    pixel.red = gray</span><br><span class="line">    pixel.green = gray</span><br><span class="line">    pixel.blue = gray</span><br><span class="line">    <span class="keyword">return</span> pixel</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2、灰度图"><a href="#2、灰度图" class="headerlink" title="2、灰度图"></a>2、灰度图</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">grayScale</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,conf:Int)</span></span>-&gt;<span class="type">Pixel</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> gray = <span class="type">UInt8</span>((<span class="type">Int</span>(pixel.red)+<span class="type">Int</span>(pixel.green)+<span class="type">Int</span>(pixel.blue))/conf)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    pixel.red = gray</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    pixel.green = gray</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    pixel.blue = gray</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> pixel</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>conf可以控制图片灰度，通常为3.对每个像素把他们的rgb值求平均值，这个像素就变成相应的灰色了。</p>
 <p>运行结果如下</p>
 <p><img src="/images/pasted-100.png" alt="upload successful"></p>
-<h3 id="3、更改透明度"><a href="#3、更改透明度" class="headerlink" title="3、更改透明度"></a>3、更改透明度</h3><p>像素rgba中的a值即为透明度，改变a值照片的透明度将发生变化<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">transparentFilter</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,opacity:Int)</span></span>-&gt;<span class="type">Pixel</span>&#123;</span><br><span class="line">    pixel.alpha = <span class="type">UInt8</span>(opacity)</span><br><span class="line">    <span class="keyword">return</span> pixel</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3、更改透明度"><a href="#3、更改透明度" class="headerlink" title="3、更改透明度"></a>3、更改透明度</h3><p>像素rgba中的a值即为透明度，改变a值照片的透明度将发生变化<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">transparentFilter</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,opacity:Int)</span></span>-&gt;<span class="type">Pixel</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    pixel.alpha = <span class="type">UInt8</span>(opacity)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> pixel</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
 <p>由于a为UInt8，因此需要转换。输入的opacity为透明度，从0-255</p>
 <p>效果如下</p>
 <p><img src="/images/pasted-101.png" alt="upload successful"></p>
 <h3 id="4、黑白照片"><a href="#4、黑白照片" class="headerlink" title="4、黑白照片"></a>4、黑白照片</h3><p>定义一个阀值，rgb平均值超过这个阀值的为白否则为黑</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">blackAndWhite</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,conf:Int)</span></span>-&gt;<span class="type">Pixel</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(conf==<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> avg = <span class="type">UInt8</span>((<span class="type">Int</span>(pixel.red)+<span class="type">Int</span>(pixel.green)+<span class="type">Int</span>(pixel.blue))/<span class="number">3</span>)</span><br><span class="line">        <span class="keyword">if</span>(avg&gt;<span class="number">100</span>)&#123;</span><br><span class="line">            pixel.red = <span class="number">255</span></span><br><span class="line">            pixel.green = <span class="number">255</span></span><br><span class="line">            pixel.blue = <span class="number">255</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            pixel.red = <span class="number">0</span></span><br><span class="line">            pixel.green = <span class="number">0</span></span><br><span class="line">            pixel.blue = <span class="number">0</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> avg = <span class="type">UInt8</span>((<span class="type">Int</span>(pixel.red)+<span class="type">Int</span>(pixel.green)+<span class="type">Int</span>(pixel.blue))/<span class="number">3</span>)</span><br><span class="line">        <span class="keyword">if</span>(avg&lt;<span class="number">100</span>)&#123;</span><br><span class="line">            pixel.red = <span class="number">255</span></span><br><span class="line">            pixel.green = <span class="number">255</span></span><br><span class="line">            pixel.blue = <span class="number">255</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            pixel.red = <span class="number">0</span></span><br><span class="line">            pixel.green = <span class="number">0</span></span><br><span class="line">            pixel.blue = <span class="number">0</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pixel</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">blackAndWhite</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,conf:Int)</span></span>-&gt;<span class="type">Pixel</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span>(conf==<span class="number">1</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">let</span> avg = <span class="type">UInt8</span>((<span class="type">Int</span>(pixel.red)+<span class="type">Int</span>(pixel.green)+<span class="type">Int</span>(pixel.blue))/<span class="number">3</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span>(avg&gt;<span class="number">100</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            pixel.red = <span class="number">255</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            pixel.green = <span class="number">255</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            pixel.blue = <span class="number">255</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        &#125;<span class="keyword">else</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">            pixel.red = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            pixel.green = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            pixel.blue = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;<span class="keyword">else</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">let</span> avg = <span class="type">UInt8</span>((<span class="type">Int</span>(pixel.red)+<span class="type">Int</span>(pixel.green)+<span class="type">Int</span>(pixel.blue))/<span class="number">3</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span>(avg&lt;<span class="number">100</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">            pixel.red = <span class="number">255</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">            pixel.green = <span class="number">255</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">            pixel.blue = <span class="number">255</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        &#125;<span class="keyword">else</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">            pixel.red = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">            pixel.green = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">            pixel.blue = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> pixel</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>传值conf为0时生成黑白图片，如果为1则反色</p>
 <p>效果如下</p>
 <p><img src="/images/pasted-102.png" alt="upload successful"></p>
-<h3 id="5、反相"><a href="#5、反相" class="headerlink" title="5、反相"></a>5、反相</h3><p>用255减去rgb值即为反相效果<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">inverseColor</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,conf:Int)</span></span>-&gt;<span class="type">Pixel</span>&#123;</span><br><span class="line">    pixel.red = <span class="built_in">min</span>(<span class="built_in">max</span>(<span class="type">UInt8</span>(conf) - pixel.red,<span class="number">0</span>),<span class="number">255</span>)</span><br><span class="line">    pixel.green = <span class="built_in">min</span>(<span class="built_in">max</span>(<span class="type">UInt8</span>(conf) - pixel.green,<span class="number">0</span>),<span class="number">255</span>)</span><br><span class="line">    pixel.blue = <span class="built_in">min</span>(<span class="built_in">max</span>(<span class="type">UInt8</span>(conf) - pixel.blue,<span class="number">0</span>),<span class="number">255</span>)</span><br><span class="line">    <span class="keyword">return</span> pixel</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="5、反相"><a href="#5、反相" class="headerlink" title="5、反相"></a>5、反相</h3><p>用255减去rgb值即为反相效果<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">inverseColor</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,conf:Int)</span></span>-&gt;<span class="type">Pixel</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    pixel.red = <span class="built_in">min</span>(<span class="built_in">max</span>(<span class="type">UInt8</span>(conf) - pixel.red,<span class="number">0</span>),<span class="number">255</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    pixel.green = <span class="built_in">min</span>(<span class="built_in">max</span>(<span class="type">UInt8</span>(conf) - pixel.green,<span class="number">0</span>),<span class="number">255</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    pixel.blue = <span class="built_in">min</span>(<span class="built_in">max</span>(<span class="type">UInt8</span>(conf) - pixel.blue,<span class="number">0</span>),<span class="number">255</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> pixel</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
 <p>要对减法得到的值进行约束防止出现负数。</p>
 <p>效果如下</p>
 <p><img src="/images/pasted-103.png" alt="upload successful"></p>
@@ -542,7 +540,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="https://lsvih.com/2016/08/14/使用swift制作简易图片滤镜/" title="使用swift制作简易图片滤镜">https://lsvih.com/2016/08/14/使用swift制作简易图片滤镜/</a>
+    <a href="/https:/lsvih.com/2016/08/14/%E4%BD%BF%E7%94%A8swift%E5%88%B6%E4%BD%9C%E7%AE%80%E6%98%93%E5%9B%BE%E7%89%87%E6%BB%A4%E9%95%9C/" title="使用swift制作简易图片滤镜">https://lsvih.com/2016/08/14/%E4%BD%BF%E7%94%A8swift%E5%88%B6%E4%BD%9C%E7%AE%80%E6%98%93%E5%9B%BE%E7%89%87%E6%BB%A4%E9%95%9C/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
@@ -575,7 +573,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/02/为Hbuilder-iOS-webapp集成极光推送/" rel="next" title="为Hbuilder iOS webapp集成极光推送">
+              <a href="/2016/08/02/%E4%B8%BAHbuilder-iOS-webapp%E9%9B%86%E6%88%90%E6%9E%81%E5%85%89%E6%8E%A8%E9%80%81/" rel="next" title="为Hbuilder iOS webapp集成极光推送">
                 <i class="fa fa-chevron-left"></i> 为Hbuilder iOS webapp集成极光推送
               </a>
             
@@ -585,7 +583,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/09/26/自动在指定时间在微信中分享知乎日报的消息→-→/" rel="prev" title="自动在指定时间在微信中分享知乎日报的消息→_→">
+              <a href="/2016/09/26/%E8%87%AA%E5%8A%A8%E5%9C%A8%E6%8C%87%E5%AE%9A%E6%97%B6%E9%97%B4%E5%9C%A8%E5%BE%AE%E4%BF%A1%E4%B8%AD%E5%88%86%E4%BA%AB%E7%9F%A5%E4%B9%8E%E6%97%A5%E6%8A%A5%E7%9A%84%E6%B6%88%E6%81%AF%E2%86%92-%E2%86%92/" rel="prev" title="自动在指定时间在微信中分享知乎日报的消息→_→">
                 自动在指定时间在微信中分享知乎日报的消息→_→ <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -643,7 +641,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">lsvih</p>
               <div class="site-description motion-element" itemprop="description"></div>
@@ -654,7 +652,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives/%20%7C%7C%20archive">
                 
                     <span class="site-state-item-count">155</span>
                     <span class="site-state-item-name">posts</span>
@@ -668,7 +666,7 @@
                 <div class="site-state-item site-state-categories">
                   
                     
-                      <a href="/categories/">
+                      <a href="/categories/%20%7C%7C%20th">
                     
                   
                     
@@ -703,7 +701,7 @@
                 <div class="site-state-item site-state-tags">
                   
                     
-                      <a href="/tags/">
+                      <a href="/tags/%20%7C%7C%20tags">
                     
                   
                     
@@ -1151,7 +1149,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"/></a>
              </div>
           
 
@@ -1210,7 +1208,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0</div>
 
 
 
@@ -1348,7 +1346,7 @@
   
   
   
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css"/>
 
   
   

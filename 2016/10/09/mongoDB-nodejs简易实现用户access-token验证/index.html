@@ -13,11 +13,11 @@
 
 
 <html class="theme-next pisces" lang="">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -40,9 +40,9 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0"/>
 
-<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+<link rel="stylesheet" href="/css/main.css?v=7.1.2"/>
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
@@ -92,28 +92,26 @@
 
 
 
-  <meta name="description" content="实现效果:用户调用接口时鉴权，如果没有合法的access_token则不允许接入，抛出401 实现要点:mongoDB的简单操作，async与await code:1234567891011121314151617181920212223242526272829303132var db = require(&apos;../db&apos;)var express = require(&apos;express&apos;)var ro">
+  <meta name="description" content="实现效果:用户调用接口时鉴权，如果没有合法的access_token则不允许接入，抛出401 实现要点:mongoDB的简单操作，async与await code:1var db &#x3D; require(&amp;apos;..&#x2F;db&amp;apos;)2var express &#x3D; require(&amp;apos;express&amp;apos;)3var router &#x3D; express.Router()4var utils &#x3D; require(&amp;apos;..&#x2F;util">
 <meta name="keywords" content="Front End,code,Back End,nodeJS,mongoDB">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mongoDB,nodejs简易实现用户access_token验证">
-<meta property="og:url" content="https://lsvih.com/2016/10/09/mongoDB-nodejs简易实现用户access-token验证/index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2016&#x2F;10&#x2F;09&#x2F;mongoDB-nodejs%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7access-token%E9%AA%8C%E8%AF%81&#x2F;index.html">
 <meta property="og:site_name" content="My note">
-<meta property="og:description" content="实现效果:用户调用接口时鉴权，如果没有合法的access_token则不允许接入，抛出401 实现要点:mongoDB的简单操作，async与await code:1234567891011121314151617181920212223242526272829303132var db = require(&apos;../db&apos;)var express = require(&apos;express&apos;)var ro">
+<meta property="og:description" content="实现效果:用户调用接口时鉴权，如果没有合法的access_token则不允许接入，抛出401 实现要点:mongoDB的简单操作，async与await code:1var db &#x3D; require(&amp;apos;..&#x2F;db&amp;apos;)2var express &#x3D; require(&amp;apos;express&amp;apos;)3var router &#x3D; express.Router()4var utils &#x3D; require(&amp;apos;..&#x2F;util">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-10-28T16:12:59.163Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mongoDB,nodejs简易实现用户access_token验证">
-<meta name="twitter:description" content="实现效果:用户调用接口时鉴权，如果没有合法的access_token则不允许接入，抛出401 实现要点:mongoDB的简单操作，async与await code:1234567891011121314151617181920212223242526272829303132var db = require(&apos;../db&apos;)var express = require(&apos;express&apos;)var ro">
 
 
 
-  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="My note" type="application/atom+xml"/>
 
 
 
   
   
-  <link rel="canonical" href="https://lsvih.com/2016/10/09/mongoDB-nodejs简易实现用户access-token验证/">
+  <link rel="canonical" href="https://lsvih.com/2016/10/09/mongoDB-nodejs%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7access-token%E9%AA%8C%E8%AF%81/"/>
 
 
 
@@ -175,7 +173,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
   
   
@@ -185,7 +183,7 @@
   <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta">
     
@@ -233,7 +231,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
 
   </li>
         
@@ -249,7 +247,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
 
   </li>
         
@@ -265,7 +263,7 @@
 
     
 
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
 
   </li>
         
@@ -281,7 +279,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
 
   </li>
 
@@ -289,10 +287,10 @@
       
         <li class="menu-item menu-item-search">
           
-            <a href="javascript:;" class="popup-trigger">
+            <a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>Search</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
         </li>
       
     </ul>
@@ -363,21 +361,21 @@
     <div class="reading-progress-bar"></div>
   
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/09/mongoDB-nodejs简易实现用户access-token验证/">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/09/mongoDB-nodejs%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7access-token%E9%AA%8C%E8%AF%81/"/>
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lsvih"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note"/>
     </span>
 
     
@@ -429,7 +427,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a></span>
 
                 
                 
@@ -466,7 +464,7 @@
       
         <h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果:"></a>实现效果:</h3><p>用户调用接口时鉴权，如果没有合法的access_token则不允许接入，抛出401</p>
 <h3 id="实现要点"><a href="#实现要点" class="headerlink" title="实现要点:"></a>实现要点:</h3><p>mongoDB的简单操作，async与await</p>
-<h3 id="code"><a href="#code" class="headerlink" title="code:"></a>code:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> db = <span class="built_in">require</span>(<span class="string">'../db'</span>)</span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">var</span> router = express.Router()</span><br><span class="line"><span class="keyword">var</span> utils = <span class="built_in">require</span>(<span class="string">'../utils'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> checkLogin = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">await</span> checkAccessToken(req.query.userId, req.query.access_token)) &#123;</span><br><span class="line">        next()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        res.status(<span class="number">401</span>)</span><br><span class="line">        res.send()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">    <span class="built_in">console</span>.error(e)</span><br><span class="line">    res.status(<span class="number">500</span>)</span><br><span class="line">    res.send()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = checkLogin;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">checkAccessToken</span>(<span class="params">userId, accessToken</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!db) &#123;</span><br><span class="line">        <span class="built_in">console</span>.error(<span class="string">"DataBase error"</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> userInfo = <span class="keyword">await</span> db.user.findOne(&#123;</span><br><span class="line">            userId: userId</span><br><span class="line">        &#125;).exec()</span><br><span class="line">        <span class="keyword">return</span> userInfo.access_token === accessToken</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="code"><a href="#code" class="headerlink" title="code:"></a>code:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> db = <span class="built_in">require</span>(<span class="string">'../db'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> router = express.Router()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> utils = <span class="built_in">require</span>(<span class="string">'../utils'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> checkLogin = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">try</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (<span class="keyword">await</span> checkAccessToken(req.query.userId, req.query.access_token)) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        next()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        res.status(<span class="number">401</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        res.send()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#125;<span class="keyword">catch</span>(e)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.error(e)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    res.status(<span class="number">500</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    res.send()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = checkLogin;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">checkAccessToken</span>(<span class="params">userId, accessToken</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (!db) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.error(<span class="string">"DataBase error"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    &#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">var</span> userInfo = <span class="keyword">await</span> db.user.findOne(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">            userId: userId</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">        &#125;).exec()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> userInfo.access_token === accessToken</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
 <p>mongoDB中，使用db.xx.find读出的是数组，需要用[0]或者findOne</p>
 <p>mongoDB的读取为异步过程，可以使用async await等待异步回调</p>
 <p>在处理时如果不使用res.send而直接调用next()，中间件向后传递</p>
@@ -504,7 +502,7 @@
   <li class="post-copyright-link">
     <strong>Post link: </strong>
     
-    <a href="https://lsvih.com/2016/10/09/mongoDB-nodejs简易实现用户access-token验证/" title="mongoDB,nodejs简易实现用户access_token验证">https://lsvih.com/2016/10/09/mongoDB-nodejs简易实现用户access-token验证/</a>
+    <a href="/https:/lsvih.com/2016/10/09/mongoDB-nodejs%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7access-token%E9%AA%8C%E8%AF%81/" title="mongoDB,nodejs简易实现用户access_token验证">https://lsvih.com/2016/10/09/mongoDB-nodejs%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7access-token%E9%AA%8C%E8%AF%81/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
@@ -541,7 +539,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/08/使用node-express-mongoDB进行微信jssdk签名运算/" rel="next" title="使用node+express+mongoDB进行微信jssdk签名运算">
+              <a href="/2016/10/08/%E4%BD%BF%E7%94%A8node-express-mongoDB%E8%BF%9B%E8%A1%8C%E5%BE%AE%E4%BF%A1jssdk%E7%AD%BE%E5%90%8D%E8%BF%90%E7%AE%97/" rel="next" title="使用node+express+mongoDB进行微信jssdk签名运算">
                 <i class="fa fa-chevron-left"></i> 使用node+express+mongoDB进行微信jssdk签名运算
               </a>
             
@@ -609,7 +607,7 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">lsvih</p>
               <div class="site-description motion-element" itemprop="description"></div>
@@ -620,7 +618,7 @@
               
                 <div class="site-state-item site-state-posts">
                 
-                  <a href="/archives/">
+                  <a href="/archives/%20%7C%7C%20archive">
                 
                     <span class="site-state-item-count">155</span>
                     <span class="site-state-item-name">posts</span>
@@ -634,7 +632,7 @@
                 <div class="site-state-item site-state-categories">
                   
                     
-                      <a href="/categories/">
+                      <a href="/categories/%20%7C%7C%20th">
                     
                   
                     
@@ -669,7 +667,7 @@
                 <div class="site-state-item site-state-tags">
                   
                     
-                      <a href="/tags/">
+                      <a href="/tags/%20%7C%7C%20tags">
                     
                   
                     
@@ -1117,7 +1115,7 @@
               
               
               
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"/></a>
              </div>
           
 
@@ -1176,7 +1174,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0</div>
 
 
 
@@ -1314,7 +1312,7 @@
   
   
   
-  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css"/>
 
   
   
