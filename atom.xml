@@ -35,17 +35,17 @@
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
-    
       <category term="Algorithm" scheme="https://lsvih.com/tags/Algorithm/"/>
+    
+      <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
       <category term="Machine Learning" scheme="https://lsvih.com/tags/Machine-Learning/"/>
     
-      <category term="Deep Learning" scheme="https://lsvih.com/tags/Deep-Learning/"/>
-    
       <category term="XGBoost" scheme="https://lsvih.com/tags/XGBoost/"/>
+    
+      <category term="Deep Learning" scheme="https://lsvih.com/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -81,11 +81,11 @@
     
       <category term="Machine Learning" scheme="https://lsvih.com/tags/Machine-Learning/"/>
     
+      <category term="Deep Learning" scheme="https://lsvih.com/tags/Deep-Learning/"/>
+    
       <category term="One Hot" scheme="https://lsvih.com/tags/One-Hot/"/>
     
       <category term="Tutorial" scheme="https://lsvih.com/tags/Tutorial/"/>
-    
-      <category term="Deep Learning" scheme="https://lsvih.com/tags/Deep-Learning/"/>
     
   </entry>
   
@@ -112,9 +112,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="note" scheme="https://lsvih.com/tags/note/"/>
-    
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="note" scheme="https://lsvih.com/tags/note/"/>
     
       <category term="Paper" scheme="https://lsvih.com/tags/Paper/"/>
     
@@ -187,15 +187,15 @@
     
       <category term="React" scheme="https://lsvih.com/tags/React/"/>
     
+      <category term="SVG" scheme="https://lsvih.com/tags/SVG/"/>
+    
       <category term="线性代数" scheme="https://lsvih.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
+    
+      <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
       <category term="ThreeJS" scheme="https://lsvih.com/tags/ThreeJS/"/>
     
       <category term="Animate" scheme="https://lsvih.com/tags/Animate/"/>
-    
-      <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-      <category term="SVG" scheme="https://lsvih.com/tags/SVG/"/>
     
       <category term="Matrix" scheme="https://lsvih.com/tags/Matrix/"/>
     
@@ -230,11 +230,11 @@
     
       <category term="线性代数" scheme="https://lsvih.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
     
+      <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
       <category term="ThreeJS" scheme="https://lsvih.com/tags/ThreeJS/"/>
     
       <category term="Animate" scheme="https://lsvih.com/tags/Animate/"/>
-    
-      <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
   </entry>
   
@@ -298,11 +298,11 @@
     
       <category term="React" scheme="https://lsvih.com/tags/React/"/>
     
+      <category term="SVG" scheme="https://lsvih.com/tags/SVG/"/>
+    
       <category term="线性代数" scheme="https://lsvih.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
     
       <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-      <category term="SVG" scheme="https://lsvih.com/tags/SVG/"/>
     
   </entry>
   
@@ -364,9 +364,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="note" scheme="https://lsvih.com/tags/note/"/>
-    
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="note" scheme="https://lsvih.com/tags/note/"/>
     
       <category term="Paper" scheme="https://lsvih.com/tags/Paper/"/>
     
@@ -432,9 +432,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="note" scheme="https://lsvih.com/tags/note/"/>
-    
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="note" scheme="https://lsvih.com/tags/note/"/>
     
       <category term="Paper" scheme="https://lsvih.com/tags/Paper/"/>
     
@@ -533,13 +533,13 @@
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
+      <category term="Front End" scheme="https://lsvih.com/tags/Front-End/"/>
+    
       <category term="Ionic" scheme="https://lsvih.com/tags/Ionic/"/>
     
       <category term="Angular" scheme="https://lsvih.com/tags/Angular/"/>
     
       <category term="Animation" scheme="https://lsvih.com/tags/Animation/"/>
-    
-      <category term="Front End" scheme="https://lsvih.com/tags/Front-End/"/>
     
   </entry>
   
@@ -565,9 +565,9 @@
     
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
-      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
-    
       <category term="Back End" scheme="https://lsvih.com/tags/Back-End/"/>
+    
+      <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
     
       <category term="DNS" scheme="https://lsvih.com/tags/DNS/"/>
     
@@ -597,9 +597,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
-    
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
@@ -627,9 +627,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
-    
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
       <category term="Slide" scheme="https://lsvih.com/tags/Slide/"/>
     
@@ -659,9 +659,9 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
-    
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
       <category term="matrix" scheme="https://lsvih.com/tags/matrix/"/>
     
@@ -698,13 +698,13 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
       <category term="note" scheme="https://lsvih.com/tags/note/"/>
     
       <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
       <category term="algorithm" scheme="https://lsvih.com/tags/algorithm/"/>
-    
-      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
     
       <category term="matrix" scheme="https://lsvih.com/tags/matrix/"/>
     
