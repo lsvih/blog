@@ -214,6 +214,141 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/10/13/Javascript-%E4%B8%AD%E5%A4%9A%E6%A0%B7%E7%9A%84-this/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/13/Javascript-%E4%B8%AD%E5%A4%9A%E6%A0%B7%E7%9A%84-this/" class="post-title-link" itemprop="url">Javascript 中多样的 this</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-10-13 15:14:22" itemprop="dateCreated datePublished" datetime="2017-10-13T15:14:22+08:00">2017-10-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Translate/" itemprop="url" rel="index">
+                    <span itemprop="name">Translate</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/images/pasted-239.png" alt="upload successful"></p>
+<p>本文将尽量解释清楚 JavaScript 中最基础的部分之一：执行上下文（execution context）。如果你经常使用 JS 框架，那理解 <code>this</code> 更是锦上添花。但如果你想更加认真地对待编程的话，理解上下文无疑是非常重要的。</p>
+<p>我们可以像平常说话一样来使用 <code>this</code>。例如：我会说“我妈很不爽，这（this）太糟糕了”，而不会说“我妈很不爽，我妈很不爽这件事太糟糕了”。理解了 <code>this</code> 的上下文，才会理解我们为什么觉得很糟糕。</p>
+<p>现在试着把这个例子与编程语言联系起来。在 Javascript 中，我们将 <code>this</code> 作为一个快捷方式，一个引用。它指向其所在上下文的某个对象或变量。</p>
+<p>现在这么说可能会让人不解，不过很快你就能理解它们了。</p>
+<h2 id="全局上下文"><a href="#全局上下文" class="headerlink" title="全局上下文"></a><strong>全局上下文</strong></h2><p>如果你和某人聊天，在刚开始对话、没有做介绍、没有任何上下文时，他对你说：“这（this）太糟糕了”，你会怎么想？大多数情况人们会试图将“这（this）”与周围的事物、最近发生的事情联系起来。</p>
+<p>对于浏览器来说也是如此。成千上万的开发者在没有上下文的情况下使用了 <code>this</code>。我们可怜的浏览器只能将 <code>this</code> 指向一个全局对象（大多数情况下是 window）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var a &#x3D; 15;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">console.log(this.a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; 15</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">console.log(window.a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; 15</span></pre></td></tr></table></figure>
+<p>[以上代码需在浏览器中执行]</p>
+<p>函数外部的任何地方都为全局上下文，<code>this</code> 始终指向全局上下文（window 对象）。</p>
+<h2 id="函数上下文"><a href="#函数上下文" class="headerlink" title="函数上下文"></a>函数上下文</h2><p>以真实世界来类比，函数上下文可以看成句子的上下文。“我妈很不爽，这（this）很不妙。”我们都知道这句话中的 <code>this</code> 是什么意思。其它句子中同样可以使用 <code>this</code>，但是由于其处于所处上下文不同因而意思全然不同。例如，“风暴来袭，这（this）太糟糕了。”</p>
+<p>JavaScript 的上下文与对象有关，它取决于函数被执行时所在的对象。因此 <code>this</code> 会指向被执行函数所在的对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var a &#x3D; 20;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">function gx () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    return this;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">function fx () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    return this.a;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">function fy () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    return window.a;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">console.log(gx() &#x3D;&#x3D;&#x3D; window);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; True</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">console.log(fx());</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; 20</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">console.log(fy());</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; 20</span></pre></td></tr></table></figure>
+<p><code>this</code> 由函数被调用的方式决定。如你所见，上面的所有函数都是在全局上下文中被调用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var o &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  prop: 37,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  f: function() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    return this.prop;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">console.log(o.f());</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; 37</span></pre></td></tr></table></figure>
+<p>当一个函数是作为某个对象的方法被调用时，它的 <code>this</code> 指向的就是这个方法所在的对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function fx () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    return this;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">var obj &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    method: function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        return this;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">var x_obj &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    y_obj: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        method: function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">            return this;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">console.log(fx() &#x3D;&#x3D;&#x3D; window);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; True — 我们仍处于全局上下文中。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">console.log(obj.method() &#x3D;&#x3D;&#x3D; window);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; False — 函数作为一个对象的方法被调用。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">console.log(obj.method() &#x3D;&#x3D;&#x3D; obj);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; True — 函数作为一个对象的方法被调用。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">console.log(x_obj.y_obj.method() &#x3D;&#x3D;&#x3D; x_obj)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; False — 函数作为 y_obj 对象的方法被调用，因此 &#96;this&#96; 指向的是 y_obj 的上下文。</span></pre></td></tr></table></figure>
+<p><strong>例 4</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function f2 () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#39;use strict&#39;; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  return this;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">console.log(f2() &#x3D;&#x3D;&#x3D; undefined);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; True</span></pre></td></tr></table></figure>
+<p>在严格模式下，全局作用域的函数在全局作用域被调用时，<code>this</code> 为 <code>undefined</code>。</p>
+<p><strong>例 5</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function fx () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    return this;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">var obj &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    method: fx</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">console.log(obj.method() &#x3D;&#x3D;&#x3D; window);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; False</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">console.log(obj.method() &#x3D;&#x3D;&#x3D; obj);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; True</span></pre></td></tr></table></figure>
+<p>与前面的例子一样，无论函数是如何被定义的，在这儿它都是作为一个对象方法被调用。</p>
+<p><strong>例 6</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var obj &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    method: function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        return this;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">var sec_obj &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    method: obj.method</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">console.log(sec_obj.method() &#x3D;&#x3D;&#x3D; obj);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; False</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">console.log(sec_obj.method() &#x3D;&#x3D;&#x3D; sec_obj);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; True</span></pre></td></tr></table></figure>
+<p><code>this</code> 是动态的，它可以由一个对象指向另一个对象。</p>
+<p><strong>例 7</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var shop &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  fruit: &quot;Apple&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  sellMe: function() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    console.log(&quot;this &quot;, this.fruit);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; this Apple</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    console.log(&quot;shop &quot;, shop.fruit);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; shop Apple</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">shop.sellMe()</span></pre></td></tr></table></figure>
+<p>我们既能通过 <code>shop</code> 对象也能通过 <code>this</code> 来访问 <code>fruit</code> 属性。</p>
+<p><strong>例 8</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var Foo &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    this.bar &#x3D; &quot;baz&quot;; </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">var foo &#x3D; new Foo();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">console.log(foo.bar); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; baz</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">console.log(window.bar);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; undefined</span></pre></td></tr></table></figure>
+<p>现在情况不同了。<code>new</code> 操作符创建了一个对象的实例。因此函数的上下文设置为这个被创建的对象实例。</p>
+<h2 id="Call、apply、bind"><a href="#Call、apply、bind" class="headerlink" title="Call、apply、bind"></a>Call、apply、bind</h2><p>依旧以真实世界举例：“这（this）太糟糕了，因为我妈开始不爽了。”</p>
+<p>这三个方法可以让我们在任何期许的上下文中执行函数。让我们举几个例子看看它们的用法：</p>
+<p><strong>例 1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var bar &#x3D; &quot;xo xo&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">var foo &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    bar: &quot;lorem ipsum&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">function test () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    return this.bar;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">console.log(test());</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; xo xo — 我们在全局上下文中调用了 test 函数。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">console.log(test.call(foo)); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; lorem ipsum — 通过使用 &#96;call&#96;，我们在 foo 对象的上下文中调用了 test 函数。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">console.log(test.apply(foo));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; lorem ipsum — 通过使用 &#96;apply&#96;，我们在 foo 对象的上下文中调用了 test 函数。</span></pre></td></tr></table></figure>
+<p>这两种方法都能让你在任何需要的上下文中执行函数。</p>
+<p><code>apply</code> 可以让你在调用函数时将参数以不定长数组的形式传入，而 <code>call</code> 则需要你明确参数。</p>
+<p><strong>例 2</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var a &#x3D; 5;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">function test () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    return this.a;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">var bound &#x3D; test.bind(document);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">console.log(bound()); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; undefined — 在 document 对象中没有 a 这个变量。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">console.log(bound.call(window)); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; undefined — 在 document 对象中没有 a 这个变量。在这个情况中，call 不能改变上下文。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">var sec_bound &#x3D; test.bind(&#123;a: 15&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">console.log(sec_bound())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; 15 — 我们创建了一个新对象 &#123;a:15&#125;，并在此上下文中调用了 test 函数。</span></pre></td></tr></table></figure>
+<p><code>bind</code> 方法返回的函数的下上文会被永久改变。<br>在使用 bind 之后，其上下文就固定了，无论你再使用 call、apply 或者 bind 都无法再改变其上下文。</p>
+<h2 id="箭头函数（ES6）"><a href="#箭头函数（ES6）" class="headerlink" title="箭头函数（ES6）"></a><strong>箭头函数（ES6）</strong></h2><p>箭头函数是 ES6 中的一个新语法。它是一个非常方便的工具，不过你需要知道，在箭头函数中的上下文与普通函数中的上下文的定义是不同的。让我们举例看看。</p>
+<p><strong>例 1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var foo &#x3D; (() &#x3D;&gt; this);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">console.log(foo() &#x3D;&#x3D;&#x3D; window); </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; True</span></pre></td></tr></table></figure>
+<p>当我们使用箭头函数时，<code>this</code> 会保留其封闭范围的上下文。</p>
+<p><strong>例 2</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var obj &#x3D; &#123;method: () &#x3D;&gt; this&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">var sec_obj &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  method: function() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    return this;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">console.log(obj.method() &#x3D;&#x3D;&#x3D; obj);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; False</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">console.log(obj.method() &#x3D;&#x3D;&#x3D; window);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; True</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">console.log(sec_obj.method() &#x3D;&#x3D;&#x3D; sec_obj);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; True</span></pre></td></tr></table></figure>
+<p>请注意箭头函数与普通函数的不同点。在这个例子中使用箭头函数时，我们仍然处于 window 上下文中。<br>我们可以这么看：</p>
+<blockquote>
+<p>*x =&gt; this.y equals function (x) { return this.y }.bind(this)*</p>
+</blockquote>
+<p>可以将箭头函数看做其始终 <code>bind</code> 了函数外层上下文的 <code>this</code>，因此不能将它作为构造函数使用。下面的例子也说明了其不同之处。</p>
+<p><strong>例 3</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var a &#x3D; &quot;global&quot;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">var obj &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"> method: function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">   return &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">     a: &quot;inside method&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">     normal: function() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">       return this.a;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">     &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">     arrowFunction: () &#x3D;&gt; this.a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">   &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"> &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"> a: &quot;inside obj&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">console.log(obj.method().normal());</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; inside method</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">console.log(obj.method().arrowFunction());</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; &#x3D;&gt; inside obj</span></pre></td></tr></table></figure>
+<p>当你了解了函数中动态（dynamic） <code>this</code> 与词法（lexical）<code>this</code> ，在定义新函数的时候请三思。如果函数将作为一个方法被调用，那么使用动态 <code>this</code>；如果它作为一个子程序（subroutine）被调用，则使用词法 <code>this</code>。</p>
+<blockquote>
+<p>译注：了解动态作用域与词法作用域可<a href="http://www.cnblogs.com/xiaohuochai/p/5700095.html" target="_blank" rel="noopener">阅读此文章</a></p>
+</blockquote>
+<h2 id="相关阅读"><a href="#相关阅读" class="headerlink" title="相关阅读"></a><strong>相关阅读</strong></h2><ul>
+<li><a href="http://www.joshuakehn.com/2011/10/20/Understanding-JavaScript-Context.html" target="_blank" rel="noopener">http://www.joshuakehn.com/2011/10/20/Understanding-JavaScript-Context.html</a></li>
+<li><a href="http://ryanmorr.com/understanding-scope-and-context-in-javascript/" target="_blank" rel="noopener">http://ryanmorr.com/understanding-scope-and-context-in-javascript/</a></li>
+<li><a href="https://hackernoon.com/execution-context-in-javascript-319dd72e8e2c" target="_blank" rel="noopener">https://hackernoon.com/execution-context-in-javascript-319dd72e8e2c</a></li>
+<li><a href="http://2ality.com/2012/04/arrow-functions.html" target="_blank" rel="noopener">http://2ality.com/2012/04/arrow-functions.html</a></li>
+</ul>
+<blockquote>
+<p>本文发布于掘金 <a href="https://juejin.im/post/59e066d551882578c3411908" target="_blank" rel="noopener">https://juejin.im/post/59e066d551882578c3411908</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/10/12/Slide-of-Information-Extraction-In-Illicit-Web-Domains-used-in-workshop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1444,121 +1579,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/22/%E9%9A%8F%E6%9C%BA%E7%B4%A2%E5%BC%95%E7%AE%97%E6%B3%95%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-An-Introduction-to-Random-Indexing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/08/22/%E9%9A%8F%E6%9C%BA%E7%B4%A2%E5%BC%95%E7%AE%97%E6%B3%95%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-An-Introduction-to-Random-Indexing/" class="post-title-link" itemprop="url">随机索引算法论文笔记 An Introduction to Random Indexing</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-08-22 09:34:00" itemprop="dateCreated datePublished" datetime="2017-08-22T09:34:00+08:00">2017-08-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Paper/" itemprop="url" rel="index">
-                    <span itemprop="name">Paper</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>Sahlgren M. An Introduction to Random Indexing[C]// Methods &amp; Applications of Semantic Indexing Workshop at International Conference on Terminology &amp; Knowledge Engineering. 2005:194–201.</p>
-</blockquote>
-<h2 id="论文信息"><a href="#论文信息" class="headerlink" title="论文信息"></a>论文信息</h2><p>文章作者为 Sahlgren M</p>
-<h2 id="论文概述"><a href="#论文概述" class="headerlink" title="论文概述"></a>论文概述</h2><p>本文主要内容分为了 4 段，分别为：</p>
-<ul>
-<li>The word space methodology</li>
-<li>Problems and solutions</li>
-<li>Random Indexing</li>
-<li>Results</li>
-</ul>
-<p>文章从文本空间讲起，简述了使用向量表示词的作用。接着以 LSA 加上 SVD 降维为例，简单说明了传统词向量表示算法的一些局限性（向量维度依然过大，计算代价大等），引出了 Random Indexing 算法。</p>
-<h2 id="Random-Indexing"><a href="#Random-Indexing" class="headerlink" title="Random Indexing"></a>Random Indexing</h2><p>文中描述：<br>• First, each context (e.g. each document or each word) in the data is assigned a unique and randomly generated representation called an index vector. These index vectors are sparse, high-dimensional, and ternary, which means that their dimensionality (d) is on the order of thousands, and that they consist of a small number of randomly distributed +1s and -1s, with the rest of the elements of the vectors set to 0.<br>• Then, context vectors are produced by scanning through the text, and each time a word occurs in a context (e.g. in a document, or within a sliding context window), that context’s d-dimensional index vector is added to the context vector for the word in question. Words are thus represented by d-dimensional context vectors that are effectively the sum of the words’ contexts.</p>
-<p>结合下面的论文提到的解释理解 Random Indexing algorithm。</p>
-<blockquote>
-<p>论文 2 — 熊玮, 白越, 刘爱国,等. 基于改进RI方法的文本聚类[J]. 南昌大学学报(理科版), 2016, 40(5):426-430.</p>
-</blockquote>
-<h3 id="第一步：生成随机索引向量"><a href="#第一步：生成随机索引向量" class="headerlink" title="第一步：生成随机索引向量"></a>第一步：生成随机索引向量</h3><p>为正文、单词生成随机索引向量。这些随机索引向量是稀疏、高维的。随机索引向量的值可以为 (-1, +1, 0) 三种。大多数的向量值都为 0，只有少数向量值为 -1 和 +1。在论文 2 中提到随机索引向量可以使用二元组 $ (d,\epsilon) $表示。<br>其中，$d$ 为向量维度，$\epsilon$为不同索引向量元素数量参数。对于所有文本来说，它们向量空间中出现的 -1 与 +1 的数量是相同的，在 $d$ 确定后由 $\epsilon$ 决定它们出现的数量。<br>令文本集全集为 $W$，文本集的子集（单词）为$\omega _j \in W,j \in {1,2,3,…,n} $，此时生成的随机索引向量为 $ R_{\nu_j} = (r\nu_1^j,r\nu_2^j,r\nu_3^j,…,r\nu_d^j ) $，其中 $r\nu_{h^j} \in {+1,-1,0}, h \in {1,2,3,…,d}$。$\epsilon$的取值远小于$d$。总体来说，+1 与 -1 分别占随机索引向量总维度的概率为 $\frac{\epsilon /2}{d}$，显然有</p>
-<script type="math/tex; mode=display">\frac{\epsilon /2}{d} + \frac{d - \epsilon}{d} + \frac{\epsilon /2}{d} = 1</script><h3 id="第二步：生成文本向量"><a href="#第二步：生成文本向量" class="headerlink" title="第二步：生成文本向量"></a>第二步：生成文本向量</h3><p>根据滑动窗口包含的上下文生成上下文向量，接着根据上下文向量计算文本向量。<br>在论文 2 中，这一步又分为了两步：</p>
-<h4 id="生成特征词汇的上下文向量"><a href="#生成特征词汇的上下文向量" class="headerlink" title="生成特征词汇的上下文向量"></a>生成特征词汇的上下文向量</h4><p>设滑动窗口大小为 2L，则窗口范围为 [-L, L]。记特征词 $\omega_j$ 在文本 $d_i$ 中的上下文向量为 $c^i_j$，则其表达式为：</p>
-<script type="math/tex; mode=display">c^i_j = \sum^{k = L}_{k = -L}Rv_{j+k} * \omega f(\omega_{j+k})</script><p>其中 $Rv_{j+k}$ 表示特征词 $\omega_j$ 在窗口范围内共现词 $\omega_{j+k}$ 对应的随机索引向量；<br>$\omega f(\omega_{j+k})$ 为特征词 $\omega_j$ 在窗口范围上下文中共现特征词 $\omega_{j+k}$ 在文本 $d_i$ 中的加权权重。论文 2 中采用了 tf-idf 加权计算算法。论文 2 此时引用了</p>
-<blockquote>
-<p>Gorman J, Curran J R. Random Indexing using Statistical Weight Functions[C]// EMNLP 2007, Proceedings of the 2006 Conference on Empirical Methods in Natural Language Processing, 22-23 July 2006, Sydney, Australia. DBLP, 2006:457-464.</p>
-</blockquote>
-<p>根据 tf-idf 加权算法，可以得到 $\omega f(\omega_{j+k})$ 的表达式：</p>
-<script type="math/tex; mode=display">\omega f(\omega_{j+k}) = \frac{f(\omega,\omega')}{n(\omega')} = \frac{n(\omega,\omega')}{n(\omega) * n(\omega')}</script><p>其中 $n(\omega)$ 表示特征词汇 $\omega$ 在上下文中出现的数量，$n(\omega,\omega’)$ 表示上下文中 $\omega$ 与 $\omega’$ 共同出现的数量。</p>
-<p>最终，某个特征词汇 $\omega_j$ 在滑动窗口上下文中的上下文向量表示为</p>
-<script type="math/tex; mode=display">C_j = \sum^{n}_{i=1} c^i_j</script><h4 id="生成文本向量"><a href="#生成文本向量" class="headerlink" title="生成文本向量"></a>生成文本向量</h4><ul>
-<li>计算文本集中所有特征词汇上下文向量的平均值</li>
-</ul>
-<script type="math/tex; mode=display">\tau = \frac{\sum^n_{i=1}\sum^{z_i}_{j=1}Cj}{m}</script><p>其中 $z_i$ 表示文档 $d_i$ 中特征词汇总数，m 表示文 本集中所有不同特征词汇的总数量，n 表示文本集的文本总数量。</p>
-<ul>
-<li>生成文档 $d_i$ 的文本向量</li>
-</ul>
-<script type="math/tex; mode=display">V_i =\frac{\sum^{z_i}_{j=1}C_j}{z_i} - \tau</script><h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><p>文章最后总结了一些经典数据集与实验应用 RI 算法之后准确率大多有所上升。论文 2 中最终总结了 RI 算法的优缺点。</p>
-<h3 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h3><ul>
-<li>计算量小</li>
-<li>容易实现</li>
-<li>处理效率高</li>
-<li>潜在语义表现好，利用了上下文信息表示特征词的词向量，容易解决同义词、近义词等问题</li>
-<li>降维性能好</li>
-</ul>
-<h3 id="Disadvantages"><a href="#Disadvantages" class="headerlink" title="Disadvantages"></a>Disadvantages</h3><ul>
-<li>随机向量元素 (-1, +1, 0) 的随机性可能导致在计算特征词上下文向量时发生相加消减的情况，导致潜在语义信息丢失</li>
-<li>论文 2 中选用的 tf-idf 计算出的加权值过小（此条仅对全文特征向量计算而言）</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>了解了 Random Indexing algorithm 的基本原理及应用。之后有精力希望能将 RI 算法的代码实现，并将其与其它词向量表示算法进行对比。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1607,7 +1627,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">155</span>
+          <span class="site-state-item-count">156</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1620,7 +1640,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">194</span>
+        <span class="site-state-item-count">196</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

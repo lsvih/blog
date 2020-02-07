@@ -214,6 +214,85 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/21/%E6%8E%A2%E7%A9%B6%E5%87%BD%E6%95%B0%E7%9F%A9%E9%98%B5%E5%8C%96%E8%BF%90%E7%AE%97%E2%80%94%E2%80%94%E9%80%90%E6%AD%A5%E5%88%86%E6%9E%90%E5%AF%B9%E4%BA%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0%E7%9A%84%E7%9F%A9%E9%98%B5%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/04/21/%E6%8E%A2%E7%A9%B6%E5%87%BD%E6%95%B0%E7%9F%A9%E9%98%B5%E5%8C%96%E8%BF%90%E7%AE%97%E2%80%94%E2%80%94%E9%80%90%E6%AD%A5%E5%88%86%E6%9E%90%E5%AF%B9%E4%BA%8E%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0%E7%9A%84%E7%9F%A9%E9%98%B5%E5%8C%96/" class="post-title-link" itemprop="url">探究函数矩阵化运算——逐步分析对于线性回归代价函数的矩阵化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-04-21 10:36:00" itemprop="dateCreated datePublished" datetime="2016-04-21T10:36:00+08:00">2016-04-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在此之前没有接触过矩阵化运算，因此对于矩阵化运算的过程一头雾水。准备对于线性回归的代价函数进行矩阵化以探究其过程。</p>
+<hr>
+<p>CostFuction 数学表达式：</p>
+<script type="math/tex; mode=display">J(\theta)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2</script><p>根据数学式之前以for循环写了算法：<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:m</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">J += (theta(<span class="number">1</span>)+ theta(<span class="number">2</span>)*X(<span class="built_in">i</span>,<span class="number">2</span>)-y(<span class="built_in">i</span>))^<span class="number">2</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">J = J/(<span class="number">2</span>*m);</span></pre></td></tr></table></figure></p>
+<p>很明确的循环符合数学式。</p>
+<p>尝试对齐进行矩阵化，首先看$h_\theta(x^{(i)})$</p>
+<script type="math/tex; mode=display">h_\theta(x)=\theta^T x = \theta_0 + \theta_1 x_1</script><p>对每个x(i)进行运算：</p>
+<p><img src="/images/pasted-54.png" alt="upload successful"></p>
+<p>对其进行sum与转置操作后可以得到</p>
+<script type="math/tex; mode=display">\sum((\theta'.*X)')-y'= \\ [\theta_1 x^{(1)}_1+\theta_2 x^{(1)}_2 -y^{(1)},\theta_1 x^{(2)}_1+\theta_2 x^{(2)}_2 -y^{(2)},...,\theta_1 x^{(m)}_1+\theta_2 x^{(m)}_2 -y^{(m)}]</script><p>因此可以得知代价函数的矩阵化函数式为：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">J = sum((sum((theta'.*X)')-y').^<span class="number">2</span>)/(<span class="number">2</span>*m);</span></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/21/js%E8%8E%B7%E5%8F%96url%E4%B8%AD%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%A0%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1020,80 +1099,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/03/%E5%BC%95%E7%94%A8Js%E6%96%87%E4%BB%B6%E9%80%9A%E8%BF%87script%E4%B8%AD%E7%9A%84src%E4%BC%A0%E5%80%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/04/03/%E5%BC%95%E7%94%A8Js%E6%96%87%E4%BB%B6%E9%80%9A%E8%BF%87script%E4%B8%AD%E7%9A%84src%E4%BC%A0%E5%80%BC/" class="post-title-link" itemprop="url">引用Js文件通过script中的src传值</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-04-03 17:27:00" itemprop="dateCreated datePublished" datetime="2016-04-03T17:27:00+08:00">2016-04-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front End</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>举例：</p>
-<script type="text/javascript" src="js/iflogin.js?url=cart.html" ></script>
-
-<p>在 iflogin.js 中需要用到url这个参数。</p>
-<p>原理:<script>在 html 中也是标签，能通过 document.getElementsByTagName 访问到。然后通过 split 截断 src 中的字符串即可得到需要的值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> js = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"script"</span>);  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; js.length; i++) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (js[i].src.indexOf(<span class="string">"iflogin.js"</span>) &gt;= <span class="number">0</span>) &#123;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">var</span> url = <span class="keyword">new</span> <span class="built_in">Array</span>();  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        url = js[i].src.split(<span class="string">'?'</span>);  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        url = url[<span class="number">1</span>].split(<span class="string">'='</span>);  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
-<p>如上所示，通过查找所有 script 标签，找到 iflogin.js 并读得后面所跟参数。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1142,7 +1147,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">155</span>
+          <span class="site-state-item-count">156</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1155,7 +1160,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">194</span>
+        <span class="site-state-item-count">196</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
