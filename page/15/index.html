@@ -219,6 +219,83 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/12/python%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86csv%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/04/12/python%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86csv%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">python批量处理csv文件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-04-12 12:27:00" itemprop="dateCreated datePublished" datetime="2016-04-12T12:27:00+08:00">2016-04-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tool/" itemprop="url" rel="index">
+                    <span itemprop="name">Tool</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding:utf-8</span></span></pre></td></tr></table></figure>
+<p>为了使处理文件时用 utf-8 编码，做如上编码声明</p>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(text)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    m = hashlib.md5()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    m.update(text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> m.hexdigest()</span></pre></td></tr></table></figure>
+<p>利用 hashlib 进行 md5 编码</p>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">import_points_csv</span><span class="params">(filename,outfilename)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    print(filename)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    g=file(outfilename,&amp;quot;w+&amp;quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">#使用w+(写入模式)打开文件outfilename</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">with</span> open(filename, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">#读取filename</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        line = f.readline()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        <span class="comment">#逐行读取f。因为要处理csv的列因此逐行处理</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">while</span> line:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            line = line.replace(<span class="string">'n'</span>,<span class="string">''</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            line = line.replace(<span class="string">'r'</span>,<span class="string">''</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">            <span class="comment">#处理每行的字符串，使其为单纯的一行以逗号分隔的文字</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">            row = line.split(<span class="string">','</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">            <span class="comment">#用逗号作为分隔符，对字符串line进行切片，以数组的形式存入row中</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">            state = row[<span class="number">0</span>].strip()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">            date = row[<span class="number">20</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">            thistype = <span class="string">'国控'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">            print(thistype)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">            name = row[<span class="number">1</span>].strip()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">            stationid = md5(name+state+thistype)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">            row[<span class="number">21</span>] = stationid</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">            md5id = md5(date+stationid)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">            row[<span class="number">22</span>] = md5id</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">            row[<span class="number">1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">            <span class="comment">#对数组row进行处理。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">            print(row)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(row)<span class="number">-1</span>):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">                row[i] = row[i] + <span class="string">','</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">            <span class="comment">#对row进行拼接，分隔符为逗号</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">            g.writelines(row)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">            g.writelines(<span class="string">'n'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">            <span class="comment">#逐行写入文件，每行的最后加上一个换行符。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">            line = f.readline()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    g.close()</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import_points_csv(<span class="string">'国控2.csv'</span>.decode(<span class="string">'utf-8'</span>).encode(<span class="string">'gbk'</span>),<span class="string">'contry_2.csv'</span>)</span></pre></td></tr></table></figure>
+<p>由于文件名是中文，因此要将其编码才能被程序读取，不然在运行时显示文件名为乱码且无法读取</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/03/%E5%BC%95%E7%94%A8Js%E6%96%87%E4%BB%B6%E9%80%9A%E8%BF%87script%E4%B8%AD%E7%9A%84src%E4%BC%A0%E5%80%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -995,98 +1072,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/03/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/" class="post-title-link" itemprop="url">机器学习学习笔记（五）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-03-24 07:01:00" itemprop="dateCreated datePublished" datetime="2016-03-24T07:01:00+08:00">2016-03-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="特征缩放（Feature-Scaling）"><a href="#特征缩放（Feature-Scaling）" class="headerlink" title="特征缩放（Feature Scaling）"></a>特征缩放（Feature Scaling）</h2><p>在线性回归的实际例子中中多数会遇到这样的情况，某两个特征值的数值相差很远，例如房价可能是100(万元)的数量级，房屋面积可能是100的数量级。表现在轮廓图上的形式就是如下图一样，</p>
-<p><img src="/images/pasted-7.png" alt="upload successful"></p>
-<p>等高线（代价函数J）的形状呈现出非常细长的椭圆。</p>
-<p><img src="/images/pasted-19.png" alt="upload successful"></p>
-<p>可以看到在这种情况下的梯度下降函数需要迭代很多次，在最小值附近震荡直到最后收敛。为了使梯度下降能够尽量朝着一个方向有效率地进行，我们需要对输入值中的某些特征值进行统一的缩放。</p>
-<p><img src="/images/pasted-20.png" alt="upload successful"></p>
-<p>这样的参数值接近的代价方程，梯度下降函数的迭代就会方便与均匀很多，从而达到减少迭代次数的目的。一般来说，将两个参数都缩放到-1，1之间较为合适。特征缩放可直接参照公式：</p>
-<script type="math/tex; mode=display">x_n=\frac{x_n-\mu _n}{S_n}</script><p>其中 $\mu_n$ 是平均值，$S_n$ 是标准差。</p>
-<blockquote>
-<p>为了简单方便，可以直接用最大值-最小值来代替标准差。</p>
-</blockquote>
-<h3 id="学习率"><a href="#学习率" class="headerlink" title="学习率"></a>学习率</h3><p>学习率α在梯度下降方程中起着重要的作用，梯度下降算法的每次迭代受到学习率的影响，如果学习率 α过小，则达到收敛所需的迭代次数会非常高；如果学习率α 过大，每次迭代可能不会减小代价函数，可能会越过局部最小值导致无法收敛。</p>
-<p>在一个线性回归情况中尝试多个学习率可以找到计算效率最高的学习率。通常可以考虑尝试些学习率：α=0.01，0.03，0.1，0.3，1，3，10 （它们都是3倍3倍地增加）</p>
-<h3 id="多项式回归"><a href="#多项式回归" class="headerlink" title="多项式回归"></a>多项式回归</h3><p>在现实情况中，往往线性回归是不足以很好的契合一个数据集的。</p>
-<p>例如</p>
-<p><img src="/images/pasted-21.png" alt="upload successful"></p>
-<p>用的三次方程，</p>
-<p>其实也可以化为线性方程看：</p>
-<p><img src="/images/pasted-22.png" alt="upload successful"></p>
-<p>但是经过平方立方之后，每个参数的差值会变得更大，因此特征缩放在这样的情况中更加的重要。</p>
-<p>比如上面如果size为1到1000的话，x2就是1到1000000，x3就是1到1000000000。不作处理会使算法很难正常进行下去。可以使x1=size/1000，x2=size^2/1000000,x3=size^3/1000000000这样就能使几个参数的值在近似的范围内。</p>
-<p>再例如</p>
-<script type="math/tex; mode=display">h_\theta(x)=\theta_0+\theta_1(size)+\theta_2\sqrt{(size)}</script><p>要看成</p>
-<script type="math/tex; mode=display">h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2</script><p>线性方程，size在1-1000间，那么$x_1=\frac{size}{1000},x_2=\frac{\sqrt{size}}{\sqrt{1000}}$</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1135,7 +1120,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">156</span>
+          <span class="site-state-item-count">157</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

@@ -219,6 +219,110 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/12/31/Python-collections%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84Counter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/12/31/Python-collections%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84Counter/" class="post-title-link" itemprop="url">Python collections模块中的Counter</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-12-31 09:02:04" itemprop="dateCreated datePublished" datetime="2016-12-31T09:02:04+08:00">2016-12-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Back-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Back End</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>除了内置(build-in)数据结构(dict,list,set,tuple)之外，python还提供了一些额外的数据结构。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span></pre></td></tr></table></figure>
+<p>collections提供了5种可选的数据结构:Counter,deque,OrderDict,defaultdict,namedtuple()</p>
+<h2 id="collections-Counter"><a href="#collections-Counter" class="headerlink" title="collections.Counter"></a>collections.Counter</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span></pre></td></tr></table></figure>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Counter是dict的一个子集，它可以用来计算dict中的可哈希对象。它是一个无排序集合，它的元素作为dict的key存储，对应的计数则以其value存储，例如Counter({‘a’:1,’b’:2,’c’:4})代表有1个a,2个b,4个c。Counter接受所有的整数作为其计数(包括0和负数在内)。</p>
+<h3 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h3><p>构造一个空的Counter</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Counter()</span></pre></td></tr></table></figure>
+<p>从迭代器创建Counter</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter(<span class="string">"asdf"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="string">'s'</span>:<span class="number">1</span>,<span class="string">'d'</span>:<span class="number">1</span>,<span class="string">'f'</span>:<span class="number">1</span>&#125;)</span></pre></td></tr></table></figure>
+<p>由字典mapping创建</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter(&#123;<span class="string">'ss'</span>:<span class="number">1</span>,<span class="string">'dd'</span>:<span class="number">2</span>&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'dd'</span>:<span class="number">2</span>,<span class="string">'ss'</span>:<span class="number">1</span>&#125;)</span></pre></td></tr></table></figure>
+<p>由参数的keyword创建</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter(hh = <span class="number">2</span>,ss = <span class="number">6</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'ss'</span>:<span class="number">6</span>,<span class="string">'hh'</span>:<span class="number">2</span>&#125;</span></pre></td></tr></table></figure>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>Counter有一些很有用的特性。例如，作为一个计数器，当读取Counter中不存在的key时，不会像通常dict那样返回错误，而是会返回0(意思是Counter里有0个这种key)</p>
+<p>例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter([<span class="string">'a'</span>,<span class="string">'a'</span>,<span class="string">'c'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'a'</span>:<span class="number">2</span>,<span class="string">'c'</span>:<span class="number">1</span>&#125;)</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用dict</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">t = &#123;<span class="string">'a'</span>:<span class="number">2</span>,<span class="string">'c'</span>:<span class="number">1</span>&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">t[<span class="string">'b'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时报错</span></span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用Counter</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">c[<span class="string">'b'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#输出0</span></span></pre></td></tr></table></figure>
+<p>将Counter中的一个key的value设置为0(即将其计数清零)并不会删除这个元素，只有使用del才能将其中的元素删除。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter([<span class="string">'a'</span>,<span class="string">'a'</span>,<span class="string">'c'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'a'</span>:<span class="number">2</span>,<span class="string">'c'</span>:<span class="number">1</span>&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">c[<span class="string">'a'</span>] = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'c'</span>:<span class="number">1</span>,<span class="string">'a'</span>:<span class="number">0</span>&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">del</span> c[<span class="string">'c'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'a'</span>:<span class="number">0</span>&#125;)</span></pre></td></tr></table></figure>
+<h4 id="elements"><a href="#elements" class="headerlink" title="elements()"></a>elements()</h4><p>返回Counter()中计数大于1的所有元素。例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter(&#123;<span class="string">'a'</span>:<span class="number">2</span>,<span class="string">'b'</span>:<span class="number">1</span>,<span class="string">'d'</span>:<span class="number">0</span>,<span class="string">'e'</span>:<span class="number">-2</span>&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">list(c.elements())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#输出</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">[<span class="string">'a'</span>,<span class="string">'a'</span>,<span class="string">'b'</span>]</span></pre></td></tr></table></figure>
+<h4 id="most-common-n"><a href="#most-common-n" class="headerlink" title="most_common([n])"></a>most_common([n])</h4><p>返回Counter()中计数最多的n个元素。例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter(<span class="string">"asdfaas"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">c.most_common(<span class="number">2</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#输出</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">[(<span class="string">'a'</span>,<span class="number">3</span>),(<span class="string">'b'</span>,<span class="number">2</span>)]</span></pre></td></tr></table></figure>
+<h4 id="subtract"><a href="#subtract" class="headerlink" title="subtract()"></a>subtract()</h4><p>由一个Counter()减去另一个Counter()或迭代器或mapping。得到的数字可以为0或负数。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter(<span class="string">"addaw"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">b = <span class="string">"adddf"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">c.subtract(b)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="string">'w'</span>:<span class="number">1</span>,<span class="string">'d'</span>:<span class="number">-1</span>,<span class="string">'f'</span>:<span class="number">-1</span>&#125;)</span></pre></td></tr></table></figure>
+<p>除此之外，Counter()还有一些dict本身有的特性。</p>
+<p>比如 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Counter(<span class="string">"asdf"</span>) == Counter(<span class="string">"fdsa"</span>) &gt;&gt;&gt;&gt; <span class="keyword">True</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Counter(<span class="string">"wwww"</span>) + Counter(<span class="string">"ssss"</span>) &gt;&gt;&gt;&gt; Counter(&#123;<span class="string">'w'</span>:<span class="number">4</span>,<span class="string">'s'</span>:<span class="number">4</span>&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">list(Counter(<span class="string">"asdf"</span>)) &gt;&gt;&gt;&gt; [<span class="string">'a'</span>,<span class="string">'s'</span>,<span class="string">'d'</span>,<span class="string">'f'</span>]</span></pre></td></tr></table></figure>
+<p>等等。</p>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>Counter()计数器可以用在很多需要统计key出现字数的情景中。</p>
+<p>例如求同素异构词（由相同的字母不同的顺序组成的词）:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">same</span><span class="params">(s,d)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> Counter(s) == Counter(d)</span></pre></td></tr></table></figure>
+<p>求句子中出现次数最多的字母:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count</span><span class="params">(d)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> Counter(d).most_common(<span class="number">1</span>)</span></pre></td></tr></table></figure>
+<p>等等</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/12/20/%E8%AE%A1%E7%AE%97%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1027,86 +1131,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/17/Problem-solving-ideas-of-Nim-game-classical-problem/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/10/17/Problem-solving-ideas-of-Nim-game-classical-problem/" class="post-title-link" itemprop="url">Problem-solving ideas of Nim game(classical problem)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-10-17 18:56:00" itemprop="dateCreated datePublished" datetime="2016-10-17T18:56:00+08:00">2016-10-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="Nim-game’s-rule"><a href="#Nim-game’s-rule" class="headerlink" title="Nim game’s rule:"></a>Nim game’s rule:</h3><p>You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones. The one who removes the last stone will be the winner. You will take the first turn to remove the stones.</p>
-<p>Both of you are very clever and have optimal strategies for the game. Write a function to determine whether you can win the game given the number of stones in the heap.</p>
-<p>For example, if there are 4 stones in the heap, then you will never win the game: no matter 1, 2, or 3 stones you remove, the last stone will always be removed by your friend.</p>
-<h3 id="idea-of-Nim-game"><a href="#idea-of-Nim-game" class="headerlink" title="idea of Nim game"></a>idea of Nim game</h3><p>There are some situations in this game.</p>
-<p>Let’s think about what will happend while stones is few:</p>
-<p>If there are 4 stones in the heap,you will lose the game in every matters.</p>
-<p>If there are less than 3 stones,you will win the game in one step.</p>
-<p>So,when there are more than 4 stones,you should remove some stones and let your friend getting 4 stones.In this situation,we can simplify this problem to that how to leaving 4 stones.And you will find it is the same as initially problem.</p>
-<p>Now, what you should do is leaving multiple of 4 stones in every matters.So,if the number of stones is not the muiltiple of 4,you will win this game.</p>
-<p>Finally,we can use a formula to express this problem:</p>
-<p><code>stone_num%4!==0</code></p>
-<p>you will win.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1155,7 +1179,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">156</span>
+          <span class="site-state-item-count">157</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

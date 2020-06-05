@@ -219,6 +219,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/17/Problem-solving-ideas-of-Nim-game-classical-problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/10/17/Problem-solving-ideas-of-Nim-game-classical-problem/" class="post-title-link" itemprop="url">Problem-solving ideas of Nim game(classical problem)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-10-17 18:56:00" itemprop="dateCreated datePublished" datetime="2016-10-17T18:56:00+08:00">2016-10-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Nim-game’s-rule"><a href="#Nim-game’s-rule" class="headerlink" title="Nim game’s rule:"></a>Nim game’s rule:</h3><p>You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones. The one who removes the last stone will be the winner. You will take the first turn to remove the stones.</p>
+<p>Both of you are very clever and have optimal strategies for the game. Write a function to determine whether you can win the game given the number of stones in the heap.</p>
+<p>For example, if there are 4 stones in the heap, then you will never win the game: no matter 1, 2, or 3 stones you remove, the last stone will always be removed by your friend.</p>
+<h3 id="idea-of-Nim-game"><a href="#idea-of-Nim-game" class="headerlink" title="idea of Nim game"></a>idea of Nim game</h3><p>There are some situations in this game.</p>
+<p>Let’s think about what will happend while stones is few:</p>
+<p>If there are 4 stones in the heap,you will lose the game in every matters.</p>
+<p>If there are less than 3 stones,you will win the game in one step.</p>
+<p>So,when there are more than 4 stones,you should remove some stones and let your friend getting 4 stones.In this situation,we can simplify this problem to that how to leaving 4 stones.And you will find it is the same as initially problem.</p>
+<p>Now, what you should do is leaving multiple of 4 stones in every matters.So,if the number of stones is not the muiltiple of 4,you will win this game.</p>
+<p>Finally,we can use a formula to express this problem:</p>
+<p><code>stone_num%4!==0</code></p>
+<p>you will win.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/09/mongoDB-nodejs%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7access-token%E9%AA%8C%E8%AF%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -994,79 +1074,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/07/27/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%8C%89%E9%92%AE%E8%BF%87%E5%B0%8F%E7%82%B9%E5%87%BB%E5%9B%B0%E9%9A%BE%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/07/27/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%8C%89%E9%92%AE%E8%BF%87%E5%B0%8F%E7%82%B9%E5%87%BB%E5%9B%B0%E9%9A%BE%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">移动端按钮过小点击困难的解决方案</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-07-27 11:20:00" itemprop="dateCreated datePublished" datetime="2016-07-27T11:20:00+08:00">2016-07-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front End</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/images/pasted-87.png" alt="upload successful"></p>
-<p>按钮如图所示，长宽都很小，导致在使用时点击困难。</p>
-<p>解决方案：在按钮之上覆盖一层点击区域，将按钮的触发事件放在此区域之上</p>
-<p><img src="/images/pasted-88.png" alt="upload successful"></p>
-<p>添加点击区域后可操作范围明显增大。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1115,7 +1122,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">156</span>
+          <span class="site-state-item-count">157</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

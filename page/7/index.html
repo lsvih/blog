@@ -219,6 +219,129 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/29/%E4%BD%BF%E7%94%A8-AI-%E4%B8%BA-Web-%E7%BD%91%E9%A1%B5%E5%A2%9E%E5%8A%A0%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%8A%9F%E8%83%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/29/%E4%BD%BF%E7%94%A8-AI-%E4%B8%BA-Web-%E7%BD%91%E9%A1%B5%E5%A2%9E%E5%8A%A0%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">使用 AI 为 Web 网页增加无障碍功能</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-08-29 16:55:00" itemprop="dateCreated datePublished" datetime="2017-08-29T16:55:00+08:00">2017-08-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Translate/" itemprop="url" rel="index">
+                    <span itemprop="name">Translate</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/images/pasted-183.png" alt="upload successful"></p>
+<p>图为一位盲人正在阅读盲文（<a href="http://usabilitygeek.com/wp-content/uploads/2012/07/Software-For-Visually-Impaired-Blind-Users.jpg" target="_blank" rel="noopener">图片链接</a>）</p>
+<p><a href="http://www.who.int/mediacentre/factsheets/fs282/en/" target="_blank" rel="noopener">根据世界健康组织的统计</a>，全球约有 2.85 亿位视力障碍人士，仅美国就有 810 万网民患视力障碍。</p>
+<p>在我们视力正常的人看来，互联网是一个充满了文字、图片、视频等事物的地方，然而对于视力障碍人士来说却并不是这样的。有一种可以读出网页中文字和元数据的工具叫做屏幕阅读器，然而这种工具的作用十分有限，仅能让人看到网页的一部分文本。虽然一些开发人员花时间去改进他们的网站，为视障人士添加图片的描述性文字，但是绝大多数程序员都不会花时间去做这件公认冗长乏味的事情。</p>
+<p>所以，我决定做这么一个工具，来帮助视障人士通过 AI 的力量来“看”互联网。我给它起名为“Auto Alt Text”（自动 Alt 文本添加器），是一个 Chrome 拓展插件，可以让用户在图片上点击右键后得到场景描述 —— 最开始是要这么做的。</p>
+<p>您可以观看 <a href="https://www.youtube.com/embed/c1S4iB360m8" target="_blank" rel="noopener">这个视频</a>，了解它是如何运作的，然后 <a href="http://abhinavsuri.com/aat" target="_blank" rel="noopener">下载它并亲自试一试吧！</a>！</p>
+<h4 id="为什么我想做-Auto-Alt-Text："><a href="#为什么我想做-Auto-Alt-Text：" class="headerlink" title="为什么我想做 Auto Alt Text："></a>为什么我想做 Auto Alt Text：</h4><p>我曾经是不想花时间为图片添加描述的开发者中的一员。对那时的我来说，无障碍永远是“考虑考虑”的事，直到有一天我收到了来自<a href="https://github.com/hack4impact/flask-base" target="_blank" rel="noopener">我的一个项目</a>的用户的邮件。</p>
+<p><img src="/images/pasted-184.png" alt="upload successful"></p>
+<p>邮件内容如下：“你好，Abhinav，我看了你的 flask-base 项目，我觉得它非常适合我的下个工程。感谢你开发了它。不过我想让你知道，你应该为你 README 中的图片加上 alt 描述。我是盲人，用了很长一段时间才弄清楚它们的内容 :/来自某人”</p>
+<p>在收到邮件的时候，无障碍功能的开发是放在我开发队列的最后面的，基本上它就是个“事后有空再添加”的想法而已。但是，这封邮件唤醒了我。在互联网中，有许多的人需要无障碍阅读功能来理解网站、应用、项目等事物的用途。</p>
+<blockquote>
+<p>“现在 Web 中充满了缺失、错误或者没有替代文本的图片” —— WebAIM（犹他州立大学残疾人中心）</p>
+</blockquote>
+<h4 id="用-AI（人工智能）来挽救："><a href="#用-AI（人工智能）来挽救：" class="headerlink" title="用 AI（人工智能）来挽救："></a>用 AI（人工智能）来挽救：</h4><p>现在其实有一些方法来给图像加描述文字；但是，大多数方法都有一些缺点：</p>
+<ol>
+<li>它们反应很慢，要很长时间才能返回描述文字。</li>
+<li>它们是半自动化的（即需要人类手动按需标记描述文字）。</li>
+<li>制作、维护它们需要高昂的代价。</li>
+</ol>
+<p>现在，通过创建神经网络，这些问题都能得到解决。最近我接触、学习了 Tensorflow —— 一个用于机器学习开发的开源库，开始深入研究机器学习与 AI。Tensorflow 使开发人员能够构建可用于完成从对象检测到图像识别的各种任务的高鲁棒模型。</p>
+<p>在做了一些研究之后，我找到了一篇 Vinyals 写的论文<a href="https://arxiv.org/abs/1609.06647" target="_blank" rel="noopener">《Show and Tell: Lessons learned from the 2015 MSCOCO Image Captioning Challenge》</a>。这些研究者们创建了一个深度神经网络，可以以语义化方式描述图片的内容。</p>
+<p><img src="/images/pasted-185.png" alt="upload successful"></p>
+<p>im2txt 的实例来自 <a href="https://github.com/tensorflow/models/tree/master/im2txt" target="_blank" rel="noopener">im2txt Github Repository</a></p>
+<h4 id="im2txt-的技术细节："><a href="#im2txt-的技术细节：" class="headerlink" title="im2txt 的技术细节："></a>im2txt 的技术细节：</h4><p>这个模型的机制相当的精致，但是它基本上是一个“编码器 - 解码器”的方案。首先图片会传入一个名为 Inception v3 的卷积神经网络进行图片分类，接着编码好的图片送入 LSTM 网络中。LSTM 是一种专门用于序列模型/时间敏感信息的神经网络层。最后 LSTM 通过组合设定好的单词，形成一句描述图片内容的句子。LSTM 通过求单词集中每个单词在句子中出现的似然性，分别计算第一个词出现的概率分布、第二个词出现的概率分布……直到出现概率最大的字符为“.”，为句子加上最后的句号。</p>
+<p><img src="/images/pasted-186.png" alt="upload successful"></p>
+<p>图为此神经网络的概况（图片来自 <a href="https://github.com/tensorflow/models/tree/master/im2txt" target="_blank" rel="noopener">im2txt Github repository</a>）</p>
+<p>根据 Github 库中的说明，这个模型在 Tesla k20m GPU 上的训练时间大约为 1-2 周（在我笔记本的标准 CPU 上计算需要更多的时间）。不过值得庆幸的是，Tensorflow 社区提供了一个已经训练好的模型。</p>
+<h4 id="使用-box-Lamdba-解决问题："><a href="#使用-box-Lamdba-解决问题：" class="headerlink" title="使用 box + Lamdba 解决问题："></a>使用 box + Lamdba 解决问题：</h4><p>在运行模型时，我试图使用 Bazel 来运行模型（Bazel 是一个用于将 tensorflow 模型解包成可运行脚本的工具）。但是，当命令行运行时，它需要大约 15 秒钟的时间才能从获取一张图片的结果！解决问题的唯一办法就是让 Tensorflow 的整个 Graph 都常驻内存，但是这样需要这个程序全天候运行。我计划将这个模型挂在 AWS Elasticbeanstalk 上，在这个平台上是以小时为单位为计算时间计费的，而我们要维持应用程序常驻，因此并不合适（它完全匹配了前面章节所说的图片描述软件缺点的第三条缺点）。因此，我决定使用 AWS Lambda 来完成所有工作。</p>
+<p>Lambda 是一种无服务器计算服务，价格很低。此外，它会在计算服务激活时按秒收费。Lambda 的工作原理很简单，一旦应用收到了用户的请求，Lambda 就会将应用程序的映象激活，返回 response，然后再停止应用映象。如果收到多个并发请求，它会唤起多个实例以拓展负载。另外，如果某个小时内应用不断收到请求，它将会保持应用程序的激活状态。因此，Lambda 服务非常符合我的这个用例。</p>
+<p><img src="/images/pasted-187.png" alt="upload successful"></p>
+<p>图为 AWS API Gateway + AWS = ❤️ (<a href="https://cdn-images-1.medium.com/max/700/1*SzOPXTf_YQNtFejG0e4HPg.png" target="_blank" rel="noopener">图片链接</a>)</p>
+<p>使用 Lambda 的问题就在于，我必须要为 im2txt 模型创建一个 API。另外，Lambda 对于以功能形式加载的应用有空间限制。上传整个应用程序的 zip 包时，最终文件大小不能超过 250 MB。这个限制是一个麻烦事，因为 im2txt 的模型就已经超过 180 MB 了，再加上它运行需要的依赖文件就已经超过 350 MB 了。我尝试将程序的一部分传到 S3 服务上，然后在 Lambda 实例运行再去下载相关文件。然而，Lambda 上一个应用的总存储限制为 512 MB，而我的应用程序已经超过限制了（总共约 530 MB）。</p>
+<p>为了减小项目的大小，我重新配置了 im2txt，只下载精简过的模型，去掉了没用的一些元数据。这样做之后，我的模型大小减小到了 120 MB。接着，我找到了一个最小依赖的 <a href="https://github.com/ryfeus/lambda-packs" target="_blank" rel="noopener">lambda-packs</a>，不过它仅有早期版本的 python 和 tensorflow。我将 python 3.6 语法和 tensorflow 1.2 的代码进行了降级，经过痛苦的降级过程后，我最终得到了一个总大小约为 480 MB 的包，小于 512 MB 的限制。</p>
+<p>为了保持应用的快速响应，我创建了一个 CloudWatch 函数，让 Lambda 实例保持”热“状态，使应用始终处于激活态。接着，我添加了一些函数用于处理不是 JPG 格式的图片，在最后，我做好了一个能提供服务的 API。这些精简工作让应用在大多数情况下能够于 5 秒之内返回 response。</p>
+<p><img src="/images/pasted-188.png" alt="upload successful"></p>
+<p>上图为 API 提供的图片可能内容的概率</p>
+<p>此外，Lambda 的价格便宜的令人惊讶。以现在的情况，我可以每个月免费分析 60,952 张图片，之后的图片每张仅需 0.0001094 美元（这意味着接下来的 60,952 张图像约花费 6.67 美元）。</p>
+<p>有关 API 的更多信息，请参考 repo：<a href="https://github.com/abhisuri97/auto-alt-text-lambda-api" target="_blank" rel="noopener">https://github.com/abhisuri97/auto-alt-text-lambda-api</a></p>
+<p>剩下的工作就是将其打包为 Chrome 拓展插件，以方便用户使用。这个工作没啥挑战性（仅需要向我的 API 端点发起一个简单的 AJAX 请求即可）。</p>
+<p><img src="/images/pasted-189.png" alt="upload successful"></p>
+<p>上图为 Auto Alt Text Chrome 插件运行示例</p>
+<h4 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h4><p>Im2txt 模型对于人物、风景以及其它存在于 COCO 数据集中的内容表现良好。</p>
+<p><img src="/images/pasted-190.png" alt="upload successful"></p>
+<p>上图为 COCO 数据集图片分类</p>
+<p>这个模型能够标注的内容还是有所限制；不过，它能标注的内容已经涵盖了 Facebook、Reddit 等社交媒体上的大多数图片。</p>
+<p>但是，对于 COCO 数据集中不存在的图片内容，这个模型并不能完成标注。我曾尝试着使用 Tesseract 来解决这个问题，但是它的结果并不是很准确，而且花费的时间也太长了（超过 10 秒）。现在我正在尝试使用 Tensorflow 实现 <a href="http://ai.stanford.edu/~ang/papers/ICPR12-TextRecognitionConvNeuralNets.pdf" target="_blank" rel="noopener">王韬等人的论文</a>，将其加入这个项目中。</p>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>虽然现在几乎每周都会涌现一些关于 AI 的新事物，但最重要的是退回一步，看看这些工具能在研究环境之外发挥出怎样的作用，以及这些研究能怎样帮助世界各地的人们。总而言之，我希望我能深入研究 Tensorflow 和 in2txt 模型，并将我所学知识应用于现实世界。我希望这个工具能成为帮助视障人士”看“更好的互联网的第一步。</p>
+<h4 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h4><ul>
+<li>关注文章作者：我会在 <a href="https://medium.com/@abhisuri97" target="_blank" rel="noopener">Medium</a> 上首发我写的文章。如果你喜欢这篇文章，欢迎关注我:)。接下来一个月，我将会在下个月发布一系列“如何使用 AI/tensorflow 解决现实世界问题”的文章。最近我还会发一些 JS 方面的教程。</li>
+<li>本文工具 Chrome 插件：<a href="http://abhinavsuri.com/aat" target="_blank" rel="noopener">下载地址</a></li>
+<li>Auto Alt Text Lambda API：<a href="http://github.com/abhisuri97/auto-alt-text-lambda-api" target="_blank" rel="noopener">Github repository 地址</a></li>
+</ul>
+<blockquote>
+<p>发布于掘金 <a href="https://juejin.im/post/59a51e91f265da2499603c8c" target="_blank" rel="noopener">https://juejin.im/post/59a51e91f265da2499603c8c</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/22/%E9%9A%8F%E6%9C%BA%E7%B4%A2%E5%BC%95%E7%AE%97%E6%B3%95%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-An-Introduction-to-Random-Indexing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1708,96 +1831,6 @@ print &quot;Accuracy:&quot;, accuracy_score([x[1] for x in test], pred_data)
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/06/30/%E5%9C%A8html%E4%B8%AD%E4%BD%BF%E7%94%A8%E8%83%8C%E6%99%AF%E9%80%8F%E6%98%8E%E7%9A%84video%E8%A7%86%E9%A2%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/06/30/%E5%9C%A8html%E4%B8%AD%E4%BD%BF%E7%94%A8%E8%83%8C%E6%99%AF%E9%80%8F%E6%98%8E%E7%9A%84video%E8%A7%86%E9%A2%91/" class="post-title-link" itemprop="url">在html中使用背景透明的video视频</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-06-30 16:53:24" itemprop="dateCreated datePublished" datetime="2017-06-30T16:53:24+08:00">2017-06-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front End</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>由于对效果的要求，需要加入透明背景的video。经过了解，现代浏览器（新版 Chrome、Firefox、Safari 等）已经全面支持 webM 格式的视频了，因此可以使用带 alpha 通道的 webM 格式视频满足要求。</p>
-<p>要得到透明 webM 格式视频，则需要来源视频已经带有透明通道。</p>
-<p>目前有几种方法：</p>
-<p>1、使用 blander 进行绿幕抠图，将 green screen 扣去，生成背景透明的 png 帧序列，然后使用 ffmpeg 之类的工具将其生成 webM 文件。</p>
-<p>2、使用 Adobe After Effect 之类的软件，在渲染时直接输出 Alpha + RGB 通道文件，然后使用 ffmpeg 之类的工具将其转换为 webM 文件。</p>
-<blockquote>
-<p>ffmpeg 软件下载：<a href="https://ffmpeg.org/download.html" target="_blank" rel="noopener">https://ffmpeg.org/download.html</a> </p>
-</blockquote>
-<p>由于视频是自己用 AE 做的，因此直接选用第二种方法很方便。</p>
-<p>首先，将视频背景颜色改成透明的：</p>
-<p><img src="/images/pasted-166.png" alt="upload successful"></p>
-<p>模式选择 Alpha 添加。在工作区下方将网络切换为透明网络</p>
-<p><img src="/images/pasted-167.png" alt="upload successful"></p>
-<p>如果改成功了，此时应该看到工作区的背景是灰白两色栅格。</p>
-<p>将合成添加到渲染队列，进行设置：</p>
-<p><img src="/images/pasted-168.png" alt="upload successful"></p>
-<p>将输出模块改为“使用 Alpha 无损耗”，此时详情应该可以看到格式为 QuickTime，通道是 RGB + Alpha</p>
-<p><img src="/images/pasted-169.png" alt="upload successful"></p>
-<p>渲染输出，得到 .mov 文件，使用 ffmpeg 对其进行压缩编码。</p>
-<p>执行命令：</p>
-<pre><code>ffmpeg -i in.mov -c:a libvorbis -ac 1 -b:a 96k -ar 48000 -b:v 1100k -maxrate 1100k -bufsize 1835k out.webm
-</code></pre><p>得到 out.webm，它就是所需要的透明背景的 webM 文件了，可以在网页中使用 <code>&lt;video&gt;</code> tag 引用。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1846,7 +1879,7 @@ print &quot;Accuracy:&quot;, accuracy_score([x[1] for x in test], pred_data)
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">156</span>
+          <span class="site-state-item-count">157</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
