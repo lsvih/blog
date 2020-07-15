@@ -219,6 +219,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/02/07/%E8%9B%87%E5%BD%A2%E9%81%8D%E5%8E%86-Diagonal-Traverse/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/02/07/%E8%9B%87%E5%BD%A2%E9%81%8D%E5%8E%86-Diagonal-Traverse/" class="post-title-link" itemprop="url">蛇形遍历(Diagonal Traverse)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-02-07 14:30:00" itemprop="dateCreated datePublished" datetime="2017-02-07T14:30:00+08:00">2017-02-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>Input:</strong></p>
+<p>[[ 1, 2, 3 ],</p>
+<p> [ 4, 5, 6 ],</p>
+<p> [ 7, 8, 9 ]]</p>
+<p><strong>Output:</strong>  [1,2,4,7,5,3,6,8,9]</p>
+<p><strong>Explanation:</strong></p>
+<p><img src="/images/pasted-107.png" alt="upload successful"></p>
+<p>像蛇爬行一样沿着对角线来回遍历整个矩阵。</p>
+<p>提供一种很容易实现的解题思路：</p>
+<p>在遍历过程中有几种情况：向右遍历、向下遍历、向左下遍历、向右上遍历。</p>
+<p>给定两个变量x,y(记做matrix[x][y])记录当前坐标，就能通过判断这几个方向决定下一个坐标位置。</p>
+<p>例如，向左下遍历即x++,y—，如果x已经到矩阵下边界则转向右遍历；如果x未到矩阵下边界,y到矩阵左边界则向下遍历；如果xy都未到矩阵边界则继续向左下遍历。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">state,x,y,M,N = <span class="string">'right_up'</span>,<span class="number">0</span>,<span class="number">0</span>,len(matrix),len(matrix[<span class="number">0</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> state == <span class="string">'left_down'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    rs.append(matrix[x][y])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> x == M<span class="number">-1</span> <span class="keyword">or</span> y == <span class="number">0</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> x == M<span class="number">-1</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            y += <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            state = <span class="string">'right_after_left_down'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">            x += <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            state = <span class="string">'down_after_left_down'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">            x += <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">            y -= <span class="number">1</span></span></pre></td></tr></table></figure>
+<p>依次类推，可以将所有情况与边界情况都列出来。</p>
+<p>同时需要排除三种特殊情况：当矩阵为空时不存在遍历结果；当矩阵行或列为1时直接将矩阵从上至下遍历。</p>
+<p>经简化可写出解法(result)：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findDiagonalOrder</span><span class="params">(matrix)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="string">"""</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="string">    :type matrix: List[List[int]]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="string">    :rtype: List[int]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="string">    """</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> matrix == []:<span class="keyword">return</span> []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    rs,state,x,y,M,N = [],<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,len(matrix),len(matrix[<span class="number">0</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> M == <span class="number">1</span> <span class="keyword">or</span> N == <span class="number">1</span>:<span class="keyword">return</span> reduce(<span class="keyword">lambda</span> x,y:x+y,matrix)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        rs.append(matrix[x][y])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> x == M<span class="number">-1</span> <span class="keyword">and</span> y == N<span class="number">-1</span>:<span class="keyword">return</span> rs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">elif</span> state == <span class="number">0</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">if</span> x == <span class="number">0</span> <span class="keyword">or</span> y == N<span class="number">-1</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">if</span> y == N<span class="number">-1</span>:x,state = x+<span class="number">1</span>,<span class="number">2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">else</span>:y,state = y+<span class="number">1</span>,<span class="number">5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">else</span>:x,y = x<span class="number">-1</span>,y+<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">elif</span> state == <span class="number">1</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">if</span> x == M<span class="number">-1</span> <span class="keyword">or</span> y == <span class="number">0</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">if</span> x == M<span class="number">-1</span>:y,state = y+<span class="number">1</span>,<span class="number">4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">else</span>:x,state = x+<span class="number">1</span>,<span class="number">3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">else</span>:x,y = x+<span class="number">1</span>,y<span class="number">-1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">elif</span> state == <span class="number">3</span> <span class="keyword">or</span> state == <span class="number">4</span>:x,y,state = x<span class="number">-1</span>,y+<span class="number">1</span>,<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">elif</span> state == <span class="number">2</span> <span class="keyword">or</span> state == <span class="number">5</span>:x,y,state = x+<span class="number">1</span>,y<span class="number">-1</span>,<span class="number">1</span></span></pre></td></tr></table></figure>
+<p>其中每个元素都被处理过一遍，其时间复杂度为O(n)</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/12/31/Python-collections%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84Counter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1052,85 +1138,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/24/%E4%BD%BF%E7%94%A8vmware-vmware-fusion-%E7%AA%81%E7%A0%B4themida%E5%AF%B9%E4%BA%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E9%99%90%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/10/24/%E4%BD%BF%E7%94%A8vmware-vmware-fusion-%E7%AA%81%E7%A0%B4themida%E5%AF%B9%E4%BA%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E9%99%90%E5%88%B6/" class="post-title-link" itemprop="url">使用vmware(vmware fusion)突破themida对于虚拟机的限制</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-10-24 02:14:00" itemprop="dateCreated datePublished" datetime="2016-10-24T02:14:00+08:00">2016-10-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Essay/" itemprop="url" rel="index">
-                    <span itemprop="name">Essay</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>themida是比较有名的一款壳，可以在一定程度上保护软件不被破解或非法使用。例如一些游戏使用themida壳来防止用户使用虚拟机来进行多开。</p>
-<p>但是，我希望在mac上使用windows的软件，使用了vmware fusion 8虚拟机，结果软件在运行时会弹出“Sorry, this application cannot run under a Virtual Machine”的提示并终止程序运行。为了正常使用程序，需要进行以下操作：</p>
-<p>1.在关闭虚拟机的情况下编辑虚拟机的.vmx文件（此文件在虚拟机保存目录中），在文件中加上</p>
-<p>monitor_control.restrict_backdoor = “TRUE”</p>
-<p>disable_acceleration = “TRUE”</p>
-<p>这两行。</p>
-<p>2.themida通过判断系统硬件中是否存在”Vmware”类似名字的硬件来判断是否在虚拟机中运行，因此需要对硬件的名称进行修改。最简单的方式是使用驱动管理软件（例如驱动人生等），将驱动进行备份。备份后的驱动会以.zip文件的形式保存在设定的目录中，将其中的安装信息文件(后缀名为.inf)复制出来，进行如下修改：</p>
-<p>在文件的最后部分会有一个[String]设置块，把里面的xxx.Disk，xxx.Msg，xxx.SvcDesc等项目的值改成不包含Vmware字样的文字。</p>
-<p>3.在虚拟机设置中关闭所有不需要的项目，例如蓝牙等</p>
-<p>4.在虚拟机的系统中将Vmware Tools完全卸载</p>
-<p>通过这些操作，就能使themida认为运行环境不是虚拟机，从而不会终止运行了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1179,7 +1186,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">157</span>
+          <span class="site-state-item-count">158</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1192,7 +1199,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">196</span>
+        <span class="site-state-item-count">197</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

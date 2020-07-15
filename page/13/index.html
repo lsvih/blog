@@ -219,6 +219,326 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/06/11/Numpy%E4%B8%8EPandas%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/06/11/Numpy%E4%B8%8EPandas%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">Numpy与Pandas学习记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-06-11 08:02:00" itemprop="dateCreated datePublished" datetime="2016-06-11T08:02:00+08:00">2016-06-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tool/" itemprop="url" rel="index">
+                    <span itemprop="name">Tool</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Numpy为Python下的科学计算库，用于快速处理数据、科学计算等。</p>
+<p>pandas 是基于 Numpy 构建的含有更高级数据结构和工具的数据分析包</p>
+<hr>
+<p>Numpy 库文档：<a href="https://docs.scipy.org/doc/numpy-dev/user/quickstart.html" target="_blank" rel="noopener">https://docs.scipy.org/doc/numpy-dev/user/quickstart.html</a></p>
+<p>Pandas 库文档：<a href="http://pandas.pydata.org/pandas-docs/version/0.17.0/" target="_blank" rel="noopener">http://pandas.pydata.org/pandas-docs/version/0.17.0/</a></p>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span></pre></td></tr></table></figure>
+<h3 id="Numpy的基本使用"><a href="#Numpy的基本使用" class="headerlink" title="Numpy的基本使用"></a>Numpy的基本使用</h3><h4 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">array = np.array([<span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">8</span>], float)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array</span></pre></td></tr></table></figure>
+<p>output&gt;&gt;[ 1.  4.  5.  8.]</p>
+<p>np.array最后的参数表示数据类型为浮点。因此显示数组时整数后会有一个小数点。</p>
+<blockquote>
+<p>重建的数组中所有数据必须为相同的数据类型</p>
+<p>The array object class is the foundation of Numpy, and Numpy arrays are like lists in Python, except that every thing inside an array must be of the same type, like int or float.</p>
+</blockquote>
+<h4 id="创建二维数组"><a href="#创建二维数组" class="headerlink" title="创建二维数组"></a>创建二维数组</h4><p>同理：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">array = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]], float)  <span class="comment"># a 2D array/Matrix</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array</span></pre></td></tr></table></figure>
+<p>output&gt;&gt;[[ 1.  2.  3.][ 4.  5.  6.]]</p>
+<h4 id="存取元素"><a href="#存取元素" class="headerlink" title="存取元素"></a>存取元素</h4><p>与Python基本用法一致</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">array = np.array([<span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">8</span>], float)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array</span></pre></td></tr></table></figure>
+<p>output&gt;&gt;[ 1.  4.  5.  8.]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array[<span class="number">1</span>]<span class="comment">##显示数组中下标为1的数据</span></span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;4.0<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array[:<span class="number">2</span>]<span class="comment">##显示数组从下标0开始向后的2个数据</span></span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;[ 1.  4.]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">array[<span class="number">1</span>]=<span class="number">5.0</span><span class="comment">##通过下标修改对应数据</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array[<span class="number">1</span>]</span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;5.0</p>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">two_D_array=np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]], float)<span class="comment">##创建2d数组</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> two_D_array</span></pre></td></tr></table></figure>
+<p>output&gt;&gt;[[ 1.  2.  3.][ 4.  5.  6.]]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> two_D_array[<span class="number">1</span>][<span class="number">1</span>]<span class="comment">##显示下标为1的数据组中的下标为1的数据</span></span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;5.0<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> two_D_array[<span class="number">1</span>, :]<span class="comment">##显示下标为1的数据组中所有数据</span></span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;[ 4.  5.  6.]<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> two_D_array[:, <span class="number">2</span>]<span class="comment">##显示所有数据组中的下标为2的数据</span></span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;[ 3.  6.]</p>
+<h4 id="数组运算"><a href="#数组运算" class="headerlink" title="数组运算"></a>数组运算</h4><p>数组间的四则运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">array_1 = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], float)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">array_2 = np.array([<span class="number">5</span>, <span class="number">2</span>, <span class="number">6</span>], float)</span></pre></td></tr></table></figure><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array_1 + array_2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array_1 - array_2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array_1 * array_2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array_1 / array_2</span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;[ 6.  4.  9.] </p>
+<p>output&gt;&gt;[-4.  0. -3.]</p>
+<p>output&gt;&gt;[ 5.   4.  18.]</p>
+<p>output&gt;&gt;[ 0.2  1.  0.5]</p>
+<p>二维数组间的四则运算<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">array_1 = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]], float)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">array_2 = np.array([[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]], float)</span></pre></td></tr></table></figure><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array_1 + array_2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array_1 - array_2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array_1 * array_2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> array_1 / array_2</span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;[[ 6.   8.][ 10.  12.]] </p>
+<p>output&gt;&gt;[[-4. -4.][-4. -4.]]</p>
+<p>output&gt;&gt;[[ 5.  12.][ 21.  32.]]</p>
+<p>output&gt;&gt;[[ 0.2   0.33333333][ 0.42857143  0.5]]</p>
+<h4 id="数据快速处理"><a href="#数据快速处理" class="headerlink" title="数据快速处理"></a>数据快速处理</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">array_1 = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], float)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">array_2 = np.array([[<span class="number">6</span>], [<span class="number">7</span>], [<span class="number">8</span>]], float)</span></pre></td></tr></table></figure>
+<p>求和：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.sum(array_1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.sum(array_2)</span></pre></td></tr></table></figure>
+<p>output&gt;&gt;6.0</p>
+<p>output&gt;&gt;21.0</p>
+<p>求均值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.mean(array_1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.mean(array_2)</span></pre></td></tr></table></figure>
+<p>output&gt;&gt;2.0</p>
+<p>output&gt;&gt;7.0</p>
+<p>求方差：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.var(array_1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.var(array_2)</span></pre></td></tr></table></figure>
+<p>output&gt;&gt;0.666666666667</p>
+<p>output&gt;&gt;0.666666666667</p>
+<p>求标准差：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.std(array_1)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.std(array_2)</span></pre></td></tr></table></figure>
+<p>output&gt;&gt;0.816496580928</p>
+<p>output&gt;&gt;0.816496580928</p>
+<p>求内积：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> np.dot(array_1, array_2)</span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;[ 44.]</p>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span></pre></td></tr></table></figure>
+<h3 id="Pandas的基本使用"><a href="#Pandas的基本使用" class="headerlink" title="Pandas的基本使用"></a>Pandas的基本使用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">series = pd.Series([<span class="string">'Dave'</span>, <span class="string">'Cheng-Han'</span>, <span class="string">'Udacity'</span>, <span class="number">42</span>, <span class="number">-1789710578</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> series</span></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>index</th>
+<th>column</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Dave</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Cheng-Han</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Udacity</td>
+</tr>
+<tr>
+<td>3</td>
+<td>42</td>
+</tr>
+<tr>
+<td>4</td>
+<td>-1789710578</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dtype: object</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">##通过Python字典对象创建一个数据系列，自动使用递增整型作为索引。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">series = pd.Series([<span class="string">'Dave'</span>, <span class="string">'Cheng-Han'</span>, <span class="number">359</span>, <span class="number">9001</span>],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">                     index=[<span class="string">'Instructor'</span>, <span class="string">'Curriculum Manager'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">                            <span class="string">'Course Number'</span>, <span class="string">'Power Level'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> series</span></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>column0</th>
+<th>column1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instructor</td>
+<td>Dave</td>
+</tr>
+<tr>
+<td>Curriculum Manager</td>
+<td>Cheng-Han</td>
+</tr>
+<tr>
+<td>Course Number</td>
+<td>359</td>
+</tr>
+<tr>
+<td>Power Level</td>
+<td>9001</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dtype: object</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">##为数据添加了索引，此时可以通过索引来选择数据：</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> series[<span class="string">'Instructor'</span>]</span></pre></td></tr></table></figure>
+<p>output&gt;&gt;Dave<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> series[[<span class="string">'Instructor'</span>, <span class="string">'Curriculum Manager'</span>, <span class="string">'Course Number'</span>]]</span></pre></td></tr></table></figure></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>column0</th>
+<th>column1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instructor</td>
+<td>Dave</td>
+</tr>
+<tr>
+<td>Curriculum Manager</td>
+<td>Cheng-Han</td>
+</tr>
+<tr>
+<td>Course Number</td>
+<td>359</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dtype: object</p>
+<p>通过bool来显示数据是否满足筛选条件：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cuteness = pd.Series([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], index=[<span class="string">'Cockroach'</span>, <span class="string">'Fish'</span>, <span class="string">'Mini Pig'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">                          <span class="string">'Puppy'</span>, <span class="string">'Kitten'</span>])</span></pre></td></tr></table></figure><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> cuteness &gt; <span class="number">3</span></span></pre></td></tr></table></figure></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>column0</th>
+<th>column1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cockroach</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Fish</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Mini Pig</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Puppy</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Kitten</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dtype: bool</p>
+<p>只显示满足条件的数据：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> cuteness[cuteness &gt; <span class="number">3</span>]</span></pre></td></tr></table></figure></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>column0</th>
+<th>column1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Puppy</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Kitten</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>dtype: int64</p>
+<p>使用数据框架：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">data = &#123;<span class="string">'year'</span>: [<span class="number">2010</span>, <span class="number">2011</span>, <span class="number">2012</span>, <span class="number">2011</span>, <span class="number">2012</span>, <span class="number">2010</span>, <span class="number">2011</span>, <span class="number">2012</span>],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">     <span class="string">'team'</span>: [<span class="string">'Bears'</span>, <span class="string">'Bears'</span>, <span class="string">'Bears'</span>, <span class="string">'Packers'</span>, <span class="string">'Packers'</span>, <span class="string">'Lions'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">          <span class="string">'Lions'</span>, <span class="string">'Lions'</span>],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">     <span class="string">'wins'</span>: [<span class="number">11</span>, <span class="number">8</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">11</span>, <span class="number">6</span>, <span class="number">10</span>, <span class="number">4</span>],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">     <span class="string">'losses'</span>: [<span class="number">5</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">6</span>, <span class="number">12</span>]&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">football = pd.DataFrame(data)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football</span></pre></td></tr></table></figure><br>output&gt;&gt;</p>
+<p><img src="/images/pasted-77.png" alt="upload successful"></p>
+<p>显示数据框架各列数据格式：</p>
+<h2 id="to-get-the-datatype-for-each-column"><a href="#to-get-the-datatype-for-each-column" class="headerlink" title="to get the datatype for each column"></a>to get the datatype for each column</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football.dtypes</span></pre></td></tr></table></figure>
+<p>output&gt;&gt;</p>
+<p>losses     int64 </p>
+<p>team      object </p>
+<p>wins       int64 </p>
+<p>year       int64 </p>
+<p>dtype: object</p>
+<p>对数据列进行快速统计与汇总：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">## useful for seeing basic statistics of the dataframe's numerical columns</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football.describe()</span></pre></td></tr></table></figure>
+<p>output&gt;&gt;</p>
+<pre><code> losses        wins       year 
+</code></pre><p>count   8.000000   8.000000     8.000000##总数</p>
+<p>mean    6.625000   9.375000  2011.125000##均值</p>
+<p>std     3.377975   3.377975    0.834523##标准差</p>
+<p>min     1.000000   4.000000  2010.000000##最小值</p>
+<p>25%     5.000000   7.500000  2010.750000</p>
+<p>50%     6.000000  10.000000  2011.000000 </p>
+<p>75%     8.500000  11.000000  2012.000000 </p>
+<p>max    12.000000  15.000000  2012.000000##最大值</p>
+<p>显示前5行<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football.head()</span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p><img src="/images/pasted-78.png" alt="upload successful"></p>
+<p>显示后5行<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football.tail()</span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p><img src="/images/pasted-79.png" alt="upload successful"></p>
+<p>通过索引来访问对应列<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football[<span class="string">'year'</span>]<span class="comment">##显示year这一列</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">##也可用print football.year</span></span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p>0    2010<br>1    2011<br>2    2012<br>3    2011<br>4    2012<br>5    2010<br>6    2011<br>7    2012<br>Name: year, dtype: int64</p>
+<p>显示year wins losses三列<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football[[<span class="string">'year'</span>, <span class="string">'wins'</span>, <span class="string">'losses'</span>]]</span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p>  year  wins  losses<br>0  2010    11       5<br>1  2011     8       8<br>2  2012    10       6<br>3  2011    15       1<br>4  2012    11       5<br>5  2010     6      10<br>6  2011    10       6<br>7  2012     4      12</p>
+<p>显示第[0]行数据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football.loc[[<span class="number">0</span>]]</span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;<br>  losses   team  wins  year<br>0       5  Bears    11  2010</p>
+<p>显示从第[3]行到第[5]行<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football[<span class="number">3</span>:<span class="number">5</span>]</span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p>  losses     team  wins  year<br>3       1  Packers    15  2011<br>4       5  Packers    11  2012</p>
+<p>显示wins中大于10的行<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football[football.wins &gt; <span class="number">10</span>]</span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p><img src="/images/pasted-80.png" alt="upload successful"></p>
+<p>显示wins大于10且team为Packers的行<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> football[(football.wins &gt; <span class="number">10</span>) &amp;amp; (football.team == <span class="string">"Packers"</span>)]</span></pre></td></tr></table></figure></p>
+<p>output&gt;&gt;</p>
+<p><img src="/images/pasted-81.png" alt="upload successful"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/30/mui%E4%B8%A4%E4%B8%AAwebview%E9%97%B4%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE-%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -985,77 +1305,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/29/requests-pyquery%E7%88%AC%E8%99%AB%E4%BD%93%E9%AA%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/04/29/requests-pyquery%E7%88%AC%E8%99%AB%E4%BD%93%E9%AA%8C/" class="post-title-link" itemprop="url">requests+pyquery爬虫体验</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-04-29 08:07:00" itemprop="dateCreated datePublished" datetime="2016-04-29T08:07:00+08:00">2016-04-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Back-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Back End</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>目标网站:<a href="http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx" target="_blank" rel="noopener">http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx</a> </p>
-<p>需要将所有数据爬下放到数据库中.中途遇到了各种编码问题,因此使用了requests获取页面.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding=utf-8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> MySQLdb</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pyq</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span><span class="params">(text)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    m = hashlib.md5()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    m.update(text.encode(<span class="string">'utf-8'</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> m.hexdigest()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getandupload</span><span class="params">()</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">	conn=MySQLdb.connect(host=<span class="string">'localhost'</span>,user=<span class="string">'root'</span>,passwd=<span class="string">''</span>,port=<span class="number">3306</span>,charset=<span class="string">'utf8'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">	cur=conn.cursor()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">	conn.select_db(<span class="string">'pytest'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">	ret=requests.get(url=<span class="string">"http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx"</span>) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">	doc=pyq(ret.text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">	date = re.findall(<span class="string">r'(w*[0-9]+)w*'</span>,doc.find(<span class="string">'#Label0'</span>).text())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">	<span class="comment">#正则,将数字提取出来(为了将yyyy年mm月dd日改成yyyy/mm/dd)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">	date = date[<span class="number">0</span>]+<span class="string">'/'</span>+date[<span class="number">1</span>]+<span class="string">'/'</span>+date[<span class="number">2</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">	table = pyq(pyq(doc.find(<span class="string">'#marqueebox'</span>)).find(<span class="string">'table'</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">	stations = re.findall(<span class="string">r'&lt;td style="width:126px"&gt;(.+?)&lt;/td&gt;'</span>,table.html())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">	aqis = re.findall(<span class="string">r'&lt;td style="width:90px"&gt;(.+?)&lt;/td&gt;'</span>,table.html())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">	<span class="comment">#通过正则将html代码中需要的数据提取出来并存在数组中.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">35</span>):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">		value=[md5(date+stations[i][<span class="number">1</span>:]),date,stations[i][<span class="number">1</span>:],aqis[<span class="number">2</span>*i]]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">		cur.execute(<span class="string">'insert ignore into aqi_bjmemc values(%s,%s,%s,%s)'</span>,value)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">	        <span class="comment">#设置了md5id为主键,因此当传重复数据的时候md5id重复,避免了重复上传数据.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">	conn.commit()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">	cur.close()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">	conn.close()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">getandupload()</span></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1104,7 +1353,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">157</span>
+          <span class="site-state-item-count">158</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1117,7 +1366,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">196</span>
+        <span class="site-state-item-count">197</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

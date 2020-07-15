@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lsvih.com/"/>
-  <updated>2020-06-05T08:23:51.327Z</updated>
+  <updated>2020-07-15T16:34:24.217Z</updated>
   <id>https://lsvih.com/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Slide of &#39;Enhancing Pre-trained Chinese Character Representation with Word-aligned Attention&#39; used in ACL conference.</title>
+    <link href="https://lsvih.com/2020/07/15/Slide-of-MWA/"/>
+    <id>https://lsvih.com/2020/07/15/Slide-of-MWA/</id>
+    <published>2020-07-15T03:06:00.000Z</published>
+    <updated>2020-07-15T16:34:24.217Z</updated>
+    
+    <content type="html"><![CDATA[<p><iframe src="https://lsvih.github.io/workshop/20-07-15/Enhancing%20Pre-trained%20Chinese%20Character%20Representation%20with%20Word-aligned%20Attention.html" scrolling="no" frameborder="0" align="" height="600px" width="100%"></iframe></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;&lt;iframe src=&quot;https://lsvih.github.io/workshop/20-07-15/Enhancing%20Pre-trained%20Chinese%20Character%20Representation%20with%20Word-align
+      
+    
+    </summary>
+    
+    
+      <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
+    
+    
+      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
+    
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
+    
+      <category term="Slide" scheme="https://lsvih.com/tags/Slide/"/>
+    
+      <category term="conference" scheme="https://lsvih.com/tags/conference/"/>
+    
+      <category term="language model" scheme="https://lsvih.com/tags/language-model/"/>
+    
+  </entry>
   
   <entry>
     <title>获取 Git 全部远程分支</title>
@@ -466,11 +500,11 @@
       <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
     
     
-      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
-    
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
       <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
+    
+      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
     
       <category term="pytorch" scheme="https://lsvih.com/tags/pytorch/"/>
     
@@ -666,43 +700,11 @@
       <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
     
     
-      <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
-    
-      <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
-    
       <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Slide of &#39;Char-BiLSTM-CRF Incorporating POS and Dictionaries for Chinese OTE&#39; used in ACML conference.</title>
-    <link href="https://lsvih.com/2018/11/26/Slide-of-ChineseOTE/"/>
-    <id>https://lsvih.com/2018/11/26/Slide-of-ChineseOTE/</id>
-    <published>2018-11-26T04:29:00.000Z</published>
-    <updated>2018-11-26T04:30:09.700Z</updated>
-    
-    <content type="html"><![CDATA[<p><iframe src="https://lsvih.github.io/workshop/18-11-16/Char-BiLSTM-CRF%20Incorporating%20POS%20and%20Dictionaries%20for%20Chinese%20OTE.html" scrolling="no" frameborder="0" align="" height="600px" width="100%"></iframe></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;iframe src=&quot;https://lsvih.github.io/workshop/18-11-16/Char-BiLSTM-CRF%20Incorporating%20POS%20and%20Dictionaries%20for%20Chinese%20OTE.h
-      
-    
-    </summary>
-    
-    
-      <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
-    
-    
       <category term="paper" scheme="https://lsvih.com/tags/paper/"/>
     
       <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
-    
-      <category term="Slide" scheme="https://lsvih.com/tags/Slide/"/>
-    
-      <category term="conference" scheme="https://lsvih.com/tags/conference/"/>
     
   </entry>
   

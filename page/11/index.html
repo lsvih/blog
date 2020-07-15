@@ -219,6 +219,85 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/24/%E4%BD%BF%E7%94%A8vmware-vmware-fusion-%E7%AA%81%E7%A0%B4themida%E5%AF%B9%E4%BA%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E9%99%90%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/10/24/%E4%BD%BF%E7%94%A8vmware-vmware-fusion-%E7%AA%81%E7%A0%B4themida%E5%AF%B9%E4%BA%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E9%99%90%E5%88%B6/" class="post-title-link" itemprop="url">使用vmware(vmware fusion)突破themida对于虚拟机的限制</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-10-24 02:14:00" itemprop="dateCreated datePublished" datetime="2016-10-24T02:14:00+08:00">2016-10-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Essay/" itemprop="url" rel="index">
+                    <span itemprop="name">Essay</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>themida是比较有名的一款壳，可以在一定程度上保护软件不被破解或非法使用。例如一些游戏使用themida壳来防止用户使用虚拟机来进行多开。</p>
+<p>但是，我希望在mac上使用windows的软件，使用了vmware fusion 8虚拟机，结果软件在运行时会弹出“Sorry, this application cannot run under a Virtual Machine”的提示并终止程序运行。为了正常使用程序，需要进行以下操作：</p>
+<p>1.在关闭虚拟机的情况下编辑虚拟机的.vmx文件（此文件在虚拟机保存目录中），在文件中加上</p>
+<p>monitor_control.restrict_backdoor = “TRUE”</p>
+<p>disable_acceleration = “TRUE”</p>
+<p>这两行。</p>
+<p>2.themida通过判断系统硬件中是否存在”Vmware”类似名字的硬件来判断是否在虚拟机中运行，因此需要对硬件的名称进行修改。最简单的方式是使用驱动管理软件（例如驱动人生等），将驱动进行备份。备份后的驱动会以.zip文件的形式保存在设定的目录中，将其中的安装信息文件(后缀名为.inf)复制出来，进行如下修改：</p>
+<p>在文件的最后部分会有一个[String]设置块，把里面的xxx.Disk，xxx.Msg，xxx.SvcDesc等项目的值改成不包含Vmware字样的文字。</p>
+<p>3.在虚拟机设置中关闭所有不需要的项目，例如蓝牙等</p>
+<p>4.在虚拟机的系统中将Vmware Tools完全卸载</p>
+<p>通过这些操作，就能使themida认为运行环境不是虚拟机，从而不会终止运行了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/17/Problem-solving-ideas-of-Nim-game-classical-problem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -985,95 +1064,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/07/31/Javascript%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/07/31/Javascript%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" class="post-title-link" itemprop="url">Javascript的作用域与作用域链</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-07-31 10:35:00" itemprop="dateCreated datePublished" datetime="2016-07-31T10:35:00+08:00">2016-07-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front End</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>不提ES6新声明的作用域声明(let等)，单纯看js的作用域。</p>
-<p>作用域的定义：作用域是某一变量和方法具有访问权限的代码控件。</p>
-<p>在JS中作用域主要由全局作用域和本地（函数）作用域两种，全局变量在所有函数中都能被访问到，本地作用域声明的变量只能在当前函数代码块中被访问；</p>
-<p>例如：</p>
-<p>1、全局变量能被直接访问<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">alert(a);<span class="comment">//=&gt; 0</span></span></pre></td></tr></table></figure></p>
-<p>2、全局变量能再函数内部访问<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    alert(a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">test();<span class="comment">//=&gt; 0</span></span></pre></td></tr></table></figure></p>
-<p>3、本地作用域（函数内部）声明的变量能被本作用域（本函数）内部直接访问</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> a = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    alert(a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">test();<span class="comment">//=&gt; 0</span></span></pre></td></tr></table></figure>
-<p>4、本地作用域（函数内部）声明的变量不能在作用域外（函数外部）被访问<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> a = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">test();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">alert(a);<span class="comment">//=&gt; undefined</span></span></pre></td></tr></table></figure></p>
-<p>5、本地作用域声明的变量不能在其外部的别的本地作用域中被访问<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> a = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    alert(a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">test();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">run();<span class="comment">//=&gt; undefined</span></span></pre></td></tr></table></figure></p>
-<p>6、本地作用域内部的作用域能访问到上级声明的变量</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> a = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">child</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        alert(a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">test();<span class="comment">//=&gt;0</span></span></pre></td></tr></table></figure>
-<p>7、本地作用域声明的变量级别比全局变量高，能在作用域内覆盖全局变量声明<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a - <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    alert(a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">test();<span class="comment">//=&gt; 1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">alert(a);<span class="comment">//=&gt; 0</span></span></pre></td></tr></table></figure></p>
-<p>由此可知，js的作用域是从上往下继承，作用域内部函数能访问本作用域声明的函数与外部作用域生成的函数。</p>
-<p>由此可以明确js的作用域链概念。</p>
-<p>例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">parent</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    alert(a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">child1</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">var</span> a = <span class="number">1</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        alert(a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">child2</span>(<span class="params"></span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        alert(a);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">parent();<span class="comment">//=&gt; 0,=&gt; 1,=&gt;0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">alert(a);<span class="comment">//=&gt; 0</span></span></pre></td></tr></table></figure></p>
-<p>parent()内第一个alert(a)的作用域链是parent()-&gt;window，所以此时a是0；</p>
-<p>child1()内alert(a)的作用域链是child1()-&gt;parent()-&gt;window，在child1中重新声明了a的值，覆盖了全局变量的值因此此时a是1；</p>
-<p>child2()中alert(a)的作用域链是child2()-&gt;parent()-&gt;window，与child1中声明的a=1毫无关联，因此此时的a的值还是0;</p>
-<p>最后一个alert(a)作用域链是window，此时a的值为0；</p>
-<p>js的作用域与作用域链的概念可以简单清晰的按如上描述。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1122,7 +1112,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">157</span>
+          <span class="site-state-item-count">158</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1135,7 +1125,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">196</span>
+        <span class="site-state-item-count">197</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

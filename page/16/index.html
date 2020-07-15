@@ -219,6 +219,115 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/03/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/" class="post-title-link" itemprop="url">机器学习学习笔记（六）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-03-24 08:31:00" itemprop="dateCreated datePublished" datetime="2016-03-24T08:31:00+08:00">2016-03-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="正规方程"><a href="#正规方程" class="headerlink" title="正规方程"></a>正规方程</h3><p>在一些线性回归问题中，可以用正规方程方法更快地解决问题，直接解出参数值来。</p>
+<p>设特征矩阵为X（第一列是$x_0=1$）,训练集结果为向量y，能够带入公式</p>
+<script type="math/tex; mode=display">\theta = (X^T X)^{-1}X^T y</script><p>直接解出$\theta$的向量。</p>
+<p>举例：</p>
+<p><img src="/images/pasted-23.png" alt="upload successful"></p>
+<p>带入公式进行矩阵运算即可得出结果。<br>以此题为例，我使用 Octave 进行了运算</p>
+<p>先输入输入值X的矩阵</p>
+<p><img src="/images/pasted-24.png" alt="upload successful"></p>
+<p>输入输出值y的向量</p>
+<p><img src="/images/pasted-25.png" alt="upload successful"></p>
+<p>直接带入公式</p>
+<script type="math/tex; mode=display">\theta = (X^T X)^{-1}X^T y</script><p><img src="/images/pasted-26.png" alt="upload successful"></p>
+<hr>
+<h2 id="梯度下降法与正规方程的对比"><a href="#梯度下降法与正规方程的对比" class="headerlink" title="梯度下降法与正规方程的对比"></a>梯度下降法与正规方程的对比</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>梯度下降</th>
+<th>正规方程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需要选择学习率$\alpha$</td>
+<td>不需要</td>
+</tr>
+<tr>
+<td>需要多次迭代</td>
+<td>一次运算得出</td>
+</tr>
+<tr>
+<td>当特征数量 n 大时也能较好适用</td>
+<td>需要计算$(X^TX)^{-1}$ 如果特征数量 n 较大则运算代价大，因为矩阵逆的计算时间复杂度为 $O(n^3)$，通常来说当 n 小于 10000 时还可以接受</td>
+</tr>
+<tr>
+<td>适用于各种类型的模型</td>
+<td>只适用于线性模型，不适合逻辑回归模型等其它模型</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -934,7 +1043,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">157</span>
+          <span class="site-state-item-count">158</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -947,7 +1056,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">196</span>
+        <span class="site-state-item-count">197</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

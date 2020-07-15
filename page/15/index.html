@@ -219,6 +219,183 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/04/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%89%8D%E5%90%91%E4%BC%A0%E6%92%AD/" class="post-title-link" itemprop="url">机器学习学习笔记（十）神经网络前向传播</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-04-12 13:42:00" itemprop="dateCreated datePublished" datetime="2016-04-12T13:42:00+08:00">2016-04-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/images/pasted-45.png" alt="upload successful"></p>
+<p>如同人的神经元一般，由输入端-神经元-输出这样一系列过程的信息处理方式，可以处理较为复杂的信息，并有一定的学习功能。</p>
+<p>神经网络一般分为：输入层、隐藏层、输出层。对于用户来说，只有输出层的输出是可知的，隐藏层可以完成许多间接的复杂运算，因此神经网络的计算复杂度比单层结构复杂的多。</p>
+<p><img src="/images/pasted-46.png" alt="upload successful"></p>
+<hr>
+<p>上图为一个有两层隐藏层的典型的神经网络,可以看到其基本结构.可以发现任何一个节点相当于收到上一层所有节点的影响.每个节点影响的程度可以以权值表示。</p>
+<p>以下面一个简单的神经网络举例，</p>
+<p><img src="/images/pasted-47.png" alt="upload successful"></p>
+<p>隐藏层(a(2)1,a(2)2,a(2)3)的值的计算为：</p>
+<script type="math/tex; mode=display">a^{(2)}_1 = g(\theta ^{(1)}_{10}x_0 + \theta ^{(1)}_{11}x_1 + \theta ^{(1)}_{12}x_2 + \theta ^{(1)}_{13}x_3)</script><script type="math/tex; mode=display">a^{(2)}_2 = g(\theta ^{(1)}_{20}x_0 + \theta ^{(1)}_{21}x_1 + \theta ^{(1)}_{22}x_2 + \theta ^{(1)}_{23}x_3)</script><script type="math/tex; mode=display">a^{(2)}_3 = g(\theta ^{(1)}_{30}x_0 + \theta ^{(1)}_{31}x_1 + \theta ^{(1)}_{32}x_2 + \theta ^{(1)}_{33}x_3)</script><p>$\theta$即表示相应层元素受到上一层“激励”的权值。（x0为加上的额外的偏度单元）</p>
+<p>g为S函数（解决逻辑回归问题）</p>
+<p>同理，输出层的值为</p>
+<script type="math/tex; mode=display">h_\theta(x)=a^{(3)}_1 = g(\theta ^{(2)}_{10}a_0 + \theta ^{(2)}_{11}a_1 + \theta ^{(2)}_{12}a_2 + \theta ^{(2)}_{13}a_3)</script><p>为前一层（隐藏层）的所以元素乘对应的权值的和的对应函数值。</p>
+<hr>
+<script type="math/tex; mode=display">a^{(2)}_1 = g(\theta ^{(1)}_{10}x_0 + \theta ^{(1)}_{11}x_1 + \theta ^{(1)}_{12}x_2 + \theta ^{(1)}_{13}x_3)</script><script type="math/tex; mode=display">a^{(2)}_2 = g(\theta ^{(1)}_{20}x_0 + \theta ^{(1)}_{21}x_1 + \theta ^{(1)}_{22}x_2 + \theta ^{(1)}_{23}x_3)</script><script type="math/tex; mode=display">a^{(2)}_3 = g(\theta ^{(1)}_{30}x_0 + \theta ^{(1)}_{31}x_1 + \theta ^{(1)}_{32}x_2 + \theta ^{(1)}_{33}x_3)</script><p>对于以上式子可以看成矩阵相乘的形式，</p>
+<script type="math/tex; mode=display">x=\begin{bmatrix}x_0\ x_1\ x_2\ x_3\end{bmatrix}</script><script type="math/tex; mode=display">z^{(2)}=\begin{bmatrix}z_1^{(2)}\ z_2^{(2)}\ z_3^{(2)}\end{bmatrix}</script><script type="math/tex; mode=display">z^{(2)} = \theta^{(1)}x</script><script type="math/tex; mode=display">a^{(2)}=g(z^{(2)})</script><p>z(2)为第二层元素值的向量形式。\theta(1)为输入层对应的权值的向量形式。</p>
+<script type="math/tex; mode=display">z^{(3)} = \theta^{(2)}a^{(2)}</script><script type="math/tex; mode=display">h_\theta(x)=a^{(3)}=g(z^{(3)})</script><p>\theta(2)为隐藏层对应权值的向量形式。</p>
+<blockquote>
+<p>神经网络中这种由训练输入送入网络中，获得激励响应的行为称为“前向传播”</p>
+</blockquote>
+<hr>
+<h3 id="神经网络解决实际问题"><a href="#神经网络解决实际问题" class="headerlink" title="神经网络解决实际问题"></a>神经网络解决实际问题</h3><p>例如下表：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>x1</th>
+<th>x2</th>
+<th>y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在神经网络中，可以以下形式表示</p>
+<p><img src="/images/pasted-48.png" alt="upload successful"></p>
+<p>计算一下，发现x1与x2等于0时z=-30，x1与x2等于1时z=10,x1与x2不相等时z=-10.</p>
+<p>将其放到S函数中，</p>
+<p><img src="/images/pasted-31.png" alt="upload successful"></p>
+<p>z=-30与z=-10时g(z)趋近与0，z=10时趋近与1，可以表示上表的值的关系。</p>
+<p>可以用y=x1 AND x2 （与）表示这个关系。</p>
+<hr>
+<p>下表用神经网络表示：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>x1</th>
+<th>x2</th>
+<th>y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这种“异或”问题可以看成一个“与”与一个“或”问题的结合，</p>
+<p><img src="/images/pasted-49.png" alt="upload successful"></p>
+<p>（NOT）</p>
+<p><img src="/images/pasted-50.png" alt="upload successful"></p>
+<p>(AND)</p>
+<p>(NOT x1)AND(NOT x2)</p>
+<p><img src="/images/pasted-51.png" alt="upload successful"></p>
+<p>可以得到上表内容。</p>
+<p>以上为神经网络表示“异或”运算。</p>
+<p>必须要两层网络才能解决异或运算问题。因为1层网络放在坐标图上可以看成是画了一条直线，而异或问题放在图上是这样的：</p>
+<p><img src="/images/pasted-52.png" alt="upload successful"></p>
+<p>不难发现没有一条直线能够完美地分开两类点。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/12/python%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86csv%E6%96%87%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -963,115 +1140,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/03/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89/" class="post-title-link" itemprop="url">机器学习学习笔记（六）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-03-24 08:31:00" itemprop="dateCreated datePublished" datetime="2016-03-24T08:31:00+08:00">2016-03-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="正规方程"><a href="#正规方程" class="headerlink" title="正规方程"></a>正规方程</h3><p>在一些线性回归问题中，可以用正规方程方法更快地解决问题，直接解出参数值来。</p>
-<p>设特征矩阵为X（第一列是$x_0=1$）,训练集结果为向量y，能够带入公式</p>
-<script type="math/tex; mode=display">\theta = (X^T X)^{-1}X^T y</script><p>直接解出$\theta$的向量。</p>
-<p>举例：</p>
-<p><img src="/images/pasted-23.png" alt="upload successful"></p>
-<p>带入公式进行矩阵运算即可得出结果。<br>以此题为例，我使用 Octave 进行了运算</p>
-<p>先输入输入值X的矩阵</p>
-<p><img src="/images/pasted-24.png" alt="upload successful"></p>
-<p>输入输出值y的向量</p>
-<p><img src="/images/pasted-25.png" alt="upload successful"></p>
-<p>直接带入公式</p>
-<script type="math/tex; mode=display">\theta = (X^T X)^{-1}X^T y</script><p><img src="/images/pasted-26.png" alt="upload successful"></p>
-<hr>
-<h2 id="梯度下降法与正规方程的对比"><a href="#梯度下降法与正规方程的对比" class="headerlink" title="梯度下降法与正规方程的对比"></a>梯度下降法与正规方程的对比</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>梯度下降</th>
-<th>正规方程</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>需要选择学习率$\alpha$</td>
-<td>不需要</td>
-</tr>
-<tr>
-<td>需要多次迭代</td>
-<td>一次运算得出</td>
-</tr>
-<tr>
-<td>当特征数量 n 大时也能较好适用</td>
-<td>需要计算$(X^TX)^{-1}$ 如果特征数量 n 较大则运算代价大，因为矩阵逆的计算时间复杂度为 $O(n^3)$，通常来说当 n 小于 10000 时还可以接受</td>
-</tr>
-<tr>
-<td>适用于各种类型的模型</td>
-<td>只适用于线性模型，不适合逻辑回归模型等其它模型</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1120,7 +1188,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">157</span>
+          <span class="site-state-item-count">158</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1133,7 +1201,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">196</span>
+        <span class="site-state-item-count">197</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
