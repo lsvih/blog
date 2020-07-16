@@ -219,6 +219,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/11/03/RNN-%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%B3%BB%E5%88%97-5-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%95%E5%85%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/11/03/RNN-%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%B3%BB%E5%88%97-5-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%95%E5%85%83/" class="post-title-link" itemprop="url">RNN 循环神经网络系列 5: 自定义单元</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-11-03 10:23:00" itemprop="dateCreated datePublished" datetime="2017-11-03T10:23:00+08:00">2017-11-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Translate/" itemprop="url" rel="index">
+                    <span itemprop="name">Translate</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>本系列文章汇总</strong></p>
+<ol>
+<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-1-basic-rnn-char-rnn.md" target="_blank" rel="noopener">RNN 循环神经网络系列 1：基本 RNN 与 CHAR-RNN</a></li>
+<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-2-text-classification.md" target="_blank" rel="noopener">RNN 循环神经网络系列 2：文本分类</a></li>
+<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-3-encoder-decoder.md" target="_blank" rel="noopener">RNN 循环神经网络系列 3：编码、解码器</a></li>
+<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-network-rnn-part-4-attentional-interfaces.md" target="_blank" rel="noopener">RNN 循环神经网络系列 4：注意力机制</a></li>
+<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-network-rnn-part-5-custom-cells.md" target="_blank" rel="noopener">RNN 循环神经网络系列 5：自定义单元</a></li>
+</ol>
+<p>在本文中，我们将探索并尝试创建我们自己定义的 RNN 单元。不过在此之前，我们需要先仔细研究简单的 RNN，再逐步深入较为复杂的单元（如 LSTM 与 GRU）。我们会分析这些单元在 tensorflow 中的实现代码，最终参照这些代码来创建我们的自定义单元。本文将援引由 Chris Olah 所著，在 RNN、LSTM 方面非常棒的一篇文章中的图片。在此我强烈推荐你阅读<strong><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">这篇文章</a></strong>，本文中会重申其中许多相关内容，不过由于我们主要还是关注 tf 代码，所以这些内容将会较快地略过。将来当我要对 RNN 结构进行层规范化时，我还会引用本文中的代码。之后的文章可以在<strong><a href="https://theneuralperspective.com/2016/10/27/gradient-topics/" target="_blank" rel="noopener">这儿</a></strong>查看。</p>
+<h2 id="基本-RNN："><a href="#基本-RNN：" class="headerlink" title="基本 RNN："></a>基本 RNN：</h2><p>对于传统的 RNN 来说，最大的问题就在于每个单元的重复输入都是静态的，因此我们无法充分学习到长期的依赖情况。你回想一下基本 RNN 单元，就会发现所有操作都是单一的 tanh 运算。</p>
+<p><img src="/images/pasted-255.png" alt="upload successful"></p>
+<p>对于解决短期依赖情况的问题来说，这种结构已经够用了；但如果我们希望通过有效的长期记忆来预测目标，则需要使用更稳定强大的 RNN 单元 —— LSTM。</p>
+<h2 id="长短期记忆网络（LSTM）："><a href="#长短期记忆网络（LSTM）：" class="headerlink" title="长短期记忆网络（LSTM）："></a>长短期记忆网络（LSTM）：</h2><p>LSTM 的结构可以让我们在更多的操作中进行长期的信息控制。传统的 RNN 仅有一个输出，其既作为隐藏状态表示也作为此单元的输出端。</p>
+<p><img src="/images/pasted-256.png" alt="upload successful"></p>
+<p>这种结构缺乏对信息的控制，无法存住对许多步之后有用的信息。而 LSTM 有两种不同的输出。其中一种仍与前面的传统结构一样，既作为隐藏状态表示也作为单元输出；但 LSTM 单元还有另一种输出 - 单元状态 C。这也是 LSTM 精髓所在，让我们仔细研究它。</p>
+<p><img src="/images/pasted-257.png" alt="upload successful"></p>
+<h3 id="遗忘门："><a href="#遗忘门：" class="headerlink" title="遗忘门："></a>遗忘门：</h3><p>第一个要介绍的门就是遗忘门。这个门可以让我们选择性地传递信息以决定单元的状态。我将公式罗列在下，后面介绍其它的门时也会如此。</p>
+<p><img src="/images/pasted-258.png" alt="upload successful"></p>
+<p><img src="/images/pasted-259.png" alt="upload successful"></p>
+<p>你可以参考类似 tf 的 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/rnn_cell.py#867" target="_blank" rel="noopener">_linear</a> 函数来实现它。不过遗忘门的主要要点是对输入与隐藏状态前应用了 sigmoid。那么这个 sigmoid 的作用是什么？请回想一下，sigmoid 会输出在 [0, 1] 范围的值，在此我们将其应用于 [N X H] 的矩阵，因此会得到 NXH 个 sigmoid 算出的值。如果 sigmoid 得到 0 值，那么其对应的隐藏值就会失效；如果 sigmoid 得到 1 值，那么此隐藏值将会被应用在计算中。而处于 0 和 1 之间的值将会允许一部分的信息继续传递。这样就能很好地通过阻塞与选择性地传递输入单元的数据，以达到控制信息的目的。</p>
+<p>这就是遗忘门。它是我们的单元得到最终结果前的第一个步骤。下面介绍另一个操作：输入门。</p>
+<h3 id="输入门："><a href="#输入门：" class="headerlink" title="输入门："></a>输入门：</h3><p>输入门将获取我们的输入值 X 以及在前面的隐藏状态，并对它们进行两次运算。首先会通过 sigmoid 门来选择性地允许部分数据输入，接着将其与输入值的 tanh 值相乘。</p>
+<p><img src="/images/pasted-260.png" alt="upload successful"></p>
+<p>这儿的 tanh 与前面的 sigmoid 操作不同。请回忆一下，tanh 会将输入值改变为 [-1, 1] 范围内的值。它本质上通过非线性的方式改变了输入的表示。这一步与我们在基本 RNN 单元中进行的操作一致，不过在此我们将两值的乘积加上遗忘门得到的值得到本单元的状态值。</p>
+<p>遗忘门与输入门的操作可以看做同时保存了旧状态（C_{t-1}）的一部分与新变换（tanh）单元状态（C~_t）的一部分。这些权重将会通过我们数据的训练学到需要保存多少数据以及如何进行正确的变换。</p>
+<h3 id="输出门："><a href="#输出门：" class="headerlink" title="输出门："></a>输出门：</h3><p>最后一个门是输出门，它利用输入值、前面的隐藏状态值以及新单元状态值来共同决定新隐藏状态的表示。</p>
+<p><img src="/images/pasted-261.png" alt="upload successful"></p>
+<p>该步骤依旧涉及到了 sigmoid，将它的值与单元状态的 tanh 值相乘以决定信息的去留。需要注意这一步的 tanh 计算与输入门的 tanh 计算不同，此步不再是神经网络的计算，而仅仅是单纯、不带任何权重地计算单元状态值的 tanh 值。这样我们就能强制单元状态矩阵 [NXH] 的值处于 [-1, 1] 的范围内。</p>
+<h3 id="变体"><a href="#变体" class="headerlink" title="变体"></a>变体</h3><p>RNN 单元有许多种变体，在此再次建议去阅读 Chris Olah 的<strong><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">这篇博文</a></strong>学习更多相关知识。不过他在文中讨论的是 peehole 模型（在计算 C_{t-1} 或 C_t 时允许所有门都能观察到单元状态值）以及单元状态的 couple（更新与遗忘同时进行）。不过目前 LSTM 的竞争对手是正在被广泛使用的 GRU（Gated Recurrent Unit）。</p>
+<h2 id="GRU（Gated-Recurrent-Unit）："><a href="#GRU（Gated-Recurrent-Unit）：" class="headerlink" title="GRU（Gated Recurrent Unit）："></a>GRU（Gated Recurrent Unit）：</h2><p>GRU 的主要原理是将遗忘门与输入门结合成一个更新门。</p>
+<p><img src="/images/pasted-262.png" alt="upload successful"></p>
+<p>在实际使用中，GRU 的性能与 LSTM 相当，但其计算量更小，因此它现在日益流行。</p>
+<h2 id="原生-Tensorflow-实现："><a href="#原生-Tensorflow-实现：" class="headerlink" title="原生 Tensorflow 实现："></a>原生 Tensorflow 实现：</h2><p>我们先观察一下 Tensorflow 官方对于 GRU 单元的实现代码，主要关注其函数调用方式、输入以及输出。然后我们会复制它的结构用于创建我们自己的单元。如果你对其它的单元有兴趣，可以在<strong><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/rnn_cell.py" target="_blank" rel="noopener">这儿</a></strong>找到它们的实现。本文将主要关注 GRU，因为它在大多数情况下性能与 LSTM 相当且复杂度更低。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GRUCell</span><span class="params">(RNNCell)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="string">"""Gated Recurrent Unit cell (cf. http://arxiv.org/abs/1406.1078)."""</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, num_units, input_size=None, activation=tanh)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> input_size <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      logging.warn(<span class="string">"%s: The input_size parameter is deprecated."</span>, self)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    self._num_units = num_units</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    self._activation = activation</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="meta">  @property</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">state_size</span><span class="params">(self)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> self._num_units</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="meta">  @property</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">output_size</span><span class="params">(self)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> self._num_units</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, inputs, state, scope=None)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="string">"""Gated recurrent unit (GRU) with nunits cells."""</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">with</span> vs.variable_scope(scope <span class="keyword">or</span> type(self).__name__):  <span class="comment"># "GRUCell"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">with</span> vs.variable_scope(<span class="string">"Gates"</span>):  <span class="comment"># Reset gate and update gate.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># We start with bias of 1.0 to not reset and not update.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        r, u = array_ops.split(<span class="number">1</span>, <span class="number">2</span>, _linear([inputs, state],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">                                             <span class="number">2</span> * self._num_units, <span class="keyword">True</span>, <span class="number">1.0</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        r, u = sigmoid(r), sigmoid(u)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">with</span> vs.variable_scope(<span class="string">"Candidate"</span>):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        c = self._activation(_linear([inputs, r * state],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">                                     self._num_units, <span class="keyword">True</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">      new_h = u * state + (<span class="number">1</span> - u) * c</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> new_h, new_h</span></pre></td></tr></table></figure>
+<p>GRUCell 类由 <strong>init</strong> 函数开始执行。在 <strong>init</strong> 函数中定义了单元的数量与其使用的激活函数。其激活函数一般是 tanh，不过也可以使用 sigmoid 来使得值固定在 [0, 1] 范围内方便我们控制信息流。另外，它还有两个在调用时会返回 self._num_units 的属性。最后定义了 <strong>call</strong> 函数，它将处理输入值并得出新的隐藏值。回忆一下，GRU 没有类似 LSTM 的单元状态值。</p>
+<p>在 <strong>call</strong> 中，我们首先计算 r 和 u（u 是前面图中的 z）。在这步中，我们没有单独去计算它们，而是以乘以 2 倍 num_units 的形式合并了权重，再将结果分割成两份得到它们（split(dim, num_splits, value)）。然后对得到的值应用 sigmoid 激活函数，以选择性地控制信息流。接着计算 c 的值，用它计算新隐藏状态表示值。你可能发现它计算 new_h 的顺序和之前颠倒了，不过由于权重会同时进行训练，因此代码仍能正常运行。</p>
+<p>其它的单元代码都与此代码类似，你弄明白了上面的代码就能轻松解释其它单元的代码。</p>
+<blockquote>
+<p>本文发布于掘金 <a href="https://juejin.im/post/59fbd28b6fb9a045204b91f2" target="_blank" rel="noopener">https://juejin.im/post/59fbd28b6fb9a045204b91f2</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/11/03/Spotify-%E6%AF%8F%E5%91%A8%E6%8E%A8%E8%8D%90%E5%8A%9F%E8%83%BD%EF%BC%9A%E5%9F%BA%E4%BA%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E9%9F%B3%E4%B9%90%E6%8E%A8%E8%8D%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1550,180 +1658,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/09/02/%E5%9C%A8-Go-%E8%AF%AD%E8%A8%80%E4%B8%AD%E5%A2%9E%E5%BC%BA-Cookie-%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/09/02/%E5%9C%A8-Go-%E8%AF%AD%E8%A8%80%E4%B8%AD%E5%A2%9E%E5%BC%BA-Cookie-%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/" class="post-title-link" itemprop="url">在 Go 语言中增强 Cookie 的安全性</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-09-02 17:32:00" itemprop="dateCreated datePublished" datetime="2017-09-02T17:32:00+08:00">2017-09-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在我开始学习 Go 语言时已经有一些 Web 开发经验了，但是并没有直接操作 Cookie 的经验。我之前做过 Rails 开发，当我不得不需要在 Rails 中读写 Cookie 时，并不需要自己去实现各种安全措施。</p>
-<p>瞧瞧，Rails 默认就自己完成了大多数的事情。你不需要设置任何 CSRF 策略，也无需特别去加密你的 Cookie。在新版的 Rails 中，这些事情都是它默认帮你完成的。</p>
-<p>而使用 Go 语言开发则完全不同。在 Golang 的默认设置中，这些事都不会帮你完成。因此，当你想要开始使用 Cookie 时，了解各种安全措施、为什么要使用这些措施、以及如何将这些安全措施集成到你的应用中是非常重要的事。希望本文能帮助你做到这一点。</p>
-<p><strong>注意：我并不想引起关于 Go 与 Reils 两者哪种更好的论战。两者各有优点，但在本文中我希望能着重讨论 Cookie 的防护，而不是去争论 Rails 和 Go 哪个好。</strong></p>
-<h2 id="什么是-Cookie？"><a href="#什么是-Cookie？" class="headerlink" title="什么是 Cookie？"></a>什么是 Cookie？</h2><p>在进入 Cookie 防护相关的内容前，我们必须要理解 Cookie 究竟是什么。从本质上说，Cookie 就是存储在终端用户计算机中的键值对。因此，使用 Go 创建一个 Cookie 需要做的事就是创建一个包含键名、键值的 <a href="https://golang.org/pkg/net/http/#Cookie" target="_blank" rel="noopener">http.Cookie</a> 类型字段，然后调用 <a href="https://golang.org/pkg/net/http/#SetCookie" target="_blank" rel="noopener">http.SetCookie</a> 函数通知终端用户的浏览器设置该 Cookie。</p>
-<p>写成代码之后，它看起来类似于这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">func someHandler(w http.ResponseWriter, r *http.Request) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  c :&#x3D; http.Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    Name: &quot;theme&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    Value: &quot;dark&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  http.SetCookie(w, &amp;c)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<blockquote>
-<p><code>http.SetCookie</code> 函数并不会返回错误，但它可能会静默地移除无效的 Cookie，因此使用它并不是什么美好的经历。但它既然这么设计了，就请你在使用这个函数的时候一定要牢记它的特性。</p>
-</blockquote>
-<p>虽然这好像是在代码中“设定”了一个 Cookie，但其实我们只是在我们返回 Response 时发送了一个 <code>&quot;Set-Cookie&quot;</code> 的 Header，从而定义需要设置的 Cookie。我们不会在服务器上存储 Cookie，而是依靠终端用户的计算机创建与存储 Cookie。</p>
-<p>我要强调上面这一点，因为它存在非常严重的安全隐患：我们<strong>不能</strong>控制这些数据，而终端用户的计算机（以及用户）才能控制这些数据。</p>
-<p>当读取与写入终端用户控制的数据时，我们都需要十分谨慎地对数据进行处理。恶意用户可以删除 Cookie、修改存储在 Cookie 中的数据，甚至我们可能会遇到<a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener">中间人攻击</a>，即当用户向服务器发送数据时，另有人试图窃取 Cookie。</p>
-<h2 id="Cookie-的潜在安全问题"><a href="#Cookie-的潜在安全问题" class="headerlink" title="Cookie 的潜在安全问题"></a>Cookie 的潜在安全问题</h2><p>根据我的经验，Cookie 相关的安全性问题大致分为以下五大类。下面我们先简单地看一看，本文的剩余部分将详细讨论每个分类的细节问题与解决对策。</p>
-<p><strong>1. Cookie 窃取</strong> - 攻击者会通过各种方式来试图窃取 Cookie。我们将讨论如何防范、规避这些方式，但是归根结底我们并不能完全阻止设备上的物理类接触。</p>
-<p><strong>2. Cookie 篡改</strong> - Cookie 中存储的数据可以被用户有意或无意地修改。我们将讨论如何验证存储在 Cookie 中的数据确实是我们写入的合法数据</p>
-<p><strong>3. 数据泄露</strong> - Cookie 存储在终端用户的计算机上，因此我们需要清楚地意识到什么数据是能存储在 Cookie 中的，什么数据是不能存储在 Cookie 中的，以防其发生数据泄露。</p>
-<p><strong>4. 跨站脚本攻击（XSS）</strong> - 虽然这条与 Cookie 没有直接关系，但是 XSS 攻击在攻击者能获取 Cookie 时危害更大。我们应该考虑在非必须的时候限制脚本访问 Cookie。</p>
-<p><strong>5. 跨站请求伪造（CSRF）</strong> - 这种攻击常常是由于使用 Cookie 存储用户登录会话造成的。因此我们将讨论在这种情景下如何防范这种攻击。</p>
-<p>如我前面所说，在下文中我们将分别解决这些问题，让你最终能够专业地将你的 Cookie 装进保险柜。</p>
-<h2 id="Cookie-窃取"><a href="#Cookie-窃取" class="headerlink" title="Cookie 窃取"></a>Cookie 窃取</h2><p>Cookie 窃取攻击就和它字面意思一样 —— 某人窃取了正常用户的 Cookie，然后一般用来将自己伪装成那个正常用户。</p>
-<p>Cookie 通常是被以下方式中的某种窃取：</p>
-<ol>
-<li><a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener">中间人攻击</a>，或者是类似的其它攻击方式，归纳一下就是攻击者拦截你的 Web 请求，从中窃取 Cookie。</li>
-<li>取得硬件的访问权限。</li>
-</ol>
-<p>阻止中间人攻击的终极方式就是当你的网站使用 Cookie 时，使用 SSL。使用 SSL 时，由于中间人无法对数据进行解密，因此外人基本上没可能在请求的中途获取 Cookie。</p>
-<p>可能你会觉得“哈哈，中间人攻击不太可能…”，我建议你看看 <a href="http://codebutler.com/firesheep" target="_blank" rel="noopener">firesheep</a>，这个简单的工具，它足以说明在使用公共 wifi 时窃取未加密的 Cookie 是一件很轻松的事情。</p>
-<p>如果你想确保这种事情不发生在你的用户中，<strong>请使用 SSL！</strong>试试使用 <a href="https://caddyserver.com/" target="_blank" rel="noopener">Caddy Server</a> 进行加密吧。它经过简单的配置就能投入生产环境中。例如，你可以使用下面四行代码轻松让你的 Go 应用使用代理：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">calhoun.io &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  gzip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  proxy &#x2F; localhost:3000</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>然后 Caddy 会为你自动处理所有与 SSL 有关的事务。</p>
-<p>防范通过访问硬件来窃取 Cookie 是十分棘手的事情。我们不能强制我们的用户使用高安全性系统，也不能逼他们为电脑设置密码，所以总会有他人坐在电脑前偷走 Cookie 的风险。此外，Cookie 也可能被病毒窃取，比如用户打开了某些钓鱼邮件时就会出现这种情况。</p>
-<p>不过这些都容易被发现。例如，如果有人偷了你的手表，当你发现表不在手上时你立马就会注意到它被偷了。然而 Cookie 还可以被复制，这样任何人都不会意识到它已经丢了。</p>
-<p>虽然不是万无一失，但你还是可以用一些技术来猜测 Cookie 是否被盗了。例如，你可以追踪用户的登录设备，要求他们重新输入密码。你还可以跟踪用户的 IP 地址，当其在可疑地点登录时通知用户。</p>
-<p>所有的这些解决方案都需要后端做更多的工作来追踪数据，如果你的应用需要处理一些敏感信息、金钱，或者它的收益可观的话，请在安全方面投入更多精力。</p>
-<p>也就是说，对于大多数只是作为过渡版本的应用来说，使用 SSL 就足够了。</p>
-<h2 id="Cookie-篡改（也叫用户伪造数据）"><a href="#Cookie-篡改（也叫用户伪造数据）" class="headerlink" title="Cookie 篡改（也叫用户伪造数据）"></a>Cookie 篡改（也叫用户伪造数据）</h2><p>请直面这种情况 —— 可能有一些混蛋突然就想看看你设的 Cookie，然后修改它的值。也可能他是出于好奇才这么做的，但是还是请你为这种可能发生的情况做好准备。</p>
-<p>在一些情景中，我们对此并不在意。例如，我们给用户定义一种主题设置时，并不会关心用户是否改变了这个设置。当这个 Cookie 过期时，就会恢复默认的主题设置，并且如果用户设置其为另一个有效的主题时我们可以让他正常使用那个主题，这并不会对系统造成任何损失。</p>
-<p>但是在另一些情况下，我们需要格外小心。编辑会话 Cookie 冒充另一个用户产生的危害比改个主题大得多。我们绝不想看到张三假装自己是李四。</p>
-<p>我们将介绍两种策略来检测与防止 Cookie 被篡改。</p>
-<h4 id="1-对数据进行数字签名"><a href="#1-对数据进行数字签名" class="headerlink" title="1. 对数据进行数字签名"></a>1. 对数据进行数字签名</h4><p>对数据进行数字签名，即对数据增加一个“签名”，这样能让你校验数据的可靠性。这种方法并不需要对终端用户的数据进行加密或隐藏，只要对 Cookie 增加必要的签名数据，我们就能检测到用户是否修改数据。</p>
-<p>这种保护 Cookie 的方法原理是哈希编码 —— 我们对数据进行哈希编码，接着将数据与它的哈希编码同时存入 Cookie 中。当用户发送 Cookie 给我们时，再对数据进行哈希计算，验证此时的哈希值与原始哈希值是否匹配。</p>
-<p>我们当然不会想看到用户也创建一个新的哈希来欺骗我们，因此你可以使用一些类似 HMAC 的哈希算法来使用秘钥对数据进行哈希编码。这样就能防范用户同时编辑数据与数字签名（即哈希值）。</p>
-<blockquote>
-<p><a href="https://jwt.io/" target="_blank" rel="noopener">JSON Web Tokens(JWT)</a> 默认内置了数字签名功能，因此你可能对这种方法比较熟悉。</p>
-</blockquote>
-<p>在 Go 中，可以使用类似 Gorilla 的 <a href="http://www.gorillatoolkit.org/pkg/securecookie" target="_blank" rel="noopener">securecookie</a> 之类的 package，你可以在创建 <code>SecureCookie</code> 时使用它来保护你的 Cookie。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 推荐使用 32 字节或 64 字节的 hashKey</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 此处为了简洁故设为了 “very-secret”</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">var hashKey &#x3D; []byte(&quot;very-secret&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">var s &#x3D; securecookie.New(hashKey, nil)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">func SetCookieHandler(w http.ResponseWriter, r *http.Request) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  encoded, err :&#x3D; s.Encode(&quot;cookie-name&quot;, &quot;cookie-value&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  if err &#x3D;&#x3D; nil &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    cookie :&#x3D; &amp;http.Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      Name:  &quot;cookie-name&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      Value: encoded,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      Path:  &quot;&#x2F;&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    http.SetCookie(w, cookie)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    fmt.Fprintln(w, encoded)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>然后你可以在另一个处理 Cookie 的函数中同样使用 SecureCookie 对象来读取 Cookie。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">func ReadCookieHandler(w http.ResponseWriter, r *http.Request) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  if cookie, err :&#x3D; r.Cookie(&quot;cookie-name&quot;); err &#x3D;&#x3D; nil &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    var value string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    if err &#x3D; s.Decode(&quot;cookie-name&quot;, cookie.Value, &amp;value); err &#x3D;&#x3D; nil &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      fmt.Fprintln(w, value)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p><strong>以上样例来源于 <a href="http://www.gorillatoolkit.org/pkg/securecookie" target="_blank" rel="noopener">http://www.gorillatoolkit.org/pkg/securecookie</a>.</strong></p>
-<blockquote>
-<p>注意：这儿的数据并不是进行了加密，而只是进行了编码。我们会在“数据泄露”一章讨论如何对数据进行加密。</p>
-</blockquote>
-<p>这种模式还需要注意的是，如果你使用这种方式进行身份验证，请遵循 JWT 的模式，将登录过期日期和用户数据同时进行签名。你不能只凭 Cookie 的过期日期来判断登录是否有效，因为存储在 Cookie 上的日期并未经过签名，且用户可以创建一个永不过期的新 Cookie，将原 Cookie 的内容复制进去就得到了一个永远处于登录状态的 Cookie。</p>
-<h4 id="2-进行数据混淆"><a href="#2-进行数据混淆" class="headerlink" title="2. 进行数据混淆"></a>2. 进行数据混淆</h4><p>还有一种解决方案可以隐藏数据并防止用户造假。例如，不要这样存储 Cookie：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 别这么做</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">http.Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  Name: &quot;user_id&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  Value: &quot;123&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>我们可以存储一个值来映射存在数据库中的真实数据。通常使用 Session ID 或者 remember token 来作为这个值。例如我们有一个名为 <code>remember_tokens</code> 的表，这样存储数据：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">remember_token: LAKJFD098afj0jasdf08jad08AJFs9aj2ASfd1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">user_id: 123</span></pre></td></tr></table></figure>
-<p>在 Cookie 中，我们仅存储这个 remember token。如果用户想伪造 Cookie 也会无从下手。它看上去就是一堆乱码。</p>
-<p>之后当用户要登陆我们的应用时，再根据 remember token 在数据库中查询，确定用户具体的登录状态。</p>
-<p>为了让此措施正常工作，你需要确保你的混淆值有以下特性：</p>
-<ul>
-<li>能映射到用户数据（或其它资源）</li>
-<li>随机</li>
-<li>熵值高</li>
-<li>可被无效化（例如在数据库中删除、修改 token 值）</li>
-</ul>
-<p>这种方法也有一个缺点，就是在用户访问每个需要校验权限的页面时都得进行数据库查询。不过这个缺点很少有人注意，而且可以通过缓存等技术来减小数据库查询的开销。这种方法的升级版就是 JWT，应用这种方法你可以随时使会话无效化。</p>
-<p><strong>注意：尽管目前 JWT 收到了大多数 JS 框架的追捧，但上文这种方法是我了解的最常用的身份验证策略。</strong></p>
-<h2 id="数据泄露"><a href="#数据泄露" class="headerlink" title="数据泄露"></a>数据泄露</h2><p>在真正出现数据泄露前，通常需要另一种攻击向量 —— 例如 Cookie 窃取。然而还是很难去正确地判断并提防数据泄露的发生。因为仅仅是 Cookie 发生了泄露并不意味着攻击者也得到了用户的账户密码。</p>
-<p>无论何时，都应当减少存储在 Cookie 中的敏感数据。绝不要将用户密码之类的东西存在 Cookie 中，即使密码已经经过了编码也不要这么做。<a href="https://hackernoon.com/your-node-js-authentication-tutorial-is-wrong-f1a3bf831a46#2491" target="_blank" rel="noopener">这篇文章</a> 给出了几个开发者无意间将敏感数据存储在 Cookie 或 JWT 中的实例，由于（JWT 的 payload）是 base64 编码，没有经过任何加密，因此任何人都可以对其进行解码。</p>
-<p>出现数据泄露可是犯了大错。如果你担心你不小心存储了一些敏感数据，我建议你使用如 Gorilla 的 <a href="http://www.gorillatoolkit.org/pkg/securecookie" target="_blank" rel="noopener">securecookie</a> 之类的 package。</p>
-<p>前面我们讨论了如何对你的 Cookie 进行数字签名，其实 <code>securecookie</code> 也可以用于加密与解密你的 Cookie 数据，让你的数据不能被轻易地解码并读取。</p>
-<p>使用这个 package 进行加密，你只需要在创建 <code>SecureCookie</code> 实例时传入一个“块秘钥”（blockKey）即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var hashKey &#x3D; []byte(&quot;very-secret&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 增加这一部分进行加密</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">var blockKey &#x3D; []byte(&quot;a-lot-secret&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">var s &#x3D; securecookie.New(hashKey, blockKey)</span></pre></td></tr></table></figure>
-<p>其它所有东西都和前面章节的数字签名中的样例一致。</p>
-<p>再次提醒，你<strong>不应该</strong>在 Cookie 中存储任何敏感数据，尤其不能存储密码之类的东西。加密仅仅是一项为数据增加一部分安全性，使其成为”半敏感数据“数据的技术而已。</p>
-<h2 id="跨站脚本攻击（XSS）"><a href="#跨站脚本攻击（XSS）" class="headerlink" title="跨站脚本攻击（XSS）"></a>跨站脚本攻击（XSS）</h2><p><a href="https://en.wikipedia.org/wiki/Cross-site_scripting" target="_blank" rel="noopener">跨站脚本（Cross-site scripting）</a>也经常被记为 XSS，及有人试图将一些不是你写的 JavaScript 代码注入你的网站中。但由于其攻击的机理，你无法知道正在浏览器中运行的 JavaScript 代码到底是不是你的服务器提供的代码。</p>
-<p>无论何时，你都应该尽量去阻止 XSS 攻击。在本文中我们不会深入探讨这种攻击的具体细节，但是<strong>以防万一</strong>我建议你在非必要的情况下禁止 JavaScript 访问 Cookie 的权限。在你需要这个权限的时候你可以随时开启它，所以不要让它成为你的网站安全性脆弱的理由。</p>
-<p>在 Go 中完成这点很简单，只需要在创建 Cookie 时设置 <code>HttpOnly</code> 字段为 true 即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cookie :&#x3D; http.Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; true 表示脚本无权限，只允许 http request 使用 Cookie。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 这与 Http 与 Https 无关。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  HttpOnly: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<h2 id="CSRF（跨站请求伪造）"><a href="#CSRF（跨站请求伪造）" class="headerlink" title="CSRF（跨站请求伪造）"></a>CSRF（跨站请求伪造）</h2><p>CSRF 发生的情况为某个用户访问别人的站点，但那个站点有一个能提交到你的 web 应用的表单。由于终端用户提交表单时的操作不经由脚本，因此浏览器会将此请求设为用户进行的操作，将 Cookie 附上表单数据同时发送。</p>
-<p>乍一看似乎这没什么问题，但是如果外部网站发送一些用户不希望发送的数据时会发生什么呢？例如，badsite.com 中有个表单，会提交请求将你的 100 美元转到他们的账户中，而 chase.com 希望你在它这儿登录你的银行账户。这可能会导致在终端用户不知情的情况下钱被转走。</p>
-<p>Cookie 不会直接导致这样的问题，不过如果你使用 Cookie 作为身份验证的依据，那你需要使用 Gorilla 的 <a href="http://www.gorillatoolkit.org/pkg/csrf" target="_blank" rel="noopener">csrf</a> 之类的 package 来避免 CSRF 攻击。</p>
-<p>这个 package 将会提供一个 CSRF token，插入你网站的每个表单中，当表单中不含 token 时，<code>csrf</code> package 中间件将会阻止表单的提交，使得别的网站不能欺骗用户在他们那儿向你的网站提交表单。</p>
-<p><strong>更多关于 CSRF 攻击的资料请参阅：</strong></p>
-<ul>
-<li><a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF" target="_blank" rel="noopener">https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)</a>)</li>
-<li><a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Cross-site_request_forgery</a></li>
-</ul>
-<h2 id="在非必要时限制-Cookie-的访问权限"><a href="#在非必要时限制-Cookie-的访问权限" class="headerlink" title="在非必要时限制 Cookie 的访问权限"></a>在非必要时限制 Cookie 的访问权限</h2><p>我们要讨论的最后一件事与特定的攻击无关，更像是一种指导原则。我建议在使用 Cookie 时尽量限制其权限，仅在你需要时开发相关权限。</p>
-<p>前面讨论 XSS 时我也简单的提到过这点，但一般的观点是你需要尽可能限制对 Cookie 的访问。例如，如果你的 Web 应用没有使用子域名，那你就不应该赋予 Cookie 所有子域的权限。不过这是 Cookie 的默认值，因此其实你什么都不用做就能将 Cookie 的权限限制在某个特定域中。</p>
-<p>但是，如果你需要与子域共享 Cookie，你可以这么做：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c :&#x3D; Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 根据主机模式的默认设置，Cookie 进行的是精确域名匹配。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 因此请仅在需要的时候开启子域名权限！</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 下面的代码可以让 Cookie 在 yoursite.com 的任何子域下工作：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  Domain: &quot;yoursite.com&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p><strong>欲了解更多有关域的信息，请参阅 <a href="https://tools.ietf.org/html/rfc6265#section-5.1.3" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc6265#section-5.1.3</a>。你也可以在这儿阅读源码，参阅其默认设置：<a href="https://golang.org/src/net/http/cookie.go#L157" target="_blank" rel="noopener">https://golang.org/src/net/http/cookie.go#L157</a>.</strong></p>
-<p><strong>你可以参阅 <a href="https://stackoverflow.com/questions/18492576/share-cookie-between-subdomain-and-domain" target="_blank" rel="noopener">这个 stackoverflow 的问题</a> 了解更多信息，弄明白为什么在为子域使用 Cookie 时不需要提供子域前缀.此外 Go 源码链接中也可以看到如果你提供前缀名的话会被自动去除。</strong></p>
-<p>除了将 Cookie 的权限限制在特定域上之外，你还可以将 Cookie 限制于某个特定的目录路径中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c :&#x3D; Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; Defaults 设置为可访问应用的任何路径，但你也可以</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 进行如下设置将其限制在特定子目录下：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  Path: &quot;&#x2F;app&#x2F;&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>还有你也可以对其设置路径前缀，例如 <code>/blah/</code>，你可以参阅下面这篇文章了解更多这个字段的使用方法：<a href="https://tools.ietf.org/html/rfc6265#section-5.1.4" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc6265#section-5.1.4</a>.</p>
-<h2 id="为什么我不使用-JWT？"><a href="#为什么我不使用-JWT？" class="headerlink" title="为什么我不使用 JWT？"></a>为什么我不使用 JWT？</h2><p>就知道肯定会有人提出这个问题，下面让我简单解释一下。</p>
-<p>可能有很多人和你说过，Cookie 的安全性与 JWT 一样。但实际上，Cookie 与 JWT 解决的并不是相同的问题。比如 JWT 可以存储在 Cookie 中，这和将其放在 Header 中的实际效果是一样的。</p>
-<p>另外，Cookie 可用于无需验证的数据，在这种情况下了解如何增加 Cookie 的安全性也是必要的。</p>
-<blockquote>
-<p>发布于掘金 <a href="https://juejin.im/post/59aa7a4d6fb9a0249c007e16" target="_blank" rel="noopener">https://juejin.im/post/59aa7a4d6fb9a0249c007e16</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1772,7 +1706,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">158</span>
+          <span class="site-state-item-count">159</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1785,7 +1719,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">197</span>
+        <span class="site-state-item-count">199</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

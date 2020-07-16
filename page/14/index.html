@@ -219,6 +219,83 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/03/%E7%88%AC%E8%99%ABpython%E8%A7%A3%E6%9E%90json%E4%B8%8Epython%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/05/03/%E7%88%AC%E8%99%ABpython%E8%A7%A3%E6%9E%90json%E4%B8%8Epython%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87/" class="post-title-link" itemprop="url">爬虫python解析json与python下载图片</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-05-03 04:24:00" itemprop="dateCreated datePublished" datetime="2016-05-03T04:24:00+08:00">2016-05-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Back-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Back End</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>目标:<a href="http://yun.kujiale.com/api/openfps?query=beijing&amp;start=1&amp;num=50" target="_blank" rel="noopener">http://yun.kujiale.com/api/openfps?query=beijing&amp;start=1&amp;num=50</a>  中的所有户型数据,将其户型图片下载到本地.</p>
+</blockquote>
+<p>目标中的数据以json形式存在,因此使用json.loads.</p>
+<p>全部代码如下:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding=utf-8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">valifile</span><span class="params">(name)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    rstr = <span class="string">r"[/\:*?"</span>&lt;&gt;|]<span class="string">"  # ';/:*?"</span>&lt;&gt;|<span class="string">';</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="string">    valiname = re.sub(rstr, "", name)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="string">    return valiname</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="string"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="string">def getkjlimages():</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="string">	for i in range(0,1000000):</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="string">		print(i)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="string">		i = str(i*6)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">		surl = ';http://yun.kujiale.com/api/openfps?query=beijing&amp;amp;start=';+i+';&amp;amp;num=6';</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">		ret=requests.get(url=surl) </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">		ret.encoding=<span class="string">';utf-8'</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">		kjl = json.loads(ret.text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">		<span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">49</span>):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">			itmes = kjl[<span class="string">';obsExFps'</span>;][j]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">			name = json.dumps(itmes[<span class="string">';name'</span>;])[<span class="number">1</span>:<span class="number">-1</span>].decode(<span class="string">"unicode-escape"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">			src = json.dumps(itmes[<span class="string">';pics'</span>;])[<span class="number">1</span>:<span class="number">-1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">			<span class="comment">##name和src后面加了[1:-1]的原因是json数据中包含了前后两个引号,要将其去掉</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">			print(<span class="string">';img_src='</span>;+json.dumps(itmes[<span class="string">';pics'</span>;]))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">			img = urllib.urlopen(src).read()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">			f = file(<span class="string">';imgs/'</span>;+validateTitle(name)+<span class="string">';.jpg'</span>;,<span class="string">"wb"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">			f.write(img)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">			f.close</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">getkjlimages()</span></pre></td></tr></table></figure></p>
+<p>其中,json.dumps出来的字符串为 uxxxx形式,需要用decode(“unicode-escape”)进行转换成中文.另外,由于爬下来的name要直接用于文件名,其中有””等符号,因此需要将name合法化.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">valifile</span><span class="params">(name)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    rstr = <span class="string">r"[/\:*?"</span>&lt;&gt;|]<span class="string">"  # ';/:*?"</span>&lt;&gt;|<span class="string">';</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="string">    valiname = re.sub(rstr, "", name)</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="string">    return valiname</span></span></pre></td></tr></table></figure></p>
+<p>通过以上valifile可以将文件名在windows下合法化.</p>
+<p>运行结果:</p>
+<p><img src="/images/pasted-55.png" alt="upload successful"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/29/requests-pyquery%E7%88%AC%E8%99%AB%E4%BD%93%E9%AA%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -911,86 +988,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/18/%E5%9C%A8Centos%E4%B8%8B%E8%AE%BE%E7%BD%AEapache%E7%9A%84%E8%99%9A%E6%8B%9F%E7%9B%AE%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/04/18/%E5%9C%A8Centos%E4%B8%8B%E8%AE%BE%E7%BD%AEapache%E7%9A%84%E8%99%9A%E6%8B%9F%E7%9B%AE%E5%BD%95/" class="post-title-link" itemprop="url">在Centos下设置apache的虚拟目录</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-04-18 05:15:00" itemprop="dateCreated datePublished" datetime="2016-04-18T05:15:00+08:00">2016-04-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Back-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Back End</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ol>
-<li>登陆root</li>
-<li>更改httpd.conf<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">vi /etc/httpd/conf/http.conf</span></pre></td></tr></table></figure>
-使用vi进行修改。用到的快捷键:<br>跳到文件第一行：gg<br>跳到文件最后一行：shift + g</li>
-<li>加入内容：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VirtualHost</span> <span class="attr">xxx.com</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    ServerAdmin root@localhost</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    DocumentRoot /var/www/html/xxx</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    ServerName xxx.com</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="tag">&lt;<span class="name">Directory</span> /<span class="attr">var</span>/<span class="attr">www</span>/<span class="attr">html</span>/<span class="attr">xxxx</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">                Require all granted</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        <span class="tag">&lt;/<span class="name">Directory</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">VirtualHost</span>&gt;</span></span></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>重启apache<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">service httpd restart</span></pre></td></tr></table></figure></p>
-<p>然后即可设置xxx.com的域名解析到此服务器。</p>
-<blockquote>
-<p>使用过程中发现设置xxx.com的虚拟目录后，xxx.com能够成功解析到服务器，然而www.xxx.com不能成功解析，重新操作了一般，又添加了一个www.xxx.com的虚拟目录后能够成功解析。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1039,7 +1036,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">158</span>
+          <span class="site-state-item-count">159</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1052,7 +1049,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">197</span>
+        <span class="site-state-item-count">199</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

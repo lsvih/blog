@@ -219,6 +219,161 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/05/04/ES6-%E6%A8%A1%E5%9D%97%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%90%BD%E5%9C%B0%EF%BC%8C%E6%98%AF%E6%97%B6%E5%80%99%E8%AF%A5%E9%87%8D%E6%96%B0%E8%80%83%E8%99%91%E6%89%93%E5%8C%85%E4%BA%86%E5%90%97%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/05/04/ES6-%E6%A8%A1%E5%9D%97%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%90%BD%E5%9C%B0%EF%BC%8C%E6%98%AF%E6%97%B6%E5%80%99%E8%AF%A5%E9%87%8D%E6%96%B0%E8%80%83%E8%99%91%E6%89%93%E5%8C%85%E4%BA%86%E5%90%97%EF%BC%9F/" class="post-title-link" itemprop="url">ES6 模块原生支持在浏览器中落地，是时候该重新考虑打包了吗？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-05-04 11:17:00" itemprop="dateCreated datePublished" datetime="2017-05-04T11:17:00+08:00">2017-05-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Translate/" itemprop="url" rel="index">
+                    <span itemprop="name">Translate</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/images/pasted-145.png" alt="upload successful"></p>
+<p>最近一段日子，编写高效的 JavaScript 应用变得越来越复杂。早在几年前，大家都开始合并脚本来减少 HTTP 请求数；后来有了压缩工具，人们为了压缩代码而缩短变量名，甚至连代码的最后一字节都要省出来。</p>
+<p>今天，我们有了 <a href="https://blog.engineyard.com/2016/tree-shaking" target="_blank" rel="noopener">tree shaking</a> 和各种模块打包器，我们为了不在首屏加载时阻塞主进程又开始进行代码分割，加快<a href="https://developers.google.com/web/tools/lighthouse/audits/time-to-interactive" target="_blank" rel="noopener">交互时间</a>。我们还开始转译一切东西：感谢 Babel，让我们能够在现在就使用未来的特性。</p>
+<p>ES6 模块由 ECMAScript 标准制定，<a href="http://2ality.com/2014/09/es6-modules-final.html" target="_blank" rel="noopener">定稿有些时日了</a>。社区为它写了很多的文章，讲解如何通过 Babel 使用它们，以及 <code>import</code> 和 Node.js 的  <code>require</code> 的区别。但是要在浏览器中真正实现它还需要一点时间。我惊喜地发现 Safari 在它的 technology preview 版本中第一个装载了 ES6 模块，并且 Edge 和 Firefox Nightly 版本也将要支持 ES6 模块——虽然目前还不支持。在使用 <code>RequireJS</code> 和 <code>Browserify</code> 之类的工具后（还记得关于 <a href="https://addyosmani.com/writing-modular-js/" target="_blank" rel="noopener">AMD 与 CommonJS  的讨论吗</a>？），至少看起来浏览器终于能支持模块了。让我们来看看明朗的未来带来了怎样的礼物吧！🎉</p>
+<h2 id="传统方法"><a href="#传统方法" class="headerlink" title="传统方法"></a>传统方法</h2><p>构建 web 应用的常用方式就是使用由 Browserify、Rollup、Webpack 等工具构建的代码包（bundle）。而不使用 SPA（单页面应用）技术的网站则通常由服务端生成 HTML，在其中引入一个 JavaScript 代码包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;head&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;title&gt;ES6 modules tryout&lt;&#x2F;title&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &lt;!-- defer to not block rendering --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &lt;script src&#x3D;&quot;dist&#x2F;bundle.js&quot; defer&gt;&lt;&#x2F;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;head&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &lt;body&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &lt;!-- ... --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;body&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;html&gt;</span></pre></td></tr></table></figure>
+<p>我们使用 Webpack 打包的代码包中包括了 3 个 JavaScript 文件，这些文件使用了 ES6 模块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; app&#x2F;index.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import dep1 from &#39;.&#x2F;dep-1&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">function getComponent () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  var element &#x3D; document.createElement(&#39;div&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  element.innerHTML &#x3D; dep1();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  return element;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">document.body.appendChild(getComponent());</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; app&#x2F;dep-1.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">import dep2 from &#39;.&#x2F;dep-2&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">export default function() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  return dep2();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; app&#x2F;dep-2.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">export default function() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  return &#39;Hello World, dependencies loaded!&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>这个 app 将会显示“Hello world”。在下文中显示“Hello world”即表示脚本加载成功。</p>
+<h3 id="装载一个代码包（bundle）"><a href="#装载一个代码包（bundle）" class="headerlink" title="装载一个代码包（bundle）"></a>装载一个代码包（bundle）</h3><p>配置使用 Webpack 创建一个代码包相对来说比较直观。在构建过程中，除了打包和使用 UglifyJS 压缩 JavaScript 文件之外并没有做别的什么事。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; webpack.config.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">const path &#x3D; require(&#39;path&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">const UglifyJSPlugin &#x3D; require(&#39;uglifyjs-webpack-plugin&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  entry: &#39;.&#x2F;app&#x2F;index.js&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  output: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    filename: &#39;bundle.js&#39;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    path: path.resolve(__dirname, &#39;dist&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  plugins: [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    new UglifyJSPlugin()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
+<p>3 个基础文件比较小，加起来只有 347 字节。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ ll app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">total 24</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">-rw-r--r--  1 stefanjudis  staff    75B Mar 16 19:33 dep-1.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">-rw-r--r--  1 stefanjudis  staff    75B Mar  7 21:56 dep-2.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">-rw-r--r--  1 stefanjudis  staff   197B Mar 16 19:33 index.js</span></pre></td></tr></table></figure>
+<p>在我通过 Webpack 构建之后，我得到了一个 856 字节的代码包，大约增大了 500 字节。增加这么些字节还是可以接受的，这个代码包与我们平常生产环境中做代码装载没啥区别。感谢 Webpack，我们已经可以使用 ES6 模块了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ webpack</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Hash: 4a237b1d69f142c78884</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Version: webpack 2.2.1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">Time: 114ms</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Asset       Size        Chunks  Chunk Names</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">bundle.js   856 bytes   0       [emitted]  main</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  [0] .&#x2F;app&#x2F;dep-1.js 78 bytes &#123;0&#125;[built]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  [1] .&#x2F;app&#x2F;dep-2.js 75 bytes &#123;0&#125;[built]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  [2] .&#x2F;app&#x2F;index.js 202 bytes &#123;0&#125;[built]</span></pre></td></tr></table></figure>
+<h2 id="使用原生支持的-ES6-模块的新设定"><a href="#使用原生支持的-ES6-模块的新设定" class="headerlink" title="使用原生支持的 ES6 模块的新设定"></a>使用原生支持的 ES6 模块的新设定</h2><p>现在，我们得到了一个“传统的打包代码”，现在所有还不支持 ES6 模块的浏览器都支持这种打包的代码。我们可以开始玩一些有趣的东西了。让我们在 <code>index.html</code> 中加上一个新的 script 元素指向 ES6 模块，为其加上 <code>type=&quot;module&quot;</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;html&gt;&lt;head&gt;&lt;title&gt;ES6 modules tryout&lt;&#x2F;title&gt;&lt;!-- in case ES6 modules are supported --&gt;&lt;script src&#x3D;&quot;app&#x2F;index.js&quot;type&#x3D;&quot;module&quot;&gt;&lt;&#x2F;script&gt;&lt;script src&#x3D;&quot;dist&#x2F;bundle.js&quot;defer&gt;&lt;&#x2F;script&gt;&lt;&#x2F;head&gt;&lt;body&gt;&lt;!-- ... --&gt;&lt;&#x2F;body&gt;&lt;&#x2F;html&gt;</span></pre></td></tr></table></figure>
+<p>然后我们在 Chrome 中看看，发现并没有发生什么事。</p>
+<p><img src="/images/pasted-146.png" alt="upload successful"></p>
+<p>代码包还是和之前一样加载，“Hello world!” 也正常显示。虽然没看到效果，但是这说明浏览器可以接受这种它们并不理解的命令而不会报错，这是极好的。Chrome 忽略了这个它无法判断类型的 script 元素。</p>
+<p>接下来，让我们在 Safari technology preview 中试试：</p>
+<p><img src="/images/pasted-147.png" alt="upload successful"></p>
+<p>遗憾的是，它并没有显示另外的“Hello world”。造成问题的原因是构建工具与原生 ES 模块的差异：Webpack 是在构建的过程中找到那些需要 include 的文件，而 ES 模块是在浏览器中运行的时候才去取文件的，因此我们需要为此指定正确的文件路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; app&#x2F;index.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 这样写不行</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; import dep1 from &#39;.&#x2F;dep-1&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 这样写能正常工作</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">import dep1 from &#39;.&#x2F;dep-1.js&#39;;</span></pre></td></tr></table></figure>
+<p>改了文件路径之后它能正常工作了，但事实上 Safari Preview 加载了代码包，以及三个独立的模块，这意味着我们的代码被执行了两次。</p>
+<p><img src="/images/pasted-148.png" alt="upload successful"></p>
+<p>这个问题的解决方案就是加上 <code>nomodule</code> 属性，我们可以在加载代码包的 script 元素里加上这个属性。这个属性<a href="https://github.com/whatwg/html/commit/a828019152213ae72b0ed2ba8e35b1c472091817" target="_blank" rel="noopener">是最近才加入标准中的</a>，Safari Preview 也是在<a href="https://trac.webkit.org/changeset/211078/webkit" target="_blank" rel="noopener">一月底</a>才支持它的。这个属性会告诉 Safari，这个 script 是当不支持 ES6 模块时的“退路”。在这个例子中，浏览器支持 ES6 模块因此加上这个属性的 script 元素中的代码将不会执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &lt;head&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    &lt;title&gt;ES6 modules tryout&lt;&#x2F;title&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &lt;!-- in case ES6 modules are supported --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &lt;script src&#x3D;&quot;app&#x2F;index.js&quot; type&#x3D;&quot;module&quot;&gt;&lt;&#x2F;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &lt;!-- in case ES6 modules aren&#39;t supported --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &lt;script src&#x3D;&quot;dist&#x2F;bundle.js&quot; defer nomodule&gt;&lt;&#x2F;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;head&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &lt;body&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &lt;!-- ... --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  &lt;&#x2F;body&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;html&gt;</span></pre></td></tr></table></figure>
+<p><img src="/images/pasted-149.png" alt="upload successful"></p>
+<p>现在好了。通过结合使用 <code>type=&quot;module&quot;</code> 与 <code>nomodule</code>，我们现在可以在不支持 ES6 模块的浏览器中加载传统的代码包，在支持 ES6 模块的浏览器中加载 JavaScript 模块。</p>
+<p>你可以在 <a href="http://es-module-on.stefans-playground.rocks/" target="_blank" rel="noopener">es-module-on.stefans-playground.rocks</a> 查看这个尚在制定的规范。</p>
+<h3 id="模块与脚本的不同"><a href="#模块与脚本的不同" class="headerlink" title="模块与脚本的不同"></a>模块与脚本的不同</h3><p>这儿有几个问题。首先，JavaScript 在 ES6 模块中运行与平常在 script 元素中不同。Axel Rauschmayer 在他的<a href="http://exploringjs.com/es6/ch_modules.html#sec_modules-vs-scripts" target="_blank" rel="noopener">探索 ES6</a>一书中很好地讨论了这个问题。我推荐你点击上面的链接阅读这本书，但是在此我先快速地总结一下主要的不同点：</p>
+<ul>
+<li>ES6 模块默认在严格模式下运行（因此你不需要加上 <code>use strict</code> 了）。</li>
+<li>最外层的 <code>this</code> 指向 <code>undefined</code>（而不是 window）。</li>
+<li>最高级变量是 module 的局部变量（而不是 global）。</li>
+<li>ES6 模块会在浏览器完成 HTML 的分析之后异步加载与执行。</li>
+</ul>
+<p>我认为，这些特性是巨大进步。模块是局部的——这意味着我们不再需要到处使用 IIFE 了，而且我们不用再担心全局变量泄露。而且默认在严格模式下运行，意味着我们可以在很多地方抛弃 <code>use strict</code> 声明。</p>
+<blockquote>
+<p>译注：IIFE 全称 immediately-invoked function expression，即立即执行函数，也就是大家熟知的在函数后面加括号。</p>
+</blockquote>
+<p>从改善性能的观点来看（可能是最重要的进步），<strong>模块默认会延迟加载与执行</strong>。因此我们将不再会不小心给我们的网站加上了阻碍加载的代码，使用 <code>type=&quot;module&quot;</code> 的 script 元素也不再会有 <a href="https://www.stevesouders.com/blog/2010/06/01/frontend-spof/" target="_blank" rel="noopener">SPOF</a> 问题。我们也可以给它加上一个 <code>async</code> 属性，它将会覆盖默认的延迟加载行为。不过使用  <code>defer</code> <a href="https://calendar.perfplanet.com/2016/prefer-defer-over-async/" target="_blank" rel="noopener">在现在也是一个不错的选择</a>。</p>
+<blockquote>
+<p>译注：SPOF 全称 Single Points Of Failure——单点故障</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&lt;!-- not blocking with defer default behavior --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&lt;script src&#x3D;&quot;app&#x2F;index.js&quot; type&#x3D;&quot;module&quot;&gt;&lt;&#x2F;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&lt;!-- executed after HTML is parsed --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&lt;script type&#x3D;&quot;module&quot;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  console.log(&#39;js module&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&lt;!-- executed immediately --&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  console.log(&#39;standard module&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;script&gt;</span></pre></td></tr></table></figure>
+<p>如果你想详细了解这方面内容，可以阅读 <a href="https://html.spec.whatwg.org/multipage/scripting.html#the-script-element" target="_blank" rel="noopener">script 元素说明</a>，这篇文章简单易读，并且包含了一些示例。</p>
+<h2 id="压缩纯-ES6-代码"><a href="#压缩纯-ES6-代码" class="headerlink" title="压缩纯 ES6 代码"></a>压缩纯 ES6 代码</h2><p>还没完！我们现在能为 Chrome 提供压缩过的代码包，但是还不能为 Safari Preview 提供单独压缩过的文件。我们如何让这些文件变得更小呢？UglifyJS 能完成这项任务吗？</p>
+<p>然而必须指出，UglifyJS 并不能完全处理好 ES6 代码。虽然它有个 <code>harmony</code> 开发版分支（<a href="https://github.com/mishoo/UglifyJS2/tree/harmony" target="_blank" rel="noopener">地址</a>）支持ES6，但不幸的是在我写这 3 个 JavaScript 文件的时候它并不能正常工作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ uglifyjs dep-1.js -o dep-1.min.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Parse error at dep-1.js:3,23</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">export default function() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">                      ^</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">SyntaxError: Unexpected token: punc (()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; ..</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">FAIL: 1</span></pre></td></tr></table></figure>
+<p>但是现在 UglifyJS 几乎存在于所有工具链中，那全部使用 ES6 编写的工程应该怎么办呢？</p>
+<p>通常的流程是使用 Babel 之类的工具将代码转换为 ES5，然后使用 Uglify 对 ES5 代码进行压缩处理。但是在这篇文章里我不想使用 ES5 翻译工具，因为我们现在是要寻找面向未来的处理方式！Chrome 已经<a href="https://kangax.github.io/compat-table/es6/#chrome59" target="_blank" rel="noopener">覆盖了 97% ES6 规范</a> ，而 Safari Preview 版<a href="https://kangax.github.io/compat-table/es6/#safari10_1" target="_blank" rel="noopener">自 verion 10 之后已经 100% 很好地支持 ES6</a>了。</p>
+<p>我在推特中提问是否有能够处理 ES6 的压缩工具，<a href="https://twitter.com/larsgraubner" target="_blank" rel="noopener">Lars Graubner</a> 告诉我可以使用 <a href="https://github.com/babel/babili" target="_blank" rel="noopener">Babili</a>。使用 Babili，我们能够轻松地对 ES6 模块进行压缩。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; app&#x2F;dep-2.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">export default function() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  return &#39;Hello World. dependencies loaded.&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; dist&#x2F;modules&#x2F;dep-2.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">export default function()&#123;return &#39;Hello World. dependencies loaded.&#39;&#125;</span></pre></td></tr></table></figure>
+<p>使用 Babili CLI 工具，可以轻松地分别压缩各个文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ babili app -d dist&#x2F;modules</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">app&#x2F;dep-1.js -&gt; dist&#x2F;modules&#x2F;dep-1.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">app&#x2F;dep-2.js -&gt; dist&#x2F;modules&#x2F;dep-2.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">app&#x2F;index.js -&gt; dist&#x2F;modules&#x2F;index.js</span></pre></td></tr></table></figure>
+<p>最终结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ ll dist</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">-rw-r--r--  1 stefanjudis  staff   856B Mar 16 22:32 bundle.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">$ ll dist&#x2F;modules</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">-rw-r--r--  1 stefanjudis  staff    69B Mar 16 22:32 dep-1.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">-rw-r--r--  1 stefanjudis  staff    68B Mar 16 22:32 dep-2.js</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">-rw-r--r--  1 stefanjudis  staff   161B Mar 16 22:32 index.js</span></pre></td></tr></table></figure>
+<p>代码包仍然是大约 850B，所有文件加起来大约是 300B。我没有使用 GZIP，因为<a href="http://webmasters.stackexchange.com/questions/31750/what-is-recommended-minimum-object-size-for-gzip-performance-benefits" target="_blank" rel="noopener">它并不能很好地处理小文件</a>。（我们稍后会提到这个）</p>
+<h2 id="能通过-rel-preload-来加速-ES6-的模块加载吗？"><a href="#能通过-rel-preload-来加速-ES6-的模块加载吗？" class="headerlink" title="能通过 rel=preload 来加速 ES6 的模块加载吗？"></a>能通过 rel=preload 来加速 ES6 的模块加载吗？</h2><p>对单个 JS 文件进行压缩取得了很好的效果。文件大小从 856B 降低到了 298B，但是我们还能进一步地加快加载速度。通过使用 ES6 模块，我们可以装载更少的代码，但是看看瀑布图你会发现，request 会按照模块的依赖链一个一个连续地加载。</p>
+<p>那如果我们像之前在浏览器中对代码进行预加载那样，用 <code>&lt;link rel=&quot;preload&quot; as=&quot;script&quot;&gt;</code> 元素告知浏览器要加载额外的 request，是否会加快模块的加载速度呢？在 Webpack 中，我们已经有了类似的工具，比如 Addy Osmani 的 <a href="https://github.com/GoogleChrome/preload-webpack-plugin" target="_blank" rel="noopener">Webpack 预加载插件</a>可以对分割的代码进行预加载，那 ES6 模块有没有类似的方法呢？如果你还不清楚 <code>rel=&quot;preload&quot;</code> 是如何运作的，你可以先阅读 Yoav Weiss 在 Smashing Magazine 发表的相关文章：<a href="https://www.smashingmagazine.com/2016/02/preload-what-is-it-good-for/" target="_blank" rel="noopener">点击阅读</a></p>
+<p>但是，ES6 模块的预加载并不是那么简单，他们与普通的脚本有很大的不同。那么问题来了，对一个 link 元素加上  <code>rel=&quot;preload&quot;</code> 将会怎样处理 ES6 模块呢？它也会取出所有的依赖文件吗？这个问题显而易见（可以），但是使用 <code>preload</code> 命令加载模块，需要解决更多浏览器的内部实现问题。<a href="https://twitter.com/domenic" target="_blank" rel="noopener">Domenic Denicola</a> 在<a href="https://github.com/whatwg/fetch/issues/486" target="_blank" rel="noopener">一个 GitHub issue</a> 中讨论了这方面的问题，如果你感兴趣的话可以点进去看一看。但是事实证明，使用 <code>rel=&quot;preload&quot;</code> 加载脚本与加载 ES6 模块是截然不同的。可能以后最终的解决方案是用另一个 <code>rel=&quot;modulepreload&quot;</code> 命令来专门加载模块。在本文写作时，<a href="https://github.com/whatwg/html/pull/2383" target="_blank" rel="noopener">这个 pull request</a> 还在审核中，你可以点进去看看未来我们可能会怎样进行模块的预加载。</p>
+<h2 id="加入真实的依赖"><a href="#加入真实的依赖" class="headerlink" title="加入真实的依赖"></a>加入真实的依赖</h2><p>仅仅 3 个文件当然没法做一个真正的 app，所以让我们给它加一些真实的依赖。<a href="https://lodash.com/" target="_blank" rel="noopener">Lodash</a> 根据 ES6 模块对它的功能进行了分割，并分别提供给用户。我取出其中一个功能，然后使用 Babili 进行压缩。现在让我们对 <code>index.js</code> 文件进行修改，引入这个 Lodash 的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">import dep1 from &#39;.&#x2F;dep-1.js&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">import isEmpty from &#39;.&#x2F;lodash&#x2F;isEmpty.js&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">function getComponent() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  const element &#x3D; document.createElement(&#39;div&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  element.innerHTML &#x3D; dep1() + &#39; &#39; + isEmpty([]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  return element;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">document.body.appendChild(getComponent());</span></pre></td></tr></table></figure>
+<p>在这个例子中，<code>isEmpty</code> 基本上没有被使用，但是在加上它的依赖后，我们可以看看发生了什么：</p>
+<p><img src="/images/pasted-150.png" alt="upload successful"></p>
+<p>可以看到 request 数量增加到了 40 个以上，页面在普通 wifi 下的加载时间从大约 100 毫秒上升到了 400 到 800 毫秒，加载的数据总大小在没有压缩的情况下增加到了大约 12KB。可惜的是  <a href="https://www.webpagetest.org/" target="_blank" rel="noopener">WebPagetest</a> 在 Safari Preview 中不可用，我们没法给它做可靠的标准检测。</p>
+<p>但是，Chrome 收到打包后的 JavaScript 数据比较小，只有大约 8KB。</p>
+<p><img src="/images/pasted-151.png" alt="upload successful"></p>
+<p>这 4KB 的差距是不能忽视的。你可以在 <a href="https://lodash-module-on.stefans-playground.rocks/" target="_blank" rel="noopener">lodash-module-on.stefans-playground.rocks</a> 找到本示例。</p>
+<h3 id="压缩工作仅对大文件表现良好"><a href="#压缩工作仅对大文件表现良好" class="headerlink" title="压缩工作仅对大文件表现良好"></a>压缩工作仅对大文件表现良好</h3><p>如果你仔细看上面 Safari 开发者工具的截图，你可能会注意到传输后的文件大小其实比源码还要大。在很大的 JavaScript app 中这个现象会更加明显，一堆的小 Chunk 会造成文件大小的很大不同，因为 GZIP 并不能很好地压缩小文件。</p>
+<p>Khan Academy 在前一段时间<a href="http://engineering.khanacademy.org/posts/js-packaging-http2.htm" target="_blank" rel="noopener">探究了同样的问题</a>，他是用 HTTP/2 进行研究的。装载更小的文件能够很好地确保缓存命中率，但到最后它一般都会作为一个权衡方案，而且它的效果会被很多因素影响。对于一个很大的代码库来说，分解成若干个 chunk（一个 *vendor* 文件和一个 app bundle）是理所当然的，但是要装载数千个不能被压缩的小文件可能并不是一种明智的方法。</p>
+<h3 id="Tree-shaking-是个超-COOL-的技术"><a href="#Tree-shaking-是个超-COOL-的技术" class="headerlink" title="Tree shaking 是个超 COOL 的技术"></a>Tree shaking 是个超 COOL 的技术</h3><p>必须要说：感谢非常新潮的 tree shaking 技术，通过它，构建进程可以将没有使用过以及没有被其它模块引用的代码删除。第一个支持这个技术的构建工具是 Rollup，现在 Webpack 2 也支持它——<a href="https://medium.freecodecamp.com/tree-shaking-es6-modules-in-webpack-2-1add6672f31b#22c4" target="_blank" rel="noopener">只要我们在 babel 中禁用 <code>module</code> 选项</a>。</p>
+<p>我们试着改一改 <code>dep-2.js</code>，让它包含一些不会在 <code>dep-1.js</code> 中使用的东西。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">export default function() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  return &#39;Hello World. dependencies loaded.&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">export const unneededStuff &#x3D; [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#39;unneeded stuff&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">];</span></pre></td></tr></table></figure>
+<p>Babili 只会压缩文件， Safari Preview 在这种情况下会接收到这几行没有用过的代码。而另一方面，Webpack 或者 Rollup 打的包将不会包含这个 <code>unnededStuff</code>。Tree shaking 省略了大量代码，它毫无疑问应当被用在真实的产品代码库中。</p>
+<h2 id="尽管未来很明朗，但是现在的构建过程仍然不会变动"><a href="#尽管未来很明朗，但是现在的构建过程仍然不会变动" class="headerlink" title="尽管未来很明朗，但是现在的构建过程仍然不会变动"></a>尽管未来很明朗，但是现在的构建过程仍然不会变动</h2><p>ES6 模块即将到来，但是直到它最终在各大主流浏览器中实现前，我们的开发并不会发生什么变化。我们既不会装载一堆小文件来确保压缩率，也不会为了使用 tree shaking 和死码删除来抛弃构建过程。<strong>前端开发现在及将来都会一如既往地复杂</strong>。</p>
+<p>不要把所有东西都进行分割然后就假设它会改善性能。我们即将迎来 ES6 模块的浏览器原生支持，但是这不意味着我们可以抛弃构建过程与合适的打包策略。在我们 Contentful 这儿，将继续坚持我们的构建过程，以及继续使用我们的  <a href="https://www.contentful.com/developers/docs/javascript/" target="_blank" rel="noopener">JavaScript SDKs</a> 进行打包。</p>
+<p>然而，我们必须承认现在前端的开发体验仍然良好。JavaScript 仍在进步，最终我们将能够使用语言本身提供的模块系统。在几年后，原生模块对 JavaScript 生态的影响以及最佳实践方法将会是怎样的呢？让我们拭目以待。</p>
+<h2 id="其它资源"><a href="#其它资源" class="headerlink" title="其它资源"></a>其它资源</h2><ul>
+<li><a href="https://blog.hospodarets.com/native-ecmascript-modules-the-first-overview" target="_blank" rel="noopener">ES6 模块系列文章</a> 作者：Serg Hospodarets</li>
+<li><a href="http://exploringjs.com/" target="_blank" rel="noopener">《探索 ES6》</a> 的 <a href="http://exploringjs.com/es6/ch_modules.html" target="_blank" rel="noopener">模块章节</a></li>
+</ul>
+<blockquote>
+<p>发布于掘金 <a href="https://juejin.im/post/590a990a5c497d005852cf61" target="_blank" rel="noopener">https://juejin.im/post/590a990a5c497d005852cf61</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/04/27/%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7%E4%B8%8E%E8%AF%80%E7%AA%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1313,105 +1468,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/02/18/%E6%97%8B%E8%BD%AC%E7%94%9F%E6%88%90%E7%9F%A9%E9%98%B5-Spiral-Matrix/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/02/18/%E6%97%8B%E8%BD%AC%E7%94%9F%E6%88%90%E7%9F%A9%E9%98%B5-Spiral-Matrix/" class="post-title-link" itemprop="url">旋转生成矩阵(Spiral Matrix)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-02-18 05:18:00" itemprop="dateCreated datePublished" datetime="2017-02-18T05:18:00+08:00">2017-02-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Given an integer *n*, generate a square matrix filled with elements from 1 to *n*2 in spiral order.</p>
-<p>For example,</p>
-<p>Given *n* = 3,</p>
-<p>You should return the following matrix:</p>
-<p>[[ 1, 2, 3 ],</p>
-<p> [ 8, 9, 4 ],</p>
-<p> [ 7, 6, 5 ]]</p>
-<p>与之前蛇形遍历一个思路，给定几个状态x,y,state(说明当前生成的方向)</p>
-<p>在这个问题中，只有以下几种情况：向上生成到顶时，向右生成；向右生成到顶时，向下生成；向下生成到顶时，向左生成；向左生成到顶时，向上生成。最终的结束条件是生成了n^2个数字。</p>
-<p>首先生成一个n*n的矩阵：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">rs = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    rs.append([])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(n):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        rs[i].append(<span class="keyword">None</span>)</span></pre></td></tr></table></figure>
-<p>这样就得到了一个n*n的空矩阵。</p>
-<p>开始时尝试过</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[[<span class="keyword">None</span>]*n]*n</span></pre></td></tr></table></figure>
-<p>与</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[[<span class="keyword">None</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)]]*n</span></pre></td></tr></table></figure>
-<p>的方式，发现均会出现问题。原因是以这种方式生成的二维数组的子项指向的是同一个对象。其后果是</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [[<span class="keyword">None</span>]*<span class="number">5</span>]*<span class="number">5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">[[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>]]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">2</span>][<span class="number">2</span>] = <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">[[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="number">1</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="number">1</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="number">1</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="number">1</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="number">1</span>, <span class="keyword">None</span>, <span class="keyword">None</span>]]</span></pre></td></tr></table></figure>
-<p>使用built-in查看它们的id发现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(a[<span class="number">2</span>]),id(a[<span class="number">3</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">(<span class="number">4337281432</span>, <span class="number">4337281432</span>)</span></pre></td></tr></table></figure>
-<p>因此放弃看上去简洁的写法。</p>
-<blockquote>
-<p>更新：发现一个简洁有效的写法：</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">x = [[<span class="keyword">None</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)] <span class="keyword">for</span> j <span class="keyword">in</span> range(n)]</span></pre></td></tr></table></figure>
-<hr>
-<p>之后找出每个方向的条件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> step &lt;= n**<span class="number">2</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># print x,y,state,step,layer,tmp</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    rs[x][y] = step</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> state == <span class="string">'up'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> x == layer:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            y += <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            state = <span class="string">'right'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:x -= <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">elif</span> state == <span class="string">'right'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> y+<span class="number">1</span> == n-layer:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            x += <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">            state = <span class="string">'down'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:y+=<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">elif</span> state == <span class="string">'down'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> x+<span class="number">1</span> == n-layer:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">            y -= <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">            state = <span class="string">'left'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:x+=<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">elif</span> state == <span class="string">'left'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> y == layer:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">            x-=<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">            state= <span class="string">'up'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:y-=<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    step += <span class="number">1</span></span></pre></td></tr></table></figure>
-<p>大意如此。其中layer为当前从外向内已生成完的层数，由</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> step == n**<span class="number">2</span>-(n-layer*<span class="number">2</span><span class="number">-2</span>)**<span class="number">2</span>:layer+=<span class="number">1</span></span></pre></td></tr></table></figure>
-<p>可以得到。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1460,7 +1516,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">158</span>
+          <span class="site-state-item-count">159</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1473,7 +1529,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">197</span>
+        <span class="site-state-item-count">199</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

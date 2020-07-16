@@ -219,6 +219,132 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/01/16/TML-5-2-%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E5%86%85%E5%AE%B9%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/01/16/TML-5-2-%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E5%86%85%E5%AE%B9%EF%BC%9F/" class="post-title-link" itemprop="url">HTML 5.2 有哪些新内容？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-01-16 15:40:08" itemprop="dateCreated datePublished" datetime="2018-01-16T15:40:08+08:00">2018-01-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Translate/" itemprop="url" rel="index">
+                    <span itemprop="name">Translate</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>就在不到一个月前，HTML 5.2 正式成为了 W3C 的推荐标准（REC）。当一个规范到达 REC 阶段，就意味着它已经正式得到了 W3C 成员和理事长的认可。并且 W3C 将正式推荐浏览器厂商部署、web 开发者实现此规范。</p>
+<p>在 REC 阶段有个原则叫做<a href="https://www.slideshare.net/rachelandrew/where-does-css-come-from/27?src=clipshare" target="_blank" rel="noopener">“任何新事物都至少要有两种独立的实现”</a>，这对于我们 web 开发者来说是一个实践新特性的绝佳机会。</p>
+<p>在 HTML 5.2 中有一些添加和删除，具体改变可以参考官方的 <a href="https://www.w3.org/TR/html52/changes.html#changes" target="_blank" rel="noopener">HTML 5.2 变动内容</a>网页。本文将介绍一些我认为与我的开发有关的改动。</p>
+<h2 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h2><h3 id="原生的-lt-dialog-gt-元素"><a href="#原生的-lt-dialog-gt-元素" class="headerlink" title="原生的 &lt;dialog&gt; 元素"></a>原生的 <code>&lt;dialog&gt;</code> 元素</h3><p>在 HTML 5.2 的所有改动中，最让我激动的就是关于 <a href="https://www.w3.org/TR/html52/interactive-elements.html#elementdef-dialog" target="_blank" rel="noopener"><code>&lt;dialog&gt;</code> 元素</a>这个原生对话框的介绍。在 web 中，对话框比比皆是，但是它们的实现方式都各有不同。对话框很难实现可访问性，这导致大多数的对话框对那些不方便以视觉方式访问网页的用户来说都是不可用的。</p>
+<p>新的 <code>&lt;dialog&gt;</code> 元素旨在改变这种状况，它提供了一种简单的方式来实现模态对话框。之后我会单独写一篇文章专门介绍这个元素的工作方式，在此先简单介绍一下。</p>
+<p>由一个 <code>&lt;dialog&gt;</code> 元素创建对话框：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dialog</span>&gt;</span>  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Dialog Title<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Dialog content and other stuff will go here<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">dialog</span>&gt;</span></span></pre></td></tr></table></figure>
+<p>默认情况下，对话框会在视图中（以及 DOM 访问中）隐藏，只有设置 open 属性后，对话框才会显示。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dialog</span> <span class="attr">open</span>&gt;</span></span></pre></td></tr></table></figure>
+<p><code>open</code> 属性可以通过调用 <code>show()</code> 与 <code>close()</code> 方法开启或关闭，任何 <code>HTMLDialogElement</code> 都可以调用这两个方法。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"open"</span>&gt;</span>Open Dialog<span class="tag">&lt;/<span class="name">button</span>&gt;</span>  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"close"</span>&gt;</span>Close Dialog<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dialog</span> <span class="attr">id</span>=<span class="string">"dialog"</span>&gt;</span>  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">h2</span>&gt;</span>Dialog Title<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Dialog content and other stuff will go here<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">dialog</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="javascript"><span class="keyword">const</span> dialog = <span class="built_in">document</span>.getElementById(<span class="string">"dialog"</span>);</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="undefined"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="javascript"><span class="built_in">document</span>.getElementById(<span class="string">"open"</span>).addEventListener(<span class="string">"click"</span>, () =&gt; &#123;  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="undefined">  dialog.show();</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="undefined">&#125;);</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="undefined"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="javascript"><span class="built_in">document</span>.getElementById(<span class="string">"close"</span>).addEventListener(<span class="string">"click"</span>, () =&gt; &#123;  </span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="undefined">  dialog.close();</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="undefined">&#125;);</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure>
+<p>目前，Chrome 浏览器已经支持 <code>&lt;dialog&gt;</code> 元素，Firefox 也即将支持（behind a flag）。 </p>
+<p><img src="/images/pasted-304.png" alt="upload successful"></p>
+<p>上图为 caniuse.com 关于 dialog 特性主流浏览器兼容情况的数据</p>
+<h3 id="在-iFrame-中使用-Payment-Request-API（支付请求-API）"><a href="#在-iFrame-中使用-Payment-Request-API（支付请求-API）" class="headerlink" title="在 iFrame 中使用 Payment Request API（支付请求 API）"></a>在 iFrame 中使用 Payment Request API（支付请求 API）</h3><p><a href="https://www.w3.org/TR/payment-request/" target="_blank" rel="noopener">Payment Request API</a> 是支付结算表单的原生替代方案。它将支付信息置于浏览器处理，用来代替之前各个网站各不相同的结算表单，旨在为用户提供一种标准、一致的支付方式。</p>
+<p>在 HTML 5.2 之前，这种支付请求无法在文档嵌入的 iframe 中使用，导致第三方嵌入式支付解决方案（如 Stripe, Paystack）基本不可能使用这个 API，因为它们通常是在 iframe 中处理支付接口。</p>
+<p>为此，HTML 5.2 引入了用于 iframe 的 <code>allowpaymentrequest</code> 属性，允许用户在宿主网页中访问 iframe 的 Payment Request API。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">allowpaymentrequest</span>&gt;</span></span></pre></td></tr></table></figure>
+<h3 id="苹果的图标尺寸"><a href="#苹果的图标尺寸" class="headerlink" title="苹果的图标尺寸"></a>苹果的图标尺寸</h3><p>如要定义网页图标，我们可以在文档的 head 中使用 <code>&lt;link rel=&quot;icon&quot;&gt;</code> 元素。如果要定义不同尺寸的图标，我们可以使用 <code>sizes</code> 属性。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"icon"</span> <span class="attr">sizes</span>=<span class="string">"16x16"</span> <span class="attr">href</span>=<span class="string">"path/to/icon16.png"</span>&gt;</span>  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"icon"</span> <span class="attr">sizes</span>=<span class="string">"32x32"</span> <span class="attr">href</span>=<span class="string">"path/to/icon32.png"</span>&gt;</span></span></pre></td></tr></table></figure>
+<p>这个属性虽然纯粹是个建议，但如果提供了多种尺寸的图标，可以让用户代理（UA）决定使用哪种尺寸的图标。在大多数设备有着不同的“最佳”图标尺寸时尤为重要。</p>
+<p>在 HTML 5.2 之前，<code>sizes</code> 属性仅能用于 rel 为 <code>icon</code> 的 link 元素中。然而，苹果的 iOS 设备不支持 <code>sizes</code> 属性。为了解决这个问题，苹果自己引入了一个他们设备专用的 rel <code>appple-touch-icon</code> 用于定义他们设备上使用的图标。</p>
+<p>在 HTML 5.2 中，规范定义了 <code>sizes</code> 属性<strong>不再仅仅</strong>可用于 rel 为 <code>icon</code> 的元素，也能用于 rel 为 <code>apple-touch-icon</code> 的元素。这样可以让我们为不同的苹果设备提供不同尺寸的图标。不过直到现在为止，据我所知苹果的设备还是不支持 <code>sizes</code> 属性。在将来苹果最终支持此规范时，它将派上用场。</p>
+<h2 id="新的有效实践"><a href="#新的有效实践" class="headerlink" title="新的有效实践"></a>新的有效实践</h2><p>除了新特性之外，HTML 5.2 还将一些之前无效的 HTML 写法认定为有效。</p>
+<h3 id="多个-lt-main-gt-元素"><a href="#多个-lt-main-gt-元素" class="headerlink" title="多个 &lt;main&gt; 元素"></a>多个 <code>&lt;main&gt;</code> 元素</h3><p><code>&lt;main&gt;</code> 元素代表网页的主要内容。虽然不同网页的重复内容可以放在 header、section 或者其它元素中，但 <code>&lt;main&gt;</code> 元素是为页面上的特定内容保留的。因此在 HTML 5.2 之前，<code>&lt;main&gt;</code> 元素在 DOM 中必须唯一才能令页面有效。</p>
+<p>随着单页面应用（SPA）的普及，要坚持这个原则变得困难起来。在同一个网页的 DOM 中可能会有多个 <code>&lt;main&gt;</code> 元素，但在任意时刻只能给用户展示其中的一个。</p>
+<p>使用 HTML 5.2，我们只要保证同一时刻只有一个 <code>&lt;main&gt;</code> 元素可见，就能在我们的标签中使用多个 <code>&lt;main&gt;</code> 元素。与此同时其它的 <code>&lt;main&gt;</code> 元素必须使用 <code>hidden</code> 属性进行隐藏。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">main</span>&gt;</span>...<span class="tag">&lt;/<span class="name">main</span>&gt;</span>  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">main</span> <span class="attr">hidden</span>&gt;</span>...<span class="tag">&lt;/<span class="name">main</span>&gt;</span>  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">main</span> <span class="attr">hidden</span>&gt;</span>...<span class="tag">&lt;/<span class="name">main</span>&gt;</span></span></pre></td></tr></table></figure>
+<p>我们都知道，<a href="https://bitsofco.de/hiding-elements-with-css/" target="_blank" rel="noopener">通过 CSS 来隐藏元素的方法有很多</a>，但多余的 <code>&lt;main&gt;</code> 元素必须使用 <code>hidden</code> 属性进行隐藏。任何其它隐藏此元素的方法（如 <code>display: none;</code> 和 <code>visibility: hidden;</code>）都将无效。</p>
+<h3 id="在-lt-body-gt-中写样式"><a href="#在-lt-body-gt-中写样式" class="headerlink" title="在 &lt;body&gt; 中写样式"></a>在 <code>&lt;body&gt;</code> 中写样式</h3><p>一般来说，使用<code>&lt;style&gt;</code>元素定义的内联 CSS 样式会放置在 HTML 文档的 <code>&lt;head&gt;</code> 中。随着组件化开发的流行，开发者已经发现编写 style 并放置在与其相关的 html 中更加有益。</p>
+<p>在 HTML 5.2 中，可以在 HTML 文档 <code>&lt;body&gt;</code> 内的任何地方定义内联 <code>&lt;style&gt;</code> 样式块。这意味着样式定义可以离它们被使用的地方更近。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>I’m cornflowerblue!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="css">        <span class="selector-tag">p</span> &#123; <span class="attribute">color</span>: cornflowerblue; &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>I’m cornflowerblue!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></pre></td></tr></table></figure>
+<p>然而仍需注意的是，<strong>由于性能问题，样式还是应当优先考虑放在 <code>&lt;head&gt;</code> 中</strong>。参见 <a href="https://www.w3.org/TR/html52/document-metadata.html#elementdef-style" target="_blank" rel="noopener">规范</a>，</p>
+<blockquote>
+<p>样式元素最好用于文档的 head 中。在文档的 body 中使用样式可能导致重复定义样式，触发重布局、导致重绘，因此需要小心使用。</p>
+</blockquote>
+<p>此外还应该注意的是如示例所示，样式不存在作用域。后来在 HTML 文档中定义的内联样式仍然会应用于之前定义的元素，所以它可能会触发重绘。</p>
+<h3 id="lt-legend-gt-中的标题元素"><a href="#lt-legend-gt-中的标题元素" class="headerlink" title="&lt;legend&gt; 中的标题元素"></a><code>&lt;legend&gt;</code> 中的标题元素</h3><p>在表单中，<code>&lt;legend&gt;</code> 元素表示 <code>&lt;fieldset&gt;</code> 表单域中的标题。在 HTML 5.2 前，legend 元素的内容必须为纯文本。而现在，它可以包含标题元素（<code>&lt;h1&gt;</code>等）了。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span>  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Basic Information<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">&lt;!-- Form fields for basic information --&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span>  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span>  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Contact Information<span class="tag">&lt;/<span class="name">h2</span>&gt;</span><span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">&lt;!-- Form fields for contact information --&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span></pre></td></tr></table></figure>
+<p>当我们想用 <code>fieldset</code> 对表单中不同部分进行分组时，这个特性非常有用。在这种情况下使用标题元素是有意义的，因为这能让那些依赖于文档大纲的用户可以轻松导航至表单的对应部分。</p>
+<h2 id="移除的特性"><a href="#移除的特性" class="headerlink" title="移除的特性"></a>移除的特性</h2><p>在 HTML 5.2 中移除了一些元素，具体为：</p>
+<ul>
+<li><code>keygen</code>：曾经用于帮助表单生成公钥</li>
+<li><code>menu</code> 与 <code>menuitem</code>：曾经用于创建导航与内容菜单</li>
+</ul>
+<h2 id="新的无效实践"><a href="#新的无效实践" class="headerlink" title="新的无效实践"></a>新的无效实践</h2><p>最后，一些开发实践方式被规定不再有效。</p>
+<h3 id="在-lt-p-gt-中不再能包含行内、浮动、块类型的子元素"><a href="#在-lt-p-gt-中不再能包含行内、浮动、块类型的子元素" class="headerlink" title="在 &lt;p&gt; 中不再能包含行内、浮动、块类型的子元素"></a>在 <code>&lt;p&gt;</code> 中不再能包含行内、浮动、块类型的子元素</h3><p>在 HTML 5.2 中，<code>&lt;p&gt;</code> 元素中唯一合法的子元素只能是文字内容。这也意味着以下类型的元素不再能嵌套于段落标签 <code>&lt;p&gt;</code> 内：</p>
+<ul>
+<li>行内块（Inline blocks）</li>
+<li>行内表格（Inline tables）</li>
+<li>浮动块与固定位置块</li>
+</ul>
+<h3 id="不再支持严格文档类型（Strict-Doctypes）"><a href="#不再支持严格文档类型（Strict-Doctypes）" class="headerlink" title="不再支持严格文档类型（Strict Doctypes）"></a>不再支持严格文档类型（Strict Doctypes）</h3><p>最后，我们终于可以和这些文档类型说再见了！</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;</span></span></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span></span></pre></td></tr></table></figure>
+<blockquote>
+<p>本文发布于掘金 <a href="https://juejin.im/post/5a5dab05518825734107edda#comment" target="_blank" rel="noopener">https://juejin.im/post/5a5dab05518825734107edda#comment</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/01/16/%E8%BF%9E%E6%8E%A5-cisco-anyconnect-%E5%90%8E%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1587,114 +1713,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/11/03/RNN-%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%B3%BB%E5%88%97-5-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%95%E5%85%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/11/03/RNN-%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%B3%BB%E5%88%97-5-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8D%95%E5%85%83/" class="post-title-link" itemprop="url">RNN 循环神经网络系列 5: 自定义单元</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-11-03 10:23:00" itemprop="dateCreated datePublished" datetime="2017-11-03T10:23:00+08:00">2017-11-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>本系列文章汇总</strong></p>
-<ol>
-<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-1-basic-rnn-char-rnn.md" target="_blank" rel="noopener">RNN 循环神经网络系列 1：基本 RNN 与 CHAR-RNN</a></li>
-<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-2-text-classification.md" target="_blank" rel="noopener">RNN 循环神经网络系列 2：文本分类</a></li>
-<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-networks-rnn-part-3-encoder-decoder.md" target="_blank" rel="noopener">RNN 循环神经网络系列 3：编码、解码器</a></li>
-<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-network-rnn-part-4-attentional-interfaces.md" target="_blank" rel="noopener">RNN 循环神经网络系列 4：注意力机制</a></li>
-<li><a href="https://github.com/xitu/gold-miner/blob/master/TODO/recurrent-neural-network-rnn-part-5-custom-cells.md" target="_blank" rel="noopener">RNN 循环神经网络系列 5：自定义单元</a></li>
-</ol>
-<p>在本文中，我们将探索并尝试创建我们自己定义的 RNN 单元。不过在此之前，我们需要先仔细研究简单的 RNN，再逐步深入较为复杂的单元（如 LSTM 与 GRU）。我们会分析这些单元在 tensorflow 中的实现代码，最终参照这些代码来创建我们的自定义单元。本文将援引由 Chris Olah 所著，在 RNN、LSTM 方面非常棒的一篇文章中的图片。在此我强烈推荐你阅读<strong><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">这篇文章</a></strong>，本文中会重申其中许多相关内容，不过由于我们主要还是关注 tf 代码，所以这些内容将会较快地略过。将来当我要对 RNN 结构进行层规范化时，我还会引用本文中的代码。之后的文章可以在<strong><a href="https://theneuralperspective.com/2016/10/27/gradient-topics/" target="_blank" rel="noopener">这儿</a></strong>查看。</p>
-<h2 id="基本-RNN："><a href="#基本-RNN：" class="headerlink" title="基本 RNN："></a>基本 RNN：</h2><p>对于传统的 RNN 来说，最大的问题就在于每个单元的重复输入都是静态的，因此我们无法充分学习到长期的依赖情况。你回想一下基本 RNN 单元，就会发现所有操作都是单一的 tanh 运算。</p>
-<p><img src="/images/pasted-255.png" alt="upload successful"></p>
-<p>对于解决短期依赖情况的问题来说，这种结构已经够用了；但如果我们希望通过有效的长期记忆来预测目标，则需要使用更稳定强大的 RNN 单元 —— LSTM。</p>
-<h2 id="长短期记忆网络（LSTM）："><a href="#长短期记忆网络（LSTM）：" class="headerlink" title="长短期记忆网络（LSTM）："></a>长短期记忆网络（LSTM）：</h2><p>LSTM 的结构可以让我们在更多的操作中进行长期的信息控制。传统的 RNN 仅有一个输出，其既作为隐藏状态表示也作为此单元的输出端。</p>
-<p><img src="/images/pasted-256.png" alt="upload successful"></p>
-<p>这种结构缺乏对信息的控制，无法存住对许多步之后有用的信息。而 LSTM 有两种不同的输出。其中一种仍与前面的传统结构一样，既作为隐藏状态表示也作为单元输出；但 LSTM 单元还有另一种输出 - 单元状态 C。这也是 LSTM 精髓所在，让我们仔细研究它。</p>
-<p><img src="/images/pasted-257.png" alt="upload successful"></p>
-<h3 id="遗忘门："><a href="#遗忘门：" class="headerlink" title="遗忘门："></a>遗忘门：</h3><p>第一个要介绍的门就是遗忘门。这个门可以让我们选择性地传递信息以决定单元的状态。我将公式罗列在下，后面介绍其它的门时也会如此。</p>
-<p><img src="/images/pasted-258.png" alt="upload successful"></p>
-<p><img src="/images/pasted-259.png" alt="upload successful"></p>
-<p>你可以参考类似 tf 的 <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/rnn_cell.py#867" target="_blank" rel="noopener">_linear</a> 函数来实现它。不过遗忘门的主要要点是对输入与隐藏状态前应用了 sigmoid。那么这个 sigmoid 的作用是什么？请回想一下，sigmoid 会输出在 [0, 1] 范围的值，在此我们将其应用于 [N X H] 的矩阵，因此会得到 NXH 个 sigmoid 算出的值。如果 sigmoid 得到 0 值，那么其对应的隐藏值就会失效；如果 sigmoid 得到 1 值，那么此隐藏值将会被应用在计算中。而处于 0 和 1 之间的值将会允许一部分的信息继续传递。这样就能很好地通过阻塞与选择性地传递输入单元的数据，以达到控制信息的目的。</p>
-<p>这就是遗忘门。它是我们的单元得到最终结果前的第一个步骤。下面介绍另一个操作：输入门。</p>
-<h3 id="输入门："><a href="#输入门：" class="headerlink" title="输入门："></a>输入门：</h3><p>输入门将获取我们的输入值 X 以及在前面的隐藏状态，并对它们进行两次运算。首先会通过 sigmoid 门来选择性地允许部分数据输入，接着将其与输入值的 tanh 值相乘。</p>
-<p><img src="/images/pasted-260.png" alt="upload successful"></p>
-<p>这儿的 tanh 与前面的 sigmoid 操作不同。请回忆一下，tanh 会将输入值改变为 [-1, 1] 范围内的值。它本质上通过非线性的方式改变了输入的表示。这一步与我们在基本 RNN 单元中进行的操作一致，不过在此我们将两值的乘积加上遗忘门得到的值得到本单元的状态值。</p>
-<p>遗忘门与输入门的操作可以看做同时保存了旧状态（C_{t-1}）的一部分与新变换（tanh）单元状态（C~_t）的一部分。这些权重将会通过我们数据的训练学到需要保存多少数据以及如何进行正确的变换。</p>
-<h3 id="输出门："><a href="#输出门：" class="headerlink" title="输出门："></a>输出门：</h3><p>最后一个门是输出门，它利用输入值、前面的隐藏状态值以及新单元状态值来共同决定新隐藏状态的表示。</p>
-<p><img src="/images/pasted-261.png" alt="upload successful"></p>
-<p>该步骤依旧涉及到了 sigmoid，将它的值与单元状态的 tanh 值相乘以决定信息的去留。需要注意这一步的 tanh 计算与输入门的 tanh 计算不同，此步不再是神经网络的计算，而仅仅是单纯、不带任何权重地计算单元状态值的 tanh 值。这样我们就能强制单元状态矩阵 [NXH] 的值处于 [-1, 1] 的范围内。</p>
-<h3 id="变体"><a href="#变体" class="headerlink" title="变体"></a>变体</h3><p>RNN 单元有许多种变体，在此再次建议去阅读 Chris Olah 的<strong><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">这篇博文</a></strong>学习更多相关知识。不过他在文中讨论的是 peehole 模型（在计算 C_{t-1} 或 C_t 时允许所有门都能观察到单元状态值）以及单元状态的 couple（更新与遗忘同时进行）。不过目前 LSTM 的竞争对手是正在被广泛使用的 GRU（Gated Recurrent Unit）。</p>
-<h2 id="GRU（Gated-Recurrent-Unit）："><a href="#GRU（Gated-Recurrent-Unit）：" class="headerlink" title="GRU（Gated Recurrent Unit）："></a>GRU（Gated Recurrent Unit）：</h2><p>GRU 的主要原理是将遗忘门与输入门结合成一个更新门。</p>
-<p><img src="/images/pasted-262.png" alt="upload successful"></p>
-<p>在实际使用中，GRU 的性能与 LSTM 相当，但其计算量更小，因此它现在日益流行。</p>
-<h2 id="原生-Tensorflow-实现："><a href="#原生-Tensorflow-实现：" class="headerlink" title="原生 Tensorflow 实现："></a>原生 Tensorflow 实现：</h2><p>我们先观察一下 Tensorflow 官方对于 GRU 单元的实现代码，主要关注其函数调用方式、输入以及输出。然后我们会复制它的结构用于创建我们自己的单元。如果你对其它的单元有兴趣，可以在<strong><a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/rnn_cell.py" target="_blank" rel="noopener">这儿</a></strong>找到它们的实现。本文将主要关注 GRU，因为它在大多数情况下性能与 LSTM 相当且复杂度更低。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GRUCell</span><span class="params">(RNNCell)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="string">"""Gated Recurrent Unit cell (cf. http://arxiv.org/abs/1406.1078)."""</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, num_units, input_size=None, activation=tanh)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> input_size <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      logging.warn(<span class="string">"%s: The input_size parameter is deprecated."</span>, self)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    self._num_units = num_units</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    self._activation = activation</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="meta">  @property</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">state_size</span><span class="params">(self)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> self._num_units</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="meta">  @property</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">output_size</span><span class="params">(self)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> self._num_units</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, inputs, state, scope=None)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="string">"""Gated recurrent unit (GRU) with nunits cells."""</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">with</span> vs.variable_scope(scope <span class="keyword">or</span> type(self).__name__):  <span class="comment"># "GRUCell"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">with</span> vs.variable_scope(<span class="string">"Gates"</span>):  <span class="comment"># Reset gate and update gate.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># We start with bias of 1.0 to not reset and not update.</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        r, u = array_ops.split(<span class="number">1</span>, <span class="number">2</span>, _linear([inputs, state],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">                                             <span class="number">2</span> * self._num_units, <span class="keyword">True</span>, <span class="number">1.0</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        r, u = sigmoid(r), sigmoid(u)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">with</span> vs.variable_scope(<span class="string">"Candidate"</span>):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        c = self._activation(_linear([inputs, r * state],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">                                     self._num_units, <span class="keyword">True</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">      new_h = u * state + (<span class="number">1</span> - u) * c</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> new_h, new_h</span></pre></td></tr></table></figure>
-<p>GRUCell 类由 <strong>init</strong> 函数开始执行。在 <strong>init</strong> 函数中定义了单元的数量与其使用的激活函数。其激活函数一般是 tanh，不过也可以使用 sigmoid 来使得值固定在 [0, 1] 范围内方便我们控制信息流。另外，它还有两个在调用时会返回 self._num_units 的属性。最后定义了 <strong>call</strong> 函数，它将处理输入值并得出新的隐藏值。回忆一下，GRU 没有类似 LSTM 的单元状态值。</p>
-<p>在 <strong>call</strong> 中，我们首先计算 r 和 u（u 是前面图中的 z）。在这步中，我们没有单独去计算它们，而是以乘以 2 倍 num_units 的形式合并了权重，再将结果分割成两份得到它们（split(dim, num_splits, value)）。然后对得到的值应用 sigmoid 激活函数，以选择性地控制信息流。接着计算 c 的值，用它计算新隐藏状态表示值。你可能发现它计算 new_h 的顺序和之前颠倒了，不过由于权重会同时进行训练，因此代码仍能正常运行。</p>
-<p>其它的单元代码都与此代码类似，你弄明白了上面的代码就能轻松解释其它单元的代码。</p>
-<blockquote>
-<p>本文发布于掘金 <a href="https://juejin.im/post/59fbd28b6fb9a045204b91f2" target="_blank" rel="noopener">https://juejin.im/post/59fbd28b6fb9a045204b91f2</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1743,7 +1761,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">158</span>
+          <span class="site-state-item-count">159</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1756,7 +1774,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">197</span>
+        <span class="site-state-item-count">199</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

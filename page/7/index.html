@@ -219,6 +219,180 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/09/02/%E5%9C%A8-Go-%E8%AF%AD%E8%A8%80%E4%B8%AD%E5%A2%9E%E5%BC%BA-Cookie-%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/09/02/%E5%9C%A8-Go-%E8%AF%AD%E8%A8%80%E4%B8%AD%E5%A2%9E%E5%BC%BA-Cookie-%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/" class="post-title-link" itemprop="url">在 Go 语言中增强 Cookie 的安全性</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-09-02 17:32:00" itemprop="dateCreated datePublished" datetime="2017-09-02T17:32:00+08:00">2017-09-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Translate/" itemprop="url" rel="index">
+                    <span itemprop="name">Translate</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在我开始学习 Go 语言时已经有一些 Web 开发经验了，但是并没有直接操作 Cookie 的经验。我之前做过 Rails 开发，当我不得不需要在 Rails 中读写 Cookie 时，并不需要自己去实现各种安全措施。</p>
+<p>瞧瞧，Rails 默认就自己完成了大多数的事情。你不需要设置任何 CSRF 策略，也无需特别去加密你的 Cookie。在新版的 Rails 中，这些事情都是它默认帮你完成的。</p>
+<p>而使用 Go 语言开发则完全不同。在 Golang 的默认设置中，这些事都不会帮你完成。因此，当你想要开始使用 Cookie 时，了解各种安全措施、为什么要使用这些措施、以及如何将这些安全措施集成到你的应用中是非常重要的事。希望本文能帮助你做到这一点。</p>
+<p><strong>注意：我并不想引起关于 Go 与 Reils 两者哪种更好的论战。两者各有优点，但在本文中我希望能着重讨论 Cookie 的防护，而不是去争论 Rails 和 Go 哪个好。</strong></p>
+<h2 id="什么是-Cookie？"><a href="#什么是-Cookie？" class="headerlink" title="什么是 Cookie？"></a>什么是 Cookie？</h2><p>在进入 Cookie 防护相关的内容前，我们必须要理解 Cookie 究竟是什么。从本质上说，Cookie 就是存储在终端用户计算机中的键值对。因此，使用 Go 创建一个 Cookie 需要做的事就是创建一个包含键名、键值的 <a href="https://golang.org/pkg/net/http/#Cookie" target="_blank" rel="noopener">http.Cookie</a> 类型字段，然后调用 <a href="https://golang.org/pkg/net/http/#SetCookie" target="_blank" rel="noopener">http.SetCookie</a> 函数通知终端用户的浏览器设置该 Cookie。</p>
+<p>写成代码之后，它看起来类似于这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">func someHandler(w http.ResponseWriter, r *http.Request) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  c :&#x3D; http.Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    Name: &quot;theme&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    Value: &quot;dark&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  http.SetCookie(w, &amp;c)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<blockquote>
+<p><code>http.SetCookie</code> 函数并不会返回错误，但它可能会静默地移除无效的 Cookie，因此使用它并不是什么美好的经历。但它既然这么设计了，就请你在使用这个函数的时候一定要牢记它的特性。</p>
+</blockquote>
+<p>虽然这好像是在代码中“设定”了一个 Cookie，但其实我们只是在我们返回 Response 时发送了一个 <code>&quot;Set-Cookie&quot;</code> 的 Header，从而定义需要设置的 Cookie。我们不会在服务器上存储 Cookie，而是依靠终端用户的计算机创建与存储 Cookie。</p>
+<p>我要强调上面这一点，因为它存在非常严重的安全隐患：我们<strong>不能</strong>控制这些数据，而终端用户的计算机（以及用户）才能控制这些数据。</p>
+<p>当读取与写入终端用户控制的数据时，我们都需要十分谨慎地对数据进行处理。恶意用户可以删除 Cookie、修改存储在 Cookie 中的数据，甚至我们可能会遇到<a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener">中间人攻击</a>，即当用户向服务器发送数据时，另有人试图窃取 Cookie。</p>
+<h2 id="Cookie-的潜在安全问题"><a href="#Cookie-的潜在安全问题" class="headerlink" title="Cookie 的潜在安全问题"></a>Cookie 的潜在安全问题</h2><p>根据我的经验，Cookie 相关的安全性问题大致分为以下五大类。下面我们先简单地看一看，本文的剩余部分将详细讨论每个分类的细节问题与解决对策。</p>
+<p><strong>1. Cookie 窃取</strong> - 攻击者会通过各种方式来试图窃取 Cookie。我们将讨论如何防范、规避这些方式，但是归根结底我们并不能完全阻止设备上的物理类接触。</p>
+<p><strong>2. Cookie 篡改</strong> - Cookie 中存储的数据可以被用户有意或无意地修改。我们将讨论如何验证存储在 Cookie 中的数据确实是我们写入的合法数据</p>
+<p><strong>3. 数据泄露</strong> - Cookie 存储在终端用户的计算机上，因此我们需要清楚地意识到什么数据是能存储在 Cookie 中的，什么数据是不能存储在 Cookie 中的，以防其发生数据泄露。</p>
+<p><strong>4. 跨站脚本攻击（XSS）</strong> - 虽然这条与 Cookie 没有直接关系，但是 XSS 攻击在攻击者能获取 Cookie 时危害更大。我们应该考虑在非必须的时候限制脚本访问 Cookie。</p>
+<p><strong>5. 跨站请求伪造（CSRF）</strong> - 这种攻击常常是由于使用 Cookie 存储用户登录会话造成的。因此我们将讨论在这种情景下如何防范这种攻击。</p>
+<p>如我前面所说，在下文中我们将分别解决这些问题，让你最终能够专业地将你的 Cookie 装进保险柜。</p>
+<h2 id="Cookie-窃取"><a href="#Cookie-窃取" class="headerlink" title="Cookie 窃取"></a>Cookie 窃取</h2><p>Cookie 窃取攻击就和它字面意思一样 —— 某人窃取了正常用户的 Cookie，然后一般用来将自己伪装成那个正常用户。</p>
+<p>Cookie 通常是被以下方式中的某种窃取：</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener">中间人攻击</a>，或者是类似的其它攻击方式，归纳一下就是攻击者拦截你的 Web 请求，从中窃取 Cookie。</li>
+<li>取得硬件的访问权限。</li>
+</ol>
+<p>阻止中间人攻击的终极方式就是当你的网站使用 Cookie 时，使用 SSL。使用 SSL 时，由于中间人无法对数据进行解密，因此外人基本上没可能在请求的中途获取 Cookie。</p>
+<p>可能你会觉得“哈哈，中间人攻击不太可能…”，我建议你看看 <a href="http://codebutler.com/firesheep" target="_blank" rel="noopener">firesheep</a>，这个简单的工具，它足以说明在使用公共 wifi 时窃取未加密的 Cookie 是一件很轻松的事情。</p>
+<p>如果你想确保这种事情不发生在你的用户中，<strong>请使用 SSL！</strong>试试使用 <a href="https://caddyserver.com/" target="_blank" rel="noopener">Caddy Server</a> 进行加密吧。它经过简单的配置就能投入生产环境中。例如，你可以使用下面四行代码轻松让你的 Go 应用使用代理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">calhoun.io &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  gzip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  proxy &#x2F; localhost:3000</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>然后 Caddy 会为你自动处理所有与 SSL 有关的事务。</p>
+<p>防范通过访问硬件来窃取 Cookie 是十分棘手的事情。我们不能强制我们的用户使用高安全性系统，也不能逼他们为电脑设置密码，所以总会有他人坐在电脑前偷走 Cookie 的风险。此外，Cookie 也可能被病毒窃取，比如用户打开了某些钓鱼邮件时就会出现这种情况。</p>
+<p>不过这些都容易被发现。例如，如果有人偷了你的手表，当你发现表不在手上时你立马就会注意到它被偷了。然而 Cookie 还可以被复制，这样任何人都不会意识到它已经丢了。</p>
+<p>虽然不是万无一失，但你还是可以用一些技术来猜测 Cookie 是否被盗了。例如，你可以追踪用户的登录设备，要求他们重新输入密码。你还可以跟踪用户的 IP 地址，当其在可疑地点登录时通知用户。</p>
+<p>所有的这些解决方案都需要后端做更多的工作来追踪数据，如果你的应用需要处理一些敏感信息、金钱，或者它的收益可观的话，请在安全方面投入更多精力。</p>
+<p>也就是说，对于大多数只是作为过渡版本的应用来说，使用 SSL 就足够了。</p>
+<h2 id="Cookie-篡改（也叫用户伪造数据）"><a href="#Cookie-篡改（也叫用户伪造数据）" class="headerlink" title="Cookie 篡改（也叫用户伪造数据）"></a>Cookie 篡改（也叫用户伪造数据）</h2><p>请直面这种情况 —— 可能有一些混蛋突然就想看看你设的 Cookie，然后修改它的值。也可能他是出于好奇才这么做的，但是还是请你为这种可能发生的情况做好准备。</p>
+<p>在一些情景中，我们对此并不在意。例如，我们给用户定义一种主题设置时，并不会关心用户是否改变了这个设置。当这个 Cookie 过期时，就会恢复默认的主题设置，并且如果用户设置其为另一个有效的主题时我们可以让他正常使用那个主题，这并不会对系统造成任何损失。</p>
+<p>但是在另一些情况下，我们需要格外小心。编辑会话 Cookie 冒充另一个用户产生的危害比改个主题大得多。我们绝不想看到张三假装自己是李四。</p>
+<p>我们将介绍两种策略来检测与防止 Cookie 被篡改。</p>
+<h4 id="1-对数据进行数字签名"><a href="#1-对数据进行数字签名" class="headerlink" title="1. 对数据进行数字签名"></a>1. 对数据进行数字签名</h4><p>对数据进行数字签名，即对数据增加一个“签名”，这样能让你校验数据的可靠性。这种方法并不需要对终端用户的数据进行加密或隐藏，只要对 Cookie 增加必要的签名数据，我们就能检测到用户是否修改数据。</p>
+<p>这种保护 Cookie 的方法原理是哈希编码 —— 我们对数据进行哈希编码，接着将数据与它的哈希编码同时存入 Cookie 中。当用户发送 Cookie 给我们时，再对数据进行哈希计算，验证此时的哈希值与原始哈希值是否匹配。</p>
+<p>我们当然不会想看到用户也创建一个新的哈希来欺骗我们，因此你可以使用一些类似 HMAC 的哈希算法来使用秘钥对数据进行哈希编码。这样就能防范用户同时编辑数据与数字签名（即哈希值）。</p>
+<blockquote>
+<p><a href="https://jwt.io/" target="_blank" rel="noopener">JSON Web Tokens(JWT)</a> 默认内置了数字签名功能，因此你可能对这种方法比较熟悉。</p>
+</blockquote>
+<p>在 Go 中，可以使用类似 Gorilla 的 <a href="http://www.gorillatoolkit.org/pkg/securecookie" target="_blank" rel="noopener">securecookie</a> 之类的 package，你可以在创建 <code>SecureCookie</code> 时使用它来保护你的 Cookie。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 推荐使用 32 字节或 64 字节的 hashKey</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 此处为了简洁故设为了 “very-secret”</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">var hashKey &#x3D; []byte(&quot;very-secret&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">var s &#x3D; securecookie.New(hashKey, nil)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">func SetCookieHandler(w http.ResponseWriter, r *http.Request) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  encoded, err :&#x3D; s.Encode(&quot;cookie-name&quot;, &quot;cookie-value&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  if err &#x3D;&#x3D; nil &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    cookie :&#x3D; &amp;http.Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      Name:  &quot;cookie-name&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      Value: encoded,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      Path:  &quot;&#x2F;&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    http.SetCookie(w, cookie)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    fmt.Fprintln(w, encoded)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>然后你可以在另一个处理 Cookie 的函数中同样使用 SecureCookie 对象来读取 Cookie。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">func ReadCookieHandler(w http.ResponseWriter, r *http.Request) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  if cookie, err :&#x3D; r.Cookie(&quot;cookie-name&quot;); err &#x3D;&#x3D; nil &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    var value string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    if err &#x3D; s.Decode(&quot;cookie-name&quot;, cookie.Value, &amp;value); err &#x3D;&#x3D; nil &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      fmt.Fprintln(w, value)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p><strong>以上样例来源于 <a href="http://www.gorillatoolkit.org/pkg/securecookie" target="_blank" rel="noopener">http://www.gorillatoolkit.org/pkg/securecookie</a>.</strong></p>
+<blockquote>
+<p>注意：这儿的数据并不是进行了加密，而只是进行了编码。我们会在“数据泄露”一章讨论如何对数据进行加密。</p>
+</blockquote>
+<p>这种模式还需要注意的是，如果你使用这种方式进行身份验证，请遵循 JWT 的模式，将登录过期日期和用户数据同时进行签名。你不能只凭 Cookie 的过期日期来判断登录是否有效，因为存储在 Cookie 上的日期并未经过签名，且用户可以创建一个永不过期的新 Cookie，将原 Cookie 的内容复制进去就得到了一个永远处于登录状态的 Cookie。</p>
+<h4 id="2-进行数据混淆"><a href="#2-进行数据混淆" class="headerlink" title="2. 进行数据混淆"></a>2. 进行数据混淆</h4><p>还有一种解决方案可以隐藏数据并防止用户造假。例如，不要这样存储 Cookie：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 别这么做</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">http.Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  Name: &quot;user_id&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  Value: &quot;123&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>我们可以存储一个值来映射存在数据库中的真实数据。通常使用 Session ID 或者 remember token 来作为这个值。例如我们有一个名为 <code>remember_tokens</code> 的表，这样存储数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">remember_token: LAKJFD098afj0jasdf08jad08AJFs9aj2ASfd1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">user_id: 123</span></pre></td></tr></table></figure>
+<p>在 Cookie 中，我们仅存储这个 remember token。如果用户想伪造 Cookie 也会无从下手。它看上去就是一堆乱码。</p>
+<p>之后当用户要登陆我们的应用时，再根据 remember token 在数据库中查询，确定用户具体的登录状态。</p>
+<p>为了让此措施正常工作，你需要确保你的混淆值有以下特性：</p>
+<ul>
+<li>能映射到用户数据（或其它资源）</li>
+<li>随机</li>
+<li>熵值高</li>
+<li>可被无效化（例如在数据库中删除、修改 token 值）</li>
+</ul>
+<p>这种方法也有一个缺点，就是在用户访问每个需要校验权限的页面时都得进行数据库查询。不过这个缺点很少有人注意，而且可以通过缓存等技术来减小数据库查询的开销。这种方法的升级版就是 JWT，应用这种方法你可以随时使会话无效化。</p>
+<p><strong>注意：尽管目前 JWT 收到了大多数 JS 框架的追捧，但上文这种方法是我了解的最常用的身份验证策略。</strong></p>
+<h2 id="数据泄露"><a href="#数据泄露" class="headerlink" title="数据泄露"></a>数据泄露</h2><p>在真正出现数据泄露前，通常需要另一种攻击向量 —— 例如 Cookie 窃取。然而还是很难去正确地判断并提防数据泄露的发生。因为仅仅是 Cookie 发生了泄露并不意味着攻击者也得到了用户的账户密码。</p>
+<p>无论何时，都应当减少存储在 Cookie 中的敏感数据。绝不要将用户密码之类的东西存在 Cookie 中，即使密码已经经过了编码也不要这么做。<a href="https://hackernoon.com/your-node-js-authentication-tutorial-is-wrong-f1a3bf831a46#2491" target="_blank" rel="noopener">这篇文章</a> 给出了几个开发者无意间将敏感数据存储在 Cookie 或 JWT 中的实例，由于（JWT 的 payload）是 base64 编码，没有经过任何加密，因此任何人都可以对其进行解码。</p>
+<p>出现数据泄露可是犯了大错。如果你担心你不小心存储了一些敏感数据，我建议你使用如 Gorilla 的 <a href="http://www.gorillatoolkit.org/pkg/securecookie" target="_blank" rel="noopener">securecookie</a> 之类的 package。</p>
+<p>前面我们讨论了如何对你的 Cookie 进行数字签名，其实 <code>securecookie</code> 也可以用于加密与解密你的 Cookie 数据，让你的数据不能被轻易地解码并读取。</p>
+<p>使用这个 package 进行加密，你只需要在创建 <code>SecureCookie</code> 实例时传入一个“块秘钥”（blockKey）即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var hashKey &#x3D; []byte(&quot;very-secret&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 增加这一部分进行加密</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">var blockKey &#x3D; []byte(&quot;a-lot-secret&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">var s &#x3D; securecookie.New(hashKey, blockKey)</span></pre></td></tr></table></figure>
+<p>其它所有东西都和前面章节的数字签名中的样例一致。</p>
+<p>再次提醒，你<strong>不应该</strong>在 Cookie 中存储任何敏感数据，尤其不能存储密码之类的东西。加密仅仅是一项为数据增加一部分安全性，使其成为”半敏感数据“数据的技术而已。</p>
+<h2 id="跨站脚本攻击（XSS）"><a href="#跨站脚本攻击（XSS）" class="headerlink" title="跨站脚本攻击（XSS）"></a>跨站脚本攻击（XSS）</h2><p><a href="https://en.wikipedia.org/wiki/Cross-site_scripting" target="_blank" rel="noopener">跨站脚本（Cross-site scripting）</a>也经常被记为 XSS，及有人试图将一些不是你写的 JavaScript 代码注入你的网站中。但由于其攻击的机理，你无法知道正在浏览器中运行的 JavaScript 代码到底是不是你的服务器提供的代码。</p>
+<p>无论何时，你都应该尽量去阻止 XSS 攻击。在本文中我们不会深入探讨这种攻击的具体细节，但是<strong>以防万一</strong>我建议你在非必要的情况下禁止 JavaScript 访问 Cookie 的权限。在你需要这个权限的时候你可以随时开启它，所以不要让它成为你的网站安全性脆弱的理由。</p>
+<p>在 Go 中完成这点很简单，只需要在创建 Cookie 时设置 <code>HttpOnly</code> 字段为 true 即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cookie :&#x3D; http.Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; true 表示脚本无权限，只允许 http request 使用 Cookie。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 这与 Http 与 Https 无关。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  HttpOnly: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<h2 id="CSRF（跨站请求伪造）"><a href="#CSRF（跨站请求伪造）" class="headerlink" title="CSRF（跨站请求伪造）"></a>CSRF（跨站请求伪造）</h2><p>CSRF 发生的情况为某个用户访问别人的站点，但那个站点有一个能提交到你的 web 应用的表单。由于终端用户提交表单时的操作不经由脚本，因此浏览器会将此请求设为用户进行的操作，将 Cookie 附上表单数据同时发送。</p>
+<p>乍一看似乎这没什么问题，但是如果外部网站发送一些用户不希望发送的数据时会发生什么呢？例如，badsite.com 中有个表单，会提交请求将你的 100 美元转到他们的账户中，而 chase.com 希望你在它这儿登录你的银行账户。这可能会导致在终端用户不知情的情况下钱被转走。</p>
+<p>Cookie 不会直接导致这样的问题，不过如果你使用 Cookie 作为身份验证的依据，那你需要使用 Gorilla 的 <a href="http://www.gorillatoolkit.org/pkg/csrf" target="_blank" rel="noopener">csrf</a> 之类的 package 来避免 CSRF 攻击。</p>
+<p>这个 package 将会提供一个 CSRF token，插入你网站的每个表单中，当表单中不含 token 时，<code>csrf</code> package 中间件将会阻止表单的提交，使得别的网站不能欺骗用户在他们那儿向你的网站提交表单。</p>
+<p><strong>更多关于 CSRF 攻击的资料请参阅：</strong></p>
+<ul>
+<li><a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF" target="_blank" rel="noopener">https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)</a>)</li>
+<li><a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Cross-site_request_forgery</a></li>
+</ul>
+<h2 id="在非必要时限制-Cookie-的访问权限"><a href="#在非必要时限制-Cookie-的访问权限" class="headerlink" title="在非必要时限制 Cookie 的访问权限"></a>在非必要时限制 Cookie 的访问权限</h2><p>我们要讨论的最后一件事与特定的攻击无关，更像是一种指导原则。我建议在使用 Cookie 时尽量限制其权限，仅在你需要时开发相关权限。</p>
+<p>前面讨论 XSS 时我也简单的提到过这点，但一般的观点是你需要尽可能限制对 Cookie 的访问。例如，如果你的 Web 应用没有使用子域名，那你就不应该赋予 Cookie 所有子域的权限。不过这是 Cookie 的默认值，因此其实你什么都不用做就能将 Cookie 的权限限制在某个特定域中。</p>
+<p>但是，如果你需要与子域共享 Cookie，你可以这么做：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c :&#x3D; Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 根据主机模式的默认设置，Cookie 进行的是精确域名匹配。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 因此请仅在需要的时候开启子域名权限！</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 下面的代码可以让 Cookie 在 yoursite.com 的任何子域下工作：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  Domain: &quot;yoursite.com&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p><strong>欲了解更多有关域的信息，请参阅 <a href="https://tools.ietf.org/html/rfc6265#section-5.1.3" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc6265#section-5.1.3</a>。你也可以在这儿阅读源码，参阅其默认设置：<a href="https://golang.org/src/net/http/cookie.go#L157" target="_blank" rel="noopener">https://golang.org/src/net/http/cookie.go#L157</a>.</strong></p>
+<p><strong>你可以参阅 <a href="https://stackoverflow.com/questions/18492576/share-cookie-between-subdomain-and-domain" target="_blank" rel="noopener">这个 stackoverflow 的问题</a> 了解更多信息，弄明白为什么在为子域使用 Cookie 时不需要提供子域前缀.此外 Go 源码链接中也可以看到如果你提供前缀名的话会被自动去除。</strong></p>
+<p>除了将 Cookie 的权限限制在特定域上之外，你还可以将 Cookie 限制于某个特定的目录路径中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c :&#x3D; Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; Defaults 设置为可访问应用的任何路径，但你也可以</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 进行如下设置将其限制在特定子目录下：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  Path: &quot;&#x2F;app&#x2F;&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>还有你也可以对其设置路径前缀，例如 <code>/blah/</code>，你可以参阅下面这篇文章了解更多这个字段的使用方法：<a href="https://tools.ietf.org/html/rfc6265#section-5.1.4" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc6265#section-5.1.4</a>.</p>
+<h2 id="为什么我不使用-JWT？"><a href="#为什么我不使用-JWT？" class="headerlink" title="为什么我不使用 JWT？"></a>为什么我不使用 JWT？</h2><p>就知道肯定会有人提出这个问题，下面让我简单解释一下。</p>
+<p>可能有很多人和你说过，Cookie 的安全性与 JWT 一样。但实际上，Cookie 与 JWT 解决的并不是相同的问题。比如 JWT 可以存储在 Cookie 中，这和将其放在 Header 中的实际效果是一样的。</p>
+<p>另外，Cookie 可用于无需验证的数据，在这种情况下了解如何增加 Cookie 的安全性也是必要的。</p>
+<blockquote>
+<p>发布于掘金 <a href="https://juejin.im/post/59aa7a4d6fb9a0249c007e16" target="_blank" rel="noopener">https://juejin.im/post/59aa7a4d6fb9a0249c007e16</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/29/Solution-Ionic-cordova-resources-couldn-t-generate-splash-and-icon/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1576,144 +1750,6 @@ print &quot;Accuracy:&quot;, accuracy_score([x[1] for x in test], pred_data)
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/07/10/%E4%BD%A0%E4%BC%9A%E7%BB%99%E6%83%B3%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%8F%90%E5%87%BA%E4%BB%80%E4%B9%88%E5%BB%BA%E8%AE%AE%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/07/10/%E4%BD%A0%E4%BC%9A%E7%BB%99%E6%83%B3%E5%AD%A6%E4%B9%A0%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%B8%88%E6%8F%90%E5%87%BA%E4%BB%80%E4%B9%88%E5%BB%BA%E8%AE%AE%EF%BC%9F/" class="post-title-link" itemprop="url">你会给想学习机器学习的软件工程师提出什么建议？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-07-10 14:51:00" itemprop="dateCreated datePublished" datetime="2017-07-10T14:51:00+08:00">2017-07-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这很大一部分都取决于这名软件工程师的背景，以及他希望掌握机器学习的哪一部分。为了具体讨论，现在假设这是一名初级工程师，他读了 4 年本科，从业 2 年，现在想从事计算广告学（CA）、自然语言处理（NLP）、图像分析、社交网络分析、搜索、推荐排名相关领域。现在，让我们从机器学习的必要课程开始讨论（声明：下面的清单很不完整，如果您的论文没有被包括在内，提前向您抱歉）。</p>
-<ul>
-<li><p>线性代数<br>很多的机器学习算法、统计学原理、模型优化都依赖线性代数。这也解释了为何在深度学习领域 GPU 要优于 CPU。在线性代数方面，你至少得熟练掌握以下内容：</p>
-<ul>
-<li>标量、向量、矩阵、张量。你可以将它们看成零维、一维、二维、三维与更高维的对象，可以对它们进行各种组合、变换，就像乐高玩具一样。它们为数据变换提供了最基础的处理方法。</li>
-<li>特征向量、标准化、矩阵近似、分解。实质上这些方法都是为了方便线性代数的运算。如果你想分析一个矩阵是如何运算的（例如检查神经网络中梯度消失问题，或者检查强化学习算法发散的问题），你得了解矩阵与向量应用了多少种缩放方法。而低阶矩阵近似与 Cholesky 分解可以帮你写出性能更好、稳定性更强的代码。</li>
-<li>数值线性代数<br>如果你想进一步优化算法的话，这是必修课。它对于理解核方法与深度学习很有帮助，不过对于图模型及采样来说它并不重要。</li>
-<li>推荐书籍<br><a href="http://www.amazon.com/Linear-Algebra-Undergraduate-Texts-Mathematics/dp/0387964126" target="_blank" rel="noopener">《Serge Lang, Linear Algebra》</a><br>很基础的线代书籍，很适合在校学生。<br><a href="http://www.amazon.com/Linear-Analysis-Introductory-Cambridge-Mathematical/dp/0521655773" target="_blank" rel="noopener">《Bela Bolobas, Linear Analysis》</a><br>这本书目标人群是那些想做数学分析、泛函分析的人。当然它的内容更加晦涩难懂，但更有意义。如果你攻读 PhD，值得一读。<br><a href="http://www.amazon.com/Numerical-Linear-Algebra-Lloyd-Trefethen/dp/0898713617" target="_blank" rel="noopener">《Lloyd Trefethen and David Bau, Numerical Linear Algebra》</a><br>这本书是同类书籍中较为推荐的一本。<a href="http://www.amazon.com/Numerical-Recipes-Scientific-Computing-Second/dp/0521431085/" target="_blank" rel="noopener">《Numerical Recipes》</a>也是一本不错的书，但是里面的算法略为过时了。另外，推荐 Golub 和 van Loan 合著的书<a href="http://www.amazon.com/Computations-Hopkins-Studies-Mathematical-Sciences/dp/1421407949/" target="_blank" rel="noopener">《Matrix Computations》</a>。</li>
-</ul>
-</li>
-<li><p>优化与基础运算</p>
-<p>大多数时候提出问题是很简单的，而解答问题则是很困难的。例如，你想对一组数据使用线性回归（即线性拟合），那么你应该希望数据点与拟合线的距离平方和最小；又或者，你想做一个良好的点击预测模型，那么你应该希望最大程度地提高用户点击广告概率估计的准确性。也就是说，在一般情况下，我们会得到一个客观问题、一些参数、一堆数据，我们要做的就是找到通过它们解决问题的方法。找到这种方法是很重要的，因为我们一般得不到闭式解。</p>
-<ul>
-<li><p>凸优化</p>
-<p>在大多情况下，优化问题不会存在太多的局部最优解，因此这类问题会比较好解决。这种“局部最优即全局最优”的问题就是凸优化问题。</p>
-<p>（如果你在集合的任意两点间画一条直线，整条线始终在集合范围内，则这个集合是一个凸集合；如果你在一条函数曲线的任意两点间画一条直线，这两点间的函数曲线始终在这条直线之下，则这个函数是一个凸函数）</p>
-<p>Steven Boyd 与 Lieven Vandenberghe <a href="http://stanford.edu/~boyd/cvxbook/" target="_blank" rel="noopener">合著的书</a>可以说是这个领域的规范书籍了，这本书非常棒，而且是免费的，值得一读；此外，你可以在 <a href="http://web.stanford.edu/~boyd/" target="_blank" rel="noopener">Boyd 的课程</a>中找到很多很棒的幻灯片；<a href="http://www.mit.edu/~dimitrib/home.html" target="_blank" rel="noopener">Dimitri Bertsekas</a> 写了一系列关于优化、控制方面的书籍。读通这些书足以让任何一个人在这个领域立足。</p>
-</li>
-<li><p>随机梯度下降（SGD）</p>
-<p>大多数问题其实最开始都是凸优化问题的特殊情况（至少早期定理如此），但是随着数据的增加，凸优化问题的占比会逐渐减少。因此，假设你现在得到了一些数据，你的算法将会需要在每一个更新步骤前将所有的数据都检查一遍。</p>
-<p>现在，我不怀好意地给了你 10 份相同的数据，你将不得不重复 10 次没有任何帮助的工作。不过在现实中并不会这么糟糕，你可以设置很小的更新迭代步长，每次更新前都将所有的数据检查一遍，这种方法将会帮你解决这类问题。小步长计算在机器学习中已经有了很大的转型，配合上一些相关的算法会使得解决问题更加地简单。</p>
-<p>不过，这样的做法对并行化计算提出了挑战。我们于 2009 年发表的<a href="http://arxiv.org/abs/0911.0491" target="_blank" rel="noopener">《Slow Learners are Fast》</a>论文可能就是这个方向的先导者之一。2013 年牛峰等人发表的<a href="https://www.eecs.berkeley.edu/~brecht/papers/hogwildTR.pdf" target="_blank" rel="noopener">《Hogwild》</a>论文给出了一种相当优雅的无锁版本变体。简而言之，这类各种各样的算法都是通过在单机计算局部梯度，并异步更新共有的参数集实现并行快速迭代运算。</p>
-<p>随机梯度下降的另一个难题就是如何控制过拟合（例如可以通过正则化加以控制）。另外还有一种解决凸优化的惩罚方式叫近端梯度算法（PGD）。最流行的当属 Amir Beck 和 Marc Teboulle 提出的 <a href="http://people.rennes.inria.fr/Cedric.Herzet/Cedric.Herzet/Sparse_Seminar/Entrees/2012/11/12_A_Fast_Iterative_Shrinkage-Thresholding_Algorithmfor_Linear_Inverse_Problems_(A._Beck,_M._Teboulle" target="_blank" rel="noopener">FISTA 算法</a>_files/Breck_2009.pdf)了。相关代码可以参考 Francis Bach 的 <a href="http://spams-devel.gforge.inria.fr/" target="_blank" rel="noopener">SPAM toolbox</a>。</p>
-</li>
-<li><p>非凸优化方法</p>
-<p>许多的机器学习问题是非凸的。尤其是与深度学习相关的问题几乎都是非凸的，聚类、主题模型（topic model）、潜变量方法（latent variable method）等各种有趣的机器学习方法也是如此。一些最新的加速技术将对此有所帮助。例如我的学生 <a href="http://www.cs.cmu.edu/~sjakkamr/" target="_blank" rel="noopener">Sashank Reddy</a> 最近展示了如何在这种情况下得到良好的<a href="http://arxiv.org/abs/1603.06160" target="_blank" rel="noopener">收敛</a><a href="http://arxiv.org/abs/1603.06159" target="_blank" rel="noopener">速率</a>。</p>
-<p>也可以用一种叫做谱学习算法（Spectral Method）的技术。<a href="http://newport.eecs.uci.edu/anandkumar/" target="_blank" rel="noopener">Anima Anandkumar</a> 在最近的 <a href="/profile/Anima-Anandkumar-1">Quora session</a> 中详细地描述了这项技术的细节。请仔细阅读她的文章，因为里面干货满满。简而言之，凸优化问题并不是唯一能够可靠解决的问题。在某些情况中你可以试着找出其问题的数学等价形式，通过这样找到能够真正反映数据中聚类、主题、相关维度、神经元等一切信息的参数。如果你愿意且能够将一切托付给数学解决，那是一件无比伟大的事。</p>
-<p>最近，在深度神经网络训练方面涌现出了各种各样的新技巧。我将会在下面介绍它们，但是在一些情况中，我们的目标不仅仅是优化模型，而是找到一种特定的解决方案（就好像旅途的重点其实是过程一样）。</p>
-</li>
-</ul>
-</li>
-<li><p>（分布式）系统</p>
-<p>机器学习之所以现在成为了人类、测量学、传感器及数据相关领域几乎是最常用的工具，和过去 10 年规模化算法的发展密不可分。<a href="http://research.google.com/pubs/jeff.html" target="_blank" rel="noopener">Jeff Dean</a> 过去的一年发了 6 篇机器学习教程并不是巧合。在此简单介绍一下他：<a href="http://www.informatika.bg/jeffdean" target="_blank" rel="noopener">点击查看</a>，他是 MapReduce、GFS 及 BigTable 等技术背后的创造者，正是这些技术让 Google 成为了伟大的公司。</p>
-<p>言归正传，（分布式）系统研究为我们提供了分布式、异步、容错、规模化、简单（Simplicity）的宝贵工具。最后一条“简单”是机器学习研究者们常常忽视的一件事。简单（Simplicity）不是 bug，而是一种特征。下面这些技术会让你受益良多：</p>
-<ul>
-<li><p>分布式哈希表</p>
-<p>它是 <a href="https://memcached.org/" target="_blank" rel="noopener">memcached</a>、<a href="http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf" target="_blank" rel="noopener">dynamo</a>、<a href="http://research.microsoft.com/en-us/um/people/antr/PAST/pastry.pdf" target="_blank" rel="noopener">pastry</a> 以及 <a href="http://docs.ceph.com/docs/hammer/rados/" target="_blank" rel="noopener">ceph</a> 等的技术基础。它们所解决的都是同一件事情 —— 如何将对象分发到多台机器上，从而避免向中央存储区提出请求。为了达到这个目的，你必须将数据位置进行随机但确定的编码（即哈希）。另外，你需要考虑到当有机器出现故障时的处理方式。</p>
-<p>我们自己的参数服务器就是使用这种<a href="https://www.cs.cmu.edu/~dga/papers/osdi14-paper-li_mu.pdf" target="_blank" rel="noopener">数据布局</a>。这个项目的幕后大脑是我的学生 <a href="http://www.cs.cmu.edu/~muli/" target="_blank" rel="noopener">Mu Li</a> 。请参阅 <a href="http://dmlc.ml/" target="_blank" rel="noopener">DMLC</a> 查看相关的工具集。</p>
-</li>
-<li><p>一致性与通信</p>
-<p>这一切的基础都是 Leslie Lamport 的 <a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf" target="_blank" rel="noopener">PAXOS</a> 协议。它解决了不同机器（甚至部分机器不可用）的一致性问题。如果你曾经使用过版本控制工具，你应该可以直观地明白它是如何运行的——比如你有很多机器（或者很多开发者）都在进行数据更新（或更新代码），在它们（他们）不随时进行交流的情况下，你会如何将它们（他们）结合起来（不靠反复地求 diff）?</p>
-<p>在（分布式）系统中，解决方案是一个叫做向量时钟的东西（请参考 Google 的 <a href="http://blogoscoped.com/archive/2008-07-24-n69.html" target="_blank" rel="noopener">Chubby</a>）。我们也在参数服务器上使用了这种向量时钟的变体，这个变体与本体的区别就是我们仅使用向量时钟来限制参数的范围（Mu Li 做的），这样可以确保内存不会被无限增长的向量时钟时间戳给撑爆，正如文件系统不需要给每个字节都打上时间戳。</p>
-</li>
-<li><p>容错机制、规模化与云</p>
-<p>学习这些内容最简单的方法就是在云服务器上运行各种算法，至于云服务可以找 <a href="http://aws.amazon.com" target="_blank" rel="noopener">Amazon AWS</a>、<a href="http://console.google.com" target="_blank" rel="noopener">Google GWC</a>、<a href="http://azure.microsoft.com" target="_blank" rel="noopener">Microsoft Azure</a> 或者 <a href="http://serverbear.com/" target="_blank" rel="noopener">其它各种各样的服务商</a>。一次性启动 1,000 台服务器，意识到自己坐拥如此之大的合法“僵尸网络”是多么的让人兴奋！之前我在 Google 工作，曾在欧洲某处接手 5,000 余台高端主机作为主题模型计算终端，它们是我们通过能源法案获益的核电厂相当可观的一部分资源。我的经理把我带到一旁，偷偷告诉我这个实验是多么的昂贵……</p>
-<p>可能入门这块最简单的方法就是去了解 <a href="http://www.docker.com" target="_blank" rel="noopener">docker</a> 了吧。现在 docker 团队已经开发了大量的规模化工具。特别是他们最近加上的 <a href="https://docs.docker.com/machine/" target="_blank" rel="noopener">Docker Machine</a> 和 <a href="https://docs.docker.com/cloud/" target="_blank" rel="noopener">Docker Cloud</a>，可以让你就像使用打印机驱动一样连接云服务。</p>
-</li>
-<li><p>硬件</p>
-<p>说道硬件可能会让人迷惑，但是如果你了解你的算法会在什么硬件上运行，对优化算法是很有帮助的。这可以让你知道你的算法是否能在任何条件下保持巅峰性能。我认为每个入门者都应该看看 Jeff Dean 的 <a href="https://gist.github.com/jboner/2841832" target="_blank" rel="noopener">《每个工程师都需要记住的数值》</a>。我在面试时最喜欢的问题（至少现在最喜欢）就是“请问你的笔记本电脑有多快”。了解是什么限制了算法的性能是很有用的：是缓存？是内存带宽？延迟？还是磁盘？或者别的什么？<a href="http://www.anandtech.com" target="_blank" rel="noopener">Anandtech</a> 在微处理器架构与相关方面写了很多很好的文章与评论，在 Intel、ARM、AMD 发布新硬件的时候不妨去看一看他的评论。</p>
-</li>
-</ul>
-</li>
-<li><p>统计学</p>
-<p>我故意把这块内容放在文章的末尾，因为几乎所有人都认为它是（它的确是）机器学习的关键因而忽视了其它内容。统计学可以帮你问出好的问题，也能帮你理解你的建模与实际数据有多接近。</p>
-<p>大多数图模型、核方法、深度学习等都能从“问一个好的问题”得到改进，或者说能够定义一个合理的可优化的目标函数。</p>
-<ul>
-<li><p>统计学相关资料<br><a href="http://www.stat.cmu.edu/~larry/" target="_blank" rel="noopener">Larry Wasserman</a> 的书<a href="http://www.stat.cmu.edu/~larry/all-of-statistics/" target="_blank" rel="noopener">《All of Statistics》</a>很好地介绍了统计学。或者你也可以看看 David McKay 的 <a href="http://www.inference.phy.cam.ac.uk/itprnn/book.pdf" target="_blank" rel="noopener">《Machine Learning》</a>一书，它是免费的，内容丰富而全面。此外还有很多好书值得一看，例如 <a href="https://mitpress.mit.edu/books/machine-learning-0" target="_blank" rel="noopener">Kevin Murphy</a> 的、<a href="http://research.microsoft.com/en-us/um/people/cmbishop/prml/" target="_blank" rel="noopener">Chris Bishop</a> 的、以及 <a href="http://statweb.stanford.edu/~tibs/ElemStatLearn/" target="_blank" rel="noopener">Trevor Hastie、Rob Tibshirani 与 Jerome Friedman</a> 合著的书。还有，Bernhard Scholkopf 和我也<a href="https://mitpress.mit.edu/books/learning-kernels" target="_blank" rel="noopener">写了一本</a>。</p>
-</li>
-<li><p>随机算法与概率计算</p>
-<p>统计学算法本质上也是个计算机科学方面的问题。但是统计学的算法与计算机科学的最大区别在于，统计学是将计算机作为一个工具来设计算法，而不是作为一个黑箱进行调参。我很喜欢<a href="http://www.amazon.com/Probability-Computing-Randomized-Algorithms-Probabilistic/dp/0521835402" target="_blank" rel="noopener">这本 Michael Mitzenmacher 与 Eli Upfal 合著的书</a>，它涵盖了很多方面的问题，并且很容易读懂。另外如果你想更深入地了解这个“工具”，请阅读<a href="http://www.amazon.com/Randomized-Algorithms-Rajeev-Motwani/dp/0521474655" target="_blank" rel="noopener">这本 Rajeev Motwani 和 Prabhakar Raghavan 合著的书籍</a>。这本书写的很棒，但是没有统计学背景很难理解它。</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>这篇文章已经写的够久了，不知道有没有人能读到这里，我要去休息啦。现在网上有很多很棒的视频内容可以帮助你学习，许多教师现在都开通了他们的 Youtube 频道，上传他们的上课内容。这些课程有时可以帮你解决一些复杂的问题。这儿是<a href="https://www.youtube.com/user/smolix/playlists" target="_blank" rel="noopener">我的 Youtube 频道</a>欢迎订阅。顺便推荐 <a href="https://www.youtube.com/user/ProfNandoDF" target="_blank" rel="noopener">Nando de Freitas 的 Youtube 频道</a>，他比我讲得好多了。</p>
-<p>最后推荐一个非常好用的工具：<a href="http://www.dmlc.ml" target="_blank" rel="noopener">DMLC</a>。它很适合入门，包含了大量的分布式、规模化的机器学习算法，还包括了通过 MXNET 实现的神经网络。</p>
-<p>虽然本文还有很多方面没有提到（例如编程语言、数据来源等），但是这篇文章已经太长了，这些内容请参考其他文章吧~</p>
-<blockquote>
-<p>发布于掘金 <a href="https://juejin.im/post/596323416fb9a06bae1dff63" target="_blank" rel="noopener">https://juejin.im/post/596323416fb9a06bae1dff63</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1762,7 +1798,7 @@ print &quot;Accuracy:&quot;, accuracy_score([x[1] for x in test], pred_data)
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">158</span>
+          <span class="site-state-item-count">159</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1775,7 +1811,7 @@ print &quot;Accuracy:&quot;, accuracy_score([x[1] for x in test], pred_data)
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">197</span>
+        <span class="site-state-item-count">199</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
