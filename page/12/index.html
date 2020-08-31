@@ -219,6 +219,110 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/08/14/%E4%BD%BF%E7%94%A8swift%E5%88%B6%E4%BD%9C%E7%AE%80%E6%98%93%E5%9B%BE%E7%89%87%E6%BB%A4%E9%95%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/08/14/%E4%BD%BF%E7%94%A8swift%E5%88%B6%E4%BD%9C%E7%AE%80%E6%98%93%E5%9B%BE%E7%89%87%E6%BB%A4%E9%95%9C/" class="post-title-link" itemprop="url">使用swift制作简易图片滤镜</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-08-14 12:30:00" itemprop="dateCreated datePublished" datetime="2016-08-14T12:30:00+08:00">2016-08-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>图片是由许多像素组成的，每个像素都有r，g，b，a4个值。如果对像素的这些值进行改变，就会改变像素的颜色或透明度。</p>
+<p>对整个图片的像素进行有选择的改变就能改变整个图片的现实效果(图片滤镜)</p>
+<p>首先要确定，rgba值的数据格式是UInt8，不能随意和Int值进行计算，因此在一些求平均值的情况要先将rgba用Int()将这些值转换为int再计算。</p>
+<p>源码地址：<a href="https://github.com/lsvih/ImageProcessor" target="_blank" rel="noopener">https://github.com/lsvih/ImageProcessor</a></p>
+<p>首先读取图片</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> image = <span class="type">UIImage</span>(named: <span class="string">"sample"</span>)</span></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<p><img src="/images/pasted-97.png" alt="upload successful"></p>
+<p>写一个滤镜，用于在遍历像素时去掉照片中所有的红色<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeRed</span><span class="params">(<span class="keyword">var</span> pixel: Pixel)</span></span> -&gt;<span class="type">Pixel</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    pixel.red = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> pixel</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
+<p>上述函数的作用为将每个读取到的像素的red值设为0之后再返回。</p>
+<p>测试一下这个滤镜：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">testRemoveRedFilter</span><span class="params">(image: UIImage)</span></span> -&gt; <span class="type">UIImage</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> thisImage = <span class="type">RGBAImage</span>(image: image)!</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> <span class="number">0</span>..&lt;thisImage.height &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> <span class="number">0</span>..&lt;thisImage.width &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">let</span> sub = y * thisImage.width + x</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">let</span> pixel = thisImage.pixels[sub]<span class="comment">//遍历每个像素</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            thisImage.pixels[sub] = removeRed(pixel)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> thisImage.toUIImage()!</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>上述函数作用为遍历图片中的每一个像素，应用上面取出红色的函数后，将像素返回图片。最终得到了如下图片：</p>
+<p><img src="/images/pasted-98.png" alt="upload successful"></p>
+<p>根据这个原理，可以进行各种滤镜的编写。</p>
+<h3 id="1、去除指定颜色"><a href="#1、去除指定颜色" class="headerlink" title="1、去除指定颜色"></a>1、去除指定颜色</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">removeColor</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,conf:Int)</span></span> -&gt; <span class="type">Pixel</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span>(conf == <span class="number">0</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        pixel.red = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(conf == <span class="number">1</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        pixel.green = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(conf == <span class="number">2</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        pixel.blue = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> pixel</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>传值0为去除红色，1为去除绿色，2为去除蓝色</p>
+<p>运行结果如下</p>
+<p><img src="/images/pasted-99.png" alt="upload successful"></p>
+<h3 id="2、灰度图"><a href="#2、灰度图" class="headerlink" title="2、灰度图"></a>2、灰度图</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">grayScale</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,conf:Int)</span></span>-&gt;<span class="type">Pixel</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> gray = <span class="type">UInt8</span>((<span class="type">Int</span>(pixel.red)+<span class="type">Int</span>(pixel.green)+<span class="type">Int</span>(pixel.blue))/conf)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    pixel.red = gray</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    pixel.green = gray</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    pixel.blue = gray</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> pixel</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>conf可以控制图片灰度，通常为3.对每个像素把他们的rgb值求平均值，这个像素就变成相应的灰色了。</p>
+<p>运行结果如下</p>
+<p><img src="/images/pasted-100.png" alt="upload successful"></p>
+<h3 id="3、更改透明度"><a href="#3、更改透明度" class="headerlink" title="3、更改透明度"></a>3、更改透明度</h3><p>像素rgba中的a值即为透明度，改变a值照片的透明度将发生变化<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">transparentFilter</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,opacity:Int)</span></span>-&gt;<span class="type">Pixel</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    pixel.alpha = <span class="type">UInt8</span>(opacity)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> pixel</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
+<p>由于a为UInt8，因此需要转换。输入的opacity为透明度，从0-255</p>
+<p>效果如下</p>
+<p><img src="/images/pasted-101.png" alt="upload successful"></p>
+<h3 id="4、黑白照片"><a href="#4、黑白照片" class="headerlink" title="4、黑白照片"></a>4、黑白照片</h3><p>定义一个阀值，rgb平均值超过这个阀值的为白否则为黑</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">blackAndWhite</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,conf:Int)</span></span>-&gt;<span class="type">Pixel</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span>(conf==<span class="number">1</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">let</span> avg = <span class="type">UInt8</span>((<span class="type">Int</span>(pixel.red)+<span class="type">Int</span>(pixel.green)+<span class="type">Int</span>(pixel.blue))/<span class="number">3</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span>(avg&gt;<span class="number">100</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">            pixel.red = <span class="number">255</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            pixel.green = <span class="number">255</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            pixel.blue = <span class="number">255</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        &#125;<span class="keyword">else</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">            pixel.red = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            pixel.green = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            pixel.blue = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;<span class="keyword">else</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">let</span> avg = <span class="type">UInt8</span>((<span class="type">Int</span>(pixel.red)+<span class="type">Int</span>(pixel.green)+<span class="type">Int</span>(pixel.blue))/<span class="number">3</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span>(avg&lt;<span class="number">100</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">            pixel.red = <span class="number">255</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">            pixel.green = <span class="number">255</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">            pixel.blue = <span class="number">255</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        &#125;<span class="keyword">else</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">            pixel.red = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">            pixel.green = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">            pixel.blue = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> pixel</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>传值conf为0时生成黑白图片，如果为1则反色</p>
+<p>效果如下</p>
+<p><img src="/images/pasted-102.png" alt="upload successful"></p>
+<h3 id="5、反相"><a href="#5、反相" class="headerlink" title="5、反相"></a>5、反相</h3><p>用255减去rgb值即为反相效果<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">inverseColor</span><span class="params">(<span class="keyword">var</span> pixel:Pixel,conf:Int)</span></span>-&gt;<span class="type">Pixel</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    pixel.red = <span class="built_in">min</span>(<span class="built_in">max</span>(<span class="type">UInt8</span>(conf) - pixel.red,<span class="number">0</span>),<span class="number">255</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    pixel.green = <span class="built_in">min</span>(<span class="built_in">max</span>(<span class="type">UInt8</span>(conf) - pixel.green,<span class="number">0</span>),<span class="number">255</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    pixel.blue = <span class="built_in">min</span>(<span class="built_in">max</span>(<span class="type">UInt8</span>(conf) - pixel.blue,<span class="number">0</span>),<span class="number">255</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> pixel</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
+<p>要对减法得到的值进行约束防止出现负数。</p>
+<p>效果如下</p>
+<p><img src="/images/pasted-103.png" alt="upload successful"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/08/02/%E4%B8%BAHbuilder-iOS-webapp%E9%9B%86%E6%88%90%E6%9E%81%E5%85%89%E6%8E%A8%E9%80%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -982,83 +1086,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/06/12/%E6%B4%97%E7%89%8C%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/06/12/%E6%B4%97%E7%89%8C%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">洗牌算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-06-12 12:57:00" itemprop="dateCreated datePublished" datetime="2016-06-12T12:57:00+08:00">2016-06-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>目的:将排列好的数据重新以随机的方式排列</p>
-<p>原理:从数组中随机选出一个元素，放入目标数组中后从原数组中删除这个元素。反复进行这个过程，直到原数组中所有的元素都进入了新的数组。此时目标数组中的元素为随机排列，达到了“洗牌”的效果。</p>
-<p>使用Python描述:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shuffle</span><span class="params">(list)</span>:</span>  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  targetlist=[]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">while</span> list:   </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    i=random.randrange(<span class="number">0</span>,len(list))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    targetlist.append(list[i])    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    list.pop(i)  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> targetlist</span></pre></td></tr></table></figure>
-<p>random.randrange(0,len(list))为从0到list长度中随机生成一个整数。</p>
-<p>targetlist.append(list[i])为将list[i]元素放入targetlist数组中。</p>
-<p>list.pop(i)为从list中删除这个元素。</p>
-<p>可以通过这个算法实现对训练集与测试集的分配。例如:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shuffle_split_data</span><span class="params">(X, y)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="string">""" Shuffles and splits data into 70% training and 30% testing subsets,</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="string">        then returns the training and testing subsets. """</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># Shuffle and split the data</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    split_num = int(<span class="number">0.7</span> * len(X))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    X_t = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    y_t = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    X = list(X)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">while</span> X:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        p = random.randrange(<span class="number">0</span>, len(X))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        X_t.append(X[p])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        y_t.append(y[p])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        X.pop(p)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    X_train = X_t[:split_num]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    y_train = y_t[:split_num]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    X_test = X_t[split_num:]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    y_test = y_t[split_num:]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># Return the training and testing data subsets</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> X_train, y_train, X_test, y_test</span></pre></td></tr></table></figure></p>
-<p>X为输入值，y为输出值，将70%的数据放入训练集，将30%的数据放入测试集</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1107,7 +1134,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">159</span>
+          <span class="site-state-item-count">160</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1120,7 +1147,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">199</span>
+        <span class="site-state-item-count">201</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

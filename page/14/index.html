@@ -219,6 +219,147 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E8%B0%83%E8%AF%95%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/05/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E8%B0%83%E8%AF%95%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">机器学习学习笔记（十一）调试算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-05-03 07:30:00" itemprop="dateCreated datePublished" datetime="2016-05-03T07:30:00+08:00">2016-05-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>当发现测试算法时预测的结果有非常大的误差时,有以下几种方法解决问题:</p>
+<ol>
+<li><p>使用更大的训练集</p>
+</li>
+<li><p>使用更少的特征值</p>
+</li>
+<li><p>使用更多的特征值</p>
+</li>
+<li><p>使用更高次幂的特征值</p>
+</li>
+<li><p>减少正则化参数</p>
+</li>
+<li><p>增加正则化参数</p>
+</li>
+</ol>
+<p>判断如何选择方法不应该”凭感觉”选择,而应该科学地使用机器学习诊断法进行判断,以更省时间,更有意义地改进算法.</p>
+<h3 id="过拟合与欠拟合"><a href="#过拟合与欠拟合" class="headerlink" title="过拟合与欠拟合"></a>过拟合与欠拟合</h3><p><img src="/images/pasted-56.png" alt="upload successful"></p>
+<p>(图为过拟合)</p>
+<p>过拟合与欠拟合都将不能很好的匹配新的数据.</p>
+<p>方法:将所有数据分为训练集与测试集.比例可以使用7:3.</p>
+<p>当训练集的$J(\theta )$很小,测试集的$J(\theta )$很大时,此时即为过拟合的情况.</p>
+<script type="math/tex; mode=display">J_{test}(\theta )=\frac{1}{2m_{test}}\sum_{i=1}^{m_{test}}(h_{\theta}(x_{test}^{i})-y_{test}^{i})^{2}</script><p>以上公式即为线性回归测试集误差计算公式;</p>
+<script type="math/tex; mode=display">J_{test}(\theta )=-\frac{1}{m_{test}}\sum_{i=1}^{m_{test}}y_{test}^{i}\log h_{\theta }(x_{test}^{i})+(1-y_{test}^{i})\log h_{\theta }(x_{test}^{i})</script><p>以上公式为逻辑回归测试误差公式;</p>
+<p>可以看到其实误差公式与代价函数的计算是一致的.</p>
+<p>通过以上计算公式可以量化测试集测试训练集的训练结果.</p>
+<hr>
+<h3 id="确定多项式的次数"><a href="#确定多项式的次数" class="headerlink" title="确定多项式的次数"></a>确定多项式的次数</h3><p>已经知道,当多项式的次数过高的时候,会发生过拟合现象.如何根据数据来确定多项式次数d呢?</p>
+<p>与之前加上验证集不同的是,将数据集分成三部分:训练集,测试集,交叉验证级.</p>
+<p>选择不同的多项式次数分别对验证集进行计算,</p>
+<script type="math/tex; mode=display">1. h_{\theta }(x)=\theta _{0}+\theta _{1}x\\2. h_{\theta }(x)=\theta _{0}+\theta _{1}x+\theta _{2}x^{2}\\3. h_{\theta }(x)=\theta _{0}+\theta _{1}x+...+\theta _{3}x^{3}\\\vdots \\10. h_{theta }(x)=\theta _{0}+\theta _{1}x+...+\theta _{10}x^{10}</script><p>得到各自的$J_{cv}(\theta )$,由此可以选择出最合适的多项式次数.</p>
+<hr>
+<p>因此,选择算法使用验证集进行模型选择,使用测试集来评价模型的好坏,这样就能找到合适的模型.</p>
+<h2 id="偏差-bias-与方差-variance"><a href="#偏差-bias-与方差-variance" class="headerlink" title="偏差(bias)与方差(variance)"></a>偏差(bias)与方差(variance)</h2><p><img src="/images/pasted-57.png" alt="upload successful"></p>
+<p>具体来说,欠拟合是高偏差情况,过拟合是高方差情况.</p>
+<p>分别对训练集和验证集的误差情况与多项式次数进行画图</p>
+<p><img src="/images/pasted-58.png" alt="upload successful"></p>
+<p>可以看到当项数次数过少时,错误相当的大,此时是高偏差情况;当项数次数过多时,训练集的误差变得非常小,呈现出过拟合的情况.但是交叉验证集的错误将急剧上升,此时的情况是高方差.</p>
+<p>直接描述就是:训练集误差小验证集误差大时,就是过拟合-高方差情况;</p>
+<h3 id="选择合适的正则化参数lambda"><a href="#选择合适的正则化参数lambda" class="headerlink" title="选择合适的正则化参数lambda"></a>选择合适的正则化参数lambda</h3><p>改变lambda时,训练集$J_{train}$与交叉验证集$J_{cv}$都会发生一定的变化.</p>
+<p>当参数过多过大时，后面的正则化项的值就会很大，因而导致$ J(\theta )$也变大，从而使这个预测方程得到更多的惩罚，使其像参数变量尽量小的地步靠拢。对正则化过程有影响的是lambda，当lambda数值大的时候，函数收到的惩罚更多，会更快地减少参数数值；当lambda为0的时候，函数则不会对参数进行正则化处理。</p>
+<p>如图所示</p>
+<p><img src="/images/pasted-59.png" alt="upload successful"></p>
+<p>当lambda过大时,会处于高偏差情况,$J_{train}$的值会很大,lambda值过小时会处于过拟合情况.</p>
+<p>因此,上图的左端对应着高方差,右端对应着高偏差问题,</p>
+<h3 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h3><p>用于判断算法的学习情况.可以判断此时处于高方差高偏差情况以对于算法进行修改.</p>
+<p>绘出$J_{train}(\theta )$与$J_{cv}(\theta )$的图像.</p>
+<p><img src="/images/pasted-60.png" alt="upload successful"></p>
+<p>上图为训练集大小与两个J的对应情况.</p>
+<p>当训练集过大时,$J_{train}$越来越难对与过大的训练集做出良好的拟合,因此在图上表现出m越大error越多.</p>
+<p>相反,当训练集大的时候,$J_{cv}$更能获得更好的泛化,即对新样品的适应更好,因此可以得到上述曲线.</p>
+<p>如果不使用多项式拟合而直接用一条直线,那么数据集的大小再大也于事无补,无法更加接近实际情况.此时$J_{train}$与$J_{cv}$会很接近,</p>
+<p><img src="/images/pasted-61.png" alt="upload successful"></p>
+<p>这种情况便是高偏差情况.</p>
+<p>反之,如果项数很大的话,学习曲线会如图所示:</p>
+<p><img src="/images/pasted-62.png" alt="upload successful"></p>
+<p>$J_{train}$与$J_{cv}$间会有很大的差距,这种情况是高方差.</p>
+<hr>
+<hr>
+<p>回到最开始的情况</p>
+<ol>
+<li><p>使用更大的训练集可以对于高方差的情况有所帮助(将学习曲线画出来可以看出)</p>
+</li>
+<li><p>使用更少的特征值可以修复一定的高方差情况.</p>
+</li>
+<li><p>使用更多的特征值可以修复高偏差情况</p>
+</li>
+<li><p>使用更高次幂的特征值可以修复高偏差情况</p>
+</li>
+<li><p>减少正则化参数可以修复高偏差</p>
+</li>
+<li><p>增加正则化参数可以修复高方差</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/03/%E7%88%AC%E8%99%ABpython%E8%A7%A3%E6%9E%90json%E4%B8%8Epython%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -908,86 +1049,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/18/%E7%94%A8js%E8%A7%A3%E5%86%B3%E5%9C%A8url%E4%B8%AD%E4%BC%A0%E8%BE%93%E5%B8%A6%E9%97%AE%E5%8F%B7%E7%9A%84url%E7%9A%84%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/04/18/%E7%94%A8js%E8%A7%A3%E5%86%B3%E5%9C%A8url%E4%B8%AD%E4%BC%A0%E8%BE%93%E5%B8%A6%E9%97%AE%E5%8F%B7%E7%9A%84url%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">用js解决在url中传输带问号的url的问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-04-18 06:25:00" itemprop="dateCreated datePublished" datetime="2016-04-18T06:25:00+08:00">2016-04-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front End</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在业务中使用了如下逻辑：访问某页面时需要登陆，如果未登陆则跳转至登陆页面，登陆后返回这个页面。</p>
-<p>相关js如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!localStorage.userinfo) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	<span class="built_in">window</span>.location.href = <span class="string">"login.html?lastpage="</span> + <span class="built_in">window</span>.location.href;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">	xxx;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
-<p>在login.html中有如下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lastpage;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="built_in">window</span>.location.search;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> loc = url.substring(url.lastIndexOf(<span class="string">'='</span>) + <span class="number">1</span>, url.length);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (loc == <span class="literal">null</span> || loc == <span class="string">""</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">	lastpage = <span class="string">"usercenter.html"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">	lastpage = loc;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
-<p>在登陆的ajax的callback success中有<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = lastpage;</span></pre></td></tr></table></figure></p>
-<hr>
-<p>然而，在实际的使用中出现了问题：在访问类似 <code>http://xxx.com/product.html?id=1</code> 时，发现最终跳转到的页面是 <code>http://xxx.com/1</code>，自然出现了 404 错误。后面发现是在 <code>login.html?lastpage=http://xxx.com/product.html?id=1</code> 的时候，程序直接将 1 看成了 lastpage。</p>
-<p>有很多种方式可以解决问题，例如改进 login 中获取 url 参数的 js 等，但是我希望能够在之后也能使 url 不出现类似的错误，因此想到了对 url 进行转码。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = <span class="string">"login.html?lastpage="</span> + <span class="built_in">encodeURIComponent</span>(<span class="built_in">window</span>.location.href);</span></pre></td></tr></table></figure></p>
-<p>可以将<br><code>http://xxx.com/product.html?id=1</code><br>转换成<br><code>http%3A%2F%2Fxxx.com%2Fproduct.html%3Fid%3D1</code></p>
-<p>可是此时又会发现最终访问到的页面地址是<br><code>http://xxx.com/http%3A%2F%2Fxxx.com%2Fproduct.html%3Fid%3D1</code></p>
-<p>看来是浏览器将已经转码的url当成一个文件访问了。因此，在 login 的 callback 里对其重新进行解码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = <span class="built_in">unescape</span>(lastpage);</span></pre></td></tr></table></figure>
-<p>可以将转码过的url还原。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1036,7 +1097,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">159</span>
+          <span class="site-state-item-count">160</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1049,7 +1110,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">199</span>
+        <span class="site-state-item-count">201</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
