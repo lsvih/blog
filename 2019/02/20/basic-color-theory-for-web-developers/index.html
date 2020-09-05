@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,66 +13,48 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta name="description" content="如果你上过艺术课，一定会发现基本上所有课堂墙上都挂了一个“色轮”。在课堂上，可能需要你混合各种颜色，画出你自己的作品。">
-<meta name="keywords" content="Translate,juejin,Front End,Color,Design">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Web 开发者需要了解的基础色彩理论">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2019&#x2F;02&#x2F;20&#x2F;basic-color-theory-for-web-developers&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/2019/02/20/basic-color-theory-for-web-developers/index.html">
 <meta property="og:site_name" content="My note">
 <meta property="og:description" content="如果你上过艺术课，一定会发现基本上所有课堂墙上都挂了一个“色轮”。在课堂上，可能需要你混合各种颜色，画出你自己的作品。">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;1-1.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;2-1.jpeg">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;3-2.jpeg">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;4-1.jpeg">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;5-1.jpeg">
-<meta property="og:updated_time" content="2019-02-20T01:55:55.990Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lsvih.com/images/1-1.png">
+<meta property="og:image" content="https://lsvih.com/images/2-1.jpeg">
+<meta property="og:image" content="https://lsvih.com/images/3-2.jpeg">
+<meta property="og:image" content="https://lsvih.com/images/4-1.jpeg">
+<meta property="og:image" content="https://lsvih.com/images/5-1.jpeg">
+<meta property="article:published_time" content="2019-02-20T01:42:00.000Z">
+<meta property="article:modified_time" content="2019-02-20T01:55:55.990Z">
+<meta property="article:author" content="lsvih">
+<meta property="article:tag" content="Translate">
+<meta property="article:tag" content="juejin">
+<meta property="article:tag" content="Front End">
+<meta property="article:tag" content="Color">
+<meta property="article:tag" content="Design">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;1-1.png">
+<meta name="twitter:image" content="https://lsvih.com/images/1-1.png">
+
 
 <link rel="canonical" href="https://lsvih.com/2019/02/20/basic-color-theory-for-web-developers/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
   };
 </script>
 
@@ -95,24 +77,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -120,60 +114,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -181,235 +178,44 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
-
-  
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/02/20/basic-color-theory-for-web-developers/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          Web 开发者需要了解的基础色彩理论
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-02-20 09:42:00" itemprop="dateCreated datePublished" datetime="2019-02-20T09:42:00+08:00">2019-02-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <p>如果你上过艺术课，一定会发现基本上所有课堂墙上都挂了一个“色轮”。在课堂上，可能需要你混合各种颜色，画出你自己的作品。</p>
-<a id="more"></a>
-<p><img src="/images/1-1.png" alt="1"></p>
-<p>在小学美术课上应该讲过<strong>一次色</strong>（primary color，即三原色）与<strong>二次色</strong>（seondary color，间色），如果你在小学之后还上过美术课，应该还了解过<strong>三次色</strong>（tertiary color，副色）。</p>
-<p><img src="/images/2-1.jpeg" alt="2"></p>
-<p>不过如果你在高中或者更高层次的学校中学习过艺术，那你就会发现，色轮是展示<a href="https://en.wikipedia.org/wiki/Color_theory" target="_blank" rel="noopener">色彩理论</a>、练习混色以及研究色彩组合的最简单的方法。</p>
-<h2 id="何谓色彩理论？"><a href="#何谓色彩理论？" class="headerlink" title="何谓色彩理论？"></a>何谓色彩理论？</h2><p><strong>色彩理论简史</strong>：爱德华·马奈（Édouard Manet）、埃德加·德加（Edgar Degas）、克洛德·莫奈（Claude Monet）等印象派的画家在抛弃写实，而开始尝试捕捉<strong>光色</strong>时，色彩理论就诞生了。</p>
-<p><img src="/images/3-2.jpeg" alt="3"></p>
-<p>上图为莫奈的 Haystacks 系列画作</p>
-<p><strong>简单来说</strong>：色彩理论研究的是人的眼睛如何将光波转化为颜色。匹配或相似的色彩往往有着相似或互补的波。</p>
-<p>因此可以将色彩理论归结为光波科学，来解释为什么可以看到各种颜色。不过在本文中，我们只专注于两个问题：</p>
-<ul>
-<li>为什么有些颜色可以完美搭配？</li>
-<li>我们该如何选择“正确”的颜色？</li>
-</ul>
-<p>颜色的搭配问题有点像“与生俱来”的东西。不管怎样，在网页或者 App 里用纯绿色的背景是绝对让人无法忍受的！</p>
-<p>下面我列了一个简表，当你遇到与色彩有关的问题时可以参考：</p>
-<h2 id="Level-1：单色"><a href="#Level-1：单色" class="headerlink" title="Level 1：单色"></a>Level 1：单色</h2><p><strong>单色</strong>就是单一的颜色，或者同种颜色的多个色调的组合。</p>
-<blockquote>
-<p><strong>在 Web 开发时</strong>，你可以在<a href="https://www.w3schools.com/colors/colors_picker.asp" target="_blank" rel="noopener">这个网页中</a>选择并查询某种颜色的 Hex 代码，并且可以在不影响色调的情况下让颜色更亮或更暗。</p>
-</blockquote>
-<p><img src="/images/4-1.jpeg" alt="4"></p>
-<p>这就是最简单的网页配色方法。诸如 <a href="http://facebook.com" target="_blank" rel="noopener">Facebook</a>、<a href="http://twitter.com" target="_blank" rel="noopener">Twitter</a> 之类的网站大都是用的这种单色配色方案。黑色、白色、天蓝色组合而成的简单配色，让这些社交 App 更加简洁。</p>
-<p>只有用户的头像、链接、照片有着不同的颜色，这些不同的颜色可以被用户识别，更好地找到他们感兴趣的帖子和账号。</p>
-<p>如果 Twitter 的网页上还有其它的颜色，就会让区分帖子、发帖人变得困难。</p>
-<p>一般来说，即使你需要多种颜色，也得有个主色，所谓背景或者标题的颜色。</p>
-<blockquote>
-<p><strong>专业建议</strong>：如果你的网页要使用单色配色，请确保阴影可以清晰地将各个元素区分开了。否则用户在阅读文本或分离网页元素时将很不方便。</p>
-</blockquote>
-<h2 id="Level-2：互补色"><a href="#Level-2：互补色" class="headerlink" title="Level 2：互补色"></a>Level 2：互补色</h2><p>如果不想在配色中只用各种各样的“橙色”怎么办？如果你想让链接突出，但又不和导航栏或者背景色冲突怎么办？</p>
-<p>如果我们遵循基本色彩理论，解决上述问题的方案就是去寻找<strong>互补色</strong>。</p>
-<p>可以在色轮中一种颜色相对的位置找到它的<strong>互补</strong>色。</p>
-<p><img src="/images/5-1.jpeg" alt="5"></p>
-<p>每种<strong>主色</strong>都与一种<strong>副色</strong>作为互补色相对应。有种方法可以轻松记住颜色如何匹配：如果一种<strong>副色</strong>和一种<strong>主色</strong>匹配，那么<strong>副色</strong>的构成色一定不含<strong>主色</strong>。比如，红色的互补色是绿色，而绿色由蓝色和黄色组成。</p>
-<blockquote>
-<p><strong>专业建议</strong>：一次只增加一种颜色，并保持页面简单。不要为了呈现一个完整的彩虹配色牺牲了你干净、好用的布局。不然，你可能会做出上世纪 90 年代流行的经典网站（比如<a href="https://spacejam.com/" target="_blank" rel="noopener">这个</a>）。</p>
-</blockquote>
-<h2 id="继续升级…"><a href="#继续升级…" class="headerlink" title="继续升级…"></a>继续升级…</h2><p>随着你的设计水平的提高，就能自如地挑战自己的极限了。配色并不是什么可怕的工作。你可以多多关注一些配色水平高的开发者（比如<a href="https://www.alispit.tel/#/" target="_blank" rel="noopener">他</a> ）和设计师。多问问自己喜欢什么配色、不喜欢什么配色、为什么，这样就能建立自己的品味与品牌。</p>
-<h2 id="Web-开发者的色彩-Hack"><a href="#Web-开发者的色彩-Hack" class="headerlink" title="Web 开发者的色彩 Hack"></a>Web 开发者的色彩 Hack</h2><p>试试自己手写一些 hex 代码、RBG 数字来尝试各种色彩的组合与混合。如果你是 SASS 的粉丝，可以把配好的颜色存储在文件中，日后在项目中导入。如果你的工作是构建页面结构而不是视觉设计（由客户或者产品经理决定），可以把这些颜色当做是占位符，让页面看起来更加明了。</p>
-<p>请确保：</p>
-<ul>
-<li>所有东西都是可读的。</li>
-<li>链接、标题等你想要强调的东西应该与纯文本有所区别。</li>
-<li>用户可以轻松地区分网页的不同部分（比如导航栏、主要内容、文章等）。</li>
-</ul>
-<h2 id="在线工具"><a href="#在线工具" class="headerlink" title="在线工具"></a>在线工具</h2><ul>
-<li><a href="http://paletton.com/" target="_blank" rel="noopener">Palleton.com</a></li>
-<li><a href="https://coolors.co/" target="_blank" rel="noopener">Coolors.co</a></li>
-</ul>
-<p><a href="https://dev.to/ferkungamaboobo" target="_blank" rel="noopener">Doug R. Thomas, Esq.</a> 强烈推荐以下网站：</p>
-<ul>
-<li><a href="https://color.adobe.com/" target="_blank" rel="noopener">Color.Adobe.com</a></li>
-<li><a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener">WebAIM — 颜色对比度检查器</a> — 确保文本在背景上的可读性。</li>
-<li><a href="https://www.color-blindness.com/coblis-color-blindness-simulator/" target="_blank" rel="noopener">Coblis — 色盲模拟器</a> — 用色盲滤镜来测试你的布局截图，以确保内容对所有受众都是可读的。</li>
-</ul>
-<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><p>希望在读完这篇文章后，你不再为给网站、网页、app 配色感到犯愁。如果你对这个主题感兴趣，强烈建议去了解<a href="https://www.colormatters.com/color-and-design/basic-color-theory" target="_blank" rel="noopener">更多相关知识</a>。本文只是浅显地进行了讲解，你可以读<a href="https://99designs.com/blog/tips/the-7-step-guide-to-understanding-color-theory/" target="_blank" rel="noopener">这篇文章</a>了解更多关于色调和阴影的知识。</p>
-<p>最后我想说，在你给自己的项目进行配色时，并不存在”错误答案“。许多人认为品味是天生就有的，正是它帮助你寻找美妙的设计、带来灵感、尝试各种组合，最终为你和你的品牌找到最适合方案。祝你好运！</p>
-<blockquote>
-<p>本文发布于掘金 <a href="https://juejin.im/post/5c6caee26fb9a049df24a4df" target="_blank" rel="noopener">https://juejin.im/post/5c6caee26fb9a049df24a4df</a></p>
-</blockquote>
-
     </div>
-
-    
-    
-    
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>lsvih
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="/https:/lsvih.com/2019/02/20/basic-color-theory-for-web-developers/" title="Web 开发者需要了解的基础色彩理论">https://lsvih.com/2019/02/20/basic-color-theory-for-web-developers/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Translate/" rel="tag"># Translate</a>
-              <a href="/tags/juejin/" rel="tag"># juejin</a>
-              <a href="/tags/Front-End/" rel="tag"># Front End</a>
-              <a href="/tags/Color/" rel="tag"># Color</a>
-              <a href="/tags/Design/" rel="tag"># Design</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2019/02/16/ten-things-you-didnt-know-about-webpagetest-org/" rel="prev" title="十件你不知道的关于 WebPageTest.org 的事(译)">
-      <i class="fa fa-chevron-left"></i> 十件你不知道的关于 WebPageTest.org 的事(译)
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/04/07/Robust-Classification-with-Convolutional-Prototype-Learning-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="next" title="Robust Classification with Convolutional Prototype Learning 论文笔记">
-      Robust Classification with Convolutional Prototype Learning 论文笔记 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
   </div>
 
-
-          </div>
-          
-
-        </div>
-          
+</div>
+        
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
         </li>
@@ -419,17 +225,17 @@
       </ul>
 
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#何谓色彩理论？"><span class="nav-number">1.</span> <span class="nav-text">何谓色彩理论？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-1：单色"><span class="nav-number">2.</span> <span class="nav-text">Level 1：单色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-2：互补色"><span class="nav-number">3.</span> <span class="nav-text">Level 2：互补色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继续升级…"><span class="nav-number">4.</span> <span class="nav-text">继续升级…</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-开发者的色彩-Hack"><span class="nav-number">5.</span> <span class="nav-text">Web 开发者的色彩 Hack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在线工具"><span class="nav-number">6.</span> <span class="nav-text">在线工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拓展阅读"><span class="nav-number">7.</span> <span class="nav-text">拓展阅读</span></a></li></ol></div>
-      </div>
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%95%E8%B0%93%E8%89%B2%E5%BD%A9%E7%90%86%E8%AE%BA%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">何谓色彩理论？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-1%EF%BC%9A%E5%8D%95%E8%89%B2"><span class="nav-number">2.</span> <span class="nav-text">Level 1：单色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-2%EF%BC%9A%E4%BA%92%E8%A1%A5%E8%89%B2"><span class="nav-number">3.</span> <span class="nav-text">Level 2：互补色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%A7%E7%BB%AD%E5%8D%87%E7%BA%A7%E2%80%A6"><span class="nav-number">4.</span> <span class="nav-text">继续升级…</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84%E8%89%B2%E5%BD%A9-Hack"><span class="nav-number">5.</span> <span class="nav-text">Web 开发者的色彩 Hack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7"><span class="nav-number">6.</span> <span class="nav-text">在线工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%93%E5%B1%95%E9%98%85%E8%AF%BB"><span class="nav-number">7.</span> <span class="nav-text">拓展阅读</span></a></li></ol></div>
+      </section>
       <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">lsvih</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -452,34 +258,246 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </div>
-
+      </section>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/02/20/basic-color-theory-for-web-developers/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Web 开发者需要了解的基础色彩理论
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-02-20 09:42:00" itemprop="dateCreated datePublished" datetime="2019-02-20T09:42:00+08:00">2019-02-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>如果你上过艺术课，一定会发现基本上所有课堂墙上都挂了一个“色轮”。在课堂上，可能需要你混合各种颜色，画出你自己的作品。</p>
+<a id="more"></a>
+<p><img src="/images/1-1.png" alt="1"></p>
+<p>在小学美术课上应该讲过<strong>一次色</strong>（primary color，即三原色）与<strong>二次色</strong>（seondary color，间色），如果你在小学之后还上过美术课，应该还了解过<strong>三次色</strong>（tertiary color，副色）。</p>
+<p><img src="/images/2-1.jpeg" alt="2"></p>
+<p>不过如果你在高中或者更高层次的学校中学习过艺术，那你就会发现，色轮是展示<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Color_theory">色彩理论</a>、练习混色以及研究色彩组合的最简单的方法。</p>
+<h2 id="何谓色彩理论？"><a href="#何谓色彩理论？" class="headerlink" title="何谓色彩理论？"></a>何谓色彩理论？</h2><p><strong>色彩理论简史</strong>：爱德华·马奈（Édouard Manet）、埃德加·德加（Edgar Degas）、克洛德·莫奈（Claude Monet）等印象派的画家在抛弃写实，而开始尝试捕捉<strong>光色</strong>时，色彩理论就诞生了。</p>
+<p><img src="/images/3-2.jpeg" alt="3"></p>
+<p>上图为莫奈的 Haystacks 系列画作</p>
+<p><strong>简单来说</strong>：色彩理论研究的是人的眼睛如何将光波转化为颜色。匹配或相似的色彩往往有着相似或互补的波。</p>
+<p>因此可以将色彩理论归结为光波科学，来解释为什么可以看到各种颜色。不过在本文中，我们只专注于两个问题：</p>
+<ul>
+<li>为什么有些颜色可以完美搭配？</li>
+<li>我们该如何选择“正确”的颜色？</li>
+</ul>
+<p>颜色的搭配问题有点像“与生俱来”的东西。不管怎样，在网页或者 App 里用纯绿色的背景是绝对让人无法忍受的！</p>
+<p>下面我列了一个简表，当你遇到与色彩有关的问题时可以参考：</p>
+<h2 id="Level-1：单色"><a href="#Level-1：单色" class="headerlink" title="Level 1：单色"></a>Level 1：单色</h2><p><strong>单色</strong>就是单一的颜色，或者同种颜色的多个色调的组合。</p>
+<blockquote>
+<p><strong>在 Web 开发时</strong>，你可以在<a target="_blank" rel="noopener" href="https://www.w3schools.com/colors/colors_picker.asp">这个网页中</a>选择并查询某种颜色的 Hex 代码，并且可以在不影响色调的情况下让颜色更亮或更暗。</p>
+</blockquote>
+<p><img src="/images/4-1.jpeg" alt="4"></p>
+<p>这就是最简单的网页配色方法。诸如 <a target="_blank" rel="noopener" href="http://facebook.com">Facebook</a>、<a target="_blank" rel="noopener" href="http://twitter.com">Twitter</a> 之类的网站大都是用的这种单色配色方案。黑色、白色、天蓝色组合而成的简单配色，让这些社交 App 更加简洁。</p>
+<p>只有用户的头像、链接、照片有着不同的颜色，这些不同的颜色可以被用户识别，更好地找到他们感兴趣的帖子和账号。</p>
+<p>如果 Twitter 的网页上还有其它的颜色，就会让区分帖子、发帖人变得困难。</p>
+<p>一般来说，即使你需要多种颜色，也得有个主色，所谓背景或者标题的颜色。</p>
+<blockquote>
+<p><strong>专业建议</strong>：如果你的网页要使用单色配色，请确保阴影可以清晰地将各个元素区分开了。否则用户在阅读文本或分离网页元素时将很不方便。</p>
+</blockquote>
+<h2 id="Level-2：互补色"><a href="#Level-2：互补色" class="headerlink" title="Level 2：互补色"></a>Level 2：互补色</h2><p>如果不想在配色中只用各种各样的“橙色”怎么办？如果你想让链接突出，但又不和导航栏或者背景色冲突怎么办？</p>
+<p>如果我们遵循基本色彩理论，解决上述问题的方案就是去寻找<strong>互补色</strong>。</p>
+<p>可以在色轮中一种颜色相对的位置找到它的<strong>互补</strong>色。</p>
+<p><img src="/images/5-1.jpeg" alt="5"></p>
+<p>每种<strong>主色</strong>都与一种<strong>副色</strong>作为互补色相对应。有种方法可以轻松记住颜色如何匹配：如果一种<strong>副色</strong>和一种<strong>主色</strong>匹配，那么<strong>副色</strong>的构成色一定不含<strong>主色</strong>。比如，红色的互补色是绿色，而绿色由蓝色和黄色组成。</p>
+<blockquote>
+<p><strong>专业建议</strong>：一次只增加一种颜色，并保持页面简单。不要为了呈现一个完整的彩虹配色牺牲了你干净、好用的布局。不然，你可能会做出上世纪 90 年代流行的经典网站（比如<a target="_blank" rel="noopener" href="https://spacejam.com/">这个</a>）。</p>
+</blockquote>
+<h2 id="继续升级…"><a href="#继续升级…" class="headerlink" title="继续升级…"></a>继续升级…</h2><p>随着你的设计水平的提高，就能自如地挑战自己的极限了。配色并不是什么可怕的工作。你可以多多关注一些配色水平高的开发者（比如<a target="_blank" rel="noopener" href="https://www.alispit.tel/#/">他</a> ）和设计师。多问问自己喜欢什么配色、不喜欢什么配色、为什么，这样就能建立自己的品味与品牌。</p>
+<h2 id="Web-开发者的色彩-Hack"><a href="#Web-开发者的色彩-Hack" class="headerlink" title="Web 开发者的色彩 Hack"></a>Web 开发者的色彩 Hack</h2><p>试试自己手写一些 hex 代码、RBG 数字来尝试各种色彩的组合与混合。如果你是 SASS 的粉丝，可以把配好的颜色存储在文件中，日后在项目中导入。如果你的工作是构建页面结构而不是视觉设计（由客户或者产品经理决定），可以把这些颜色当做是占位符，让页面看起来更加明了。</p>
+<p>请确保：</p>
+<ul>
+<li>所有东西都是可读的。</li>
+<li>链接、标题等你想要强调的东西应该与纯文本有所区别。</li>
+<li>用户可以轻松地区分网页的不同部分（比如导航栏、主要内容、文章等）。</li>
+</ul>
+<h2 id="在线工具"><a href="#在线工具" class="headerlink" title="在线工具"></a>在线工具</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://paletton.com/">Palleton.com</a></li>
+<li><a target="_blank" rel="noopener" href="https://coolors.co/">Coolors.co</a></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://dev.to/ferkungamaboobo">Doug R. Thomas, Esq.</a> 强烈推荐以下网站：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://color.adobe.com/">Color.Adobe.com</a></li>
+<li><a target="_blank" rel="noopener" href="https://webaim.org/resources/contrastchecker/">WebAIM — 颜色对比度检查器</a> — 确保文本在背景上的可读性。</li>
+<li><a target="_blank" rel="noopener" href="https://www.color-blindness.com/coblis-color-blindness-simulator/">Coblis — 色盲模拟器</a> — 用色盲滤镜来测试你的布局截图，以确保内容对所有受众都是可读的。</li>
+</ul>
+<h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><p>希望在读完这篇文章后，你不再为给网站、网页、app 配色感到犯愁。如果你对这个主题感兴趣，强烈建议去了解<a target="_blank" rel="noopener" href="https://www.colormatters.com/color-and-design/basic-color-theory">更多相关知识</a>。本文只是浅显地进行了讲解，你可以读<a target="_blank" rel="noopener" href="https://99designs.com/blog/tips/the-7-step-guide-to-understanding-color-theory/">这篇文章</a>了解更多关于色调和阴影的知识。</p>
+<p>最后我想说，在你给自己的项目进行配色时，并不存在”错误答案“。许多人认为品味是天生就有的，正是它帮助你寻找美妙的设计、带来灵感、尝试各种组合，最终为你和你的品牌找到最适合方案。祝你好运！</p>
+<blockquote>
+<p>本文发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/5c6caee26fb9a049df24a4df">https://juejin.im/post/5c6caee26fb9a049df24a4df</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Written by:  </strong>lsvih
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://lsvih.com/2019/02/20/basic-color-theory-for-web-developers/" title="Web 开发者需要了解的基础色彩理论">https://lsvih.com/2019/02/20/basic-color-theory-for-web-developers/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Translate/" rel="tag"># Translate</a>
+              <a href="/tags/juejin/" rel="tag"># juejin</a>
+              <a href="/tags/Front-End/" rel="tag"># Front End</a>
+              <a href="/tags/Color/" rel="tag"># Color</a>
+              <a href="/tags/Design/" rel="tag"># Design</a>
+          </div>
+
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/02/16/ten-things-you-didnt-know-about-webpagetest-org/" rel="prev" title="十件你不知道的关于 WebPageTest.org 的事(译)">
+                  <i class="fa fa-chevron-left"></i> 十件你不知道的关于 WebPageTest.org 的事(译)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/04/07/Robust-Classification-with-Convolutional-Prototype-Learning-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="next" title="Robust Classification with Convolutional Prototype Learning 论文笔记">
+                  Robust Classification with Convolutional Prototype Learning 论文笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -491,32 +509,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -532,9 +556,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -550,55 +573,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

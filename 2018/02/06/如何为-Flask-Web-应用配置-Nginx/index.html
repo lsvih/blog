@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,62 +13,45 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta name="description" content="简介在本文中，我将介绍什么是 Nginx 以及如何为 Flask Web 应用配置 Nginx。本文是《部署 Flask 应用》系列文章的一部分。我曾找到过多份关于 Nginx 及其配置的文章，但我希望能更深入其细节，了解如何使用 Nginx 为 Flask Web 应用服务以及如何为此进行配置。Nginx 的配置文件有点让人困惑，因为大多数的文档仅仅是简单罗列了一个配置文件，而没有对配置中每一步">
-<meta name="keywords" content="Translate,juejin,Tool,Nginx,Flask,Config">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何为 Flask Web 应用配置 Nginx">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2018&#x2F;02&#x2F;06&#x2F;%E5%A6%82%E4%BD%95%E4%B8%BA-Flask-Web-%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE-Nginx&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/2018/02/06/%E5%A6%82%E4%BD%95%E4%B8%BA-Flask-Web-%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE-Nginx/index.html">
 <meta property="og:site_name" content="My note">
 <meta property="og:description" content="简介在本文中，我将介绍什么是 Nginx 以及如何为 Flask Web 应用配置 Nginx。本文是《部署 Flask 应用》系列文章的一部分。我曾找到过多份关于 Nginx 及其配置的文章，但我希望能更深入其细节，了解如何使用 Nginx 为 Flask Web 应用服务以及如何为此进行配置。Nginx 的配置文件有点让人困惑，因为大多数的文档仅仅是简单罗列了一个配置文件，而没有对配置中每一步">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-305.png">
-<meta property="og:updated_time" content="2018-10-28T16:13:14.310Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lsvih.com/images/pasted-305.png">
+<meta property="article:published_time" content="2018-02-06T08:04:00.000Z">
+<meta property="article:modified_time" content="2018-10-28T16:13:14.310Z">
+<meta property="article:author" content="lsvih">
+<meta property="article:tag" content="Translate">
+<meta property="article:tag" content="juejin">
+<meta property="article:tag" content="Tool">
+<meta property="article:tag" content="Nginx">
+<meta property="article:tag" content="Flask">
+<meta property="article:tag" content="Config">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-305.png">
+<meta name="twitter:image" content="https://lsvih.com/images/pasted-305.png">
+
 
 <link rel="canonical" href="https://lsvih.com/2018/02/06/%E5%A6%82%E4%BD%95%E4%B8%BA-Flask-Web-%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE-Nginx/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
   };
 </script>
 
@@ -91,24 +74,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -116,60 +111,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -177,277 +175,44 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
-
-  
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/06/%E5%A6%82%E4%BD%95%E4%B8%BA-Flask-Web-%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE-Nginx/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          如何为 Flask Web 应用配置 Nginx
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-02-06 16:04:00" itemprop="dateCreated datePublished" datetime="2018-02-06T16:04:00+08:00">2018-02-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a><strong>简介</strong></h3><p>在本文中，我将介绍什么是 <a href="https://www.nginx.com/" target="_blank" rel="noopener">Nginx</a> 以及如何为 Flask Web 应用配置 Nginx。本文是<a href="http://www.patricksoftwareblog.com/all-posts/" target="_blank" rel="noopener">《部署 Flask 应用》</a>系列文章的一部分。我曾找到过多份关于 Nginx 及其配置的文章，但我希望能更深入其细节，了解如何使用 Nginx 为 Flask Web 应用服务以及如何为此进行配置。Nginx 的配置文件有点让人困惑，因为大多数的文档仅仅是简单罗列了一个配置文件，而没有对配置中每一步做了什么进行任何解释。希望本文能让你清晰地理解如何为你的应用配置 Nginx。</p>
-<a id="more"></a>
-<h3 id="什么是-Nginx？"><a href="#什么是-Nginx？" class="headerlink" title="什么是 Nginx？"></a><strong>什么是 Nginx？</strong></h3><p>在 Nginx（发音为“engine-X”）的官网中，有着这个工具的概要描述：</p>
-<p>Nginx 是一款免费、开源、高性能的 HTTP 服务器以及反向代理，同时也可以作为 IMAP/POP3 代理服务器。Nginx 以其高性能、稳定性、丰富的功能、简单的配置、低资源消耗而闻名。</p>
-<p>我们可以拓展理解此说明…… Nginx 是一个可以为你的 Web 应用处理 <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" target="_blank" rel="noopener">HTTP</a> 请求的服务器。对于典型的 Web 应用，Nginx 可以配置为 HTTP 请求进行以下操作：</p>
-<ul>
-<li>将请求 <a href="https://en.wikipedia.org/wiki/Reverse_proxy" target="_blank" rel="noopener">反向代理</a> 至上游服务器（例如 Gunicorn、uWsgi、Apache 等）。</li>
-<li>为静态资源（Javascript 文件、CSS 文件、图像、文档、静态 HTML 文件）提供服务。</li>
-</ul>
-<p>同时 Nginx 也提供了<a href="http://nginx.org/en/docs/http/load_balancing.html" target="_blank" rel="noopener">负载均衡</a>功能，可以让多个上游服务器为请求提供服务，不过在本文中暂不讨论此功能。</p>
-<p>下图为描述 Nginx 如何为 Flask Web 应用提供服务的简图：</p>
-<p><img src="/images/pasted-305.png" alt="upload successful"></p>
-<p>Nginx 会处理来自因特网（比如来自你应用的用户）的 Http 请求。根据你对 Nginx 的配置，它可以直接提供并向请求源返回静态内容（Javascript 文件、CSS 文件、图像、文档、静态 HTML 文件）。此外，它也能将请求反向代理至 WSGI（<a href="https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface" target="_blank" rel="noopener">Web Server Gateway Interface</a>）以让你在 Flask Web 应用中生成动态内容（HTML）并返回给用户。</p>
-<p>上面的示意图假定用户使用了 Docker，但不使用 Docker 时 Nginx 的配置也与此十分相似（仅仅省略了图中容器的概念）。</p>
-<h3 id="为什么你需要-Nginx-与-Gunicorn？"><a href="#为什么你需要-Nginx-与-Gunicorn？" class="headerlink" title="为什么你需要 Nginx 与 Gunicorn？"></a>为什么你需要 Nginx 与 Gunicorn？</h3><p>Nginx 作为一个 HTTP 服务器，在许多应用中都被使用：<a href="https://www.nginx.com/resources/wiki/start/#pre-canned-configurations" target="_blank" rel="noopener">列表</a>。它提供了许多的功能，但无法直接为 Flask 应用提供服务。而 <a href="http://gunicorn.org/" target="_blank" rel="noopener">Gunicorn</a> 可以做到这一点。Nginx 收到 HTTP 请求，并将其传递给 Gunicorn 交由你的 Flask 应用进行处理（比如你在 view.py 中定义的路由）。Gunicorn 是一个 WSGI 服务器，可以处理 HTTP 请求，并将它们通过路由交给任何支持 WSGI 的 python 应用处理（比如 Flask、Django、Pyramid 等）。</p>
-<h3 id="Nginx-配置文件的结构"><a href="#Nginx-配置文件的结构" class="headerlink" title="Nginx 配置文件的结构"></a><strong>Nginx 配置文件的结构</strong></h3><p>注意：本文应用的是 Nginx v1.11.3，配置文件所在的位置根据你 Nginx 版本的不同会有所变化，比如 /opt/nginx/conf/。</p>
-<p>根据你安装、使用 Nginx 方式的不同，配置文件的结构会略有不同。大多数的配置结构如下所示：</p>
-<h4 id="结构-1"><a href="#结构-1" class="headerlink" title="结构 1"></a>结构 1</h4><p>如果你使用的是从源代码编译得到的 Nginx 或者官方的 Docker 镜像，那么配置文件在 /etc/nginx/ 中，主配置文件为 /etc/nginx/nginx.conf。在 /etc/nginx/nginx.conf 的最下面的一行会将位于 /etc/nginx/conf.d/ 目录下的其余配置文件内容载入配置中：</p>
-<ul>
-<li>include /etc/nginx/conf.d/*.conf;</li>
-</ul>
-<h4 id="结构-2"><a href="#结构-2" class="headerlink" title="结构 2"></a>结构 2</h4><p>如果你是通过包管理器（比如 Ubuntu 的 apt-get）安装的 Nginx，那么你的 /etc/nginx/ 下会有下面两个子目录：</p>
-<ul>
-<li>sites-available – 包含为多个网站准备的多个配置文件。</li>
-<li>sites-enabled – 包含一个指向 sites-available 目录中配置文件的软链接。</li>
-</ul>
-<p>这两个目录继承于 Apache，将应用于 Nginx 的配置。</p>
-<p>由于我的 Flask 应用使用的是 Docker 部署，因此在本文将主要关注上面的结构 1。</p>
-<h3 id="Nginx-的配置"><a href="#Nginx-的配置" class="headerlink" title="Nginx 的配置"></a><strong>Nginx 的配置</strong></h3><p>Nginx 的顶层配置文件是 nginx.conf。Nginx 接受多层级的配置文件，这也使得用户可以针对自己的应用进行弹性的配置。如需了解配置文件中各参数的详细信息，可以参阅 <a href="http://nginx.org/en/docs/ngx_core_module.html" target="_blank" rel="noopener">Nginx 官方文档</a>。</p>
-<p>在 Nginx 中，由配置块（block）来组织各个配置参数。以下为在本文中我们将提到的配置块：</p>
-<ul>
-<li>Main – 定义于 nginx.conf（所有不属于配置块的参数均属 Main 块）</li>
-<li>Events – 定义于 nginx.conf</li>
-<li>Http – 定义于 nginx.conf</li>
-<li>Server – 定义于 _application_name_.conf</li>
-</ul>
-<p>将这些配置块拆分至不同的文件，可以让你在 nginx.conf 中定义 Nginx 的高级别配置，在其它的 *.conf 文件中为你的应用定义虚拟主机或服务器的参数。</p>
-<h4 id="nginx-conf-详细说明"><a href="#nginx-conf-详细说明" class="headerlink" title="nginx.conf 详细说明"></a>nginx.conf 详细说明</h4><p>安装 Nginx 时自带的默认 nginx.conf 文件可以适用于大多数服务器的初步配置。让我们仔细探查 nginx.conf 的内容，并思考如何拓展这里的默认设置。</p>
-<h5 id="Main-部分"><a href="#Main-部分" class="headerlink" title="Main 部分"></a>Main 部分</h5><p>nginx.conf 的 main 配置块（即那些不在配置块中的参数）为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">user  nginx;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">worker_processes  1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">error_log  &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log warn;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">pid        &#x2F;var&#x2F;run&#x2F;nginx.pid;</span></pre></td></tr></table></figure>
-<p>第一个参数（<a href="http://nginx.org/en/docs/ngx_core_module.html#user" target="_blank" rel="noopener">user</a>）将定义 Nginx 服务器的拥有者以及运行用户。当 Nginx 通过 Docker 容器运行时，使用默认值就够了。</p>
-<p>第二个参数（<a href="http://nginx.org/en/docs/ngx_core_module.html#worker_processes" target="_blank" rel="noopener">worker_processes</a>）定义了 worker processes（工作进程）的数量。此参数推荐的默认值为当前服务器使用内核的数量。对于基础的虚拟私有服务器（VPS）来说，默认值 1 就是个不错的选择。当你拓展 VPS 性能时可以增加这个数字。</p>
-<p>第三个参数（<a href="http://nginx.org/en/docs/ngx_core_module.html#error_log" target="_blank" rel="noopener">error_log</a>）定义了错误日志在文件系统中存放的位置，并能额外定义一个参数来规定需要记录日志的最小错误等级。这个参数使用默认值即可。</p>
-<p>第四个参数（<a href="http://nginx.org/en/docs/ngx_core_module.html#pid" target="_blank" rel="noopener">pid</a>）定义了用于存储 Nginx 主进程 pid 的文件位置。这个参数使用默认值即可。</p>
-<h4 id="events-配置块"><a href="#events-配置块" class="headerlink" title="events 配置块"></a>events 配置块</h4><p>events 配置块定义了一些会影响连接处理的参数。它也是 Nginx.conf 文件中第一个配置块：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">events &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    worker_connections  1024;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>在这个配置块中仅有一个单独的参数（<a href="http://nginx.org/en/docs/ngx_core_module.html#worker_connections" target="_blank" rel="noopener">worker_connections</a>），定义了工作进程可以打开的最大并发连接数。默认值定义了总共可用 1024 个连接，无需更改（但你需要计算用户请求站点及请求 WSGI 服务器的连接数）。</p>
-<h4 id="http-配置块"><a href="#http-配置块" class="headerlink" title="http 配置块"></a>http 配置块</h4><p>http 配置块定义了一些关于 Nginx 如何处理 HTTP Web 流量的参数。它是 nginx.conf 文件中第二个配置块：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">http &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    include       &#x2F;etc&#x2F;nginx&#x2F;mime.types;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    default_type  application&#x2F;octet-stream;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">                      &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">                      &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    access_log  &#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log  main;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    sendfile        on;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    #tcp_nopush     on;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    keepalive_timeout  65;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    #gzip  on;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    include &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;*.conf;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>第一个参数（<a href="http://nginx.org/en/docs/ngx_core_module.html#include" target="_blank" rel="noopener">include</a>）指定了需要引入的配置文件，在此引入的是位于 /etc/nginx/ 的 mime.types 文件，这个文件定义了各种 Nginx 支持的文件类型。此参数应该保持默认值。</p>
-<p>第二个参数（<a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#default_type" target="_blank" rel="noopener">default_type</a>）指定了默认给用户返回的文件类型。对于 Flask 应用来说，返回的是动态生成的 HTML 文件，因此这个参数应改为 <code>default_type text/html</code>;</p>
-<p>第三个参数（<a href="http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format" target="_blank" rel="noopener">log_format</a>）指定了日志的格式，应当保持默认值。</p>
-<p>第四个参数（<a href="http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log" target="_blank" rel="noopener">access_log</a>）指定了 Nginx 日志的访问位置，应当保持默认值。</p>
-<p>第五个参数（<a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile" target="_blank" rel="noopener">send_file</a>）以及第六个参数（<a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#tcp_nopush" target="_blank" rel="noopener">tcp_nopush</a>）稍微有点复杂。可以参阅<a href="https://t37.net/nginx-optimization-understanding-sendfile-tcp_nodelay-and-tcp_nopush.html" target="_blank" rel="noopener">《优化 Nginx》</a>一文来了解这些参数（包括 <a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#tcp_nodelay" target="_blank" rel="noopener">tcp_nodelay</a>）的详细情况。由于我们打算用 Nginx 来传递静态内容，因此可以这么设置这些参数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sendfile        on;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">tcp_nopush     on;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">tcp_nodelay    on;</span></pre></td></tr></table></figure>
-<p>第七个参数（<a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout" target="_blank" rel="noopener">keepalive_timeout</a>）定义了与客户端保持连接的超时时长，应当保持默认值。</p>
-<p>第八个参数（<a href="http://nginx.org/en/docs/http/ngx_http_gzip_module.html" target="_blank" rel="noopener">gzip</a>）定义了 gzip 压缩算法的使用方法，以减少传输数据量。虽然数据量减少了，但也因此增加平台在压缩过程中的性能消耗，好处两两抵消，因此保持它的默认值（off）。</p>
-<p>第九个，也是最后一个参数（<a href="http://nginx.org/en/docs/ngx_core_module.html#include" target="_blank" rel="noopener">include</a>）定义了位于 /etc/nginx/conf.d/ 下后缀名为 .conf 的其它配置文件。现在我们将使用这些配置文件定义静态内容服务器以及 WSGI 服务器的反向代理。</p>
-<h4 id="nginx-conf-的最终配置"><a href="#nginx-conf-的最终配置" class="headerlink" title="nginx.conf 的最终配置"></a>nginx.conf 的最终配置</h4><p>在 nginx.conf 默认设置之上，我们需要根据需要调整一些参数（并加上注释），下面为最终版本的 nginx.conf：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"># Define the user that will own and run the Nginx server</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">user  nginx;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"># Define the number of worker processes; recommended value is the number of</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"># cores that are being used by your server</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">worker_processes  1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"># Define the location on the file system of the error log, plus the minimum</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"># severity to log messages for</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">error_log  &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log warn;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"># Define the file that will store the process ID of the main NGINX process</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">pid        &#x2F;var&#x2F;run&#x2F;nginx.pid;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"># events block defines the parameters that affect connection processing.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">events &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">   # Define the maximum number of simultaneous connections that can be opened by a worker process</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">   worker_connections  1024;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"># http block defines the parameters for how NGINX should handle HTTP web traffic</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">http &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">   # Include the file defining the list of file types that are supported by NGINX</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">   include       &#x2F;etc&#x2F;nginx&#x2F;mime.types;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">   # Define the default file type that is returned to the user</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">   default_type  text&#x2F;html;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">   # Define the format of log messages.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">   log_format  main  &#39;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">                     &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">                     &#39;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">   # Define the location of the log of access attempts to NGINX</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">   access_log  &#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log  main;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">   # Define the parameters to optimize the delivery of static content</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">   sendfile        on;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">   tcp_nopush     on;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">   tcp_nodelay    on;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">   # Define the timeout value for keep-alive connections with the client</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">   keepalive_timeout  65;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">   # Define the usage of the gzip compression algorithm to reduce the amount of data to transmit</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">   #gzip  on;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">   # Include additional parameters for virtual host(s)&#x2F;server(s)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">   include &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;*.conf;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<h5 id="为静态内容部署及反向代理配置-Nginx"><a href="#为静态内容部署及反向代理配置-Nginx" class="headerlink" title="为静态内容部署及反向代理配置 Nginx"></a>为静态内容部署及反向代理配置 Nginx</h5><p>如果你查看默认的 /etc/nginx/conf.g/default.conf，可以看到它提供了一个简单的服务器配置块，并给了许多取消注释即可使用的可选配置。我们不会挨个去研究这个文件中的配置，而是直接探讨对于我们部署静态内容以及 WSGI 反向代理有用的关键参数。以下是推荐的 _application_name_.conf 配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"># Define the parameters for a specific virtual host&#x2F;server</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">server &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">   # Define the directory where the contents being requested are stored</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">   # root &#x2F;usr&#x2F;src&#x2F;app&#x2F;project&#x2F;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">   # Define the default page that will be served If no page was requested</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">   # (ie. if www.kennedyfamilyrecipes.com is requested)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">   # index index.html;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">   # Define the server name, IP address, and&#x2F;or port of the server</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">   listen 80;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">   # server_name xxx.yyy.zzz.aaa</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">   # Define the specified charset to the “Content-Type” response header field</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">   charset utf-8;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">   # Configure NGINX to deliver static content from the specified folder</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">   location &#x2F;static &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">       alias &#x2F;usr&#x2F;src&#x2F;app&#x2F;project&#x2F;static;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">   &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">   # Configure NGINX to reverse proxy HTTP requests to the upstream server (Gunicorn (WSGI server))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">   location &#x2F; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">       # Define the location of the proxy server to send the request to</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">       proxy_pass http:&#x2F;&#x2F;web:8000;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">       # Redefine the header fields that NGINX sends to the upstream server</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">       proxy_set_header Host $host;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">       proxy_set_header X-Real-IP $remote_addr;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">       # Define the maximum file size on file uploads</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">       client_max_body_size 5M;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">   &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>服务器配置块为特定的虚拟主机或服务器定义了参数。通常为你在 VPS 上部署的单个 Web 应用。</p>
-<p>第一个参数（<a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#root" target="_blank" rel="noopener">root</a>）定义了被请求的内容所存储的位置。当 Nginx 收到用户请求时，它便会在此目录中查找。由于在默认的”/“路径中定义过了，因此可以注释掉这个不必要的参数。</p>
-<p>第二个参数（<a href="http://nginx.org/en/docs/http/ngx_http_index_module.html" target="_blank" rel="noopener">index</a>）定义了在请求未指定页面时（比如访问 www.kennedyfamilyrecipes.com）所得到的默认页面。由于我们使用的是 Flask Web 应用生成的动态内容，因此需要注释掉这个参数。</p>
-<p>前两个参数（root 和 index）都包含在此配置文件中，在一些情况下可以用于 Nginx 的配置。</p>
-<p>第三个参数（<a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name" target="_blank" rel="noopener">server_name</a>）和第四个参数（<a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#listen" target="_blank" rel="noopener">listen</a>）需要一同使用。如果你的 Web 应用程序已经部署好了，那么你需要设置这些参数为：（注，端口默认为 80，此时不需要填）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">server &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">   …</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">   Listen 192.241.229.181;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">   …</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>如果你除了 www.kennedyfamilyrecipes.com 之外还要部署另一个 Flask 应用 blog.kennedyfamilyrecipes.com，那么你需要将”server“配置块拆开，分别配置”user_name“和”listen“：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">server &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    listen 80;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    server_name *.kennedyfamilyrecipes.com;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    . . .</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">server &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    listen 80;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    server_name blog.kennedyfamilyrecipes.com;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    . . .</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>Nginx 将选择最匹配请求的”server_name“。也就是说对”blog.kennedyfamilyrecipes.com“的请求会优先匹配”blog.kennedyfamilyrecipes.com“而不是”*.kennedyfamilyrecipes.com“。</p>
-<p>第五个参数（<a href="http://nginx.org/en/docs/http/ngx_http_charset_module.html" target="_blank" rel="noopener">charset</a>）定义了响应头”Content-Type“的字符集值，应当设置为”utf-8“。</p>
-<p>第一个”location“配置块定义了 Nginx 需要递送位于以下位置的静态内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">location &#x2F;static &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">     alias &#x2F;usr&#x2F;src&#x2F;app&#x2F;project&#x2F;static;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"> &#125;</span></pre></td></tr></table></figure>
-<p><a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#location" target="_blank" rel="noopener">location</a> 配置块定义了如何处理请求的 URI（域名或 IP、端口号之后的部分）。在这第一个 location 配置块（/static）中，我们定义了 Nginx 将会处理来自 www.kennedyfamilyrecipes.com/static/ 的请求，检索位于 /usr/src/app/project/static 目录下的文件。例如，请求 www.kennedyfamilyrecipes.com/static/img/img_1203.jpg 将会返回位于 /usr/src/app/project/static/img/img_1203.jpg 的图片文件。如果文件不存在，则向用户返回 404 错误码（NOT FOUND）。</p>
-<p>第二个 location 配置块（”/“）定义反向代理。这个 location 配置块会定义 Nginx 如何将请求传递给 我们的 Flask 应用接口所在的 WSGI（Gunicorn）服务器。仔细看看其中的每个参数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">   location &#x2F; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">       proxy_pass http:&#x2F;&#x2F;web:8000;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">       proxy_set_header Host $host;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">proxy_set_header X-Forwarded-Proto $scheme;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">       proxy_set_header X-Real-IP $remote_addr;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">       client_max_body_size 5M;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">   &#125;</span></pre></td></tr></table></figure>
-<p>第一个参数（<a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass" target="_blank" rel="noopener">proxy_pass</a>）定义了接收转发请求的代理服务器的位置。如果你想将请求转发至本机的服务器时可以使用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">proxy_pass http:&#x2F;&#x2F;localhost:8000&#x2F;;</span></pre></td></tr></table></figure>
-<p>如果你希望将请求转发给指定的 Unix socket 时（比如和 Nginx 运行在同一台机器中的 Gunicorn 服务器），可以使用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">proxy_pass http:&#x2F;&#x2F;unix:&#x2F;tmp&#x2F;backend.socket:&#x2F;</span></pre></td></tr></table></figure>
-<p>如果你使用 Docker 容器运行的 Nginx，希望与容器中的 Gunicorn 进行通信，那么可以直接使用运行 Gunicorn 的容器名称：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">proxy_pass http:&#x2F;&#x2F;web:8000;</span></pre></td></tr></table></figure>
-<p>第二个参数（<a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header" target="_blank" rel="noopener">proxy_pass_header</a>）可以让你重新定义发往上游服务器（比如 Gunicorn）的请求的头部。这个参数可以进行以下四次设置：</p>
-<ul>
-<li>Nginx 服务器的名称及端口（Host $host）</li>
-<li>原始客户端请求的模式（比如是 http 请求还是 https 请求）（X-Forwarded-Proto $scheme）</li>
-<li>用户的 IP 地址（X-Real-IP $remote_addr）</li>
-<li>至当前节点位置，客户端经过的所有代理的 IP 地址（X-Forwarded-For $proxy_add_x_forwarded_for）</li>
-</ul>
-<p>第三个参数（<a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size" target="_blank" rel="noopener">client_max_body_size</a>）定义了文件上传允许的最大大小，对于需要上传文件的 Web 应用来说非常重要。由于图像大小一般在 2 MB 内，因此在这儿设置 5 MB 基本上可以满足任何图像。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>本文介绍了什么是 Nginx 服务器，以及如何为一个 Flask 应用对其进行配置。Nginx 是大多数 Web 应用的关键组件，它为用户提供静态内容、反向代理请求至上游服务器（在我们的 Flask Web 应用中是 WSGI），以及负载均衡（本文未提及）。希望看完本文后你能更轻松地理解 Nginx 的配置！</p>
-<h3 id="引用资料"><a href="#引用资料" class="headerlink" title="引用资料"></a><strong>引用资料</strong></h3><p><a href="https://www.linode.com/docs/websites/nginx/how-to-configure-nginx" target="_blank" rel="noopener">How to Configure NGINX (Linode)</a></p>
-<p><a href="https://www.nginx.com/resources/wiki/" target="_blank" rel="noopener">NGINX Wiki</a></p>
-<p><a href="https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/" target="_blank" rel="noopener">NGINX Pitfalls and Common Mistakes</a></p>
-<p><a href="https://www.digitalocean.com/community/tutorials/how-to-configure-the-nginx-web-server-on-a-virtual-private-server" target="_blank" rel="noopener">How to Configure the NGINX Web Server on a VPS (DigitalOcean)</a></p>
-<p><a href="https://www.digitalocean.com/community/tutorials/understanding-nginx-server-and-location-block-selection-algorithms" target="_blank" rel="noopener">Understanding NGINX Server and Location Block Selection Algorithms (DigitalOcean)</a></p>
-<p><a href="https://t37.net/nginx-optimization-understanding-sendfile-tcp_nodelay-and-tcp_nopush.html" target="_blank" rel="noopener">NGINX Optimization: Understanding sendfile, tcp_nodelay, and tcp_nopush</a></p>
-<blockquote>
-<p>本文发布于掘金 <a href="https://juejin.im/post/5a795febf265da4e94499949" target="_blank" rel="noopener">https://juejin.im/post/5a795febf265da4e94499949</a></p>
-</blockquote>
-
     </div>
-
-    
-    
-    
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>lsvih
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="/https:/lsvih.com/2018/02/06/%E5%A6%82%E4%BD%95%E4%B8%BA-Flask-Web-%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE-Nginx/" title="如何为 Flask Web 应用配置 Nginx">https://lsvih.com/2018/02/06/如何为-Flask-Web-应用配置-Nginx/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Translate/" rel="tag"># Translate</a>
-              <a href="/tags/juejin/" rel="tag"># juejin</a>
-              <a href="/tags/Tool/" rel="tag"># Tool</a>
-              <a href="/tags/Nginx/" rel="tag"># Nginx</a>
-              <a href="/tags/Flask/" rel="tag"># Flask</a>
-              <a href="/tags/Config/" rel="tag"># Config</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2018/01/16/TML-5-2-%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E5%86%85%E5%AE%B9%EF%BC%9F/" rel="prev" title="HTML 5.2 有哪些新内容？">
-      <i class="fa fa-chevron-left"></i> HTML 5.2 有哪些新内容？
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2018/02/22/%E5%9C%A8-Swift-playground-%E4%B8%AD%E7%BC%96%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" rel="next" title="在 Swift playground 中编写单元测试">
-      在 Swift playground 中编写单元测试 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
   </div>
 
-
-          </div>
-          
-
-        </div>
-          
+</div>
+        
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
         </li>
@@ -457,17 +222,17 @@
       </ul>
 
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-Nginx？"><span class="nav-number">2.</span> <span class="nav-text">什么是 Nginx？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么你需要-Nginx-与-Gunicorn？"><span class="nav-number">3.</span> <span class="nav-text">为什么你需要 Nginx 与 Gunicorn？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx-配置文件的结构"><span class="nav-number">4.</span> <span class="nav-text">Nginx 配置文件的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构-1"><span class="nav-number">4.1.</span> <span class="nav-text">结构 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结构-2"><span class="nav-number">4.2.</span> <span class="nav-text">结构 2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx-的配置"><span class="nav-number">5.</span> <span class="nav-text">Nginx 的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx-conf-详细说明"><span class="nav-number">5.1.</span> <span class="nav-text">nginx.conf 详细说明</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Main-部分"><span class="nav-number">5.1.1.</span> <span class="nav-text">Main 部分</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#events-配置块"><span class="nav-number">5.2.</span> <span class="nav-text">events 配置块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http-配置块"><span class="nav-number">5.3.</span> <span class="nav-text">http 配置块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx-conf-的最终配置"><span class="nav-number">5.4.</span> <span class="nav-text">nginx.conf 的最终配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为静态内容部署及反向代理配置-Nginx"><span class="nav-number">5.4.1.</span> <span class="nav-text">为静态内容部署及反向代理配置 Nginx</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用资料"><span class="nav-number">7.</span> <span class="nav-text">引用资料</span></a></li></ol></div>
-      </div>
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Nginx%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">什么是 Nginx？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%A0%E9%9C%80%E8%A6%81-Nginx-%E4%B8%8E-Gunicorn%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">为什么你需要 Nginx 与 Gunicorn？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">Nginx 配置文件的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E6%9E%84-1"><span class="nav-number">4.1.</span> <span class="nav-text">结构 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E6%9E%84-2"><span class="nav-number">4.2.</span> <span class="nav-text">结构 2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx-%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">Nginx 的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx-conf-%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E"><span class="nav-number">5.1.</span> <span class="nav-text">nginx.conf 详细说明</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Main-%E9%83%A8%E5%88%86"><span class="nav-number">5.1.1.</span> <span class="nav-text">Main 部分</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#events-%E9%85%8D%E7%BD%AE%E5%9D%97"><span class="nav-number">5.2.</span> <span class="nav-text">events 配置块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http-%E9%85%8D%E7%BD%AE%E5%9D%97"><span class="nav-number">5.3.</span> <span class="nav-text">http 配置块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx-conf-%E7%9A%84%E6%9C%80%E7%BB%88%E9%85%8D%E7%BD%AE"><span class="nav-number">5.4.</span> <span class="nav-text">nginx.conf 的最终配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BA%E9%9D%99%E6%80%81%E5%86%85%E5%AE%B9%E9%83%A8%E7%BD%B2%E5%8F%8A%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE-Nginx"><span class="nav-number">5.4.1.</span> <span class="nav-text">为静态内容部署及反向代理配置 Nginx</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%B5%84%E6%96%99"><span class="nav-number">7.</span> <span class="nav-text">引用资料</span></a></li></ol></div>
+      </section>
       <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">lsvih</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -490,34 +255,288 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </div>
-
+      </section>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/06/%E5%A6%82%E4%BD%95%E4%B8%BA-Flask-Web-%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE-Nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何为 Flask Web 应用配置 Nginx
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-02-06 16:04:00" itemprop="dateCreated datePublished" datetime="2018-02-06T16:04:00+08:00">2018-02-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a><strong>简介</strong></h3><p>在本文中，我将介绍什么是 <a target="_blank" rel="noopener" href="https://www.nginx.com/">Nginx</a> 以及如何为 Flask Web 应用配置 Nginx。本文是<a target="_blank" rel="noopener" href="http://www.patricksoftwareblog.com/all-posts/">《部署 Flask 应用》</a>系列文章的一部分。我曾找到过多份关于 Nginx 及其配置的文章，但我希望能更深入其细节，了解如何使用 Nginx 为 Flask Web 应用服务以及如何为此进行配置。Nginx 的配置文件有点让人困惑，因为大多数的文档仅仅是简单罗列了一个配置文件，而没有对配置中每一步做了什么进行任何解释。希望本文能让你清晰地理解如何为你的应用配置 Nginx。</p>
+<!--- more --->
+<h3 id="什么是-Nginx？"><a href="#什么是-Nginx？" class="headerlink" title="什么是 Nginx？"></a><strong>什么是 Nginx？</strong></h3><p>在 Nginx（发音为“engine-X”）的官网中，有着这个工具的概要描述：</p>
+<p>Nginx 是一款免费、开源、高性能的 HTTP 服务器以及反向代理，同时也可以作为 IMAP/POP3 代理服务器。Nginx 以其高性能、稳定性、丰富的功能、简单的配置、低资源消耗而闻名。</p>
+<p>我们可以拓展理解此说明…… Nginx 是一个可以为你的 Web 应用处理 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> 请求的服务器。对于典型的 Web 应用，Nginx 可以配置为 HTTP 请求进行以下操作：</p>
+<ul>
+<li>将请求 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Reverse_proxy">反向代理</a> 至上游服务器（例如 Gunicorn、uWsgi、Apache 等）。</li>
+<li>为静态资源（Javascript 文件、CSS 文件、图像、文档、静态 HTML 文件）提供服务。</li>
+</ul>
+<p>同时 Nginx 也提供了<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/load_balancing.html">负载均衡</a>功能，可以让多个上游服务器为请求提供服务，不过在本文中暂不讨论此功能。</p>
+<p>下图为描述 Nginx 如何为 Flask Web 应用提供服务的简图：</p>
+<p><img src="/images/pasted-305.png" alt="upload successful"></p>
+<p>Nginx 会处理来自因特网（比如来自你应用的用户）的 Http 请求。根据你对 Nginx 的配置，它可以直接提供并向请求源返回静态内容（Javascript 文件、CSS 文件、图像、文档、静态 HTML 文件）。此外，它也能将请求反向代理至 WSGI（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface">Web Server Gateway Interface</a>）以让你在 Flask Web 应用中生成动态内容（HTML）并返回给用户。</p>
+<p>上面的示意图假定用户使用了 Docker，但不使用 Docker 时 Nginx 的配置也与此十分相似（仅仅省略了图中容器的概念）。</p>
+<h3 id="为什么你需要-Nginx-与-Gunicorn？"><a href="#为什么你需要-Nginx-与-Gunicorn？" class="headerlink" title="为什么你需要 Nginx 与 Gunicorn？"></a>为什么你需要 Nginx 与 Gunicorn？</h3><p>Nginx 作为一个 HTTP 服务器，在许多应用中都被使用：<a target="_blank" rel="noopener" href="https://www.nginx.com/resources/wiki/start/#pre-canned-configurations">列表</a>。它提供了许多的功能，但无法直接为 Flask 应用提供服务。而 <a target="_blank" rel="noopener" href="http://gunicorn.org/">Gunicorn</a> 可以做到这一点。Nginx 收到 HTTP 请求，并将其传递给 Gunicorn 交由你的 Flask 应用进行处理（比如你在 view.py 中定义的路由）。Gunicorn 是一个 WSGI 服务器，可以处理 HTTP 请求，并将它们通过路由交给任何支持 WSGI 的 python 应用处理（比如 Flask、Django、Pyramid 等）。</p>
+<h3 id="Nginx-配置文件的结构"><a href="#Nginx-配置文件的结构" class="headerlink" title="Nginx 配置文件的结构"></a><strong>Nginx 配置文件的结构</strong></h3><p>注意：本文应用的是 Nginx v1.11.3，配置文件所在的位置根据你 Nginx 版本的不同会有所变化，比如 /opt/nginx/conf/。</p>
+<p>根据你安装、使用 Nginx 方式的不同，配置文件的结构会略有不同。大多数的配置结构如下所示：</p>
+<h4 id="结构-1"><a href="#结构-1" class="headerlink" title="结构 1"></a>结构 1</h4><p>如果你使用的是从源代码编译得到的 Nginx 或者官方的 Docker 镜像，那么配置文件在 /etc/nginx/ 中，主配置文件为 /etc/nginx/nginx.conf。在 /etc/nginx/nginx.conf 的最下面的一行会将位于 /etc/nginx/conf.d/ 目录下的其余配置文件内容载入配置中：</p>
+<ul>
+<li>include /etc/nginx/conf.d/*.conf;</li>
+</ul>
+<h4 id="结构-2"><a href="#结构-2" class="headerlink" title="结构 2"></a>结构 2</h4><p>如果你是通过包管理器（比如 Ubuntu 的 apt-get）安装的 Nginx，那么你的 /etc/nginx/ 下会有下面两个子目录：</p>
+<ul>
+<li>sites-available – 包含为多个网站准备的多个配置文件。</li>
+<li>sites-enabled – 包含一个指向 sites-available 目录中配置文件的软链接。</li>
+</ul>
+<p>这两个目录继承于 Apache，将应用于 Nginx 的配置。</p>
+<p>由于我的 Flask 应用使用的是 Docker 部署，因此在本文将主要关注上面的结构 1。</p>
+<h3 id="Nginx-的配置"><a href="#Nginx-的配置" class="headerlink" title="Nginx 的配置"></a><strong>Nginx 的配置</strong></h3><p>Nginx 的顶层配置文件是 nginx.conf。Nginx 接受多层级的配置文件，这也使得用户可以针对自己的应用进行弹性的配置。如需了解配置文件中各参数的详细信息，可以参阅 <a target="_blank" rel="noopener" href="http://nginx.org/en/docs/ngx_core_module.html">Nginx 官方文档</a>。</p>
+<p>在 Nginx 中，由配置块（block）来组织各个配置参数。以下为在本文中我们将提到的配置块：</p>
+<ul>
+<li>Main – 定义于 nginx.conf（所有不属于配置块的参数均属 Main 块）</li>
+<li>Events – 定义于 nginx.conf</li>
+<li>Http – 定义于 nginx.conf</li>
+<li>Server – 定义于 _application_name_.conf</li>
+</ul>
+<p>将这些配置块拆分至不同的文件，可以让你在 nginx.conf 中定义 Nginx 的高级别配置，在其它的 *.conf 文件中为你的应用定义虚拟主机或服务器的参数。</p>
+<h4 id="nginx-conf-详细说明"><a href="#nginx-conf-详细说明" class="headerlink" title="nginx.conf 详细说明"></a>nginx.conf 详细说明</h4><p>安装 Nginx 时自带的默认 nginx.conf 文件可以适用于大多数服务器的初步配置。让我们仔细探查 nginx.conf 的内容，并思考如何拓展这里的默认设置。</p>
+<h5 id="Main-部分"><a href="#Main-部分" class="headerlink" title="Main 部分"></a>Main 部分</h5><p>nginx.conf 的 main 配置块（即那些不在配置块中的参数）为：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">user  nginx;</span><br><span class="line">worker_processes  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">error_log  <span class="regexp">/var/</span>log<span class="regexp">/nginx/</span>error.log warn;</span><br><span class="line">pid        <span class="regexp">/var/</span>run/nginx.pid;</span><br></pre></td></tr></table></figure>
+<p>第一个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/ngx_core_module.html#user">user</a>）将定义 Nginx 服务器的拥有者以及运行用户。当 Nginx 通过 Docker 容器运行时，使用默认值就够了。</p>
+<p>第二个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/ngx_core_module.html#worker_processes">worker_processes</a>）定义了 worker processes（工作进程）的数量。此参数推荐的默认值为当前服务器使用内核的数量。对于基础的虚拟私有服务器（VPS）来说，默认值 1 就是个不错的选择。当你拓展 VPS 性能时可以增加这个数字。</p>
+<p>第三个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/ngx_core_module.html#error_log">error_log</a>）定义了错误日志在文件系统中存放的位置，并能额外定义一个参数来规定需要记录日志的最小错误等级。这个参数使用默认值即可。</p>
+<p>第四个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/ngx_core_module.html#pid">pid</a>）定义了用于存储 Nginx 主进程 pid 的文件位置。这个参数使用默认值即可。</p>
+<h4 id="events-配置块"><a href="#events-配置块" class="headerlink" title="events 配置块"></a>events 配置块</h4><p>events 配置块定义了一些会影响连接处理的参数。它也是 Nginx.conf 文件中第一个配置块：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span>  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个配置块中仅有一个单独的参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/ngx_core_module.html#worker_connections">worker_connections</a>），定义了工作进程可以打开的最大并发连接数。默认值定义了总共可用 1024 个连接，无需更改（但你需要计算用户请求站点及请求 WSGI 服务器的连接数）。</p>
+<h4 id="http-配置块"><a href="#http-配置块" class="headerlink" title="http 配置块"></a>http 配置块</h4><p>http 配置块定义了一些关于 Nginx 如何处理 HTTP Web 流量的参数。它是 nginx.conf 文件中第二个配置块：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">include</span>       /etc/nginx/mime.types;</span><br><span class="line">    <span class="attribute">default_type</span>  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">log_format</span>  main  <span class="string">&#x27;<span class="variable">$remote_addr</span> - <span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] &quot;<span class="variable">$request</span>&quot; &#x27;</span></span><br><span class="line">                      <span class="string">&#x27;<span class="variable">$status</span> <span class="variable">$body_bytes_sent</span> &quot;<span class="variable">$http_referer</span>&quot; &#x27;</span></span><br><span class="line">                      <span class="string">&#x27;&quot;<span class="variable">$http_user_agent</span>&quot; &quot;<span class="variable">$http_x_forwarded_for</span>&quot;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">access_log</span>  /var/log/nginx/access.log  main;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">sendfile</span>        <span class="literal">on</span>;</span><br><span class="line">    <span class="comment">#tcp_nopush     on;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#gzip  on;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">include</span> /etc/nginx/conf.d/<span class="regexp">*.conf</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第一个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/ngx_core_module.html#include">include</a>）指定了需要引入的配置文件，在此引入的是位于 /etc/nginx/ 的 mime.types 文件，这个文件定义了各种 Nginx 支持的文件类型。此参数应该保持默认值。</p>
+<p>第二个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#default_type">default_type</a>）指定了默认给用户返回的文件类型。对于 Flask 应用来说，返回的是动态生成的 HTML 文件，因此这个参数应改为 <code>default_type text/html</code>;</p>
+<p>第三个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format">log_format</a>）指定了日志的格式，应当保持默认值。</p>
+<p>第四个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log">access_log</a>）指定了 Nginx 日志的访问位置，应当保持默认值。</p>
+<p>第五个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile">send_file</a>）以及第六个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#tcp_nopush">tcp_nopush</a>）稍微有点复杂。可以参阅<a target="_blank" rel="noopener" href="https://t37.net/nginx-optimization-understanding-sendfile-tcp_nodelay-and-tcp_nopush.html">《优化 Nginx》</a>一文来了解这些参数（包括 <a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#tcp_nodelay">tcp_nodelay</a>）的详细情况。由于我们打算用 Nginx 来传递静态内容，因此可以这么设置这些参数：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sendfile        <span class="keyword">on</span>;</span><br><span class="line">tcp_nopush     <span class="keyword">on</span>;</span><br><span class="line">tcp_nodelay    <span class="keyword">on</span>;</span><br></pre></td></tr></table></figure>
+<p>第七个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout">keepalive_timeout</a>）定义了与客户端保持连接的超时时长，应当保持默认值。</p>
+<p>第八个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_gzip_module.html">gzip</a>）定义了 gzip 压缩算法的使用方法，以减少传输数据量。虽然数据量减少了，但也因此增加平台在压缩过程中的性能消耗，好处两两抵消，因此保持它的默认值（off）。</p>
+<p>第九个，也是最后一个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/ngx_core_module.html#include">include</a>）定义了位于 /etc/nginx/conf.d/ 下后缀名为 .conf 的其它配置文件。现在我们将使用这些配置文件定义静态内容服务器以及 WSGI 服务器的反向代理。</p>
+<h4 id="nginx-conf-的最终配置"><a href="#nginx-conf-的最终配置" class="headerlink" title="nginx.conf 的最终配置"></a>nginx.conf 的最终配置</h4><p>在 nginx.conf 默认设置之上，我们需要根据需要调整一些参数（并加上注释），下面为最终版本的 nginx.conf：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define the user that will own and run the Nginx server</span></span><br><span class="line"><span class="attribute">user</span>  nginx;</span><br><span class="line"><span class="comment"># Define the number of worker processes; recommended value is the number of</span></span><br><span class="line"><span class="comment"># cores that are being used by your server</span></span><br><span class="line"><span class="attribute">worker_processes</span>  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Define the location on the file system of the error log, plus the minimum</span></span><br><span class="line"><span class="comment"># severity to log messages for</span></span><br><span class="line"><span class="attribute">error_log</span>  /var/log/nginx/error.log <span class="literal">warn</span>;</span><br><span class="line"><span class="comment"># Define the file that will store the process ID of the main NGINX process</span></span><br><span class="line"><span class="attribute">pid</span>        /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"><span class="comment"># events block defines the parameters that affect connection processing.</span></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">   <span class="comment"># Define the maximum number of simultaneous connections that can be opened by a worker process</span></span><br><span class="line">   <span class="attribute">worker_connections</span>  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># http block defines the parameters for how NGINX should handle HTTP web traffic</span></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">   <span class="comment"># Include the file defining the list of file types that are supported by NGINX</span></span><br><span class="line">   <span class="attribute">include</span>       /etc/nginx/mime.types;</span><br><span class="line">   <span class="comment"># Define the default file type that is returned to the user</span></span><br><span class="line">   <span class="attribute">default_type</span>  text/html;</span><br><span class="line"></span><br><span class="line">   <span class="comment"># Define the format of log messages.</span></span><br><span class="line">   <span class="attribute">log_format</span>  main  <span class="string">&#x27;<span class="variable">$remote_addr</span> - <span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] &quot;<span class="variable">$request</span>&quot; &#x27;</span></span><br><span class="line">                     <span class="string">&#x27;<span class="variable">$status</span> <span class="variable">$body_bytes_sent</span> &quot;<span class="variable">$http_referer</span>&quot; &#x27;</span></span><br><span class="line">                     <span class="string">&#x27;&quot;<span class="variable">$http_user_agent</span>&quot; &quot;<span class="variable">$http_x_forwarded_for</span>&quot;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment"># Define the location of the log of access attempts to NGINX</span></span><br><span class="line">   <span class="attribute">access_log</span>  /var/log/nginx/access.log  main;</span><br><span class="line"></span><br><span class="line">   <span class="comment"># Define the parameters to optimize the delivery of static content</span></span><br><span class="line">   <span class="attribute">sendfile</span>        <span class="literal">on</span>;</span><br><span class="line">   <span class="attribute">tcp_nopush</span>     <span class="literal">on</span>;</span><br><span class="line">   <span class="attribute">tcp_nodelay</span>    <span class="literal">on</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment"># Define the timeout value for keep-alive connections with the client</span></span><br><span class="line">   <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment"># Define the usage of the gzip compression algorithm to reduce the amount of data to transmit</span></span><br><span class="line">   <span class="comment">#gzip  on;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># Include additional parameters for virtual host(s)/server(s)</span></span><br><span class="line">   <span class="attribute">include</span> /etc/nginx/conf.d/<span class="regexp">*.conf</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="为静态内容部署及反向代理配置-Nginx"><a href="#为静态内容部署及反向代理配置-Nginx" class="headerlink" title="为静态内容部署及反向代理配置 Nginx"></a>为静态内容部署及反向代理配置 Nginx</h5><p>如果你查看默认的 /etc/nginx/conf.g/default.conf，可以看到它提供了一个简单的服务器配置块，并给了许多取消注释即可使用的可选配置。我们不会挨个去研究这个文件中的配置，而是直接探讨对于我们部署静态内容以及 WSGI 反向代理有用的关键参数。以下是推荐的 _application_name_.conf 配置：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define the parameters for a specific virtual host/server</span></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">   <span class="comment"># Define the directory where the contents being requested are stored</span></span><br><span class="line">   <span class="comment"># root /usr/src/app/project/;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># Define the default page that will be served If no page was requested</span></span><br><span class="line">   <span class="comment"># (ie. if www.kennedyfamilyrecipes.com is requested)</span></span><br><span class="line">   <span class="comment"># index index.html;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># Define the server name, IP address, and/or port of the server</span></span><br><span class="line">   <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">   <span class="comment"># server_name xxx.yyy.zzz.aaa</span></span><br><span class="line"></span><br><span class="line">   <span class="comment"># Define the specified charset to the “Content-Type” response header field</span></span><br><span class="line">   <span class="attribute">charset</span> utf-<span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment"># Configure NGINX to deliver static content from the specified folder</span></span><br><span class="line">   <span class="attribute">location</span> /static &#123;</span><br><span class="line">       <span class="attribute">alias</span> /usr/src/app/project/static;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment"># Configure NGINX to reverse proxy HTTP requests to the upstream server (Gunicorn (WSGI server))</span></span><br><span class="line">   <span class="attribute">location</span> / &#123;</span><br><span class="line">       <span class="comment"># Define the location of the proxy server to send the request to</span></span><br><span class="line">       <span class="attribute">proxy_pass</span> http://web:8000;</span><br><span class="line"></span><br><span class="line">       <span class="comment"># Redefine the header fields that NGINX sends to the upstream server</span></span><br><span class="line">       <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">       <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">       <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line"></span><br><span class="line">       <span class="comment"># Define the maximum file size on file uploads</span></span><br><span class="line">       <span class="attribute">client_max_body_size</span> <span class="number">5M</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>服务器配置块为特定的虚拟主机或服务器定义了参数。通常为你在 VPS 上部署的单个 Web 应用。</p>
+<p>第一个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#root">root</a>）定义了被请求的内容所存储的位置。当 Nginx 收到用户请求时，它便会在此目录中查找。由于在默认的”/“路径中定义过了，因此可以注释掉这个不必要的参数。</p>
+<p>第二个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_index_module.html">index</a>）定义了在请求未指定页面时（比如访问 www.kennedyfamilyrecipes.com）所得到的默认页面。由于我们使用的是 Flask Web 应用生成的动态内容，因此需要注释掉这个参数。</p>
+<p>前两个参数（root 和 index）都包含在此配置文件中，在一些情况下可以用于 Nginx 的配置。</p>
+<p>第三个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name">server_name</a>）和第四个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#listen">listen</a>）需要一同使用。如果你的 Web 应用程序已经部署好了，那么你需要设置这些参数为：（注，端口默认为 80，此时不需要填）</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">   …</span><br><span class="line">   Listen <span class="number">192.241</span><span class="number">.229</span><span class="number">.181</span>;</span><br><span class="line">   …</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你除了 www.kennedyfamilyrecipes.com 之外还要部署另一个 Flask 应用 blog.kennedyfamilyrecipes.com，那么你需要将”server“配置块拆开，分别配置”user_name“和”listen“：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name *.kennedyfamilyrecipes.com;</span><br><span class="line"></span><br><span class="line">    . . .</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name blog.kennedyfamilyrecipes.com;</span><br><span class="line"></span><br><span class="line">    . . .</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Nginx 将选择最匹配请求的”server_name“。也就是说对”blog.kennedyfamilyrecipes.com“的请求会优先匹配”blog.kennedyfamilyrecipes.com“而不是”*.kennedyfamilyrecipes.com“。</p>
+<p>第五个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_charset_module.html">charset</a>）定义了响应头”Content-Type“的字符集值，应当设置为”utf-8“。</p>
+<p>第一个”location“配置块定义了 Nginx 需要递送位于以下位置的静态内容：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location /<span class="keyword">static</span> &#123;</span><br><span class="line">     alias <span class="regexp">/usr/</span>src<span class="regexp">/app/</span><span class="keyword">project</span>/<span class="keyword">static</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#location">location</a> 配置块定义了如何处理请求的 URI（域名或 IP、端口号之后的部分）。在这第一个 location 配置块（/static）中，我们定义了 Nginx 将会处理来自 www.kennedyfamilyrecipes.com/static/ 的请求，检索位于 /usr/src/app/project/static 目录下的文件。例如，请求 www.kennedyfamilyrecipes.com/static/img/img_1203.jpg 将会返回位于 /usr/src/app/project/static/img/img_1203.jpg 的图片文件。如果文件不存在，则向用户返回 404 错误码（NOT FOUND）。</p>
+<p>第二个 location 配置块（”/“）定义反向代理。这个 location 配置块会定义 Nginx 如何将请求传递给 我们的 Flask 应用接口所在的 WSGI（Gunicorn）服务器。仔细看看其中的每个参数：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   <span class="attribute">location</span> / &#123;</span><br><span class="line">       <span class="attribute">proxy_pass</span> http://web:8000;</span><br><span class="line">       <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line"><span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">       <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">       <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">       <span class="attribute">client_max_body_size</span> <span class="number">5M</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>第一个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass">proxy_pass</a>）定义了接收转发请求的代理服务器的位置。如果你想将请求转发至本机的服务器时可以使用：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxy_pass http:<span class="regexp">//</span>localhost:<span class="number">8000</span>/;</span><br></pre></td></tr></table></figure>
+<p>如果你希望将请求转发给指定的 Unix socket 时（比如和 Nginx 运行在同一台机器中的 Gunicorn 服务器），可以使用：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxy_pass http:<span class="regexp">//u</span>nix:<span class="regexp">/tmp/</span>backend.socket:/</span><br></pre></td></tr></table></figure>
+<p>如果你使用 Docker 容器运行的 Nginx，希望与容器中的 Gunicorn 进行通信，那么可以直接使用运行 Gunicorn 的容器名称：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxy_pass http:<span class="regexp">//</span>web:<span class="number">8000</span>;</span><br></pre></td></tr></table></figure>
+<p>第二个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header">proxy_pass_header</a>）可以让你重新定义发往上游服务器（比如 Gunicorn）的请求的头部。这个参数可以进行以下四次设置：</p>
+<ul>
+<li>Nginx 服务器的名称及端口（Host $host）</li>
+<li>原始客户端请求的模式（比如是 http 请求还是 https 请求）（X-Forwarded-Proto $scheme）</li>
+<li>用户的 IP 地址（X-Real-IP $remote_addr）</li>
+<li>至当前节点位置，客户端经过的所有代理的 IP 地址（X-Forwarded-For $proxy_add_x_forwarded_for）</li>
+</ul>
+<p>第三个参数（<a target="_blank" rel="noopener" href="http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size">client_max_body_size</a>）定义了文件上传允许的最大大小，对于需要上传文件的 Web 应用来说非常重要。由于图像大小一般在 2 MB 内，因此在这儿设置 5 MB 基本上可以满足任何图像。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>本文介绍了什么是 Nginx 服务器，以及如何为一个 Flask 应用对其进行配置。Nginx 是大多数 Web 应用的关键组件，它为用户提供静态内容、反向代理请求至上游服务器（在我们的 Flask Web 应用中是 WSGI），以及负载均衡（本文未提及）。希望看完本文后你能更轻松地理解 Nginx 的配置！</p>
+<h3 id="引用资料"><a href="#引用资料" class="headerlink" title="引用资料"></a><strong>引用资料</strong></h3><p><a target="_blank" rel="noopener" href="https://www.linode.com/docs/websites/nginx/how-to-configure-nginx">How to Configure NGINX (Linode)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.nginx.com/resources/wiki/">NGINX Wiki</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/">NGINX Pitfalls and Common Mistakes</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-configure-the-nginx-web-server-on-a-virtual-private-server">How to Configure the NGINX Web Server on a VPS (DigitalOcean)</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/understanding-nginx-server-and-location-block-selection-algorithms">Understanding NGINX Server and Location Block Selection Algorithms (DigitalOcean)</a></p>
+<p><a target="_blank" rel="noopener" href="https://t37.net/nginx-optimization-understanding-sendfile-tcp_nodelay-and-tcp_nopush.html">NGINX Optimization: Understanding sendfile, tcp_nodelay, and tcp_nopush</a></p>
+<blockquote>
+<p>本文发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/5a795febf265da4e94499949">https://juejin.im/post/5a795febf265da4e94499949</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Written by:  </strong>lsvih
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://lsvih.com/2018/02/06/%E5%A6%82%E4%BD%95%E4%B8%BA-Flask-Web-%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE-Nginx/" title="如何为 Flask Web 应用配置 Nginx">https://lsvih.com/2018/02/06/如何为-Flask-Web-应用配置-Nginx/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Translate/" rel="tag"># Translate</a>
+              <a href="/tags/juejin/" rel="tag"># juejin</a>
+              <a href="/tags/Tool/" rel="tag"># Tool</a>
+              <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+              <a href="/tags/Flask/" rel="tag"># Flask</a>
+              <a href="/tags/Config/" rel="tag"># Config</a>
+          </div>
+
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/01/16/TML-5-2-%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E5%86%85%E5%AE%B9%EF%BC%9F/" rel="prev" title="HTML 5.2 有哪些新内容？">
+                  <i class="fa fa-chevron-left"></i> HTML 5.2 有哪些新内容？
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/02/22/%E5%9C%A8-Swift-playground-%E4%B8%AD%E7%BC%96%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" rel="next" title="在 Swift playground 中编写单元测试">
+                  在 Swift playground 中编写单元测试 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -529,32 +548,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -570,9 +595,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -588,55 +612,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

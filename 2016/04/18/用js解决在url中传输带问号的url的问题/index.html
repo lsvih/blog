@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,60 +13,40 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
-  <meta name="description" content="在业务中使用了如下逻辑：访问某页面时需要登陆，如果未登陆则跳转至登陆页面，登陆后返回这个页面。 相关js如下：1if (!localStorage.userinfo) &amp;#123;2	window.location.href &#x3D; &quot;login.html?lastpage&#x3D;&quot; + window.location.href;3&amp;#125; else &amp;#123;4	xxx;5&amp;#125; 在login">
-<meta name="keywords" content="Front End,note,Javascript">
+  <meta name="description" content="在业务中使用了如下逻辑：访问某页面时需要登陆，如果未登陆则跳转至登陆页面，登陆后返回这个页面。 相关js如下：12345if (!localStorage.userinfo) &amp;#123;	window.location.href &#x3D; &quot;login.html?lastpage&#x3D;&quot; + window.location.href;&amp;#125; else &amp;#123;	xxx;&amp;#1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用js解决在url中传输带问号的url的问题">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2016&#x2F;04&#x2F;18&#x2F;%E7%94%A8js%E8%A7%A3%E5%86%B3%E5%9C%A8url%E4%B8%AD%E4%BC%A0%E8%BE%93%E5%B8%A6%E9%97%AE%E5%8F%B7%E7%9A%84url%E7%9A%84%E9%97%AE%E9%A2%98&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/2016/04/18/%E7%94%A8js%E8%A7%A3%E5%86%B3%E5%9C%A8url%E4%B8%AD%E4%BC%A0%E8%BE%93%E5%B8%A6%E9%97%AE%E5%8F%B7%E7%9A%84url%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="My note">
-<meta property="og:description" content="在业务中使用了如下逻辑：访问某页面时需要登陆，如果未登陆则跳转至登陆页面，登陆后返回这个页面。 相关js如下：1if (!localStorage.userinfo) &amp;#123;2	window.location.href &#x3D; &quot;login.html?lastpage&#x3D;&quot; + window.location.href;3&amp;#125; else &amp;#123;4	xxx;5&amp;#125; 在login">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-28T16:13:19.080Z">
+<meta property="og:description" content="在业务中使用了如下逻辑：访问某页面时需要登陆，如果未登陆则跳转至登陆页面，登陆后返回这个页面。 相关js如下：12345if (!localStorage.userinfo) &amp;#123;	window.location.href &#x3D; &quot;login.html?lastpage&#x3D;&quot; + window.location.href;&amp;#125; else &amp;#123;	xxx;&amp;#1">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2016-04-17T22:25:00.000Z">
+<meta property="article:modified_time" content="2018-10-28T16:13:19.080Z">
+<meta property="article:author" content="lsvih">
+<meta property="article:tag" content="Front End">
+<meta property="article:tag" content="note">
+<meta property="article:tag" content="Javascript">
 <meta name="twitter:card" content="summary">
+
 
 <link rel="canonical" href="https://lsvih.com/2016/04/18/%E7%94%A8js%E8%A7%A3%E5%86%B3%E5%9C%A8url%E4%B8%AD%E4%BC%A0%E8%BE%93%E5%B8%A6%E9%97%AE%E5%8F%B7%E7%9A%84url%E7%9A%84%E9%97%AE%E9%A2%98/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
   };
 </script>
 
@@ -89,24 +69,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -114,60 +106,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -175,185 +170,44 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
-
-  
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/18/%E7%94%A8js%E8%A7%A3%E5%86%B3%E5%9C%A8url%E4%B8%AD%E4%BC%A0%E8%BE%93%E5%B8%A6%E9%97%AE%E5%8F%B7%E7%9A%84url%E7%9A%84%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          用js解决在url中传输带问号的url的问题
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-04-18 06:25:00" itemprop="dateCreated datePublished" datetime="2016-04-18T06:25:00+08:00">2016-04-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front End</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <p>在业务中使用了如下逻辑：访问某页面时需要登陆，如果未登陆则跳转至登陆页面，登陆后返回这个页面。</p>
-<p>相关js如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!localStorage.userinfo) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">	<span class="built_in">window</span>.location.href = <span class="string">"login.html?lastpage="</span> + <span class="built_in">window</span>.location.href;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">	xxx;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
-<p>在login.html中有如下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lastpage;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="built_in">window</span>.location.search;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> loc = url.substring(url.lastIndexOf(<span class="string">'='</span>) + <span class="number">1</span>, url.length);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (loc == <span class="literal">null</span> || loc == <span class="string">""</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">	lastpage = <span class="string">"usercenter.html"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">	lastpage = loc;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
-<p>在登陆的ajax的callback success中有<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = lastpage;</span></pre></td></tr></table></figure></p>
-<hr>
-<p>然而，在实际的使用中出现了问题：在访问类似 <code>http://xxx.com/product.html?id=1</code> 时，发现最终跳转到的页面是 <code>http://xxx.com/1</code>，自然出现了 404 错误。后面发现是在 <code>login.html?lastpage=http://xxx.com/product.html?id=1</code> 的时候，程序直接将 1 看成了 lastpage。</p>
-<p>有很多种方式可以解决问题，例如改进 login 中获取 url 参数的 js 等，但是我希望能够在之后也能使 url 不出现类似的错误，因此想到了对 url 进行转码。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = <span class="string">"login.html?lastpage="</span> + <span class="built_in">encodeURIComponent</span>(<span class="built_in">window</span>.location.href);</span></pre></td></tr></table></figure></p>
-<p>可以将<br><code>http://xxx.com/product.html?id=1</code><br>转换成<br><code>http%3A%2F%2Fxxx.com%2Fproduct.html%3Fid%3D1</code></p>
-<p>可是此时又会发现最终访问到的页面地址是<br><code>http://xxx.com/http%3A%2F%2Fxxx.com%2Fproduct.html%3Fid%3D1</code></p>
-<p>看来是浏览器将已经转码的url当成一个文件访问了。因此，在 login 的 callback 里对其重新进行解码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = <span class="built_in">unescape</span>(lastpage);</span></pre></td></tr></table></figure>
-<p>可以将转码过的url还原。</p>
-
     </div>
-
-    
-    
-    
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>lsvih
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="/https:/lsvih.com/2016/04/18/%E7%94%A8js%E8%A7%A3%E5%86%B3%E5%9C%A8url%E4%B8%AD%E4%BC%A0%E8%BE%93%E5%B8%A6%E9%97%AE%E5%8F%B7%E7%9A%84url%E7%9A%84%E9%97%AE%E9%A2%98/" title="用js解决在url中传输带问号的url的问题">https://lsvih.com/2016/04/18/用js解决在url中传输带问号的url的问题/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Front-End/" rel="tag"># Front End</a>
-              <a href="/tags/note/" rel="tag"># note</a>
-              <a href="/tags/Javascript/" rel="tag"># Javascript</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2016/04/18/%E5%9C%A8Centos%E4%B8%8B%E8%AE%BE%E7%BD%AEapache%E7%9A%84%E8%99%9A%E6%8B%9F%E7%9B%AE%E5%BD%95/" rel="prev" title="在Centos下设置apache的虚拟目录">
-      <i class="fa fa-chevron-left"></i> 在Centos下设置apache的虚拟目录
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2016/04/20/js%E4%B8%AD-%E4%B8%8E-%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="next" title="js中==与===的区别">
-      js中==与===的区别 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
   </div>
 
-
-          </div>
-          
-
-        </div>
-          
+</div>
+        
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
         </li>
@@ -363,16 +217,16 @@
       </ul>
 
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
       <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">lsvih</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -395,34 +249,196 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </div>
-
+      </section>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/18/%E7%94%A8js%E8%A7%A3%E5%86%B3%E5%9C%A8url%E4%B8%AD%E4%BC%A0%E8%BE%93%E5%B8%A6%E9%97%AE%E5%8F%B7%E7%9A%84url%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          用js解决在url中传输带问号的url的问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-04-18 06:25:00" itemprop="dateCreated datePublished" datetime="2016-04-18T06:25:00+08:00">2016-04-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在业务中使用了如下逻辑：访问某页面时需要登陆，如果未登陆则跳转至登陆页面，登陆后返回这个页面。</p>
+<p>相关js如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">localStorage</span>.userinfo) &#123;</span><br><span class="line">	<span class="built_in">window</span>.location.href = <span class="string">&quot;login.html?lastpage=&quot;</span> + <span class="built_in">window</span>.location.href;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	xxx;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在login.html中有如下代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lastpage;</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">window</span>.location.search;</span><br><span class="line"><span class="keyword">var</span> loc = url.substring(url.lastIndexOf(<span class="string">&#x27;=&#x27;</span>) + <span class="number">1</span>, url.length);</span><br><span class="line"><span class="keyword">if</span> (loc == <span class="literal">null</span> || loc == <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">	lastpage = <span class="string">&quot;usercenter.html&quot;</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	lastpage = loc;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在登陆的ajax的callback success中有<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = lastpage;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>然而，在实际的使用中出现了问题：在访问类似 <code>http://xxx.com/product.html?id=1</code> 时，发现最终跳转到的页面是 <code>http://xxx.com/1</code>，自然出现了 404 错误。后面发现是在 <code>login.html?lastpage=http://xxx.com/product.html?id=1</code> 的时候，程序直接将 1 看成了 lastpage。</p>
+<p>有很多种方式可以解决问题，例如改进 login 中获取 url 参数的 js 等，但是我希望能够在之后也能使 url 不出现类似的错误，因此想到了对 url 进行转码。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = <span class="string">&quot;login.html?lastpage=&quot;</span> + <span class="built_in">encodeURIComponent</span>(<span class="built_in">window</span>.location.href);</span><br></pre></td></tr></table></figure></p>
+<p>可以将<br><code>http://xxx.com/product.html?id=1</code><br>转换成<br><code>http%3A%2F%2Fxxx.com%2Fproduct.html%3Fid%3D1</code></p>
+<p>可是此时又会发现最终访问到的页面地址是<br><code>http://xxx.com/http%3A%2F%2Fxxx.com%2Fproduct.html%3Fid%3D1</code></p>
+<p>看来是浏览器将已经转码的url当成一个文件访问了。因此，在 login 的 callback 里对其重新进行解码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.location.href = <span class="built_in">unescape</span>(lastpage);</span><br></pre></td></tr></table></figure>
+<p>可以将转码过的url还原。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Written by:  </strong>lsvih
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://lsvih.com/2016/04/18/%E7%94%A8js%E8%A7%A3%E5%86%B3%E5%9C%A8url%E4%B8%AD%E4%BC%A0%E8%BE%93%E5%B8%A6%E9%97%AE%E5%8F%B7%E7%9A%84url%E7%9A%84%E9%97%AE%E9%A2%98/" title="用js解决在url中传输带问号的url的问题">https://lsvih.com/2016/04/18/用js解决在url中传输带问号的url的问题/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Front-End/" rel="tag"># Front End</a>
+              <a href="/tags/note/" rel="tag"># note</a>
+              <a href="/tags/Javascript/" rel="tag"># Javascript</a>
+          </div>
+
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/04/18/%E5%9C%A8Centos%E4%B8%8B%E8%AE%BE%E7%BD%AEapache%E7%9A%84%E8%99%9A%E6%8B%9F%E7%9B%AE%E5%BD%95/" rel="prev" title="在Centos下设置apache的虚拟目录">
+                  <i class="fa fa-chevron-left"></i> 在Centos下设置apache的虚拟目录
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/04/20/js%E4%B8%AD-%E4%B8%8E-%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="next" title="js中==与===的区别">
+                  js中==与===的区别 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -434,32 +450,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -475,9 +497,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -493,55 +514,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

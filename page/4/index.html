@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,56 +13,33 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="My note">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;page&#x2F;4&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/page/4/index.html">
 <meta property="og:site_name" content="My note">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="lsvih">
 <meta name="twitter:card" content="summary">
+
 
 <link rel="canonical" href="https://lsvih.com/page/4/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
-    isPage: false,
-    isArchive: false
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
   };
 </script>
 
@@ -85,24 +62,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -110,60 +99,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -171,31 +163,105 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
 
-  
-</div>
-<div class="search-pop-overlay"></div>
-
+      
+    </div>
   </div>
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lsvih</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">161</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">205</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
@@ -205,20 +271,19 @@
   </div>
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
+    <div class="main-inner index posts-expand">
+      
 
-  <div class="posts-expand">
-        
+      
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/06/04/%E4%BB%80%E4%B9%88%E6%98%AF-JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9F%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -230,34 +295,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2018/06/04/%E4%BB%80%E4%B9%88%E6%98%AF-JavaScript-%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9F%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9F/" class="post-title-link" itemprop="url">什么是 JavaScript 生成器？如何使用生成器？</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-06-04 16:47:00" itemprop="dateCreated datePublished" datetime="2018-06-04T16:47:00+08:00">2018-06-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2018-06-04 16:47:00" itemprop="dateCreated datePublished" datetime="2018-06-04T16:47:00+08:00">2018-06-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -266,70 +334,68 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><img src="https://cdn-images-1.medium.com/max/2000/1*9XJAQFEiYvd2i1hv9tgwXA.jpeg" alt=""></p>
 <p>在本文中，我们将了解 ECMAScript 6 中引入的生成器（Generator）。先看一看它究竟是什么，然后用几个示例来说明它的用法。</p>
 <h3 id="什么是-JavaScript-生成器？"><a href="#什么是-JavaScript-生成器？" class="headerlink" title="什么是 JavaScript 生成器？"></a>什么是 JavaScript 生成器？</h3><p>生成器是一种可以用来控制迭代器（iterator）的函数，它可以随时暂停，并可以在任意时候恢复。</p>
 <p>上面的描述没法说明什么，让我们来看一些例子，解释什么是生成器，以及生成器与 <strong>for 循环</strong>之类的迭代器有什么区别。</p>
 <p>下面是一个 <strong>for 循环</strong>的例子，它会在执行后立刻返回一些值。这段代码其实就是简单地生成了 0-5 这些数字。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">for (let i &#x3D; 0; i &lt; 5; i +&#x3D; 1) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  console.log(i);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 它将会立刻返回 0 -&gt; 1 -&gt; 2 -&gt; 3 -&gt; 4</span></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">for</span> <span class="string">(let</span> <span class="string">i</span> <span class="string">=</span> <span class="number">0</span><span class="string">;</span> <span class="string">i</span> <span class="string">&lt;</span> <span class="number">5</span><span class="string">;</span> <span class="string">i</span> <span class="string">+=</span> <span class="number">1</span><span class="string">)</span> &#123;</span><br><span class="line">  <span class="string">console.log(i);</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="string">//</span> <span class="string">它将会立刻返回</span> <span class="number">0</span> <span class="string">-&gt;</span> <span class="number">1</span> <span class="string">-&gt;</span> <span class="number">2</span> <span class="string">-&gt;</span> <span class="number">3</span> <span class="string">-&gt;</span> <span class="number">4</span></span><br></pre></td></tr></table></figure>
 <p>现在看看生成器函数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * generatorForLoop(num) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  for (let i &#x3D; 0; i &lt; num; i +&#x3D; 1) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    yield console.log(i);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">const genForLoop &#x3D; generatorForLoop(5);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">genForLoop.next(); &#x2F;&#x2F; 首先 console.log - 0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">genForLoop.next(); &#x2F;&#x2F; 1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">genForLoop.next(); &#x2F;&#x2F; 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">genForLoop.next(); &#x2F;&#x2F; 3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">genForLoop.next(); &#x2F;&#x2F; 4</span></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> * generatorForLoop(num) &#123;</span><br><span class="line">  <span class="keyword">for</span> (let i = <span class="number">0</span>; i &lt; num; i += <span class="number">1</span>) &#123;</span><br><span class="line">    yield console.log(i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const genForLoop = generatorForLoop(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">genForLoop.<span class="keyword">next</span>(); <span class="regexp">//</span> 首先 console.log - <span class="number">0</span></span><br><span class="line">genForLoop.<span class="keyword">next</span>(); <span class="regexp">//</span> <span class="number">1</span></span><br><span class="line">genForLoop.<span class="keyword">next</span>(); <span class="regexp">//</span> <span class="number">2</span></span><br><span class="line">genForLoop.<span class="keyword">next</span>(); <span class="regexp">//</span> <span class="number">3</span></span><br><span class="line">genForLoop.<span class="keyword">next</span>(); <span class="regexp">//</span> <span class="number">4</span></span><br></pre></td></tr></table></figure>
 <p>它做了什么？它实际上只是对上面例子中的 <strong>for 循环</strong>做了一点改动，但产生了很大的变化。这种变化是由生成器最重要的特性造成的 —— 只有在需要的时候它才会产生下一个值，而不会一次性产生所有的值。在某些情景下，这种特性十分方便。</p>
 <h3 id="生成器语法"><a href="#生成器语法" class="headerlink" title="生成器语法"></a>生成器语法</h3><p>如何定义一个生成器函数呢？下面列出了各种可行的定义方法，不过万变不离其宗的是在函数关键词后加上一个星号。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * generator () &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">function* generator () &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">function *generator () &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">let generator &#x3D; function * () &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">let generator &#x3D; function* () &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">let generator &#x3D; function *() &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">let generator &#x3D; *() &#x3D;&gt; &#123;&#125; &#x2F;&#x2F; SyntaxError</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">let generator &#x3D; ()* &#x3D;&gt; &#123;&#125; &#x2F;&#x2F; SyntaxError</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">let generator &#x3D; (*) &#x3D;&gt; &#123;&#125; &#x2F;&#x2F; SyntaxError</span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">generator</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">generator</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> *<span class="title">generator</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> generator = <span class="function"><span class="keyword">function</span> * (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> generator = <span class="function"><span class="keyword">function</span>* (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">let</span> generator = <span class="function"><span class="keyword">function</span> *(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> generator = *<span class="function">() =&gt;</span> &#123;&#125; <span class="comment">// SyntaxError</span></span><br><span class="line"><span class="keyword">let</span> generator = ()* =&gt; &#123;&#125; <span class="comment">// SyntaxError</span></span><br><span class="line"><span class="keyword">let</span> generator = <span class="function">(<span class="params">*</span>) =&gt;</span> &#123;&#125; <span class="comment">// SyntaxError</span></span><br></pre></td></tr></table></figure>
 <p>如上面的例子所示，我们并不能使用箭头函数来创建一个生成器。</p>
 <p>下面将生成器作为方法（method）来创建。定义方法与定义函数的方式是一样的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">class MyClass &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  *generator() &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  * generator() &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">const obj &#x3D; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  *generator() &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  * generator() &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">  *<span class="built_in">generator</span>() &#123;&#125;</span><br><span class="line">  * <span class="built_in">generator</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  *<span class="built_in">generator</span>() &#123;&#125;</span><br><span class="line">  * <span class="built_in">generator</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="yield"><a href="#yield" class="headerlink" title="yield"></a>yield</h4><p>现在让我们一起看看新的关键词 <code>yield</code>。它有些类似 <code>return</code>，但又不完全相同。<code>return</code> 会在完成函数调用后简单地将值返回，在 <code>return</code> 语句之后你无法进行任何操作。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function withReturn(a) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  let b &#x3D; 5;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  return a + b;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  b &#x3D; 6; &#x2F;&#x2F; 不可能重新定义 b 了</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  return a * b; &#x2F;&#x2F; 这儿新的值没可能返回了</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">withReturn(6); &#x2F;&#x2F; 11</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">withReturn(6); &#x2F;&#x2F; 11</span></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="keyword">with</span><span class="constructor">Return(<span class="params">a</span>)</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> b = <span class="number">5</span>;</span><br><span class="line">  return a + b;</span><br><span class="line">  b = <span class="number">6</span>; <span class="comment">// 不可能重新定义 b 了</span></span><br><span class="line">  return a<span class="operator"> * </span>b; <span class="comment">// 这儿新的值没可能返回了</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span><span class="constructor">Return(6)</span>; <span class="comment">// 11</span></span><br><span class="line"><span class="keyword">with</span><span class="constructor">Return(6)</span>; <span class="comment">// 11</span></span><br></pre></td></tr></table></figure>
 <p>而 <code>yield</code> 的工作方式却不同。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">function * withYield(a) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  let b &#x3D; 5;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  yield a + b;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  b &#x3D; 6; &#x2F;&#x2F; 在第一次调用后仍可以重新定义变量</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  yield a * b;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">const calcSix &#x3D; withYield(6);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">calcSix.next().value; &#x2F;&#x2F; 11</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">calcSix.next().value; &#x2F;&#x2F; 36</span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">withYield</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> b = <span class="number">5</span>;</span><br><span class="line">  <span class="keyword">yield</span> a + b;</span><br><span class="line">  b = <span class="number">6</span>; <span class="comment">// 在第一次调用后仍可以重新定义变量</span></span><br><span class="line">  <span class="keyword">yield</span> a * b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> calcSix = withYield(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">calcSix.next().value; <span class="comment">// 11</span></span><br><span class="line">calcSix.next().value; <span class="comment">// 36</span></span><br></pre></td></tr></table></figure>
 <p>用 <code>yield</code> 返回的值只会返回一次，当你再次调用同一个函数的时候，它会执行至下一个 <code>yield</code> 语句处（译者注：前面的 <code>yield</code> 不再返回东西了）。</p>
 <p>在生成器中，我们通常会在输出时得到一个对象。这个对象有两个属性：<code>value</code> 与 <code>done</code>。如你所想，<code>value</code> 为返回值，<code>done</code> 则会显示生成器是否完成了它的工作。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * generator() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  yield 5;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">const gen &#x3D; generator();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: 5, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: undefined, done: true&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: undefined, done: true&#125; - 之后的任何调用都会返回相同的结果</span></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">function</span> <span class="string">*</span> <span class="string">generator()</span> &#123;</span><br><span class="line">  <span class="string">yield</span> <span class="number">5</span><span class="string">;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">const</span> <span class="string">gen</span> <span class="string">=</span> <span class="string">generator();</span></span><br><span class="line"></span><br><span class="line"><span class="string">gen.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="number">5</span>, <span class="attr">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line"><span class="string">gen.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="string">undefined</span>, <span class="attr">done:</span> <span class="literal">true</span>&#125;</span><br><span class="line"><span class="string">gen.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="string">undefined</span>, <span class="attr">done:</span> <span class="literal">true</span>&#125; <span class="bullet">-</span> <span class="string">之后的任何调用都会返回相同的结果</span></span><br></pre></td></tr></table></figure>
 <p>在生成器中，不仅可以使用 <code>yield</code>，也可以使用 <code>return</code> 来返回同样的对象。但是，在函数执行到第一个 <code>return</code> 语句的时候，生成器将结束它的工作。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * generator() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  yield 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  return 2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  yield 3; &#x2F;&#x2F; 到不了这个 yield 了</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">const gen &#x3D; generator();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: 1, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: 2, done: true&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: undefined, done: true&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">function</span> <span class="string">*</span> <span class="string">generator()</span> &#123;</span><br><span class="line">  <span class="string">yield</span> <span class="number">1</span><span class="string">;</span></span><br><span class="line">  <span class="string">return</span> <span class="number">2</span><span class="string">;</span></span><br><span class="line">  <span class="string">yield</span> <span class="number">3</span><span class="string">;</span> <span class="string">//</span> <span class="string">到不了这个</span> <span class="string">yield</span> <span class="string">了</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">const</span> <span class="string">gen</span> <span class="string">=</span> <span class="string">generator();</span></span><br><span class="line"></span><br><span class="line"><span class="string">gen.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="number">1</span>, <span class="attr">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line"><span class="string">gen.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="number">2</span>, <span class="attr">done:</span> <span class="literal">true</span>&#125;</span><br><span class="line"><span class="string">gen.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="string">undefined</span>, <span class="attr">done:</span> <span class="literal">true</span>&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="yield-委托迭代"><a href="#yield-委托迭代" class="headerlink" title="yield 委托迭代"></a>yield 委托迭代</h4><p>带星号的 <code>yield</code> 可以将它的工作委托给另一个生成器。通过这种方式，你就能将多个生成器连接在一起。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * anotherGenerator(i) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  yield i + 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  yield i + 2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  yield i + 3;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">function * generator(i) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  yield* anotherGenerator(i);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">var gen &#x3D; generator(1);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">gen.next().value; &#x2F;&#x2F; 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">gen.next().value; &#x2F;&#x2F; 3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">gen.next().value; &#x2F;&#x2F; 4</span></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">anotherGenerator</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> i + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> i + <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> i + <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">generator</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span>* anotherGenerator(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> gen = <span class="built_in">generator</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">gen.next().value; <span class="comment">// 2</span></span><br><span class="line">gen.next().value; <span class="comment">// 3</span></span><br><span class="line">gen.next().value; <span class="comment">// 4</span></span><br></pre></td></tr></table></figure>
 <p>在开始下一节前，我们先观察一个第一眼看上去比较奇特的行为。</p>
 <p>下面是正常的代码，不会报出任何错误，这表明 <code>yield</code> 可以在 <code>next()</code> 方法调用后返回传递的值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * generator(arr) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  for (const i in arr) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    yield i;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    yield yield;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    yield(yield);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">const gen &#x3D; generator([0,1]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: &quot;0&quot;, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">gen.next(&#39;A&#39;); &#x2F;&#x2F; &#123;value: undefined, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">gen.next(&#39;A&#39;); &#x2F;&#x2F; &#123;value: &quot;A&quot;, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">gen.next(&#39;A&#39;); &#x2F;&#x2F; &#123;value: undefined, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">gen.next(&#39;A&#39;); &#x2F;&#x2F; &#123;value: &quot;A&quot;, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: &quot;1&quot;, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">gen.next(&#39;B&#39;); &#x2F;&#x2F; &#123;value: undefined, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">gen.next(&#39;B&#39;); &#x2F;&#x2F; &#123;value: &quot;B&quot;, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">gen.next(&#39;B&#39;); &#x2F;&#x2F; &#123;value: undefined, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">gen.next(&#39;B&#39;); &#x2F;&#x2F; &#123;value: &quot;B&quot;, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: undefined, done: true&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function * generator(arr) &#123;</span><br><span class="line">  <span class="keyword">for</span> (const i <span class="keyword">in</span> arr) &#123;</span><br><span class="line">    <span class="keyword">yield</span> i;</span><br><span class="line">    <span class="keyword">yield</span> <span class="keyword">yield</span>;</span><br><span class="line">    <span class="keyword">yield</span>(<span class="keyword">yield</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const gen = generator([<span class="number">0</span>,<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">gen.<span class="keyword">next</span>(); <span class="regexp">//</span> &#123;<span class="symbol">value:</span> <span class="string">&quot;0&quot;</span>, <span class="symbol">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line">gen.<span class="keyword">next</span>(<span class="string">&#x27;A&#x27;</span>); <span class="regexp">//</span> &#123;<span class="symbol">value:</span> undefined, <span class="symbol">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line">gen.<span class="keyword">next</span>(<span class="string">&#x27;A&#x27;</span>); <span class="regexp">//</span> &#123;<span class="symbol">value:</span> <span class="string">&quot;A&quot;</span>, <span class="symbol">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line">gen.<span class="keyword">next</span>(<span class="string">&#x27;A&#x27;</span>); <span class="regexp">//</span> &#123;<span class="symbol">value:</span> undefined, <span class="symbol">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line">gen.<span class="keyword">next</span>(<span class="string">&#x27;A&#x27;</span>); <span class="regexp">//</span> &#123;<span class="symbol">value:</span> <span class="string">&quot;A&quot;</span>, <span class="symbol">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line">gen.<span class="keyword">next</span>(); <span class="regexp">//</span> &#123;<span class="symbol">value:</span> <span class="string">&quot;1&quot;</span>, <span class="symbol">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line">gen.<span class="keyword">next</span>(<span class="string">&#x27;B&#x27;</span>); <span class="regexp">//</span> &#123;<span class="symbol">value:</span> undefined, <span class="symbol">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line">gen.<span class="keyword">next</span>(<span class="string">&#x27;B&#x27;</span>); <span class="regexp">//</span> &#123;<span class="symbol">value:</span> <span class="string">&quot;B&quot;</span>, <span class="symbol">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line">gen.<span class="keyword">next</span>(<span class="string">&#x27;B&#x27;</span>); <span class="regexp">//</span> &#123;<span class="symbol">value:</span> undefined, <span class="symbol">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line">gen.<span class="keyword">next</span>(<span class="string">&#x27;B&#x27;</span>); <span class="regexp">//</span> &#123;<span class="symbol">value:</span> <span class="string">&quot;B&quot;</span>, <span class="symbol">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line">gen.<span class="keyword">next</span>(); <span class="regexp">//</span> &#123;<span class="symbol">value:</span> undefined, <span class="symbol">done:</span> <span class="literal">true</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>在这个例子中，你可以看到 <code>yield</code> 默认是 <code>undefined</code>，但如果我们在调用 <code>yield</code> 时传递了任何值，它就会返回我们传入的值。我们将很快利用这个特性。</p>
 <h4 id="初始化与方法"><a href="#初始化与方法" class="headerlink" title="初始化与方法"></a>初始化与方法</h4><p>生成器是可以被复用的，但是你需要对它们进行初始化。还好初始化的方法十分简单。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * generator(arg &#x3D; &#39;Nothing&#39;) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  yield arg;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">const gen0 &#x3D; generator(); &#x2F;&#x2F; OK</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">const gen1 &#x3D; generator(&#39;Hello&#39;); &#x2F;&#x2F; OK</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">const gen2 &#x3D; new generator(); &#x2F;&#x2F; 不 OK</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">generator().next(); &#x2F;&#x2F; 可以运行，但每次都会从头开始运行</span></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">generator</span>(<span class="params">arg = <span class="string">&#x27;Nothing&#x27;</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> arg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> gen0 = <span class="built_in">generator</span>(); <span class="comment">// OK</span></span><br><span class="line"><span class="keyword">const</span> gen1 = <span class="built_in">generator</span>(<span class="string">&#x27;Hello&#x27;</span>); <span class="comment">// OK</span></span><br><span class="line"><span class="keyword">const</span> gen2 = <span class="keyword">new</span> <span class="built_in">generator</span>(); <span class="comment">// 不 OK</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">generator</span>().next(); <span class="comment">// 可以运行，但每次都会从头开始运行</span></span><br></pre></td></tr></table></figure>
 <p>如上所示，<code>gen0</code> 与 <code>gen1</code> 不会互相影响，<code>gen2</code> 完全不会运行（会报错）。因此初始化对于保证程序流程的状态是十分重要的。</p>
 <p>下面让我们一起看看生成器给我们提供的方法。</p>
 <p><strong>next() 方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * generator() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  yield 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  yield 2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  yield 3;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">const gen &#x3D; generator();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: 1, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: 2, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: 3, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: undefined, done: true&#125; 之后所有的 next 调用都会返回同样的输出</span></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">function</span> <span class="string">*</span> <span class="string">generator()</span> &#123;</span><br><span class="line">  <span class="string">yield</span> <span class="number">1</span><span class="string">;</span></span><br><span class="line">  <span class="string">yield</span> <span class="number">2</span><span class="string">;</span></span><br><span class="line">  <span class="string">yield</span> <span class="number">3</span><span class="string">;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">const</span> <span class="string">gen</span> <span class="string">=</span> <span class="string">generator();</span></span><br><span class="line"></span><br><span class="line"><span class="string">gen.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="number">1</span>, <span class="attr">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line"><span class="string">gen.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="number">2</span>, <span class="attr">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line"><span class="string">gen.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="number">3</span>, <span class="attr">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line"><span class="string">gen.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="string">undefined</span>, <span class="attr">done:</span> <span class="literal">true</span>&#125; <span class="string">之后所有的</span> <span class="string">next</span> <span class="string">调用都会返回同样的输出</span></span><br></pre></td></tr></table></figure>
 <p>这是最常用的方法。它每次被调用时都会返回下一个对象。在生成器工作结束时，<code>next()</code> 会将 <code>done</code> 属性设为 <code>true</code>，<code>value</code> 属性设为 <code>undefined</code>。</p>
 <p>我们不仅可以用 <code>next()</code> 来迭代生成器，还可以用 <code>for of</code> 循环来一次得到生成器所有的值（而不是对象）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * generator(arr) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  for (const el in arr)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    yield el;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">const gen &#x3D; generator([0, 1, 2]);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">for (const g of gen) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  console.log(g); &#x2F;&#x2F; 0 -&gt; 1 -&gt; 2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: undefined, done: true&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">generator</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> el <span class="keyword">in</span> arr)</span><br><span class="line">    <span class="keyword">yield</span> el;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> gen = generator([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> g <span class="keyword">of</span> gen) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(g); <span class="comment">// 0 -&gt; 1 -&gt; 2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gen.next(); <span class="comment">// &#123;value: undefined, done: true&#125;</span></span><br></pre></td></tr></table></figure>
 <p>但它不适用于 <code>for in</code> 循环，并且不能直接用数字下标来访问属性：<code>generator[0] = undefined</code>。</p>
 <p><strong>return() 方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * generator() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  yield 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  yield 2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  yield 3;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">const gen &#x3D; generator();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">gen.return(); &#x2F;&#x2F; &#123;value: undefined, done: true&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">gen.return(&#39;Heeyyaa&#39;); &#x2F;&#x2F; &#123;value: &quot;Heeyyaa&quot;, done: true&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: undefined, done: true&#125; - 在 return() 之后的所有 next() 调用都会返回相同的输出</span></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function * generator() &#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const gen = generator();</span><br><span class="line"></span><br><span class="line">gen.<span class="keyword">return</span>(); <span class="regexp">//</span> &#123;<span class="symbol">value:</span> undefined, <span class="symbol">done:</span> <span class="literal">true</span>&#125;</span><br><span class="line">gen.<span class="keyword">return</span>(<span class="string">&#x27;Heeyyaa&#x27;</span>); <span class="regexp">//</span> &#123;<span class="symbol">value:</span> <span class="string">&quot;Heeyyaa&quot;</span>, <span class="symbol">done:</span> <span class="literal">true</span>&#125;</span><br><span class="line"></span><br><span class="line">gen.<span class="keyword">next</span>(); <span class="regexp">//</span> &#123;<span class="symbol">value:</span> undefined, <span class="symbol">done:</span> <span class="literal">true</span>&#125; - 在 <span class="keyword">return</span>() 之后的所有 <span class="keyword">next</span>() 调用都会返回相同的输出</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p><code>return()</code> 将会忽略生成器中的任何代码。它会根据传值设定 <code>value</code>，并将 <code>done</code> 设为 <code>true</code>。任何在 <code>return()</code> 之后进行的 <code>next()</code> 调用都会返回 <code>done</code> 属性为 <code>true</code> 的对象。</p>
 <p><strong>throw() 方法</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * generator() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  yield 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  yield 2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  yield 3;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">const gen &#x3D; generator();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">gen.throw(&#39;Something bad&#39;); &#x2F;&#x2F; 会报错 Error Uncaught Something bad</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">gen.next(); &#x2F;&#x2F; &#123;value: undefined, done: true&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">generator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> gen = <span class="built_in">generator</span>();</span><br><span class="line"></span><br><span class="line">gen.<span class="keyword">throw</span>(<span class="string">&#x27;Something bad&#x27;</span>); <span class="comment">// 会报错 Error Uncaught Something bad</span></span><br><span class="line">gen.next(); <span class="comment">// &#123;value: undefined, done: true&#125;</span></span><br></pre></td></tr></table></figure>
 <p><code>throw()</code> 做的事非常简单 —— 就是抛出错误。我们可以用 <code>try-catch</code> 来处理。</p>
 <h4 id="自定义方法的实现"><a href="#自定义方法的实现" class="headerlink" title="自定义方法的实现"></a>自定义方法的实现</h4><p>由于我们无法直接访问 <code>Generator</code> 的 constructor，因此如何增加新的方法需要另外说明。下面是我的方法，你也可以用不同的方式实现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * generator() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  yield 1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">generator.prototype.__proto__; &#x2F;&#x2F; Generator &#123;constructor: GeneratorFunction, next: ƒ, return: ƒ, throw: ƒ, Symbol(Symbol.toStringTag): &quot;Generator&quot;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 由于 Generator 不是一个全局变量，因此我们只能这么写：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">generator.prototype.__proto__.math &#x3D; function(e &#x3D; 0) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  return e * Math.PI;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">generator.prototype.__proto__; &#x2F;&#x2F; Generator &#123;math: ƒ, constructor: GeneratorFunction, next: ƒ, return: ƒ, throw: ƒ, …&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">const gen &#x3D; generator();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">gen.math(1); &#x2F;&#x2F; 3.141592653589793</span></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">generator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">generator</span>.prototype.__proto__; <span class="comment">// Generator &#123;constructor: GeneratorFunction, next: ƒ, return: ƒ, throw: ƒ, Symbol(Symbol.toStringTag): &quot;Generator&quot;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 由于 Generator 不是一个全局变量，因此我们只能这么写：</span></span><br><span class="line"><span class="built_in">generator</span>.prototype.__proto__.math = <span class="function"><span class="keyword">function</span>(<span class="params">e = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> e * Math.PI;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">generator</span>.prototype.__proto__; <span class="comment">// Generator &#123;math: ƒ, constructor: GeneratorFunction, next: ƒ, return: ƒ, throw: ƒ, …&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> gen = <span class="built_in">generator</span>();</span><br><span class="line">gen.math(<span class="number">1</span>); <span class="comment">// 3.141592653589793</span></span><br></pre></td></tr></table></figure>
 <h4 id="生成器的用途"><a href="#生成器的用途" class="headerlink" title="生成器的用途"></a>生成器的用途</h4><p>在前面，我们用了已知迭代次数的生成器。但如果我们不知道要迭代多少次会怎么样呢？为了解决这个问题，需要在生成器函数中创建一个无限循环。下面以一个会返回随机数的函数为例进行演示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * randomFrom(...arr) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  while (true)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    yield arr[Math.floor(Math.random() * arr.length)];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">const getRandom &#x3D; randomFrom(1, 2, 5, 9, 4);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">getRandom.next().value; &#x2F;&#x2F; 返回随机的一个数</span></pre></td></tr></table></figure>
-<p>这是个简单的例子。下面来举一些更复杂的函数为例，我们要写一个节流（throttle）函数。如果你还不知道节流函数是什么，请参阅<a href="https://medium.com/@_jh3y/throttling-and-debouncing-in-javascript-b01cad5c8edf" target="_blank" rel="noopener">这篇文章</a>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * throttle(func, time) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  let timerID &#x3D; null;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  function throttled(arg) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    clearTimeout(timerID);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    timerID &#x3D; setTimeout(func.bind(window, arg), time);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  while (true)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    throttled(yield);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">const thr &#x3D; throttle(console.log, 1000);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">thr.next(); &#x2F;&#x2F; &#123;value: undefined, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">thr.next(&#39;hello&#39;); &#x2F;&#x2F; 返回 &#123;value: undefined, done: false&#125; ，然后 1 秒后输出 &#39;hello&#39;</span></pre></td></tr></table></figure></p>
-<p>还有没有更好的利用生成器的例子呢？如果你了解递归，那你肯定听过<a href="https://en.wikipedia.org/wiki/Fibonacci_number" target="_blank" rel="noopener">斐波那契数列</a>。通常我们是用递归来解决这个问题的，但有了生成器后，可以这样写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">function * fibonacci(seed1, seed2) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  while (true) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    yield (() &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      seed2 &#x3D; seed2 + seed1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      seed1 &#x3D; seed2 - seed1;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      return seed2;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;)();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">const fib &#x3D; fibonacci(0, 1);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">fib.next(); &#x2F;&#x2F; &#123;value: 1, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">fib.next(); &#x2F;&#x2F; &#123;value: 2, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">fib.next(); &#x2F;&#x2F; &#123;value: 3, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">fib.next(); &#x2F;&#x2F; &#123;value: 5, done: false&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">fib.next(); &#x2F;&#x2F; &#123;value: 8, done: false&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">randomFrom</span>(<span class="params">...arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">    <span class="keyword">yield</span> arr[<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * arr.length)];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getRandom = randomFrom(<span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">getRandom.next().value; <span class="comment">// 返回随机的一个数</span></span><br></pre></td></tr></table></figure>
+<p>这是个简单的例子。下面来举一些更复杂的函数为例，我们要写一个节流（throttle）函数。如果你还不知道节流函数是什么，请参阅<a target="_blank" rel="noopener" href="https://medium.com/@_jh3y/throttling-and-debouncing-in-javascript-b01cad5c8edf">这篇文章</a>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">throttle</span>(<span class="params">func, time</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timerID = <span class="literal">null</span>;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">throttled</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">clearTimeout</span>(timerID);</span><br><span class="line">    timerID = <span class="built_in">setTimeout</span>(func.bind(<span class="built_in">window</span>, arg), time);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">    throttled(<span class="keyword">yield</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> thr = throttle(<span class="built_in">console</span>.log, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">thr.next(); <span class="comment">// &#123;value: undefined, done: false&#125;</span></span><br><span class="line">thr.next(<span class="string">&#x27;hello&#x27;</span>); <span class="comment">// 返回 &#123;value: undefined, done: false&#125; ，然后 1 秒后输出 &#x27;hello&#x27;</span></span><br></pre></td></tr></table></figure></p>
+<p>还有没有更好的利用生成器的例子呢？如果你了解递归，那你肯定听过<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fibonacci_number">斐波那契数列</a>。通常我们是用递归来解决这个问题的，但有了生成器后，可以这样写：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">function</span> <span class="string">*</span> <span class="string">fibonacci(seed1,</span> <span class="string">seed2)</span> &#123;</span><br><span class="line">  <span class="string">while</span> <span class="string">(true)</span> &#123;</span><br><span class="line">    <span class="string">yield</span> <span class="string">(()</span> <span class="string">=&gt;</span> &#123;</span><br><span class="line">      <span class="string">seed2</span> <span class="string">=</span> <span class="string">seed2</span> <span class="string">+</span> <span class="string">seed1;</span></span><br><span class="line">      <span class="string">seed1</span> <span class="string">=</span> <span class="string">seed2</span> <span class="bullet">-</span> <span class="string">seed1;</span></span><br><span class="line">      <span class="string">return</span> <span class="string">seed2;</span></span><br><span class="line">    &#125;<span class="string">)();</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">const</span> <span class="string">fib</span> <span class="string">=</span> <span class="string">fibonacci(0,</span> <span class="number">1</span><span class="string">);</span></span><br><span class="line"><span class="string">fib.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="number">1</span>, <span class="attr">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line"><span class="string">fib.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="number">2</span>, <span class="attr">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line"><span class="string">fib.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="number">3</span>, <span class="attr">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line"><span class="string">fib.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="number">5</span>, <span class="attr">done:</span> <span class="literal">false</span>&#125;</span><br><span class="line"><span class="string">fib.next();</span> <span class="string">//</span> &#123;<span class="attr">value:</span> <span class="number">8</span>, <span class="attr">done:</span> <span class="literal">false</span>&#125;</span><br></pre></td></tr></table></figure>
 <p>不再需要递归了！我们可以在需要的时候获得数列中的下一个数字。</p>
 <h4 id="将生成器用在-HTML-上"><a href="#将生成器用在-HTML-上" class="headerlink" title="将生成器用在 HTML 上"></a>将生成器用在 HTML 上</h4><p>既然是讨论 JavaScript，那显然要用生成器来操作下 HTML。</p>
 <p>假设有一些 HTML 块需要处理，可以使用生成器来轻松实现。（当然除了生成器之外还有很多方法可以做到）</p>
 <p>我们只需要少许代码就能完成此需求。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const strings &#x3D; document.querySelectorAll(&#39;.string&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const btn &#x3D; document.querySelector(&#39;#btn&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">const className &#x3D; &#39;darker&#39;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">function * addClassToEach(elements, className) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  for (const el of Array.from(elements))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    yield el.classList.add(className);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">const addClassToStrings &#x3D; addClassToEach(strings, className);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">btn.addEventListener(&#39;click&#39;, (el) &#x3D;&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  if (addClassToStrings.next().done)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    el.target.classList.add(className);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> strings = <span class="built_in">document</span>.querySelectorAll(<span class="string">&#x27;.string&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> btn = <span class="built_in">document</span>.querySelector(<span class="string">&#x27;#btn&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> className = <span class="string">&#x27;darker&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">addClassToEach</span>(<span class="params">elements, className</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">const</span> el <span class="keyword">of</span> <span class="built_in">Array</span>.from(elements))</span><br><span class="line">    <span class="keyword">yield</span> el.classList.add(className);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> addClassToStrings = addClassToEach(strings, className);</span><br><span class="line"></span><br><span class="line">btn.addEventListener(<span class="string">&#x27;click&#x27;</span>, <span class="function">(<span class="params">el</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (addClassToStrings.next().done)</span><br><span class="line">    el.target.classList.add(className);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>仅有 5 行逻辑代码。</p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>还有更多使用生成器的方法。例如，在进行异步操作或者按需循环时生成器也非常有用。</p>
 <p>我希望这篇文章能帮你更好地理解 JavaScript 生成器。</p>
 <blockquote>
-<p>掘金地址：<a href="https://juejin.im/post/5b14faf2f265da6e4d5af3b9" target="_blank" rel="noopener">https://juejin.im/post/5b14faf2f265da6e4d5af3b9</a></p>
+<p>掘金地址：<a target="_blank" rel="noopener" href="https://juejin.im/post/5b14faf2f265da6e4d5af3b9">https://juejin.im/post/5b14faf2f265da6e4d5af3b9</a></p>
 </blockquote>
 
       
@@ -338,18 +404,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/05/19/%E5%8F%AF%E7%94%A8%E4%BD%86%E6%9C%80%E4%B8%8D%E5%B8%B8%E8%A7%81%E7%9A%84-HTML5-%E6%A0%87%E7%AD%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -361,34 +429,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2018/05/19/%E5%8F%AF%E7%94%A8%E4%BD%86%E6%9C%80%E4%B8%8D%E5%B8%B8%E8%A7%81%E7%9A%84-HTML5-%E6%A0%87%E7%AD%BE/" class="post-title-link" itemprop="url">可用但最不常见的 HTML5 标签</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-05-19 21:33:00" itemprop="dateCreated datePublished" datetime="2018-05-19T21:33:00+08:00">2018-05-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2018-05-19 21:33:00" itemprop="dateCreated datePublished" datetime="2018-05-19T21:33:00+08:00">2018-05-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -397,8 +468,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><code>&lt;!DOCTYPE html&gt;</code> HMLT5 于 2014 年 10 月由万维网联盟（W3C）发布，旨在通过改进 HTML 语言来支持最新的多媒体设备，在保证计算机与设备（如 Web 浏览器，解析器等）可解析的前提下增强对人类的可读性。</p>
 <p><img src="/images/pasted-321.png" alt="upload successful"></p>
 <p>我可以确定你们都已经在使用 HTML5 做网页了，并且会使用一些常见的标签，如 <code>&lt;header&gt;</code>、<code>&lt;section&gt;</code>、<code>&lt;article&gt;</code> 和 <code>&lt;footer&gt;</code> 等等，除此之外，还有一些不常用的标签是有助于正确使用 HTML5 的语义化开发。</p>
@@ -417,18 +486,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/05/16/%E7%94%B1-Node-js-%E5%8F%91%E9%80%81-Web-%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -440,34 +511,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2018/05/16/%E7%94%B1-Node-js-%E5%8F%91%E9%80%81-Web-%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5/" class="post-title-link" itemprop="url">由 Node.js 发送 Web 推送通知</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-05-16 22:03:00" itemprop="dateCreated datePublished" datetime="2018-05-16T22:03:00+08:00">2018-05-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2018-05-16 22:03:00" itemprop="dateCreated datePublished" datetime="2018-05-16T22:03:00+08:00">2018-05-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -476,33 +550,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-          <p>使用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API" target="_blank" rel="noopener">service workers API</a> 可以让你直接由 Node.js 应用向 Chrome 浏览器发送推送通知。<a href="https://www.npmjs.com/package/web-push" target="_blank" rel="noopener"><code>web-push</code> npm 模组</a>可以让你免去 <a href="https://www.pubnub.com/" target="_blank" rel="noopener">PubNub</a> 之类的中间商，直接推送消息。本文将在前端使用原生 JavaScript，在后端使用 <a href="https://www.npmjs.com/package/express" target="_blank" rel="noopener">Express</a> 框架，通过一个“Hello, World”级别的样例来带你了解如何进行 web 推送通知。最终的效果如下图所示。本项目的全部源码可在 <a href="https://github.com/vkarpov15/web-push-demo" target="_blank" rel="noopener">GitHub</a> 查阅。</p>
+          <p>使用 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">service workers API</a> 可以让你直接由 Node.js 应用向 Chrome 浏览器发送推送通知。<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/web-push"><code>web-push</code> npm 模组</a>可以让你免去 <a target="_blank" rel="noopener" href="https://www.pubnub.com/">PubNub</a> 之类的中间商，直接推送消息。本文将在前端使用原生 JavaScript，在后端使用 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/express">Express</a> 框架，通过一个“Hello, World”级别的样例来带你了解如何进行 web 推送通知。最终的效果如下图所示。本项目的全部源码可在 <a target="_blank" rel="noopener" href="https://github.com/vkarpov15/web-push-demo">GitHub</a> 查阅。</p>
 <p><img src="/images/pasted-318.png" alt="upload successful"></p>
-<h2 id="鉴权及配置服务端"><a href="#鉴权及配置服务端" class="headerlink" title="鉴权及配置服务端"></a>鉴权及配置服务端</h2><p>要设置 web 推送，必须先创建 <a href="https://blog.mozilla.org/services/2016/04/04/using-vapid-with-webpush/" target="_blank" rel="noopener">VAPID keys</a>。VAPID keys 用于识别是谁发送了推送消息。npm 的 <code>web-push</code> 模组能够<a href="https://www.npmjs.com/package/web-push#command-line" target="_blank" rel="noopener">帮助你生成 VAPID keys</a>，下面我们将安装 <code>web-push</code> 及其依赖，并使用 <code>web-push generate-vapid-keys</code> 来创建 VAPID keys。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ npm install express@4.16.3 web-push@3.3.0 body-parser@1.18.2 express-static@1.2.5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">+ express@4.16.3</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">+ web-push@3.3.0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">+ body-parser@1.18.2</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">+ express-static@1.2.5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">added 62 packages in 1.42s</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">$</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">$ .&#x2F;node_modules&#x2F;.bin&#x2F;web-push generate-vapid-keys</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">Public Key:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">BOynOrGhgkj8Bfk4hsFENAQYbnqqLSigUUkCNaBsAmNuH6U9EWywR1JIdxBVQOPDbIuTaj0tVAQbczNLkC5zftw</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">Private Key:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&lt;OMITTED&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">$</span></pre></td></tr></table></figure>
-<p>如果你需要支持低版本浏览器，那么还要获取 <a href="https://medium.com/@jasminejacquelin/integrating-push-notifications-in-your-node-react-web-app-4e8d8190a52c#9a53" target="_blank" rel="noopener">GCM API key</a>，但在桌面版 Chrome 63 或更高版本中不需要它。</p>
+<h2 id="鉴权及配置服务端"><a href="#鉴权及配置服务端" class="headerlink" title="鉴权及配置服务端"></a>鉴权及配置服务端</h2><p>要设置 web 推送，必须先创建 <a target="_blank" rel="noopener" href="https://blog.mozilla.org/services/2016/04/04/using-vapid-with-webpush/">VAPID keys</a>。VAPID keys 用于识别是谁发送了推送消息。npm 的 <code>web-push</code> 模组能够<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/web-push#command-line">帮助你生成 VAPID keys</a>，下面我们将安装 <code>web-push</code> 及其依赖，并使用 <code>web-push generate-vapid-keys</code> 来创建 VAPID keys。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ npm install <span class="symbol">express@</span><span class="number">4.16</span><span class="number">.3</span> web-<span class="symbol">push@</span><span class="number">3.3</span><span class="number">.0</span> body-<span class="symbol">parser@</span><span class="number">1.18</span><span class="number">.2</span> express-<span class="symbol">static@</span><span class="number">1.2</span><span class="number">.5</span></span><br><span class="line">+ <span class="symbol">express@</span><span class="number">4.16</span><span class="number">.3</span></span><br><span class="line">+ web-<span class="symbol">push@</span><span class="number">3.3</span><span class="number">.0</span></span><br><span class="line">+ body-<span class="symbol">parser@</span><span class="number">1.18</span><span class="number">.2</span></span><br><span class="line">+ express-<span class="symbol">static@</span><span class="number">1.2</span><span class="number">.5</span></span><br><span class="line">added <span class="number">62</span> packages <span class="keyword">in</span> <span class="number">1.42</span>s</span><br><span class="line">$</span><br><span class="line">$ ./node_modules/.bin/web-push generate-vapid-keys</span><br><span class="line">=======================================</span><br><span class="line">Public Key:</span><br><span class="line">BOynOrGhgkj8Bfk4hsFENAQYbnqqLSigUUkCNaBsAmNuH6U9EWywR1JIdxBVQOPDbIuTaj0tVAQbczNLkC5zftw</span><br><span class="line">Private Key:</span><br><span class="line">&lt;OMITTED&gt;</span><br><span class="line">=======================================</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+<p>如果你需要支持低版本浏览器，那么还要获取 <a target="_blank" rel="noopener" href="https://medium.com/@jasminejacquelin/integrating-push-notifications-in-your-node-react-web-app-4e8d8190a52c#9a53">GCM API key</a>，但在桌面版 Chrome 63 或更高版本中不需要它。</p>
 <p>下面创建 <code>index.js</code> 文件，其中包含你的服务。你需要使用 <code>require()</code> 导入 web-push 模组，并配置刚才的 VAPID keys。配置相当简单，将 VAPID keys 存放在 <code>PUBLIC_VAPID_KEY</code> 与 <code>PRIVATE_VAPID_KEY</code> 环境变量中即可。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpush = <span class="built_in">require</span>(<span class="string">'web-push'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> publicVapidKey = process.env.PUBLIC_VAPID_KEY;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> privateVapidKey = process.env.PRIVATE_VAPID_KEY;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 此处换成你自己的邮箱</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">webpush.setVapidDetails(<span class="string">'mailto:val@karpov.io'</span>, publicVapidKey, privateVapidKey);</span></pre></td></tr></table></figure>
-<p>下一步，为 Express 应用添加一个名为 <code>/subscribe</code> 的端点。浏览器中的 JavaScript 将会发送一个 body 中包含 <a href="https://developer.mozilla.org/en-US/docs/Web/API/PushSubscription" target="_blank" rel="noopener"><code>PushSubscription</code> 对象</a>的 HTTP 请求。为了用 <code>webpush.sendNotification()</code> 发送推送通知，你需要获取 <code>PushSubscription</code> 对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = express();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">app.use(<span class="built_in">require</span>(<span class="string">'body-parser'</span>).json());</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">app.post(<span class="string">'/subscribe'</span>, (req, res) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> subscription = req.body;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  res.status(<span class="number">201</span>).json(&#123;&#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> payload = <span class="built_in">JSON</span>.stringify(&#123; <span class="attr">title</span>: <span class="string">'test'</span> &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(subscription);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  webpush.sendNotification(subscription, payload).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.error(error.stack);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure>
-<p>以上就是服务端需要做的全部配置。你可以在 <a href="https://github.com/vkarpov15/web-push-demo/blob/master/index.js" target="_blank" rel="noopener">GitHub</a> 查阅完整代码。现在，我们就要创建客户端 <code>client.js</code> 与一个 service worker —— <code>worker.js</code> 了。</p>
-<h2 id="客户端与-Service-Worker"><a href="#客户端与-Service-Worker" class="headerlink" title="客户端与 Service Worker"></a>客户端与 Service Worker</h2><p>首先，使用 <a href="http://npmjs.com/package/express-static" target="_blank" rel="noopener"><code>express-static</code> npm 模组</a>，<a href="https://github.com/vkarpov15/web-push-demo/blob/b356e53c1468c5611b9c4722411af3839bafc360/index.js#L26" target="_blank" rel="noopener">对 Express 应用进行配置</a>，为客户端部署静态资源，将静态资源部署在服务的最顶级目录下。<br>需要注意的是要在处理 <code>/subscribe</code> 路由之后再调用这个 <code>app.use()</code>，否则 Express 将不会根据你的配置处理路由，而是会去查找 <code>subscribe.html</code> 文件。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">app.use(<span class="built_in">require</span>(<span class="string">'express-static'</span>)(<span class="string">'./'</span>));</span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpush = <span class="built_in">require</span>(<span class="string">&#x27;web-push&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> publicVapidKey = process.env.PUBLIC_VAPID_KEY;</span><br><span class="line"><span class="keyword">const</span> privateVapidKey = process.env.PRIVATE_VAPID_KEY;</span><br><span class="line"><span class="comment">// 此处换成你自己的邮箱</span></span><br><span class="line">webpush.setVapidDetails(<span class="string">&#x27;mailto:val@karpov.io&#x27;</span>, publicVapidKey, privateVapidKey);</span><br></pre></td></tr></table></figure>
+<p>下一步，为 Express 应用添加一个名为 <code>/subscribe</code> 的端点。浏览器中的 JavaScript 将会发送一个 body 中包含 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/PushSubscription"><code>PushSubscription</code> 对象</a>的 HTTP 请求。为了用 <code>webpush.sendNotification()</code> 发送推送通知，你需要获取 <code>PushSubscription</code> 对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line">app.use(<span class="built_in">require</span>(<span class="string">&#x27;body-parser&#x27;</span>).json());</span><br><span class="line">app.post(<span class="string">&#x27;/subscribe&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> subscription = req.body;</span><br><span class="line">  res.status(<span class="number">201</span>).json(&#123;&#125;);</span><br><span class="line">  <span class="keyword">const</span> payload = <span class="built_in">JSON</span>.stringify(&#123; <span class="attr">title</span>: <span class="string">&#x27;test&#x27;</span> &#125;);</span><br><span class="line">  <span class="built_in">console</span>.log(subscription);</span><br><span class="line">  webpush.sendNotification(subscription, payload).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(error.stack);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>以上就是服务端需要做的全部配置。你可以在 <a target="_blank" rel="noopener" href="https://github.com/vkarpov15/web-push-demo/blob/master/index.js">GitHub</a> 查阅完整代码。现在，我们就要创建客户端 <code>client.js</code> 与一个 service worker —— <code>worker.js</code> 了。</p>
+<h2 id="客户端与-Service-Worker"><a href="#客户端与-Service-Worker" class="headerlink" title="客户端与 Service Worker"></a>客户端与 Service Worker</h2><p>首先，使用 <a target="_blank" rel="noopener" href="http://npmjs.com/package/express-static"><code>express-static</code> npm 模组</a>，<a target="_blank" rel="noopener" href="https://github.com/vkarpov15/web-push-demo/blob/b356e53c1468c5611b9c4722411af3839bafc360/index.js#L26">对 Express 应用进行配置</a>，为客户端部署静态资源，将静态资源部署在服务的最顶级目录下。<br>需要注意的是要在处理 <code>/subscribe</code> 路由之后再调用这个 <code>app.use()</code>，否则 Express 将不会根据你的配置处理路由，而是会去查找 <code>subscribe.html</code> 文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="built_in">require</span>(<span class="string">&#x27;express-static&#x27;</span>)(<span class="string">&#x27;./&#x27;</span>));</span><br></pre></td></tr></table></figure>
 <p>接着，创建 <code>index.html</code> 文件，这个文件将部署为你的应用的入口。文件中仅有的关键之处就是 <code>&lt;script&gt;</code> 标签，它将加载客户端 JavaScript 代码；其余部分都无关紧要。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Push Demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"application/javascript"</span> <span class="attr">src</span>=<span class="string">"/client.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    Service Worker Demo</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></pre></td></tr></table></figure>
-<p>现在你的入口做好了。创建一个名为 <code>client.js</code> 的文件。<a href="https://github.com/vkarpov15/web-push-demo/blob/b356e53c1468c5611b9c4722411af3839bafc360/client.js" target="_blank" rel="noopener">这个文件</a> 将告知浏览器初始化你的 service worker 并向 <code>/subscribe</code> 发送 HTTP 请求。由于支持 service workers 的浏览器也应该能支持 async 与 await，因此上述示例中使用了 <a href="http://thecodebarbarian.com/80-20-guide-to-async-await-in-node.js.html" target="_blank" rel="noopener">async/await</a>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里写死的 public key 要换成你自己的。</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> publicVapidKey = <span class="string">'BOynOrGhgkj8Bfk4hsFENAQYbnqqLSigUUkCNaBsAmNuH6U9EWywR1JIdxBVQOPDbIuTaj0tVAQbczNLkC5zftw'</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="string">'serviceWorker'</span> <span class="keyword">in</span> navigator) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registering service worker'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  run().catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(error));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registering service worker'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> registration = <span class="keyword">await</span> navigator.serviceWorker.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    register(<span class="string">'/worker.js'</span>, &#123;<span class="attr">scope</span>: <span class="string">'/'</span>&#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registered service worker'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registering push'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> subscription = <span class="keyword">await</span> registration.pushManager.</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    subscribe(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      userVisibleOnly: <span class="literal">true</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      <span class="comment">// `urlBase64ToUint8Array()` 函数与以下网址中的描述一致</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      <span class="comment">// https://www.npmjs.com/package/web-push#using-vapid-key-for-applicationserverkey</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">      applicationServerKey: urlBase64ToUint8Array(publicVapidKey)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Registered push'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Sending push'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">await</span> fetch(<span class="string">'/subscribe'</span>, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    method: <span class="string">'POST'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    body: <span class="built_in">JSON</span>.stringify(subscription),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    headers: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">      <span class="string">'content-type'</span>: <span class="string">'application/json'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Sent push'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>最后，你需要实现 <code>client.js</code> 所加载的 <code>worker.js</code> 文件。<br>这个文件是 service worker 逻辑所在之处。当订阅者接受到一个推送消息时，service worker 将收到一个 <a href="https://developers.google.com/web/ilt/pwa/introduction-to-push-notifications#handling_the_push_event_in_the_service_worker" target="_blank" rel="noopener">‘push’ 事件</a>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'Loaded service worker!'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">self.addEventListener(<span class="string">'push'</span>, ev =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> data = ev.data.json();</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Got push'</span>, data);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  self.registration.showNotification(data.title, &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    body: <span class="string">'Hello, World!'</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    icon: <span class="string">'http://mongoosejs.com/docs/images/mongoose5_62x30_transparent.png'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Push Demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;application/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;/client.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    Service Worker Demo</span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>现在你的入口做好了。创建一个名为 <code>client.js</code> 的文件。<a target="_blank" rel="noopener" href="https://github.com/vkarpov15/web-push-demo/blob/b356e53c1468c5611b9c4722411af3839bafc360/client.js">这个文件</a> 将告知浏览器初始化你的 service worker 并向 <code>/subscribe</code> 发送 HTTP 请求。由于支持 service workers 的浏览器也应该能支持 async 与 await，因此上述示例中使用了 <a target="_blank" rel="noopener" href="http://thecodebarbarian.com/80-20-guide-to-async-await-in-node.js.html">async/await</a>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这里写死的 public key 要换成你自己的。</span></span><br><span class="line"><span class="keyword">const</span> publicVapidKey = <span class="string">&#x27;BOynOrGhgkj8Bfk4hsFENAQYbnqqLSigUUkCNaBsAmNuH6U9EWywR1JIdxBVQOPDbIuTaj0tVAQbczNLkC5zftw&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="string">&#x27;serviceWorker&#x27;</span> <span class="keyword">in</span> navigator) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Registering service worker&#x27;</span>);</span><br><span class="line">  run().catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(error));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Registering service worker&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> registration = <span class="keyword">await</span> navigator.serviceWorker.</span><br><span class="line">    register(<span class="string">&#x27;/worker.js&#x27;</span>, &#123;<span class="attr">scope</span>: <span class="string">&#x27;/&#x27;</span>&#125;);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Registered service worker&#x27;</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Registering push&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> subscription = <span class="keyword">await</span> registration.pushManager.</span><br><span class="line">    subscribe(&#123;</span><br><span class="line">      userVisibleOnly: <span class="literal">true</span>,</span><br><span class="line">      <span class="comment">// `urlBase64ToUint8Array()` 函数与以下网址中的描述一致</span></span><br><span class="line">      <span class="comment">// https://www.npmjs.com/package/web-push#using-vapid-key-for-applicationserverkey</span></span><br><span class="line">      applicationServerKey: urlBase64ToUint8Array(publicVapidKey)</span><br><span class="line">    &#125;);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Registered push&#x27;</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Sending push&#x27;</span>);</span><br><span class="line">  <span class="keyword">await</span> fetch(<span class="string">&#x27;/subscribe&#x27;</span>, &#123;</span><br><span class="line">    method: <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">    body: <span class="built_in">JSON</span>.stringify(subscription),</span><br><span class="line">    headers: &#123;</span><br><span class="line">      <span class="string">&#x27;content-type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Sent push&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，你需要实现 <code>client.js</code> 所加载的 <code>worker.js</code> 文件。<br>这个文件是 service worker 逻辑所在之处。当订阅者接受到一个推送消息时，service worker 将收到一个 <a target="_blank" rel="noopener" href="https://developers.google.com/web/ilt/pwa/introduction-to-push-notifications#handling_the_push_event_in_the_service_worker">‘push’ 事件</a>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Loaded service worker!&#x27;</span>);</span><br><span class="line">self.addEventListener(<span class="string">&#x27;push&#x27;</span>, <span class="function"><span class="params">ev</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> data = ev.data.json();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;Got push&#x27;</span>, data);</span><br><span class="line">  self.registration.showNotification(data.title, &#123;</span><br><span class="line">    body: <span class="string">&#x27;Hello, World!&#x27;</span>,</span><br><span class="line">    icon: <span class="string">&#x27;http://mongoosejs.com/docs/images/mongoose5_62x30_transparent.png&#x27;</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>好了！配置正确的环境变量并启动你的服务：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ env PUBLIC_VAPID_KEY&#x3D;&#39;OMITTED&#39; env PRIVATE_VAPID_KEY&#x3D;&#39;OMITTED&#39; node .</span></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">env</span> PUBLIC_VAPID_KEY=<span class="string">&#x27;OMITTED&#x27;</span> <span class="keyword">env</span> PRIVATE_VAPID_KEY=<span class="string">&#x27;OMITTED&#x27;</span> node .</span><br></pre></td></tr></table></figure>
 <p>在 Chrome 中访问 <code>http://localhost:3000</code>，你应该可以看到下面的推送通知！</p>
 <p><img src="/images/pasted-319.png" alt="upload successful"></p>
-<p>这种通知不仅在 Chrome 中可用，在 <a href="https://support.mozilla.org/en-US/kb/push-notifications-firefox" target="_blank" rel="noopener">Firefox</a> 也可以用同样的代码实现。</p>
+<p>这种通知不仅在 Chrome 中可用，在 <a target="_blank" rel="noopener" href="https://support.mozilla.org/en-US/kb/push-notifications-firefox">Firefox</a> 也可以用同样的代码实现。</p>
 <p><img src="/images/pasted-320.png" alt="upload successful"></p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>Web 推送只是 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API" target="_blank" rel="noopener">service workers</a> 带来的诸多好处的其中一种。<br>通过一个 <a href="https://www.npmjs.com/package/web-push" target="_blank" rel="noopener">npm 模组</a>，你就能给大多数现代浏览器推送通知。下次你要为你的 web 应用增加推送通知功能的时候，记得用 service workers 哦！</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>Web 推送只是 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">service workers</a> 带来的诸多好处的其中一种。<br>通过一个 <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/web-push">npm 模组</a>，你就能给大多数现代浏览器推送通知。下次你要为你的 web 应用增加推送通知功能的时候，记得用 service workers 哦！</p>
 
       
     </div>
@@ -510,18 +582,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/05/11/Deconvolutional-Paragraph-Representation-Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -533,34 +607,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2018/05/11/Deconvolutional-Paragraph-Representation-Learning/" class="post-title-link" itemprop="url">Deconvolutional Paragraph Representation Learning</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-05-11 14:32:00" itemprop="dateCreated datePublished" datetime="2018-05-11T14:32:00+08:00">2018-05-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Paper/" itemprop="url" rel="index">
-                    <span itemprop="name">Paper</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2018-05-11 14:32:00" itemprop="dateCreated datePublished" datetime="2018-05-11T14:32:00+08:00">2018-05-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -569,19 +646,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>在许多自然语言处理应用中，从长文本序列中学习其潜在的语义表示是重要的第一步。RNN 已经成为了这个任务的基石。然而，随着文本长度的增加，RNN 的解码重建（decoding、reconstraction）的质量也随之降低。因此，我们提出了一个 seq2seq、由纯粹的卷积与反卷积结构构成的自动编码框架，它没有上述 RNN 的问题，同时计算效率也很高。另外，此方法简单易行，可以在许多应用中作为一块积木使用。我们可以证明，此框架在重构长文本任务中的效果比 RNN 更好。同时，在半监督文本分类及文本摘要任务中的评价指标表明此框架能更好地利用无标注长文本数据。</p>
 <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h3><p>学习句子或多个句子组成的段落是自然语言处理的一项重要任务，它常常是实现其它任务（如情感分析、机器翻译、对话系统、文本摘要等）的基础。从数据中学习句子的表示使用的是编码器 - 解码器结构。在标准的自动编码步骤中，首先由输入序列的 embedding 编码为向量表示，再解码到原始域重建输入序列。近期在 RNN 中，LSTM 及其变体在许多依赖句子表示的学习任务中取得了巨大的成功。</p>
 <p>基于 RNN 的方法通常将句子递归建模为含有隐藏单元的马尔可夫过程，其中每个输入句子的单词都是由前一个单词及隐藏单元的状态生成的，通过 emission 与 transition 运算建模为神经网络。原则上，输入序列的神经元表示应当包含了足够的输入序列结构的信息，才能在之后通过解码恢复原句。然而由于 RNN 的递归性质，基于 RNN 将句子完全表示为向量存在着挑战。典型的问题是，RNN 在训练时是基于之前的置信单词的状态来生成序列中的单词，而不是由编码后的向量表示解码整个句子。现在已经证明这种强制性的策略（teacher forcing training）是有必要的，因为它可以让 RNN 的输出接近于置信序列。然而，由于在重建序列时 RNN 允许解码器使用置信信息，削弱了编码器独立生成向量表示的能力，导致编码后的表示没能携带足够的信息来引导解码器在没有其它指引的情况下进行解码。为了解决这个问题，[19] 提出了一种在训练过程中的采样方法，从同时使用潜在表示与置信信号进行学习逐渐转换为仅用编码的潜在表示进行学习。但 [20] 表明，这种计划采样本质上是一种不一致训练策略，在实际使用中会产生不稳定的结果，最终导致训练无法收敛。</p>
 <p>在推理时，在遇到无法使用置信信号的句子时，仅能通过前一个单词及表示向量的状态来生成新的单词。此时，解码的错误随着序列长度的增加而成比例增加。这也意味着，在处理句子时，一旦出现一个错误，后续生成的句子将错的更离谱。这种现象是 [19] 中的 exposure bias 产生的。</p>
 <p>我们提出了一种简单而强大的纯卷积结构，用于学习句子的表示。比较方便的是，由于这个结构中不含 RNN，因此 teacher forcing training 与 exposure bias 的问题自然就不存在了。这种方法使用 CNN 作为编码器，deCNN 作为解码器。我们认为，这种结构通过多层 CNN 迫使潜在表示从整个句子中提取信息，由此在不适用 RNN 解码器的情况下实现较高的重建质量。这种多层 CNN 能够让表示向量从整个句子中抽取信息而无需考虑句子长度，这也使它可以应用于长句子或段落相关任务。此外，由于这种结构不涉及递归编码及解码，因此可以使用图形处理单元（GPU）的特定卷积原语进行高效并行化，与 RNN 模型相比显著减少了计算成本。</p>
 <h3 id="2-自动编码卷积文本模型"><a href="#2-自动编码卷积文本模型" class="headerlink" title="2 自动编码卷积文本模型"></a>2 自动编码卷积文本模型</h3><h4 id="2-1-卷积编码器"><a href="#2-1-卷积编码器" class="headerlink" title="2.1 卷积编码器"></a>2.1 卷积编码器</h4><p>用 $w^t$ 表示给定句子中的第 t 个词，将每个词 $w^t$ 进行 embedding，映射为 k 维的词向量 $x_t = W_e[w^t]$，其中 $ W_e \in \mathbb{R}^{k \times V} $ 为一个已经学习好的 Word embedding 矩阵，V 为单词数量；用 $ W_e[v]$ 来表示 $W_e$ 的第 v 列。$W_e$ 中的所有列都经过 l2-norm 处理，例如 $ ||W_e[v]||_2 = 1, \forall v $。在经过 embedding 之后，一个长度为 T 的句子（经过 padding）可以在将 embedding 进行 concat 后表示为 $X \in \mathbb{R}^{k \times T}$；其中 $x_t$ 为 X 的第 t 列。</p>
-<p>对于句子做编码，我们采用了类似 [24] 中的 CNN 结构，这个结构最初是为做图像处理任务设计的。这个 CNN 结构包含 L 个层（L - 1 个卷积层，第 L 层为全连接层），此结构最后可以将一个输入句子转化为一个定长的表示向量 h。层 $l \in {1, … ,L}$ 由学习到的滤波器 $p_l$ 组成。对于第一层中的第 i 个滤波器来说，相当于对 X 进行一个步长（stride）为 $r^{(1)}$、滤波器为 $W_c^{(i,1)} \in \mathbb{R}^{k \times h}$ 的卷积运算（式中的 h 代表卷积滤波器的大小）。这一系列操作会生成一个潜在特征映射：$c^{(i,1)}=\gamma(X * W_c^{(i,1)} + b^{(i,1)}) \in \mathbb{R}^{(T-h)/r^{(1)}+1}$，其中 $\gamma(.)$ 为非线性激活函数，$b^{(i,1)} \in \mathbb{R}^{(T-h)/r^{(1)}+1}$ ，* 符号代表了卷积操作。在我们的实验中，$\gamma(.)$ 为 ReLU。需要注意的是，最初的 embedding 维数 k 在经过第一层卷积层后就发生了变化，$c^{(i,1)} \in \mathbb{R}^{(T-h)/r^{(1)}+1}$ for i = 1,…,p1。在第一层将 p1 滤波器得到的结果进行拼接，就得到了一个特征映射，$C^{(1)}= [c^{(1,1)}… c^{(p1,1)}] \in \mathbb{R}^{p_1 \times [(T-h)/r^{(1)}+1]}$。</p>
-<p>在第一个卷积层之后，我们对得到的特征映射 $C^{(1)}$ 使用同样的滤波器大小 h 进行卷积操作，并在这 L - 1 层中不断重复此操作。每次操作都能将空间维数降低为 $T^{(l+1)}=[(T^{(l)} - h)/r^{(l)} + 1]$（$r^{(l)}$ 为步长，$T^{(l)}$ 为空间维数大小，l 为第 l 层，[] 为向下取整函数）。在最后一层 L 中，得到了特征映射 $C^{(L-1)}$，将其送入全连接层中制造潜在表示向量 h。在实现时，我们直接用了一个滤波器大小等于 $T^{(L-1)}$（不考虑 h）的卷积层，它就相当于一个全连接层。这个实现上的 trick 在 [24] 中有所使用。这个最后一层将所有的空间坐标 $T^{(L-1)}$ 汇聚成为标量特征，使用滤波器 ${W_c^{(i,l)}}$ for i=1,…,p1 and l=1,…,L 将句子的子结构依次封装为了向量表示。其中 $W_c^{(i,l)}$ 表示层 l 的滤波器 i。这也意味着提取出来的特征的维度是固定的，与输入句子的长度无关。</p>
+<p>对于句子做编码，我们采用了类似 [24] 中的 CNN 结构，这个结构最初是为做图像处理任务设计的。这个 CNN 结构包含 L 个层（L - 1 个卷积层，第 L 层为全连接层），此结构最后可以将一个输入句子转化为一个定长的表示向量 h。层 $l \in \{1, … ,L\}$ 由学习到的滤波器 $p_l$ 组成。对于第一层中的第 i 个滤波器来说，相当于对 X 进行一个步长（stride）为 $r^{(1)}$、滤波器为 $W_c^{(i,1)} \in \mathbb{R}^{k \times h}$ 的卷积运算（式中的 h 代表卷积滤波器的大小）。这一系列操作会生成一个潜在特征映射：$c^{(i,1)}=\gamma(X <em> W_c^{(i,1)} + b^{(i,1)}) \in \mathbb{R}^{(T-h)/r^{(1)}+1}$，其中 $\gamma(.)$ 为非线性激活函数，$b^{(i,1)} \in \mathbb{R}^{(T-h)/r^{(1)}+1}$ ，</em> 符号代表了卷积操作。在我们的实验中，$\gamma(.)$ 为 ReLU。需要注意的是，最初的 embedding 维数 k 在经过第一层卷积层后就发生了变化，$c^{(i,1)} \in \mathbb{R}^{(T-h)/r^{(1)}+1}$ for i = 1,…,p1。在第一层将 p1 滤波器得到的结果进行拼接，就得到了一个特征映射，$C^{(1)}= [c^{(1,1)}… c^{(p1,1)}] \in \mathbb{R}^{p_1 \times [(T-h)/r^{(1)}+1]}$。</p>
+<p>在第一个卷积层之后，我们对得到的特征映射 $C^{(1)}$ 使用同样的滤波器大小 h 进行卷积操作，并在这 L - 1 层中不断重复此操作。每次操作都能将空间维数降低为 $T^{(l+1)}=[(T^{(l)} - h)/r^{(l)} + 1]$（$r^{(l)}$ 为步长，$T^{(l)}$ 为空间维数大小，l 为第 l 层，[] 为向下取整函数）。在最后一层 L 中，得到了特征映射 $C^{(L-1)}$，将其送入全连接层中制造潜在表示向量 h。在实现时，我们直接用了一个滤波器大小等于 $T^{(L-1)}$（不考虑 h）的卷积层，它就相当于一个全连接层。这个实现上的 trick 在 [24] 中有所使用。这个最后一层将所有的空间坐标 $T^{(L-1)}$ 汇聚成为标量特征，使用滤波器 $\{W_c^{(i,l)}\}$ for i=1,…,p1 and l=1,…,L 将句子的子结构依次封装为了向量表示。其中 $W_c^{(i,l)}$ 表示层 l 的滤波器 i。这也意味着提取出来的特征的维度是固定的，与输入句子的长度无关。</p>
 <p><img src="/images/pasted-317.png" alt="upload successful"></p>
 <p>图1，卷积自动编码结构。编码器：将输入序列展开为 embedding 矩阵 X，接着通过多个卷积层编码器压缩为表示向量 h，在最后一层中将向量折叠去除空间维度。解码器：将表示向量 h 送入多个反卷积解码器，以 X 为目标，使用余弦相似度交叉熵损失函数重建 $\hat{X}$。</p>
-<p>在最后一层有 $p_L$ 个滤波器，将会构造出 $p_L$ 维的表示向量。对于输入句子来说，也记为 $h=C^{(L)}$。例如，在图一中，编码器由 L=3 个层构成，句子长度为 T=60，embedding 维数为 k=300，不同层的步长 ${ r^{(1)},r^{(2)},r^{(3)} } = {2,2,1}$ ，滤波器大小 $h = {5,5,12}$，滤波器数量 ${p_1,p_2,p_3 }={300,600,500}$。中间层得到的特征映射 $C^{(1)}$ 和 $C^{(2)}$ 的大小分别为 ${28 \times 300,12 \times 600}$。最后的特征映射大小为 1 x 500，对应的正是潜在表示向量 h。</p>
+<p>在最后一层有 $p_L$ 个滤波器，将会构造出 $p_L$ 维的表示向量。对于输入句子来说，也记为 $h=C^{(L)}$。例如，在图一中，编码器由 L=3 个层构成，句子长度为 T=60，embedding 维数为 k=300，不同层的步长 $\{ r^{(1)},r^{(2)},r^{(3)} \} = \{2,2,1\}$ ，滤波器大小 $h = \{5,5,12\}$，滤波器数量 $\{p_1,p_2,p_3 \}=\{300,600,500\}$。中间层得到的特征映射 $C^{(1)}$ 和 $C^{(2)}$ 的大小分别为 $\{28 \times 300,12 \times 600\}$。最后的特征映射大小为 1 x 500，对应的正是潜在表示向量 h。</p>
 <p>从概念上看，较低层中的滤波器捕捉的是原始的句子信息（h-gram，类似于图像处理中的边缘信息），而叫高层中的滤波器捕捉的是更复杂的语言特征，比如语义和句法结构等（类似于图像处理中的图像元素）。这种自底向上的结构通过分层堆叠文本片段（h-gram）作为构建表示向量 h 的积木。这种方法在思路上类似于通过 concrete syntax trees [26] 对语言的语法结构进行建模。不过，我们没有事先去指定某种语法结构（比如英语），而是通过多层 CNN 网络提取此结构。</p>
 <h4 id="2-2-反卷积解码器"><a href="#2-2-反卷积解码器" class="headerlink" title="2.2 反卷积解码器"></a>2.2 反卷积解码器</h4><p>我们按照一定步长应用卷积的变体 - 反卷积操作（比如 convolutional transpose），用于解码表示向量 h，将其还原至原来的文本域。随着反卷积的不断进行，向量的空间高度也不断增加，如图1所示，和之前描述的卷积操作刚好相反。空间维数首先展开至与卷积层的 L-1 层相同，接着逐渐展开为 $T^{(l+1)} = (T^{(l)}-1)*r^{(l)} + h$ for l=1,…直到第 L 个反卷积层（此层与卷积编码器的输入层相对应）。第 L 反卷积层的输出目标是重建 Word embedding 矩阵 $\hat{X}$。与 $W_e$ 一样，$\hat{X}$ 的每一列都经由 l2-norm 处理。</p>
 <p>用 $\hat{w}^t$ 来表示重建后句子 $\hat{s}$ 中的第 t 个单词，$\hat{w}^t$ 为 v 的概率可表示为：</p>
@@ -664,18 +739,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/04/18/ssh-%E4%B8%8D%E7%94%A8%E6%89%8B%E5%8A%A8%E8%BE%93%E5%AF%86%E7%A0%81%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -687,34 +764,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2018/04/18/ssh-%E4%B8%8D%E7%94%A8%E6%89%8B%E5%8A%A8%E8%BE%93%E5%AF%86%E7%A0%81%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">ssh 不用手动输密码远程执行命令</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-04-18 12:15:00" itemprop="dateCreated datePublished" datetime="2018-04-18T12:15:00+08:00">2018-04-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Note/" itemprop="url" rel="index">
-                    <span itemprop="name">Note</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2018-04-18 12:15:00" itemprop="dateCreated datePublished" datetime="2018-04-18T12:15:00+08:00">2018-04-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Note/" itemprop="url" rel="index"><span itemprop="name">Note</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -723,14 +803,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>小组使用了 GitLab，在某项目中需要利用 CI 进行远程部署，但生产服务器是另一台远程服务器，而 CI Runner 的运行环境是 Docker。</p>
 <p>由于 ssh 的安全措施，在建立 ssh 连接时不允许自动化输入密码，必须在出现密码框后手动输入，因此在 CI 流程中无法实现；经过了解，一款名为 sshpass 的工具可以满足此需求；</p>
-<p>在本机测试时，使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">brew install sshpass</span></pre></td></tr></table></figure><br>提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">We won&#39;t add sshpass because it makes it too easy for novice SSH users to ruin SSH&#39;s security.</span></pre></td></tr></table></figure><br>可知此工具的确是破坏了 ssh 的安全性。</p>
+<p>在本机测试时，使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install sshpass</span><br></pre></td></tr></table></figure><br>提示<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">We won&#x27;t add sshpass because <span class="keyword">it</span> makes <span class="keyword">it</span> too easy <span class="keyword">for</span> novice SSH users <span class="keyword">to</span> ruin SSH&#x27;s security.</span><br></pre></td></tr></table></figure><br>可知此工具的确是破坏了 ssh 的安全性。</p>
 <p>但在内部机器的 CI Runner Docker 中，不考虑这个问题。Gitlab CI Runner 默认使用的是 <code>alpine:latest</code>，需要事先安装依赖及 sshpass，因此在 before_script 中加上 <code>apk add --update --no-cache openssh sshpass</code> 安装此工具。</p>
 <p>在后续的 job/stage 中，加入远程执行命令脚本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">sshpass -p <span class="string">'password'</span> ssh -T -o StrictHostKeyChecking=no username@192.168.xxx.xxx <span class="string">'sh /home/remote/script.sh'</span></span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sshpass -p <span class="string">&#x27;password&#x27;</span> ssh -T -o StrictHostKeyChecking=no username@192.168.xxx.xxx <span class="string">&#x27;sh /home/remote/script.sh&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>即可绕过手动输入密码步骤，在 CI 中运行远程 sh 脚本。</p>
 <blockquote>
 <p>在联网环境慎用，防止泄密</p>
@@ -742,18 +820,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/04/04/%E4%B8%BA-JavaScript-%E7%A8%8B%E5%BA%8F%E5%91%98%E5%87%86%E5%A4%87%E7%9A%84-Flutter-%E6%8C%87%E5%8D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -765,34 +845,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2018/04/04/%E4%B8%BA-JavaScript-%E7%A8%8B%E5%BA%8F%E5%91%98%E5%87%86%E5%A4%87%E7%9A%84-Flutter-%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">为 JavaScript 程序员准备的 Flutter 指南</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-04-04 10:49:00" itemprop="dateCreated datePublished" datetime="2018-04-04T10:49:00+08:00">2018-04-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2018-04-04 10:49:00" itemprop="dateCreated datePublished" datetime="2018-04-04T10:49:00+08:00">2018-04-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -801,20 +884,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="https://flutter.io/" target="_blank" rel="noopener">Flutter</a> 是一款用同一套代码构建高性能、高保真的 iOS 及安卓应用的跨平台移动端应用 SDK。</p>
-<p><a href="https://flutter.io/technical-overview/" target="_blank" rel="noopener">文档</a>中提到：</p>
+          <p><a target="_blank" rel="noopener" href="https://flutter.io/">Flutter</a> 是一款用同一套代码构建高性能、高保真的 iOS 及安卓应用的跨平台移动端应用 SDK。</p>
+<p><a target="_blank" rel="noopener" href="https://flutter.io/technical-overview/">文档</a>中提到：</p>
 <blockquote>
 <p>Flutter 包括一个 <strong>react 风格</strong>的框架、一个 2D 渲染引擎、一些预制的插件以及开发者工具。</p>
 </blockquote>
 <p><img src="/images/pasted-312.png" alt="upload successful"></p>
-<p>文本希望能快速为 JavaScript 开发者们提供一个简练的入门指南，我会试着以 JS 与 npm 生态系统来类比 Flutter / Dart 与 <a href="https://pub.dartlang.org/" target="_blank" rel="noopener">Pub</a> 包库。</p>
+<p>文本希望能快速为 JavaScript 开发者们提供一个简练的入门指南，我会试着以 JS 与 npm 生态系统来类比 Flutter / Dart 与 <a target="_blank" rel="noopener" href="https://pub.dartlang.org/">Pub</a> 包库。</p>
 <blockquote>
-<p>如果你对最新的 Flutter 教程、库、公告及社区的更新感兴趣，我建议您订阅双周刊 <a href="http://flutternewsletter.com/" target="_blank" rel="noopener">Flutter Newsletter</a>。</p>
+<p>如果你对最新的 Flutter 教程、库、公告及社区的更新感兴趣，我建议您订阅双周刊 <a target="_blank" rel="noopener" href="http://flutternewsletter.com/">Flutter Newsletter</a>。</p>
 </blockquote>
 <hr>
-<p>我在 <a href="https://react-native.eu/" target="_blank" rel="noopener">React Native EU</a> 的演讲 <a href="https://www.youtube.com/watch?v=pFtvv0rJgPw" target="_blank" rel="noopener">React Native — 跨平台及超越</a>中讨论并演示了 React 生态系统中 <a href="https://github.com/necolas/react-native-web" target="_blank" rel="noopener">React Native Web</a>、<a href="https://github.com/lelandrichardson/react-primitives" target="_blank" rel="noopener">React Primitives</a> 和 <a href="https://microsoft.github.io/reactxp/" target="_blank" rel="noopener">ReactXP</a> 的不同之处，并且我也有机会讨论 <a href="https://weex.incubator.apache.org/" target="_blank" rel="noopener">Weex</a> 及 <a href="https://flutter.io/" target="_blank" rel="noopener">Flutter</a> 的不同之处。</p>
+<p>我在 <a target="_blank" rel="noopener" href="https://react-native.eu/">React Native EU</a> 的演讲 <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=pFtvv0rJgPw">React Native — 跨平台及超越</a>中讨论并演示了 React 生态系统中 <a target="_blank" rel="noopener" href="https://github.com/necolas/react-native-web">React Native Web</a>、<a target="_blank" rel="noopener" href="https://github.com/lelandrichardson/react-primitives">React Primitives</a> 和 <a target="_blank" rel="noopener" href="https://microsoft.github.io/reactxp/">ReactXP</a> 的不同之处，并且我也有机会讨论 <a target="_blank" rel="noopener" href="https://weex.incubator.apache.org/">Weex</a> 及 <a target="_blank" rel="noopener" href="https://flutter.io/">Flutter</a> 的不同之处。</p>
 <p>在尝试 Flutter 之后，我认为它是近几年我所关注的前端技术中最让我激动的一个。在本文中，我将讨论为何它如此令我激动，并介绍如何尽可能快的入门 Flutter。</p>
           <!--noindex-->
             <div class="post-button">
@@ -830,18 +911,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/03/19/%E4%B8%BA-Python-Web-App-%E7%BC%96%E5%86%99-Dockerfiles/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -853,34 +936,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2018/03/19/%E4%B8%BA-Python-Web-App-%E7%BC%96%E5%86%99-Dockerfiles/" class="post-title-link" itemprop="url">为 Python Web App 编写 Dockerfiles</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-03-19 17:22:00" itemprop="dateCreated datePublished" datetime="2018-03-19T17:22:00+08:00">2018-03-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2018-03-19 17:22:00" itemprop="dateCreated datePublished" datetime="2018-03-19T17:22:00+08:00">2018-03-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -889,8 +975,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><img src="/images/pasted-311.png" alt="upload successful"></p>
 <h3 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h3><p>本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Python 应用的例子。以下为本指南的内容摘要：</p>
 <ul>
@@ -901,7 +985,7 @@
 <li>使用 <code>alpine</code> 进行生产环境下的多级构建，减少最终镜像文件的大小。</li>
 <li>#彩蛋 — 在开发时可以用 gunicorn 的 <code>--reload</code> 与 <code>--reload_extra_files</code> 监视文件（包括 html、css 及 js）的修改。</li>
 </ul>
-<p>如果你需要以上步骤的代码，请参考 <a href="https://github.com/praveenweb/python-docker" target="_blank" rel="noopener">GitHub repo</a>.</p>
+<p>如果你需要以上步骤的代码，请参考 <a target="_blank" rel="noopener" href="https://github.com/praveenweb/python-docker">GitHub repo</a>.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/03/19/%E4%B8%BA-Python-Web-App-%E7%BC%96%E5%86%99-Dockerfiles/#more" rel="contents">
@@ -916,18 +1000,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/03/15/%E7%94%A8-Python-%E5%81%9A%E4%B8%80%E4%B8%AA-H5-%E6%B8%B8%E6%88%8F%E6%9C%BA%E5%99%A8%E4%BA%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -939,34 +1025,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2018/03/15/%E7%94%A8-Python-%E5%81%9A%E4%B8%80%E4%B8%AA-H5-%E6%B8%B8%E6%88%8F%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="post-title-link" itemprop="url">用 Python 做一个 H5 游戏机器人</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-03-15 11:31:00" itemprop="dateCreated datePublished" datetime="2018-03-15T11:31:00+08:00">2018-03-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2018-03-15 11:31:00" itemprop="dateCreated datePublished" datetime="2018-03-15T11:31:00+08:00">2018-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -975,9 +1064,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>摘要：</strong>我给游戏 <a href="http://stabby.io/" target="_blank" rel="noopener">stabby.io</a> 写了一个机器人（bot），源码请参考： <a href="https://github.com/vesche/stabbybot" target="_blank" rel="noopener">GitHub repo</a>。</p>
+          <p><strong>摘要：</strong>我给游戏 <a target="_blank" rel="noopener" href="http://stabby.io/">stabby.io</a> 写了一个机器人（bot），源码请参考： <a target="_blank" rel="noopener" href="https://github.com/vesche/stabbybot">GitHub repo</a>。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2018/03/15/%E7%94%A8-Python-%E5%81%9A%E4%B8%80%E4%B8%AA-H5-%E6%B8%B8%E6%88%8F%E6%9C%BA%E5%99%A8%E4%BA%BA/#more" rel="contents">
@@ -992,18 +1079,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/03/06/%E4%BD%BF%E7%94%A8-Grub-%E5%BC%95%E5%AF%BC-Linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1015,34 +1104,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2018/03/06/%E4%BD%BF%E7%94%A8-Grub-%E5%BC%95%E5%AF%BC-Linux/" class="post-title-link" itemprop="url">使用 Grub 引导 Linux</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-03-06 19:57:00" itemprop="dateCreated datePublished" datetime="2018-03-06T19:57:00+08:00">2018-03-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Note/" itemprop="url" rel="index">
-                    <span itemprop="name">Note</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2018-03-06 19:57:00" itemprop="dateCreated datePublished" datetime="2018-03-06T19:57:00+08:00">2018-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Note/" itemprop="url" rel="index"><span itemprop="name">Note</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -1051,13 +1143,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>进入 Grub 之后，显示 GRUB&gt; 命令提示符。可根据以下操作加载 linux kernel 并进行引导。</p>
-<h4 id="查找引导分区"><a href="#查找引导分区" class="headerlink" title="查找引导分区"></a>查找引导分区</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ls</span></pre></td></tr></table></figure>
-<p>将返回 hd0\hd1 之类的硬盘符<br>由于我的 linux 装载在第一块硬盘的第一个分区上，由此<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">ls (hd0,1)</span></pre></td></tr></table></figure><br>可以看到根目录 / 下的目录结构。</p>
-<h4 id="装载-kernel-并引导"><a href="#装载-kernel-并引导" class="headerlink" title="装载 kernel 并引导"></a>装载 kernel 并引导</h4><p>在根目录下有 vmlinuz 与 initrd.img 两个文件，使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">linux (hd0,1)/vmlinuz root=/dev/sda1 ro</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">initrd (hd0,1)/initrd.img</span></pre></td></tr></table></figure><br>装载内核</p>
-<h4 id="boot"><a href="#boot" class="headerlink" title="boot"></a>boot</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">boot</span></pre></td></tr></table></figure>
+<h4 id="查找引导分区"><a href="#查找引导分区" class="headerlink" title="查找引导分区"></a>查找引导分区</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
+<p>将返回 hd0\hd1 之类的硬盘符<br>由于我的 linux 装载在第一块硬盘的第一个分区上，由此<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls (hd0,1)</span><br></pre></td></tr></table></figure><br>可以看到根目录 / 下的目录结构。</p>
+<h4 id="装载-kernel-并引导"><a href="#装载-kernel-并引导" class="headerlink" title="装载 kernel 并引导"></a>装载 kernel 并引导</h4><p>在根目录下有 vmlinuz 与 initrd.img 两个文件，使用<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">linux (hd0,1)/vmlinuz root=/dev/sda1 ro</span><br><span class="line">initrd (hd0,1)/initrd.img</span><br></pre></td></tr></table></figure><br>装载内核</p>
+<h4 id="boot"><a href="#boot" class="headerlink" title="boot"></a>boot</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boot</span><br></pre></td></tr></table></figure>
 <p>即可启动系统。启动一次之后 Grub 会保存此设置，之后可直接进入系统。</p>
 
       
@@ -1066,18 +1156,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/28/%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1089,34 +1181,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2018/02/28/%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">一份为 Node.js 应用准备的 Dockerfile 指南</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2018-02-28 11:55:00" itemprop="dateCreated datePublished" datetime="2018-02-28T11:55:00+08:00">2018-02-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2018-02-28 11:55:00" itemprop="dateCreated datePublished" datetime="2018-02-28T11:55:00+08:00">2018-02-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -1125,8 +1220,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><img src="/images/pasted-306.png" alt="upload successful"></p>
 <h3 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h3><p>本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Node.js Web 应用的例子。以下为本指南的内容摘要：</p>
 <ul>
@@ -1151,15 +1244,16 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-  </div>
 
   
   <nav class="pagination">
@@ -1168,91 +1262,39 @@
 
 
 
-          </div>
-          
+      
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">lsvih</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">161</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">205</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -1264,32 +1306,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -1305,9 +1353,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -1323,55 +1370,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

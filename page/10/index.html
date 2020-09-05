@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,56 +13,33 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="My note">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;page&#x2F;10&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/page/10/index.html">
 <meta property="og:site_name" content="My note">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="lsvih">
 <meta name="twitter:card" content="summary">
+
 
 <link rel="canonical" href="https://lsvih.com/page/10/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
-    isPage: false,
-    isArchive: false
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
   };
 </script>
 
@@ -85,24 +62,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -110,60 +99,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -171,31 +163,105 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
 
-  
-</div>
-<div class="search-pop-overlay"></div>
-
+      
+    </div>
   </div>
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lsvih</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">161</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">205</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
@@ -205,20 +271,19 @@
   </div>
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
+    <div class="main-inner index posts-expand">
+      
 
-  <div class="posts-expand">
-        
+      
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/03/21/EM-algorithm%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -230,34 +295,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2017/03/21/EM-algorithm%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">EM algorithm最大似然算法学习笔记</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-03-21 12:55:00" itemprop="dateCreated datePublished" datetime="2017-03-21T12:55:00+08:00">2017-03-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-03-21 12:55:00" itemprop="dateCreated datePublished" datetime="2017-03-21T12:55:00+08:00">2017-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -266,8 +334,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h2 id="琴生不等式-Jensen’s-inequality"><a href="#琴生不等式-Jensen’s-inequality" class="headerlink" title="琴生不等式(Jensen’s inequality)"></a>琴生不等式(Jensen’s inequality)</h2><p>最大似然函数应用到了琴生不等式。琴生不等式给出了积分的凸函数值和凸函数的积分值间的关系。它由以下两部分组成：</p>
 <p>当$f(x)$是(a,b)区间上的凸函数时，则对任意的点$x_1,x_2,…,x_n \in (a,b)$有</p>
 <script type="math/tex; mode=display">f(\frac{x_1+x_2+...+x_n}{n}) \geq \frac{1}{n}[f(x_1)+f(x_2)+...+f(x_n)]</script><p>当$x_1=x_2=…=x_n$时取等号。</p>
@@ -314,7 +380,7 @@
  \}</script><hr>
 <blockquote>
 <p>Reference</p>
-<p>Stanford CS229 <a href="http://cs229.stanford.edu/notes/cs229-notes8.pdf" target="_blank" rel="noopener">http://cs229.stanford.edu/notes/cs229-notes8.pdf</a><br><a href="https://lsvih.com/img/1490063106133851.pdf">cs229-notes8-EM算法.pdf</a><br>从最大似然到EM算法浅解 <a href="http://blog.csdn.net/zouxy09/article/details/8537620/" target="_blank" rel="noopener">http://blog.csdn.net/zouxy09/article/details/8537620/</a></p>
+<p>Stanford CS229 <a target="_blank" rel="noopener" href="http://cs229.stanford.edu/notes/cs229-notes8.pdf">http://cs229.stanford.edu/notes/cs229-notes8.pdf</a><br><a href="https://lsvih.com/img/1490063106133851.pdf">cs229-notes8-EM算法.pdf</a><br>从最大似然到EM算法浅解 <a target="_blank" rel="noopener" href="http://blog.csdn.net/zouxy09/article/details/8537620/">http://blog.csdn.net/zouxy09/article/details/8537620/</a></p>
 </blockquote>
 
       
@@ -323,18 +389,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/03/08/swift%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8%E8%BD%BB%E9%87%8F%E6%95%B0%E6%8D%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -346,34 +414,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2017/03/08/swift%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8%E8%BD%BB%E9%87%8F%E6%95%B0%E6%8D%AE/" class="post-title-link" itemprop="url">swift持久化存储轻量数据</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-03-08 16:43:00" itemprop="dateCreated datePublished" datetime="2017-03-08T16:43:00+08:00">2017-03-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front End</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-03-08 16:43:00" itemprop="dateCreated datePublished" datetime="2017-03-08T16:43:00+08:00">2017-03-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -382,19 +453,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>做个简单的记事本,效果如下：</p>
 <p>主要使用UserDefaults(以前是NSUserDefaults)实现数据的持久化,将Array<String>数据存储在沙盒里。</p>
 <p>直接使用</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">syncStore</span><span class="params">()</span></span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="type">UserDefaults</span>.standard.<span class="keyword">set</span>(objects, forKey: <span class="string">"history"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="type">UserDefaults</span>.standard.synchronize()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">syncStore</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">UserDefaults</span>.standard.<span class="keyword">set</span>(objects, forKey: <span class="string">&quot;history&quot;</span>)</span><br><span class="line">    <span class="type">UserDefaults</span>.standard.synchronize()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>存数据。</p>
 <p>读取数据使用</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">objects = <span class="type">UserDefaults</span>.standard.value(forKey: <span class="string">"history"</span>) <span class="keyword">as</span>! <span class="type">Array</span>&lt;<span class="type">Any</span>&gt;</span></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objects = <span class="type">UserDefaults</span>.standard.value(forKey: <span class="string">&quot;history&quot;</span>) <span class="keyword">as</span>! <span class="type">Array</span>&lt;<span class="type">Any</span>&gt;</span><br></pre></td></tr></table></figure>
 <p>在第一次启动的时候读数据会出错，因此需要判断是否为第一次启动，如果是第一次启动则需要初始化存储结构。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> isFirstLaunch = <span class="type">UserDefaults</span>.standard.string(forKey: <span class="string">"FirstLaunch"</span>) == <span class="literal">nil</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(isFirstLaunch)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="type">UserDefaults</span>.standard.<span class="keyword">set</span>(<span class="string">"false"</span>, forKey: <span class="string">"FirstLaunch"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    syncStore()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;<span class="keyword">else</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    objects = <span class="type">UserDefaults</span>.standard.value(forKey: <span class="string">"history"</span>) <span class="keyword">as</span>! <span class="type">Array</span>&lt;<span class="type">Any</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> isFirstLaunch = <span class="type">UserDefaults</span>.standard.string(forKey: <span class="string">&quot;FirstLaunch&quot;</span>) == <span class="literal">nil</span></span><br><span class="line"><span class="keyword">if</span>(isFirstLaunch)&#123;</span><br><span class="line">    <span class="type">UserDefaults</span>.standard.<span class="keyword">set</span>(<span class="string">&quot;false&quot;</span>, forKey: <span class="string">&quot;FirstLaunch&quot;</span>)</span><br><span class="line">    syncStore()</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    objects = <span class="type">UserDefaults</span>.standard.value(forKey: <span class="string">&quot;history&quot;</span>) <span class="keyword">as</span>! <span class="type">Array</span>&lt;<span class="type">Any</span>&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>插入数据的function:</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">insertNewObject</span><span class="params">(<span class="number">_</span> sender: <span class="keyword">Any</span>)</span></span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> alertController = <span class="type">UIAlertController</span>(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    title: <span class="string">"添加备忘"</span>, </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    message: <span class="string">"请输入备忘内容"</span>, </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    preferredStyle: <span class="type">UIAlertControllerStyle</span>.alert)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> insertAction = <span class="type">UIAlertAction</span>(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    title: <span class="string">"确认"</span>, </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    style: .<span class="keyword">default</span>, </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    handler: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    (action: <span class="type">UIAlertAction</span>) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">print</span>(alertController.textFields![<span class="number">0</span>].text!)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">self</span>.objects.insert(alertController.textFields![<span class="number">0</span>].text!, at: <span class="number">0</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">let</span> indexPath = <span class="type">IndexPath</span>(row: <span class="number">0</span>, section: <span class="number">0</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">self</span>.tableView.insertRows(at: [indexPath], with: .automatic)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">self</span>.syncStore()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">let</span> cancelAction = <span class="type">UIAlertAction</span>(title: <span class="string">"取消"</span>, style: .cancel)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    alertController.addTextField &#123; (textField:<span class="type">UITextField</span>) <span class="keyword">in</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">        textField.placeholder = <span class="string">"请输入内容"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    alertController.addAction(insertAction)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    alertController.addAction(cancelAction)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">self</span>.present(alertController, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">insertNewObject</span><span class="params">(<span class="number">_</span> sender: <span class="keyword">Any</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">let</span> alertController = <span class="type">UIAlertController</span>(</span><br><span class="line">    title: <span class="string">&quot;添加备忘&quot;</span>, </span><br><span class="line">    message: <span class="string">&quot;请输入备忘内容&quot;</span>, </span><br><span class="line">    preferredStyle: <span class="type">UIAlertControllerStyle</span>.alert)</span><br><span class="line">    <span class="keyword">let</span> insertAction = <span class="type">UIAlertAction</span>(</span><br><span class="line">    title: <span class="string">&quot;确认&quot;</span>, </span><br><span class="line">    style: .<span class="keyword">default</span>, </span><br><span class="line">    handler: &#123;</span><br><span class="line">    (action: <span class="type">UIAlertAction</span>) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">        <span class="built_in">print</span>(alertController.textFields![<span class="number">0</span>].text!)</span><br><span class="line">        <span class="keyword">self</span>.objects.insert(alertController.textFields![<span class="number">0</span>].text!, at: <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">let</span> indexPath = <span class="type">IndexPath</span>(row: <span class="number">0</span>, section: <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">self</span>.tableView.insertRows(at: [indexPath], with: .automatic)</span><br><span class="line">        <span class="keyword">self</span>.syncStore()</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">let</span> cancelAction = <span class="type">UIAlertAction</span>(title: <span class="string">&quot;取消&quot;</span>, style: .cancel)</span><br><span class="line">    alertController.addTextField &#123; (textField:<span class="type">UITextField</span>) <span class="keyword">in</span></span><br><span class="line">        textField.placeholder = <span class="string">&quot;请输入内容&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    alertController.addAction(insertAction)</span><br><span class="line">    alertController.addAction(cancelAction)</span><br><span class="line">    <span class="keyword">self</span>.present(alertController, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -402,18 +471,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/02/18/%E6%97%8B%E8%BD%AC%E7%94%9F%E6%88%90%E7%9F%A9%E9%98%B5-Spiral-Matrix/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -425,34 +496,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2017/02/18/%E6%97%8B%E8%BD%AC%E7%94%9F%E6%88%90%E7%9F%A9%E9%98%B5-Spiral-Matrix/" class="post-title-link" itemprop="url">旋转生成矩阵(Spiral Matrix)</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-02-18 05:18:00" itemprop="dateCreated datePublished" datetime="2017-02-18T05:18:00+08:00">2017-02-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-02-18 05:18:00" itemprop="dateCreated datePublished" datetime="2017-02-18T05:18:00+08:00">2017-02-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -461,11 +535,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Given an integer *n*, generate a square matrix filled with elements from 1 to *n*2 in spiral order.</p>
+          <p>Given an integer <em>n</em>, generate a square matrix filled with elements from 1 to <em>n</em>2 in spiral order.</p>
 <p>For example,</p>
-<p>Given *n* = 3,</p>
+<p>Given <em>n</em> = 3,</p>
 <p>You should return the following matrix:</p>
 <p>[[ 1, 2, 3 ],</p>
 <p> [ 8, 9, 4 ],</p>
@@ -473,26 +545,26 @@
 <p>与之前蛇形遍历一个思路，给定几个状态x,y,state(说明当前生成的方向)</p>
 <p>在这个问题中，只有以下几种情况：向上生成到顶时，向右生成；向右生成到顶时，向下生成；向下生成到顶时，向左生成；向左生成到顶时，向上生成。最终的结束条件是生成了n^2个数字。</p>
 <p>首先生成一个n*n的矩阵：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">rs = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    rs.append([])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(n):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        rs[i].append(<span class="keyword">None</span>)</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rs = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    rs.append([])</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(n):</span><br><span class="line">        rs[i].append(<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
 <p>这样就得到了一个n*n的空矩阵。</p>
 <p>开始时尝试过</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[[<span class="keyword">None</span>]*n]*n</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="literal">None</span>]*n]*n</span><br></pre></td></tr></table></figure>
 <p>与</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[[<span class="keyword">None</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)]]*n</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="literal">None</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)]]*n</span><br></pre></td></tr></table></figure>
 <p>的方式，发现均会出现问题。原因是以这种方式生成的二维数组的子项指向的是同一个对象。其后果是</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [[<span class="keyword">None</span>]*<span class="number">5</span>]*<span class="number">5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">[[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>]]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">2</span>][<span class="number">2</span>] = <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">[[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="number">1</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="number">1</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="number">1</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="number">1</span>, <span class="keyword">None</span>, <span class="keyword">None</span>], </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">[<span class="keyword">None</span>, <span class="keyword">None</span>, <span class="number">1</span>, <span class="keyword">None</span>, <span class="keyword">None</span>]]</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = [[<span class="literal">None</span>]*<span class="number">5</span>]*<span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>], </span><br><span class="line">[<span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>], </span><br><span class="line">[<span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>], </span><br><span class="line">[<span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>], </span><br><span class="line">[<span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>, <span class="literal">None</span>]]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">2</span>][<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">[[<span class="literal">None</span>, <span class="literal">None</span>, <span class="number">1</span>, <span class="literal">None</span>, <span class="literal">None</span>], </span><br><span class="line">[<span class="literal">None</span>, <span class="literal">None</span>, <span class="number">1</span>, <span class="literal">None</span>, <span class="literal">None</span>], </span><br><span class="line">[<span class="literal">None</span>, <span class="literal">None</span>, <span class="number">1</span>, <span class="literal">None</span>, <span class="literal">None</span>], </span><br><span class="line">[<span class="literal">None</span>, <span class="literal">None</span>, <span class="number">1</span>, <span class="literal">None</span>, <span class="literal">None</span>], </span><br><span class="line">[<span class="literal">None</span>, <span class="literal">None</span>, <span class="number">1</span>, <span class="literal">None</span>, <span class="literal">None</span>]]</span><br></pre></td></tr></table></figure>
 <p>使用built-in查看它们的id发现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(a[<span class="number">2</span>]),id(a[<span class="number">3</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">(<span class="number">4337281432</span>, <span class="number">4337281432</span>)</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>id(a[<span class="number">2</span>]),id(a[<span class="number">3</span>])</span><br><span class="line">(<span class="number">4337281432</span>, <span class="number">4337281432</span>)</span><br></pre></td></tr></table></figure>
 <p>因此放弃看上去简洁的写法。</p>
 <blockquote>
 <p>更新：发现一个简洁有效的写法：</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">x = [[<span class="keyword">None</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)] <span class="keyword">for</span> j <span class="keyword">in</span> range(n)]</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = [[<span class="literal">None</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(n)] <span class="keyword">for</span> j <span class="keyword">in</span> range(n)]</span><br></pre></td></tr></table></figure>
 <hr>
 <p>之后找出每个方向的条件</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> step &lt;= n**<span class="number">2</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># print x,y,state,step,layer,tmp</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    rs[x][y] = step</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> state == <span class="string">'up'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> x == layer:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            y += <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            state = <span class="string">'right'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:x -= <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">elif</span> state == <span class="string">'right'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> y+<span class="number">1</span> == n-layer:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            x += <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">            state = <span class="string">'down'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:y+=<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">elif</span> state == <span class="string">'down'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> x+<span class="number">1</span> == n-layer:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">            y -= <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">            state = <span class="string">'left'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:x+=<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">elif</span> state == <span class="string">'left'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> y == layer:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">            x-=<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">            state= <span class="string">'up'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:y-=<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    step += <span class="number">1</span></span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> step &lt;= n**<span class="number">2</span>:</span><br><span class="line"><span class="comment"># print x,y,state,step,layer,tmp</span></span><br><span class="line">    rs[x][y] = step</span><br><span class="line">    <span class="keyword">if</span> state == <span class="string">&#x27;up&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> x == layer:</span><br><span class="line">            y += <span class="number">1</span></span><br><span class="line">            state = <span class="string">&#x27;right&#x27;</span></span><br><span class="line">        <span class="keyword">else</span>:x -= <span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> state == <span class="string">&#x27;right&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> y+<span class="number">1</span> == n-layer:</span><br><span class="line">            x += <span class="number">1</span></span><br><span class="line">            state = <span class="string">&#x27;down&#x27;</span></span><br><span class="line">        <span class="keyword">else</span>:y+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> state == <span class="string">&#x27;down&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> x+<span class="number">1</span> == n-layer:</span><br><span class="line">            y -= <span class="number">1</span></span><br><span class="line">            state = <span class="string">&#x27;left&#x27;</span></span><br><span class="line">        <span class="keyword">else</span>:x+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">elif</span> state == <span class="string">&#x27;left&#x27;</span>:</span><br><span class="line">        <span class="keyword">if</span> y == layer:</span><br><span class="line">            x-=<span class="number">1</span></span><br><span class="line">            state= <span class="string">&#x27;up&#x27;</span></span><br><span class="line">        <span class="keyword">else</span>:y-=<span class="number">1</span></span><br><span class="line">    step += <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>大意如此。其中layer为当前从外向内已生成完的层数，由</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> step == n**<span class="number">2</span>-(n-layer*<span class="number">2</span><span class="number">-2</span>)**<span class="number">2</span>:layer+=<span class="number">1</span></span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> step == n**<span class="number">2</span>-(n-layer*<span class="number">2</span><span class="number">-2</span>)**<span class="number">2</span>:layer+=<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>可以得到。</p>
 
       
@@ -501,18 +573,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/02/07/%E8%9B%87%E5%BD%A2%E9%81%8D%E5%8E%86-Diagonal-Traverse/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -524,34 +598,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2017/02/07/%E8%9B%87%E5%BD%A2%E9%81%8D%E5%8E%86-Diagonal-Traverse/" class="post-title-link" itemprop="url">蛇形遍历(Diagonal Traverse)</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-02-07 14:30:00" itemprop="dateCreated datePublished" datetime="2017-02-07T14:30:00+08:00">2017-02-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-02-07 14:30:00" itemprop="dateCreated datePublished" datetime="2017-02-07T14:30:00+08:00">2017-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -560,8 +637,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><strong>Input:</strong></p>
 <p>[[ 1, 2, 3 ],</p>
 <p> [ 4, 5, 6 ],</p>
@@ -574,11 +649,11 @@
 <p>在遍历过程中有几种情况：向右遍历、向下遍历、向左下遍历、向右上遍历。</p>
 <p>给定两个变量x,y(记做matrix[x][y])记录当前坐标，就能通过判断这几个方向决定下一个坐标位置。</p>
 <p>例如，向左下遍历即x++,y—，如果x已经到矩阵下边界则转向右遍历；如果x未到矩阵下边界,y到矩阵左边界则向下遍历；如果xy都未到矩阵边界则继续向左下遍历。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">state,x,y,M,N = <span class="string">'right_up'</span>,<span class="number">0</span>,<span class="number">0</span>,len(matrix),len(matrix[<span class="number">0</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> state == <span class="string">'left_down'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    rs.append(matrix[x][y])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> x == M<span class="number">-1</span> <span class="keyword">or</span> y == <span class="number">0</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> x == M<span class="number">-1</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            y += <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">            state = <span class="string">'right_after_left_down'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">            x += <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            state = <span class="string">'down_after_left_down'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">            x += <span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">            y -= <span class="number">1</span></span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">state,x,y,M,N = <span class="string">&#x27;right_up&#x27;</span>,<span class="number">0</span>,<span class="number">0</span>,len(matrix),len(matrix[<span class="number">0</span>])</span><br><span class="line"><span class="keyword">if</span> state == <span class="string">&#x27;left_down&#x27;</span>:</span><br><span class="line">    rs.append(matrix[x][y])</span><br><span class="line">    <span class="keyword">if</span> x == M<span class="number">-1</span> <span class="keyword">or</span> y == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> x == M<span class="number">-1</span>:</span><br><span class="line">            y += <span class="number">1</span></span><br><span class="line">            state = <span class="string">&#x27;right_after_left_down&#x27;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            x += <span class="number">1</span></span><br><span class="line">            state = <span class="string">&#x27;down_after_left_down&#x27;</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            x += <span class="number">1</span></span><br><span class="line">            y -= <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>依次类推，可以将所有情况与边界情况都列出来。</p>
 <p>同时需要排除三种特殊情况：当矩阵为空时不存在遍历结果；当矩阵行或列为1时直接将矩阵从上至下遍历。</p>
 <p>经简化可写出解法(result)：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findDiagonalOrder</span><span class="params">(matrix)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="string">"""</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="string">    :type matrix: List[List[int]]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="string">    :rtype: List[int]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="string">    """</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> matrix == []:<span class="keyword">return</span> []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    rs,state,x,y,M,N = [],<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,len(matrix),len(matrix[<span class="number">0</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> M == <span class="number">1</span> <span class="keyword">or</span> N == <span class="number">1</span>:<span class="keyword">return</span> reduce(<span class="keyword">lambda</span> x,y:x+y,matrix)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        rs.append(matrix[x][y])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> x == M<span class="number">-1</span> <span class="keyword">and</span> y == N<span class="number">-1</span>:<span class="keyword">return</span> rs</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">elif</span> state == <span class="number">0</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">if</span> x == <span class="number">0</span> <span class="keyword">or</span> y == N<span class="number">-1</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">if</span> y == N<span class="number">-1</span>:x,state = x+<span class="number">1</span>,<span class="number">2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">else</span>:y,state = y+<span class="number">1</span>,<span class="number">5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">else</span>:x,y = x<span class="number">-1</span>,y+<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">elif</span> state == <span class="number">1</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">if</span> x == M<span class="number">-1</span> <span class="keyword">or</span> y == <span class="number">0</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">if</span> x == M<span class="number">-1</span>:y,state = y+<span class="number">1</span>,<span class="number">4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">else</span>:x,state = x+<span class="number">1</span>,<span class="number">3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">else</span>:x,y = x+<span class="number">1</span>,y<span class="number">-1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">elif</span> state == <span class="number">3</span> <span class="keyword">or</span> state == <span class="number">4</span>:x,y,state = x<span class="number">-1</span>,y+<span class="number">1</span>,<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">elif</span> state == <span class="number">2</span> <span class="keyword">or</span> state == <span class="number">5</span>:x,y,state = x+<span class="number">1</span>,y<span class="number">-1</span>,<span class="number">1</span></span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findDiagonalOrder</span>(<span class="params">matrix</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type matrix: List[List[int]]</span></span><br><span class="line"><span class="string">    :rtype: List[int]</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> matrix == []:<span class="keyword">return</span> []</span><br><span class="line">    rs,state,x,y,M,N = [],<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,len(matrix),len(matrix[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">if</span> M == <span class="number">1</span> <span class="keyword">or</span> N == <span class="number">1</span>:<span class="keyword">return</span> reduce(<span class="keyword">lambda</span> x,y:x+y,matrix)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        rs.append(matrix[x][y])</span><br><span class="line">        <span class="keyword">if</span> x == M<span class="number">-1</span> <span class="keyword">and</span> y == N<span class="number">-1</span>:<span class="keyword">return</span> rs</span><br><span class="line">        <span class="keyword">elif</span> state == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> x == <span class="number">0</span> <span class="keyword">or</span> y == N<span class="number">-1</span>:</span><br><span class="line">                <span class="keyword">if</span> y == N<span class="number">-1</span>:x,state = x+<span class="number">1</span>,<span class="number">2</span></span><br><span class="line">                <span class="keyword">else</span>:y,state = y+<span class="number">1</span>,<span class="number">5</span></span><br><span class="line">            <span class="keyword">else</span>:x,y = x<span class="number">-1</span>,y+<span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">if</span> x == M<span class="number">-1</span> <span class="keyword">or</span> y == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">if</span> x == M<span class="number">-1</span>:y,state = y+<span class="number">1</span>,<span class="number">4</span></span><br><span class="line">                <span class="keyword">else</span>:x,state = x+<span class="number">1</span>,<span class="number">3</span></span><br><span class="line">            <span class="keyword">else</span>:x,y = x+<span class="number">1</span>,y<span class="number">-1</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="number">3</span> <span class="keyword">or</span> state == <span class="number">4</span>:x,y,state = x<span class="number">-1</span>,y+<span class="number">1</span>,<span class="number">0</span></span><br><span class="line">        <span class="keyword">elif</span> state == <span class="number">2</span> <span class="keyword">or</span> state == <span class="number">5</span>:x,y,state = x+<span class="number">1</span>,y<span class="number">-1</span>,<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>其中每个元素都被处理过一遍，其时间复杂度为O(n)</p>
 
       
@@ -587,18 +662,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/12/31/Python-collections%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84Counter/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -610,34 +687,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2016/12/31/Python-collections%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84Counter/" class="post-title-link" itemprop="url">Python collections模块中的Counter</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2016-12-31 09:02:04" itemprop="dateCreated datePublished" datetime="2016-12-31T09:02:04+08:00">2016-12-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Back-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Back End</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2016-12-31 09:02:04" itemprop="dateCreated datePublished" datetime="2016-12-31T09:02:04+08:00">2016-12-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -646,43 +726,41 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>除了内置(build-in)数据结构(dict,list,set,tuple)之外，python还提供了一些额外的数据结构。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br></pre></td></tr></table></figure>
 <p>collections提供了5种可选的数据结构:Counter,deque,OrderDict,defaultdict,namedtuple()</p>
-<h2 id="collections-Counter"><a href="#collections-Counter" class="headerlink" title="collections.Counter"></a>collections.Counter</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span></pre></td></tr></table></figure>
+<h2 id="collections-Counter"><a href="#collections-Counter" class="headerlink" title="collections.Counter"></a>collections.Counter</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br></pre></td></tr></table></figure>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Counter是dict的一个子集，它可以用来计算dict中的可哈希对象。它是一个无排序集合，它的元素作为dict的key存储，对应的计数则以其value存储，例如Counter({‘a’:1,’b’:2,’c’:4})代表有1个a,2个b,4个c。Counter接受所有的整数作为其计数(包括0和负数在内)。</p>
 <h3 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h3><p>构造一个空的Counter</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Counter()</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = Counter()</span><br><span class="line"><span class="comment">#此时c为</span></span><br><span class="line">Counter()</span><br></pre></td></tr></table></figure>
 <p>从迭代器创建Counter</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter(<span class="string">"asdf"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="string">'s'</span>:<span class="number">1</span>,<span class="string">'d'</span>:<span class="number">1</span>,<span class="string">'f'</span>:<span class="number">1</span>&#125;)</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = Counter(<span class="string">&quot;asdf&quot;</span>)</span><br><span class="line"><span class="comment">#此时c为</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;a&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;s&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;d&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;f&#x27;</span>:<span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
 <p>由字典mapping创建</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter(&#123;<span class="string">'ss'</span>:<span class="number">1</span>,<span class="string">'dd'</span>:<span class="number">2</span>&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'dd'</span>:<span class="number">2</span>,<span class="string">'ss'</span>:<span class="number">1</span>&#125;)</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = Counter(&#123;<span class="string">&#x27;ss&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;dd&#x27;</span>:<span class="number">2</span>&#125;)</span><br><span class="line"><span class="comment">#此时c为</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;dd&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;ss&#x27;</span>:<span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
 <p>由参数的keyword创建</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter(hh = <span class="number">2</span>,ss = <span class="number">6</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'ss'</span>:<span class="number">6</span>,<span class="string">'hh'</span>:<span class="number">2</span>&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = Counter(hh = <span class="number">2</span>,ss = <span class="number">6</span>)</span><br><span class="line"><span class="comment">#此时c为</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;ss&#x27;</span>:<span class="number">6</span>,<span class="string">&#x27;hh&#x27;</span>:<span class="number">2</span>&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>Counter有一些很有用的特性。例如，作为一个计数器，当读取Counter中不存在的key时，不会像通常dict那样返回错误，而是会返回0(意思是Counter里有0个这种key)</p>
 <p>例如:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter([<span class="string">'a'</span>,<span class="string">'a'</span>,<span class="string">'c'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'a'</span>:<span class="number">2</span>,<span class="string">'c'</span>:<span class="number">1</span>&#125;)</span></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用dict</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">t = &#123;<span class="string">'a'</span>:<span class="number">2</span>,<span class="string">'c'</span>:<span class="number">1</span>&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">t[<span class="string">'b'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时报错</span></span></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用Counter</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">c[<span class="string">'b'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#输出0</span></span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = Counter([<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;c&#x27;</span>])</span><br><span class="line"><span class="comment">#此时c为</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;a&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;c&#x27;</span>:<span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用dict</span></span><br><span class="line">t = &#123;<span class="string">&#x27;a&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;c&#x27;</span>:<span class="number">1</span>&#125;</span><br><span class="line">t[<span class="string">&#x27;b&#x27;</span>]</span><br><span class="line"><span class="comment">#此时报错</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用Counter</span></span><br><span class="line">c[<span class="string">&#x27;b&#x27;</span>]</span><br><span class="line"><span class="comment">#输出0</span></span><br></pre></td></tr></table></figure>
 <p>将Counter中的一个key的value设置为0(即将其计数清零)并不会删除这个元素，只有使用del才能将其中的元素删除。例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter([<span class="string">'a'</span>,<span class="string">'a'</span>,<span class="string">'c'</span>])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'a'</span>:<span class="number">2</span>,<span class="string">'c'</span>:<span class="number">1</span>&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">c[<span class="string">'a'</span>] = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'c'</span>:<span class="number">1</span>,<span class="string">'a'</span>:<span class="number">0</span>&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">del</span> c[<span class="string">'c'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'a'</span>:<span class="number">0</span>&#125;)</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">c = Counter([<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;c&#x27;</span>])</span><br><span class="line"><span class="comment">#此时c为</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;a&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;c&#x27;</span>:<span class="number">1</span>&#125;)</span><br><span class="line">c[<span class="string">&#x27;a&#x27;</span>] = <span class="number">0</span></span><br><span class="line"><span class="comment">#此时c为</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;c&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;a&#x27;</span>:<span class="number">0</span>&#125;)</span><br><span class="line"><span class="keyword">del</span> c[<span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"><span class="comment">#此时c为</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;a&#x27;</span>:<span class="number">0</span>&#125;)</span><br></pre></td></tr></table></figure>
 <h4 id="elements"><a href="#elements" class="headerlink" title="elements()"></a>elements()</h4><p>返回Counter()中计数大于1的所有元素。例如:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter(&#123;<span class="string">'a'</span>:<span class="number">2</span>,<span class="string">'b'</span>:<span class="number">1</span>,<span class="string">'d'</span>:<span class="number">0</span>,<span class="string">'e'</span>:<span class="number">-2</span>&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">list(c.elements())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#输出</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">[<span class="string">'a'</span>,<span class="string">'a'</span>,<span class="string">'b'</span>]</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">c = Counter(&#123;<span class="string">&#x27;a&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;b&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;d&#x27;</span>:<span class="number">0</span>,<span class="string">&#x27;e&#x27;</span>:<span class="number">-2</span>&#125;)</span><br><span class="line">list(c.elements())</span><br><span class="line"><span class="comment">#输出</span></span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>]</span><br></pre></td></tr></table></figure>
 <h4 id="most-common-n"><a href="#most-common-n" class="headerlink" title="most_common([n])"></a>most_common([n])</h4><p>返回Counter()中计数最多的n个元素。例如:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter(<span class="string">"asdfaas"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">c.most_common(<span class="number">2</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#输出</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">[(<span class="string">'a'</span>,<span class="number">3</span>),(<span class="string">'b'</span>,<span class="number">2</span>)]</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">c = Counter(<span class="string">&quot;asdfaas&quot;</span>)</span><br><span class="line">c.most_common(<span class="number">2</span>)</span><br><span class="line"><span class="comment">#输出</span></span><br><span class="line">[(<span class="string">&#x27;a&#x27;</span>,<span class="number">3</span>),(<span class="string">&#x27;b&#x27;</span>,<span class="number">2</span>)]</span><br></pre></td></tr></table></figure>
 <h4 id="subtract"><a href="#subtract" class="headerlink" title="subtract()"></a>subtract()</h4><p>由一个Counter()减去另一个Counter()或迭代器或mapping。得到的数字可以为0或负数。例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c = Counter(<span class="string">"addaw"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">b = <span class="string">"adddf"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">c.subtract(b)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#此时c为</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Counter(&#123;<span class="string">'a'</span>:<span class="number">1</span>,<span class="string">'w'</span>:<span class="number">1</span>,<span class="string">'d'</span>:<span class="number">-1</span>,<span class="string">'f'</span>:<span class="number">-1</span>&#125;)</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">c = Counter(<span class="string">&quot;addaw&quot;</span>)</span><br><span class="line">b = <span class="string">&quot;adddf&quot;</span></span><br><span class="line">c.subtract(b)</span><br><span class="line"><span class="comment">#此时c为</span></span><br><span class="line">Counter(&#123;<span class="string">&#x27;a&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;w&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;d&#x27;</span>:<span class="number">-1</span>,<span class="string">&#x27;f&#x27;</span>:<span class="number">-1</span>&#125;)</span><br></pre></td></tr></table></figure>
 <p>除此之外，Counter()还有一些dict本身有的特性。</p>
 <p>比如 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Counter(<span class="string">"asdf"</span>) == Counter(<span class="string">"fdsa"</span>) &gt;&gt;&gt;&gt; <span class="keyword">True</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">Counter(<span class="string">"wwww"</span>) + Counter(<span class="string">"ssss"</span>) &gt;&gt;&gt;&gt; Counter(&#123;<span class="string">'w'</span>:<span class="number">4</span>,<span class="string">'s'</span>:<span class="number">4</span>&#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">list(Counter(<span class="string">"asdf"</span>)) &gt;&gt;&gt;&gt; [<span class="string">'a'</span>,<span class="string">'s'</span>,<span class="string">'d'</span>,<span class="string">'f'</span>]</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Counter(<span class="string">&quot;asdf&quot;</span>) == Counter(<span class="string">&quot;fdsa&quot;</span>) &gt;&gt;&gt;&gt; <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">Counter(<span class="string">&quot;wwww&quot;</span>) + Counter(<span class="string">&quot;ssss&quot;</span>) &gt;&gt;&gt;&gt; Counter(&#123;<span class="string">&#x27;w&#x27;</span>:<span class="number">4</span>,<span class="string">&#x27;s&#x27;</span>:<span class="number">4</span>&#125;)</span><br><span class="line"></span><br><span class="line">list(Counter(<span class="string">&quot;asdf&quot;</span>)) &gt;&gt;&gt;&gt; [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;s&#x27;</span>,<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;f&#x27;</span>]</span><br></pre></td></tr></table></figure>
 <p>等等。</p>
 <h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>Counter()计数器可以用在很多需要统计key出现字数的情景中。</p>
 <p>例如求同素异构词（由相同的字母不同的顺序组成的词）:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">same</span><span class="params">(s,d)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> Counter(s) == Counter(d)</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">same</span>(<span class="params">s,d</span>):</span></span><br><span class="line">    <span class="keyword">return</span> Counter(s) == Counter(d)</span><br></pre></td></tr></table></figure>
 <p>求句子中出现次数最多的字母:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count</span><span class="params">(d)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> Counter(d).most_common(<span class="number">1</span>)</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count</span>(<span class="params">d</span>):</span></span><br><span class="line">    <span class="keyword">return</span> Counter(d).most_common(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 <p>等等</p>
 
       
@@ -691,18 +769,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/12/20/%E8%AE%A1%E7%AE%97%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -714,34 +794,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2016/12/20/%E8%AE%A1%E7%AE%97%E7%AC%9B%E5%8D%A1%E5%B0%94%E7%A7%AF/" class="post-title-link" itemprop="url">计算笛卡尔积</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2016-12-20 20:10:00" itemprop="dateCreated datePublished" datetime="2016-12-20T20:10:00+08:00">2016-12-20</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2016-12-20 20:10:00" itemprop="dateCreated datePublished" datetime="2016-12-20T20:10:00+08:00">2016-12-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -750,25 +833,23 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>笛卡尔积又名直积，是所有可能的有序对组成的集合，其中有序对的第一个对象是X的成员，第二个对象是Y的成员。可以表示如下：</p>
 <script type="math/tex; mode=display">X\times Y={<x,y>|x\in X\land y\in Y}</script><p>例如，[[a,b],[1,2,3]]的笛卡尔积为[[a,1],[a,2],[a,3],[b,1],[b,2],[b,3]]</p>
 <p>在实际应用中，笛卡尔积常用于在电商中生成商品的sku信息，将所有的属性组合起来。</p>
 <p>当空间数量固定时，可以直接使用嵌套的循环来完成，例如上面的二元笛卡尔积：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="string">'a'</span>,<span class="string">'b'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = [<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">0</span>;j&lt;b.length;j++)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        result.push([a[i],b[j]])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>]</span><br><span class="line"><span class="keyword">let</span> b = [<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>]</span><br><span class="line"><span class="keyword">let</span> result = []</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">0</span>;j&lt;b.length;j++)&#123;</span><br><span class="line">        result.push([a[i],b[j]])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>output&gt;&gt;&gt;</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[ [ <span class="string">'a'</span>, <span class="string">'1'</span> ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  [ <span class="string">'a'</span>, <span class="string">'2'</span> ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  [ <span class="string">'a'</span>, <span class="string">'3'</span> ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  [ <span class="string">'b'</span>, <span class="string">'1'</span> ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  [ <span class="string">'b'</span>, <span class="string">'2'</span> ],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  [ <span class="string">'b'</span>, <span class="string">'3'</span> ] ]</span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[ [ <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;1&#x27;</span> ],</span><br><span class="line">  [ <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;2&#x27;</span> ],</span><br><span class="line">  [ <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;3&#x27;</span> ],</span><br><span class="line">  [ <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;1&#x27;</span> ],</span><br><span class="line">  [ <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;2&#x27;</span> ],</span><br><span class="line">  [ <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;3&#x27;</span> ] ]</span><br></pre></td></tr></table></figure>
 <p>推广到n元笛卡尔积：</p>
-<script type="math/tex; mode=display">X_{1}\times X_{2}\times ...\times X_{n}={(x_{1},...,x_{n})|x_{1}\in X_{1}\land ...\land x_{n}in X_{n}}</script><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">0</span>;j&lt;b.length;j++)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">for</span>()&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">            ...(n次循环)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">X_{1}\times X_{2}\times ...\times X_{n}={(x_{1},...,x_{n})|x_{1}\in X_{1}\land ...\land x_{n}in X_{n}}</script><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> j=<span class="number">0</span>;j&lt;b.length;j++)&#123;</span><br><span class="line">        <span class="keyword">for</span>()&#123;</span><br><span class="line">            ...(n次循环)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当n不为固定数值的时候，不能以这种嵌套循环的方式表示。因此考虑使用嵌套</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combination</span><span class="params">(array)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="string">"""</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="string">    :type array: List[][]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="string">    :rtype: List[str]</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="string">    """</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    result = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> len(array) <span class="keyword">is</span> <span class="number">0</span>: <span class="keyword">return</span> result</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cartsianProduct</span><span class="params">(index,rs)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> index <span class="keyword">is</span> len(array):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">            result.append(rs)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">for</span> item <span class="keyword">in</span> array[index]:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">                next_rs = copy.copy(rs)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">                next_rs.append(item)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">                cartsianProduct(index+<span class="number">1</span>,next_rs)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    cartsianProduct(<span class="number">0</span>,[])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> result</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">combination([[<span class="string">'a'</span>,<span class="string">'b'</span>],[<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>]])</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">combination</span>(<span class="params">array</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :type array: List[][]</span></span><br><span class="line"><span class="string">    :rtype: List[str]</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    result = []</span><br><span class="line">    <span class="keyword">if</span> len(array) <span class="keyword">is</span> <span class="number">0</span>: <span class="keyword">return</span> result</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cartsianProduct</span>(<span class="params">index,rs</span>):</span></span><br><span class="line">        <span class="keyword">if</span> index <span class="keyword">is</span> len(array):</span><br><span class="line">            result.append(rs)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> item <span class="keyword">in</span> array[index]:</span><br><span class="line">                next_rs = copy.copy(rs)</span><br><span class="line">                next_rs.append(item)</span><br><span class="line">                cartsianProduct(index+<span class="number">1</span>,next_rs)</span><br><span class="line">    cartsianProduct(<span class="number">0</span>,[])</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">    </span><br><span class="line">combination([[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>],[<span class="string">&#x27;1&#x27;</span>,<span class="string">&#x27;2&#x27;</span>,<span class="string">&#x27;3&#x27;</span>]])</span><br></pre></td></tr></table></figure>
 <p>output&gt;&gt;&gt;</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[[<span class="string">'a'</span>, <span class="string">'1'</span>], [<span class="string">'a'</span>, <span class="string">'2'</span>], [<span class="string">'a'</span>, <span class="string">'3'</span>], [<span class="string">'b'</span>, <span class="string">'1'</span>], [<span class="string">'b'</span>, <span class="string">'2'</span>], [<span class="string">'b'</span>, <span class="string">'3'</span>]]</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;1&#x27;</span>], [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;2&#x27;</span>], [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;3&#x27;</span>], [<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;1&#x27;</span>], [<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;2&#x27;</span>], [<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;3&#x27;</span>]]</span><br></pre></td></tr></table></figure>
 <p>对于python来说，除了使用遍历之外也可以使用py自带的迭代器itertools:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itertools</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">rs = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> itertools.product([<span class="string">'a'</span>,<span class="string">'b'</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    rs.append(x)</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> itertools</span><br><span class="line">rs = []</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> itertools.product([<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]):</span><br><span class="line">    rs.append(x)</span><br></pre></td></tr></table></figure>
 <p>output&gt;&gt;&gt;</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[(<span class="string">'a'</span>, <span class="number">1</span>), (<span class="string">'a'</span>, <span class="number">2</span>), (<span class="string">'a'</span>, <span class="number">3</span>), (<span class="string">'b'</span>, <span class="number">1</span>), (<span class="string">'b'</span>, <span class="number">2</span>), (<span class="string">'b'</span>, <span class="number">3</span>)]</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[(<span class="string">&#x27;a&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;a&#x27;</span>, <span class="number">2</span>), (<span class="string">&#x27;a&#x27;</span>, <span class="number">3</span>), (<span class="string">&#x27;b&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;b&#x27;</span>, <span class="number">2</span>), (<span class="string">&#x27;b&#x27;</span>, <span class="number">3</span>)]</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -776,18 +857,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/12/11/Support-Vector-Regression/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -799,34 +882,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2016/12/11/Support-Vector-Regression/" class="post-title-link" itemprop="url">Support Vector Regression</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2016-12-11 09:13:00" itemprop="dateCreated datePublished" datetime="2016-12-11T09:13:00+08:00">2016-12-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2016-12-11 09:13:00" itemprop="dateCreated datePublished" datetime="2016-12-11T09:13:00+08:00">2016-12-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -835,11 +921,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <blockquote>
 <p>Intro quote from </p>
-<p><a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.114.4288" target="_blank" rel="noopener">“A Tutorial on Support Vector Regression”</a>, Alex J. Smola, Bernhard Schölkopf - Statistics and Computing archive Volume 14 Issue 3, August 2004, p. 199-222</p>
+<p><a target="_blank" rel="noopener" href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.114.4288">“A Tutorial on Support Vector Regression”</a>, Alex J. Smola, Bernhard Schölkopf - Statistics and Computing archive Volume 14 Issue 3, August 2004, p. 199-222</p>
 </blockquote>
 <p>A support vector machine constructs a hyper-plane or set of hyper-planes in a high or infinite dimensional space, which can be used for classification, regression or other tasks. Intuitively, a good separation is achieved by the hyper-plane that has the largest distance to the nearest training data points of any class (so-called functional margin), since in general the larger the margin the lower the generalization error of the classifier.</p>
 <p><img src="/images/pasted-106.png" alt="upload successful"></p>
@@ -856,18 +940,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/11/30/Key-to-%E2%80%98JavaScript-Puzzlers-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -879,34 +965,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2016/11/30/Key-to-%E2%80%98JavaScript-Puzzlers-3/" class="post-title-link" itemprop="url">Key to ‘JavaScript Puzzlers'(3)</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2016-11-30 07:38:00" itemprop="dateCreated datePublished" datetime="2016-11-30T07:38:00+08:00">2016-11-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2016-11-30 07:38:00" itemprop="dateCreated datePublished" datetime="2016-11-30T07:38:00+08:00">2016-11-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -915,24 +1004,22 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="4-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#4-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="4.What is the result of this expression? (or multiple ones)"></a>4.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> END = <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> START = END - <span class="number">100</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = START; i &lt;= END; i++) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    count++;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(count);</span></pre></td></tr></table></figure>
+          <h4 id="4-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#4-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="4.What is the result of this expression? (or multiple ones)"></a>4.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> END = <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>);</span><br><span class="line"><span class="keyword">var</span> START = END - <span class="number">100</span>;</span><br><span class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = START; i &lt;= END; i++) &#123;</span><br><span class="line">    count++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(count);</span><br></pre></td></tr></table></figure>
 <p>A    0</p>
 <p>B    100</p>
 <p>C    101</p>
 <p>D    other</p>
 <p>Correct answer is D.2<sup>53</sup> is the largest number in javascript,so that i never become lager than START.This code will cause infinite loop.</p>
-<h4 id="5-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#5-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="5.What is the result of this expression? (or multiple ones)"></a>5.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ary = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>];</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">ary[<span class="number">10</span>] = <span class="number">10</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">ary.filter(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123; <span class="keyword">return</span> x === <span class="literal">undefined</span>;&#125;);</span></pre></td></tr></table></figure>
+<h4 id="5-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#5-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="5.What is the result of this expression? (or multiple ones)"></a>5.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ary = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line">ary[<span class="number">10</span>] = <span class="number">10</span>;</span><br><span class="line">ary.filter(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123; <span class="keyword">return</span> x === <span class="literal">undefined</span>;&#125;);</span><br></pre></td></tr></table></figure>
 <p>A    [undefined x 7]</p>
 <p>B    [0,1,2,10]</p>
 <p>C    []</p>
 <p>D    [undefined]</p>
 <p>C is correct answer.The ary looks like [0,1,2,undefined x 7,10] , but in fact array.prototype.filter() ignore undefined element.So it returned []</p>
 <blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank" rel="noopener">See more information about array.prototype.filter()</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">See more information about array.prototype.filter()</a></p>
 </blockquote>
-<h4 id="6-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#6-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="6.What is the result of this expression? (or multiple ones)"></a>6.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> two   = <span class="number">0.2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> one   = <span class="number">0.1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> eight = <span class="number">0.8</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> six   = <span class="number">0.6</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">[two - one == one, eight - six == two]</span></pre></td></tr></table></figure>
+<h4 id="6-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#6-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="6.What is the result of this expression? (or multiple ones)"></a>6.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> two   = <span class="number">0.2</span></span><br><span class="line"><span class="keyword">var</span> one   = <span class="number">0.1</span></span><br><span class="line"><span class="keyword">var</span> eight = <span class="number">0.8</span></span><br><span class="line"><span class="keyword">var</span> six   = <span class="number">0.6</span></span><br><span class="line">[two - one == one, eight - six == two]</span><br></pre></td></tr></table></figure>
 <p>A    [true,true]</p>
 <p>B    [false,false]</p>
 <p>C    [true,false]</p>
@@ -941,7 +1028,7 @@
 <p>Javascript hasn’t ability of precise calculation,so that float number will be calculated in a imprecise mode.</p>
 <p>&gt; 0.8-0.6 = 0.20000000000000007</p>
 <p>Specially, 0.2-0.1 = 0.1</p>
-<h4 id="7-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#7-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="7.What is the result of this expression? (or multiple ones)"></a>7.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCase2</span>(<span class="params">value</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">switch</span>(value) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">case</span> <span class="string">'A'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Case A'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">case</span> <span class="string">'B'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Case B'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">case</span> <span class="literal">undefined</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="string">'undefined'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">default</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Do not know!'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">showCase2(<span class="built_in">String</span>(<span class="string">'A'</span>));</span></pre></td></tr></table></figure>
+<h4 id="7-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#7-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="7.What is the result of this expression? (or multiple ones)"></a>7.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCase2</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(value) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;A&#x27;</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Case A&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;B&#x27;</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Case B&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="literal">undefined</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;undefined&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Do not know!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">showCase2(<span class="built_in">String</span>(<span class="string">&#x27;A&#x27;</span>));</span><br></pre></td></tr></table></figure>
 <p>A    Case A</p>
 <p>B    Case B</p>
 <p>C    Do not know!</p>
@@ -952,7 +1039,7 @@
 <p>let a = new String(“b”)</p>
 <p>typeof a === ‘object’</p>
 <p>8.What is the result of this expression? (or multiple ones)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCase2</span>(<span class="params">value</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">switch</span>(value) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">case</span> <span class="string">'A'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Case A'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">case</span> <span class="string">'B'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Case B'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">case</span> <span class="literal">undefined</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="string">'undefined'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">break</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">default</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Do not know!'</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">showCase2(<span class="built_in">String</span>(<span class="string">'A'</span>));</span></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCase2</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(value) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;A&#x27;</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Case A&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;B&#x27;</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Case B&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="literal">undefined</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;undefined&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Do not know!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">showCase2(<span class="built_in">String</span>(<span class="string">&#x27;A&#x27;</span>));</span><br></pre></td></tr></table></figure>
 <p>A    Case A</p>
 <p>B    Case B</p>
 <p>C    Do not know!</p>
@@ -968,18 +1055,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/11/28/Key-to-JavaScript-Puzzlers-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -991,34 +1080,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2016/11/28/Key-to-JavaScript-Puzzlers-2/" class="post-title-link" itemprop="url">Key to 'JavaScript Puzzlers'(2)</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2016-11-28 03:52:00" itemprop="dateCreated datePublished" datetime="2016-11-28T03:52:00+08:00">2016-11-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front End</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2016-11-28 03:52:00" itemprop="dateCreated datePublished" datetime="2016-11-28T03:52:00+08:00">2016-11-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -1027,16 +1119,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>Continue.</p>
-<h4 id="3-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#3-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="3.What is the result of this expression? (or multiple ones)"></a>3.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[ [<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>].reduce(<span class="built_in">Math</span>.pow), [].reduce(<span class="built_in">Math</span>.pow) ]</span></pre></td></tr></table></figure>
+<h4 id="3-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#3-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="3.What is the result of this expression? (or multiple ones)"></a>3.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ [<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>].reduce(<span class="built_in">Math</span>.pow), [].reduce(<span class="built_in">Math</span>.pow) ]</span><br></pre></td></tr></table></figure>
 <p>A    an error</p>
 <p>B    [9,0]</p>
 <p>C    [9,NaN]</p>
 <p>D    [9,undefined]</p>
 <blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce" target="_blank" rel="noopener">See more information about Array.prototype.reduce()</a>&gt; The reduce() method applies a function against an accumulator and each value of the array (from left-to-right) to reduce it to a single value.</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">See more information about Array.prototype.reduce()</a>&gt; The reduce() method applies a function against an accumulator and each value of the array (from left-to-right) to reduce it to a single value.</p>
 </blockquote>
 <p>reduce() accept 2 arguments:reduce(callback,initialValue),this callback function will get 4 arguments:</p>
 <p>callback(accumulator,currentValue,currentIndex,array)</p>
@@ -1050,7 +1140,7 @@
 <p>array</p>
 <p>The array reduce was called upon.</p>
 </blockquote>
-<p>For example,use<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>].reduce(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> a+b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure></p>
+<p>For example,use<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>].reduce(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 <p>It returned 15.</p>
 <p>First callback function got (1,2) returned 3,then the 2nd callback function got (3,3) returned 6.The 3rd callback got (6,4) returned 10,the 4st callback got (10,5) returned 15,the finally result.</p>
 <p>Math.pow() will calculate power value.It accept 2 arguments,like Math.pow(base,exponent)</p>
@@ -1063,27 +1153,27 @@
 <p>reduce() method need an intial value at least,so it will throw an error:</p>
 <p>TypeError: Reduce of empty array with no initial value</p>
 <p>So this problem’s correct answer is A</p>
-<h4 id="4-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#4-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="4.What is the result of this expression? (or multiple ones)"></a>4.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> val = <span class="string">'smtg'</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'Value is '</span> + (val === <span class="string">'smtg'</span>) ? <span class="string">'Something'</span> : <span class="string">'Nothing'</span>);</span></pre></td></tr></table></figure>
+<h4 id="4-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#4-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="4.What is the result of this expression? (or multiple ones)"></a>4.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> val = <span class="string">&#x27;smtg&#x27;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Value is &#x27;</span> + (val === <span class="string">&#x27;smtg&#x27;</span>) ? <span class="string">&#x27;Something&#x27;</span> : <span class="string">&#x27;Nothing&#x27;</span>);</span><br></pre></td></tr></table></figure>
 <p>A    Value is Something</p>
 <p>B    Value is Nothing</p>
 <p>C    NaN</p>
 <p>D    Other</p>
 <p>This is a trick question.The correct is D</p>
 <p>The operator ‘+’ will calculate first because it has higher precedence.</p>
-<p>That expression equal to<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'Value is true'</span>? <span class="string">'Something'</span>:<span class="string">'Nothing'</span>);</span></pre></td></tr></table></figure></p>
+<p>That expression equal to<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Value is true&#x27;</span>? <span class="string">&#x27;Something&#x27;</span>:<span class="string">&#x27;Nothing&#x27;</span>);</span><br></pre></td></tr></table></figure></p>
 <p>An string expression like ‘true’ in condition,So it will print ‘Something’</p>
-<h4 id="5-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#5-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="5.What is the result of this expression? (or multiple ones)"></a>5.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'World!'</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> name === <span class="string">'undefined'</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">var</span> name = <span class="string">'Jack'</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Goodbye '</span> + name);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Hello '</span> + name);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;)();</span></pre></td></tr></table></figure>
+<h4 id="5-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#5-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="5.What is the result of this expression? (or multiple ones)"></a>5.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;World!&#x27;</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> name === <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> name = <span class="string">&#x27;Jack&#x27;</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Goodbye &#x27;</span> + name);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Hello &#x27;</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
 <p>A    Goodbye Jack</p>
 <p>B    Hello Jack</p>
 <p>C    Hello undefined</p>
 <p>D    Hello World</p>
 <p>This a question about “Hoisting”.The ‘var’ will hoisting in the function scope.</p>
-<p>So the code will be this:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'World!'</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> name</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> name === <span class="string">'undefined'</span>) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        name = <span class="string">'Jack'</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Goodbye '</span> + name);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Hello '</span> + name);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;)();</span></pre></td></tr></table></figure></p>
+<p>So the code will be this:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;World!&#x27;</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> name === <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">        name = <span class="string">&#x27;Jack&#x27;</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Goodbye &#x27;</span> + name);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Hello &#x27;</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
 <p>For if (typeof name === ‘undefined’),it will find name from scope chain,so this ‘name’ is declared in anonymous function: var name</p>
 <p>‘var name’ means that name is undefined,so condition of ‘if’ is true,then name is declared ‘Jack’.</p>
 <p>Hence,printed ‘Goodbye Jack’</p>
 <blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Glossary/Hoisting" target="_blank" rel="noopener">See more information about Hoisting</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Glossary/Hoisting">See more information about Hoisting</a></p>
 </blockquote>
 <hr>
 <p>Do rest tomorrow</p>
@@ -1094,18 +1184,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/11/27/Key-to-JavaScript-Puzzlers-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1117,34 +1209,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2016/11/27/Key-to-JavaScript-Puzzlers-1/" class="post-title-link" itemprop="url">Key to 'JavaScript Puzzlers'(1)</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2016-11-27 15:58:00" itemprop="dateCreated datePublished" datetime="2016-11-27T15:58:00+08:00">2016-11-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front End</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2016-11-27 15:58:00" itemprop="dateCreated datePublished" datetime="2016-11-27T15:58:00+08:00">2016-11-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -1153,8 +1248,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           
       
     </div>
@@ -1162,15 +1255,16 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-  </div>
 
   
   <nav class="pagination">
@@ -1179,91 +1273,39 @@
 
 
 
-          </div>
-          
+      
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">lsvih</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">161</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">205</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -1275,32 +1317,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -1316,9 +1364,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -1334,55 +1381,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

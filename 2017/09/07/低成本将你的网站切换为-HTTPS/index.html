@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,76 +13,59 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta name="description" content="Google 的 Search Console 小组最近向所有站长发了一封 email，警告 Google Chrome 将从 10 月起，在包含表单但没有使用安全措施的网站中显示警告信息。 下图为我收件箱里的通知：  如果你的网站还不支持 HTTPS，那这个通知就直接与你相关。即使你的网站并没有用到表单，也应当早日将网站迁移为 HTTPS。因为现在这项措施只不过是 Google“标识非安全网站”">
-<meta name="keywords" content="Translate,juejin,HTTP,https,Cloudflare,SSL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="低成本将你的网站切换为 HTTPS">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2017&#x2F;09&#x2F;07&#x2F;%E4%BD%8E%E6%88%90%E6%9C%AC%E5%B0%86%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%88%87%E6%8D%A2%E4%B8%BA-HTTPS&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/2017/09/07/%E4%BD%8E%E6%88%90%E6%9C%AC%E5%B0%86%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%88%87%E6%8D%A2%E4%B8%BA-HTTPS/index.html">
 <meta property="og:site_name" content="My note">
 <meta property="og:description" content="Google 的 Search Console 小组最近向所有站长发了一封 email，警告 Google Chrome 将从 10 月起，在包含表单但没有使用安全措施的网站中显示警告信息。 下图为我收件箱里的通知：  如果你的网站还不支持 HTTPS，那这个通知就直接与你相关。即使你的网站并没有用到表单，也应当早日将网站迁移为 HTTPS。因为现在这项措施只不过是 Google“标识非安全网站”">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-199.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-200.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-201.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-202.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-203.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-204.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-205.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-206.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-207.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-208.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-209.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-210.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-211.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-212.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-213.png">
-<meta property="og:updated_time" content="2018-10-28T16:13:06.090Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lsvih.com/images/pasted-199.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-200.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-201.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-202.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-203.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-204.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-205.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-206.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-207.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-208.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-209.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-210.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-211.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-212.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-213.png">
+<meta property="article:published_time" content="2017-09-07T11:13:46.000Z">
+<meta property="article:modified_time" content="2018-10-28T16:13:06.090Z">
+<meta property="article:author" content="lsvih">
+<meta property="article:tag" content="Translate">
+<meta property="article:tag" content="juejin">
+<meta property="article:tag" content="HTTP">
+<meta property="article:tag" content="https">
+<meta property="article:tag" content="Cloudflare">
+<meta property="article:tag" content="SSL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-199.png">
+<meta name="twitter:image" content="https://lsvih.com/images/pasted-199.png">
+
 
 <link rel="canonical" href="https://lsvih.com/2017/09/07/%E4%BD%8E%E6%88%90%E6%9C%AC%E5%B0%86%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%88%87%E6%8D%A2%E4%B8%BA-HTTPS/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
   };
 </script>
 
@@ -105,24 +88,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -130,60 +125,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -191,31 +189,106 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
 
-  
-</div>
-<div class="search-pop-overlay"></div>
-
+      
+    </div>
   </div>
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9-GitHub-Pages-%E5%BC%BA%E5%88%B6%E5%90%AF%E7%94%A8-HTTPS"><span class="nav-number">1.</span> <span class="nav-text">对 GitHub Pages 强制启用 HTTPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%86%E6%88%91%E4%BB%AC%E4%BB%8D%E7%84%B6%E9%9C%80%E8%A6%81-SSL"><span class="nav-number">2.</span> <span class="nav-text">但我们仍然需要 SSL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87-CDN-%E5%85%8D%E8%B4%B9%E8%AF%95%E7%94%A8-SSL%EF%BC%81"><span class="nav-number">3.</span> <span class="nav-text">我们可以通过 CDN 免费试用 SSL！</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E9%80%89%E6%8B%A9%E2%80%9C-Add-Site%E2%80%9D%E9%80%89%E9%A1%B9"><span class="nav-number">3.1.</span> <span class="nav-text">第一步：选择“+ Add Site”选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E6%9F%A5%E7%9C%8B-DNS-%E8%AE%B0%E5%BD%95"><span class="nav-number">3.2.</span> <span class="nav-text">第二步：查看 DNS 记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E8%8E%B7%E5%8F%96%E5%85%8D%E8%B4%B9%E6%96%B9%E6%A1%88"><span class="nav-number">3.3.</span> <span class="nav-text">第三步：获取免费方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E6%9B%B4%E6%96%B0%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88NS-%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%89"><span class="nav-number">3.4.</span> <span class="nav-text">第四步：更新域名解析服务器（NS 服务器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%9C%A8-Cloudflare-%E4%B8%AD%E5%90%AF%E7%94%A8-HTTPS"><span class="nav-number">3.5.</span> <span class="nav-text">第五步：在 Cloudflare 中启用 HTTPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AD%E6%AD%A5%EF%BC%9A%E4%BD%BF%E7%94%A8-CDN"><span class="nav-number">3.6.</span> <span class="nav-text">第六步：使用 CDN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%83%E6%AD%A5%EF%BC%9A%E4%BD%BF%E7%94%A8%E5%AE%89%E5%85%A8%E7%9A%84%E5%A4%96%E9%83%A8%E8%B5%84%E6%BA%90"><span class="nav-number">3.7.</span> <span class="nav-text">第七步：使用安全的外部资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E6%AD%A5%EF%BC%9A%E6%BF%80%E6%B4%BB-SSL"><span class="nav-number">3.8.</span> <span class="nav-text">第八步：激活 SSL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lsvih</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">161</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">205</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
@@ -225,20 +298,20 @@
   </div>
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
-
-  <div class="posts-expand">
+    <div class="main-inner post posts-expand">
       
+
+      
+
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/09/07/%E4%BD%8E%E6%88%90%E6%9C%AC%E5%B0%86%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%88%87%E6%8D%A2%E4%B8%BA-HTTPS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -250,33 +323,36 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           低成本将你的网站切换为 HTTPS
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-09-07 19:13:46" itemprop="dateCreated datePublished" datetime="2017-09-07T19:13:46+08:00">2017-09-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-09-07 19:13:46" itemprop="dateCreated datePublished" datetime="2017-09-07T19:13:46+08:00">2017-09-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -285,8 +361,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <p>Google 的 Search Console 小组最近向所有站长发了一封 email，警告 Google Chrome 将从 10 月起，在包含表单但没有使用安全措施的网站中显示警告信息。</p>
 <p>下图为我收件箱里的通知：</p>
 <p><img src="/images/pasted-199.png" alt="upload successful"></p>
@@ -299,11 +373,11 @@
 <p>我使用 GitHub Pages 免费托管了一系列的网站和项目，其中的一部分还使用了自定义域名。因此，我想看看我能否快速、低成本地将这些网站从 HTTP 迁移为 HTTPS。最后我找到了一种相对简单且低成本的方案，希望能够帮助到你们。下面让我们来探究一下这种方法吧。</p>
 <h2 id="对-GitHub-Pages-强制启用-HTTPS"><a href="#对-GitHub-Pages-强制启用-HTTPS" class="headerlink" title="对 GitHub Pages 强制启用 HTTPS"></a>对 GitHub Pages 强制启用 HTTPS</h2><p>托管在 GitHub Pages 上的网站可以通过设置很方便地启用 HTTPS。进入项目设置页面，勾上“Enforce HTTPS”即可。</p>
 <p><img src="/images/pasted-201.png" alt="upload successful"></p>
-<h2 id="但我们仍然需要-SSL"><a href="#但我们仍然需要-SSL" class="headerlink" title="但我们仍然需要 SSL"></a>但我们仍然需要 SSL</h2><p>第一步十分的简单，但它并不符合 Google 对安全网站定义的要求。我们启用了 HTTPS 设置，但是没有为使用<a href="https://help.github.com/articles/using-a-custom-domain-with-github-pages/" target="_blank" rel="noopener">自定义域名</a>的网站安装、提供 SSL 证书。直接使用 GitHub Pages 提供的网址的站点已经完全符合要求了，但是使用自定义域名的站点必须要进行一些额外的步骤，让其在域名的层面上使用安全证书。</p>
+<h2 id="但我们仍然需要-SSL"><a href="#但我们仍然需要-SSL" class="headerlink" title="但我们仍然需要 SSL"></a>但我们仍然需要 SSL</h2><p>第一步十分的简单，但它并不符合 Google 对安全网站定义的要求。我们启用了 HTTPS 设置，但是没有为使用<a target="_blank" rel="noopener" href="https://help.github.com/articles/using-a-custom-domain-with-github-pages/">自定义域名</a>的网站安装、提供 SSL 证书。直接使用 GitHub Pages 提供的网址的站点已经完全符合要求了，但是使用自定义域名的站点必须要进行一些额外的步骤，让其在域名的层面上使用安全证书。</p>
 <p>还有个问题，SSL 证书虽然并不贵，但也需要花一笔钱，在你尽可能希望降低成本时可不想为此增加花费。所以得找个办法解决这个问题。</p>
 <h2 id="我们可以通过-CDN-免费试用-SSL！"><a href="#我们可以通过-CDN-免费试用-SSL！" class="headerlink" title="我们可以通过 CDN 免费试用 SSL！"></a>我们可以通过 CDN 免费试用 SSL！</h2><p>在这儿就不得不提 Cloudflare 了。Cloudflare 是一个内容分发网络（CDN）提供商，同时它也提供分布式域名服务，这也意味着我们可以利用他们的网络来设置 HTTPS。使用这个服务真正的好处在于他们提供了免费的方案，让这一切成为可能。</p>
-<p>另外，值得一提的是在 CSS-Tricks 论坛里也有<a href="https://css-tricks.com/?s=cdn" target="_blank" rel="noopener">许多帖子</a>描述了使用 CDN 的好处。虽然这篇文章中主要探讨的是安全性问题，但其实 CDN 除了能帮你使用 HTTPS 之外，还是降低服务器负载、<a href="https://css-tricks.com/adding-a-cdn-to-your-website/" target="_blank" rel="noopener">提升网站性能</a>的绝佳方式。</p>
-<p>在下文中，我将简述我使用 Cloudflare 连接 Github Pages 的步骤。如果你还没有 Cloudflare 账号，你可以<a href="https://www.cloudflare.com/a/sign-up" target="_blank" rel="noopener">点击这儿注册账号</a>再跟着步骤操作。</p>
+<p>另外，值得一提的是在 CSS-Tricks 论坛里也有<a target="_blank" rel="noopener" href="https://css-tricks.com/?s=cdn">许多帖子</a>描述了使用 CDN 的好处。虽然这篇文章中主要探讨的是安全性问题，但其实 CDN 除了能帮你使用 HTTPS 之外，还是降低服务器负载、<a target="_blank" rel="noopener" href="https://css-tricks.com/adding-a-cdn-to-your-website/">提升网站性能</a>的绝佳方式。</p>
+<p>在下文中，我将简述我使用 Cloudflare 连接 Github Pages 的步骤。如果你还没有 Cloudflare 账号，你可以<a target="_blank" rel="noopener" href="https://www.cloudflare.com/a/sign-up">点击这儿注册账号</a>再跟着步骤操作。</p>
 <h3 id="第一步：选择“-Add-Site”选项"><a href="#第一步：选择“-Add-Site”选项" class="headerlink" title="第一步：选择“+ Add Site”选项"></a>第一步：选择“+ Add Site”选项</h3><p>首先，我们需要告诉 Cloudflare 我们使用的域名。Cloudflare 将会扫描 DNS 记录，以验证域名是否存在，并检查域名的公开信息。</p>
 <p><img src="/images/pasted-202.png" alt="upload successful"></p>
 <h3 id="第二步：查看-DNS-记录"><a href="#第二步：查看-DNS-记录" class="headerlink" title="第二步：查看 DNS 记录"></a>第二步：查看 DNS 记录</h3><p>Cloudflare 扫描 DNS 记录后会将结果展示出来供你查看。如果 Cloudflare 认为这些信息符合要求，就会在“Status”列中显示一个橙色的云的图标。你需要检查这份报告，确认其中的信息与你在域名注册商中留的信息相符，如果没问题的话，点击“Continue”按钮继续。</p>
@@ -312,7 +386,7 @@
 <p><img src="/images/pasted-204.png" alt="upload successful"></p>
 <h3 id="第四步：更新域名解析服务器（NS-服务器）"><a href="#第四步：更新域名解析服务器（NS-服务器）" class="headerlink" title="第四步：更新域名解析服务器（NS 服务器）"></a>第四步：更新域名解析服务器（NS 服务器）</h3><p>这一步中，Cloudflare 给我们提供了其服务器地址，我们要做的就是将这个地址粘贴到自己的域名注册商中的 DNS 设置里。</p>
 <p><img src="/images/pasted-205.png" alt="upload successful"></p>
-<p>这一步其实并不困难，但你可能会有些疑惑。你的域名注册商可能会提供这一步的操作指南。例如<a href="https://www.godaddy.com/help/set-nameservers-for-domains-hosted-and-registered-with-godaddy-12316" target="_blank" rel="noopener">点此查看 GoDaddy 的指南</a>，了解如何通过他们的服务更新域名解析服务器。</p>
+<p>这一步其实并不困难，但你可能会有些疑惑。你的域名注册商可能会提供这一步的操作指南。例如<a target="_blank" rel="noopener" href="https://www.godaddy.com/help/set-nameservers-for-domains-hosted-and-registered-with-godaddy-12316">点此查看 GoDaddy 的指南</a>，了解如何通过他们的服务更新域名解析服务器。</p>
 <p>完成这一步之后，你的域名将会很快被映射到 Cloudflare 的服务器上，这些服务器将成为域名与 Github Pages 之间的中间层。不过，这一步需要耗费一些时间，Cloudflare 可能需要 24 小时来处理这个请求。</p>
 <p><strong>如果你没有用主域名，而是用了子域名来使用 GitHub Pages</strong>，则需要额外进行一步操作。打开你的 GitHub Pages 设置页面，在 DNS 设置中添加一条 CNAME 记录，设置它指向 <code>&lt;your-username&gt;.github.io</code>，其中 <code>&lt;your-username&gt;</code> 是你的 Github 账号。此外，你需要在 GitHub 项目的根目录下添加一个文件名为 CNAME 的无后缀名文本文档，其内容为你的域名。</p>
 <p>下面的屏幕截图为在 Cloudflare 设置中将 GitHub Pages 子域名添加为 CNAME 记录的例子：</p>
@@ -342,7 +416,7 @@
 <p>你记录过迁移到 HTTPS 的经历吗？在评论里留言你的迁移方法，让我们相互对比吧。</p>
 <p>享受你的既安全又快速的网站吧！</p>
 <blockquote>
-<p>发布于掘金 <a href="https://juejin.im/post/59b129365188253da63829ad" target="_blank" rel="noopener">https://juejin.im/post/59b129365188253da63829ad</a></p>
+<p>发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/59b129365188253da63829ad">https://juejin.im/post/59b129365188253da63829ad</a></p>
 </blockquote>
 
     </div>
@@ -350,25 +424,25 @@
     
     
     
-        
 
-<div>
-<ul class="post-copyright">
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
   <li class="post-copyright-author">
-    <strong>Post author:  </strong>lsvih
+      <strong>Written by:  </strong>lsvih
   </li>
   <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="/https:/lsvih.com/2017/09/07/%E4%BD%8E%E6%88%90%E6%9C%AC%E5%B0%86%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%88%87%E6%8D%A2%E4%B8%BA-HTTPS/" title="低成本将你的网站切换为 HTTPS">https://lsvih.com/2017/09/07/低成本将你的网站切换为-HTTPS/</a>
+      <strong>Post link: </strong>
+      <a href="https://lsvih.com/2017/09/07/%E4%BD%8E%E6%88%90%E6%9C%AC%E5%B0%86%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%88%87%E6%8D%A2%E4%B8%BA-HTTPS/" title="低成本将你的网站切换为 HTTPS">https://lsvih.com/2017/09/07/低成本将你的网站切换为-HTTPS/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
   </li>
 </ul>
 </div>
 
-
-      <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Translate/" rel="tag"># Translate</a>
               <a href="/tags/juejin/" rel="tag"># juejin</a>
@@ -380,114 +454,59 @@
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2017/09/04/%E5%9C%A8-Airbnb-%E4%BD%BF%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B%E6%88%BF%E6%BA%90%E7%9A%84%E4%BB%B7%E6%A0%BC/" rel="prev" title="在 Airbnb 使用机器学习预测房源的价格">
-      <i class="fa fa-chevron-left"></i> 在 Airbnb 使用机器学习预测房源的价格
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2017/09/10/%E5%A4%84%E7%90%86unbalanced-parenthesis%E6%83%85%E5%BD%A2%EF%BC%8C%E5%AF%B9%E6%AD%A3%E5%88%99%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9B%E8%A1%8C%E8%BD%AC%E4%B9%89/" rel="next" title="处理unbalanced parenthesis情形，对正则字符串进行转义">
-      处理unbalanced parenthesis情形，对正则字符串进行转义 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/09/04/%E5%9C%A8-Airbnb-%E4%BD%BF%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B%E6%88%BF%E6%BA%90%E7%9A%84%E4%BB%B7%E6%A0%BC/" rel="prev" title="在 Airbnb 使用机器学习预测房源的价格">
+                  <i class="fa fa-chevron-left"></i> 在 Airbnb 使用机器学习预测房源的价格
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/09/10/%E5%A4%84%E7%90%86unbalanced-parenthesis%E6%83%85%E5%BD%A2%EF%BC%8C%E5%AF%B9%E6%AD%A3%E5%88%99%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9B%E8%A1%8C%E8%BD%AC%E4%B9%89/" rel="next" title="处理unbalanced parenthesis情形，对正则字符串进行转义">
+                  处理unbalanced parenthesis情形，对正则字符串进行转义 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
   
   
   
 
-  </div>
 
 
-          </div>
-          
+      
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对-GitHub-Pages-强制启用-HTTPS"><span class="nav-number">1.</span> <span class="nav-text">对 GitHub Pages 强制启用 HTTPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#但我们仍然需要-SSL"><span class="nav-number">2.</span> <span class="nav-text">但我们仍然需要 SSL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我们可以通过-CDN-免费试用-SSL！"><span class="nav-number">3.</span> <span class="nav-text">我们可以通过 CDN 免费试用 SSL！</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：选择“-Add-Site”选项"><span class="nav-number">3.1.</span> <span class="nav-text">第一步：选择“+ Add Site”选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：查看-DNS-记录"><span class="nav-number">3.2.</span> <span class="nav-text">第二步：查看 DNS 记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：获取免费方案"><span class="nav-number">3.3.</span> <span class="nav-text">第三步：获取免费方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步：更新域名解析服务器（NS-服务器）"><span class="nav-number">3.4.</span> <span class="nav-text">第四步：更新域名解析服务器（NS 服务器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五步：在-Cloudflare-中启用-HTTPS"><span class="nav-number">3.5.</span> <span class="nav-text">第五步：在 Cloudflare 中启用 HTTPS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第六步：使用-CDN"><span class="nav-number">3.6.</span> <span class="nav-text">第六步：使用 CDN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第七步：使用安全的外部资源"><span class="nav-number">3.7.</span> <span class="nav-text">第七步：使用安全的外部资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第八步：激活-SSL"><span class="nav-number">3.8.</span> <span class="nav-text">第八步：激活 SSL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">lsvih</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">161</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">205</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -499,32 +518,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -540,9 +565,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -558,55 +582,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

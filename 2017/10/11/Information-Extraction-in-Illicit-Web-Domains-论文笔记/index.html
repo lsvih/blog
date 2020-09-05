@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,75 +13,57 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta name="description" content="Kejriwal M, Szekely P. Information Extraction in Illicit Web Domains[J]. 2017.  论文信息论文作者为南加大维特比学院的 Mayank Kejriwal 和 Pedro Szekely，发表于 WWW 2017。 论文概述建立了稳定可靠的信息提取系统（Information Extraction System），用以从非">
-<meta name="keywords" content="note,machine learning,Paper,Information Extraction,IE system">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Information Extraction in Illicit Web Domains 论文笔记">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2017&#x2F;10&#x2F;11&#x2F;Information-Extraction-in-Illicit-Web-Domains-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/2017/10/11/Information-Extraction-in-Illicit-Web-Domains-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="My note">
 <meta property="og:description" content="Kejriwal M, Szekely P. Information Extraction in Illicit Web Domains[J]. 2017.  论文信息论文作者为南加大维特比学院的 Mayank Kejriwal 和 Pedro Szekely，发表于 WWW 2017。 论文概述建立了稳定可靠的信息提取系统（Information Extraction System），用以从非">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-224.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-226.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-227.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-228.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-229.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-230.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-231.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-232.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-233.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-234.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-235.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-236.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-237.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-238.png">
-<meta property="og:updated_time" content="2019-04-07T10:48:36.930Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lsvih.com/images/pasted-224.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-226.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-227.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-228.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-229.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-230.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-231.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-232.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-233.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-234.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-235.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-236.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-237.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-238.png">
+<meta property="article:published_time" content="2017-10-10T16:27:00.000Z">
+<meta property="article:modified_time" content="2019-04-07T10:48:36.930Z">
+<meta property="article:author" content="lsvih">
+<meta property="article:tag" content="note">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="Paper">
+<meta property="article:tag" content="Information Extraction">
+<meta property="article:tag" content="IE system">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-224.png">
+<meta name="twitter:image" content="https://lsvih.com/images/pasted-224.png">
+
 
 <link rel="canonical" href="https://lsvih.com/2017/10/11/Information-Extraction-in-Illicit-Web-Domains-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
   };
 </script>
 
@@ -104,24 +86,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -129,60 +123,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -190,31 +187,106 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
 
-  
-</div>
-<div class="search-pop-overlay"></div>
-
+      
+    </div>
   </div>
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">论文信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">论文概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E6%8F%90%E7%BA%B2"><span class="nav-number">3.</span> <span class="nav-text">论文提纲</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%AE%BA%E6%96%87%E7%AE%80%E4%BB%8B"><span class="nav-number">3.1.</span> <span class="nav-text">一、论文简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="nav-number">3.2.</span> <span class="nav-text">二、相关工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%96%B9%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">三、方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E9%A2%84%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B"><span class="nav-number">3.3.1.</span> <span class="nav-text">1 预处理过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%AF%8D%E5%90%91%E9%87%8F%E8%A1%A8%E7%A4%BA"><span class="nav-number">3.3.2.</span> <span class="nav-text">2 词向量表示</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E5%BA%94%E7%94%A8%E9%AB%98%E5%8F%AC%E5%9B%9E%E7%8E%87%E8%AF%86%E5%88%AB%E5%99%A8"><span class="nav-number">3.3.3.</span> <span class="nav-text">3 应用高召回率识别器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E4%BD%BF%E7%94%A8%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E6%A0%B9%E6%8D%AE%E4%B8%8A%E4%B8%8B%E6%96%87%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB"><span class="nav-number">3.3.4.</span> <span class="nav-text">4 使用监督学习根据上下文进行分类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%AE%9E%E9%AA%8C%E8%AF%84%E4%BC%B0"><span class="nav-number">3.4.</span> <span class="nav-text">四、实验评估</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%8E%E8%AF%84%E4%BB%B7%E6%A0%87%E5%87%86"><span class="nav-number">3.4.1.</span> <span class="nav-text">1 数据集与评价标准</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E7%B3%BB%E7%BB%9F%E6%8F%8F%E8%BF%B0"><span class="nav-number">3.4.2.</span> <span class="nav-text">2 系统描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-baseline"><span class="nav-number">3.4.3.</span> <span class="nav-text">3 baseline</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E7%9B%B8%E5%85%B3%E5%8F%82%E6%95%B0"><span class="nav-number">3.4.4.</span> <span class="nav-text">4 相关参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="nav-number">3.4.5.</span> <span class="nav-text">5 实验结果</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-%E8%AE%A8%E8%AE%BA"><span class="nav-number">3.4.6.</span> <span class="nav-text">6 讨论</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lsvih</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">161</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">205</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
@@ -224,20 +296,20 @@
   </div>
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
-
-  <div class="posts-expand">
+    <div class="main-inner post posts-expand">
       
+
+      
+
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/10/11/Information-Extraction-in-Illicit-Web-Domains-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -249,33 +321,36 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           Information Extraction in Illicit Web Domains 论文笔记
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-10-11 00:27:00" itemprop="dateCreated datePublished" datetime="2017-10-11T00:27:00+08:00">2017-10-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Paper/" itemprop="url" rel="index">
-                    <span itemprop="name">Paper</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-10-11 00:27:00" itemprop="dateCreated datePublished" datetime="2017-10-11T00:27:00+08:00">2017-10-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -284,8 +359,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <blockquote>
 <p>Kejriwal M, Szekely P. Information Extraction in Illicit Web Domains[J]. 2017.</p>
 </blockquote>
@@ -336,7 +409,7 @@
 <p>需要注意的是需要分析的 Web 页面大多是多领域结合，因此在处理页面时不仅需要不断将新的页面加入数据集中，还要由初始数据集进行概念漂移（concept drift）以适应各种新的情况。</p>
 <h5 id="1-预处理过程"><a href="#1-预处理过程" class="headerlink" title="1 预处理过程"></a>1 预处理过程</h5><p>爬取相关网页，使用 RTE（Readability Text Extractor）对 HTML 文本进行正文提取。对 RTE 进行调参，将其调至高召回率。由于 Web 网页的结构多样，因此正文中可能会存在许多无关内容（包括一些无用的数字及 Unicode 字符等等）。RTE 最终会返回一组字符串集，字符串集中包含以句子为单位的内容。</p>
 <blockquote>
-<p>RTE 给了网址：<a href="https://www.readability.com/developers/api" target="_blank" rel="noopener">https://www.readability.com/developers/api</a></p>
+<p>RTE 给了网址：<a target="_blank" rel="noopener" href="https://www.readability.com/developers/api">https://www.readability.com/developers/api</a></p>
 </blockquote>
 <p>接下来使用 NLTK 对 RTE 返回内容的每个句子分别进行分词。</p>
 <h5 id="2-词向量表示"><a href="#2-词向量表示" class="headerlink" title="2 词向量表示"></a>2 词向量表示</h5><p>接下来作者使用 CRF 序列标注模型对已标注数据进行学习（详细内容在后面）。但是由于数据集实在太少，CRF 的效果并不好。<br>为了避免 CRF 出现的状态，又为了避免工作量极大的页面标注，作者使用了非监督算法，以低维空间来表示页面中所有词的全集。在此使用了嵌入算法（embedding algorithms），作者在此提及了 Word2Vec 和 Bollegala 的算法和一种更简单的算法（random indexing）。</p>
@@ -344,7 +417,7 @@
 <p>Word2Vec 引用了 T. Mikolov, I. Sutskever, K. Chen, G. S. Corrado, and J. Dean. Distributed representations of words and phrases and their compositionality. In Advances in neural information processing systems, pages 3111–3119, 2013.<br>Bollegala 算法引用了 D. Bollegala, T. Maehara, and K.-i. Kawarabayashi. Embedding semantic relations into word representations. arXiv preprint arXiv:1505.00161, 2015.<br>random indexing 引用了 M. Sahlgren. An introduction to random indexing. In  Methods and applications of semantic indexing workshop at the 7th international conference on terminology and knowledge engineering, TKE, volume 5, 2005.<br>最终作者选用了“最简单”的 RI（random indexing）算法。此算法可以保证向量在表示时，即使是在低维空间中点与点间依然能够保持足够的距离。RI 算法最开始本来是为了增量降维（incremental dimensionality reduction）设计的。RI 算法定义如下：</p>
 </blockquote>
 <p>$d \in \mathbb{Z}^+$ -&gt; 向量维数<br>$r \in [0,1]$ -&gt; 定义为 +1 或 -1 的概率</p>
-<p>对于一个词向量（这里应该叫做 token 向量，因为在这个情景中 nltk 并不能很好地进行正确分词）来说，随机选择 $[d * r]$ 个维度设定为 +1，随机选择 $[d * r]$ 个维度设定为 -1，其余 $d - 2 [d * r]$ 个维度设定为 0。</p>
+<p>对于一个词向量（这里应该叫做 token 向量，因为在这个情景中 nltk 并不能很好地进行正确分词）来说，随机选择 $[d <em> r]$ 个维度设定为 +1，随机选择 $[d </em> r]$ 个维度设定为 -1，其余 $d - 2 [d * r]$ 个维度设定为 0。</p>
 <p>由于在此场景下数据均为噪音很多的流数据，因此只考虑较短的上下文范围。由此确定 RI 算法的滑动窗口大小。滑动窗口定义如下：</p>
 <p>给定一组数量为 $|t|$ 的单位元素 $t$，以及一个窗口基准位置 $0 &lt; i &lt; |t|$，则可以定义一个滑动窗口 $(u, v)$。滑动窗口内的所有元素记为 $S$，将基准位置的特征词挖去：$S - t[i]$，得到滑动窗口全集。滑动窗口的位置坐标为 $[max(i-u,1),min(i+v,|t|)]$。</p>
 <p><img src="/images/pasted-226.png" alt="upload successful"></p>
@@ -408,19 +481,19 @@
 <p>接着，对这些向量应用 l2 正则，使用监督学习分类器（如随机森林）对其进行分类。</p>
 <h4 id="四、实验评估"><a href="#四、实验评估" class="headerlink" title="四、实验评估"></a>四、实验评估</h4><h5 id="1-数据集与评价标准"><a href="#1-数据集与评价标准" class="headerlink" title="1 数据集与评价标准"></a>1 数据集与评价标准</h5><p><img src="/images/pasted-228.png" alt="upload successful"></p>
 <p>表 2：数据集用量</p>
-<p>作者描述，数据集来自于 DARPA MEMEX 项目。（网址：<a href="http://www.darpa.mil/program/memex）" target="_blank" rel="noopener">http://www.darpa.mil/program/memex）</a></p>
+<p>作者描述，数据集来自于 DARPA MEMEX 项目。（网址：<a target="_blank" rel="noopener" href="http://www.darpa.mil/program/memex）">http://www.darpa.mil/program/memex）</a></p>
 <p><img src="/images/pasted-229.png" alt="upload successful"></p>
 <p>表 3：5 种类别的标准数据集</p>
 <p>baseline 与本文的分类器都将对上表包含的 5 种类型的数据进行分类标注。</p>
 <p>本文的标准数据集来自于数据集。对数据集应用高 recall 识别器，再对识别器得到的结果进行人工标注。</p>
 <h5 id="2-系统描述"><a href="#2-系统描述" class="headerlink" title="2 系统描述"></a>2 系统描述</h5><p>根据上文所述，本文构建的 Information Extraction System 对于每种属性都由两个部分组成：高 recall 识别器与用于裁剪标记的分类器。作者实验室为此构建了 4 中高 recall 的识别器，分别为:</p>
 <p>GeoNames-Cities<br>GeoNames-States<br>RegEx-Ages<br>Dictionary-Names</p>
-<p>其中前两种识别器的数据集来自于<a href="http://www.geonames.org/，在此处引用了" target="_blank" rel="noopener">http://www.geonames.org/，在此处引用了</a> M. Wick and C. Boutreux. Geonames. GeoNames Geographical Database, 2011。</p>
-<p>对于年龄识别，开发了 <a href="https://github.com/usc-isi-i2/dig-age-extractor" target="_blank" rel="noopener">https://github.com/usc-isi-i2/dig-age-extractor</a> </p>
+<p>其中前两种识别器的数据集来自于<a target="_blank" rel="noopener" href="http://www.geonames.org/，在此处引用了">http://www.geonames.org/，在此处引用了</a> M. Wick and C. Boutreux. Geonames. GeoNames Geographical Database, 2011。</p>
+<p>对于年龄识别，开发了 <a target="_blank" rel="noopener" href="https://github.com/usc-isi-i2/dig-age-extractor">https://github.com/usc-isi-i2/dig-age-extractor</a> </p>
 <blockquote>
 <p>阅读代码发现原理特别简单，单纯的匹配数字</p>
 </blockquote>
-<p>对于姓名属性，作者收集了各种语言的姓名于数据集中，数据集地址：<br><a href="https://github.com/usc-isi-i2/dig-dictionaries/tree/master/person-names" target="_blank" rel="noopener">https://github.com/usc-isi-i2/dig-dictionaries/tree/master/person-names</a></p>
+<p>对于姓名属性，作者收集了各种语言的姓名于数据集中，数据集地址：<br><a target="_blank" rel="noopener" href="https://github.com/usc-isi-i2/dig-dictionaries/tree/master/person-names">https://github.com/usc-isi-i2/dig-dictionaries/tree/master/person-names</a></p>
 <h5 id="3-baseline"><a href="#3-baseline" class="headerlink" title="3 baseline"></a>3 baseline</h5><p>作者使用 Stanford Named Entity Recognition system(NER) 作为其 baseline。</p>
 <blockquote>
 <p>此处引用 J. R. Finkel, T. Grenager, and C. Manning. Incorporating non-local information into information extraction systems by gibbs sampling. In Proceedings of the 43rd Annual Meeting on Association for Computational Linguistics, pages 363–370. Association for Computational Linguistics, 2005.</p>
@@ -463,25 +536,25 @@
     
     
     
-        
 
-<div>
-<ul class="post-copyright">
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
   <li class="post-copyright-author">
-    <strong>Post author:  </strong>lsvih
+      <strong>Written by:  </strong>lsvih
   </li>
   <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="/https:/lsvih.com/2017/10/11/Information-Extraction-in-Illicit-Web-Domains-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" title="Information Extraction in Illicit Web Domains 论文笔记">https://lsvih.com/2017/10/11/Information-Extraction-in-Illicit-Web-Domains-论文笔记/</a>
+      <strong>Post link: </strong>
+      <a href="https://lsvih.com/2017/10/11/Information-Extraction-in-Illicit-Web-Domains-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" title="Information Extraction in Illicit Web Domains 论文笔记">https://lsvih.com/2017/10/11/Information-Extraction-in-Illicit-Web-Domains-论文笔记/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
   </li>
 </ul>
 </div>
 
-
-      <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/note/" rel="tag"># note</a>
               <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
@@ -492,114 +565,59 @@
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2017/09/27/Uber-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B9%B3%E5%8F%B0-%E2%80%94-%E7%B1%B3%E5%BC%80%E6%9C%97%E5%9F%BA%E7%BD%97/" rel="prev" title="Uber 机器学习平台 — 米开朗基罗">
-      <i class="fa fa-chevron-left"></i> Uber 机器学习平台 — 米开朗基罗
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2017/10/12/Slide-of-Information-Extraction-In-Illicit-Web-Domains-used-in-workshop/" rel="next" title="Slide of 'Information Extraction In Illicit Web Domains' used in workshop.">
-      Slide of 'Information Extraction In Illicit Web Domains' used in workshop. <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/09/27/Uber-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B9%B3%E5%8F%B0-%E2%80%94-%E7%B1%B3%E5%BC%80%E6%9C%97%E5%9F%BA%E7%BD%97/" rel="prev" title="Uber 机器学习平台 — 米开朗基罗">
+                  <i class="fa fa-chevron-left"></i> Uber 机器学习平台 — 米开朗基罗
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/10/12/Slide-of-Information-Extraction-In-Illicit-Web-Domains-used-in-workshop/" rel="next" title="Slide of 'Information Extraction In Illicit Web Domains' used in workshop.">
+                  Slide of 'Information Extraction In Illicit Web Domains' used in workshop. <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
   
   
   
 
-  </div>
 
 
-          </div>
-          
+      
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#论文信息"><span class="nav-number">1.</span> <span class="nav-text">论文信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#论文概述"><span class="nav-number">2.</span> <span class="nav-text">论文概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#论文提纲"><span class="nav-number">3.</span> <span class="nav-text">论文提纲</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、论文简介"><span class="nav-number">3.1.</span> <span class="nav-text">一、论文简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、相关工作"><span class="nav-number">3.2.</span> <span class="nav-text">二、相关工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、方法"><span class="nav-number">3.3.</span> <span class="nav-text">三、方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-预处理过程"><span class="nav-number">3.3.1.</span> <span class="nav-text">1 预处理过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-词向量表示"><span class="nav-number">3.3.2.</span> <span class="nav-text">2 词向量表示</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-应用高召回率识别器"><span class="nav-number">3.3.3.</span> <span class="nav-text">3 应用高召回率识别器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-使用监督学习根据上下文进行分类"><span class="nav-number">3.3.4.</span> <span class="nav-text">4 使用监督学习根据上下文进行分类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、实验评估"><span class="nav-number">3.4.</span> <span class="nav-text">四、实验评估</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-数据集与评价标准"><span class="nav-number">3.4.1.</span> <span class="nav-text">1 数据集与评价标准</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-系统描述"><span class="nav-number">3.4.2.</span> <span class="nav-text">2 系统描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-baseline"><span class="nav-number">3.4.3.</span> <span class="nav-text">3 baseline</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-相关参数"><span class="nav-number">3.4.4.</span> <span class="nav-text">4 相关参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-实验结果"><span class="nav-number">3.4.5.</span> <span class="nav-text">5 实验结果</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-讨论"><span class="nav-number">3.4.6.</span> <span class="nav-text">6 讨论</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">3.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">lsvih</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">161</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">205</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -611,32 +629,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -652,9 +676,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -670,55 +693,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

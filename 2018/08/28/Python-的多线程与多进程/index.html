@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,72 +13,52 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta name="description" content="初学者的并行编程指南 在参加 Kaggle 的 Understanding the Amazon from Space 比赛时，我试图对自己代码的各个部分进行加速。速度在 Kaggle 比赛中至关重要。高排名常常需要尝试数百种模型结构与超参组合，能在一个持续一分钟的 epoch 中省出 10 秒都是一个巨大的胜利。 让我吃惊的是，数据处理是最大的瓶颈。我用了 Numpy 的矩阵旋转、矩阵翻转、缩放">
-<meta name="keywords" content="juejin,Back End,python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 的多线程与多进程">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2018&#x2F;08&#x2F;28&#x2F;Python-%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/2018/08/28/Python-%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B/index.html">
 <meta property="og:site_name" content="My note">
 <meta property="og:description" content="初学者的并行编程指南 在参加 Kaggle 的 Understanding the Amazon from Space 比赛时，我试图对自己代码的各个部分进行加速。速度在 Kaggle 比赛中至关重要。高排名常常需要尝试数百种模型结构与超参组合，能在一个持续一分钟的 epoch 中省出 10 秒都是一个巨大的胜利。 让我吃惊的是，数据处理是最大的瓶颈。我用了 Numpy 的矩阵旋转、矩阵翻转、缩放">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-322.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-323.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-324.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-325.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-326.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-327.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-328.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-329.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-330.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-331.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-332.png">
-<meta property="og:updated_time" content="2018-10-28T16:12:59.550Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lsvih.com/images/pasted-322.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-323.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-324.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-325.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-326.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-327.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-328.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-329.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-330.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-331.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-332.png">
+<meta property="article:published_time" content="2018-08-28T07:04:00.000Z">
+<meta property="article:modified_time" content="2018-10-28T16:12:59.550Z">
+<meta property="article:author" content="lsvih">
+<meta property="article:tag" content="juejin">
+<meta property="article:tag" content="Back End">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-322.png">
+<meta name="twitter:image" content="https://lsvih.com/images/pasted-322.png">
+
 
 <link rel="canonical" href="https://lsvih.com/2018/08/28/Python-%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
   };
 </script>
 
@@ -101,24 +81,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -126,60 +118,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -187,266 +182,44 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
-
-  
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/08/28/Python-%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          Python 的多线程与多进程
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-08-28 15:04:00" itemprop="dateCreated datePublished" datetime="2018-08-28T15:04:00+08:00">2018-08-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="初学者的并行编程指南"><a href="#初学者的并行编程指南" class="headerlink" title="初学者的并行编程指南"></a>初学者的并行编程指南</h2><p><img src="/images/pasted-322.png" alt="upload successful"></p>
-<p>在参加 Kaggle 的 <a href="https://www.kaggle.com/c/planet-understanding-the-amazon-from-space" target="_blank" rel="noopener">Understanding the Amazon from Space</a> 比赛时，我试图对自己代码的各个部分进行加速。速度在 Kaggle 比赛中至关重要。高排名常常需要尝试数百种模型结构与超参组合，能在一个持续一分钟的 epoch 中省出 10 秒都是一个巨大的胜利。</p>
-<p>让我吃惊的是，数据处理是最大的瓶颈。我用了 Numpy 的矩阵旋转、矩阵翻转、缩放及裁切等操作，在 CPU 上进行运算。Numpy 和 Pytorch 的 DataLoader 在某些情况中使用了并行处理。我同时会运行 3 到 5 个实验，每个实验都各自进行数据处理。但这种处理方式看起来效率不高，我希望知道我是否能用并行处理来加快所有实验的运行速度。</p>
-<a id="more"></a>
-<h3 id="什么是并行处理？"><a href="#什么是并行处理？" class="headerlink" title="什么是并行处理？"></a>什么是并行处理？</h3><p>简单来说就是在同一时刻做两件事情，也可以是在不同的 CPU 上分别运行代码，或者说当程序等待外部资源（文件加载、API 调用等）时把“浪费”的 CPU 周期充分利用起来提高效率。</p>
-<p>下面的例子是一个“正常”的程序。它会使用单线程，依次进行下载一个 URL 列表的内容。</p>
-<p><img src="/images/pasted-323.png" alt="upload successful"></p>
-<p>下面是一个同样的程序，不过使用了 2 个线程。它把 URL 列表分给不同的线程，处理速度几乎翻倍。</p>
-<p><img src="/images/pasted-324.png" alt="upload successful"></p>
-<p>如果你对如何绘制以上图表感到好奇，可以参考<a href="https://github.com/bfortuner/ml-study/blob/master/multitasking_python.ipynb" target="_blank" rel="noopener">源码</a>，下面也简单介绍一下：</p>
-<ol>
-<li>在你函数内部加上一个计时器，并返回函数执行的起始与结束时间</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">URLS &#x3D; [url1, url2, url3, ...]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">def download(url, base):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    start &#x3D; time.time() - base</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    resp &#x3D; urlopen(url)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    stop &#x3D; time.time() - base</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    return start,stop</span></pre></td></tr></table></figure>
-<ol>
-<li>单线程程序的可视化如下：多次执行你的函数，并将多个开始结束的时间存储下来</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">results &#x3D; [download(url, 1) for url in URLS]</span></pre></td></tr></table></figure>
-<ol>
-<li>将 [start, stop] 的结果数组进行转置，绘制柱状图</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">def visualize_runtimes(results):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    start,stop &#x3D; np.array(results).T</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    plt.barh(range(len(start)), stop-start, left&#x3D;start)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    plt.grid(axis&#x3D;’x’)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    plt.ylabel(&quot;Tasks&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    plt.xlabel(&quot;Seconds&quot;)</span></pre></td></tr></table></figure>
-<p>多线程的图表生成方式与此类似。Python 的并发库一样可以返回结果数组。</p>
-<h3 id="进程-vs-线程"><a href="#进程-vs-线程" class="headerlink" title="进程 vs 线程"></a><strong>进程 vs 线程</strong></h3><p>一个<strong>进程</strong>就是一个程序的实例（比如 Jupyter notebook 或 Python 解释器）。进程启动<strong>线程</strong>（子进程）来处理一些子任务（比如按键、加载 HTML 页面、保存文件等）。线程存活于进程内部，线程间共享相同的内存空间。</p>
-<p><strong>举例：Microsoft Word</strong><br>当你打开 Word 时，你其实就是创建了一个进程。当你开始打字时，进程启动了一些线程：一个线程专门用于获取键盘输入，一个线程用于显示文本，一个线程用于自动保存文件，还有一个线程用于拼写检查。在启动这些线程之后，Word 就能更好的利用空闲的 CPU 时间（等待键盘输入或文件加载的时间）让你有更高的工作效率。</p>
-<h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a><strong>进程</strong></h4><ul>
-<li>由操作系统创建，以运行程序</li>
-<li>一个进程可以包括多个线程</li>
-<li>两个进程可以在 Python 程序中同时执行代码</li>
-<li>启动与终止进程需要花费更多的时间，因此用进程比用线程的开销更大</li>
-<li>由于进程不共享内存空间，因此进程间交换信息比线程间交换信息要慢很多。在 Python 中，用序列化数据结构（如数组）的方法进行信息交换会花费 IO 处理级别的时间。</li>
-</ul>
-<h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a><strong>线程</strong></h4><ul>
-<li>线程是在进程内部的类似迷你进程的东西</li>
-<li>不同的线程共享同样的内存空间，可以高效地读写相同的变量</li>
-<li>两个线程不能在同一个 Python 程序中执行代码（有解决这个问题的方法<code>*</code>）</li>
-</ul>
-<h4 id="CPU-vs-核"><a href="#CPU-vs-核" class="headerlink" title="CPU vs 核"></a>CPU vs 核</h4><p><strong>CPU</strong>，或者说处理器，管理着计算机最基本的运算工作。CPU 有一个或着多个<strong>核</strong>，可以让 CPU 同时执行代码。</p>
-<p>如果只有一个核，那么对 CPU 密集型任务（比如循环、运算等）不会有速度的提升。操作系统需要在很小的时间片在不同的任务间来回切换调度。因此，做一些很琐碎的操作（比如下载一些图片）时，多任务处理反而会降低处理性能。这个现象的原因是在启动与维护多个任务时也有性能的开销。</p>
-<h4 id="Python-的-GIL-锁问题"><a href="#Python-的-GIL-锁问题" class="headerlink" title="Python 的 GIL 锁问题"></a><strong>Python 的 GIL 锁问题</strong></h4><p>CPython（python 的标准实现）有一个叫做 <a href="https://wiki.python.org/moin/GlobalInterpreterLock" target="_blank" rel="noopener">GIL</a>（全局解释锁）的东西，会阻止在程序中同时执行两个线程。一些人非常不喜欢它，但也有一些人喜欢它。目前有一些解决它的方法，不过 Numpy 之类的库大都是通过执行外部 C 语言代码来绕过这种限制。</p>
-<h4 id="何时使用线程，何时使用进程？"><a href="#何时使用线程，何时使用进程？" class="headerlink" title="何时使用线程，何时使用进程？"></a><strong>何时使用线程，何时使用进程？</strong></h4><ul>
-<li>得益于多核与不存在 GIL，<strong>多进程</strong>可以加速 CPU 密集型的 Python 程序。</li>
-<li><strong>多线程</strong>可以很好的处理 IO 任务或涉及外部系统的任务，因为线程可以将不同的工作高效地结合起来。而进程需要对结果进行序列化才能汇聚多个结果，这需要消耗额外的时间。</li>
-<li>由于 GIL 的存在，<strong>多线程</strong>对 CPU 密集的 Python 程序没有什么帮助。</li>
-</ul>
-<p><code>*</code>对于点积等某些运算，Numpy 绕过了 Python 的 GIL 锁，能够并行执行代码。</p>
-<h3 id="并行处理示例"><a href="#并行处理示例" class="headerlink" title="并行处理示例"></a>并行处理示例</h3><p>Python 的 <a href="https://docs.python.org/3/library/concurrent.futures.html" target="_blank" rel="noopener">concurrent.futures 库</a>用起来轻松愉快。你只需要简单的将函数、待处理的对象列表和并发的数量传给它即可。在下面几节中，我会以几种实验来演示何时使用线程何时使用进程。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">def multithreading(func, args, </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">                   workers):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    with ThreadPoolExecutor(workers) as ex:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        res &#x3D; ex.map(func, args)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    return list(res)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">def multiprocessing(func, args, </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">                    workers):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    with ProcessPoolExecutor(work) as ex:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        res &#x3D; ex.map(func, args)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    return list(res)</span></pre></td></tr></table></figure>
-<h4 id="API-调用"><a href="#API-调用" class="headerlink" title="API 调用"></a><strong>API 调用</strong></h4><p>对于 API 调用，多线程明显比串行处理与多进程速度要快很多。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">def download(url):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    try:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        resp &#x3D; urlopen(url)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    except Exception as e:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        print (&#39;ERROR: %s&#39; % e)</span></pre></td></tr></table></figure>
-<p><img src="/images/pasted-325.png" alt="upload successful"></p>
-<p><strong>2 个线程</strong></p>
-<p><img src="/images/pasted-326.png" alt="upload successful"></p>
-<p><strong>4 个线程</strong></p>
-<p><img src="/images/pasted-327.png" alt="upload successful"></p>
-<p><strong>2 个进程</strong></p>
-<p><img src="/images/pasted-328.png" alt="upload successful"></p>
-<p><strong>4 个进程</strong></p>
-<p><img src="/images/pasted-329.png" alt="upload successful"></p>
-<h4 id="IO-密集型任务"><a href="#IO-密集型任务" class="headerlink" title="IO 密集型任务"></a><strong>IO 密集型任务</strong></h4><p>我传入了一个巨大的文本，以观测线程与进程的写入性能。线程效果较好，但多进程也让速度有所提升。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">def io_heavy(text):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    f &#x3D; open(&#39;output.txt&#39;, &#39;wt&#39;, encoding&#x3D;&#39;utf-8&#39;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    f.write(text)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    f.close()</span></pre></td></tr></table></figure>
-<p><strong>串行</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">%timeit -n 1 [io_heavy(TEXT,1) for i in range(N)]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&gt;&gt; 1 loop, best of 3: 1.37 s per loop</span></pre></td></tr></table></figure>
-<p><strong>4 个线程</strong></p>
-<p><img src="/images/pasted-330.png" alt="upload successful"></p>
-<p><strong>4 个进程</strong></p>
-<p><img src="/images/pasted-331.png" alt="upload successful"></p>
-<h4 id="CPU-密集型任务"><a href="#CPU-密集型任务" class="headerlink" title="CPU 密集型任务"></a>CPU 密集型任务</h4><p>由于没有 GIL，可以在多核上同时执行代码，多进程理所当然的胜出。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">def cpu_heavy(n):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    count &#x3D; 0</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    for i in range(n):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        count +&#x3D; i</span></pre></td></tr></table></figure>
-<p><img src="/images/pasted-332.png" alt="upload successful"></p>
-<p><strong>串行：</strong> 4.2 秒<br><strong>4 个线程：</strong> 6.5 秒<br><strong>4 个进程：</strong> 1.9 秒</p>
-<h4 id="Numpy-中的点积"><a href="#Numpy-中的点积" class="headerlink" title="Numpy 中的点积"></a>Numpy 中的点积</h4><p>不出所料，无论是用多线程还是多进程都不会对此代码有什么帮助。Numpy 在幕后执行外部的 C 语言代码，绕开了 GIL。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">def dot_product(i, base):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    start &#x3D; time.time() - base</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    res &#x3D; np.dot(a,b)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    stop &#x3D; time.time() - base</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    return start,stop</span></pre></td></tr></table></figure>
-<p><strong>串行：</strong> 2.8 秒<br><strong>2 个线程：</strong> 3.4 秒<br><strong>2 个进程：</strong> 3.3 秒</p>
-<p>以上实验的 Notebook 请<a href="https://github.com/bfortuner/ml-study/blob/master/multitasking_python.ipynb" target="_blank" rel="noopener">参考此处</a>，你可以自己来复现这些实验。</p>
-<h3 id="相关资源"><a href="#相关资源" class="headerlink" title="相关资源"></a><strong>相关资源</strong></h3><p>以下是我在探索这个主题时的一些参考文章。特别推荐 Nathan Grigg 的<a href="https://nathangrigg.com/2015/04/python-threading-vs-processes" target="_blank" rel="noopener">这篇博客</a>，给了我可视化方法的灵感。</p>
-<ul>
-<li><p><a href="http://stackoverflow.com/questions/3044580/multiprocessing-vs-threading-python" target="_blank" rel="noopener"><strong>Multiprocessing vs Threading Python</strong>: I am trying to understand the advantages of multiprocessing over threading. I know that multiprocessing gets around the…</a></p>
-</li>
-<li><p><a href="http://stackoverflow.com/questions/5260068/multithreaded-blas-in-python-numpy" target="_blank" rel="noopener"><strong>multithreaded blas in python/numpy</strong>: I re-run the the benchmark on our new HPC. Both the hardware as well as the software stack changed from the setup in…</a></p>
-</li>
-<li><p><a href="https://en.wikipedia.org/wiki/Amdahl%27s_law" target="_blank" rel="noopener"><strong>Amdahl’s law - Wikipedia</strong>: In computer architecture, Amdahl’s law (or Amdahl’s argument) is a formula which gives the theoretical speedup in…</a></p>
-</li>
-<li><p><a href="http://stackoverflow.com/questions/8463741/how-linux-handles-threads-and-process-scheduling" target="_blank" rel="noopener"><strong>How Linux handles threads and process scheduling</strong>: The Linux kernel scheduler is actually scheduling tasks, and these are either threads or (single-threaded) processes…</a></p>
-</li>
-<li><p><a href="http://stackoverflow.com/questions/1718465/optimal-number-of-threads-per-core/10670440#10670440" target="_blank" rel="noopener"><strong>Optimal number of threads per core</strong>: Let’s say I have a 4-core CPU, and I want to run some process in the minimum amount of time. The process is ideally…</a></p>
-</li>
-<li><p><a href="http://stackoverflow.com/questions/481970/how-many-threads-is-too-many" target="_blank" rel="noopener"><strong>How many threads is too many?</strong>: I am writing a server, and I branch each action of into a thread when the request is incoming. I do this because almost…</a></p>
-</li>
-</ul>
-<blockquote>
-<p>juejin:<a href="https://juejin.im/post/5b84f3086fb9a01a1a27cedb#heading-14" target="_blank" rel="noopener">https://juejin.im/post/5b84f3086fb9a01a1a27cedb#heading-14</a></p>
-</blockquote>
-
     </div>
-
-    
-    
-    
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>lsvih
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="/https:/lsvih.com/2018/08/28/Python-%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B/" title="Python 的多线程与多进程">https://lsvih.com/2018/08/28/Python-的多线程与多进程/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/juejin/" rel="tag"># juejin</a>
-              <a href="/tags/Back-End/" rel="tag"># Back End</a>
-              <a href="/tags/python/" rel="tag"># python</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2018/07/23/%E4%BD%BF%E7%94%A8-PhpFastCache-%E6%8F%90%E5%8D%87%E7%BD%91%E7%AB%99%E6%80%A7%E8%83%BD/" rel="prev" title="使用 PhpFastCache 提升网站性能">
-      <i class="fa fa-chevron-left"></i> 使用 PhpFastCache 提升网站性能
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2018/10/29/%E5%85%B3%E9%94%AE%E8%AF%8D%E8%A7%84%E5%88%99%E7%94%9F%E6%88%90/" rel="next" title="关键词规则生成">
-      关键词规则生成 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
   </div>
 
-
-          </div>
-          
-
-        </div>
-          
+</div>
+        
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
         </li>
@@ -456,17 +229,17 @@
       </ul>
 
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初学者的并行编程指南"><span class="nav-number">1.</span> <span class="nav-text">初学者的并行编程指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是并行处理？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是并行处理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程-vs-线程"><span class="nav-number">1.2.</span> <span class="nav-text">进程 vs 线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程"><span class="nav-number">1.2.1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程"><span class="nav-number">1.2.2.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU-vs-核"><span class="nav-number">1.2.3.</span> <span class="nav-text">CPU vs 核</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python-的-GIL-锁问题"><span class="nav-number">1.2.4.</span> <span class="nav-text">Python 的 GIL 锁问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#何时使用线程，何时使用进程？"><span class="nav-number">1.2.5.</span> <span class="nav-text">何时使用线程，何时使用进程？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并行处理示例"><span class="nav-number">1.3.</span> <span class="nav-text">并行处理示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#API-调用"><span class="nav-number">1.3.1.</span> <span class="nav-text">API 调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IO-密集型任务"><span class="nav-number">1.3.2.</span> <span class="nav-text">IO 密集型任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU-密集型任务"><span class="nav-number">1.3.3.</span> <span class="nav-text">CPU 密集型任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Numpy-中的点积"><span class="nav-number">1.3.4.</span> <span class="nav-text">Numpy 中的点积</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关资源"><span class="nav-number">1.4.</span> <span class="nav-text">相关资源</span></a></li></ol></li></ol></div>
-      </div>
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%AD%A6%E8%80%85%E7%9A%84%E5%B9%B6%E8%A1%8C%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97"><span class="nav-number">1.</span> <span class="nav-text">初学者的并行编程指南</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%B9%B6%E8%A1%8C%E5%A4%84%E7%90%86%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">什么是并行处理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B-vs-%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.2.</span> <span class="nav-text">进程 vs 线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU-vs-%E6%A0%B8"><span class="nav-number">1.2.3.</span> <span class="nav-text">CPU vs 核</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Python-%E7%9A%84-GIL-%E9%94%81%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.4.</span> <span class="nav-text">Python 的 GIL 锁问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B%EF%BC%8C%E4%BD%95%E6%97%B6%E4%BD%BF%E7%94%A8%E8%BF%9B%E7%A8%8B%EF%BC%9F"><span class="nav-number">1.2.5.</span> <span class="nav-text">何时使用线程，何时使用进程？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B6%E8%A1%8C%E5%A4%84%E7%90%86%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.3.</span> <span class="nav-text">并行处理示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#API-%E8%B0%83%E7%94%A8"><span class="nav-number">1.3.1.</span> <span class="nav-text">API 调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IO-%E5%AF%86%E9%9B%86%E5%9E%8B%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.3.2.</span> <span class="nav-text">IO 密集型任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU-%E5%AF%86%E9%9B%86%E5%9E%8B%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.3.3.</span> <span class="nav-text">CPU 密集型任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Numpy-%E4%B8%AD%E7%9A%84%E7%82%B9%E7%A7%AF"><span class="nav-number">1.3.4.</span> <span class="nav-text">Numpy 中的点积</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90"><span class="nav-number">1.4.</span> <span class="nav-text">相关资源</span></a></li></ol></li></ol></div>
+      </section>
       <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">lsvih</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -489,34 +262,277 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </div>
-
+      </section>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/08/28/Python-%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python 的多线程与多进程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-08-28 15:04:00" itemprop="dateCreated datePublished" datetime="2018-08-28T15:04:00+08:00">2018-08-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="初学者的并行编程指南"><a href="#初学者的并行编程指南" class="headerlink" title="初学者的并行编程指南"></a>初学者的并行编程指南</h2><p><img src="/images/pasted-322.png" alt="upload successful"></p>
+<p>在参加 Kaggle 的 <a target="_blank" rel="noopener" href="https://www.kaggle.com/c/planet-understanding-the-amazon-from-space">Understanding the Amazon from Space</a> 比赛时，我试图对自己代码的各个部分进行加速。速度在 Kaggle 比赛中至关重要。高排名常常需要尝试数百种模型结构与超参组合，能在一个持续一分钟的 epoch 中省出 10 秒都是一个巨大的胜利。</p>
+<p>让我吃惊的是，数据处理是最大的瓶颈。我用了 Numpy 的矩阵旋转、矩阵翻转、缩放及裁切等操作，在 CPU 上进行运算。Numpy 和 Pytorch 的 DataLoader 在某些情况中使用了并行处理。我同时会运行 3 到 5 个实验，每个实验都各自进行数据处理。但这种处理方式看起来效率不高，我希望知道我是否能用并行处理来加快所有实验的运行速度。</p>
+<a id="more"></a>
+<h3 id="什么是并行处理？"><a href="#什么是并行处理？" class="headerlink" title="什么是并行处理？"></a>什么是并行处理？</h3><p>简单来说就是在同一时刻做两件事情，也可以是在不同的 CPU 上分别运行代码，或者说当程序等待外部资源（文件加载、API 调用等）时把“浪费”的 CPU 周期充分利用起来提高效率。</p>
+<p>下面的例子是一个“正常”的程序。它会使用单线程，依次进行下载一个 URL 列表的内容。</p>
+<p><img src="/images/pasted-323.png" alt="upload successful"></p>
+<p>下面是一个同样的程序，不过使用了 2 个线程。它把 URL 列表分给不同的线程，处理速度几乎翻倍。</p>
+<p><img src="/images/pasted-324.png" alt="upload successful"></p>
+<p>如果你对如何绘制以上图表感到好奇，可以参考<a target="_blank" rel="noopener" href="https://github.com/bfortuner/ml-study/blob/master/multitasking_python.ipynb">源码</a>，下面也简单介绍一下：</p>
+<ol>
+<li>在你函数内部加上一个计时器，并返回函数执行的起始与结束时间</li>
+</ol>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">URLS = [url1, url2, url3, ...]</span><br><span class="line">def download(url, base):</span><br><span class="line">    <span class="built_in">start</span> = <span class="built_in">time</span>.<span class="built_in">time</span>() - base</span><br><span class="line">    resp = urlopen(url)</span><br><span class="line">    <span class="built_in">stop</span> = <span class="built_in">time</span>.<span class="built_in">time</span>() - base</span><br><span class="line">    <span class="literal">return</span> <span class="built_in">start</span>,<span class="built_in">stop</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>单线程程序的可视化如下：多次执行你的函数，并将多个开始结束的时间存储下来</li>
+</ol>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">results</span> = [download(url, <span class="number">1</span>) for url in URLS]</span><br></pre></td></tr></table></figure>
+<ol>
+<li>将 [start, stop] 的结果数组进行转置，绘制柱状图</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def visualize_runtimes(results):</span><br><span class="line">    <span class="keyword">start</span>,<span class="keyword">stop</span> = np.array(results).T</span><br><span class="line">    plt.barh(<span class="keyword">range</span>(<span class="keyword">len</span>(<span class="keyword">start</span>)), <span class="keyword">stop</span>-<span class="keyword">start</span>, <span class="keyword">left</span>=<span class="keyword">start</span>)</span><br><span class="line">    plt.grid(axis=’x’)</span><br><span class="line">    plt.ylabel(<span class="string">&quot;Tasks&quot;</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&quot;Seconds&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>多线程的图表生成方式与此类似。Python 的并发库一样可以返回结果数组。</p>
+<h3 id="进程-vs-线程"><a href="#进程-vs-线程" class="headerlink" title="进程 vs 线程"></a><strong>进程 vs 线程</strong></h3><p>一个<strong>进程</strong>就是一个程序的实例（比如 Jupyter notebook 或 Python 解释器）。进程启动<strong>线程</strong>（子进程）来处理一些子任务（比如按键、加载 HTML 页面、保存文件等）。线程存活于进程内部，线程间共享相同的内存空间。</p>
+<p><strong>举例：Microsoft Word</strong><br>当你打开 Word 时，你其实就是创建了一个进程。当你开始打字时，进程启动了一些线程：一个线程专门用于获取键盘输入，一个线程用于显示文本，一个线程用于自动保存文件，还有一个线程用于拼写检查。在启动这些线程之后，Word 就能更好的利用空闲的 CPU 时间（等待键盘输入或文件加载的时间）让你有更高的工作效率。</p>
+<h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a><strong>进程</strong></h4><ul>
+<li>由操作系统创建，以运行程序</li>
+<li>一个进程可以包括多个线程</li>
+<li>两个进程可以在 Python 程序中同时执行代码</li>
+<li>启动与终止进程需要花费更多的时间，因此用进程比用线程的开销更大</li>
+<li>由于进程不共享内存空间，因此进程间交换信息比线程间交换信息要慢很多。在 Python 中，用序列化数据结构（如数组）的方法进行信息交换会花费 IO 处理级别的时间。</li>
+</ul>
+<h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a><strong>线程</strong></h4><ul>
+<li>线程是在进程内部的类似迷你进程的东西</li>
+<li>不同的线程共享同样的内存空间，可以高效地读写相同的变量</li>
+<li>两个线程不能在同一个 Python 程序中执行代码（有解决这个问题的方法<code>*</code>）</li>
+</ul>
+<h4 id="CPU-vs-核"><a href="#CPU-vs-核" class="headerlink" title="CPU vs 核"></a>CPU vs 核</h4><p><strong>CPU</strong>，或者说处理器，管理着计算机最基本的运算工作。CPU 有一个或着多个<strong>核</strong>，可以让 CPU 同时执行代码。</p>
+<p>如果只有一个核，那么对 CPU 密集型任务（比如循环、运算等）不会有速度的提升。操作系统需要在很小的时间片在不同的任务间来回切换调度。因此，做一些很琐碎的操作（比如下载一些图片）时，多任务处理反而会降低处理性能。这个现象的原因是在启动与维护多个任务时也有性能的开销。</p>
+<h4 id="Python-的-GIL-锁问题"><a href="#Python-的-GIL-锁问题" class="headerlink" title="Python 的 GIL 锁问题"></a><strong>Python 的 GIL 锁问题</strong></h4><p>CPython（python 的标准实现）有一个叫做 <a target="_blank" rel="noopener" href="https://wiki.python.org/moin/GlobalInterpreterLock">GIL</a>（全局解释锁）的东西，会阻止在程序中同时执行两个线程。一些人非常不喜欢它，但也有一些人喜欢它。目前有一些解决它的方法，不过 Numpy 之类的库大都是通过执行外部 C 语言代码来绕过这种限制。</p>
+<h4 id="何时使用线程，何时使用进程？"><a href="#何时使用线程，何时使用进程？" class="headerlink" title="何时使用线程，何时使用进程？"></a><strong>何时使用线程，何时使用进程？</strong></h4><ul>
+<li>得益于多核与不存在 GIL，<strong>多进程</strong>可以加速 CPU 密集型的 Python 程序。</li>
+<li><strong>多线程</strong>可以很好的处理 IO 任务或涉及外部系统的任务，因为线程可以将不同的工作高效地结合起来。而进程需要对结果进行序列化才能汇聚多个结果，这需要消耗额外的时间。</li>
+<li>由于 GIL 的存在，<strong>多线程</strong>对 CPU 密集的 Python 程序没有什么帮助。</li>
+</ul>
+<p><code>*</code>对于点积等某些运算，Numpy 绕过了 Python 的 GIL 锁，能够并行执行代码。</p>
+<h3 id="并行处理示例"><a href="#并行处理示例" class="headerlink" title="并行处理示例"></a>并行处理示例</h3><p>Python 的 <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/concurrent.futures.html">concurrent.futures 库</a>用起来轻松愉快。你只需要简单的将函数、待处理的对象列表和并发的数量传给它即可。在下面几节中，我会以几种实验来演示何时使用线程何时使用进程。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def multithreading(func, <span class="keyword">args</span>, </span><br><span class="line">                   workers):</span><br><span class="line">    with ThreadPoolExecutor(workers) <span class="keyword">as</span> <span class="keyword">ex</span>:</span><br><span class="line">        <span class="keyword">res</span> = <span class="keyword">ex</span>.<span class="keyword">map</span>(func, <span class="keyword">args</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">list</span>(<span class="keyword">res</span>)</span><br><span class="line"></span><br><span class="line">def multiprocessing(func, <span class="keyword">args</span>, </span><br><span class="line">                    workers):</span><br><span class="line">    with ProcessPoolExecutor(work) <span class="keyword">as</span> <span class="keyword">ex</span>:</span><br><span class="line">        <span class="keyword">res</span> = <span class="keyword">ex</span>.<span class="keyword">map</span>(func, <span class="keyword">args</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">list</span>(<span class="keyword">res</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="API-调用"><a href="#API-调用" class="headerlink" title="API 调用"></a><strong>API 调用</strong></h4><p>对于 API 调用，多线程明显比串行处理与多进程速度要快很多。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download</span>(<span class="params">url</span>):</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        resp = urlopen(url)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">print</span> (<span class="string">&#x27;ERROR: %s&#x27;</span> % e)</span><br></pre></td></tr></table></figure>
+<p><img src="/images/pasted-325.png" alt="upload successful"></p>
+<p><strong>2 个线程</strong></p>
+<p><img src="/images/pasted-326.png" alt="upload successful"></p>
+<p><strong>4 个线程</strong></p>
+<p><img src="/images/pasted-327.png" alt="upload successful"></p>
+<p><strong>2 个进程</strong></p>
+<p><img src="/images/pasted-328.png" alt="upload successful"></p>
+<p><strong>4 个进程</strong></p>
+<p><img src="/images/pasted-329.png" alt="upload successful"></p>
+<h4 id="IO-密集型任务"><a href="#IO-密集型任务" class="headerlink" title="IO 密集型任务"></a><strong>IO 密集型任务</strong></h4><p>我传入了一个巨大的文本，以观测线程与进程的写入性能。线程效果较好，但多进程也让速度有所提升。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def io_heavy(<span class="type">text</span>):</span><br><span class="line">    f = <span class="keyword">open</span>(<span class="string">&#x27;output.txt&#x27;</span>, <span class="string">&#x27;wt&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    f.<span class="keyword">write</span>(<span class="type">text</span>)</span><br><span class="line">    f.<span class="keyword">close</span>()</span><br></pre></td></tr></table></figure>
+<p><strong>串行</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">%timeit -n <span class="number">1</span> [io_heavy(TEXT,<span class="number">1</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(N)]</span><br><span class="line">&gt;&gt; <span class="number">1</span> loop, best of <span class="number">3</span>: <span class="number">1.37</span> s per loop</span><br></pre></td></tr></table></figure>
+<p><strong>4 个线程</strong></p>
+<p><img src="/images/pasted-330.png" alt="upload successful"></p>
+<p><strong>4 个进程</strong></p>
+<p><img src="/images/pasted-331.png" alt="upload successful"></p>
+<h4 id="CPU-密集型任务"><a href="#CPU-密集型任务" class="headerlink" title="CPU 密集型任务"></a>CPU 密集型任务</h4><p>由于没有 GIL，可以在多核上同时执行代码，多进程理所当然的胜出。</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def cpu_heavy(<span class="built_in">n</span>)<span class="symbol">:</span></span><br><span class="line">    <span class="built_in">count</span> = <span class="number">0</span></span><br><span class="line">    for i in range(<span class="built_in">n</span>)<span class="symbol">:</span></span><br><span class="line">        <span class="built_in">count</span> += i</span><br></pre></td></tr></table></figure>
+<p><img src="/images/pasted-332.png" alt="upload successful"></p>
+<p><strong>串行：</strong> 4.2 秒<br><strong>4 个线程：</strong> 6.5 秒<br><strong>4 个进程：</strong> 1.9 秒</p>
+<h4 id="Numpy-中的点积"><a href="#Numpy-中的点积" class="headerlink" title="Numpy 中的点积"></a>Numpy 中的点积</h4><p>不出所料，无论是用多线程还是多进程都不会对此代码有什么帮助。Numpy 在幕后执行外部的 C 语言代码，绕开了 GIL。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def dot_product(i, base):</span><br><span class="line">    <span class="built_in">start</span> = <span class="built_in">time</span>.<span class="built_in">time</span>() - base</span><br><span class="line">    res = np.dot(<span class="keyword">a</span>,b)</span><br><span class="line">    <span class="built_in">stop</span> = <span class="built_in">time</span>.<span class="built_in">time</span>() - base</span><br><span class="line">    <span class="literal">return</span> <span class="built_in">start</span>,<span class="built_in">stop</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>串行：</strong> 2.8 秒<br><strong>2 个线程：</strong> 3.4 秒<br><strong>2 个进程：</strong> 3.3 秒</p>
+<p>以上实验的 Notebook 请<a target="_blank" rel="noopener" href="https://github.com/bfortuner/ml-study/blob/master/multitasking_python.ipynb">参考此处</a>，你可以自己来复现这些实验。</p>
+<h3 id="相关资源"><a href="#相关资源" class="headerlink" title="相关资源"></a><strong>相关资源</strong></h3><p>以下是我在探索这个主题时的一些参考文章。特别推荐 Nathan Grigg 的<a target="_blank" rel="noopener" href="https://nathangrigg.com/2015/04/python-threading-vs-processes">这篇博客</a>，给了我可视化方法的灵感。</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/3044580/multiprocessing-vs-threading-python"><strong>Multiprocessing vs Threading Python</strong>: I am trying to understand the advantages of multiprocessing over threading. I know that multiprocessing gets around the…</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/5260068/multithreaded-blas-in-python-numpy"><strong>multithreaded blas in python/numpy</strong>: I re-run the the benchmark on our new HPC. Both the hardware as well as the software stack changed from the setup in…</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Amdahl%27s_law"><strong>Amdahl’s law - Wikipedia</strong>: In computer architecture, Amdahl’s law (or Amdahl’s argument) is a formula which gives the theoretical speedup in…</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/8463741/how-linux-handles-threads-and-process-scheduling"><strong>How Linux handles threads and process scheduling</strong>: The Linux kernel scheduler is actually scheduling tasks, and these are either threads or (single-threaded) processes…</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/1718465/optimal-number-of-threads-per-core/10670440#10670440"><strong>Optimal number of threads per core</strong>: Let’s say I have a 4-core CPU, and I want to run some process in the minimum amount of time. The process is ideally…</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/481970/how-many-threads-is-too-many"><strong>How many threads is too many?</strong>: I am writing a server, and I branch each action of into a thread when the request is incoming. I do this because almost…</a></p>
+</li>
+</ul>
+<blockquote>
+<p>juejin:<a target="_blank" rel="noopener" href="https://juejin.im/post/5b84f3086fb9a01a1a27cedb#heading-14">https://juejin.im/post/5b84f3086fb9a01a1a27cedb#heading-14</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Written by:  </strong>lsvih
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://lsvih.com/2018/08/28/Python-%E7%9A%84%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B/" title="Python 的多线程与多进程">https://lsvih.com/2018/08/28/Python-的多线程与多进程/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/juejin/" rel="tag"># juejin</a>
+              <a href="/tags/Back-End/" rel="tag"># Back End</a>
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/07/23/%E4%BD%BF%E7%94%A8-PhpFastCache-%E6%8F%90%E5%8D%87%E7%BD%91%E7%AB%99%E6%80%A7%E8%83%BD/" rel="prev" title="使用 PhpFastCache 提升网站性能">
+                  <i class="fa fa-chevron-left"></i> 使用 PhpFastCache 提升网站性能
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/10/29/%E5%85%B3%E9%94%AE%E8%AF%8D%E8%A7%84%E5%88%99%E7%94%9F%E6%88%90/" rel="next" title="关键词规则生成">
+                  关键词规则生成 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -528,32 +544,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -569,9 +591,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -587,55 +608,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,56 +13,33 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="My note">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/index.html">
 <meta property="og:site_name" content="My note">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="lsvih">
 <meta name="twitter:card" content="summary">
+
 
 <link rel="canonical" href="https://lsvih.com/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
-    isPage: false,
-    isArchive: false
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
   };
 </script>
 
@@ -85,24 +62,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -110,60 +99,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -171,31 +163,105 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
 
-  
-</div>
-<div class="search-pop-overlay"></div>
-
+      
+    </div>
   </div>
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lsvih</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">161</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">205</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
@@ -205,20 +271,19 @@
   </div>
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
+    <div class="main-inner index posts-expand">
+      
 
-  <div class="posts-expand">
-        
+      
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2020/09/05/an-introduction-to-raspberry-pi-4-gpio-and-controlling-it-with-node-js/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -230,34 +295,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2020/09/05/an-introduction-to-raspberry-pi-4-gpio-and-controlling-it-with-node-js/" class="post-title-link" itemprop="url">树莓派 4 GPIO 简介及使用 Node.js 控制树莓派</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-09-05 18:25:00" itemprop="dateCreated datePublished" datetime="2020-09-05T18:25:00+08:00">2020-09-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2020-09-05 18:25:00" itemprop="dateCreated datePublished" datetime="2020-09-05T18:25:00+08:00">2020-09-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -266,8 +334,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><img src="/images/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f31323030302f312a742d64725f3543724b663435524530557577773273672e6a706567.jpeg" alt="68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f31323030302f312a742d64725f3543724b663435524530557577773273672e6a706567"></p>
 <blockquote>
 <p>通过本文，我们将熟悉树莓派 GPIO 及其技术规范。并且，我们将通过了一个简单例子，说明如何使用树莓派的 I/O 控制 LED 和开关。</p>
@@ -292,18 +358,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2020/08/31/the-many-ways-to-include-css-in-javascript-applications.md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -315,34 +383,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2020/08/31/the-many-ways-to-include-css-in-javascript-applications.md/" class="post-title-link" itemprop="url">Javascript 应用中引入 CSS 的几种方式</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-08-31 16:37:00" itemprop="dateCreated datePublished" datetime="2020-08-31T16:37:00+08:00">2020-08-31</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2020-08-31 16:37:00" itemprop="dateCreated datePublished" datetime="2020-08-31T16:37:00+08:00">2020-08-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -351,10 +422,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><img src="/images/css-vs-js.png" alt="css-vs-js"></p>
-<p>欢迎你踏上了一条在前端世界中饱含争议的道路！相信大部分读者会在关于如何<a href="https://css-tricks.com/tag/css-in-js/" target="_blank" rel="noopener">在 JavaScript 应用中处理 CSS</a> 这一话题上产生共鸣。</p>
+<p>欢迎你踏上了一条在前端世界中饱含争议的道路！相信大部分读者会在关于如何<a target="_blank" rel="noopener" href="https://css-tricks.com/tag/css-in-js/">在 JavaScript 应用中处理 CSS</a> 这一话题上产生共鸣。</p>
 <p>文章伊始，先声明一句：<strong>无论是在基于 Vue、Angular 还是 React 构建的应用，针对如何处理 CSS，世界上并没有任何放之四海而皆准的方法。</strong>各个项目皆有不同，每种方式也有可取之处！可能这么说显得含糊其辞，但就我所知，在我们的开发社区内，那些追寻新知识，推动网页开发向前发展的人举目皆是。</p>
 <p>让我们放下对本文话题的感性认知，先领会下 CSS 世界架构的奇妙之处。</p>
           <!--noindex-->
@@ -371,18 +440,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2020/07/15/Enhancing%20Pre-trained%20Chinese%20Character%20Representation%20with%20Word-aligned%20Attention%20%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -394,34 +465,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2020/07/15/Enhancing%20Pre-trained%20Chinese%20Character%20Representation%20with%20Word-aligned%20Attention%20%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Enhancing Pre-trained Chinese Character Representation with Word-aligned Attention 论文笔记</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-07-15 20:20:00" itemprop="dateCreated datePublished" datetime="2020-07-15T20:20:00+08:00">2020-07-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Paper/" itemprop="url" rel="index">
-                    <span itemprop="name">Paper</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2020-07-15 20:20:00" itemprop="dateCreated datePublished" datetime="2020-07-15T20:20:00+08:00">2020-07-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -430,8 +504,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <blockquote>
 <p>Enhancing Pre-trained Chinese Character Representation with Word-aligned Attention 一文是我和组内同学、师兄的合作工作，作为短文录用于 ACL 2020。</p>
 </blockquote>
@@ -500,18 +572,20 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2020/07/13/Slide-of-MWA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -523,34 +597,37 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2020/07/13/Slide-of-MWA/" class="post-title-link" itemprop="url">Slide of 'Enhancing Pre-trained Chinese Character Representation with Word-aligned Attention' used in ACL conference.</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-07-13 11:06:00" itemprop="dateCreated datePublished" datetime="2020-07-13T11:06:00+08:00">2020-07-13</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Paper/" itemprop="url" rel="index">
-                    <span itemprop="name">Paper</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2020-07-13 11:06:00" itemprop="dateCreated datePublished" datetime="2020-07-13T11:06:00+08:00">2020-07-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -559,8 +636,6 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><iframe src="https://lsvih.github.io/workshop/20-07-15/Enhancing%20Pre-trained%20Chinese%20Character%20Representation%20with%20Word-aligned%20Attention.html" scrolling="no" frameborder="0" align="" height="600px" width="100%"></iframe></p>
       
     </div>
@@ -568,18 +643,20 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2020/06/05/fetch-all-git-remote-branch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -591,34 +668,37 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2020/06/05/fetch-all-git-remote-branch/" class="post-title-link" itemprop="url">获取 Git 全部远程分支</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-06-05 16:13:59" itemprop="dateCreated datePublished" datetime="2020-06-05T16:13:59+08:00">2020-06-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Note/" itemprop="url" rel="index">
-                    <span itemprop="name">Note</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2020-06-05 16:13:59" itemprop="dateCreated datePublished" datetime="2020-06-05T16:13:59+08:00">2020-06-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Note/" itemprop="url" rel="index"><span itemprop="name">Note</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -627,15 +707,13 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>因为图省硬盘，直接用了 <code>--depth=1</code> 命令 clone，导致在本地追踪不到远程的分支，并且用 <code>git branch -a</code> 看不到远程分支，当然也不能 checkout 到 origin/remote 上去。<code>git fetch all</code>、<code>git fetch origin</code> 也都拿不到内容。</p>
 <p>因为有 slash 的内容和已经准备好的 commit，又不想重新去 clone，想起来 git 使用 fetch 时就是去找 <code>.git/config</code> 文件里的 remote origin 字段，因此直接改了这个文件的内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">vim .git/config</span></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim .git/config</span><br></pre></td></tr></table></figure>
 <p>找到  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[remote &quot;origin&quot;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">        url &#x3D; https:&#x2F;&#x2F;github.com&#x2F;xxx&#x2F;xxx</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        fetch &#x3D; +refs&#x2F;heads&#x2F;master:refs&#x2F;remotes&#x2F;origin&#x2F;master</span></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[remote <span class="string">&quot;origin&quot;</span>]</span><br><span class="line">        url = https:<span class="regexp">//gi</span>thub.com<span class="regexp">/xxx/</span>xxx</span><br><span class="line">        fetch = +refs<span class="regexp">/heads/m</span>aster:refs<span class="regexp">/remotes/</span>origin/master</span><br></pre></td></tr></table></figure>
 <p>果然 head 和 remote origin 都指向 master，把 master 改成 *：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">[remote &quot;origin&quot;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">        url &#x3D; https:&#x2F;&#x2F;github.com&#x2F;xxx&#x2F;xxx</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        fetch &#x3D; +refs&#x2F;heads&#x2F;*:refs&#x2F;remotes&#x2F;origin&#x2F;*</span></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[remote <span class="string">&quot;origin&quot;</span>]</span><br><span class="line">        url = https:<span class="regexp">//gi</span>thub.com<span class="regexp">/xxx/</span>xxx</span><br><span class="line">        fetch = +refs<span class="regexp">/heads/</span>*:refs<span class="regexp">/remotes/</span>origin/*</span><br></pre></td></tr></table></figure>
 <p>接着 <code>git fetch --all</code>，就拿到了全部的分支，现在就可以直接去 checkout 了~</p>
 
       
@@ -644,18 +722,20 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2020/02/07/edge-detection-in-python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -667,34 +747,37 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2020/02/07/edge-detection-in-python/" class="post-title-link" itemprop="url">使用 Python 进行边缘检测</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-02-07 19:50:00" itemprop="dateCreated datePublished" datetime="2020-02-07T19:50:00+08:00">2020-02-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2020-02-07 19:50:00" itemprop="dateCreated datePublished" datetime="2020-02-07T19:50:00+08:00">2020-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -703,8 +786,6 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>上季度，我在学校辅助一门 Python 课程的教学，在此过程中学到了很多图像处理的知识。我希望通过本文分享一些关于边缘检测的知识，包括边缘检测的<strong>理论</strong>以及如何使用 Python <strong>实现</strong>边缘检测。</p>
 <hr>
 <h3 id="为何检测边缘？"><a href="#为何检测边缘？" class="headerlink" title="为何检测边缘？"></a>为何检测边缘？</h3><p>我们首先应该了解的问题是：<strong>“为什么要费尽心思去做边缘检测？”</strong>除了它的效果很酷外，为什么边缘检测还是一种实用的技术？为了更好地解答这个问题，请仔细思考并对比下面的风车图片和它的“仅含边缘的图”：</p>
@@ -730,12 +811,12 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
 <p>希望上文已经讲清楚了这些理论！下面看一看代码是如何实现的。</p>
 <hr>
 <h3 id="如何进行边缘检测-——-代码"><a href="#如何进行边缘检测-——-代码" class="headerlink" title="如何进行边缘检测 —— 代码"></a>如何进行边缘检测 —— 代码</h3><p>首先进行一些设置：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义纵向过滤器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">vertical_filter = [[<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-1</span>], [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>], [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>]]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义横向过滤器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">horizontal_filter = [[<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>], [<span class="number">-2</span>,<span class="number">0</span>,<span class="number">2</span>], [<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>]]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取纸风车的示例图片“pinwheel.jpg”</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">img = plt.imread(<span class="string">'pinwheel.jpg'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 得到图片的维数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">n,m,d = img.shape</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化边缘图像</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">edges_img = img.copy()</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义纵向过滤器</span></span><br><span class="line">vertical_filter = [[<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-1</span>], [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>], [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义横向过滤器</span></span><br><span class="line">horizontal_filter = [[<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>], [<span class="number">-2</span>,<span class="number">0</span>,<span class="number">2</span>], [<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取纸风车的示例图片“pinwheel.jpg”</span></span><br><span class="line">img = plt.imread(<span class="string">&#x27;pinwheel.jpg&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 得到图片的维数</span></span><br><span class="line">n,m,d = img.shape</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化边缘图像</span></span><br><span class="line">edges_img = img.copy()</span><br></pre></td></tr></table></figure>
 <ul>
 <li>你可以把代码中的“pinwheel.jpg”替换成其它你想要找出边缘的图片文件！需要确保此文件和代码在同一工作目录中。</li>
 </ul>
 <p>接着编写边缘检测代码本身：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义纵向过滤器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">vertical_filter = [[<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-1</span>], [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>], [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>]]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义横向过滤器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">horizontal_filter = [[<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>], [<span class="number">-2</span>,<span class="number">0</span>,<span class="number">2</span>], [<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>]]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取纸风车的示例图片“pinwheel.jpg”</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">img = plt.imread(<span class="string">'pinwheel.jpg'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 得到图片的维数</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">n,m,d = img.shape</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化边缘图像</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">edges_img = img.copy()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 循环遍历图片的全部像素</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> range(<span class="number">3</span>, n<span class="number">-2</span>):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> range(<span class="number">3</span>, m<span class="number">-2</span>):</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># 在当前位置创建一个 3x3 的小方框</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">        local_pixels = img[row<span class="number">-1</span>:row+<span class="number">2</span>, col<span class="number">-1</span>:col+<span class="number">2</span>, <span class="number">0</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># 应用纵向过滤器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">        vertical_transformed_pixels = vertical_filter*local_pixels</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># 计算纵向边缘得分</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">        vertical_score = vertical_transformed_pixels.sum()/<span class="number">4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># 应用横向过滤器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">        horizontal_transformed_pixels = horizontal_filter*local_pixels</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># 计算横向边缘得分</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">        horizontal_score = horizontal_transformed_pixels.sum()/<span class="number">4</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># 将纵向得分与横向得分结合，得到此像素总的边缘得分</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">        edge_score = (vertical_score**<span class="number">2</span> + horizontal_score**<span class="number">2</span>)**<span class="number">.5</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">        </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">        <span class="comment"># 将边缘得分插入边缘图像中</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">        edges_img[row, col] = [edge_score]*<span class="number">3</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对边缘图像中的得分值归一化，防止得分超出 0-1 的范围</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">edges_img = edges_img/edges_img.max()</span></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义纵向过滤器</span></span><br><span class="line">vertical_filter = [[<span class="number">-1</span>,<span class="number">-2</span>,<span class="number">-1</span>], [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>], [<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义横向过滤器</span></span><br><span class="line">horizontal_filter = [[<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>], [<span class="number">-2</span>,<span class="number">0</span>,<span class="number">2</span>], [<span class="number">-1</span>,<span class="number">0</span>,<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取纸风车的示例图片“pinwheel.jpg”</span></span><br><span class="line">img = plt.imread(<span class="string">&#x27;pinwheel.jpg&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 得到图片的维数</span></span><br><span class="line">n,m,d = img.shape</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化边缘图像</span></span><br><span class="line">edges_img = img.copy()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 循环遍历图片的全部像素</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> range(<span class="number">3</span>, n<span class="number">-2</span>):</span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> range(<span class="number">3</span>, m<span class="number">-2</span>):</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 在当前位置创建一个 3x3 的小方框</span></span><br><span class="line">        local_pixels = img[row<span class="number">-1</span>:row+<span class="number">2</span>, col<span class="number">-1</span>:col+<span class="number">2</span>, <span class="number">0</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 应用纵向过滤器</span></span><br><span class="line">        vertical_transformed_pixels = vertical_filter*local_pixels</span><br><span class="line">        <span class="comment"># 计算纵向边缘得分</span></span><br><span class="line">        vertical_score = vertical_transformed_pixels.sum()/<span class="number">4</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 应用横向过滤器</span></span><br><span class="line">        horizontal_transformed_pixels = horizontal_filter*local_pixels</span><br><span class="line">        <span class="comment"># 计算横向边缘得分</span></span><br><span class="line">        horizontal_score = horizontal_transformed_pixels.sum()/<span class="number">4</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 将纵向得分与横向得分结合，得到此像素总的边缘得分</span></span><br><span class="line">        edge_score = (vertical_score**<span class="number">2</span> + horizontal_score**<span class="number">2</span>)**<span class="number">.5</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 将边缘得分插入边缘图像中</span></span><br><span class="line">        edges_img[row, col] = [edge_score]*<span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对边缘图像中的得分值归一化，防止得分超出 0-1 的范围</span></span><br><span class="line">edges_img = edges_img/edges_img.max()</span><br></pre></td></tr></table></figure>
 <p>有几点需要注意：</p>
 <ul>
 <li>在图片的边界像素上，我们无法创建完整的 3 x 3 小方框，因此在图片的四周会有一个细边框。</li>
@@ -749,7 +830,7 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
 <hr>
 <p>以上就是本文的全部内容了！希望你了解到了一点新知识，并继续关注更多数据科学方面的文章〜</p>
 <blockquote>
-<p>掘金链接：<a href="https://juejin.im/post/5e3d4b53e51d4526c26fadd4" target="_blank" rel="noopener">https://juejin.im/post/5e3d4b53e51d4526c26fadd4</a></p>
+<p>掘金链接：<a target="_blank" rel="noopener" href="https://juejin.im/post/5e3d4b53e51d4526c26fadd4">https://juejin.im/post/5e3d4b53e51d4526c26fadd4</a></p>
 </blockquote>
 
       
@@ -758,18 +839,20 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/08/05/xgboost-algorithm-long-may-she-reign/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -781,34 +864,37 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2019/08/05/xgboost-algorithm-long-may-she-reign/" class="post-title-link" itemprop="url">XGBoost 算法万岁！</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-08-05 22:50:00" itemprop="dateCreated datePublished" datetime="2019-08-05T22:50:00+08:00">2019-08-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2019-08-05 22:50:00" itemprop="dateCreated datePublished" datetime="2019-08-05T22:50:00+08:00">2019-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -817,8 +903,6 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><img src="/images/15650167189931.jpg" alt="Photo By Jared Subia"></p>
           <!--noindex-->
             <div class="post-button">
@@ -834,18 +918,20 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/06/28/why-one-hot-encode-data-in-machine-learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -857,34 +943,37 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2019/06/28/why-one-hot-encode-data-in-machine-learning/" class="post-title-link" itemprop="url">在机器学习中为什么要进行 One-Hot 编码？</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-06-28 11:10:00" itemprop="dateCreated datePublished" datetime="2019-06-28T11:10:00+08:00">2019-06-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2019-06-28 11:10:00" itemprop="dateCreated datePublished" datetime="2019-06-28T11:10:00+08:00">2019-06-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -893,8 +982,6 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>入门机器学习应用，尤其是需要对实际数据进行处理时，是很困难的。</p>
 <p>一般来说，机器学习教程会推荐你或要求你，在开始拟合模型之前，先以特定的方式准备好数据。</p>
 <p>其中，一个很好的例子就是对类别数据（Categorical data）进行 One-Hot 编码（又称独热编码）。</p>
@@ -917,18 +1004,20 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/06/27/Graph%20Convolutional%20Networks%20for%20Text%20Classification/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -940,34 +1029,37 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2019/06/27/Graph%20Convolutional%20Networks%20for%20Text%20Classification/" class="post-title-link" itemprop="url">Graph Convolutional Networks for Text Classification 论文笔记</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-06-27 12:04:00" itemprop="dateCreated datePublished" datetime="2019-06-27T12:04:00+08:00">2019-06-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Paper/" itemprop="url" rel="index">
-                    <span itemprop="name">Paper</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2019-06-27 12:04:00" itemprop="dateCreated datePublished" datetime="2019-06-27T12:04:00+08:00">2019-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -976,10 +1068,8 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <blockquote>
-<p>本文作于 2018 年，被 AAAI 2019 接收。作者是浙大博士，在 Northwestern University 做博后期间做出了此工作。文章中开源了实现代码：<a href="https://github.com/yao8839836/text_gcn" target="_blank" rel="noopener">https://github.com/yao8839836/text_gcn</a> </p>
+<p>本文作于 2018 年，被 AAAI 2019 接收。作者是浙大博士，在 Northwestern University 做博后期间做出了此工作。文章中开源了实现代码：<a target="_blank" rel="noopener" href="https://github.com/yao8839836/text_gcn">https://github.com/yao8839836/text_gcn</a> </p>
 </blockquote>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>本文解决的是自然语言处理中最基础的任务 - 文本分类任务。利用近年大火的图神经网络，作者通过词与文章的共现信息和 TF-IDF 权重和互信息权重将无结构数据文本进行了构图，并利用 Graph Convolutional Network（GCN）捕获图中的文档-词、词-词、文档-文档关系，从而进行文本分类。</p>
 <p>具体来说，本文主要有以下两个贡献点：</p>
@@ -1039,18 +1129,20 @@ A _ { i j } = \left\{ \begin{array} { c } { \operatorname { PMI } ( i , j ) } \s
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/06/26/javascript-linear-algebra/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1062,34 +1154,37 @@ A _ { i j } = \left\{ \begin{array} { c } { \operatorname { PMI } ( i , j ) } \s
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2019/06/26/javascript-linear-algebra/" class="post-title-link" itemprop="url">Javascript 线性代数系列</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-06-26 10:00:00" itemprop="dateCreated datePublished" datetime="2019-06-26T10:00:00+08:00">2019-06-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2019-06-26 10:00:00" itemprop="dateCreated datePublished" datetime="2019-06-26T10:00:00+08:00">2019-06-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -1098,9 +1193,7 @@ A _ { i j } = \left\{ \begin{array} { c } { \operatorname { PMI } ( i , j ) } \s
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本系列翻译自 Rodion Chachura 发布于 Medium 的系列文章 <a href="https://medium.com/@geekrodion/linear-algebra-with-javascript-46c289178c0" target="_blank" rel="noopener">Linear Algebra with Javascript</a>，旨在帮助复习线性代数的基本概念与运算，并了解如何使用 React、SVG、ThreeJS 等技术栈对线性代数的二维、三维向量、矩阵、线性变换进行可视化。</p>
+          <p>本系列翻译自 Rodion Chachura 发布于 Medium 的系列文章 <a target="_blank" rel="noopener" href="https://medium.com/@geekrodion/linear-algebra-with-javascript-46c289178c0">Linear Algebra with Javascript</a>，旨在帮助复习线性代数的基本概念与运算，并了解如何使用 React、SVG、ThreeJS 等技术栈对线性代数的二维、三维向量、矩阵、线性变换进行可视化。</p>
 <p>本系列共包含 5 篇文章：</p>
 <ol>
 <li><a href="https://lsvih.com/2019/06/26/javascript-linear-algebra-react-example/">用 React 制作线性代数教程示例：网格与箭头</a></li>
@@ -1116,15 +1209,16 @@ A _ { i j } = \left\{ \begin{array} { c } { \operatorname { PMI } ( i , j ) } \s
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-  </div>
 
   
   <nav class="pagination">
@@ -1133,91 +1227,39 @@ A _ { i j } = \left\{ \begin{array} { c } { \operatorname { PMI } ( i , j ) } \s
 
 
 
-          </div>
-          
+      
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">lsvih</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">161</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">205</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -1229,32 +1271,38 @@ A _ { i j } = \left\{ \begin{array} { c } { \operatorname { PMI } ( i , j ) } \s
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -1270,9 +1318,8 @@ A _ { i j } = \left\{ \begin{array} { c } { \operatorname { PMI } ( i , j ) } \s
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -1288,55 +1335,16 @@ A _ { i j } = \left\{ \begin{array} { c } { \operatorname { PMI } ( i , j ) } \s
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

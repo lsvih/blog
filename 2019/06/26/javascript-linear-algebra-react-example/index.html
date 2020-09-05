@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,63 +13,46 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta name="description" content="本文是“JavaScript 线性代数”教程的一部分。">
-<meta name="keywords" content="Translate,juejin,Linear Algebra,React,线性代数,数据可视化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用 React 制作线性代数教程示例：网格与箭头">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2019&#x2F;06&#x2F;26&#x2F;javascript-linear-algebra-react-example&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/2019/06/26/javascript-linear-algebra-react-example/index.html">
 <meta property="og:site_name" content="My note">
 <meta property="og:description" content="本文是“JavaScript 线性代数”教程的一部分。">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f333833302f312a3338743653416c5363676d42476a58516e39635475412e676966.gif">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;15615123069092.jpg">
-<meta property="og:updated_time" content="2019-06-26T02:08:16.940Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lsvih.com/images/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f333833302f312a3338743653416c5363676d42476a58516e39635475412e676966.gif">
+<meta property="og:image" content="https://lsvih.com/images/15615123069092.jpg">
+<meta property="article:published_time" content="2019-06-26T01:00:00.000Z">
+<meta property="article:modified_time" content="2019-06-26T02:08:16.940Z">
+<meta property="article:author" content="lsvih">
+<meta property="article:tag" content="Translate">
+<meta property="article:tag" content="juejin">
+<meta property="article:tag" content="Linear Algebra">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="线性代数">
+<meta property="article:tag" content="数据可视化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f333833302f312a3338743653416c5363676d42476a58516e39635475412e676966.gif">
+<meta name="twitter:image" content="https://lsvih.com/images/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f333833302f312a3338743653416c5363676d42476a58516e39635475412e676966.gif">
+
 
 <link rel="canonical" href="https://lsvih.com/2019/06/26/javascript-linear-algebra-react-example/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
   };
 </script>
 
@@ -92,24 +75,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -117,60 +112,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -178,202 +176,44 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
-
-  
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/06/26/javascript-linear-algebra-react-example/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          用 React 制作线性代数教程示例：网格与箭头
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-06-26 09:00:00" itemprop="dateCreated datePublished" datetime="2019-06-26T09:00:00+08:00">2019-06-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <p>本文是“<a href="https://lsvih.com/2019/06/26/javascript-linear-algebra/">JavaScript 线性代数</a>”教程的一部分。</p>
-<a id="more"></a>
-<p>最近我撰写了这个线性代数系列的<a href="https://medium.com/@geekrodion/linear-algebra-vectors-f7610e9a0f23" target="_blank" rel="noopener">开篇之作</a>。在新篇开始动笔前，我有了一个想法：使用 React 开发一个项目，来为这个系列的所有示例提供可视化功能一定很好玩！本系列的所有代码都存放于<a href="https://github.com/RodionChachura/linear-algebra" target="_blank" rel="noopener">此 GitHub 仓库</a>，本文相关代码的提交记录位于<a href="https://github.com/RodionChachura/linear-algebra/tree/813cfecfda70cb3a9415c21ead97e09242e08f49" target="_blank" rel="noopener">此处</a>。</p>
-<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>在本系列刚开始写作时，只有一个章节涉及了向量的基本运算。所以，目前实现一个能渲染二维坐标网格以及能将向量可视化为箭头的组件就够用了。本文最后做出的效果如下图所示，你也可以在<a href="https://rodionchachura.github.io/linear-algebra/" target="_blank" rel="noopener">此处</a>进行体验。</p>
-<p><img src="/images/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f333833302f312a3338743653416c5363676d42476a58516e39635475412e676966.gif" alt="二维空间中的基本向量运算"></p>
-<h2 id="创建-React-项目"><a href="#创建-React-项目" class="headerlink" title="创建 React 项目"></a>创建 React 项目</h2><p>其实已经有关于创建 React 项目的最佳实践指南文章可供参考，不过在本文中，我们将尽可能减少依赖的库，并简化对项目的配置。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">create-react-app linear-algebra-demo</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> linear-algebra-demo</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">npm install --save react-sizeme styled-components</span></pre></td></tr></table></figure>
-<p>上面的脚本安装了两个库。第一个库 <code>react-sizeme</code> 可以实现当窗体大小发生变化时，重新渲染网格组件。第二个库 <code>styled-components</code> 则能让我们更轻松地编写组件的样式。此外，要用到我们正在开发的 <strong>linear-algebra</strong> 库，需要在 <strong>package.json</strong> 中进行如下引用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&quot;dependencies&quot;: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    &quot;linear-algebra&quot;: &quot;file:..&#x2F;library&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p><img src="/images/15615123069092.jpg" alt="项目结构"></p>
-<p>本系列为每个示例都在 <code>views</code> 目录中创建了各自的组件。我们在 <strong>index.js</strong> 中导出一个以示例名称为键、以对应组件为值的对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> VectorLength &#125; <span class="keyword">from</span> <span class="string">'./vector-length'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> VectorScale &#125; <span class="keyword">from</span> <span class="string">'./vector-scale'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> VectorsAddition &#125; <span class="keyword">from</span> <span class="string">'./vectors-addition'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> VectorsSubtraction &#125; <span class="keyword">from</span> <span class="string">'./vectors-subtraction'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> VectorsDotProduct &#125; <span class="keyword">from</span> <span class="string">'./vectors-dot-product'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="string">'vectors: addition'</span>: VectorsAddition,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="string">'vectors: subtraction'</span>: VectorsSubtraction,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="string">'vectors: length'</span>: VectorLength,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="string">'vectors: scale'</span>: VectorScale,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="string">'vectors: dot product'</span>: VectorsDotProduct</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>接着在 <code>Main</code> 组件中导入该对象，并在菜单中展示出所有的键。当用户通过菜单选择示例后，更新组件状态，并渲染新的 <code>view</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> styled <span class="keyword">from</span> <span class="string">'styled-components'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> views <span class="keyword">from</span> <span class="string">'./views'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> MenuItem <span class="keyword">from</span> <span class="string">'./menu-item'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Container = styled.div<span class="string">`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="string">  ...</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="string">`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Menu = styled.div<span class="string">`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="string">  ...</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"><span class="string">`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">super</span>(props)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.state = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">      view: <span class="built_in">Object</span>.keys(views)[<span class="number">0</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">  render() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> &#123; view &#125; = <span class="keyword">this</span>.state</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> View = views[view]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> viewsNames = <span class="built_in">Object</span>.keys(views)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> MenuItems = <span class="function"><span class="params">()</span> =&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">      viewsNames.map(<span class="function"><span class="params">name</span> =&gt;</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">        &lt;MenuItem</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">          key=&#123;name&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">          selected=&#123;name === view&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">          text=&#123;name&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">          onClick=&#123;() =&gt; <span class="keyword">this</span>.setState(&#123; <span class="attr">view</span>: name &#125;)&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">        /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">      ))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">      &lt;Container&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">        &lt;View /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">        &lt;Menu&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">          &lt;MenuItems /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">        &lt;<span class="regexp">/Menu&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">      &lt;/</span>Container&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">    )</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Main</span></pre></td></tr></table></figure>
-<h2 id="网格组件"><a href="#网格组件" class="headerlink" title="网格组件"></a>网格组件</h2><p>为了在之后的示例中渲染向量和其它内容，我们设计了一个功能强大的组件，这个组件需要有这么一种投影功能：将我们熟知的直角坐标系（原点在中间，y 轴正向朝上）投影到 <strong>SVG</strong> 坐标系（原点在左上角，y 轴正向朝下）中。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.props.updateProject(<span class="function"><span class="params">vector</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// 在 vector 类中没有任何用于缩放的方法，因此在这里进行计算：</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> scaled = vector.scaleBy(step)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> withNegatedY = <span class="keyword">new</span> Vector(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    scaled.components[<span class="number">0</span>],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    -scaled.components[<span class="number">1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  )</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> middle = getSide(size) / <span class="number">2</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> withNegatedY.add(<span class="keyword">new</span> Vector(middle, middle))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-<p>为了捕获到网格组件容器的大小变动，我们使用 <strong>react-size</strong> 库提供的函数将这个组件包装起来：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; withSize &#125; <span class="keyword">from</span> <span class="string">'react-sizeme'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Grid</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  updateProject = <span class="function">(<span class="params">size, cells</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> step = getStepLen(size, cells)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.props.updateProject(<span class="function"><span class="params">()</span> =&gt;</span> /...)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  componentWillReceiveProps(&#123; size, cells &#125;) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.props.updateProject) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">const</span> newStepLen = getStepLen(size, cells)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">const</span> oldStepLen = getStepLen(<span class="keyword">this</span>.props.size, cells)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">if</span> (newStepLen !== oldStepLen) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">this</span>.updateProject(size, cells)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  componentDidMount() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.props.updateProject) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">this</span>.updateProject(<span class="keyword">this</span>.props.size, <span class="keyword">this</span>.props.cells)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> withSize(&#123; <span class="attr">monitorHeight</span>: <span class="literal">true</span> &#125;)(Grid)</span></pre></td></tr></table></figure>
-<p>为了便于在不同的示例中使用这个网格组件，我们编写了一个 <strong>GridExample</strong> 组件，它可以接收两个参数：一个用于渲染信息（例如向量的名称）的函数 <code>renderInformation</code>，以及一个用于在网格上呈现内容（如后面的箭头组件）的函数 <code>renderGridContent</code>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Grid <span class="keyword">from</span> <span class="string">'./grid'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">super</span>(props)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.state = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      project: <span class="literal">undefined</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  render() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> &#123; project &#125; = <span class="keyword">this</span>.state</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> &#123; renderInformation, renderGridContent &#125; = <span class="keyword">this</span>.props</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> Content = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">if</span> (project &amp;&amp; renderGridContent) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> renderGridContent(&#123; project &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> Information = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">if</span> (renderInformation) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> renderInformation()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">      &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">      &lt;Container&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        &lt;Grid cells=&#123;<span class="number">10</span>&#125; updateProject=&#123;project =&gt; <span class="keyword">this</span>.setState(&#123; project &#125;)&#125;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">          &lt;Content /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        &lt;<span class="regexp">/Grid&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">        &lt;InfoContainer&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">          &lt;Information /</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">        &lt;<span class="regexp">/InfoContainer&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">      &lt;/</span>Container&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">    )</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Main</span></pre></td></tr></table></figure>
-<p>这样就能在 view 中使用这个组件了。下面以向量的加法为例测试一下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; withTheme &#125; <span class="keyword">from</span> <span class="string">'styled-components'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Vector &#125; <span class="keyword">from</span> <span class="string">'linear-algebra/vector'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> GridExample <span class="keyword">from</span> <span class="string">'../grid-example'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Arrow <span class="keyword">from</span> <span class="string">'../arrow'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> VectorView <span class="keyword">from</span> <span class="string">'../vector'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> VectorsAddition = <span class="function">(<span class="params">&#123; theme &#125;</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> one = <span class="keyword">new</span> Vector(<span class="number">0</span>, <span class="number">5</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> other = <span class="keyword">new</span> Vector(<span class="number">6</span>, <span class="number">2</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> oneName = <span class="string">'v⃗'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> otherName = <span class="string">'w⃗'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> oneColor = theme.color.green</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> otherColor = theme.color.red</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> sum = one.add(other)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> sumColor = theme.color.blue</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> sumText = <span class="string">`<span class="subst">$&#123;oneName&#125;</span> + <span class="subst">$&#123;otherName&#125;</span>`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> renderInformation = <span class="function"><span class="params">()</span> =&gt;</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    &lt;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">      &lt;VectorView components=&#123;one.components&#125; name=&#123;oneName&#125; color=&#123;oneColor&#125; /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">      &lt;VectorView</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        components=&#123;other.components&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        name=&#123;otherName&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">        color=&#123;otherColor&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">      /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">      &lt;VectorView components=&#123;sum.components&#125; name=&#123;sumText&#125; color=&#123;sumColor&#125; /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    &lt;<span class="regexp">/&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  )</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  const renderGridContent = (&#123; project &#125;) =&gt; (</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">    &lt;&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">      &lt;Arrow project=&#123;project&#125; vector=&#123;one&#125; text=&#123;oneName&#125; color=&#123;oneColor&#125; /</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">      &lt;Arrow</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">        project=&#123;project&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">        vector=&#123;other&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">        text=&#123;otherName&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">        color=&#123;otherColor&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">      /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">      &lt;Arrow project=&#123;project&#125; vector=&#123;sum&#125; text=&#123;sumText&#125; color=&#123;sumColor&#125; /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">    &lt;<span class="regexp">/&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  )</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  const props = &#123; renderInformation, renderGridContent &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line"><span class="regexp"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  return &lt;GridExample &#123;...props&#125; /</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> withTheme(VectorsAddition)</span></pre></td></tr></table></figure>
-<h2 id="箭头组件"><a href="#箭头组件" class="headerlink" title="箭头组件"></a>箭头组件</h2><p>箭头组件由 3 个 <strong>SVG</strong> 元素组成：<strong>line</strong> 用于显示箭头的线、<strong>polygon</strong> 用于显示箭头的头、<strong>text</strong> 用于显示向量名称。此外，我们需要接收 <strong>project</strong> 函数，用于将箭头放在网格中正确的位置上。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> styled <span class="keyword">from</span> <span class="string">'styled-components'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Vector &#125; <span class="keyword">from</span> <span class="string">'linear-algebra/vector'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Arrow = styled.line<span class="string">`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="string">  stroke-width: 2px;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="string">  stroke: <span class="subst">$&#123;p =&gt; p.color&#125;</span>;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"><span class="string">`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Head = styled.polygon<span class="string">`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"><span class="string">  fill: <span class="subst">$&#123;p =&gt; p.color&#125;</span>;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="string">`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Text = styled.text<span class="string">`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"><span class="string">  font-size: 24px;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="string">  fill: <span class="subst">$&#123;p =&gt; p.color&#125;</span>;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="string">`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (&#123; vector, text, color, project &#125;) =&gt; &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> direction = vector.normalize()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> headStart = direction.scaleBy(vector.length() - <span class="number">0.6</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> headSide = <span class="keyword">new</span> Vector(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    direction.components[<span class="number">1</span>],</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    -direction.components[<span class="number">0</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">  ).scaleBy(<span class="number">0.2</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> headPoints = [</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    headStart.add(headSide),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    headStart.subtract(headSide),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    vector</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">  ]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    .map(project)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">    .map(<span class="function"><span class="params">v</span> =&gt;</span> v.components)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> projectedStart = project(<span class="keyword">new</span> Vector(<span class="number">0</span>, <span class="number">0</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> projectedEnd = project(vector)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> PositionedText = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (!text) <span class="keyword">return</span> <span class="literal">null</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> &#123; components &#125; = project(vector.withLength(vector.length() + <span class="number">0.2</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">      &lt;Text color=&#123;color&#125; x=&#123;components[<span class="number">0</span>]&#125; y=&#123;components[<span class="number">1</span>]&#125;&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">        &#123;text&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">      &lt;<span class="regexp">/Text&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">    )</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  return (</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">    &lt;g&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">      &lt;Arrow</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">        color=&#123;color&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">        x1=&#123;projectedStart.components[0]&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">        y1=&#123;projectedStart.components[1]&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">        x2=&#123;projectedEnd.components[0]&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">        y2=&#123;projectedEnd.components[1]&#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">      /</span>&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">      &lt;Head color=&#123;color&#125; points=&#123;headPoints&#125; /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">57</span></pre></td><td class="code"><pre><span class="line">      &lt;PositionedText /&gt;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">58</span></pre></td><td class="code"><pre><span class="line">    &lt;<span class="regexp">/g&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">59</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">  )</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">60</span></pre></td><td class="code"><pre><span class="line"><span class="regexp">&#125;</span></span></pre></td></tr></table></figure>
-<hr>
-<p>通过结合 <strong>React</strong> 与 <strong>SVG</strong> 可以做更多有意思的事。在本系列的后面章节中，我们会给这个可视化示例添加更多的功能。最后推荐另一篇类似的文章：<a href="https://medium.com/@geekrodion/bar-chart-with-react-3b20b7907633" target="_blank" rel="noopener">使用 <strong>React</strong> 与 <strong>SVG</strong> 制作复杂的条形图</a>。</p>
-
     </div>
-
-    
-    
-    
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>lsvih
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="/https:/lsvih.com/2019/06/26/javascript-linear-algebra-react-example/" title="用 React 制作线性代数教程示例：网格与箭头">https://lsvih.com/2019/06/26/javascript-linear-algebra-react-example/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Translate/" rel="tag"># Translate</a>
-              <a href="/tags/juejin/" rel="tag"># juejin</a>
-              <a href="/tags/Linear-Algebra/" rel="tag"># Linear Algebra</a>
-              <a href="/tags/React/" rel="tag"># React</a>
-              <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="tag"># 线性代数</a>
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag"># 数据可视化</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2019/05/23/An%20Online%20Social%20Network-based%20Recommendation%20System/" rel="prev" title="An Online Social Network-based Recommendation System 论文笔记">
-      <i class="fa fa-chevron-left"></i> An Online Social Network-based Recommendation System 论文笔记
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/06/26/javascript-linear-algebra-vectors/" rel="next" title="JavaScript 线性代数：向量">
-      JavaScript 线性代数：向量 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
   </div>
 
-
-          </div>
-          
-
-        </div>
-          
+</div>
+        
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
         </li>
@@ -383,17 +223,17 @@
       </ul>
 
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建-React-项目"><span class="nav-number">2.</span> <span class="nav-text">创建 React 项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目结构"><span class="nav-number">3.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网格组件"><span class="nav-number">4.</span> <span class="nav-text">网格组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箭头组件"><span class="nav-number">5.</span> <span class="nav-text">箭头组件</span></a></li></ol></div>
-      </div>
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-React-%E9%A1%B9%E7%9B%AE"><span class="nav-number">2.</span> <span class="nav-text">创建 React 项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E6%A0%BC%E7%BB%84%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">网格组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%AD%E5%A4%B4%E7%BB%84%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">箭头组件</span></a></li></ol></div>
+      </section>
       <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">lsvih</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -416,34 +256,213 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </div>
-
+      </section>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/06/26/javascript-linear-algebra-react-example/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          用 React 制作线性代数教程示例：网格与箭头
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-26 09:00:00" itemprop="dateCreated datePublished" datetime="2019-06-26T09:00:00+08:00">2019-06-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>本文是“<a href="https://lsvih.com/2019/06/26/javascript-linear-algebra/">JavaScript 线性代数</a>”教程的一部分。</p>
+<a id="more"></a>
+<p>最近我撰写了这个线性代数系列的<a target="_blank" rel="noopener" href="https://medium.com/@geekrodion/linear-algebra-vectors-f7610e9a0f23">开篇之作</a>。在新篇开始动笔前，我有了一个想法：使用 React 开发一个项目，来为这个系列的所有示例提供可视化功能一定很好玩！本系列的所有代码都存放于<a target="_blank" rel="noopener" href="https://github.com/RodionChachura/linear-algebra">此 GitHub 仓库</a>，本文相关代码的提交记录位于<a target="_blank" rel="noopener" href="https://github.com/RodionChachura/linear-algebra/tree/813cfecfda70cb3a9415c21ead97e09242e08f49">此处</a>。</p>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>在本系列刚开始写作时，只有一个章节涉及了向量的基本运算。所以，目前实现一个能渲染二维坐标网格以及能将向量可视化为箭头的组件就够用了。本文最后做出的效果如下图所示，你也可以在<a target="_blank" rel="noopener" href="https://rodionchachura.github.io/linear-algebra/">此处</a>进行体验。</p>
+<p><img src="/images/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f333833302f312a3338743653416c5363676d42476a58516e39635475412e676966.gif" alt="二维空间中的基本向量运算"></p>
+<h2 id="创建-React-项目"><a href="#创建-React-项目" class="headerlink" title="创建 React 项目"></a>创建 React 项目</h2><p>其实已经有关于创建 React 项目的最佳实践指南文章可供参考，不过在本文中，我们将尽可能减少依赖的库，并简化对项目的配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">create-react-app linear-algebra-demo</span><br><span class="line"><span class="built_in">cd</span> linear-algebra-demo</span><br><span class="line">npm install --save react-sizeme styled-components</span><br></pre></td></tr></table></figure>
+<p>上面的脚本安装了两个库。第一个库 <code>react-sizeme</code> 可以实现当窗体大小发生变化时，重新渲染网格组件。第二个库 <code>styled-components</code> 则能让我们更轻松地编写组件的样式。此外，要用到我们正在开发的 <strong>linear-algebra</strong> 库，需要在 <strong>package.json</strong> 中进行如下引用：</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;dependencies&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;linear-algebra&quot;</span>: <span class="string">&quot;file:../library&quot;</span>,</span><br><span class="line">    <span class="string">...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p><img src="/images/15615123069092.jpg" alt="项目结构"></p>
+<p>本系列为每个示例都在 <code>views</code> 目录中创建了各自的组件。我们在 <strong>index.js</strong> 中导出一个以示例名称为键、以对应组件为值的对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> VectorLength &#125; <span class="keyword">from</span> <span class="string">&#x27;./vector-length&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> VectorScale &#125; <span class="keyword">from</span> <span class="string">&#x27;./vector-scale&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> VectorsAddition &#125; <span class="keyword">from</span> <span class="string">&#x27;./vectors-addition&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> VectorsSubtraction &#125; <span class="keyword">from</span> <span class="string">&#x27;./vectors-subtraction&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> VectorsDotProduct &#125; <span class="keyword">from</span> <span class="string">&#x27;./vectors-dot-product&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="string">&#x27;vectors: addition&#x27;</span>: VectorsAddition,</span><br><span class="line">  <span class="string">&#x27;vectors: subtraction&#x27;</span>: VectorsSubtraction,</span><br><span class="line">  <span class="string">&#x27;vectors: length&#x27;</span>: VectorLength,</span><br><span class="line">  <span class="string">&#x27;vectors: scale&#x27;</span>: VectorScale,</span><br><span class="line">  <span class="string">&#x27;vectors: dot product&#x27;</span>: VectorsDotProduct</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接着在 <code>Main</code> 组件中导入该对象，并在菜单中展示出所有的键。当用户通过菜单选择示例后，更新组件状态，并渲染新的 <code>view</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> styled <span class="keyword">from</span> <span class="string">&#x27;styled-components&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> views <span class="keyword">from</span> <span class="string">&#x27;./views&#x27;</span></span><br><span class="line"><span class="keyword">import</span> MenuItem <span class="keyword">from</span> <span class="string">&#x27;./menu-item&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Container = styled.div<span class="string">`</span></span><br><span class="line"><span class="string">  ...</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Menu = styled.div<span class="string">`</span></span><br><span class="line"><span class="string">  ...</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="built_in">super</span>(props)</span><br><span class="line">    <span class="built_in">this</span>.state = &#123;</span><br><span class="line">      view: <span class="built_in">Object</span>.keys(views)[<span class="number">0</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; view &#125; = <span class="built_in">this</span>.state</span><br><span class="line">    <span class="keyword">const</span> View = views[view]</span><br><span class="line">    <span class="keyword">const</span> viewsNames = <span class="built_in">Object</span>.keys(views)</span><br><span class="line">    <span class="keyword">const</span> MenuItems = <span class="function">() =&gt;</span></span><br><span class="line">      viewsNames.map(<span class="function"><span class="params">name</span> =&gt;</span> (</span><br><span class="line">        &lt;MenuItem</span><br><span class="line">          key=&#123;name&#125;</span><br><span class="line">          selected=&#123;name === view&#125;</span><br><span class="line">          text=&#123;name&#125;</span><br><span class="line">          onClick=&#123;<span class="function">() =&gt;</span> <span class="built_in">this</span>.setState(&#123; <span class="attr">view</span>: name &#125;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      ))</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Container&gt;</span><br><span class="line">        &lt;View /&gt;</span><br><span class="line">        &lt;Menu&gt;</span><br><span class="line">          &lt;MenuItems /&gt;</span><br><span class="line">        &lt;/Menu&gt;</span><br><span class="line">      &lt;/Container&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Main</span><br></pre></td></tr></table></figure>
+<h2 id="网格组件"><a href="#网格组件" class="headerlink" title="网格组件"></a>网格组件</h2><p>为了在之后的示例中渲染向量和其它内容，我们设计了一个功能强大的组件，这个组件需要有这么一种投影功能：将我们熟知的直角坐标系（原点在中间，y 轴正向朝上）投影到 <strong>SVG</strong> 坐标系（原点在左上角，y 轴正向朝下）中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.props.updateProject(<span class="function"><span class="params">vector</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 在 vector 类中没有任何用于缩放的方法，因此在这里进行计算：</span></span><br><span class="line">  <span class="keyword">const</span> scaled = vector.scaleBy(step)</span><br><span class="line">  <span class="keyword">const</span> withNegatedY = <span class="keyword">new</span> Vector(</span><br><span class="line">    scaled.components[<span class="number">0</span>],</span><br><span class="line">    -scaled.components[<span class="number">1</span>]</span><br><span class="line">  )</span><br><span class="line">  <span class="keyword">const</span> middle = getSide(size) / <span class="number">2</span></span><br><span class="line">  <span class="keyword">return</span> withNegatedY.add(<span class="keyword">new</span> Vector(middle, middle))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>为了捕获到网格组件容器的大小变动，我们使用 <strong>react-size</strong> 库提供的函数将这个组件包装起来：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">import</span> &#123; withSize &#125; <span class="keyword">from</span> <span class="string">&#x27;react-sizeme&#x27;</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Grid</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  updateProject = <span class="function">(<span class="params">size, cells</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> step = getStepLen(size, cells)</span><br><span class="line">    <span class="built_in">this</span>.props.updateProject(<span class="function">() =&gt;</span> /...)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentWillReceiveProps(&#123; size, cells &#125;) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.props.updateProject) &#123;</span><br><span class="line">      <span class="keyword">const</span> newStepLen = getStepLen(size, cells)</span><br><span class="line">      <span class="keyword">const</span> oldStepLen = getStepLen(<span class="built_in">this</span>.props.size, cells)</span><br><span class="line">      <span class="keyword">if</span> (newStepLen !== oldStepLen) &#123;</span><br><span class="line">        <span class="built_in">this</span>.updateProject(size, cells)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.props.updateProject) &#123;</span><br><span class="line">      <span class="built_in">this</span>.updateProject(<span class="built_in">this</span>.props.size, <span class="built_in">this</span>.props.cells)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> withSize(&#123; <span class="attr">monitorHeight</span>: <span class="literal">true</span> &#125;)(Grid)</span><br></pre></td></tr></table></figure>
+<p>为了便于在不同的示例中使用这个网格组件，我们编写了一个 <strong>GridExample</strong> 组件，它可以接收两个参数：一个用于渲染信息（例如向量的名称）的函数 <code>renderInformation</code>，以及一个用于在网格上呈现内容（如后面的箭头组件）的函数 <code>renderGridContent</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">import</span> Grid <span class="keyword">from</span> <span class="string">&#x27;./grid&#x27;</span></span><br><span class="line">...</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="built_in">super</span>(props)</span><br><span class="line">    <span class="built_in">this</span>.state = &#123;</span><br><span class="line">      project: <span class="literal">undefined</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; project &#125; = <span class="built_in">this</span>.state</span><br><span class="line">    <span class="keyword">const</span> &#123; renderInformation, renderGridContent &#125; = <span class="built_in">this</span>.props</span><br><span class="line">    <span class="keyword">const</span> Content = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (project &amp;&amp; renderGridContent) &#123;</span><br><span class="line">        <span class="keyword">return</span> renderGridContent(&#123; project &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> Information = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (renderInformation) &#123;</span><br><span class="line">        <span class="keyword">return</span> renderInformation()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Container&gt;</span><br><span class="line">        &lt;Grid cells=&#123;<span class="number">10</span>&#125; updateProject=&#123;<span class="function"><span class="params">project</span> =&gt;</span> <span class="built_in">this</span>.setState(&#123; project &#125;)&#125;&gt;</span><br><span class="line">          &lt;Content /&gt;</span><br><span class="line">        &lt;/Grid&gt;</span><br><span class="line">        &lt;InfoContainer&gt;</span><br><span class="line">          &lt;Information /&gt;</span><br><span class="line">        &lt;/InfoContainer&gt;</span><br><span class="line">      &lt;/Container&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Main</span><br></pre></td></tr></table></figure>
+<p>这样就能在 view 中使用这个组件了。下面以向量的加法为例测试一下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; withTheme &#125; <span class="keyword">from</span> <span class="string">&#x27;styled-components&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; Vector &#125; <span class="keyword">from</span> <span class="string">&#x27;linear-algebra/vector&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> GridExample <span class="keyword">from</span> <span class="string">&#x27;../grid-example&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Arrow <span class="keyword">from</span> <span class="string">&#x27;../arrow&#x27;</span></span><br><span class="line"><span class="keyword">import</span> VectorView <span class="keyword">from</span> <span class="string">&#x27;../vector&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> VectorsAddition = <span class="function">(<span class="params">&#123; theme &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> one = <span class="keyword">new</span> Vector(<span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line">  <span class="keyword">const</span> other = <span class="keyword">new</span> Vector(<span class="number">6</span>, <span class="number">2</span>)</span><br><span class="line">  <span class="keyword">const</span> oneName = <span class="string">&#x27;v⃗&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> otherName = <span class="string">&#x27;w⃗&#x27;</span></span><br><span class="line">  <span class="keyword">const</span> oneColor = theme.color.green</span><br><span class="line">  <span class="keyword">const</span> otherColor = theme.color.red</span><br><span class="line">  <span class="keyword">const</span> sum = one.add(other)</span><br><span class="line">  <span class="keyword">const</span> sumColor = theme.color.blue</span><br><span class="line">  <span class="keyword">const</span> sumText = <span class="string">`<span class="subst">$&#123;oneName&#125;</span> + <span class="subst">$&#123;otherName&#125;</span>`</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> renderInformation = <span class="function">() =&gt;</span> (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;VectorView components=&#123;one.components&#125; name=&#123;oneName&#125; color=&#123;oneColor&#125; /&gt;</span><br><span class="line">      &lt;VectorView</span><br><span class="line">        components=&#123;other.components&#125;</span><br><span class="line">        name=&#123;otherName&#125;</span><br><span class="line">        color=&#123;otherColor&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">      &lt;VectorView components=&#123;sum.components&#125; name=&#123;sumText&#125; color=&#123;sumColor&#125; /&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  )</span><br><span class="line">  <span class="keyword">const</span> renderGridContent = <span class="function">(<span class="params">&#123; project &#125;</span>) =&gt;</span> (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;Arrow project=&#123;project&#125; vector=&#123;one&#125; text=&#123;oneName&#125; color=&#123;oneColor&#125; /&gt;</span><br><span class="line">      &lt;Arrow</span><br><span class="line">        project=&#123;project&#125;</span><br><span class="line">        vector=&#123;other&#125;</span><br><span class="line">        text=&#123;otherName&#125;</span><br><span class="line">        color=&#123;otherColor&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">      &lt;Arrow project=&#123;project&#125; vector=&#123;sum&#125; text=&#123;sumText&#125; color=&#123;sumColor&#125; /&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  )</span><br><span class="line">  <span class="keyword">const</span> props = &#123; renderInformation, renderGridContent &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">GridExample</span> &#123;<span class="attr">...props</span>&#125; /&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> withTheme(VectorsAddition)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="箭头组件"><a href="#箭头组件" class="headerlink" title="箭头组件"></a>箭头组件</h2><p>箭头组件由 3 个 <strong>SVG</strong> 元素组成：<strong>line</strong> 用于显示箭头的线、<strong>polygon</strong> 用于显示箭头的头、<strong>text</strong> 用于显示向量名称。此外，我们需要接收 <strong>project</strong> 函数，用于将箭头放在网格中正确的位置上。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> styled <span class="keyword">from</span> <span class="string">&#x27;styled-components&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; Vector &#125; <span class="keyword">from</span> <span class="string">&#x27;linear-algebra/vector&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Arrow = styled.line<span class="string">`</span></span><br><span class="line"><span class="string">  stroke-width: 2px;</span></span><br><span class="line"><span class="string">  stroke: <span class="subst">$&#123;p =&gt; p.color&#125;</span>;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Head = styled.polygon<span class="string">`</span></span><br><span class="line"><span class="string">  fill: <span class="subst">$&#123;p =&gt; p.color&#125;</span>;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Text = styled.text<span class="string">`</span></span><br><span class="line"><span class="string">  font-size: 24px;</span></span><br><span class="line"><span class="string">  fill: <span class="subst">$&#123;p =&gt; p.color&#125;</span>;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> (&#123; vector, text, color, project &#125;) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> direction = vector.normalize()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> headStart = direction.scaleBy(vector.length() - <span class="number">0.6</span>)</span><br><span class="line">  <span class="keyword">const</span> headSide = <span class="keyword">new</span> Vector(</span><br><span class="line">    direction.components[<span class="number">1</span>],</span><br><span class="line">    -direction.components[<span class="number">0</span>]</span><br><span class="line">  ).scaleBy(<span class="number">0.2</span>)</span><br><span class="line">  <span class="keyword">const</span> headPoints = [</span><br><span class="line">    headStart.add(headSide),</span><br><span class="line">    headStart.subtract(headSide),</span><br><span class="line">    vector</span><br><span class="line">  ]</span><br><span class="line">    .map(project)</span><br><span class="line">    .map(<span class="function"><span class="params">v</span> =&gt;</span> v.components)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> projectedStart = project(<span class="keyword">new</span> Vector(<span class="number">0</span>, <span class="number">0</span>))</span><br><span class="line">  <span class="keyword">const</span> projectedEnd = project(vector)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> PositionedText = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!text) <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    <span class="keyword">const</span> &#123; components &#125; = project(vector.withLength(vector.length() + <span class="number">0.2</span>))</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Text color=&#123;color&#125; x=&#123;components[<span class="number">0</span>]&#125; y=&#123;components[<span class="number">1</span>]&#125;&gt;</span><br><span class="line">        &#123;text&#125;</span><br><span class="line">      &lt;/Text&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;g&gt;</span><br><span class="line">      &lt;Arrow</span><br><span class="line">        color=&#123;color&#125;</span><br><span class="line">        x1=&#123;projectedStart.components[<span class="number">0</span>]&#125;</span><br><span class="line">        y1=&#123;projectedStart.components[<span class="number">1</span>]&#125;</span><br><span class="line">        x2=&#123;projectedEnd.components[<span class="number">0</span>]&#125;</span><br><span class="line">        y2=&#123;projectedEnd.components[<span class="number">1</span>]&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">      &lt;Head color=&#123;color&#125; points=&#123;headPoints&#125; /&gt;</span><br><span class="line">      &lt;PositionedText /&gt;</span><br><span class="line">    &lt;/g&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>通过结合 <strong>React</strong> 与 <strong>SVG</strong> 可以做更多有意思的事。在本系列的后面章节中，我们会给这个可视化示例添加更多的功能。最后推荐另一篇类似的文章：<a target="_blank" rel="noopener" href="https://medium.com/@geekrodion/bar-chart-with-react-3b20b7907633">使用 <strong>React</strong> 与 <strong>SVG</strong> 制作复杂的条形图</a>。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Written by:  </strong>lsvih
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://lsvih.com/2019/06/26/javascript-linear-algebra-react-example/" title="用 React 制作线性代数教程示例：网格与箭头">https://lsvih.com/2019/06/26/javascript-linear-algebra-react-example/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Translate/" rel="tag"># Translate</a>
+              <a href="/tags/juejin/" rel="tag"># juejin</a>
+              <a href="/tags/Linear-Algebra/" rel="tag"># Linear Algebra</a>
+              <a href="/tags/React/" rel="tag"># React</a>
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="tag"># 线性代数</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag"># 数据可视化</a>
+          </div>
+
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/05/23/An%20Online%20Social%20Network-based%20Recommendation%20System/" rel="prev" title="An Online Social Network-based Recommendation System 论文笔记">
+                  <i class="fa fa-chevron-left"></i> An Online Social Network-based Recommendation System 论文笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/06/26/javascript-linear-algebra-vectors/" rel="next" title="JavaScript 线性代数：向量">
+                  JavaScript 线性代数：向量 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -455,32 +474,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -496,9 +521,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -514,55 +538,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

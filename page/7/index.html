@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,56 +13,33 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="My note">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;page&#x2F;7&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/page/7/index.html">
 <meta property="og:site_name" content="My note">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="lsvih">
 <meta name="twitter:card" content="summary">
+
 
 <link rel="canonical" href="https://lsvih.com/page/7/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
-    isPage: false,
-    isArchive: false
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
   };
 </script>
 
@@ -85,24 +62,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -110,60 +99,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -171,31 +163,105 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
 
-  
-</div>
-<div class="search-pop-overlay"></div>
-
+      
+    </div>
   </div>
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lsvih</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">161</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">205</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
@@ -205,20 +271,19 @@
   </div>
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
+    <div class="main-inner index posts-expand">
+      
 
-  <div class="posts-expand">
-        
+      
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/09/07/%E4%BD%8E%E6%88%90%E6%9C%AC%E5%B0%86%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%88%87%E6%8D%A2%E4%B8%BA-HTTPS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -230,34 +295,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2017/09/07/%E4%BD%8E%E6%88%90%E6%9C%AC%E5%B0%86%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%88%87%E6%8D%A2%E4%B8%BA-HTTPS/" class="post-title-link" itemprop="url">低成本将你的网站切换为 HTTPS</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-09-07 19:13:46" itemprop="dateCreated datePublished" datetime="2017-09-07T19:13:46+08:00">2017-09-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-09-07 19:13:46" itemprop="dateCreated datePublished" datetime="2017-09-07T19:13:46+08:00">2017-09-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -266,8 +334,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>Google 的 Search Console 小组最近向所有站长发了一封 email，警告 Google Chrome 将从 10 月起，在包含表单但没有使用安全措施的网站中显示警告信息。</p>
 <p>下图为我收件箱里的通知：</p>
 <p><img src="/images/pasted-199.png" alt="upload successful"></p>
@@ -280,11 +346,11 @@
 <p>我使用 GitHub Pages 免费托管了一系列的网站和项目，其中的一部分还使用了自定义域名。因此，我想看看我能否快速、低成本地将这些网站从 HTTP 迁移为 HTTPS。最后我找到了一种相对简单且低成本的方案，希望能够帮助到你们。下面让我们来探究一下这种方法吧。</p>
 <h2 id="对-GitHub-Pages-强制启用-HTTPS"><a href="#对-GitHub-Pages-强制启用-HTTPS" class="headerlink" title="对 GitHub Pages 强制启用 HTTPS"></a>对 GitHub Pages 强制启用 HTTPS</h2><p>托管在 GitHub Pages 上的网站可以通过设置很方便地启用 HTTPS。进入项目设置页面，勾上“Enforce HTTPS”即可。</p>
 <p><img src="/images/pasted-201.png" alt="upload successful"></p>
-<h2 id="但我们仍然需要-SSL"><a href="#但我们仍然需要-SSL" class="headerlink" title="但我们仍然需要 SSL"></a>但我们仍然需要 SSL</h2><p>第一步十分的简单，但它并不符合 Google 对安全网站定义的要求。我们启用了 HTTPS 设置，但是没有为使用<a href="https://help.github.com/articles/using-a-custom-domain-with-github-pages/" target="_blank" rel="noopener">自定义域名</a>的网站安装、提供 SSL 证书。直接使用 GitHub Pages 提供的网址的站点已经完全符合要求了，但是使用自定义域名的站点必须要进行一些额外的步骤，让其在域名的层面上使用安全证书。</p>
+<h2 id="但我们仍然需要-SSL"><a href="#但我们仍然需要-SSL" class="headerlink" title="但我们仍然需要 SSL"></a>但我们仍然需要 SSL</h2><p>第一步十分的简单，但它并不符合 Google 对安全网站定义的要求。我们启用了 HTTPS 设置，但是没有为使用<a target="_blank" rel="noopener" href="https://help.github.com/articles/using-a-custom-domain-with-github-pages/">自定义域名</a>的网站安装、提供 SSL 证书。直接使用 GitHub Pages 提供的网址的站点已经完全符合要求了，但是使用自定义域名的站点必须要进行一些额外的步骤，让其在域名的层面上使用安全证书。</p>
 <p>还有个问题，SSL 证书虽然并不贵，但也需要花一笔钱，在你尽可能希望降低成本时可不想为此增加花费。所以得找个办法解决这个问题。</p>
 <h2 id="我们可以通过-CDN-免费试用-SSL！"><a href="#我们可以通过-CDN-免费试用-SSL！" class="headerlink" title="我们可以通过 CDN 免费试用 SSL！"></a>我们可以通过 CDN 免费试用 SSL！</h2><p>在这儿就不得不提 Cloudflare 了。Cloudflare 是一个内容分发网络（CDN）提供商，同时它也提供分布式域名服务，这也意味着我们可以利用他们的网络来设置 HTTPS。使用这个服务真正的好处在于他们提供了免费的方案，让这一切成为可能。</p>
-<p>另外，值得一提的是在 CSS-Tricks 论坛里也有<a href="https://css-tricks.com/?s=cdn" target="_blank" rel="noopener">许多帖子</a>描述了使用 CDN 的好处。虽然这篇文章中主要探讨的是安全性问题，但其实 CDN 除了能帮你使用 HTTPS 之外，还是降低服务器负载、<a href="https://css-tricks.com/adding-a-cdn-to-your-website/" target="_blank" rel="noopener">提升网站性能</a>的绝佳方式。</p>
-<p>在下文中，我将简述我使用 Cloudflare 连接 Github Pages 的步骤。如果你还没有 Cloudflare 账号，你可以<a href="https://www.cloudflare.com/a/sign-up" target="_blank" rel="noopener">点击这儿注册账号</a>再跟着步骤操作。</p>
+<p>另外，值得一提的是在 CSS-Tricks 论坛里也有<a target="_blank" rel="noopener" href="https://css-tricks.com/?s=cdn">许多帖子</a>描述了使用 CDN 的好处。虽然这篇文章中主要探讨的是安全性问题，但其实 CDN 除了能帮你使用 HTTPS 之外，还是降低服务器负载、<a target="_blank" rel="noopener" href="https://css-tricks.com/adding-a-cdn-to-your-website/">提升网站性能</a>的绝佳方式。</p>
+<p>在下文中，我将简述我使用 Cloudflare 连接 Github Pages 的步骤。如果你还没有 Cloudflare 账号，你可以<a target="_blank" rel="noopener" href="https://www.cloudflare.com/a/sign-up">点击这儿注册账号</a>再跟着步骤操作。</p>
 <h3 id="第一步：选择“-Add-Site”选项"><a href="#第一步：选择“-Add-Site”选项" class="headerlink" title="第一步：选择“+ Add Site”选项"></a>第一步：选择“+ Add Site”选项</h3><p>首先，我们需要告诉 Cloudflare 我们使用的域名。Cloudflare 将会扫描 DNS 记录，以验证域名是否存在，并检查域名的公开信息。</p>
 <p><img src="/images/pasted-202.png" alt="upload successful"></p>
 <h3 id="第二步：查看-DNS-记录"><a href="#第二步：查看-DNS-记录" class="headerlink" title="第二步：查看 DNS 记录"></a>第二步：查看 DNS 记录</h3><p>Cloudflare 扫描 DNS 记录后会将结果展示出来供你查看。如果 Cloudflare 认为这些信息符合要求，就会在“Status”列中显示一个橙色的云的图标。你需要检查这份报告，确认其中的信息与你在域名注册商中留的信息相符，如果没问题的话，点击“Continue”按钮继续。</p>
@@ -293,7 +359,7 @@
 <p><img src="/images/pasted-204.png" alt="upload successful"></p>
 <h3 id="第四步：更新域名解析服务器（NS-服务器）"><a href="#第四步：更新域名解析服务器（NS-服务器）" class="headerlink" title="第四步：更新域名解析服务器（NS 服务器）"></a>第四步：更新域名解析服务器（NS 服务器）</h3><p>这一步中，Cloudflare 给我们提供了其服务器地址，我们要做的就是将这个地址粘贴到自己的域名注册商中的 DNS 设置里。</p>
 <p><img src="/images/pasted-205.png" alt="upload successful"></p>
-<p>这一步其实并不困难，但你可能会有些疑惑。你的域名注册商可能会提供这一步的操作指南。例如<a href="https://www.godaddy.com/help/set-nameservers-for-domains-hosted-and-registered-with-godaddy-12316" target="_blank" rel="noopener">点此查看 GoDaddy 的指南</a>，了解如何通过他们的服务更新域名解析服务器。</p>
+<p>这一步其实并不困难，但你可能会有些疑惑。你的域名注册商可能会提供这一步的操作指南。例如<a target="_blank" rel="noopener" href="https://www.godaddy.com/help/set-nameservers-for-domains-hosted-and-registered-with-godaddy-12316">点此查看 GoDaddy 的指南</a>，了解如何通过他们的服务更新域名解析服务器。</p>
 <p>完成这一步之后，你的域名将会很快被映射到 Cloudflare 的服务器上，这些服务器将成为域名与 Github Pages 之间的中间层。不过，这一步需要耗费一些时间，Cloudflare 可能需要 24 小时来处理这个请求。</p>
 <p><strong>如果你没有用主域名，而是用了子域名来使用 GitHub Pages</strong>，则需要额外进行一步操作。打开你的 GitHub Pages 设置页面，在 DNS 设置中添加一条 CNAME 记录，设置它指向 <code>&lt;your-username&gt;.github.io</code>，其中 <code>&lt;your-username&gt;</code> 是你的 Github 账号。此外，你需要在 GitHub 项目的根目录下添加一个文件名为 CNAME 的无后缀名文本文档，其内容为你的域名。</p>
 <p>下面的屏幕截图为在 Cloudflare 设置中将 GitHub Pages 子域名添加为 CNAME 记录的例子：</p>
@@ -323,7 +389,7 @@
 <p>你记录过迁移到 HTTPS 的经历吗？在评论里留言你的迁移方法，让我们相互对比吧。</p>
 <p>享受你的既安全又快速的网站吧！</p>
 <blockquote>
-<p>发布于掘金 <a href="https://juejin.im/post/59b129365188253da63829ad" target="_blank" rel="noopener">https://juejin.im/post/59b129365188253da63829ad</a></p>
+<p>发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/59b129365188253da63829ad">https://juejin.im/post/59b129365188253da63829ad</a></p>
 </blockquote>
 
       
@@ -332,18 +398,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/09/04/%E5%9C%A8-Airbnb-%E4%BD%BF%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B%E6%88%BF%E6%BA%90%E7%9A%84%E4%BB%B7%E6%A0%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -355,34 +423,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2017/09/04/%E5%9C%A8-Airbnb-%E4%BD%BF%E7%94%A8%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E9%A2%84%E6%B5%8B%E6%88%BF%E6%BA%90%E7%9A%84%E4%BB%B7%E6%A0%BC/" class="post-title-link" itemprop="url">在 Airbnb 使用机器学习预测房源的价格</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-09-04 15:16:04" itemprop="dateCreated datePublished" datetime="2017-09-04T15:16:04+08:00">2017-09-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-09-04 15:16:04" itemprop="dateCreated datePublished" datetime="2017-09-04T15:16:04+08:00">2017-09-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -391,15 +462,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><img src="/images/pasted-191.png" alt="upload successful"><br><strong>位于希腊爱琴海伊莫洛维里的一个 Airbnb 民宿的美好风景</strong></p>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>数据产品一直是 Airbnb 服务的重要组成部分，不过我们很早就意识到开发一款数据产品的成本是很高的。例如，个性化搜索排序可以让客户更容易发现中意的房屋，智能定价可以让房东设定更具竞争力的价格。然而，需要许多数据科学家和工程师付出许多时间和精力才能做出这些产品。</p>
 <p>最近，Airbnb 机器学习的基础架构进行了改进，使得部署新的机器学习模型到生产环境中的成本降低了许多。例如，我们的 ML Infra 团队构建了一个通用功能库，这个库让用户可以在他们的模型中应用更多高质量、经过筛选、可复用的特征。数据科学家们也开始将一些自动化机器学习工具纳入他们的工作流中，以加快模型选择的速度以及提高性能标准。此外，ML Infra 还创建了一个新的框架，可以自动将 Jupyter notebook 转换成 Airflow pipeline 能接受的格式。</p>
 <p>在本文中，我将介绍这些工具是如何协同运作来加快建模速度，从而降低开发 LTV 模型（预测 Airbnb 民宿价格）总体成本的。</p>
 <h3 id="什么是-LTV？"><a href="#什么是-LTV？" class="headerlink" title="什么是 LTV？"></a>什么是 LTV？</h3><p>LTV 全称 Customer Lifetime Value，意为“客户终身价值”，是电子商务、市场公司中很流行的一种概念。它定义了在未来一个时间段内用户预期为公司带来的收益，通常以美元为单位。</p>
 <p>在一些例如 Spotify 或者 Netflix 之类的电子商务公司里，LTV 通常用于制定产品定价（例如订阅费等）。而在 Airbnb 之类的市场公司里，知晓用户的 LTV 将有助于我们更有效地分配营销渠道的预算，更明确地根据关键字做在线营销报价，以及做更好的类目细分。</p>
-<p>我们可以根据过去的数据来<a href="https://medium.com/swlh/diligence-at-social-capital-part-3-cohorts-and-revenue-ltv-ab65a07464e1" target="_blank" rel="noopener">计算历史值</a>，当然也可以进一步使用机器学习来预测新登记房屋的 LTV。</p>
+<p>我们可以根据过去的数据来<a target="_blank" rel="noopener" href="https://medium.com/swlh/diligence-at-social-capital-part-3-cohorts-and-revenue-ltv-ab65a07464e1">计算历史值</a>，当然也可以进一步使用机器学习来预测新登记房屋的 LTV。</p>
 <h3 id="LTV-模型的机器学习工作流"><a href="#LTV-模型的机器学习工作流" class="headerlink" title="LTV 模型的机器学习工作流"></a>LTV 模型的机器学习工作流</h3><p>数据科学家们通常比较熟悉和机器学习任务相关的东西，例如特征工程、原型制作、模型选择等。然而，要将一个模型原型投入生产环境中需要的是一系列数据工程技术，他们可能对此不太熟练。</p>
 <p><img src="/images/pasted-192.png" alt="upload successful"></p>
 <p>不过幸运的是，我们有相关的机器学习工具，可以将具体的生产部署工作流从机器学习模型的分析建立中分离出来。如果没有这些神奇的工具，我们就无法轻松地将模型应用于生产环境。下面将通过 4 个主题来分别介绍我们的工作流以及各自用到的工具：</p>
@@ -415,7 +484,7 @@
 <p>任何监督学习项目的第一步都是去找到会影响到结果的相关特征，这一个过程被称为特征工程。例如在预测 LTV 时，特征可以是某个房源房屋在接下来 180 天内的可使用天数所占百分比，或者也可以是其与同市场其它房屋定价的差异。</p>
 <p>在 Airbnb 中，要做特征工程一般得从头开始写 Hive 查询语句来创建特征。但是这个工作相当无聊，而且需要花费很多时间。因为它需要一些特定的领域知识和业务逻辑，也因此这些特征 pipeline 并不容易共享或复用。为了让这项工作更具可扩展性，我们开发了 <strong>Zipline</strong> —— 一个训练特征库。它可以提供不同粒度级别（例如房主、客户、房源房屋及市场级别）的特征。</p>
 <p>这个内部工具“<strong>多源共享</strong>”的特性让数据科学家们可以在过去的项目中找出大量高质量、经过审查的特征。如果没有找到希望提取的特征，用户也可以写一个配置文件来创建他自己需要的特征：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">source: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  type: hive</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  query:&quot;&quot;&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    SELECT</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        id_listing as listing</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      , dim_city as city</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      , dim_country as country</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      , dim_is_active as is_active</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      , CONCAT(ds, &#39; 23:59:59.999&#39;) as ts</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    FROM</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      core_data.dim_listings</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    WHERE</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      ds BETWEEN &#39;&#123;&#123; start_date &#125;&#125;&#39; AND &#39;&#123;&#123; end_date &#125;&#125;&#39;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &quot;&quot;&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  dependencies: [core_data.dim_listings]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  is_snapshot: true</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  start_date: 2010-01-01</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">features: &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">  city: &quot;City in which the listing is located.&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">  country: &quot;Country in which the listing is located.&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  is_active: &quot;If the listing is active as of the date partition.&quot;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span>: &#123;</span><br><span class="line">  <span class="built_in">type</span>: hive</span><br><span class="line">  query:<span class="string">&quot;&quot;</span><span class="comment">&quot;</span></span><br><span class="line">    SELECT</span><br><span class="line">        id_listing <span class="keyword">as</span> listing</span><br><span class="line">      , dim_city <span class="keyword">as</span> city</span><br><span class="line">      , dim_country <span class="keyword">as</span> country</span><br><span class="line">      , dim_is_active <span class="keyword">as</span> is_active</span><br><span class="line">      , CONCAT(<span class="keyword">ds</span>, <span class="string">&#x27; 23:59:59.999&#x27;</span>) <span class="keyword">as</span> <span class="keyword">ts</span></span><br><span class="line">    FROM</span><br><span class="line">      core_data.dim_listings</span><br><span class="line">    WHERE</span><br><span class="line">      <span class="keyword">ds</span> BETWEEN <span class="string">&#x27;&#123;&#123; start_date &#125;&#125;&#x27;</span> AND <span class="string">&#x27;&#123;&#123; end_date &#125;&#125;&#x27;</span></span><br><span class="line">  <span class="string">&quot;&quot;</span><span class="comment">&quot;</span></span><br><span class="line">  dependencie<span class="variable">s:</span> [core_data.dim_listings]</span><br><span class="line">  is_snapsho<span class="variable">t:</span> true</span><br><span class="line">  start_date: <span class="number">2010</span>-<span class="number">01</span>-<span class="number">01</span></span><br><span class="line">&#125;</span><br><span class="line">feature<span class="variable">s:</span> &#123;</span><br><span class="line">  city: <span class="string">&quot;City in which the listing is located.&quot;</span></span><br><span class="line">  country: <span class="string">&quot;Country in which the listing is located.&quot;</span></span><br><span class="line">  is_active: <span class="string">&quot;If the listing is active as of the date partition.&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在构建训练集时，Zipline 将会找出训练集所需要的特征，自动的按照 key 将特征组合在一起并填充数据。在构造房源 LTV 模型时，我们使用了一些 Zipline 中已经存在的特征，还自己写了一些特征。模型总共使用了 150 多个特征，其中包括：</p>
 <ul>
 <li><strong>位置</strong>：国家、市场、社区以及其它地理特征</li>
@@ -428,26 +497,26 @@
 <p>实例数据集</p>
 <p>在定义好特征以及输出变量之后，就可以根据我们的历史数据来训练模型了。</p>
 <h3 id="原型设计与训练"><a href="#原型设计与训练" class="headerlink" title="原型设计与训练"></a>原型设计与训练</h3><blockquote>
-<p><strong>使用工具：Python 机器学习库</strong> — <a href="http://scikit-learn.org/stable/" target="_blank" rel="noopener"><strong>scikit-learn</strong></a></p>
+<p><strong>使用工具：Python 机器学习库</strong> — <a target="_blank" rel="noopener" href="http://scikit-learn.org/stable/"><strong>scikit-learn</strong></a></p>
 </blockquote>
 <p>以前面的训练集为例，我们在做训练前先要对数据进行一些预处理：</p>
 <ul>
 <li><strong>数据插补</strong>：我们需要检查是否有数据缺失，以及它是否为随机出现的缺失。如果不是随机现象，我们需要弄清楚其根本原因；如果是随机缺失，我们需要填充空缺数据。</li>
-<li><strong>对分类进行编码</strong>：通常来说我们不能在模型里直接使用原始的分类，因为模型并不能去拟合字符串。当分类数量比较少时，我们可以考虑使用 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html" target="_blank" rel="noopener">one-hot encoding</a> 进行编码。如果分类数量比较多，我们就会考虑使用 <a href="https://www.kaggle.com/general/16927" target="_blank" rel="noopener">ordinal encoding</a>, 按照分类的频率计数进行编码。</li>
+<li><strong>对分类进行编码</strong>：通常来说我们不能在模型里直接使用原始的分类，因为模型并不能去拟合字符串。当分类数量比较少时，我们可以考虑使用 <a target="_blank" rel="noopener" href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html">one-hot encoding</a> 进行编码。如果分类数量比较多，我们就会考虑使用 <a target="_blank" rel="noopener" href="https://www.kaggle.com/general/16927">ordinal encoding</a>, 按照分类的频率计数进行编码。</li>
 </ul>
-<p>在这一步中，我们还不知道最有效的一组特征是什么，因此编写可快速迭代的代码是非常重要的。如 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html" target="_blank" rel="noopener">Scikit-Learn</a>、<a href="https://spark.apache.org/docs/latest/ml-pipeline.html" target="_blank" rel="noopener">Spark</a> 等开源工具的 pipeline 结构对于原型构建来说是非常方便的工具。Pipeline 可以让数据科学家们设计蓝图，指定如何转换特征、训练哪一个模型。更具体来说，可以看下面我们 LTV 模型的 pipeline：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">transforms &#x3D; []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">transforms.append(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    (&#39;select_binary&#39;, ColumnSelector(features&#x3D;binary))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">transforms.append(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    (&#39;numeric&#39;, ExtendedPipeline([</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        (&#39;select&#39;, ColumnSelector(features&#x3D;numeric)),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">        (&#39;impute&#39;, Imputer(missing_values&#x3D;&#39;NaN&#39;, strategy&#x3D;&#39;mean&#39;, axis&#x3D;0)),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    ]))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">for field in categorical:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    transforms.append(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        (field, ExtendedPipeline([</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">            (&#39;select&#39;, ColumnSelector(features&#x3D;[field])),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">            (&#39;encode&#39;, OrdinalEncoder(min_support&#x3D;10))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">            ])</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        )</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    )</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">features &#x3D; FeatureUnion(transforms)</span></pre></td></tr></table></figure>
-<p>在高层设计时，我们使用 pipeline 来根据特征类型（如二进制特征、分类特征、数值特征等）来指定不同特征中数据的转换方式。最后使用 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.FeatureUnion.html" target="_blank" rel="noopener">FeatureUnion</a> 简单将特征列组合起来，形成最终的训练集。</p>
-<p>使用 pipeline 开发原型的优势在于，它可以使用 <a href="http://scikit-learn.org/stable/data_transforms.html" target="_blank" rel="noopener">data transforms</a> 来避免繁琐的数据转换。总的来说，这些转换是为了确保数据在训练和评估时保持一致，以避免将原型部署到生产环境时出现的数据不一致。</p>
-<p>另外，pipeline 还可以将数据转换过程和训练模型过程分开。虽然上面代码中没有，但数据科学家可以在最后一步指定一种 <a href="http://scikit-learn.org/stable/tutorial/machine_learning_map/index.html" target="_blank" rel="noopener">estimator（估值器）</a>来训练模型。通过尝试使用不同的估值器，数据科学家可以为模型选出一个表现最佳的估值器，减少模型的样本误差。</p>
+<p>在这一步中，我们还不知道最有效的一组特征是什么，因此编写可快速迭代的代码是非常重要的。如 <a target="_blank" rel="noopener" href="http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html">Scikit-Learn</a>、<a target="_blank" rel="noopener" href="https://spark.apache.org/docs/latest/ml-pipeline.html">Spark</a> 等开源工具的 pipeline 结构对于原型构建来说是非常方便的工具。Pipeline 可以让数据科学家们设计蓝图，指定如何转换特征、训练哪一个模型。更具体来说，可以看下面我们 LTV 模型的 pipeline：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">transforms = []</span><br><span class="line"></span><br><span class="line">transforms.append(</span><br><span class="line">    (<span class="string">&#x27;select_binary&#x27;</span>, ColumnSelector(<span class="attribute">features</span>=binary))</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">transforms.append(</span><br><span class="line">    (<span class="string">&#x27;numeric&#x27;</span>, ExtendedPipeline([</span><br><span class="line">        (<span class="string">&#x27;select&#x27;</span>, ColumnSelector(<span class="attribute">features</span>=numeric)),</span><br><span class="line">        (<span class="string">&#x27;impute&#x27;</span>, Imputer(<span class="attribute">missing_values</span>=<span class="string">&#x27;NaN&#x27;</span>, <span class="attribute">strategy</span>=<span class="string">&#x27;mean&#x27;</span>, <span class="attribute">axis</span>=0)),</span><br><span class="line">    ]))</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> field <span class="keyword">in</span> categorical:</span><br><span class="line">    transforms.append(</span><br><span class="line">        (field, ExtendedPipeline([</span><br><span class="line">            (<span class="string">&#x27;select&#x27;</span>, ColumnSelector(features=[field])),</span><br><span class="line">            (<span class="string">&#x27;encode&#x27;</span>, OrdinalEncoder(<span class="attribute">min_support</span>=10))</span><br><span class="line">            ])</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">features = FeatureUnion(transforms)</span><br></pre></td></tr></table></figure>
+<p>在高层设计时，我们使用 pipeline 来根据特征类型（如二进制特征、分类特征、数值特征等）来指定不同特征中数据的转换方式。最后使用 <a target="_blank" rel="noopener" href="http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.FeatureUnion.html">FeatureUnion</a> 简单将特征列组合起来，形成最终的训练集。</p>
+<p>使用 pipeline 开发原型的优势在于，它可以使用 <a target="_blank" rel="noopener" href="http://scikit-learn.org/stable/data_transforms.html">data transforms</a> 来避免繁琐的数据转换。总的来说，这些转换是为了确保数据在训练和评估时保持一致，以避免将原型部署到生产环境时出现的数据不一致。</p>
+<p>另外，pipeline 还可以将数据转换过程和训练模型过程分开。虽然上面代码中没有，但数据科学家可以在最后一步指定一种 <a target="_blank" rel="noopener" href="http://scikit-learn.org/stable/tutorial/machine_learning_map/index.html">estimator（估值器）</a>来训练模型。通过尝试使用不同的估值器，数据科学家可以为模型选出一个表现最佳的估值器，减少模型的样本误差。</p>
 <h3 id="模型选择与验证"><a href="#模型选择与验证" class="headerlink" title="模型选择与验证"></a>模型选择与验证</h3><blockquote>
-<p><strong>使用工具：各种</strong><a href="https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8" target="_blank" rel="noopener"><strong>自动机器学习</strong></a><strong>框架</strong></p>
+<p><strong>使用工具：各种</strong><a target="_blank" rel="noopener" href="https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8"><strong>自动机器学习</strong></a><strong>框架</strong></p>
 </blockquote>
-<p>如上一节所述，我们需要确定候选模型中的哪个最适合投入生产。为了做这个决策，我们需要在模型的可解释性与复杂度中进行权衡。例如，稀疏线性模型的解释性很好，但它的复杂度太低了，不能很好地运作。一个足够复杂的树模型可以拟合各种非线性模式，但是它的解释性很差。这种情况也被称为<a href="http://scott.fortmann-roe.com/docs/BiasVariance.html" target="_blank" rel="noopener"><strong>偏差（Bias）和方差（Variance）的权衡</strong></a>。</p>
+<p>如上一节所述，我们需要确定候选模型中的哪个最适合投入生产。为了做这个决策，我们需要在模型的可解释性与复杂度中进行权衡。例如，稀疏线性模型的解释性很好，但它的复杂度太低了，不能很好地运作。一个足够复杂的树模型可以拟合各种非线性模式，但是它的解释性很差。这种情况也被称为<a target="_blank" rel="noopener" href="http://scott.fortmann-roe.com/docs/BiasVariance.html"><strong>偏差（Bias）和方差（Variance）的权衡</strong></a>。</p>
 <p><img src="/images/pasted-194.png" alt="upload successful"></p>
 <p>上图引用自 James、Witten、Hastie、Tibshirani 所著《R 语言统计学习》</p>
 <p>在保险、信用审查等应用中，需要对模型进行解释。因为对模型来说避免无意排除一些正确客户是很重要的事。不过在图像分类等应用中，模型的高性能比可解释更重要。</p>
-<p>由于模型的选择相当耗时，我们选择采用各种<a href="https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8" target="_blank" rel="noopener">自动机器学习</a>工具来加速这个步骤。通过探索大量的模型，我们最终会找到表现最好的模型。例如，我们发现 <a href="https://github.com/dmlc/xgboost" target="_blank" rel="noopener">XGBoost</a> (XGBoost) 明显比其他基准模型（比如 mean response 模型、岭回归模型、单一决策树）的表现要好。</p>
+<p>由于模型的选择相当耗时，我们选择采用各种<a target="_blank" rel="noopener" href="https://medium.com/airbnb-engineering/automated-machine-learning-a-paradigm-shift-that-accelerates-data-scientist-productivity-airbnb-f1f8a10d61f8">自动机器学习</a>工具来加速这个步骤。通过探索大量的模型，我们最终会找到表现最好的模型。例如，我们发现 <a target="_blank" rel="noopener" href="https://github.com/dmlc/xgboost">XGBoost</a> (XGBoost) 明显比其他基准模型（比如 mean response 模型、岭回归模型、单一决策树）的表现要好。</p>
 <p><img src="/images/pasted-195.png" alt="upload successful"></p>
 <p>上图：我们通过比较 RMSE 可以选择出表现更好的模型</p>
 <p>鉴于我们的最初目标是预测房源价格，因此我们很舒服地在最终的生产环境中使用 XGBoost 模型，比起可解释性它更注重于模型的弹性。</p>
@@ -455,7 +524,7 @@
 <p><strong>使用工具：Airbnb 自己写的 notebook 转换框架 — ML Automator</strong></p>
 </blockquote>
 <p>如开始所说，构建生产环境工作流和在笔记本上构建一个原型是完全不同的。例如，我们如何进行定期的重训练？我们如何有效地评估大量的实例？我们如何建立一个 pipeline 以随时监视模型性能？</p>
-<p>在 Airbnb，我们自己开发了一个名为 <strong>ML Automator</strong> 的框架，它可以自动将 Jupyter notebook 转换为 <a href="https://medium.com/airbnb-engineering/airflow-a-workflow-management-platform-46318b977fd8" target="_blank" rel="noopener">Airflow</a> 机器学习 pipeline。该框架专为熟悉使用 Python 开发原型，但缺乏将模型投入生产环境经验的数据科学家准备。</p>
+<p>在 Airbnb，我们自己开发了一个名为 <strong>ML Automator</strong> 的框架，它可以自动将 Jupyter notebook 转换为 <a target="_blank" rel="noopener" href="https://medium.com/airbnb-engineering/airflow-a-workflow-management-platform-46318b977fd8">Airflow</a> 机器学习 pipeline。该框架专为熟悉使用 Python 开发原型，但缺乏将模型投入生产环境经验的数据科学家准备。</p>
 <p><img src="/images/pasted-196.png" alt="upload successful"></p>
 <p>ML Automator 框架概述（照片来源：Aaron Keys）</p>
 <ul>
@@ -463,8 +532,8 @@
 <li>另外，数据科学家需要自己写特定的 <strong>fit</strong> 与 <strong>transform</strong> 函数。fit 函数指定如何进行训练，而 transform 函数将被 Python UDF 封装，进行分布式计算（如果有需要）。</li>
 </ul>
 <p>下面的代码片段展示了我们 LTV 模型中的 <strong>fit</strong> 与 <strong>transform</strong> 函数。fit 函数告诉框架需要训练 XGBoost 模型，同时转换器将根据我们之前定义的 pipeline 转换数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(X_train, y_train)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">import</span> multiprocessing</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">from</span> ml_helpers.sklearn_extensions <span class="keyword">import</span> DenseMatrixConverter</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">from</span> ml_helpers.data <span class="keyword">import</span> split_records</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">from</span> xgboost <span class="keyword">import</span> XGBRegressor</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">global</span> model</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    model = &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    n_subset = N_EXAMPLES</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    X_subset = &#123;k: v[:n_subset] <span class="keyword">for</span> k, v <span class="keyword">in</span> X_train.iteritems()&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    model[<span class="string">'transformations'</span>] = ExtendedPipeline([</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">                (<span class="string">'features'</span>, features),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">                (<span class="string">'densify'</span>, DenseMatrixConverter()),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">            ]).fit(X_subset)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># 并行使用转换器</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    Xt = model[<span class="string">'transformations'</span>].transform_parallel(X_train)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># 并行进行模型拟合</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    model[<span class="string">'regressor'</span>] = XGBRegressor().fit(Xt, y_train)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(X)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    <span class="comment"># return dictionary</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">global</span> model</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    Xt = model[<span class="string">'transformations'</span>].transform(X)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> &#123;<span class="string">'score'</span>: model[<span class="string">'regressor'</span>].predict(Xt)&#125;</span></pre></td></tr></table></figure>
-<p>一旦 notebook 完成，ML Automator 将会把训练好的模型包装在 <a href="http://www.florianwilhelm.info/2016/10/python_udf_in_hive/" target="_blank" rel="noopener">Python UDF</a> 中，并创建一个如下图所示的 <a href="https://airflow.incubator.apache.org/" target="_blank" rel="noopener">Airflow</a> pipeline。数据序列化、定期重训练、分布式评价等数据工程任务都将被载入到日常批处理作业中。因此，这个框架显著降低了数据科学家将模型投入生产的成本，就像有一位数据工程师在与科学家一起工作一样！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fit</span>(<span class="params">X_train, y_train</span>):</span></span><br><span class="line">    <span class="keyword">import</span> multiprocessing</span><br><span class="line">    <span class="keyword">from</span> ml_helpers.sklearn_extensions <span class="keyword">import</span> DenseMatrixConverter</span><br><span class="line">    <span class="keyword">from</span> ml_helpers.data <span class="keyword">import</span> split_records</span><br><span class="line">    <span class="keyword">from</span> xgboost <span class="keyword">import</span> XGBRegressor</span><br><span class="line"></span><br><span class="line">    <span class="keyword">global</span> model</span><br><span class="line"></span><br><span class="line">    model = &#123;&#125;</span><br><span class="line">    n_subset = N_EXAMPLES</span><br><span class="line">    X_subset = &#123;k: v[:n_subset] <span class="keyword">for</span> k, v <span class="keyword">in</span> X_train.iteritems()&#125;</span><br><span class="line">    model[<span class="string">&#x27;transformations&#x27;</span>] = ExtendedPipeline([</span><br><span class="line">                (<span class="string">&#x27;features&#x27;</span>, features),</span><br><span class="line">                (<span class="string">&#x27;densify&#x27;</span>, DenseMatrixConverter()),</span><br><span class="line">            ]).fit(X_subset)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 并行使用转换器</span></span><br><span class="line">    Xt = model[<span class="string">&#x27;transformations&#x27;</span>].transform_parallel(X_train)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 并行进行模型拟合</span></span><br><span class="line">    model[<span class="string">&#x27;regressor&#x27;</span>] = XGBRegressor().fit(Xt, y_train)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transform</span>(<span class="params">X</span>):</span></span><br><span class="line">    <span class="comment"># return dictionary</span></span><br><span class="line">    <span class="keyword">global</span> model</span><br><span class="line">    Xt = model[<span class="string">&#x27;transformations&#x27;</span>].transform(X)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&#x27;score&#x27;</span>: model[<span class="string">&#x27;regressor&#x27;</span>].predict(Xt)&#125;</span><br></pre></td></tr></table></figure>
+<p>一旦 notebook 完成，ML Automator 将会把训练好的模型包装在 <a target="_blank" rel="noopener" href="http://www.florianwilhelm.info/2016/10/python_udf_in_hive/">Python UDF</a> 中，并创建一个如下图所示的 <a target="_blank" rel="noopener" href="https://airflow.incubator.apache.org/">Airflow</a> pipeline。数据序列化、定期重训练、分布式评价等数据工程任务都将被载入到日常批处理作业中。因此，这个框架显著降低了数据科学家将模型投入生产的成本，就像有一位数据工程师在与科学家一起工作一样！</p>
 <p><img src="/images/pasted-197.png" alt="upload successful"></p>
 <p>我们 LTV 模型在 Airflow DAG 中的图形界面，运行于生产环境中</p>
 <p><strong>Note：除了模型生产化之外，还有一些其它项目（例如跟踪模型随着时间推移的性能、使用弹性计算环境建模等）我们没有在这篇文章中进行介绍。这些都是正在进行开发的热门领域。</strong></p>
@@ -476,11 +545,11 @@
 </ul>
 <p>我们对这个框架和它带来的新范式的未来感到无比的兴奋。通过缩小原型与生产环境间的差距，我们可以让数据科学家和数据工程师更多去追求端到端的机器学习项目，让我们的产品做得更好。</p>
 <hr>
-<p><strong>想使用或者一起开发这些机器学习工具吗？我们正在寻找 </strong><a href="https://www.airbnb.com/careers/departments/data-science-analytics" target="_blank" rel="noopener"><strong>能干的你加入我们的数据科学与分析团队</strong></a><strong>！</strong></p>
+<p><strong>想使用或者一起开发这些机器学习工具吗？我们正在寻找 </strong><a target="_blank" rel="noopener" href="https://www.airbnb.com/careers/departments/data-science-analytics"><strong>能干的你加入我们的数据科学与分析团队</strong></a><strong>！</strong></p>
 <hr>
-<p><strong>特别感谢参与这项工作的Data Science＆ML Infra团队的成员：</strong><a href="https://www.linkedin.com/in/aaronkeys/" target="_blank" rel="noopener">*Aaron Keys*</a>*, *<a href="https://www.linkedin.com/in/brad-hunter-497621a/" target="_blank" rel="noopener">*Brad Hunter*</a>*, *<a href="https://www.linkedin.com/in/hamelhusain/" target="_blank" rel="noopener">*Hamel Husain*</a>*, *<a href="https://www.linkedin.com/in/jiaying-shi-a2142733/" target="_blank" rel="noopener">*Jiaying Shi*</a>*, *<a href="https://www.linkedin.com/in/krishnaputtaswamy/" target="_blank" rel="noopener">*Krishna Puttaswamy*</a>*, *<a href="https://www.linkedin.com/in/michael-m-a37b1932/" target="_blank" rel="noopener">*Michael Musson*</a>*, *<a href="https://www.linkedin.com/in/nicholashandel/" target="_blank" rel="noopener">*Nick Handel*</a>*, *<a href="https://www.linkedin.com/in/vzanoyan/" target="_blank" rel="noopener">*Varant Zanoyan*</a>*, *<a href="https://www.linkedin.com/in/vquoss/" target="_blank" rel="noopener">*Vaughn Quoss*</a>* 等人。另外感谢 *<a href="https://www.linkedin.com/in/thegarytang/" target="_blank" rel="noopener">*Gary Tang*</a>*, *<a href="https://medium.com/@jasonkgoodman" target="_blank" rel="noopener">*Jason Goodman*</a>*, *<a href="https://twitter.com/jtfeng" target="_blank" rel="noopener">*Jeff Feng*</a>*, *<a href="https://medium.com/@lpettingill" target="_blank" rel="noopener">*Lindsay Pettingill*</a>* 给本文提的意见。*</p>
+<p><strong>特别感谢参与这项工作的Data Science＆ML Infra团队的成员：</strong><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/aaronkeys/"><em>Aaron Keys</em></a><em>, </em><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/brad-hunter-497621a/"><em>Brad Hunter</em></a><em>, </em><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/hamelhusain/"><em>Hamel Husain</em></a><em>, </em><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/jiaying-shi-a2142733/"><em>Jiaying Shi</em></a><em>, </em><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/krishnaputtaswamy/"><em>Krishna Puttaswamy</em></a><em>, </em><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/michael-m-a37b1932/"><em>Michael Musson</em></a><em>, </em><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/nicholashandel/"><em>Nick Handel</em></a><em>, </em><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/vzanoyan/"><em>Varant Zanoyan</em></a><em>, </em><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/vquoss/"><em>Vaughn Quoss</em></a><em> 等人。另外感谢 </em><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/thegarytang/"><em>Gary Tang</em></a><em>, </em><a target="_blank" rel="noopener" href="https://medium.com/@jasonkgoodman"><em>Jason Goodman</em></a><em>, </em><a target="_blank" rel="noopener" href="https://twitter.com/jtfeng"><em>Jeff Feng</em></a><em>, </em><a target="_blank" rel="noopener" href="https://medium.com/@lpettingill"><em>Lindsay Pettingill</em></a><em> 给本文提的意见。</em></p>
 <blockquote>
-<p>发布于掘金 <a href="https://juejin.im/post/59acfc336fb9a0249471e47d" target="_blank" rel="noopener">https://juejin.im/post/59acfc336fb9a0249471e47d</a></p>
+<p>发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/59acfc336fb9a0249471e47d">https://juejin.im/post/59acfc336fb9a0249471e47d</a></p>
 </blockquote>
 
       
@@ -489,18 +558,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/09/02/%E5%9C%A8-Go-%E8%AF%AD%E8%A8%80%E4%B8%AD%E5%A2%9E%E5%BC%BA-Cookie-%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -512,34 +583,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2017/09/02/%E5%9C%A8-Go-%E8%AF%AD%E8%A8%80%E4%B8%AD%E5%A2%9E%E5%BC%BA-Cookie-%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/" class="post-title-link" itemprop="url">在 Go 语言中增强 Cookie 的安全性</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-09-02 17:32:00" itemprop="dateCreated datePublished" datetime="2017-09-02T17:32:00+08:00">2017-09-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-09-02 17:32:00" itemprop="dateCreated datePublished" datetime="2017-09-02T17:32:00+08:00">2017-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -548,21 +622,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>在我开始学习 Go 语言时已经有一些 Web 开发经验了，但是并没有直接操作 Cookie 的经验。我之前做过 Rails 开发，当我不得不需要在 Rails 中读写 Cookie 时，并不需要自己去实现各种安全措施。</p>
 <p>瞧瞧，Rails 默认就自己完成了大多数的事情。你不需要设置任何 CSRF 策略，也无需特别去加密你的 Cookie。在新版的 Rails 中，这些事情都是它默认帮你完成的。</p>
 <p>而使用 Go 语言开发则完全不同。在 Golang 的默认设置中，这些事都不会帮你完成。因此，当你想要开始使用 Cookie 时，了解各种安全措施、为什么要使用这些措施、以及如何将这些安全措施集成到你的应用中是非常重要的事。希望本文能帮助你做到这一点。</p>
 <p><strong>注意：我并不想引起关于 Go 与 Reils 两者哪种更好的论战。两者各有优点，但在本文中我希望能着重讨论 Cookie 的防护，而不是去争论 Rails 和 Go 哪个好。</strong></p>
-<h2 id="什么是-Cookie？"><a href="#什么是-Cookie？" class="headerlink" title="什么是 Cookie？"></a>什么是 Cookie？</h2><p>在进入 Cookie 防护相关的内容前，我们必须要理解 Cookie 究竟是什么。从本质上说，Cookie 就是存储在终端用户计算机中的键值对。因此，使用 Go 创建一个 Cookie 需要做的事就是创建一个包含键名、键值的 <a href="https://golang.org/pkg/net/http/#Cookie" target="_blank" rel="noopener">http.Cookie</a> 类型字段，然后调用 <a href="https://golang.org/pkg/net/http/#SetCookie" target="_blank" rel="noopener">http.SetCookie</a> 函数通知终端用户的浏览器设置该 Cookie。</p>
+<h2 id="什么是-Cookie？"><a href="#什么是-Cookie？" class="headerlink" title="什么是 Cookie？"></a>什么是 Cookie？</h2><p>在进入 Cookie 防护相关的内容前，我们必须要理解 Cookie 究竟是什么。从本质上说，Cookie 就是存储在终端用户计算机中的键值对。因此，使用 Go 创建一个 Cookie 需要做的事就是创建一个包含键名、键值的 <a target="_blank" rel="noopener" href="https://golang.org/pkg/net/http/#Cookie">http.Cookie</a> 类型字段，然后调用 <a target="_blank" rel="noopener" href="https://golang.org/pkg/net/http/#SetCookie">http.SetCookie</a> 函数通知终端用户的浏览器设置该 Cookie。</p>
 <p>写成代码之后，它看起来类似于这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">func someHandler(w http.ResponseWriter, r *http.Request) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  c :&#x3D; http.Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    Name: &quot;theme&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    Value: &quot;dark&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  http.SetCookie(w, &amp;c)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">func</span> <span class="selector-tag">someHandler</span>(<span class="selector-tag">w</span> <span class="selector-tag">http</span><span class="selector-class">.ResponseWriter</span>, <span class="selector-tag">r</span> *<span class="selector-tag">http</span><span class="selector-class">.Request</span>) &#123;</span><br><span class="line">  <span class="attribute">c </span>:= http.Cookie&#123;</span><br><span class="line">    Name: <span class="string">&quot;theme&quot;</span>,</span><br><span class="line">    Value: <span class="string">&quot;dark&quot;</span>,</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">http</span><span class="selector-class">.SetCookie</span>(<span class="selector-tag">w</span>, &amp;<span class="selector-tag">c</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><code>http.SetCookie</code> 函数并不会返回错误，但它可能会静默地移除无效的 Cookie，因此使用它并不是什么美好的经历。但它既然这么设计了，就请你在使用这个函数的时候一定要牢记它的特性。</p>
 </blockquote>
 <p>虽然这好像是在代码中“设定”了一个 Cookie，但其实我们只是在我们返回 Response 时发送了一个 <code>&quot;Set-Cookie&quot;</code> 的 Header，从而定义需要设置的 Cookie。我们不会在服务器上存储 Cookie，而是依靠终端用户的计算机创建与存储 Cookie。</p>
 <p>我要强调上面这一点，因为它存在非常严重的安全隐患：我们<strong>不能</strong>控制这些数据，而终端用户的计算机（以及用户）才能控制这些数据。</p>
-<p>当读取与写入终端用户控制的数据时，我们都需要十分谨慎地对数据进行处理。恶意用户可以删除 Cookie、修改存储在 Cookie 中的数据，甚至我们可能会遇到<a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener">中间人攻击</a>，即当用户向服务器发送数据时，另有人试图窃取 Cookie。</p>
+<p>当读取与写入终端用户控制的数据时，我们都需要十分谨慎地对数据进行处理。恶意用户可以删除 Cookie、修改存储在 Cookie 中的数据，甚至我们可能会遇到<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">中间人攻击</a>，即当用户向服务器发送数据时，另有人试图窃取 Cookie。</p>
 <h2 id="Cookie-的潜在安全问题"><a href="#Cookie-的潜在安全问题" class="headerlink" title="Cookie 的潜在安全问题"></a>Cookie 的潜在安全问题</h2><p>根据我的经验，Cookie 相关的安全性问题大致分为以下五大类。下面我们先简单地看一看，本文的剩余部分将详细讨论每个分类的细节问题与解决对策。</p>
 <p><strong>1. Cookie 窃取</strong> - 攻击者会通过各种方式来试图窃取 Cookie。我们将讨论如何防范、规避这些方式，但是归根结底我们并不能完全阻止设备上的物理类接触。</p>
 <p><strong>2. Cookie 篡改</strong> - Cookie 中存储的数据可以被用户有意或无意地修改。我们将讨论如何验证存储在 Cookie 中的数据确实是我们写入的合法数据</p>
@@ -573,13 +645,13 @@
 <h2 id="Cookie-窃取"><a href="#Cookie-窃取" class="headerlink" title="Cookie 窃取"></a>Cookie 窃取</h2><p>Cookie 窃取攻击就和它字面意思一样 —— 某人窃取了正常用户的 Cookie，然后一般用来将自己伪装成那个正常用户。</p>
 <p>Cookie 通常是被以下方式中的某种窃取：</p>
 <ol>
-<li><a href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener">中间人攻击</a>，或者是类似的其它攻击方式，归纳一下就是攻击者拦截你的 Web 请求，从中窃取 Cookie。</li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Man-in-the-middle_attack">中间人攻击</a>，或者是类似的其它攻击方式，归纳一下就是攻击者拦截你的 Web 请求，从中窃取 Cookie。</li>
 <li>取得硬件的访问权限。</li>
 </ol>
 <p>阻止中间人攻击的终极方式就是当你的网站使用 Cookie 时，使用 SSL。使用 SSL 时，由于中间人无法对数据进行解密，因此外人基本上没可能在请求的中途获取 Cookie。</p>
-<p>可能你会觉得“哈哈，中间人攻击不太可能…”，我建议你看看 <a href="http://codebutler.com/firesheep" target="_blank" rel="noopener">firesheep</a>，这个简单的工具，它足以说明在使用公共 wifi 时窃取未加密的 Cookie 是一件很轻松的事情。</p>
-<p>如果你想确保这种事情不发生在你的用户中，<strong>请使用 SSL！</strong>试试使用 <a href="https://caddyserver.com/" target="_blank" rel="noopener">Caddy Server</a> 进行加密吧。它经过简单的配置就能投入生产环境中。例如，你可以使用下面四行代码轻松让你的 Go 应用使用代理：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">calhoun.io &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  gzip</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  proxy &#x2F; localhost:3000</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>可能你会觉得“哈哈，中间人攻击不太可能…”，我建议你看看 <a target="_blank" rel="noopener" href="http://codebutler.com/firesheep">firesheep</a>，这个简单的工具，它足以说明在使用公共 wifi 时窃取未加密的 Cookie 是一件很轻松的事情。</p>
+<p>如果你想确保这种事情不发生在你的用户中，<strong>请使用 SSL！</strong>试试使用 <a target="_blank" rel="noopener" href="https://caddyserver.com/">Caddy Server</a> 进行加密吧。它经过简单的配置就能投入生产环境中。例如，你可以使用下面四行代码轻松让你的 Go 应用使用代理：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">calhoun.io &#123;</span><br><span class="line">  gzip</span><br><span class="line"> <span class="built_in"> proxy </span>/ localhost:3000</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后 Caddy 会为你自动处理所有与 SSL 有关的事务。</p>
 <p>防范通过访问硬件来窃取 Cookie 是十分棘手的事情。我们不能强制我们的用户使用高安全性系统，也不能逼他们为电脑设置密码，所以总会有他人坐在电脑前偷走 Cookie 的风险。此外，Cookie 也可能被病毒窃取，比如用户打开了某些钓鱼邮件时就会出现这种情况。</p>
 <p>不过这些都容易被发现。例如，如果有人偷了你的手表，当你发现表不在手上时你立马就会注意到它被偷了。然而 Cookie 还可以被复制，这样任何人都不会意识到它已经丢了。</p>
@@ -594,21 +666,21 @@
 <p>这种保护 Cookie 的方法原理是哈希编码 —— 我们对数据进行哈希编码，接着将数据与它的哈希编码同时存入 Cookie 中。当用户发送 Cookie 给我们时，再对数据进行哈希计算，验证此时的哈希值与原始哈希值是否匹配。</p>
 <p>我们当然不会想看到用户也创建一个新的哈希来欺骗我们，因此你可以使用一些类似 HMAC 的哈希算法来使用秘钥对数据进行哈希编码。这样就能防范用户同时编辑数据与数字签名（即哈希值）。</p>
 <blockquote>
-<p><a href="https://jwt.io/" target="_blank" rel="noopener">JSON Web Tokens(JWT)</a> 默认内置了数字签名功能，因此你可能对这种方法比较熟悉。</p>
+<p><a target="_blank" rel="noopener" href="https://jwt.io/">JSON Web Tokens(JWT)</a> 默认内置了数字签名功能，因此你可能对这种方法比较熟悉。</p>
 </blockquote>
-<p>在 Go 中，可以使用类似 Gorilla 的 <a href="http://www.gorillatoolkit.org/pkg/securecookie" target="_blank" rel="noopener">securecookie</a> 之类的 package，你可以在创建 <code>SecureCookie</code> 时使用它来保护你的 Cookie。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 推荐使用 32 字节或 64 字节的 hashKey</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 此处为了简洁故设为了 “very-secret”</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">var hashKey &#x3D; []byte(&quot;very-secret&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">var s &#x3D; securecookie.New(hashKey, nil)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">func SetCookieHandler(w http.ResponseWriter, r *http.Request) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  encoded, err :&#x3D; s.Encode(&quot;cookie-name&quot;, &quot;cookie-value&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  if err &#x3D;&#x3D; nil &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    cookie :&#x3D; &amp;http.Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      Name:  &quot;cookie-name&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      Value: encoded,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      Path:  &quot;&#x2F;&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    http.SetCookie(w, cookie)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    fmt.Fprintln(w, encoded)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<p>在 Go 中，可以使用类似 Gorilla 的 <a target="_blank" rel="noopener" href="http://www.gorillatoolkit.org/pkg/securecookie">securecookie</a> 之类的 package，你可以在创建 <code>SecureCookie</code> 时使用它来保护你的 Cookie。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 推荐使用 32 字节或 64 字节的 hashKey</span></span><br><span class="line"><span class="comment">// 此处为了简洁故设为了 “very-secret”</span></span><br><span class="line"><span class="keyword">var</span> hashKey = []<span class="keyword">byte</span>(<span class="string">&quot;very-secret&quot;</span>)</span><br><span class="line"><span class="keyword">var</span> s = securecookie.New(hashKey, <span class="literal">nil</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SetCookieHandler</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">  encoded, err := s.Encode(<span class="string">&quot;cookie-name&quot;</span>, <span class="string">&quot;cookie-value&quot;</span>)</span><br><span class="line">  <span class="keyword">if</span> err == <span class="literal">nil</span> &#123;</span><br><span class="line">    cookie := &amp;http.Cookie&#123;</span><br><span class="line">      Name:  <span class="string">&quot;cookie-name&quot;</span>,</span><br><span class="line">      Value: encoded,</span><br><span class="line">      Path:  <span class="string">&quot;/&quot;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    http.SetCookie(w, cookie)</span><br><span class="line">    fmt.Fprintln(w, encoded)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>然后你可以在另一个处理 Cookie 的函数中同样使用 SecureCookie 对象来读取 Cookie。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">func ReadCookieHandler(w http.ResponseWriter, r *http.Request) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  if cookie, err :&#x3D; r.Cookie(&quot;cookie-name&quot;); err &#x3D;&#x3D; nil &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    var value string</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    if err &#x3D; s.Decode(&quot;cookie-name&quot;, cookie.Value, &amp;value); err &#x3D;&#x3D; nil &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      fmt.Fprintln(w, value)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p><strong>以上样例来源于 <a href="http://www.gorillatoolkit.org/pkg/securecookie" target="_blank" rel="noopener">http://www.gorillatoolkit.org/pkg/securecookie</a>.</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ReadCookieHandler</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">  <span class="keyword">if</span> cookie, err := r.Cookie(<span class="string">&quot;cookie-name&quot;</span>); err == <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> value <span class="keyword">string</span></span><br><span class="line">    <span class="keyword">if</span> err = s.Decode(<span class="string">&quot;cookie-name&quot;</span>, cookie.Value, &amp;value); err == <span class="literal">nil</span> &#123;</span><br><span class="line">      fmt.Fprintln(w, value)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>以上样例来源于 <a target="_blank" rel="noopener" href="http://www.gorillatoolkit.org/pkg/securecookie">http://www.gorillatoolkit.org/pkg/securecookie</a>.</strong></p>
 <blockquote>
 <p>注意：这儿的数据并不是进行了加密，而只是进行了编码。我们会在“数据泄露”一章讨论如何对数据进行加密。</p>
 </blockquote>
 <p>这种模式还需要注意的是，如果你使用这种方式进行身份验证，请遵循 JWT 的模式，将登录过期日期和用户数据同时进行签名。你不能只凭 Cookie 的过期日期来判断登录是否有效，因为存储在 Cookie 上的日期并未经过签名，且用户可以创建一个永不过期的新 Cookie，将原 Cookie 的内容复制进去就得到了一个永远处于登录状态的 Cookie。</p>
 <h4 id="2-进行数据混淆"><a href="#2-进行数据混淆" class="headerlink" title="2. 进行数据混淆"></a>2. 进行数据混淆</h4><p>还有一种解决方案可以隐藏数据并防止用户造假。例如，不要这样存储 Cookie：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 别这么做</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">http.Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  Name: &quot;user_id&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  Value: &quot;123&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 别这么做</span></span><br><span class="line">http.Cookie&#123;</span><br><span class="line"><span class="symbol">  Name:</span> <span class="string">&quot;user_id&quot;</span>,</span><br><span class="line"><span class="symbol">  Value:</span> <span class="string">&quot;123&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们可以存储一个值来映射存在数据库中的真实数据。通常使用 Session ID 或者 remember token 来作为这个值。例如我们有一个名为 <code>remember_tokens</code> 的表，这样存储数据：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">remember_token: LAKJFD098afj0jasdf08jad08AJFs9aj2ASfd1</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">user_id: 123</span></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">remember_token</span>: LAKJFD<span class="number">098</span>afj<span class="number">0</span>jasdf<span class="number">08</span>jad<span class="number">08</span>AJFs<span class="number">9</span>aj<span class="number">2</span>ASfd<span class="number">1</span></span><br><span class="line"><span class="attribute">user_id</span>: <span class="number">123</span></span><br></pre></td></tr></table></figure>
 <p>在 Cookie 中，我们仅存储这个 remember token。如果用户想伪造 Cookie 也会无从下手。它看上去就是一堆乱码。</p>
 <p>之后当用户要登陆我们的应用时，再根据 remember token 在数据库中查询，确定用户具体的登录状态。</p>
 <p>为了让此措施正常工作，你需要确保你的混淆值有以下特性：</p>
@@ -621,40 +693,40 @@
 <p>这种方法也有一个缺点，就是在用户访问每个需要校验权限的页面时都得进行数据库查询。不过这个缺点很少有人注意，而且可以通过缓存等技术来减小数据库查询的开销。这种方法的升级版就是 JWT，应用这种方法你可以随时使会话无效化。</p>
 <p><strong>注意：尽管目前 JWT 收到了大多数 JS 框架的追捧，但上文这种方法是我了解的最常用的身份验证策略。</strong></p>
 <h2 id="数据泄露"><a href="#数据泄露" class="headerlink" title="数据泄露"></a>数据泄露</h2><p>在真正出现数据泄露前，通常需要另一种攻击向量 —— 例如 Cookie 窃取。然而还是很难去正确地判断并提防数据泄露的发生。因为仅仅是 Cookie 发生了泄露并不意味着攻击者也得到了用户的账户密码。</p>
-<p>无论何时，都应当减少存储在 Cookie 中的敏感数据。绝不要将用户密码之类的东西存在 Cookie 中，即使密码已经经过了编码也不要这么做。<a href="https://hackernoon.com/your-node-js-authentication-tutorial-is-wrong-f1a3bf831a46#2491" target="_blank" rel="noopener">这篇文章</a> 给出了几个开发者无意间将敏感数据存储在 Cookie 或 JWT 中的实例，由于（JWT 的 payload）是 base64 编码，没有经过任何加密，因此任何人都可以对其进行解码。</p>
-<p>出现数据泄露可是犯了大错。如果你担心你不小心存储了一些敏感数据，我建议你使用如 Gorilla 的 <a href="http://www.gorillatoolkit.org/pkg/securecookie" target="_blank" rel="noopener">securecookie</a> 之类的 package。</p>
+<p>无论何时，都应当减少存储在 Cookie 中的敏感数据。绝不要将用户密码之类的东西存在 Cookie 中，即使密码已经经过了编码也不要这么做。<a target="_blank" rel="noopener" href="https://hackernoon.com/your-node-js-authentication-tutorial-is-wrong-f1a3bf831a46#2491">这篇文章</a> 给出了几个开发者无意间将敏感数据存储在 Cookie 或 JWT 中的实例，由于（JWT 的 payload）是 base64 编码，没有经过任何加密，因此任何人都可以对其进行解码。</p>
+<p>出现数据泄露可是犯了大错。如果你担心你不小心存储了一些敏感数据，我建议你使用如 Gorilla 的 <a target="_blank" rel="noopener" href="http://www.gorillatoolkit.org/pkg/securecookie">securecookie</a> 之类的 package。</p>
 <p>前面我们讨论了如何对你的 Cookie 进行数字签名，其实 <code>securecookie</code> 也可以用于加密与解密你的 Cookie 数据，让你的数据不能被轻易地解码并读取。</p>
 <p>使用这个 package 进行加密，你只需要在创建 <code>SecureCookie</code> 实例时传入一个“块秘钥”（blockKey）即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var hashKey &#x3D; []byte(&quot;very-secret&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 增加这一部分进行加密</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">var blockKey &#x3D; []byte(&quot;a-lot-secret&quot;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">var s &#x3D; securecookie.New(hashKey, blockKey)</span></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hashKey = []<span class="keyword">byte</span>(<span class="string">&quot;very-secret&quot;</span>)</span><br><span class="line"><span class="comment">// 增加这一部分进行加密</span></span><br><span class="line"><span class="keyword">var</span> blockKey = []<span class="keyword">byte</span>(<span class="string">&quot;a-lot-secret&quot;</span>)</span><br><span class="line"><span class="keyword">var</span> s = securecookie.New(hashKey, blockKey)</span><br></pre></td></tr></table></figure>
 <p>其它所有东西都和前面章节的数字签名中的样例一致。</p>
 <p>再次提醒，你<strong>不应该</strong>在 Cookie 中存储任何敏感数据，尤其不能存储密码之类的东西。加密仅仅是一项为数据增加一部分安全性，使其成为”半敏感数据“数据的技术而已。</p>
-<h2 id="跨站脚本攻击（XSS）"><a href="#跨站脚本攻击（XSS）" class="headerlink" title="跨站脚本攻击（XSS）"></a>跨站脚本攻击（XSS）</h2><p><a href="https://en.wikipedia.org/wiki/Cross-site_scripting" target="_blank" rel="noopener">跨站脚本（Cross-site scripting）</a>也经常被记为 XSS，及有人试图将一些不是你写的 JavaScript 代码注入你的网站中。但由于其攻击的机理，你无法知道正在浏览器中运行的 JavaScript 代码到底是不是你的服务器提供的代码。</p>
+<h2 id="跨站脚本攻击（XSS）"><a href="#跨站脚本攻击（XSS）" class="headerlink" title="跨站脚本攻击（XSS）"></a>跨站脚本攻击（XSS）</h2><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cross-site_scripting">跨站脚本（Cross-site scripting）</a>也经常被记为 XSS，及有人试图将一些不是你写的 JavaScript 代码注入你的网站中。但由于其攻击的机理，你无法知道正在浏览器中运行的 JavaScript 代码到底是不是你的服务器提供的代码。</p>
 <p>无论何时，你都应该尽量去阻止 XSS 攻击。在本文中我们不会深入探讨这种攻击的具体细节，但是<strong>以防万一</strong>我建议你在非必要的情况下禁止 JavaScript 访问 Cookie 的权限。在你需要这个权限的时候你可以随时开启它，所以不要让它成为你的网站安全性脆弱的理由。</p>
 <p>在 Go 中完成这点很简单，只需要在创建 Cookie 时设置 <code>HttpOnly</code> 字段为 true 即可。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">cookie :&#x3D; http.Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; true 表示脚本无权限，只允许 http request 使用 Cookie。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 这与 Http 与 Https 无关。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  HttpOnly: true,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">cookie</span> <span class="string">:=</span> <span class="string">http.Cookie&#123;</span></span><br><span class="line">  <span class="string">//</span> <span class="literal">true</span> <span class="string">表示脚本无权限，只允许</span> <span class="string">http</span> <span class="string">request</span> <span class="string">使用</span> <span class="string">Cookie。</span></span><br><span class="line">  <span class="string">//</span> <span class="string">这与</span> <span class="string">Http</span> <span class="string">与</span> <span class="string">Https</span> <span class="string">无关。</span></span><br><span class="line">  <span class="attr">HttpOnly:</span> <span class="literal">true</span><span class="string">,</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 <h2 id="CSRF（跨站请求伪造）"><a href="#CSRF（跨站请求伪造）" class="headerlink" title="CSRF（跨站请求伪造）"></a>CSRF（跨站请求伪造）</h2><p>CSRF 发生的情况为某个用户访问别人的站点，但那个站点有一个能提交到你的 web 应用的表单。由于终端用户提交表单时的操作不经由脚本，因此浏览器会将此请求设为用户进行的操作，将 Cookie 附上表单数据同时发送。</p>
 <p>乍一看似乎这没什么问题，但是如果外部网站发送一些用户不希望发送的数据时会发生什么呢？例如，badsite.com 中有个表单，会提交请求将你的 100 美元转到他们的账户中，而 chase.com 希望你在它这儿登录你的银行账户。这可能会导致在终端用户不知情的情况下钱被转走。</p>
-<p>Cookie 不会直接导致这样的问题，不过如果你使用 Cookie 作为身份验证的依据，那你需要使用 Gorilla 的 <a href="http://www.gorillatoolkit.org/pkg/csrf" target="_blank" rel="noopener">csrf</a> 之类的 package 来避免 CSRF 攻击。</p>
+<p>Cookie 不会直接导致这样的问题，不过如果你使用 Cookie 作为身份验证的依据，那你需要使用 Gorilla 的 <a target="_blank" rel="noopener" href="http://www.gorillatoolkit.org/pkg/csrf">csrf</a> 之类的 package 来避免 CSRF 攻击。</p>
 <p>这个 package 将会提供一个 CSRF token，插入你网站的每个表单中，当表单中不含 token 时，<code>csrf</code> package 中间件将会阻止表单的提交，使得别的网站不能欺骗用户在他们那儿向你的网站提交表单。</p>
 <p><strong>更多关于 CSRF 攻击的资料请参阅：</strong></p>
 <ul>
-<li><a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF" target="_blank" rel="noopener">https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)</a>)</li>
-<li><a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Cross-site_request_forgery</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF">https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)</a>)</li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cross-site_request_forgery">https://en.wikipedia.org/wiki/Cross-site_request_forgery</a></li>
 </ul>
 <h2 id="在非必要时限制-Cookie-的访问权限"><a href="#在非必要时限制-Cookie-的访问权限" class="headerlink" title="在非必要时限制 Cookie 的访问权限"></a>在非必要时限制 Cookie 的访问权限</h2><p>我们要讨论的最后一件事与特定的攻击无关，更像是一种指导原则。我建议在使用 Cookie 时尽量限制其权限，仅在你需要时开发相关权限。</p>
 <p>前面讨论 XSS 时我也简单的提到过这点，但一般的观点是你需要尽可能限制对 Cookie 的访问。例如，如果你的 Web 应用没有使用子域名，那你就不应该赋予 Cookie 所有子域的权限。不过这是 Cookie 的默认值，因此其实你什么都不用做就能将 Cookie 的权限限制在某个特定域中。</p>
 <p>但是，如果你需要与子域共享 Cookie，你可以这么做：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c :&#x3D; Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 根据主机模式的默认设置，Cookie 进行的是精确域名匹配。</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 因此请仅在需要的时候开启子域名权限！</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 下面的代码可以让 Cookie 在 yoursite.com 的任何子域下工作：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  Domain: &quot;yoursite.com&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p><strong>欲了解更多有关域的信息，请参阅 <a href="https://tools.ietf.org/html/rfc6265#section-5.1.3" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc6265#section-5.1.3</a>。你也可以在这儿阅读源码，参阅其默认设置：<a href="https://golang.org/src/net/http/cookie.go#L157" target="_blank" rel="noopener">https://golang.org/src/net/http/cookie.go#L157</a>.</strong></p>
-<p><strong>你可以参阅 <a href="https://stackoverflow.com/questions/18492576/share-cookie-between-subdomain-and-domain" target="_blank" rel="noopener">这个 stackoverflow 的问题</a> 了解更多信息，弄明白为什么在为子域使用 Cookie 时不需要提供子域前缀.此外 Go 源码链接中也可以看到如果你提供前缀名的话会被自动去除。</strong></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">c := Cookie&#123;</span><br><span class="line">  <span class="regexp">//</span> 根据主机模式的默认设置，Cookie 进行的是精确域名匹配。</span><br><span class="line">  <span class="regexp">//</span> 因此请仅在需要的时候开启子域名权限！</span><br><span class="line">  <span class="regexp">//</span> 下面的代码可以让 Cookie 在 yoursite.com 的任何子域下工作：</span><br><span class="line">  Domain: <span class="string">&quot;yoursite.com&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>欲了解更多有关域的信息，请参阅 <a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc6265#section-5.1.3">https://tools.ietf.org/html/rfc6265#section-5.1.3</a>。你也可以在这儿阅读源码，参阅其默认设置：<a target="_blank" rel="noopener" href="https://golang.org/src/net/http/cookie.go#L157">https://golang.org/src/net/http/cookie.go#L157</a>.</strong></p>
+<p><strong>你可以参阅 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/18492576/share-cookie-between-subdomain-and-domain">这个 stackoverflow 的问题</a> 了解更多信息，弄明白为什么在为子域使用 Cookie 时不需要提供子域前缀.此外 Go 源码链接中也可以看到如果你提供前缀名的话会被自动去除。</strong></p>
 <p>除了将 Cookie 的权限限制在特定域上之外，你还可以将 Cookie 限制于某个特定的目录路径中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">c :&#x3D; Cookie&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; Defaults 设置为可访问应用的任何路径，但你也可以</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  &#x2F;&#x2F; 进行如下设置将其限制在特定子目录下：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  Path: &quot;&#x2F;app&#x2F;&quot;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>还有你也可以对其设置路径前缀，例如 <code>/blah/</code>，你可以参阅下面这篇文章了解更多这个字段的使用方法：<a href="https://tools.ietf.org/html/rfc6265#section-5.1.4" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc6265#section-5.1.4</a>.</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">c := Cookie&#123;</span><br><span class="line">  <span class="regexp">//</span> Defaults 设置为可访问应用的任何路径，但你也可以</span><br><span class="line">  <span class="regexp">//</span> 进行如下设置将其限制在特定子目录下：</span><br><span class="line">  Path: <span class="string">&quot;/app/&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还有你也可以对其设置路径前缀，例如 <code>/blah/</code>，你可以参阅下面这篇文章了解更多这个字段的使用方法：<a target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc6265#section-5.1.4">https://tools.ietf.org/html/rfc6265#section-5.1.4</a>.</p>
 <h2 id="为什么我不使用-JWT？"><a href="#为什么我不使用-JWT？" class="headerlink" title="为什么我不使用 JWT？"></a>为什么我不使用 JWT？</h2><p>就知道肯定会有人提出这个问题，下面让我简单解释一下。</p>
 <p>可能有很多人和你说过，Cookie 的安全性与 JWT 一样。但实际上，Cookie 与 JWT 解决的并不是相同的问题。比如 JWT 可以存储在 Cookie 中，这和将其放在 Header 中的实际效果是一样的。</p>
 <p>另外，Cookie 可用于无需验证的数据，在这种情况下了解如何增加 Cookie 的安全性也是必要的。</p>
 <blockquote>
-<p>发布于掘金 <a href="https://juejin.im/post/59aa7a4d6fb9a0249c007e16" target="_blank" rel="noopener">https://juejin.im/post/59aa7a4d6fb9a0249c007e16</a></p>
+<p>发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/59aa7a4d6fb9a0249c007e16">https://juejin.im/post/59aa7a4d6fb9a0249c007e16</a></p>
 </blockquote>
 
       
@@ -663,18 +735,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/29/Solution-Ionic-cordova-resources-couldn-t-generate-splash-and-icon/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -686,34 +760,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2017/08/29/Solution-Ionic-cordova-resources-couldn-t-generate-splash-and-icon/" class="post-title-link" itemprop="url">[Solution] 'Ionic cordova resources' couldn't generate splash and icon</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-08-29 17:48:00" itemprop="dateCreated datePublished" datetime="2017-08-29T17:48:00+08:00">2017-08-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front End</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-08-29 17:48:00" itemprop="dateCreated datePublished" datetime="2017-08-29T17:48:00+08:00">2017-08-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -722,8 +799,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <blockquote>
 <p>Version:</p>
 <p>Ionic: 3.9.2</p>
@@ -732,9 +807,9 @@
 <p>Using ‘ionic cordova resources’ will generate all-size splashs and icons for selected platforms automatically.</p>
 <p>But this method depends on cloud service of ionic, so that when you can’t connect to network, this method would be failed.</p>
 <p>There is a awesome tool can deal with these problem: cordova-resgen.</p>
-<p><a href="https://github.com/helixhuang/ionic-resources" target="_blank" rel="noopener">https://github.com/helixhuang/ionic-resources</a> </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/helixhuang/ionic-resources">https://github.com/helixhuang/ionic-resources</a> </p>
 <p>This tool base on cordova-splash and cordova-icon, using graphicsmagic to cut pictures.</p>
-<h4 id="Usage"><a href="#Usage" class="headerlink" title="Usage:"></a>Usage:</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">brew install graphicsmagick</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">sudo npm install cordova-resgen -g</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> your-project</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">cordova-resgen</span></pre></td></tr></table></figure>
+<h4 id="Usage"><a href="#Usage" class="headerlink" title="Usage:"></a>Usage:</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">brew install graphicsmagick</span><br><span class="line">sudo npm install cordova-resgen -g</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> your-project</span><br><span class="line">cordova-resgen</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -742,18 +817,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/29/%E4%BD%BF%E7%94%A8-AI-%E4%B8%BA-Web-%E7%BD%91%E9%A1%B5%E5%A2%9E%E5%8A%A0%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%8A%9F%E8%83%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -765,34 +842,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2017/08/29/%E4%BD%BF%E7%94%A8-AI-%E4%B8%BA-Web-%E7%BD%91%E9%A1%B5%E5%A2%9E%E5%8A%A0%E6%97%A0%E9%9A%9C%E7%A2%8D%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">使用 AI 为 Web 网页增加无障碍功能</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-08-29 16:55:00" itemprop="dateCreated datePublished" datetime="2017-08-29T16:55:00+08:00">2017-08-29</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-08-29 16:55:00" itemprop="dateCreated datePublished" datetime="2017-08-29T16:55:00+08:00">2017-08-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -801,15 +881,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><img src="/images/pasted-183.png" alt="upload successful"></p>
-<p>图为一位盲人正在阅读盲文（<a href="http://usabilitygeek.com/wp-content/uploads/2012/07/Software-For-Visually-Impaired-Blind-Users.jpg" target="_blank" rel="noopener">图片链接</a>）</p>
-<p><a href="http://www.who.int/mediacentre/factsheets/fs282/en/" target="_blank" rel="noopener">根据世界健康组织的统计</a>，全球约有 2.85 亿位视力障碍人士，仅美国就有 810 万网民患视力障碍。</p>
+<p>图为一位盲人正在阅读盲文（<a target="_blank" rel="noopener" href="http://usabilitygeek.com/wp-content/uploads/2012/07/Software-For-Visually-Impaired-Blind-Users.jpg">图片链接</a>）</p>
+<p><a target="_blank" rel="noopener" href="http://www.who.int/mediacentre/factsheets/fs282/en/">根据世界健康组织的统计</a>，全球约有 2.85 亿位视力障碍人士，仅美国就有 810 万网民患视力障碍。</p>
 <p>在我们视力正常的人看来，互联网是一个充满了文字、图片、视频等事物的地方，然而对于视力障碍人士来说却并不是这样的。有一种可以读出网页中文字和元数据的工具叫做屏幕阅读器，然而这种工具的作用十分有限，仅能让人看到网页的一部分文本。虽然一些开发人员花时间去改进他们的网站，为视障人士添加图片的描述性文字，但是绝大多数程序员都不会花时间去做这件公认冗长乏味的事情。</p>
 <p>所以，我决定做这么一个工具，来帮助视障人士通过 AI 的力量来“看”互联网。我给它起名为“Auto Alt Text”（自动 Alt 文本添加器），是一个 Chrome 拓展插件，可以让用户在图片上点击右键后得到场景描述 —— 最开始是要这么做的。</p>
-<p>您可以观看 <a href="https://www.youtube.com/embed/c1S4iB360m8" target="_blank" rel="noopener">这个视频</a>，了解它是如何运作的，然后 <a href="http://abhinavsuri.com/aat" target="_blank" rel="noopener">下载它并亲自试一试吧！</a>！</p>
-<h4 id="为什么我想做-Auto-Alt-Text："><a href="#为什么我想做-Auto-Alt-Text：" class="headerlink" title="为什么我想做 Auto Alt Text："></a>为什么我想做 Auto Alt Text：</h4><p>我曾经是不想花时间为图片添加描述的开发者中的一员。对那时的我来说，无障碍永远是“考虑考虑”的事，直到有一天我收到了来自<a href="https://github.com/hack4impact/flask-base" target="_blank" rel="noopener">我的一个项目</a>的用户的邮件。</p>
+<p>您可以观看 <a target="_blank" rel="noopener" href="https://www.youtube.com/embed/c1S4iB360m8">这个视频</a>，了解它是如何运作的，然后 <a target="_blank" rel="noopener" href="http://abhinavsuri.com/aat">下载它并亲自试一试吧！</a>！</p>
+<h4 id="为什么我想做-Auto-Alt-Text："><a href="#为什么我想做-Auto-Alt-Text：" class="headerlink" title="为什么我想做 Auto Alt Text："></a>为什么我想做 Auto Alt Text：</h4><p>我曾经是不想花时间为图片添加描述的开发者中的一员。对那时的我来说，无障碍永远是“考虑考虑”的事，直到有一天我收到了来自<a target="_blank" rel="noopener" href="https://github.com/hack4impact/flask-base">我的一个项目</a>的用户的邮件。</p>
 <p><img src="/images/pasted-184.png" alt="upload successful"></p>
 <p>邮件内容如下：“你好，Abhinav，我看了你的 flask-base 项目，我觉得它非常适合我的下个工程。感谢你开发了它。不过我想让你知道，你应该为你 README 中的图片加上 alt 描述。我是盲人，用了很长一段时间才弄清楚它们的内容 :/来自某人”</p>
 <p>在收到邮件的时候，无障碍功能的开发是放在我开发队列的最后面的，基本上它就是个“事后有空再添加”的想法而已。但是，这封邮件唤醒了我。在互联网中，有许多的人需要无障碍阅读功能来理解网站、应用、项目等事物的用途。</p>
@@ -823,24 +901,24 @@
 <li>制作、维护它们需要高昂的代价。</li>
 </ol>
 <p>现在，通过创建神经网络，这些问题都能得到解决。最近我接触、学习了 Tensorflow —— 一个用于机器学习开发的开源库，开始深入研究机器学习与 AI。Tensorflow 使开发人员能够构建可用于完成从对象检测到图像识别的各种任务的高鲁棒模型。</p>
-<p>在做了一些研究之后，我找到了一篇 Vinyals 写的论文<a href="https://arxiv.org/abs/1609.06647" target="_blank" rel="noopener">《Show and Tell: Lessons learned from the 2015 MSCOCO Image Captioning Challenge》</a>。这些研究者们创建了一个深度神经网络，可以以语义化方式描述图片的内容。</p>
+<p>在做了一些研究之后，我找到了一篇 Vinyals 写的论文<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1609.06647">《Show and Tell: Lessons learned from the 2015 MSCOCO Image Captioning Challenge》</a>。这些研究者们创建了一个深度神经网络，可以以语义化方式描述图片的内容。</p>
 <p><img src="/images/pasted-185.png" alt="upload successful"></p>
-<p>im2txt 的实例来自 <a href="https://github.com/tensorflow/models/tree/master/im2txt" target="_blank" rel="noopener">im2txt Github Repository</a></p>
+<p>im2txt 的实例来自 <a target="_blank" rel="noopener" href="https://github.com/tensorflow/models/tree/master/im2txt">im2txt Github Repository</a></p>
 <h4 id="im2txt-的技术细节："><a href="#im2txt-的技术细节：" class="headerlink" title="im2txt 的技术细节："></a>im2txt 的技术细节：</h4><p>这个模型的机制相当的精致，但是它基本上是一个“编码器 - 解码器”的方案。首先图片会传入一个名为 Inception v3 的卷积神经网络进行图片分类，接着编码好的图片送入 LSTM 网络中。LSTM 是一种专门用于序列模型/时间敏感信息的神经网络层。最后 LSTM 通过组合设定好的单词，形成一句描述图片内容的句子。LSTM 通过求单词集中每个单词在句子中出现的似然性，分别计算第一个词出现的概率分布、第二个词出现的概率分布……直到出现概率最大的字符为“.”，为句子加上最后的句号。</p>
 <p><img src="/images/pasted-186.png" alt="upload successful"></p>
-<p>图为此神经网络的概况（图片来自 <a href="https://github.com/tensorflow/models/tree/master/im2txt" target="_blank" rel="noopener">im2txt Github repository</a>）</p>
+<p>图为此神经网络的概况（图片来自 <a target="_blank" rel="noopener" href="https://github.com/tensorflow/models/tree/master/im2txt">im2txt Github repository</a>）</p>
 <p>根据 Github 库中的说明，这个模型在 Tesla k20m GPU 上的训练时间大约为 1-2 周（在我笔记本的标准 CPU 上计算需要更多的时间）。不过值得庆幸的是，Tensorflow 社区提供了一个已经训练好的模型。</p>
 <h4 id="使用-box-Lamdba-解决问题："><a href="#使用-box-Lamdba-解决问题：" class="headerlink" title="使用 box + Lamdba 解决问题："></a>使用 box + Lamdba 解决问题：</h4><p>在运行模型时，我试图使用 Bazel 来运行模型（Bazel 是一个用于将 tensorflow 模型解包成可运行脚本的工具）。但是，当命令行运行时，它需要大约 15 秒钟的时间才能从获取一张图片的结果！解决问题的唯一办法就是让 Tensorflow 的整个 Graph 都常驻内存，但是这样需要这个程序全天候运行。我计划将这个模型挂在 AWS Elasticbeanstalk 上，在这个平台上是以小时为单位为计算时间计费的，而我们要维持应用程序常驻，因此并不合适（它完全匹配了前面章节所说的图片描述软件缺点的第三条缺点）。因此，我决定使用 AWS Lambda 来完成所有工作。</p>
 <p>Lambda 是一种无服务器计算服务，价格很低。此外，它会在计算服务激活时按秒收费。Lambda 的工作原理很简单，一旦应用收到了用户的请求，Lambda 就会将应用程序的映象激活，返回 response，然后再停止应用映象。如果收到多个并发请求，它会唤起多个实例以拓展负载。另外，如果某个小时内应用不断收到请求，它将会保持应用程序的激活状态。因此，Lambda 服务非常符合我的这个用例。</p>
 <p><img src="/images/pasted-187.png" alt="upload successful"></p>
-<p>图为 AWS API Gateway + AWS = ❤️ (<a href="https://cdn-images-1.medium.com/max/700/1*SzOPXTf_YQNtFejG0e4HPg.png" target="_blank" rel="noopener">图片链接</a>)</p>
+<p>图为 AWS API Gateway + AWS = ❤️ (<a target="_blank" rel="noopener" href="https://cdn-images-1.medium.com/max/700/1*SzOPXTf_YQNtFejG0e4HPg.png">图片链接</a>)</p>
 <p>使用 Lambda 的问题就在于，我必须要为 im2txt 模型创建一个 API。另外，Lambda 对于以功能形式加载的应用有空间限制。上传整个应用程序的 zip 包时，最终文件大小不能超过 250 MB。这个限制是一个麻烦事，因为 im2txt 的模型就已经超过 180 MB 了，再加上它运行需要的依赖文件就已经超过 350 MB 了。我尝试将程序的一部分传到 S3 服务上，然后在 Lambda 实例运行再去下载相关文件。然而，Lambda 上一个应用的总存储限制为 512 MB，而我的应用程序已经超过限制了（总共约 530 MB）。</p>
-<p>为了减小项目的大小，我重新配置了 im2txt，只下载精简过的模型，去掉了没用的一些元数据。这样做之后，我的模型大小减小到了 120 MB。接着，我找到了一个最小依赖的 <a href="https://github.com/ryfeus/lambda-packs" target="_blank" rel="noopener">lambda-packs</a>，不过它仅有早期版本的 python 和 tensorflow。我将 python 3.6 语法和 tensorflow 1.2 的代码进行了降级，经过痛苦的降级过程后，我最终得到了一个总大小约为 480 MB 的包，小于 512 MB 的限制。</p>
+<p>为了减小项目的大小，我重新配置了 im2txt，只下载精简过的模型，去掉了没用的一些元数据。这样做之后，我的模型大小减小到了 120 MB。接着，我找到了一个最小依赖的 <a target="_blank" rel="noopener" href="https://github.com/ryfeus/lambda-packs">lambda-packs</a>，不过它仅有早期版本的 python 和 tensorflow。我将 python 3.6 语法和 tensorflow 1.2 的代码进行了降级，经过痛苦的降级过程后，我最终得到了一个总大小约为 480 MB 的包，小于 512 MB 的限制。</p>
 <p>为了保持应用的快速响应，我创建了一个 CloudWatch 函数，让 Lambda 实例保持”热“状态，使应用始终处于激活态。接着，我添加了一些函数用于处理不是 JPG 格式的图片，在最后，我做好了一个能提供服务的 API。这些精简工作让应用在大多数情况下能够于 5 秒之内返回 response。</p>
 <p><img src="/images/pasted-188.png" alt="upload successful"></p>
 <p>上图为 API 提供的图片可能内容的概率</p>
 <p>此外，Lambda 的价格便宜的令人惊讶。以现在的情况，我可以每个月免费分析 60,952 张图片，之后的图片每张仅需 0.0001094 美元（这意味着接下来的 60,952 张图像约花费 6.67 美元）。</p>
-<p>有关 API 的更多信息，请参考 repo：<a href="https://github.com/abhisuri97/auto-alt-text-lambda-api" target="_blank" rel="noopener">https://github.com/abhisuri97/auto-alt-text-lambda-api</a></p>
+<p>有关 API 的更多信息，请参考 repo：<a target="_blank" rel="noopener" href="https://github.com/abhisuri97/auto-alt-text-lambda-api">https://github.com/abhisuri97/auto-alt-text-lambda-api</a></p>
 <p>剩下的工作就是将其打包为 Chrome 拓展插件，以方便用户使用。这个工作没啥挑战性（仅需要向我的 API 端点发起一个简单的 AJAX 请求即可）。</p>
 <p><img src="/images/pasted-189.png" alt="upload successful"></p>
 <p>上图为 Auto Alt Text Chrome 插件运行示例</p>
@@ -848,15 +926,15 @@
 <p><img src="/images/pasted-190.png" alt="upload successful"></p>
 <p>上图为 COCO 数据集图片分类</p>
 <p>这个模型能够标注的内容还是有所限制；不过，它能标注的内容已经涵盖了 Facebook、Reddit 等社交媒体上的大多数图片。</p>
-<p>但是，对于 COCO 数据集中不存在的图片内容，这个模型并不能完成标注。我曾尝试着使用 Tesseract 来解决这个问题，但是它的结果并不是很准确，而且花费的时间也太长了（超过 10 秒）。现在我正在尝试使用 Tensorflow 实现 <a href="http://ai.stanford.edu/~ang/papers/ICPR12-TextRecognitionConvNeuralNets.pdf" target="_blank" rel="noopener">王韬等人的论文</a>，将其加入这个项目中。</p>
+<p>但是，对于 COCO 数据集中不存在的图片内容，这个模型并不能完成标注。我曾尝试着使用 Tesseract 来解决这个问题，但是它的结果并不是很准确，而且花费的时间也太长了（超过 10 秒）。现在我正在尝试使用 Tensorflow 实现 <a target="_blank" rel="noopener" href="http://ai.stanford.edu/~ang/papers/ICPR12-TextRecognitionConvNeuralNets.pdf">王韬等人的论文</a>，将其加入这个项目中。</p>
 <h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>虽然现在几乎每周都会涌现一些关于 AI 的新事物，但最重要的是退回一步，看看这些工具能在研究环境之外发挥出怎样的作用，以及这些研究能怎样帮助世界各地的人们。总而言之，我希望我能深入研究 Tensorflow 和 in2txt 模型，并将我所学知识应用于现实世界。我希望这个工具能成为帮助视障人士”看“更好的互联网的第一步。</p>
 <h4 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h4><ul>
-<li>关注文章作者：我会在 <a href="https://medium.com/@abhisuri97" target="_blank" rel="noopener">Medium</a> 上首发我写的文章。如果你喜欢这篇文章，欢迎关注我:)。接下来一个月，我将会在下个月发布一系列“如何使用 AI/tensorflow 解决现实世界问题”的文章。最近我还会发一些 JS 方面的教程。</li>
-<li>本文工具 Chrome 插件：<a href="http://abhinavsuri.com/aat" target="_blank" rel="noopener">下载地址</a></li>
-<li>Auto Alt Text Lambda API：<a href="http://github.com/abhisuri97/auto-alt-text-lambda-api" target="_blank" rel="noopener">Github repository 地址</a></li>
+<li>关注文章作者：我会在 <a target="_blank" rel="noopener" href="https://medium.com/@abhisuri97">Medium</a> 上首发我写的文章。如果你喜欢这篇文章，欢迎关注我:)。接下来一个月，我将会在下个月发布一系列“如何使用 AI/tensorflow 解决现实世界问题”的文章。最近我还会发一些 JS 方面的教程。</li>
+<li>本文工具 Chrome 插件：<a target="_blank" rel="noopener" href="http://abhinavsuri.com/aat">下载地址</a></li>
+<li>Auto Alt Text Lambda API：<a target="_blank" rel="noopener" href="http://github.com/abhisuri97/auto-alt-text-lambda-api">Github repository 地址</a></li>
 </ul>
 <blockquote>
-<p>发布于掘金 <a href="https://juejin.im/post/59a51e91f265da2499603c8c" target="_blank" rel="noopener">https://juejin.im/post/59a51e91f265da2499603c8c</a></p>
+<p>发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/59a51e91f265da2499603c8c">https://juejin.im/post/59a51e91f265da2499603c8c</a></p>
 </blockquote>
 
       
@@ -865,18 +943,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/22/%E9%9A%8F%E6%9C%BA%E7%B4%A2%E5%BC%95%E7%AE%97%E6%B3%95%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-An-Introduction-to-Random-Indexing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -888,34 +968,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2017/08/22/%E9%9A%8F%E6%9C%BA%E7%B4%A2%E5%BC%95%E7%AE%97%E6%B3%95%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0-An-Introduction-to-Random-Indexing/" class="post-title-link" itemprop="url">随机索引算法论文笔记 An Introduction to Random Indexing</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-08-22 09:34:00" itemprop="dateCreated datePublished" datetime="2017-08-22T09:34:00+08:00">2017-08-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Paper/" itemprop="url" rel="index">
-                    <span itemprop="name">Paper</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-08-22 09:34:00" itemprop="dateCreated datePublished" datetime="2017-08-22T09:34:00+08:00">2017-08-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -924,8 +1007,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <blockquote>
 <p>Sahlgren M. An Introduction to Random Indexing[C]// Methods &amp; Applications of Semantic Indexing Workshop at International Conference on Terminology &amp; Knowledge Engineering. 2005:194–201.</p>
 </blockquote>
@@ -943,7 +1024,7 @@
 <blockquote>
 <p>论文 2 — 熊玮, 白越, 刘爱国,等. 基于改进RI方法的文本聚类[J]. 南昌大学学报(理科版), 2016, 40(5):426-430.</p>
 </blockquote>
-<h3 id="第一步：生成随机索引向量"><a href="#第一步：生成随机索引向量" class="headerlink" title="第一步：生成随机索引向量"></a>第一步：生成随机索引向量</h3><p>为正文、单词生成随机索引向量。这些随机索引向量是稀疏、高维的。随机索引向量的值可以为 (-1, +1, 0) 三种。大多数的向量值都为 0，只有少数向量值为 -1 和 +1。在论文 2 中提到随机索引向量可以使用二元组 $ (d,\epsilon) $表示。<br>其中，$d$ 为向量维度，$\epsilon$为不同索引向量元素数量参数。对于所有文本来说，它们向量空间中出现的 -1 与 +1 的数量是相同的，在 $d$ 确定后由 $\epsilon$ 决定它们出现的数量。<br>令文本集全集为 $W$，文本集的子集（单词）为$\omega _j \in W,j \in {1,2,3,…,n} $，此时生成的随机索引向量为 $ R_{\nu_j} = (r\nu_1^j,r\nu_2^j,r\nu_3^j,…,r\nu_d^j ) $，其中 $r\nu_{h^j} \in {+1,-1,0}, h \in {1,2,3,…,d}$。$\epsilon$的取值远小于$d$。总体来说，+1 与 -1 分别占随机索引向量总维度的概率为 $\frac{\epsilon /2}{d}$，显然有</p>
+<h3 id="第一步：生成随机索引向量"><a href="#第一步：生成随机索引向量" class="headerlink" title="第一步：生成随机索引向量"></a>第一步：生成随机索引向量</h3><p>为正文、单词生成随机索引向量。这些随机索引向量是稀疏、高维的。随机索引向量的值可以为 (-1, +1, 0) 三种。大多数的向量值都为 0，只有少数向量值为 -1 和 +1。在论文 2 中提到随机索引向量可以使用二元组 $ (d,\epsilon) $表示。<br>其中，$d$ 为向量维度，$\epsilon$为不同索引向量元素数量参数。对于所有文本来说，它们向量空间中出现的 -1 与 +1 的数量是相同的，在 $d$ 确定后由 $\epsilon$ 决定它们出现的数量。<br>令文本集全集为 $W$，文本集的子集（单词）为$\omega _j \in W,j \in \{1,2,3,…,n\} $，此时生成的随机索引向量为 $ R_{\nu_j} = (r\nu_1^j,r\nu_2^j,r\nu_3^j,…,r\nu_d^j ) $，其中 $r\nu_{h^j} \in \{+1,-1,0\}, h \in \{1,2,3,…,d\}$。$\epsilon$的取值远小于$d$。总体来说，+1 与 -1 分别占随机索引向量总维度的概率为 $\frac{\epsilon /2}{d}$，显然有</p>
 <script type="math/tex; mode=display">\frac{\epsilon /2}{d} + \frac{d - \epsilon}{d} + \frac{\epsilon /2}{d} = 1</script><h3 id="第二步：生成文本向量"><a href="#第二步：生成文本向量" class="headerlink" title="第二步：生成文本向量"></a>第二步：生成文本向量</h3><p>根据滑动窗口包含的上下文生成上下文向量，接着根据上下文向量计算文本向量。<br>在论文 2 中，这一步又分为了两步：</p>
 <h4 id="生成特征词汇的上下文向量"><a href="#生成特征词汇的上下文向量" class="headerlink" title="生成特征词汇的上下文向量"></a>生成特征词汇的上下文向量</h4><p>设滑动窗口大小为 2L，则窗口范围为 [-L, L]。记特征词 $\omega_j$ 在文本 $d_i$ 中的上下文向量为 $c^i_j$，则其表达式为：</p>
 <script type="math/tex; mode=display">c^i_j = \sum^{k = L}_{k = -L}Rv_{j+k} * \omega f(\omega_{j+k})</script><p>其中 $Rv_{j+k}$ 表示特征词 $\omega_j$ 在窗口范围内共现词 $\omega_{j+k}$ 对应的随机索引向量；<br>$\omega f(\omega_{j+k})$ 为特征词 $\omega_j$ 在窗口范围上下文中共现特征词 $\omega_{j+k}$ 在文本 $d_i$ 中的加权权重。论文 2 中采用了 tf-idf 加权计算算法。论文 2 此时引用了</p>
@@ -980,18 +1061,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/18/%E5%9C%A8-Ulysses-%E4%B8%AD%E4%BD%BF%E7%94%A8-Latex-%E5%85%AC%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1003,34 +1086,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2017/08/18/%E5%9C%A8-Ulysses-%E4%B8%AD%E4%BD%BF%E7%94%A8-Latex-%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">在 Ulysses 中使用 Latex 公式</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-08-18 17:27:58" itemprop="dateCreated datePublished" datetime="2017-08-18T17:27:58+08:00">2017-08-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tool/" itemprop="url" rel="index">
-                    <span itemprop="name">Tool</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-08-18 17:27:58" itemprop="dateCreated datePublished" datetime="2017-08-18T17:27:58+08:00">2017-08-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -1039,13 +1125,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>在文档的头部加上如下代码：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">~~ <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/x-mathjax-config"</span>&gt;</span><span class="undefined"></span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="actionscript">~~ MathJax.Hub.Config(&#123;tex2jax: &#123;inlineMath:[[<span class="string">'$latex'</span>,<span class="string">'$'</span>]]&#125;&#125;);</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="undefined">~~ </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">~~ <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~~ <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">~~ MathJax.Hub.Config(&#123;<span class="attr">tex2jax</span>: &#123;<span class="attr">inlineMath</span>:[[<span class="string">&#x27;$latex&#x27;</span>,<span class="string">&#x27;$&#x27;</span>]]&#125;&#125;);</span></span><br><span class="line">~~ <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">~~ <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>即可在 Ulysses 中正常使用 Latex 公式啦。</p>
 <p>输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">~~ $latex a &#x3D; frac&#123;1&#125;&#123;b&#125; $</span></pre></td></tr></table></figure>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~~ <span class="symbol">$</span>latex a = <span class="built_in">frac</span>&#123;<span class="number">1</span>&#125;&#123;b&#125; <span class="symbol">$</span></span><br></pre></td></tr></table></figure>
 <p>得到</p>
 <p><img src="/images/pasted-182.png" alt="upload successful"></p>
 <p>试试在 wp 里 latex 的显示：</p>
@@ -1058,18 +1142,20 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/14/%E6%9C%BA%E5%99%A8%E4%B9%8B%E9%AD%82%EF%BC%9A%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1081,34 +1167,37 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2017/08/14/%E6%9C%BA%E5%99%A8%E4%B9%8B%E9%AD%82%EF%BC%9A%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84/" class="post-title-link" itemprop="url">机器之魂：聊天机器人是怎么工作的</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-08-14 15:52:47" itemprop="dateCreated datePublished" datetime="2017-08-14T15:52:47+08:00">2017-08-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-08-14 15:52:47" itemprop="dateCreated datePublished" datetime="2017-08-14T15:52:47+08:00">2017-08-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -1117,8 +1206,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>自早期的工业时代以来，人类就被能自主操作的设备迷住了。因为，它们代表了科技的“人化”。</p>
 <p>而在今天，各种软件也在逐渐变得人性化。其中变化最明显的当属“聊天机器人”。</p>
 <p>但是这些“机械”是如何运作的呢？首先，让我们回溯过去，探寻一种原始，但相似的技术。</p>
@@ -1128,7 +1215,7 @@
 <p>除了发出音符之外，圆筒的转动还可以附加一些其它的动作，例如移动小雕像等。不管怎样，这个音乐盒的基本机械结构是不会变的。</p>
 <h3 id="聊天机器人是如何工作的"><a href="#聊天机器人是如何工作的" class="headerlink" title="聊天机器人是如何工作的"></a>聊天机器人是如何工作的</h3><p>输入的文本将经过一种名为“分类器”的函数处理，这种分类器会将一个输入的句子和一种“意图”（聊天的目的）联系起来，然后针对这种“意图”产生回应。</p>
 <p><img src="/images/pasted-178.png" alt="upload successful"></p>
-<p><a href="http://lauragelston.ghost.io/speakeasy/" target="_blank" rel="noopener">一个聊天机器人的例子</a></p>
+<p><a target="_blank" rel="noopener" href="http://lauragelston.ghost.io/speakeasy/">一个聊天机器人的例子</a></p>
 <p>你可以将分类器看成是将一段数据（一句话）分入几个分类中的一种（即某种意图）的一种方式。输入一句话“how are you?”，将被分类成一种意图，然后将其与一种回应（例如“I’m good”或者更好的“I am well”）联系起来。</p>
 <p>我们在基础科学中早学习了分类：黑猩猩属于“哺乳动物”类，蓝鸟属于“鸟”类，地球属于“行星”等等。</p>
 <p>一般来说，文本分类有 3 种不同的方法。可以将它们看做是为了一些特定目的制造的软件机械，就如同音乐盒的圆筒一样。</p>
@@ -1139,20 +1226,20 @@
 </ul>
 <p>无论你使用哪种分类器，最终的结果一定是给出一个回应。音乐盒可以利用一些机械机构的联系来完成一些额外的“动作”，聊天机器人也如此。回应中可以使用一些额外的信息（例如天气、体育比赛比分、网络搜索等等），但是这些信息并不是聊天机器人的组成部分，它们仅仅是一些额外的代码。也可以根据句子中的某些特定“词性”来产生回应（例如某个专有名词）。此外，符合意图的回应也可以使用逻辑条件来判断对话的“状态”，以提供一些不同的回应，这也可以通过随机选择实现（好让对话更加“自然”）。</p>
 <h3 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h3><p>早期的聊天机器人通过模式匹配来进行文本分类以及产生回应。这种方法常常被称为“暴力法”，因为系统的作者需要为某个回应详细描述所有模式。</p>
-<p>这些模式的标准结构是“AIML”（人工智能标记语言）。这个名词里用了“人工智能”作为修饰词，但是<a href="https://medium.com/@gk_/the-ai-label-is-bullshit-559b171867ff" target="_blank" rel="noopener">它们完全不是一码事</a>。</p>
+<p>这些模式的标准结构是“AIML”（人工智能标记语言）。这个名词里用了“人工智能”作为修饰词，但是<a target="_blank" rel="noopener" href="https://medium.com/@gk_/the-ai-label-is-bullshit-559b171867ff">它们完全不是一码事</a>。</p>
 <p>下面是一个简单的模式匹配定义：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aiml</span> <span class="attr">version</span> = <span class="string">"1.0.1"</span> <span class="attr">encoding</span> = <span class="string">"UTF-8"</span>?&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="name">category</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">pattern</span>&gt;</span> WHO IS ALBERT EINSTEIN <span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">template</span>&gt;</span>Albert Einstein was a German physicist.<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;/<span class="name">category</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="name">category</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">pattern</span>&gt;</span> WHO IS Isaac NEWTON <span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">template</span>&gt;</span>Isaac Newton was a English physicist and mathematician.<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;/<span class="name">category</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="name">category</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>DO YOU KNOW WHO * IS<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">template</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">         <span class="tag">&lt;<span class="name">srai</span>&gt;</span>WHO IS <span class="tag">&lt;<span class="name">star</span>/&gt;</span><span class="tag">&lt;/<span class="name">srai</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;/<span class="name">category</span>&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">aiml</span>&gt;</span></span></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aiml</span> <span class="attr">version</span> = <span class="string">&quot;1.0.1&quot;</span> <span class="attr">encoding</span> = <span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">category</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">pattern</span>&gt;</span> WHO IS ALBERT EINSTEIN <span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">template</span>&gt;</span>Albert Einstein was a German physicist.<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">category</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">category</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">pattern</span>&gt;</span> WHO IS Isaac NEWTON <span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">template</span>&gt;</span>Isaac Newton was a English physicist and mathematician.<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">category</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">category</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>DO YOU KNOW WHO * IS<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">srai</span>&gt;</span>WHO IS <span class="tag">&lt;<span class="name">star</span>/&gt;</span><span class="tag">&lt;/<span class="name">srai</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">category</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aiml</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>然后机器经过处理会回答：</p>
 <pre><code>Human: Do you know who Albert Einstein is
 Robot: Albert Einstein was a German physicist.
 </code></pre><p>它之所以知道别人问的是哪个物理学家，只是靠着与他或者她名字相关联的模式匹配。同样的，它靠着创作者预设的模式可以对任何意图进行回应。在给予它成千上万种模式之后，你终将能看到一个“类人”的聊天机器人出现。</p>
-<p>2000 年的时候，John Denning 和他的同事就以这种方法做了个聊天机器人（<a href="http://mashable.com/2014/06/12/eugene-goostman-turing-test/" target="_blank" rel="noopener">相关新闻</a>），并通过了“图灵测试”。它设计的目标是模仿来自乌克兰的一个 13 岁的男孩，这孩子的英语水平很蹩脚。我在 2015 年的时候和 John 见过面，他没有矢口否认这个自动机的内部原理。因此，这个聊天机器人很可能就是用“暴力”的方法进行模式匹配。但它也证明了一点：在足够大的模式匹配定义的支持下，可以让大部分对话都贴近“自然”的程度。同时也符合了图灵（Alan Turing）的断言：制作用来糊弄人类的机器是“毫无意义”的。</p>
-<p>使用这种方法做机器人的典型案例还有 <a href="http://www.pandorabots.com/" target="_blank" rel="noopener">PandoraBots</a>，他们宣称已经用他们的框架构建了超过 28.5 万个聊天机器人。</p>
+<p>2000 年的时候，John Denning 和他的同事就以这种方法做了个聊天机器人（<a target="_blank" rel="noopener" href="http://mashable.com/2014/06/12/eugene-goostman-turing-test/">相关新闻</a>），并通过了“图灵测试”。它设计的目标是模仿来自乌克兰的一个 13 岁的男孩，这孩子的英语水平很蹩脚。我在 2015 年的时候和 John 见过面，他没有矢口否认这个自动机的内部原理。因此，这个聊天机器人很可能就是用“暴力”的方法进行模式匹配。但它也证明了一点：在足够大的模式匹配定义的支持下，可以让大部分对话都贴近“自然”的程度。同时也符合了图灵（Alan Turing）的断言：制作用来糊弄人类的机器是“毫无意义”的。</p>
+<p>使用这种方法做机器人的典型案例还有 <a target="_blank" rel="noopener" href="http://www.pandorabots.com/">PandoraBots</a>，他们宣称已经用他们的框架构建了超过 28.5 万个聊天机器人。</p>
 <h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>暴力穷举法做自动机让人望而却步：对于每个输入都得有可用的模式来匹配其回应。人们由“老鼠洞”得到灵感，创建了模式的层级结构。</p>
 <p>我们可以使用<strong>算法</strong>这种方法来减少分类器以便对机器进行管理，或者也可以说我们为它创建一个方程。这种方法是计算机科学家们称为“简化”的方法：问题需要<strong>缩减</strong>，那么解决问题的方法就是将其简化。</p>
-<p>有一种叫做“朴素贝叶斯多项式模型”的经典文本分类算法，你可以在<a href="http://nlp.stanford.edu/IR-book/pdf/13bayes.pdf" target="_blank" rel="noopener">这儿</a>或者别的地方学习它。下面是它的公式：</p>
+<p>有一种叫做“朴素贝叶斯多项式模型”的经典文本分类算法，你可以在<a target="_blank" rel="noopener" href="http://nlp.stanford.edu/IR-book/pdf/13bayes.pdf">这儿</a>或者别的地方学习它。下面是它的公式：</p>
 <p><img src="/images/pasted-179.png" alt="upload successful"></p>
-<p>实际用起它来比看上去要简单的多。给定一组句子，每个句子对应一个分类；接着输入一个新的句子，我们可以通过计算这个句子的单词在各个分类中的词频，找出各个分类的共性，并给每个分类一个<strong>分值</strong>（找出共性这点是很重要的：例如匹配到单词“cheese”（奶酪）比匹配到单词“it”要有意义的多）。最后，得到最高分值的分类很可能就是输入句子的同类。当然以上的说法是经过简化的，例如你还得先找到每个单词的<a href="https://en.wikipedia.org/wiki/Stemming" target="_blank" rel="noopener">词干</a>才行。不过，现在你应该对这种算法已经有了基本的概念。</p>
+<p>实际用起它来比看上去要简单的多。给定一组句子，每个句子对应一个分类；接着输入一个新的句子，我们可以通过计算这个句子的单词在各个分类中的词频，找出各个分类的共性，并给每个分类一个<strong>分值</strong>（找出共性这点是很重要的：例如匹配到单词“cheese”（奶酪）比匹配到单词“it”要有意义的多）。最后，得到最高分值的分类很可能就是输入句子的同类。当然以上的说法是经过简化的，例如你还得先找到每个单词的<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Stemming">词干</a>才行。不过，现在你应该对这种算法已经有了基本的概念。</p>
 <p>下面是一个简单的训练集：</p>
 <pre><code>class: weather
     &quot;is it nice outside?&quot;
@@ -1174,8 +1261,8 @@ input: &quot;What’s it like outside?&quot;
  term: &quot;outside **(class: weather (2) )**
  classification: **weather **(score=4)
 </code></pre><p>请注意，“What’s it like outside”在分类时找到了另一个分类的单词，但是正确的分类给了单词较高的分值。通过算法公式，我们可以为句子计算匹配每个分类对应的词频，因此不需要去标明所有的模式。</p>
-<p>这种分类器通过标定分类分值（计算词频）的方法给出最匹配语句的分类，但是它仍然有局限性。分值与概率不同，它仅仅能告诉我们句子的意图最有可能是哪个分类，而不能告诉我们它的所有匹配分类的可能性。因此，很难去给出一个阈值来判定是接受这个得分结果还是不接受这个结果。这种类型的算法给出的最高分仅仅能作为判断相关性的基础，它本质上作为分类器的效果还是比较差的。此外，这个算法不能接受 *is not* 类型的句子，因为它仅仅计算了 *it* 可能是什么。也就是说这种方法不适合做为包含 *not* 的否定句的分类。</p>
-<p>有许多的聊天机器人框架<a href="https://medium.com/@gk_/text-classification-using-algorithms-e4d50dcba45#.ewnhttxa4" target="_blank" rel="noopener">都是用这种方法来判断意图分类</a>。而且大多数都是针对训练集进行词频计算，这种“幼稚”的方法有时还意外的有效。</p>
+<p>这种分类器通过标定分类分值（计算词频）的方法给出最匹配语句的分类，但是它仍然有局限性。分值与概率不同，它仅仅能告诉我们句子的意图最有可能是哪个分类，而不能告诉我们它的所有匹配分类的可能性。因此，很难去给出一个阈值来判定是接受这个得分结果还是不接受这个结果。这种类型的算法给出的最高分仅仅能作为判断相关性的基础，它本质上作为分类器的效果还是比较差的。此外，这个算法不能接受 <em>is not</em> 类型的句子，因为它仅仅计算了 <em>it</em> 可能是什么。也就是说这种方法不适合做为包含 <em>not</em> 的否定句的分类。</p>
+<p>有许多的聊天机器人框架<a target="_blank" rel="noopener" href="https://medium.com/@gk_/text-classification-using-algorithms-e4d50dcba45#.ewnhttxa4">都是用这种方法来判断意图分类</a>。而且大多数都是针对训练集进行词频计算，这种“幼稚”的方法有时还意外的有效。</p>
 <h3 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3><p>人工神经网络发明于 20 世纪 40 年代，它通过迭代计算训练数据得到连接的加权值（“突触”），然后用于对输入数据进行分类。通过一次次使用训练数据计算改变加权值以使得神经网络的输出得到更高的“准确率”（低错误率）。</p>
 <p><img src="/images/pasted-180.png" alt="upload successful"></p>
 <p>上图为一种神经网络结构，其中包括神经元（圆）和突触（线）</p>
@@ -1184,13 +1271,13 @@ input: &quot;What’s it like outside?&quot;
 <p>有时，在权重调整到某个程度后反而会使得结果逐渐变差，这种情况称为“过拟合”，在出现过拟合的情况下继续进行训练，反而会适得其反。</p>
 <p><img src="/images/pasted-181.png" alt="upload successful"></p>
 <p>训练好的神经网络模型的代码量其实很小，不过它需要一个很大的潜在权重矩阵。举个相对较小的样例，它的训练句子包括了 150 个单词、30 种分类，这可能产生一个 150x30 大小的矩阵；你可以想象一下，为了降低错误率，这么大的一个矩阵需要反复的进行 10 万次矩阵乘法。这也是为什么说需要高性能处理器的原因。</p>
-<p>神经网络之所以能够做到既复杂又稀疏，归结于<a href="https://www.khanacademy.org/math/precalculus/precalc-matrices/multiplying-matrices-by-matrices/v/matrix-multiplication-intro" target="_blank" rel="noopener">矩阵乘法</a>和一种<a href="https://en.wikipedia.org/wiki/Sigmoid_function" target="_blank" rel="noopener">缩小值至 -1，1 区间的公式</a>（即激活函数，这里指的是 Sigmoid），一个中学生也能在几小时内学会它。其实真正困难的工作是清洗训练数据。</p>
+<p>神经网络之所以能够做到既复杂又稀疏，归结于<a target="_blank" rel="noopener" href="https://www.khanacademy.org/math/precalculus/precalc-matrices/multiplying-matrices-by-matrices/v/matrix-multiplication-intro">矩阵乘法</a>和一种<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Sigmoid_function">缩小值至 -1，1 区间的公式</a>（即激活函数，这里指的是 Sigmoid），一个中学生也能在几小时内学会它。其实真正困难的工作是清洗训练数据。</p>
 <p>就像前面的模式匹配和算法匹配一样，神经网络也有各种各样的变体，有一些变体会十分复杂。不过它的基本原理是相同的，做的主要工作也都是进行分类。</p>
 <p>机械音乐盒并不了解乐理，同样的，<strong>聊天机器人并不了解语言</strong>。</p>
-<p>聊天机器人实质上就是寻找短语集合中的模式，每个短语还能再分割成单个单词。在聊天机器人内部，除了它们存在的模式以及训练数据之外的<strong>单词其实并没有意义</strong>。为这样的“机器人”贴上“人工智能”的标签其实<a href="https://medium.com/@gk_/the-ai-label-is-bullshit-559b171867ff#.3tlhftemt" target="_blank" rel="noopener">也很糟糕</a>。</p>
+<p>聊天机器人实质上就是寻找短语集合中的模式，每个短语还能再分割成单个单词。在聊天机器人内部，除了它们存在的模式以及训练数据之外的<strong>单词其实并没有意义</strong>。为这样的“机器人”贴上“人工智能”的标签其实<a target="_blank" rel="noopener" href="https://medium.com/@gk_/the-ai-label-is-bullshit-559b171867ff#.3tlhftemt">也很糟糕</a>。</p>
 <p>总结：聊天机器人就像机械音乐盒一样：它就是<strong>一个根据模式来进行输出的机器</strong>，只不过它不用圆筒和针，而是使用软件代码和数学原理。</p>
 <blockquote>
-<p>发布于掘金 <a href="https://juejin.im/post/599155d86fb9a03c467c151d" target="_blank" rel="noopener">https://juejin.im/post/599155d86fb9a03c467c151d</a></p>
+<p>发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/599155d86fb9a03c467c151d">https://juejin.im/post/599155d86fb9a03c467c151d</a></p>
 </blockquote>
 
       
@@ -1199,18 +1286,20 @@ input: &quot;What’s it like outside?&quot;
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/12/%E8%A7%A3%E5%86%B3%E5%B0%86-ionic2-%E5%8D%87%E7%BA%A7%E8%87%B3-3-%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84-webpackJsonp-%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1222,34 +1311,37 @@ input: &quot;What’s it like outside?&quot;
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2017/08/12/%E8%A7%A3%E5%86%B3%E5%B0%86-ionic2-%E5%8D%87%E7%BA%A7%E8%87%B3-3-%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84-webpackJsonp-%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">解决将 ionic2 升级至 3 时出现的 webpackJsonp 问题</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-08-12 18:28:26" itemprop="dateCreated datePublished" datetime="2017-08-12T18:28:26+08:00">2017-08-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front End</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-08-12 18:28:26" itemprop="dateCreated datePublished" datetime="2017-08-12T18:28:26+08:00">2017-08-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -1258,8 +1350,6 @@ input: &quot;What’s it like outside?&quot;
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>ionic3 修复了2.x 存在的 ion-select 组件的 interface 等 bug，因此对其进行升级。修改 package.json，删除 node_module 目录，在 npm I 的时候依次按照提示在 package.json 中将不符合版本的库改为兼容版本。</p>
 <p>升级完成之后 build 时提示 webpackjsonp is not defined，翻阅 README 的 Change log 发现新版 cli 脚手架写的 webpack 配置有所改变，将公用部分使用 CommonsChunkPlugin 额外打了一个包，此包命名为 vendor。在 app 入口文件中引用该公用包解决问题。</p>
 
@@ -1269,18 +1359,20 @@ input: &quot;What’s it like outside?&quot;
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/09/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1292,34 +1384,37 @@ input: &quot;What’s it like outside?&quot;
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
             <a href="/2017/08/09/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="post-title-link" itemprop="url">卷积神经网络</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-08-09 16:25:34" itemprop="dateCreated datePublished" datetime="2017-08-09T16:25:34+08:00">2017-08-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-08-09 16:25:34" itemprop="dateCreated datePublished" datetime="2017-08-09T16:25:34+08:00">2017-08-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -1328,13 +1423,11 @@ input: &quot;What’s it like outside?&quot;
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="CNN-是怎么学习的？学习了什么？"><a href="#CNN-是怎么学习的？学习了什么？" class="headerlink" title="CNN 是怎么学习的？学习了什么？"></a>CNN 是怎么学习的？学习了什么？</h2><p><strong>这篇文章是深度学习系列的一部分。你可以在</strong><a href="https://github.com/xitu/gold-miner/blob/master/TODO/deep-learning-1-setting-up-aws-image-recognition.md" target="_blank" rel="noopener"><strong>这里</strong></a><strong>查看第一部分，以及在</strong><a href="https://github.com/xitu/gold-miner/blob/master/TODO/deep-learning-3-more-on-cnns-handling-overfitting.md" target="_blank" rel="noopener"><strong>这里</strong></a><strong>查看第三部分。</strong></p>
+          <h2 id="CNN-是怎么学习的？学习了什么？"><a href="#CNN-是怎么学习的？学习了什么？" class="headerlink" title="CNN 是怎么学习的？学习了什么？"></a>CNN 是怎么学习的？学习了什么？</h2><p><strong>这篇文章是深度学习系列的一部分。你可以在</strong><a target="_blank" rel="noopener" href="https://github.com/xitu/gold-miner/blob/master/TODO/deep-learning-1-setting-up-aws-image-recognition.md"><strong>这里</strong></a><strong>查看第一部分，以及在</strong><a target="_blank" rel="noopener" href="https://github.com/xitu/gold-miner/blob/master/TODO/deep-learning-3-more-on-cnns-handling-overfitting.md"><strong>这里</strong></a><strong>查看第三部分。</strong></p>
 <p><img src="/images/pasted-171.png" alt="upload successful"></p>
 <p>这一周，我们将探索卷积神经网络（CNN）的内部工作原理。你可能会问：在网络内部究竟发生了什么？它们是怎样学习的？</p>
 <p>这门课程遵循自上而下的学习方法与理念。因此一般来说，我们在开始学习的时候就能立即玩到所有的模型，然后我们会逐渐深入其内部的工作原理。因此，本系列也将会逐渐深入探索神经网络的内部工作原理。现在仅仅是第二周，让我们朝着最终的目标迈进吧！</p>
-<p>在上周，我在猫狗图像集上训练了 Vgg 16 模型。我想先聊一下为什么说使用预先训练好的模型是一种很好的方法。为了使用这些模型，首先你得要弄清楚这些模型到底学习的是什么。从本质上说，CNN 学习的是过滤器，并将学习到的过滤器应用于图像。当然，这些“过滤器”和你在 Instagram 里用的滤镜（英文也为“filter”）并不是一种东西，但它们其实有一些相同之处。CNN 会使用一个小方块遍历整张图片，通常将这个小方块称为“窗口”。接下来，网络会在图片中查找与过滤器匹配的图片内容。在第一层，网络可能只学习到了一些简单的事物（例如对角线）。在之后的每一层中，网络都将结合前面找到的特征，持续学习更加复杂的概念。单单听这些概念可能会让人比较迷糊，让我们直接来看一些例子。<a href="https://arxiv.org/abs/1311.2901" target="_blank" rel="noopener">Zeiler and Fergus (2013)</a> 为可视化 CNN 学习过程做出了一项很棒的工作。下图是他们在论文中用的 CNN 模型，赢得 Imagenet 竞赛的 Vgg16 模型就是基于这个模型做出来的。</p>
+<p>在上周，我在猫狗图像集上训练了 Vgg 16 模型。我想先聊一下为什么说使用预先训练好的模型是一种很好的方法。为了使用这些模型，首先你得要弄清楚这些模型到底学习的是什么。从本质上说，CNN 学习的是过滤器，并将学习到的过滤器应用于图像。当然，这些“过滤器”和你在 Instagram 里用的滤镜（英文也为“filter”）并不是一种东西，但它们其实有一些相同之处。CNN 会使用一个小方块遍历整张图片，通常将这个小方块称为“窗口”。接下来，网络会在图片中查找与过滤器匹配的图片内容。在第一层，网络可能只学习到了一些简单的事物（例如对角线）。在之后的每一层中，网络都将结合前面找到的特征，持续学习更加复杂的概念。单单听这些概念可能会让人比较迷糊，让我们直接来看一些例子。<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1311.2901">Zeiler and Fergus (2013)</a> 为可视化 CNN 学习过程做出了一项很棒的工作。下图是他们在论文中用的 CNN 模型，赢得 Imagenet 竞赛的 Vgg16 模型就是基于这个模型做出来的。</p>
 <p><img src="/images/pasted-172.png" alt="upload successful"></p>
 <p>CNN，作者：Zeiler &amp; Fergus (2013)</p>
 <p>可能你现在会觉得这个图片很难懂，请不要慌！让我们先从我们可以在图中看到的东西说起吧。首先，输入图像是正方形，大小为 224x224 像素。我之前说的过滤器大小是 7x7 像素大小。该模型有一个输入层，7 个隐藏层以及一个输出层。输出层的“C”指的是模型的预测分类数量。现在让我们来了解 CNN 中最有趣的部分：这个神经网络在每一层中都学到了什么！</p>
@@ -1346,7 +1439,7 @@ input: &quot;What’s it like outside?&quot;
 <p>CNN 的第四层与第五层</p>
 <p>在最后，第四层与第五层保持前面模型越来越具体的趋势。第五层找到了对解决我们的猫狗问题非常有帮助的特征。与此同时，它还识别出了独轮车，以及鸟类、爬行动物的眼睛。请注意，这些图像仅仅展示了每一层学习到的东西的极小一部分。</p>
 <p>希望上面的文字已经告诉了你为什么使用预先训练好的模型是很有用的。如果你想更多的了解这块领域的研究，你可以搜索“迁移学习”（transfer learning）的相关内容。虽然我们的猫狗问题训练集仅仅只有 25000 张图片，一个新的模型可能还无法从这些图片中学习到所有的特征，但我们的 Vgg16 模型已经相当“了解”怎么去识别猫和狗了。最后，通过“微调”（Finetuning） Vgg16 模型的最后一层，让其不再输出 1000 多种分类的概率，而是直接输出二分类 —— 猫和狗。</p>
-<p>如果你对深度学习背后的数学知识感兴趣，<a href="http://cs231n.github.io/" target="_blank" rel="noopener">Stanford’s CNN pages</a> 是很好的参考材料。他们首次以“数学之美”解释了浅层神经网络。</p>
+<p>如果你对深度学习背后的数学知识感兴趣，<a target="_blank" rel="noopener" href="http://cs231n.github.io/">Stanford’s CNN pages</a> 是很好的参考材料。他们首次以“数学之美”解释了浅层神经网络。</p>
 <hr>
 <h4 id="微调及线性层（全连接层）"><a href="#微调及线性层（全连接层）" class="headerlink" title="微调及线性层（全连接层）"></a>微调及线性层（全连接层）</h4><p>上周，我用这个预先训练好的 Vgg16 模型不能很自然的区分猫和狗这两个分类下的图片，而是提出了 1000 余种分类。此外，这个模型并不会直接输出“猫”和“狗”的分类，而是输出猫和狗的一些特定品种。那我们如何修改这个模型，让它能够有效地对猫和狗进行分类呢？</p>
 <p>有种可选方案：手动将这些品种分到猫和狗中去，然后计算其概率之和。但是，这种做法会丢弃一些关键信息。例如，如果图片中只有一根骨头，但它很可能是一张属于狗的照片。如果我们仅查看这些品种分为猫狗的概率，前面提到的这种信息很可能会丢失。因此在模型的最后，我们加入一个线性层（全连接层），它将仅输出两种分类。实际上，Vgg16 模型的最后有 3 层全连接层。我们可以微调这些层，通过反向传播来训练它们。反向传播算法常常被人看成是一种抽象的魔法，但其实它只是简单应用链式求导法则。你可以暂时忽略这些数学上的细节，TensorFlow、Theano 和其它深度学习库已经帮你做好了这些工作。</p>
@@ -1363,7 +1456,7 @@ input: &quot;What’s it like outside?&quot;
 <p>在微调完 Vgg16 模型的最后一层之后，它总共有 138357544 个参数。谢天谢地，我们不需要手动计算各种梯度 XD。下一周我们将更深入地了解 CNN 的工作原理，讨论主题为欠拟合和过拟合。</p>
 <p>如果你喜欢这篇文章，请将它推荐给其他人吧！你也可以关注此系列文章，跟上 Fast AI 课程的进度。下篇文章再会！</p>
 <blockquote>
-<p>发布于掘金 <a href="https://juejin.im/post/598ac6a55188257dd366367f" target="_blank" rel="noopener">https://juejin.im/post/598ac6a55188257dd366367f</a></p>
+<p>发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/598ac6a55188257dd366367f">https://juejin.im/post/598ac6a55188257dd366367f</a></p>
 </blockquote>
 
       
@@ -1372,15 +1465,16 @@ input: &quot;What’s it like outside?&quot;
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
   
   
   
 
-  </div>
 
   
   <nav class="pagination">
@@ -1389,91 +1483,39 @@ input: &quot;What’s it like outside?&quot;
 
 
 
-          </div>
-          
+      
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">lsvih</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">161</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">205</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -1485,32 +1527,38 @@ input: &quot;What’s it like outside?&quot;
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -1526,9 +1574,8 @@ input: &quot;What’s it like outside?&quot;
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -1544,55 +1591,16 @@ input: &quot;What’s it like outside?&quot;
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,62 +13,44 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta name="description" content="TL;DR本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Node.js Web 应用的例子。以下为本指南的内容摘要：  使用合适的基础镜像（开发环境使用 carbon，生产环境使用 alpine）。 在开发时使用 nodemon 进行热加载。 优化 Docker 的 cache layer（缓存层）—— 按照正确的顺序使用命令，仅在需要时运行 npm install。 使用">
-<meta name="keywords" content="Translate,juejin,Docker,Nodejs,BackEnd">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一份为 Node.js 应用准备的 Dockerfile 指南">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2018&#x2F;02&#x2F;28&#x2F;%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/2018/02/28/%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="My note">
 <meta property="og:description" content="TL;DR本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Node.js Web 应用的例子。以下为本指南的内容摘要：  使用合适的基础镜像（开发环境使用 carbon，生产环境使用 alpine）。 在开发时使用 nodemon 进行热加载。 优化 Docker 的 cache layer（缓存层）—— 按照正确的顺序使用命令，仅在需要时运行 npm install。 使用">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-306.png">
-<meta property="og:updated_time" content="2019-01-30T00:41:24.530Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lsvih.com/images/pasted-306.png">
+<meta property="article:published_time" content="2018-02-28T03:55:00.000Z">
+<meta property="article:modified_time" content="2019-01-30T00:41:24.530Z">
+<meta property="article:author" content="lsvih">
+<meta property="article:tag" content="Translate">
+<meta property="article:tag" content="juejin">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Nodejs">
+<meta property="article:tag" content="BackEnd">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-306.png">
+<meta name="twitter:image" content="https://lsvih.com/images/pasted-306.png">
+
 
 <link rel="canonical" href="https://lsvih.com/2018/02/28/%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
   };
 </script>
 
@@ -91,24 +73,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -116,60 +110,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -177,240 +174,44 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
-
-  
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/28/%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          一份为 Node.js 应用准备的 Dockerfile 指南
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-02-28 11:55:00" itemprop="dateCreated datePublished" datetime="2018-02-28T11:55:00+08:00">2018-02-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="/images/pasted-306.png" alt="upload successful"></p>
-<h3 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h3><p>本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Node.js Web 应用的例子。以下为本指南的内容摘要：</p>
-<ul>
-<li>使用合适的基础镜像（开发环境使用 carbon，生产环境使用 alpine）。</li>
-<li>在开发时使用 <code>nodemon</code> 进行热加载。</li>
-<li>优化 Docker 的 cache layer（缓存层）—— 按照正确的顺序使用命令，仅在需要时运行 <code>npm install</code>。</li>
-<li>使用 <code>serve</code> 包部署静态文件（比如 React、Vue、Angular 生成的 bundle）。</li>
-<li>使用 <code>alpine</code> 进行生产环境下的多级构建，减少最终镜像文件的大小。</li>
-<li>#建议 — 1) 使用 COPY 代替 ADD 2) 使用 <code>init</code> 标识，处理 CTRL-C 等内核信号。</li>
-</ul>
-<a id="more"></a>
-<p>如果你需要以上步骤的代码，请参考 <a href="https://github.com/praveenweb/node-docker" target="_blank" rel="noopener">GitHub repo</a>。</p>
-<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a><strong>内容</strong></h3><ol>
-<li>简单的 Dockerfile 样例与 .dockerignore 文件</li>
-<li>使用 nodemon 实现热更新</li>
-<li>优化</li>
-<li>部署静态文件</li>
-<li>生产环境中的直接构建</li>
-<li>生产环境中的多级构建</li>
-</ol>
-<p>让我们先假设一个名为 node-app 的应用，一个简单的目录结构。在顶级目录下，包含 <code>Dockerfile</code> 以及 <code>package.json</code>，node app 的代码将存于 <code>src</code> 目录下。为了简洁起见，我们假设 server.js 定义了一个运行于 8080 端口的 node express 服务。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">node-app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">├── Dockerfile</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">├── package.json</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">└── src</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    └── server.js</span></pre></td></tr></table></figure>
-<h3 id="1-简单的-Dockerfile-样例"><a href="#1-简单的-Dockerfile-样例" class="headerlink" title="1. 简单的 Dockerfile 样例"></a><strong>1. 简单的 Dockerfile 样例</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">FROM node:carbon</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"># 创建 app 目录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">WORKDIR &#x2F;app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"># 安装 app 依赖</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"># 使用通配符确保 package.json 与 package-lock.json 复制到需要的地方。（npm 版本 5 以上） COPY package*.json .&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">RUN npm install</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"># 如果你需要构建生产环境下的代码，请使用：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"># RUN npm install --only&#x3D;production</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"># 打包 app 源码</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">COPY src &#x2F;app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">EXPOSE 8080</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">CMD [ &quot;node&quot;, &quot;server.js&quot; ]</span></pre></td></tr></table></figure>
-<p>我们将使用最新的 LTS 版本 <code>node:carbon</code> 作为基础镜像。</p>
-<p>在构建镜像时，docker 会获取所有位于 <code>context</code> 目录下的文件。为了增加 docker 构建的速度，可以在 context 目录中添加 <code>.dockerignore</code> 文件来排除不需要的文件与目录。</p>
-<p>通常，你的 <code>.dockerignore</code> 文件件应该如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">.git</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">node_modules</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">npm-debug</span></pre></td></tr></table></figure>
-<p>构建并运行此镜像：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ cd node-docker</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$ docker build -t node-docker-dev .</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">$ docker run --rm -it -p 8080:8080 node-docker-dev</span></pre></td></tr></table></figure>
-<p>你将能在 <code>[http://localhost:8080](http://localhost:8080.)</code> 访问此 app。使用 <code>Ctrl+C</code> 组合键可以退出程序。</p>
-<p>现在，假设你希望在每次修改代码（比如在本地部署时）时都运行以上代码，那么你需要在启停 node 服务时将代码源文件挂载到容器中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ docker run --rm -it -p 8080:8080 -v $(pwd):&#x2F;app \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">             node-docker-dev bash</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">root@id:&#x2F;app# node src&#x2F;server.js</span></pre></td></tr></table></figure>
-<h3 id="2-使用-Nodemon-实现热更新"><a href="#2-使用-Nodemon-实现热更新" class="headerlink" title="2. 使用 Nodemon 实现热更新"></a>2. 使用 Nodemon 实现热更新</h3><p><a href="https://www.npmjs.com/package/nodemon" target="_blank" rel="noopener">nodemon</a> 是一款很受欢迎的包，它在运行时会监视目录中的文件，当任何文件发生了改变时，nodemon 将会自动重启你的 node 应用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">FROM node:carbon</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"># 创建 app 目录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">WORKDIR &#x2F;app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"># 安装 nodemon 以实现热更新</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">RUN npm install -g nodemon</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"># 安装 app 依赖</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"># 使用通配符确保 package.json 与 package-lock.json 复制到需要的地方。（npm 版本 5 以上）COPY package*.json .&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">RUN npm install</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"># 打包 app 源码</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">COPY src &#x2F;app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">EXPOSE 8080</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">CMD [ &quot;nodemon&quot;, &quot;server.js&quot; ]</span></pre></td></tr></table></figure>
-<p>我们将构建镜像并运行 nodemon，以便在 <code>app</code> 目录下文件发生变动时对代码进行 rebuild。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ cd node-docker</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$ docker build -t node-hot-reload-docker .</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">$ docker run --rm -it -p 8080:8080 -v $(pwd):&#x2F;app \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">             node-hot-reload-docker bash</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">root@id:&#x2F;app# nodemon src&#x2F;server.js</span></pre></td></tr></table></figure>
-<p>一切在 <code>app</code> 目录下的更改都会触发 rebuild，发生的变化都能在 <code>[http://localhost:8080](http://localhost:8080.)</code> 上实时展示。请注意，我们已经将文件挂载到了容器中，因此 nodemon 才能正常工作。</p>
-<h3 id="3-优化"><a href="#3-优化" class="headerlink" title="3. 优化"></a>3. 优化</h3><p>在你的 Dockerfile 中，除非你需要自动解压 tar 文件（参考 <a href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#add-or-copy" target="_blank" rel="noopener">Docker 最佳实践</a>），否则最好使用 COPY 来代替 ADD。</p>
-<p>绕过 <code>package.json</code> 的 <code>start</code> 命令，而是直接将 app “烧录”至镜像文件中。因此在 Dockerfile CMD 中不要使用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ CMD [&quot;npm&quot;,&quot;start&quot;]</span></pre></td></tr></table></figure>
-<p>而应当使用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ CMD [&quot;node&quot;,&quot;server.js&quot;]</span></pre></td></tr></table></figure>
-<p>来代替。这样可以减少在容器中运行的进程数量，同时还能让 Node.js 进程接收到 <code>SIGTERM</code> 与 <code>SIGINT</code> 等退出信号，如若是 npm 进程则会无视这些信号（参考 <a href="https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md#cmd" target="_blank" rel="noopener">Node.js Docker 最佳实践</a>）。</p>
-<p>你还可以使用 <code>--init</code> 标志，用 <a href="https://github.com/krallin/tini" target="_blank" rel="noopener">tini</a> 轻量集初始化系统来包装你的 Node.js 进程，它们也能响应一些 <code>SIGTERM</code>（<code>CTRL-C</code>）之类的内核信号。例如，你可以使用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ docker run --rm -it --init -p 8080:8080 -v $(pwd):&#x2F;app \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">             node-docker-dev bash</span></pre></td></tr></table></figure>
-<h3 id="4-部署静态文件"><a href="#4-部署静态文件" class="headerlink" title="4. 部署静态文件"></a>4. 部署静态文件</h3><p>前文的 Dockerfile 是假设你运行了由 Node.js 构建的 API 服务。那么下面说说如果你想要用 Node.js 部署 React.js、Vue.js、Angular.js 应用时该怎么做。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">FROM node:carbon</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"># 创建 app 目录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">WORKDIR &#x2F;app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"># 安装 app 依赖</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">RUN npm -g install serve</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"># 使用通配符复制 package.json 与 package-lock.json</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">COPY package*.json .&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">RUN npm install</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"># 打包 app 源码</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">COPY src &#x2F;app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line"># 将 react、vue、angular 打包构建成静态文件</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">RUN npm run build</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">EXPOSE 8080</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"># 将 dist 目录部署于 8080 端口</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">CMD [&quot;serve&quot;, &quot;-s&quot;, &quot;dist&quot;, &quot;-p&quot;, &quot;8080&quot;]</span></pre></td></tr></table></figure>
-<p>如你所见，当你需要构建 React、Vue、Angular 制作的 UI app 时，使用 <code>npm run build</code> 来压缩 JS 与 CSS 文件，生成最终的 <code>bundle</code> 包，在这儿我们使用了 npm 的 <code>[serve](https://www.npmjs.com/package/serve)</code> 包来部署静态文件。</p>
-<p>此外，可以使用一些替代方案：1) 在本地构建打包文件，然后使用 nginx docker 来部署这些静态文件。2) 使用 CI/CD 工作流进行构建。</p>
-<h3 id="5-生产环境中的直接构建"><a href="#5-生产环境中的直接构建" class="headerlink" title="5. 生产环境中的直接构建"></a>5. 生产环境中的直接构建</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">FROM node:carbon</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"># 创建 app 目录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">WORKDIR &#x2F;app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"># 安装 app 依赖</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"># RUN npm -g install serve</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"># 使用通配符复制 package.json 与 package-lock.json</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">COPY package*.json .&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">RUN npm install</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"># 打包 app 源码</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">COPY src &#x2F;app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"># 如需对 react&#x2F;vue&#x2F;angular 打包，生成静态文件，使用：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"># RUN npm run build</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">EXPOSE 8080</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"># 如需部署静态文件，使用：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">#CMD [&quot;serve&quot;, &quot;-s&quot;, &quot;dist&quot;, &quot;-p&quot;, &quot;8080&quot;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">CMD [ &quot;node&quot;, &quot;server.js&quot; ]</span></pre></td></tr></table></figure>
-<p>构建并运行这个一体化镜像：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$ cd node-docker</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">$ docker build -t node-docker-prod .</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">$ docker run --rm -it -p 8080:8080 node-docker-prod</span></pre></td></tr></table></figure>
-<p>由于底层为 Debian，构建完成后镜像约为 700MB（具体数值取决于你的源码）。下面探讨如何减小这个文件的大小。</p>
-<h3 id="6-生产环境中的多级构建"><a href="#6-生产环境中的多级构建" class="headerlink" title="6. 生产环境中的多级构建"></a>6. 生产环境中的多级构建</h3><p>使用多级构建时，将在 Dockerfile 中使用多个 <code>FROM</code> 语句，但最后仅会使用最终阶段构建的文件。这样，得到的镜像将仅包含生产服务器中所需的依赖，理想情况下文件将非常小。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"># ---- Base Node ----</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">FROM node:carbon AS base</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"># 创建 app 目录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">WORKDIR &#x2F;app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"># ---- Dependencies ----</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">FROM base AS dependencies  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"># 使用通配符复制 package.json 与 package-lock.json</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">COPY package*.json .&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"># 安装在‘devDependencies’中包含的依赖</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">RUN npm install</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"># ---- Copy Files&#x2F;Build ----</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">FROM dependencies AS build  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">WORKDIR &#x2F;app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">COPY src &#x2F;app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"># 如需对 react&#x2F;vue&#x2F;angular 打包，生成静态文件，使用：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"># RUN npm run build</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line"># --- Release with Alpine ----</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">FROM node:8.9-alpine AS release  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"># 创建 app 目录</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">WORKDIR &#x2F;app</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line"># 可选命令：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line"># RUN npm -g install serve</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">COPY --from&#x3D;dependencies &#x2F;app&#x2F;package.json .&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line"># 安装 app 依赖</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">RUN npm install --only&#x3D;production</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">COPY --from&#x3D;build &#x2F;app .&#x2F;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">#CMD [&quot;serve&quot;, &quot;-s&quot;, &quot;dist&quot;, &quot;-p&quot;, &quot;8080&quot;]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">CMD [&quot;node&quot;, &quot;server.js&quot;]</span></pre></td></tr></table></figure>
-<p>使用上面的方法，用 Alpine 构建的镜像文件大小约 70MB，比之前少了 10 倍。使用 <code>alpine</code> 版本进行构建能有效减小镜像的大小。</p>
-<p>如果你对前面的方法有任何建议，或希望看到别的用例，请告知作者。</p>
-<p>加入 <a href="https://www.reddit.com/r/node/comments/7vw6gj/an_exhaustive_guide_to_writing_dockerfiles_for/" target="_blank" rel="noopener">Reddit</a> / <a href="https://news.ycombinator.com/item?id=16330793" target="_blank" rel="noopener">HackerNews</a> 讨论:)</p>
-<hr>
-<p>此外，你是否试过将 Node.js web 应用部署在 Hasura 上呢？这其实是将 Node.js 应用部署于 HTTPS 域名的最快的方法（仅需使用 git push）。尝试使用 <a href="https://hasura.io/hub/nodejs-frameworks" target="_blank" rel="noopener">https://hasura.io/hub/nodejs-frameworks</a> 的模板快速入门吧！Hasura 中所有的项目模板都带有 Dockerfile 与 Kubernetes 标准文件，你可以自由进行定义。</p>
-<p>感谢 <a href="https://medium.com/@tanmaig?source=post_page" target="_blank" rel="noopener">Tanmai Gopal</a></p>
-<hr>
-<blockquote>
-<p>本文发布于掘金 <a href="https://juejin.im/post/5a9626abf265da4e9d225f4f" target="_blank" rel="noopener">https://juejin.im/post/5a9626abf265da4e9d225f4f</a></p>
-</blockquote>
-
     </div>
-
-    
-    
-    
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>lsvih
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="/https:/lsvih.com/2018/02/28/%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97/" title="一份为 Node.js 应用准备的 Dockerfile 指南">https://lsvih.com/2018/02/28/一份为-Node-js-应用准备的-Dockerfile-指南/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Translate/" rel="tag"># Translate</a>
-              <a href="/tags/juejin/" rel="tag"># juejin</a>
-              <a href="/tags/Docker/" rel="tag"># Docker</a>
-              <a href="/tags/Nodejs/" rel="tag"># Nodejs</a>
-              <a href="/tags/BackEnd/" rel="tag"># BackEnd</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2018/02/22/%E5%9C%A8-Swift-playground-%E4%B8%AD%E7%BC%96%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" rel="prev" title="在 Swift playground 中编写单元测试">
-      <i class="fa fa-chevron-left"></i> 在 Swift playground 中编写单元测试
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2018/03/06/%E4%BD%BF%E7%94%A8-Grub-%E5%BC%95%E5%AF%BC-Linux/" rel="next" title="使用 Grub 引导 Linux">
-      使用 Grub 引导 Linux <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
   </div>
 
-
-          </div>
-          
-
-        </div>
-          
+</div>
+        
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
         </li>
@@ -420,17 +221,17 @@
       </ul>
 
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#TL-DR"><span class="nav-number">1.</span> <span class="nav-text">TL;DR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容"><span class="nav-number">2.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-简单的-Dockerfile-样例"><span class="nav-number">3.</span> <span class="nav-text">1. 简单的 Dockerfile 样例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用-Nodemon-实现热更新"><span class="nav-number">4.</span> <span class="nav-text">2. 使用 Nodemon 实现热更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-优化"><span class="nav-number">5.</span> <span class="nav-text">3. 优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-部署静态文件"><span class="nav-number">6.</span> <span class="nav-text">4. 部署静态文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-生产环境中的直接构建"><span class="nav-number">7.</span> <span class="nav-text">5. 生产环境中的直接构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-生产环境中的多级构建"><span class="nav-number">8.</span> <span class="nav-text">6. 生产环境中的多级构建</span></a></li></ol></div>
-      </div>
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#TL-DR"><span class="nav-number">1.</span> <span class="nav-text">TL;DR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-number">2.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%AE%80%E5%8D%95%E7%9A%84-Dockerfile-%E6%A0%B7%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">1. 简单的 Dockerfile 样例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8-Nodemon-%E5%AE%9E%E7%8E%B0%E7%83%AD%E6%9B%B4%E6%96%B0"><span class="nav-number">4.</span> <span class="nav-text">2. 使用 Nodemon 实现热更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BC%98%E5%8C%96"><span class="nav-number">5.</span> <span class="nav-text">3. 优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">4. 部署静态文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%AD%E7%9A%84%E7%9B%B4%E6%8E%A5%E6%9E%84%E5%BB%BA"><span class="nav-number">7.</span> <span class="nav-text">5. 生产环境中的直接构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E4%B8%AD%E7%9A%84%E5%A4%9A%E7%BA%A7%E6%9E%84%E5%BB%BA"><span class="nav-number">8.</span> <span class="nav-text">6. 生产环境中的多级构建</span></a></li></ol></div>
+      </section>
       <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">lsvih</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -453,34 +254,251 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </div>
-
+      </section>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/28/%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一份为 Node.js 应用准备的 Dockerfile 指南
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-02-28 11:55:00" itemprop="dateCreated datePublished" datetime="2018-02-28T11:55:00+08:00">2018-02-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="/images/pasted-306.png" alt="upload successful"></p>
+<h3 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h3><p>本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Node.js Web 应用的例子。以下为本指南的内容摘要：</p>
+<ul>
+<li>使用合适的基础镜像（开发环境使用 carbon，生产环境使用 alpine）。</li>
+<li>在开发时使用 <code>nodemon</code> 进行热加载。</li>
+<li>优化 Docker 的 cache layer（缓存层）—— 按照正确的顺序使用命令，仅在需要时运行 <code>npm install</code>。</li>
+<li>使用 <code>serve</code> 包部署静态文件（比如 React、Vue、Angular 生成的 bundle）。</li>
+<li>使用 <code>alpine</code> 进行生产环境下的多级构建，减少最终镜像文件的大小。</li>
+<li>#建议 — 1) 使用 COPY 代替 ADD 2) 使用 <code>init</code> 标识，处理 CTRL-C 等内核信号。</li>
+</ul>
+<a id="more"></a>
+<p>如果你需要以上步骤的代码，请参考 <a target="_blank" rel="noopener" href="https://github.com/praveenweb/node-docker">GitHub repo</a>。</p>
+<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a><strong>内容</strong></h3><ol>
+<li>简单的 Dockerfile 样例与 .dockerignore 文件</li>
+<li>使用 nodemon 实现热更新</li>
+<li>优化</li>
+<li>部署静态文件</li>
+<li>生产环境中的直接构建</li>
+<li>生产环境中的多级构建</li>
+</ol>
+<p>让我们先假设一个名为 node-app 的应用，一个简单的目录结构。在顶级目录下，包含 <code>Dockerfile</code> 以及 <code>package.json</code>，node app 的代码将存于 <code>src</code> 目录下。为了简洁起见，我们假设 server.js 定义了一个运行于 8080 端口的 node express 服务。</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">node</span><span class="title">-app</span></span><br><span class="line">├── Dockerfile</span><br><span class="line">├── package.json</span><br><span class="line">└── src</span><br><span class="line">    └── server.js</span><br></pre></td></tr></table></figure>
+<h3 id="1-简单的-Dockerfile-样例"><a href="#1-简单的-Dockerfile-样例" class="headerlink" title="1. 简单的 Dockerfile 样例"></a><strong>1. 简单的 Dockerfile 样例</strong></h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:carbon</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 app 目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 app 依赖</span></span><br><span class="line"><span class="comment"># 使用通配符确保 package.json 与 package-lock.json 复制到需要的地方。（npm 版本 5 以上） COPY package*.json ./</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> npm install</span></span><br><span class="line"><span class="comment"># 如果你需要构建生产环境下的代码，请使用：</span></span><br><span class="line"><span class="comment"># RUN npm install --only=production</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打包 app 源码</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> src /app</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8080</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [ <span class="string">&quot;node&quot;</span>, <span class="string">&quot;server.js&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
+<p>我们将使用最新的 LTS 版本 <code>node:carbon</code> 作为基础镜像。</p>
+<p>在构建镜像时，docker 会获取所有位于 <code>context</code> 目录下的文件。为了增加 docker 构建的速度，可以在 context 目录中添加 <code>.dockerignore</code> 文件来排除不需要的文件与目录。</p>
+<p>通常，你的 <code>.dockerignore</code> 文件件应该如下所示：</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">.git</span></span><br><span class="line">node<span class="emphasis">_modules</span></span><br><span class="line"><span class="emphasis">npm-debug</span></span><br></pre></td></tr></table></figure>
+<p>构建并运行此镜像：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd <span class="keyword">node</span><span class="title">-docker</span></span><br><span class="line">$ docker build -t <span class="keyword">node</span><span class="title">-docker-dev</span> .</span><br><span class="line">$ docker run --rm -it -p <span class="number">8080</span>:<span class="number">8080</span> <span class="keyword">node</span><span class="title">-docker-dev</span></span><br></pre></td></tr></table></figure>
+<p>你将能在 <code>[http://localhost:8080](http://localhost:8080.)</code> 访问此 app。使用 <code>Ctrl+C</code> 组合键可以退出程序。</p>
+<p>现在，假设你希望在每次修改代码（比如在本地部署时）时都运行以上代码，那么你需要在启停 node 服务时将代码源文件挂载到容器中。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>docker run --rm -it -p <span class="number">8080:8080</span> -v <span class="variable">$(</span>pwd)<span class="symbol">:/app</span> \</span><br><span class="line">             node-docker-dev bash</span><br><span class="line">root<span class="variable">@id</span><span class="symbol">:/app</span><span class="comment"># node src/server.js</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-使用-Nodemon-实现热更新"><a href="#2-使用-Nodemon-实现热更新" class="headerlink" title="2. 使用 Nodemon 实现热更新"></a>2. 使用 Nodemon 实现热更新</h3><p><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/nodemon">nodemon</a> 是一款很受欢迎的包，它在运行时会监视目录中的文件，当任何文件发生了改变时，nodemon 将会自动重启你的 node 应用。</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:carbon</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 app 目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 nodemon 以实现热更新</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> npm install -g nodemon</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 app 依赖</span></span><br><span class="line"><span class="comment"># 使用通配符确保 package.json 与 package-lock.json 复制到需要的地方。（npm 版本 5 以上）COPY package*.json ./</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> npm install</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打包 app 源码</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> src /app</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8080</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [ <span class="string">&quot;nodemon&quot;</span>, <span class="string">&quot;server.js&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
+<p>我们将构建镜像并运行 nodemon，以便在 <code>app</code> 目录下文件发生变动时对代码进行 rebuild。</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cd <span class="keyword">node</span><span class="title">-docker</span></span><br><span class="line">$ docker build -t <span class="keyword">node</span><span class="title">-hot-reload-docker</span> .</span><br><span class="line">$ docker run --rm -it -p <span class="number">8080</span>:<span class="number">8080</span> -v $(pwd):/app \</span><br><span class="line">             <span class="keyword">node</span><span class="title">-hot-reload-docker</span> bash</span><br><span class="line">root@id:/app<span class="comment"># nodemon src/server.js</span></span><br></pre></td></tr></table></figure>
+<p>一切在 <code>app</code> 目录下的更改都会触发 rebuild，发生的变化都能在 <code>[http://localhost:8080](http://localhost:8080.)</code> 上实时展示。请注意，我们已经将文件挂载到了容器中，因此 nodemon 才能正常工作。</p>
+<h3 id="3-优化"><a href="#3-优化" class="headerlink" title="3. 优化"></a>3. 优化</h3><p>在你的 Dockerfile 中，除非你需要自动解压 tar 文件（参考 <a target="_blank" rel="noopener" href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#add-or-copy">Docker 最佳实践</a>），否则最好使用 COPY 来代替 ADD。</p>
+<p>绕过 <code>package.json</code> 的 <code>start</code> 命令，而是直接将 app “烧录”至镜像文件中。因此在 Dockerfile CMD 中不要使用：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">CMD</span><span class="bash"> [<span class="string">&quot;npm&quot;</span>,<span class="string">&quot;start&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+<p>而应当使用：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">CMD</span><span class="bash"> [<span class="string">&quot;node&quot;</span>,<span class="string">&quot;server.js&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+<p>来代替。这样可以减少在容器中运行的进程数量，同时还能让 Node.js 进程接收到 <code>SIGTERM</code> 与 <code>SIGINT</code> 等退出信号，如若是 npm 进程则会无视这些信号（参考 <a target="_blank" rel="noopener" href="https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md#cmd">Node.js Docker 最佳实践</a>）。</p>
+<p>你还可以使用 <code>--init</code> 标志，用 <a target="_blank" rel="noopener" href="https://github.com/krallin/tini">tini</a> 轻量集初始化系统来包装你的 Node.js 进程，它们也能响应一些 <code>SIGTERM</code>（<code>CTRL-C</code>）之类的内核信号。例如，你可以使用：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --rm -it --init -p <span class="number">8080</span>:<span class="number">8080</span> -v $(pwd):/app \</span><br><span class="line">             <span class="keyword">node</span><span class="title">-docker-dev</span> bash</span><br></pre></td></tr></table></figure>
+<h3 id="4-部署静态文件"><a href="#4-部署静态文件" class="headerlink" title="4. 部署静态文件"></a>4. 部署静态文件</h3><p>前文的 Dockerfile 是假设你运行了由 Node.js 构建的 API 服务。那么下面说说如果你想要用 Node.js 部署 React.js、Vue.js、Angular.js 应用时该怎么做。</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:carbon</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 app 目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 app 依赖</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> npm -g install serve</span></span><br><span class="line"><span class="comment"># 使用通配符复制 package.json 与 package-lock.json</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> package*.json ./</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> npm install</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打包 app 源码</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> src /app</span></span><br><span class="line"><span class="comment"># 将 react、vue、angular 打包构建成静态文件</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> npm run build</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8080</span></span><br><span class="line"><span class="comment"># 将 dist 目录部署于 8080 端口</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">&quot;serve&quot;</span>, <span class="string">&quot;-s&quot;</span>, <span class="string">&quot;dist&quot;</span>, <span class="string">&quot;-p&quot;</span>, <span class="string">&quot;8080&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+<p>如你所见，当你需要构建 React、Vue、Angular 制作的 UI app 时，使用 <code>npm run build</code> 来压缩 JS 与 CSS 文件，生成最终的 <code>bundle</code> 包，在这儿我们使用了 npm 的 <code>[serve](https://www.npmjs.com/package/serve)</code> 包来部署静态文件。</p>
+<p>此外，可以使用一些替代方案：1) 在本地构建打包文件，然后使用 nginx docker 来部署这些静态文件。2) 使用 CI/CD 工作流进行构建。</p>
+<h3 id="5-生产环境中的直接构建"><a href="#5-生产环境中的直接构建" class="headerlink" title="5. 生产环境中的直接构建"></a>5. 生产环境中的直接构建</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:carbon</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建 app 目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 app 依赖</span></span><br><span class="line"><span class="comment"># RUN npm -g install serve</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用通配符复制 package.json 与 package-lock.json</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> package*.json ./</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> npm install</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打包 app 源码</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> src /app</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如需对 react/vue/angular 打包，生成静态文件，使用：</span></span><br><span class="line"><span class="comment"># RUN npm run build</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8080</span></span><br><span class="line"><span class="comment"># 如需部署静态文件，使用：</span></span><br><span class="line"><span class="comment">#CMD [&quot;serve&quot;, &quot;-s&quot;, &quot;dist&quot;, &quot;-p&quot;, &quot;8080&quot;]</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [ <span class="string">&quot;node&quot;</span>, <span class="string">&quot;server.js&quot;</span> ]</span></span><br></pre></td></tr></table></figure>
+<p>构建并运行这个一体化镜像：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cd <span class="keyword">node</span><span class="title">-docker</span></span><br><span class="line">$ docker build -t <span class="keyword">node</span><span class="title">-docker-prod</span> .</span><br><span class="line">$ docker run --rm -it -p <span class="number">8080</span>:<span class="number">8080</span> <span class="keyword">node</span><span class="title">-docker-prod</span></span><br></pre></td></tr></table></figure>
+<p>由于底层为 Debian，构建完成后镜像约为 700MB（具体数值取决于你的源码）。下面探讨如何减小这个文件的大小。</p>
+<h3 id="6-生产环境中的多级构建"><a href="#6-生产环境中的多级构建" class="headerlink" title="6. 生产环境中的多级构建"></a>6. 生产环境中的多级构建</h3><p>使用多级构建时，将在 Dockerfile 中使用多个 <code>FROM</code> 语句，但最后仅会使用最终阶段构建的文件。这样，得到的镜像将仅包含生产服务器中所需的依赖，理想情况下文件将非常小。</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ---- Base Node ----</span></span><br><span class="line"><span class="keyword">FROM</span> node:carbon AS base</span><br><span class="line"><span class="comment"># 创建 app 目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---- Dependencies ----</span></span><br><span class="line"><span class="keyword">FROM</span> base AS dependencies  </span><br><span class="line"><span class="comment"># 使用通配符复制 package.json 与 package-lock.json</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> package*.json ./</span></span><br><span class="line"><span class="comment"># 安装在‘devDependencies’中包含的依赖</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> npm install</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---- Copy Files/Build ----</span></span><br><span class="line"><span class="keyword">FROM</span> dependencies AS build  </span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> src /app</span></span><br><span class="line"><span class="comment"># 如需对 react/vue/angular 打包，生成静态文件，使用：</span></span><br><span class="line"><span class="comment"># RUN npm run build</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># --- Release with Alpine ----</span></span><br><span class="line"><span class="keyword">FROM</span> node:<span class="number">8.9</span>-alpine AS release  </span><br><span class="line"><span class="comment"># 创建 app 目录</span></span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /app</span></span><br><span class="line"><span class="comment"># 可选命令：</span></span><br><span class="line"><span class="comment"># RUN npm -g install serve</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> --from=dependencies /app/package.json ./</span></span><br><span class="line"><span class="comment"># 安装 app 依赖</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> npm install --only=production</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> --from=build /app ./</span></span><br><span class="line"><span class="comment">#CMD [&quot;serve&quot;, &quot;-s&quot;, &quot;dist&quot;, &quot;-p&quot;, &quot;8080&quot;]</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">&quot;node&quot;</span>, <span class="string">&quot;server.js&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+<p>使用上面的方法，用 Alpine 构建的镜像文件大小约 70MB，比之前少了 10 倍。使用 <code>alpine</code> 版本进行构建能有效减小镜像的大小。</p>
+<p>如果你对前面的方法有任何建议，或希望看到别的用例，请告知作者。</p>
+<p>加入 <a target="_blank" rel="noopener" href="https://www.reddit.com/r/node/comments/7vw6gj/an_exhaustive_guide_to_writing_dockerfiles_for/">Reddit</a> / <a target="_blank" rel="noopener" href="https://news.ycombinator.com/item?id=16330793">HackerNews</a> 讨论:)</p>
+<hr>
+<p>此外，你是否试过将 Node.js web 应用部署在 Hasura 上呢？这其实是将 Node.js 应用部署于 HTTPS 域名的最快的方法（仅需使用 git push）。尝试使用 <a target="_blank" rel="noopener" href="https://hasura.io/hub/nodejs-frameworks">https://hasura.io/hub/nodejs-frameworks</a> 的模板快速入门吧！Hasura 中所有的项目模板都带有 Dockerfile 与 Kubernetes 标准文件，你可以自由进行定义。</p>
+<p>感谢 <a target="_blank" rel="noopener" href="https://medium.com/@tanmaig?source=post_page">Tanmai Gopal</a></p>
+<hr>
+<blockquote>
+<p>本文发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/5a9626abf265da4e9d225f4f">https://juejin.im/post/5a9626abf265da4e9d225f4f</a></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Written by:  </strong>lsvih
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://lsvih.com/2018/02/28/%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97/" title="一份为 Node.js 应用准备的 Dockerfile 指南">https://lsvih.com/2018/02/28/一份为-Node-js-应用准备的-Dockerfile-指南/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Translate/" rel="tag"># Translate</a>
+              <a href="/tags/juejin/" rel="tag"># juejin</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/Nodejs/" rel="tag"># Nodejs</a>
+              <a href="/tags/BackEnd/" rel="tag"># BackEnd</a>
+          </div>
+
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/02/22/%E5%9C%A8-Swift-playground-%E4%B8%AD%E7%BC%96%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" rel="prev" title="在 Swift playground 中编写单元测试">
+                  <i class="fa fa-chevron-left"></i> 在 Swift playground 中编写单元测试
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/03/06/%E4%BD%BF%E7%94%A8-Grub-%E5%BC%95%E5%AF%BC-Linux/" rel="next" title="使用 Grub 引导 Linux">
+                  使用 Grub 引导 Linux <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -492,32 +510,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -533,9 +557,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -551,55 +574,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,71 +13,52 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta name="description" content="Uber 工程师们一直致力于开发各种新技术，以让客户得到有效、无缝的用户体验。现在，他们正在加大对人工智能、机器学习领域的投入来实现这个愿景。在 Uber，工程师们开发出了一个名为“米开朗基罗”（Michelangelo）的机器学习平台，它是一个内部的“MLaaS”（机器学习即服务）平台，用以降低机器学习开发的门槛，并能根据不同的商业需求对 AI 进行拓展与缩放，就有如客户使用 Uber 打车一样">
-<meta name="keywords" content="Translate,juejin,machine learning,Uber">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Uber 机器学习平台 — 米开朗基罗">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2017&#x2F;09&#x2F;27&#x2F;Uber-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B9%B3%E5%8F%B0-%E2%80%94-%E7%B1%B3%E5%BC%80%E6%9C%97%E5%9F%BA%E7%BD%97&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/2017/09/27/Uber-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B9%B3%E5%8F%B0-%E2%80%94-%E7%B1%B3%E5%BC%80%E6%9C%97%E5%9F%BA%E7%BD%97/index.html">
 <meta property="og:site_name" content="My note">
 <meta property="og:description" content="Uber 工程师们一直致力于开发各种新技术，以让客户得到有效、无缝的用户体验。现在，他们正在加大对人工智能、机器学习领域的投入来实现这个愿景。在 Uber，工程师们开发出了一个名为“米开朗基罗”（Michelangelo）的机器学习平台，它是一个内部的“MLaaS”（机器学习即服务）平台，用以降低机器学习开发的门槛，并能根据不同的商业需求对 AI 进行拓展与缩放，就有如客户使用 Uber 打车一样">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-214.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-215.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-216.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-217.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-218.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-219.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-220.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-221.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-222.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-223.png">
-<meta property="og:updated_time" content="2018-10-28T16:13:04.450Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lsvih.com/images/pasted-214.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-215.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-216.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-217.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-218.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-219.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-220.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-221.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-222.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-223.png">
+<meta property="article:published_time" content="2017-09-27T12:04:46.000Z">
+<meta property="article:modified_time" content="2018-10-28T16:13:04.450Z">
+<meta property="article:author" content="lsvih">
+<meta property="article:tag" content="Translate">
+<meta property="article:tag" content="juejin">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="Uber">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-214.png">
+<meta name="twitter:image" content="https://lsvih.com/images/pasted-214.png">
+
 
 <link rel="canonical" href="https://lsvih.com/2017/09/27/Uber-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B9%B3%E5%8F%B0-%E2%80%94-%E7%B1%B3%E5%BC%80%E6%9C%97%E5%9F%BA%E7%BD%97/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
   };
 </script>
 
@@ -100,24 +81,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -125,60 +118,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -186,31 +182,106 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
 
-  
-</div>
-<div class="search-pop-overlay"></div>
-
+      
+    </div>
   </div>
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%B3%E5%BC%80%E6%9C%97%E5%9F%BA%E7%BD%97%E8%83%8C%E5%90%8E%E7%9A%84%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">米开朗基罗背后的动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E4%BE%8B%EF%BC%9AUberEATS-%E9%80%81%E9%A4%90%E5%88%B0%E5%AE%B6%E6%97%B6%E9%97%B4%E9%A2%84%E4%BC%B0%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">用例：UberEATS 送餐到家时间预估模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">系统架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="nav-number">4.</span> <span class="nav-text">机器学习工作流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E6%95%B0%E6%8D%AE"><span class="nav-number">5.</span> <span class="nav-text">管理数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A6%BB%E7%BA%BF%E9%83%A8%E7%BD%B2"><span class="nav-number">5.1.</span> <span class="nav-text">离线部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E9%83%A8%E7%BD%B2"><span class="nav-number">5.2.</span> <span class="nav-text">在线部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB%E7%89%B9%E5%BE%81%E5%BA%93"><span class="nav-number">5.3.</span> <span class="nav-text">共享特征库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.4.</span> <span class="nav-text">训练模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%84%E4%BC%B0%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.5.</span> <span class="nav-text">评估模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%87%86%E7%A1%AE%E7%8E%87%E6%8A%A5%E5%91%8A"><span class="nav-number">5.6.</span> <span class="nav-text">模型准确率报告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E5%86%B3%E7%AD%96%E6%A0%91"><span class="nav-number">5.7.</span> <span class="nav-text">可视化决策树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E6%8A%A5%E5%91%8A"><span class="nav-number">5.8.</span> <span class="nav-text">特征报告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.9.</span> <span class="nav-text">部署模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C"><span class="nav-number">5.10.</span> <span class="nav-text">预测结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.11.</span> <span class="nav-text">引用模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%84%E6%A8%A1%E7%BC%A9%E6%94%BE%E4%B8%8E%E6%97%B6%E5%BB%B6"><span class="nav-number">5.12.</span> <span class="nav-text">规模缩放与时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E7%9B%91%E6%8E%A7"><span class="nav-number">5.13.</span> <span class="nav-text">预测监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E5%B1%82%E3%80%81API%E3%80%81Web-UI"><span class="nav-number">5.14.</span> <span class="nav-text">管理层、API、Web UI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%B3%E5%BC%80%E6%9C%97%E5%9F%BA%E7%BD%97%E5%B9%B3%E5%8F%B0%E4%B9%8B%E5%90%8E%E7%9A%84%E6%9E%84%E5%BB%BA%E5%B7%A5%E4%BD%9C"><span class="nav-number">6.</span> <span class="nav-text">米开朗基罗平台之后的构建工作</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lsvih</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">161</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">205</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
@@ -220,20 +291,20 @@
   </div>
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
-
-  <div class="posts-expand">
+    <div class="main-inner post posts-expand">
       
+
+      
+
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/09/27/Uber-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B9%B3%E5%8F%B0-%E2%80%94-%E7%B1%B3%E5%BC%80%E6%9C%97%E5%9F%BA%E7%BD%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -245,33 +316,36 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           Uber 机器学习平台 — 米开朗基罗
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2017-09-27 20:04:46" itemprop="dateCreated datePublished" datetime="2017-09-27T20:04:46+08:00">2017-09-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2017-09-27 20:04:46" itemprop="dateCreated datePublished" datetime="2017-09-27T20:04:46+08:00">2017-09-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -280,23 +354,21 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <p>Uber 工程师们一直致力于开发各种新技术，以让客户得到有效、无缝的用户体验。现在，他们正在加大对人工智能、机器学习领域的投入来实现这个愿景。在 Uber，工程师们开发出了一个名为“米开朗基罗”（Michelangelo）的机器学习平台，它是一个内部的“MLaaS”（机器学习即服务）平台，用以降低机器学习开发的门槛，并能根据不同的商业需求对 AI 进行拓展与缩放，就有如客户使用 Uber 打车一样方便。</p>
 <p>米开朗基罗平台可以让公司内部团队无缝构建、部署与运行 Uber 规模的机器学习解决方案。它旨在覆盖全部的端到端机器学习工作流，包括：数据管理、训练模型、评估模型、部署模型、进行预测、预测监控。此系统不仅支持传统的机器学习模型，还支持时间序列预测以及深度学习。</p>
 <p>米开朗基罗在 Uber 投产约一年时间，已经成为了 Uber 工程师、数据科学家真正意义上的“平台”，现在有数十个团队在此平台上构建、部署模型。实际上，米开朗基罗平台现在部署于多个 Uber 数据中心并使用专用硬件，用于为公司内最高负载的在线服务提供预测功能。</p>
 <p>本文将介绍米开朗基罗以及其产品用例，并简单通过这个强大的 MLaaS 系统介绍整个机器学习工作流。</p>
-<h2 id="米开朗基罗背后的动机"><a href="#米开朗基罗背后的动机" class="headerlink" title="米开朗基罗背后的动机"></a>米开朗基罗背后的动机</h2><p>在米开朗基罗平台出现前，Uber 的工程师和数据科学家们在构建、部署一些公司需要，并且能根据实际操作进行规模拓展的机器学习模型时，遇到了很多挑战。那时他们试图使用各种各样的工具来创建预测模型（如 R 语言、<a href="http://scikit-learn.org/stable/" target="_blank" rel="noopener">scikit-learn</a>、自定义算法等），此时工程团队会构建一些一次性的系统以使用这些模型进行预测。因此，在 Uber 内能够在短时间内使用各种开源工具构建出框架的数据科学家与工程师少之又少，限制了机器学习在公司内的应用。</p>
-<p>具体来说，那时没有建立一个可靠、统一、pipeline 可复用的系统用于创建、管理、训练、预测规模化数据。因此在那时，不会有人做出数据科学家的台式机跑不了的模型，也没有一个规范的结果存储方式，要将几个实验结果进行对比也是相当困难的事情。更重要的是，那时没有一种将模型部署到生产环境的确定方法。因此，大多数情况下都是相关的工程团队不得不为手中的项目开发定制的服务容器。这时，他们注意到了这些迹象符合由 Scully 等人记录的<a href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf" target="_blank" rel="noopener">机器学习的反模式</a>一文的描述。</p>
+<h2 id="米开朗基罗背后的动机"><a href="#米开朗基罗背后的动机" class="headerlink" title="米开朗基罗背后的动机"></a>米开朗基罗背后的动机</h2><p>在米开朗基罗平台出现前，Uber 的工程师和数据科学家们在构建、部署一些公司需要，并且能根据实际操作进行规模拓展的机器学习模型时，遇到了很多挑战。那时他们试图使用各种各样的工具来创建预测模型（如 R 语言、<a target="_blank" rel="noopener" href="http://scikit-learn.org/stable/">scikit-learn</a>、自定义算法等），此时工程团队会构建一些一次性的系统以使用这些模型进行预测。因此，在 Uber 内能够在短时间内使用各种开源工具构建出框架的数据科学家与工程师少之又少，限制了机器学习在公司内的应用。</p>
+<p>具体来说，那时没有建立一个可靠、统一、pipeline 可复用的系统用于创建、管理、训练、预测规模化数据。因此在那时，不会有人做出数据科学家的台式机跑不了的模型，也没有一个规范的结果存储方式，要将几个实验结果进行对比也是相当困难的事情。更重要的是，那时没有一种将模型部署到生产环境的确定方法。因此，大多数情况下都是相关的工程团队不得不为手中的项目开发定制的服务容器。这时，他们注意到了这些迹象符合由 Scully 等人记录的<a target="_blank" rel="noopener" href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf">机器学习的反模式</a>一文的描述。</p>
 <p>米开朗基罗旨在将整个团队的工作流程和工具标准化，通过端对端系统让整个公司的用户都能轻松构建、运行大型机器学习系统。但是工程师们的目标不仅限于解决这些直观的问题，更是要创立一个能与业务共同发展的体系。</p>
 <p>当工程师们于 2015 年年中开始构建米开朗基罗系统时，他们也开始解决一些规模化模型训练以及一些将模型部署于生产环境容器的问题。接着，他们专注于构建能够更好进行管理、共享特征 pipeline 的系统。而最近，他们的重心转移到了开发者生产效率 — 如何加速从想法到产品模型的实现以及接下来的快速迭代。</p>
-<p>下一节将通过一个样例来介绍如何使用米开朗基罗构建、部署一个模型，用于解决 Uber 的某种特定问题。虽然下面重点讲的是 <a href="https://www.ubereats.com/" target="_blank" rel="noopener">UberEATS</a> 中的具体用例，但是这个平台也管理着公司里其他针对多种预测用例的类似模型。</p>
+<p>下一节将通过一个样例来介绍如何使用米开朗基罗构建、部署一个模型，用于解决 Uber 的某种特定问题。虽然下面重点讲的是 <a target="_blank" rel="noopener" href="https://www.ubereats.com/">UberEATS</a> 中的具体用例，但是这个平台也管理着公司里其他针对多种预测用例的类似模型。</p>
 <h2 id="用例：UberEATS-送餐到家时间预估模型"><a href="#用例：UberEATS-送餐到家时间预估模型" class="headerlink" title="用例：UberEATS 送餐到家时间预估模型"></a>用例：UberEATS 送餐到家时间预估模型</h2><p>UberEATS 在米开朗基罗中有数个模型在运行，包括送餐到达时间预测、搜索排行、搜索自动完成、餐厅排行等。送餐到达时间预测模型能够预测准备膳食、送餐以及送餐过程中的各个阶段所需的时间。</p>
 <p><img src="/images/pasted-214.png" alt="upload successful"></p>
 <p>图 1：UberEATS app 提供了估测外卖送达时间的功能，此功能由基于米开朗基罗构建的机器学习模型驱动。</p>
 <p>预测外卖的送达时间（ETD）并不是一件简单的事情。当 UberEATS 用户下单时，订单将被送到餐厅进行处理。餐厅需要确认订单，根据订单的复杂度以及餐厅的繁忙程度准备餐品，这一步自然要花费一些时间。在餐品快要准备完毕的时候，Uber 外卖员出发去取餐。接着，外卖员需要开车到达餐厅、找到停车场、进餐厅取餐、回到车里、开车前往客户家（这个步骤耗时取决于路线、交通等因素）、找到车位、走到客户家门口，最终完成交货。UberEATS 的目标就是预测这个复杂的多阶段过程的总时间，并在各个步骤重新计算 ETD。</p>
 <p>在米开朗基罗平台上，UberEATS 数据科学家们使用了 GBDT（梯度提升决策树）回归模型来预测这种端到端的送达时间。此模型使用的特征包括请求信息（例如时间、送餐地点）、历史特征（例如餐厅在过去 7 天中的平均餐食准备时间）、以及近似实时特征（例如最近一小时的平均餐食准备时间）。此模型部署于 Uber 数据中心的米开朗基罗平台提供的容器中，通过 UberEATS 微服务提供网络调用。预测结果将在餐食准备及送达前展示给客户。</p>
-<h2 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h2><p>米开朗基罗系统由一些开源系统和内置组件组成。主要使用的开源组件有 <a href="http://hadoop.apache.org/" target="_blank" rel="noopener">HDFS</a>、<a href="https://spark.apache.org/" target="_blank" rel="noopener">Spark</a>、<a href="http://samza.apache.org/" target="_blank" rel="noopener">Samza</a>、<a href="http://cassandra.apache.org/" target="_blank" rel="noopener">Cassandra</a>、<a href="https://spark.apache.org/mllib/" target="_blank" rel="noopener">MLLib</a>、<a href="https://github.com/dmlc/xgboost" target="_blank" rel="noopener">XGBoost</a>、<a href="https://www.tensorflow.org/" target="_blank" rel="noopener">TensorFlow</a>。在条件允许的前提下，开发团队更倾向于使用一些成熟的开源系统，并会进行 fork、定制化，如果有需求的话也会对其进行贡献。如果找不到合适的开源解决方案，他们也会自己构建一些系统。</p>
+<h2 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h2><p>米开朗基罗系统由一些开源系统和内置组件组成。主要使用的开源组件有 <a target="_blank" rel="noopener" href="http://hadoop.apache.org/">HDFS</a>、<a target="_blank" rel="noopener" href="https://spark.apache.org/">Spark</a>、<a target="_blank" rel="noopener" href="http://samza.apache.org/">Samza</a>、<a target="_blank" rel="noopener" href="http://cassandra.apache.org/">Cassandra</a>、<a target="_blank" rel="noopener" href="https://spark.apache.org/mllib/">MLLib</a>、<a target="_blank" rel="noopener" href="https://github.com/dmlc/xgboost">XGBoost</a>、<a target="_blank" rel="noopener" href="https://www.tensorflow.org/">TensorFlow</a>。在条件允许的前提下，开发团队更倾向于使用一些成熟的开源系统，并会进行 fork、定制化，如果有需求的话也会对其进行贡献。如果找不到合适的开源解决方案，他们也会自己构建一些系统。</p>
 <p>米开朗基罗系统建立与 Uber 的数据及计算基础设施之上，它们提供了一个“数据湖”，其中包含了 Uber 所有的事务和日志数据。由 Kafka 对 Uber 的所有服务日志进行采集汇总，使用 Cassandra 集群管理的 Samza 流计算引擎以及 Uber 内部服务进行计算与部署。</p>
 <p>在下一节中将以 UberEATS 的 ETD 模型为例，简单介绍系统的各个层次，说明米开朗基罗的技术细节。</p>
 <h2 id="机器学习工作流"><a href="#机器学习工作流" class="headerlink" title="机器学习工作流"></a>机器学习工作流</h2><p>在 Uber，大多数的机器学习用例（包括一些正在做的工作，例如分类、回归以及时间序列预测等）都有着一套同样的工作流程。这种工作流程可以与具体实现分离，因此很容易进行拓展以支持新的算法和框架（例如最新的深度学习框架）。它还适用于各种不同预测用例的部署模式（如在线部署与离线部署，在车辆中使用与在手机中使用）。</p>
@@ -334,11 +406,11 @@
 <p>由数据 pipeline 生成的特征与客户端服务传来的特征经常不符合模型需要的数据格式，而且这些数据时常会缺失一些值，需要对其进行填充；有时候，模型可能只需要传入的特征的一个子集；还有的时候，将传入的时间戳转换为 小时/天 或者 天/周 会在模型中起到更好的效果；另外，还可能需要对特征值进行归一化（例如减去平均值再除以标准差）。</p>
 <p>为了解决这些问题，工程师们为建模人员创造了一种 DSL（领域特定语言），用于选择、转换、组合那些用于训练或用于预测的特征。这种 DSL 为 Scala 的子集，是一种纯函数式语言，包含了一套常用的函数集，工程师们还为这种 DSL 增加了自定义函数的功能。这些函数能够从正确的地方取出特征（离线模型从数据 pipeline 取特征值，在线模型从客户请求取特征值，或是直接从特征库中取出特征）。</p>
 <p>此外，DSL 表达式是模型配置的一部分，在训练时取特征的 DSL 与在与测试时用的 DSL 需要保持一致，以确保任何时候传入模型的特征集的一致性。</p>
-<h3 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h3><p>目前平台支持离线、大规模分布式训练，包括决策树、线性模型、逻辑模型、无监督模型（<a href="https://en.wikipedia.org/wiki/K-means_clustering" target="_blank" rel="noopener">k-means</a>）、时间序列模型以及深度神经网络。工程师们将定期根据用户的需求增加一些由 Uber <a href="https://www.uber.com/info/ailabs/" target="_blank" rel="noopener">AI 实验室</a>新开发的模型。此外，用户也可以自己提供模型类型，包括自定义训练、评价以及提供服务的代码。分布式模型训练系统可以规模化处理数十亿的样本数据，也可以处理一些小数据集进行快速迭代。</p>
-<p>一个模型的配置包括模型类型、超参、数据源、特征 DSL，以及计算资源需求（需要的机器数量、内存用量、是否使用 GPU 等）。这些信息将用于配置运行在 <a href="https://yarnpkg.com/" target="_blank" rel="noopener">YARN</a> 或 <a href="https://yarnpkg.com/" target="_blank" rel="noopener">Mesos</a> 集群上的训练作业。</p>
+<h3 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h3><p>目前平台支持离线、大规模分布式训练，包括决策树、线性模型、逻辑模型、无监督模型（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/K-means_clustering">k-means</a>）、时间序列模型以及深度神经网络。工程师们将定期根据用户的需求增加一些由 Uber <a target="_blank" rel="noopener" href="https://www.uber.com/info/ailabs/">AI 实验室</a>新开发的模型。此外，用户也可以自己提供模型类型，包括自定义训练、评价以及提供服务的代码。分布式模型训练系统可以规模化处理数十亿的样本数据，也可以处理一些小数据集进行快速迭代。</p>
+<p>一个模型的配置包括模型类型、超参、数据源、特征 DSL，以及计算资源需求（需要的机器数量、内存用量、是否使用 GPU 等）。这些信息将用于配置运行在 <a target="_blank" rel="noopener" href="https://yarnpkg.com/">YARN</a> 或 <a target="_blank" rel="noopener" href="https://yarnpkg.com/">Mesos</a> 集群上的训练作业。</p>
 <p>在模型训练完毕之后，系统会将其计算得到的性能指标（例如 ROC 曲线和 PR 曲线）进行组合，得到一个模型评价报告。在训练结束时，系统会将原始配置、学习到的参数以及评价包括存回模型库，用于分析与部署。</p>
 <p>除了训练单个模型之外，米开朗基罗系统还支持对分块模型等各种模型进行超参搜索。以分块模型为例，以分块模型为例，系统会根据用户配置自动对训练数据进行分块，对每个分块训练一个模型；在有需要的时候再将各个分块模型合并到父模型中（例如，先对每个城市数据进行训练，如果无法得到准确的市级模型时再将其合并为国家级模型）。</p>
-<p>训练作业可以通过 Web UI 或者 API 进行配置与管理（通常使用 <a href="http://jupyter.org/" target="_blank" rel="noopener">Jupyter notebook</a>）。大多数团队都使用 API 以及流程管理工具来对他们的模型进行定期重训练。</p>
+<p>训练作业可以通过 Web UI 或者 API 进行配置与管理（通常使用 <a target="_blank" rel="noopener" href="http://jupyter.org/">Jupyter notebook</a>）。大多数团队都使用 API 以及流程管理工具来对他们的模型进行定期重训练。</p>
 <p><img src="/images/pasted-216.png" alt="upload successful"></p>
 <p>图 3：模型训练作业使用特征库与数据训练仓库中的数据集来训练模型，接着将模型存入模型库中。</p>
 <h3 id="评估模型"><a href="#评估模型" class="headerlink" title="评估模型"></a>评估模型</h3><p>训练模型可以看成是一种寻找最佳特征、算法、超参以针对问题建立最佳模型的探索过程。在得到用例的理想模型前，训练数百种模型而一无所获也是常有的事。虽然这些失败的模型最终不能用于生产，但它们可以指导工程师们更好地进行模型配置，从而获得更好的性能。追踪这些训练过的模型（例如谁、何时训练了它们，用了什么数据集、什么超参等），对它们的性能进行评估、互相对比，可以为平台带来更多的价值与机会。不过要处理如此之多的模型，也是一个极大的挑战。</p>
@@ -385,7 +457,7 @@
 <h3 id="规模缩放与时延"><a href="#规模缩放与时延" class="headerlink" title="规模缩放与时延"></a>规模缩放与时延</h3><p>由于机器学习模型是无状态的，且不需要共享任何东西，因此，无论是在线模式还是离线模式下对它们进行规模缩放都是一件轻而易举的事情。如果是在线模型，工程师可以简单地给预测服务集群增加机器，使用负载均衡器分摊负载。如果是离线预测，工程师可以给 Spark 设置更多的 executor，让 Spark 进行并行管理。</p>
 <p>在线服务的延迟取决于模型的类型与复杂度以及是否使用从 Cassandra 特征库中取出的特征。在模型不需要从 Cassandra 取特征的情况下，P95 测试延迟小于 5 毫秒。在需要从 Cassandra 取特征时，P95 测试延迟仍小于 10 毫秒。目前用量最大的模型每秒能提供超过 250000 次预测。</p>
 <h3 id="预测监控"><a href="#预测监控" class="headerlink" title="预测监控"></a>预测监控</h3><p>当模型训练完成并完成评价之后，使用的数据都将是历史数据。监控模型的预测情况，是确保其在未来正常工作的重要保障。工程师需要确保数据管道传入的是正确的数据，并且生产环境没有发生变化，这样模型才能够进行准确的预测。</p>
-<p>为了解决这个问题，米开朗基罗系统会自动记录并将部分预测结果加入到数据 pipeline 的标签中去，有了这些信息，就能得到持续的、实时的模型精确度指标。在回归模型中，会将 R^2/<a href="https://en.wikipedia.org/wiki/Coefficient_of_determination" target="_blank" rel="noopener">决定系数</a>、<a href="https://www.kaggle.com/wiki/RootMeanSquaredLogarithmicError" target="_blank" rel="noopener">均方根对数误差</a>（RMSLE）、<a href="https://en.wikipedia.org/wiki/Root-mean-square_deviation" target="_blank" rel="noopener">均方根误差</a>（RMSE）以及<a href="https://en.wikipedia.org/wiki/Mean_absolute_error" target="_blank" rel="noopener">平均绝对值误差</a>发布至 Uber 的实时监控系统中，用户可以分析指标与时间关系的图标，并设置阈值告警：</p>
+<p>为了解决这个问题，米开朗基罗系统会自动记录并将部分预测结果加入到数据 pipeline 的标签中去，有了这些信息，就能得到持续的、实时的模型精确度指标。在回归模型中，会将 R^2/<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Coefficient_of_determination">决定系数</a>、<a target="_blank" rel="noopener" href="https://www.kaggle.com/wiki/RootMeanSquaredLogarithmicError">均方根对数误差</a>（RMSLE）、<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Root-mean-square_deviation">均方根误差</a>（RMSE）以及<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Mean_absolute_error">平均绝对值误差</a>发布至 Uber 的实时监控系统中，用户可以分析指标与时间关系的图标，并设置阈值告警：</p>
 <p><img src="/images/pasted-223.png" alt="upload successful"></p>
 <p>图 10：对预测结果进行采样，与观测结果进行比较得到模型准确指标。</p>
 <h3 id="管理层、API、Web-UI"><a href="#管理层、API、Web-UI" class="headerlink" title="管理层、API、Web UI"></a>管理层、API、Web UI</h3><p>米开朗基罗系统的最后一个重要部分就是 API 层了，它也是整个系统的大脑。API 层包含一个管理应用，提供了 Web UI 以及网络 API 两种访问方式，并与 Uber 的监控、报警系统相结合。同时该层还包含了用于管理批量数据管道、训练作业、批量预测作业、模型批量部署以及在线容器的工作流系统。</p>
@@ -397,10 +469,10 @@
 <li><strong>在线学习</strong>。Uber 的机器学习模型大多数直接受到 Uber 产品的实时影响。这也意味着这些模型需要能够在复杂、不断变化的真实世界中运行。为了保证模型在变化环境中的准确性，这些模型需要随着环境一同进化；现在，各个团队会在米开朗基罗平台上定期对模型进行重训练。一个完整的平台式解决方案应该让用户能够轻松地对模型进行升级、快速训练及评价，有着更精细的监控及报警系统。虽然这将是一个很大的工程，但是早前的研究结果表明，构建完成在线学习系统可能会带来巨大的收益。</li>
 <li><strong>分布式深度学习</strong>。越来越多的 Uber 机器学习系统开始使用深度学习实现。定义与迭代深度学习模型的工作流与标准的工作流有着很大的区别，因此需要平台对其进行额外的支持。深度学习需要处理更大的数据集，需要不同的硬件支持（例如 GPU），因此它更需要分布式学习的支持，以及与更具弹性的资源管理堆栈进行紧密结合。</li>
 </ul>
-<p>如果你对挑战规模化机器学习有兴趣，欢迎申请<a href="https://www.uber.com/careers/list/?city=all&amp;country=all&amp;keywords=machine+learning+platform+team&amp;subteam=all&amp;team=all" target="_blank" rel="noopener">Uber 机器学习平台团队</a> ！</p>
+<p>如果你对挑战规模化机器学习有兴趣，欢迎申请<a target="_blank" rel="noopener" href="https://www.uber.com/careers/list/?city=all&amp;country=all&amp;keywords=machine+learning+platform+team&amp;subteam=all&amp;team=all">Uber 机器学习平台团队</a> ！</p>
 <p>作者简介：Jeremy Hermann 是 Uber 机器学习平台团队的工程经理，Mike Del Balso 是 Uber 机器学习平台团队的产品经理。</p>
 <blockquote>
-<p>发布于掘金 <a href="https://juejin.im/post/59c8b4d56fb9a00a4843b2a6" target="_blank" rel="noopener">https://juejin.im/post/59c8b4d56fb9a00a4843b2a6</a></p>
+<p>发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/59c8b4d56fb9a00a4843b2a6">https://juejin.im/post/59c8b4d56fb9a00a4843b2a6</a></p>
 </blockquote>
 
     </div>
@@ -408,25 +480,25 @@
     
     
     
-        
 
-<div>
-<ul class="post-copyright">
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
   <li class="post-copyright-author">
-    <strong>Post author:  </strong>lsvih
+      <strong>Written by:  </strong>lsvih
   </li>
   <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="/https:/lsvih.com/2017/09/27/Uber-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B9%B3%E5%8F%B0-%E2%80%94-%E7%B1%B3%E5%BC%80%E6%9C%97%E5%9F%BA%E7%BD%97/" title="Uber 机器学习平台 — 米开朗基罗">https://lsvih.com/2017/09/27/Uber-机器学习平台-—-米开朗基罗/</a>
+      <strong>Post link: </strong>
+      <a href="https://lsvih.com/2017/09/27/Uber-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B9%B3%E5%8F%B0-%E2%80%94-%E7%B1%B3%E5%BC%80%E6%9C%97%E5%9F%BA%E7%BD%97/" title="Uber 机器学习平台 — 米开朗基罗">https://lsvih.com/2017/09/27/Uber-机器学习平台-—-米开朗基罗/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
   </li>
 </ul>
 </div>
 
-
-      <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Translate/" rel="tag"># Translate</a>
               <a href="/tags/juejin/" rel="tag"># juejin</a>
@@ -436,114 +508,59 @@
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2017/09/10/%E5%A4%84%E7%90%86unbalanced-parenthesis%E6%83%85%E5%BD%A2%EF%BC%8C%E5%AF%B9%E6%AD%A3%E5%88%99%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9B%E8%A1%8C%E8%BD%AC%E4%B9%89/" rel="prev" title="处理unbalanced parenthesis情形，对正则字符串进行转义">
-      <i class="fa fa-chevron-left"></i> 处理unbalanced parenthesis情形，对正则字符串进行转义
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2017/10/11/Information-Extraction-in-Illicit-Web-Domains-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="next" title="Information Extraction in Illicit Web Domains 论文笔记">
-      Information Extraction in Illicit Web Domains 论文笔记 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/09/10/%E5%A4%84%E7%90%86unbalanced-parenthesis%E6%83%85%E5%BD%A2%EF%BC%8C%E5%AF%B9%E6%AD%A3%E5%88%99%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9B%E8%A1%8C%E8%BD%AC%E4%B9%89/" rel="prev" title="处理unbalanced parenthesis情形，对正则字符串进行转义">
+                  <i class="fa fa-chevron-left"></i> 处理unbalanced parenthesis情形，对正则字符串进行转义
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/10/11/Information-Extraction-in-Illicit-Web-Domains-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="next" title="Information Extraction in Illicit Web Domains 论文笔记">
+                  Information Extraction in Illicit Web Domains 论文笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
   
   
   
 
-  </div>
 
 
-          </div>
-          
+      
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#米开朗基罗背后的动机"><span class="nav-number">1.</span> <span class="nav-text">米开朗基罗背后的动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用例：UberEATS-送餐到家时间预估模型"><span class="nav-number">2.</span> <span class="nav-text">用例：UberEATS 送餐到家时间预估模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统架构"><span class="nav-number">3.</span> <span class="nav-text">系统架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习工作流"><span class="nav-number">4.</span> <span class="nav-text">机器学习工作流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#管理数据"><span class="nav-number">5.</span> <span class="nav-text">管理数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#离线部署"><span class="nav-number">5.1.</span> <span class="nav-text">离线部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在线部署"><span class="nav-number">5.2.</span> <span class="nav-text">在线部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共享特征库"><span class="nav-number">5.3.</span> <span class="nav-text">共享特征库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练模型"><span class="nav-number">5.4.</span> <span class="nav-text">训练模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评估模型"><span class="nav-number">5.5.</span> <span class="nav-text">评估模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型准确率报告"><span class="nav-number">5.6.</span> <span class="nav-text">模型准确率报告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可视化决策树"><span class="nav-number">5.7.</span> <span class="nav-text">可视化决策树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征报告"><span class="nav-number">5.8.</span> <span class="nav-text">特征报告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署模型"><span class="nav-number">5.9.</span> <span class="nav-text">部署模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测结果"><span class="nav-number">5.10.</span> <span class="nav-text">预测结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用模型"><span class="nav-number">5.11.</span> <span class="nav-text">引用模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规模缩放与时延"><span class="nav-number">5.12.</span> <span class="nav-text">规模缩放与时延</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测监控"><span class="nav-number">5.13.</span> <span class="nav-text">预测监控</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理层、API、Web-UI"><span class="nav-number">5.14.</span> <span class="nav-text">管理层、API、Web UI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#米开朗基罗平台之后的构建工作"><span class="nav-number">6.</span> <span class="nav-text">米开朗基罗平台之后的构建工作</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">lsvih</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">161</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">205</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -555,32 +572,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -596,9 +619,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -614,55 +636,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,62 +13,47 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta name="description" content="本文是“JavaScript 线性代数”教程的一部分。">
-<meta name="keywords" content="Translate,juejin,Linear Algebra,React,线性代数,ThreeJS,Animate,数据可视化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 线性代数：使用 ThreeJS 制作线性变换动画">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2019&#x2F;06&#x2F;26&#x2F;javascript-linear-algebra-animating-linear-transformations-with-threejs&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/2019/06/26/javascript-linear-algebra-animating-linear-transformations-with-threejs/index.html">
 <meta property="og:site_name" content="My note">
 <meta property="og:description" content="本文是“JavaScript 线性代数”教程的一部分。">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323533322f312a42415a757839676e656956795a2d456a676b714565672e676966.gif">
-<meta property="og:updated_time" content="2019-06-26T02:07:41.320Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lsvih.com/images/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323533322f312a42415a757839676e656956795a2d456a676b714565672e676966.gif">
+<meta property="article:published_time" content="2019-06-26T01:04:00.000Z">
+<meta property="article:modified_time" content="2019-06-26T02:07:41.320Z">
+<meta property="article:author" content="lsvih">
+<meta property="article:tag" content="Translate">
+<meta property="article:tag" content="juejin">
+<meta property="article:tag" content="Linear Algebra">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="线性代数">
+<meta property="article:tag" content="ThreeJS">
+<meta property="article:tag" content="Animate">
+<meta property="article:tag" content="数据可视化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323533322f312a42415a757839676e656956795a2d456a676b714565672e676966.gif">
+<meta name="twitter:image" content="https://lsvih.com/images/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323533322f312a42415a757839676e656956795a2d456a676b714565672e676966.gif">
+
 
 <link rel="canonical" href="https://lsvih.com/2019/06/26/javascript-linear-algebra-animating-linear-transformations-with-threejs/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
   };
 </script>
 
@@ -91,24 +76,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -116,60 +113,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -177,202 +177,44 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
-
-  
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/06/26/javascript-linear-algebra-animating-linear-transformations-with-threejs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          JavaScript 线性代数：使用 ThreeJS 制作线性变换动画
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-06-26 09:04:00" itemprop="dateCreated datePublished" datetime="2019-06-26T09:04:00+08:00">2019-06-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <p>本文是“<a href="https://lsvih.com/2019/06/26/javascript-linear-algebra/">JavaScript 线性代数</a>”教程的一部分。</p>
-<a id="more"></a>
-<p>最近我完成了一篇关于使用 JavaScript 进行线性变换的文章，并用 <strong>SVG</strong> 网格实现了 2D 的示例。你可以在<a href="https://juejin.im/post/5cefbc37f265da1bd260d129" target="_blank" rel="noopener">此处</a>查看之前的文章。但是，那篇文章没有三维空间的示例，因此本文将补全那篇文章的缺失。你可以在<a href="https://github.com/RodionChachura/linear-algebra" target="_blank" rel="noopener">此处</a>查看本系列文章的 GitHub 仓库，与本文相关的 commit 可以在<a href="https://github.com/RodionChachura/linear-algebra/tree/6e9b5fe7f037ec12b115c915f33b58ce5e2e9c1f" target="_blank" rel="noopener">此处</a>查看。</p>
-<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>在本文中，我们将制作一个组件，用于对三维空间的对象的线性变换进行可视化。最终效果如下面的动图所示，或者你也可以在<a href="https://rodionchachura.github.io/linear-algebra/" target="_blank" rel="noopener">此网页</a>体验。</p>
-<p><img src="/images/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323533322f312a42415a757839676e656956795a2d456a676b714565672e676966.gif" alt="applying different linear transformations on cube"></p>
-<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>当我们要在浏览器中制作 3D 动画时，第一个想到的当然就是 <a href="https://threejs.org/" target="_blank" rel="noopener">three.js</a> 库啦。所以让我们来安装它以及另一个可以让用户移动摄像机的库：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">npm install --save three three-orbitcontrols</span></pre></td></tr></table></figure>
-<p>下面构建一个组件，它可以由父组件的属性中接收矩阵，并且渲染一个立方体的转换动画。下面代码展示了这个组件的结构。我们用 <strong>styled-components</strong> 和 <strong>react-sizeme</strong> 库中的函数对这个组件进行了包装，以访问颜色主题和检测组件尺寸的变化。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; withTheme &#125; <span class="keyword">from</span> <span class="string">'styled-components'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; withSize &#125; <span class="keyword">from</span> <span class="string">'react-sizeme'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreeScene</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">constructor</span>(props) &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  render() &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  componentDidMount() &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  componentWillUnmount() &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  animate = <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  componentWillReceiveProps(&#123; <span class="attr">size</span>: &#123; width, height &#125; &#125;) &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> WrappedScene = withTheme(withSize(&#123; <span class="attr">monitorHeight</span>: <span class="literal">true</span> &#125;)(ThreeScene))</span></pre></td></tr></table></figure>
-<p>在<strong>构造函数</strong>中，我们对状态进行了初始化，其中包括了视图的大小。因此，我们当接收新的状态值时，可以在 <strong>componentWillReceiveProps</strong> 方法中与初始状态进行对比。由于需要访问实际的 <strong>DOM</strong> 元素以注入 <strong>ThreeJS</strong> 的 <strong>renderer</strong>，因此需要在 <strong>render</strong> 方法中用到 <strong>ref</strong> 属性：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> View = styled.div<span class="string">`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="string">  width: 100%;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="string">  height: 100%;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="string">`</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreeScene</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// ...</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">super</span>(props)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.state = &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      width: <span class="number">0</span>,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">      height: <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  render() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">ref</span>=<span class="string">&#123;el</span> =&gt;</span> (this.view = el)&#125; /&gt;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"><span class="xml">  &#125;</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"><span class="xml">  // ...</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="xml">&#125;</span></span></pre></td></tr></table></figure>
-<p>在 <strong>componentDidMount</strong> 方法中，我们对方块变换动画所需要的所有东西都进行了初始化。首先，我们创建了 ThreeJS 的场景（scene）并确定好摄像机（camera）的位置，然后我们创建了 ThreeJS 的 <strong>renderer</strong>，为它设置好了颜色及大小，最后将 <strong>renderer</strong> 加入到 <strong>View</strong> 组件中。</p>
-<p>接下来创建需要进行渲染的对象：坐标轴、方块以及方块的边。由于我们需要手动改变矩阵，因此将方块和边的 <strong>matrixAutoUpdate</strong> 属性设为 false。创建好这些对象后，将它们加入场景（scene）中。为了让用户可以通过鼠标来移动摄像机位置，我们还用到了 <strong>OrbitControls</strong>。</p>
-<p>最后要做的，就是将我们的库输出的矩阵转换成 <strong>ThreeJS</strong> 的格式，然后获取根据时间返回颜色和转换矩阵的函数。在 <strong>componentWillUnmount</strong>，取消动画（即停止 anime frame）并从 <strong>DOM</strong> 移除 <strong>renderer</strong>。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreeScene</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// ...</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  componentDidMount() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">      size: &#123; width, height &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      matrix,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">      theme</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125; = <span class="keyword">this</span>.props</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.setState(&#123; width, height &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.scene = <span class="keyword">new</span> THREE.Scene()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.camera = <span class="keyword">new</span> THREE.PerspectiveCamera(<span class="number">100</span>, width / height)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.camera.position.set(<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.renderer = <span class="keyword">new</span> THREE.WebGLRenderer(&#123; <span class="attr">antialias</span>: <span class="literal">true</span> &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.renderer.setClearColor(theme.color.background)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.renderer.setSize(width, height)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.view.appendChild(<span class="keyword">this</span>.renderer.domElement)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> initialColor = theme.color.red</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> axes = <span class="keyword">new</span> THREE.AxesHelper(<span class="number">4</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> geometry = <span class="keyword">new</span> THREE.BoxGeometry(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.segments = <span class="keyword">new</span> THREE.LineSegments(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">new</span> THREE.EdgesGeometry(geometry),</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">new</span> THREE.LineBasicMaterial(&#123; <span class="attr">color</span>: theme.color.mainText &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    )</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.cube = <span class="keyword">new</span> THREE.Mesh(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">      geometry,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">new</span> THREE.MeshBasicMaterial(&#123; <span class="attr">color</span>: initialColor &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">    )</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.objects = [<span class="keyword">this</span>.cube, <span class="keyword">this</span>.segments]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.objects.forEach(<span class="function"><span class="params">obj</span> =&gt;</span> (obj.matrixAutoUpdate = <span class="literal">false</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.scene.add(<span class="keyword">this</span>.cube, axes, <span class="keyword">this</span>.segments)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.controls = <span class="keyword">new</span> OrbitControls(<span class="keyword">this</span>.camera)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.getAnimatedColor = getGetAnimatedColor(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">      initialColor,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">      theme.color.blue,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">      PERIOD</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">    )</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> fromMatrix = fromMatrix4(<span class="keyword">this</span>.cube.matrix)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> toMatrix = matrix.toDimension(<span class="number">4</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.getAnimatedTransformation = getGetAnimatedTransformation(</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">      fromMatrix,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">      toMatrix,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">      PERIOD</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">    )</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.frameId = requestAnimationFrame(<span class="keyword">this</span>.animate)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">  </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">  componentWillUnmount() &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">    cancelAnimationFrame(<span class="keyword">this</span>.frameId)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.view.removeChild(<span class="keyword">this</span>.renderer.domElement)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// ...</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">56</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>不过此时我们还没有定义 <strong>animate</strong> 函数，因此什么也不会渲染。首先，我们更新立方体及其边缘的转换矩阵，并且更新立方体的颜色，然后进行渲染并且调用 <code>window.requestAnimationFrame</code>。</p>
-<p><strong>componentWillReceiveProps</strong> 方法将接收当前组件的大小，当它检测到组件尺寸发生了变化时，会更新状态，改变 renderer 的尺寸，并调整 camera 的方位。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreeScene</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="comment">// ...</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  animate = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> transformation = <span class="keyword">this</span>.getAnimatedTransformation()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> matrix4 = toMatrix4(transformation)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.cube.material.color.set(<span class="keyword">this</span>.getAnimatedColor())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.objects.forEach(<span class="function"><span class="params">obj</span> =&gt;</span> obj.matrix.set(...matrix4.toArray()))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.renderer.render(<span class="keyword">this</span>.scene, <span class="keyword">this</span>.camera)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">this</span>.frameId = <span class="built_in">window</span>.requestAnimationFrame(<span class="keyword">this</span>.animate)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  componentWillReceiveProps(&#123; <span class="attr">size</span>: &#123; width, height &#125; &#125;) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state.width !== width || <span class="keyword">this</span>.state.height !== height) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">this</span>.setState(&#123; width, height &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">this</span>.renderer.setSize(width, height)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">this</span>.camera.aspect = width / height</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">this</span>.camera.updateProjectionMatrix()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><p>为了将颜色变化以及矩阵变换做成动画，需要写个函数来返回动画函数。在写这块函数前，我们先要完成以下两种转换器：将我们库的矩阵转换为 <strong>ThreeJS</strong> 格式矩阵的函数，以及参考 StackOverflow 上代码的将 RGB 转换为 hex 的函数：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> THREE <span class="keyword">from</span> <span class="string">'three'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Matrix &#125; <span class="keyword">from</span> <span class="string">'linear-algebra/matrix'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> toMatrix4 = <span class="function"><span class="params">matrix</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> matrix4 = <span class="keyword">new</span> THREE.Matrix4()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  matrix4.set(...matrix.components())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> matrix4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> fromMatrix4 = <span class="function"><span class="params">matrix4</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> components = matrix4.toArray()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> rows = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">4</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    .fill(<span class="number">0</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    .map(<span class="function">(<span class="params">_, i</span>) =&gt;</span> components.slice(i * <span class="number">4</span>, (i + <span class="number">1</span>) * <span class="number">4</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Matrix(...rows)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> THREE <span class="keyword">from</span> <span class="string">'three'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Matrix &#125; <span class="keyword">from</span> <span class="string">'linear-algebra/matrix'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> toMatrix4 = <span class="function"><span class="params">matrix</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> matrix4 = <span class="keyword">new</span> THREE.Matrix4()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  matrix4.set(...matrix.components())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> matrix4</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> fromMatrix4 = <span class="function"><span class="params">matrix4</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> components = matrix4.toArray()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> rows = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">4</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    .fill(<span class="number">0</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    .map(<span class="function">(<span class="params">_, i</span>) =&gt;</span> components.slice(i * <span class="number">4</span>, (i + <span class="number">1</span>) * <span class="number">4</span>))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Matrix(...rows)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p>首先，需要计算每种原色（RGB）变化的幅度。第一次调用 <strong>getGetAnimatedColor</strong> 时会返回新的色彩与时间戳的集合；并在后续被调用时，通过颜色变化的距离以及时间的耗费，可以计算出当前时刻新的 <strong>RGB</strong> 颜色：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; hexToRgb, rgbToHex &#125; <span class="keyword">from</span> <span class="string">'./generic'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getGetAnimatedColor = <span class="function">(<span class="params">fromColor, toColor, period</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> fromRgb = hexToRgb(fromColor)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> toRgb = hexToRgb(toColor)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> distances = fromRgb.map(<span class="function">(<span class="params">fromPart, index</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> toPart = toRgb[index]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> fromPart &lt;= toPart ? toPart - fromPart : <span class="number">255</span> - fromPart + toPart</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> start</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (!start) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">      start = <span class="built_in">Date</span>.now()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> now = <span class="built_in">Date</span>.now()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> timePassed = now - start</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (timePassed &gt; period) <span class="keyword">return</span> toColor</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> animatedDistance = timePassed / period</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> rgb = fromRgb.map(<span class="function">(<span class="params">fromPart, index</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">const</span> distance = distances[index]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">const</span> step = distance * animatedDistance</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">return</span> <span class="built_in">Math</span>.round((fromPart + step) % <span class="number">255</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> rgbToHex(...rgb)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<h3 id="线性变换"><a href="#线性变换" class="headerlink" title="线性变换"></a>线性变换</h3><p>为了给线性变换做出动画效果，同样要进行上节的操作。我们首先找到矩阵变换前后的区别，然后在动画函数中，根据第一次调用 <strong>getGetAnimatedTransformation</strong> 时的状态，根据时间来更新各个组件的状态：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getGetAnimatedTransformation = <span class="function">(<span class="params">fromMatrix, toMatrix, period</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">const</span> distances = toMatrix.subtract(fromMatrix)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">let</span> start</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (!start) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      start = <span class="built_in">Date</span>.now()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> now = <span class="built_in">Date</span>.now()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> timePassed = now - start</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (timePassed &gt; period) <span class="keyword">return</span> toMatrix</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> animatedDistance = timePassed / period</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> newMatrix = fromMatrix.map(<span class="function">(<span class="params">fromComponent, i, j</span>) =&gt;</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">const</span> distance = distances.rows[i][j]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">const</span> step = distance * animatedDistance</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">return</span> fromComponent + step</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> newMatrix</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
     </div>
-
-    
-    
-    
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>lsvih
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="/https:/lsvih.com/2019/06/26/javascript-linear-algebra-animating-linear-transformations-with-threejs/" title="JavaScript 线性代数：使用 ThreeJS 制作线性变换动画">https://lsvih.com/2019/06/26/javascript-linear-algebra-animating-linear-transformations-with-threejs/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Translate/" rel="tag"># Translate</a>
-              <a href="/tags/juejin/" rel="tag"># juejin</a>
-              <a href="/tags/Linear-Algebra/" rel="tag"># Linear Algebra</a>
-              <a href="/tags/React/" rel="tag"># React</a>
-              <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="tag"># 线性代数</a>
-              <a href="/tags/ThreeJS/" rel="tag"># ThreeJS</a>
-              <a href="/tags/Animate/" rel="tag"># Animate</a>
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag"># 数据可视化</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2019/06/26/javascript-linear-algebra-linear-transformation/" rel="prev" title="JavaScript 线性代数：线性变换与矩阵">
-      <i class="fa fa-chevron-left"></i> JavaScript 线性代数：线性变换与矩阵
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2019/06/26/javascript-linear-algebra-basic-matrix-operations/" rel="next" title="线性代数：矩阵基本运算">
-      线性代数：矩阵基本运算 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
   </div>
 
-
-          </div>
-          
-
-        </div>
-          
+</div>
+        
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
         </li>
@@ -382,17 +224,17 @@
       </ul>
 
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件"><span class="nav-number">2.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画"><span class="nav-number">3.</span> <span class="nav-text">动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色"><span class="nav-number">3.1.</span> <span class="nav-text">颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性变换"><span class="nav-number">3.2.</span> <span class="nav-text">线性变换</span></a></li></ol></li></ol></div>
-      </div>
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E6%A0%87"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E7%94%BB"><span class="nav-number">3.</span> <span class="nav-text">动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%9C%E8%89%B2"><span class="nav-number">3.1.</span> <span class="nav-text">颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%8F%98%E6%8D%A2"><span class="nav-number">3.2.</span> <span class="nav-text">线性变换</span></a></li></ol></li></ol></div>
+      </section>
       <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">lsvih</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -415,34 +257,213 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </div>
-
+      </section>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/06/26/javascript-linear-algebra-animating-linear-transformations-with-threejs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript 线性代数：使用 ThreeJS 制作线性变换动画
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-06-26 09:04:00" itemprop="dateCreated datePublished" datetime="2019-06-26T09:04:00+08:00">2019-06-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>本文是“<a href="https://lsvih.com/2019/06/26/javascript-linear-algebra/">JavaScript 线性代数</a>”教程的一部分。</p>
+<a id="more"></a>
+<p>最近我完成了一篇关于使用 JavaScript 进行线性变换的文章，并用 <strong>SVG</strong> 网格实现了 2D 的示例。你可以在<a target="_blank" rel="noopener" href="https://juejin.im/post/5cefbc37f265da1bd260d129">此处</a>查看之前的文章。但是，那篇文章没有三维空间的示例，因此本文将补全那篇文章的缺失。你可以在<a target="_blank" rel="noopener" href="https://github.com/RodionChachura/linear-algebra">此处</a>查看本系列文章的 GitHub 仓库，与本文相关的 commit 可以在<a target="_blank" rel="noopener" href="https://github.com/RodionChachura/linear-algebra/tree/6e9b5fe7f037ec12b115c915f33b58ce5e2e9c1f">此处</a>查看。</p>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>在本文中，我们将制作一个组件，用于对三维空间的对象的线性变换进行可视化。最终效果如下面的动图所示，或者你也可以在<a target="_blank" rel="noopener" href="https://rodionchachura.github.io/linear-algebra/">此网页</a>体验。</p>
+<p><img src="/images/68747470733a2f2f63646e2d696d616765732d312e6d656469756d2e636f6d2f6d61782f323533322f312a42415a757839676e656956795a2d456a676b714565672e676966.gif" alt="applying different linear transformations on cube"></p>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>当我们要在浏览器中制作 3D 动画时，第一个想到的当然就是 <a target="_blank" rel="noopener" href="https://threejs.org/">three.js</a> 库啦。所以让我们来安装它以及另一个可以让用户移动摄像机的库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save three three-orbitcontrols</span><br></pre></td></tr></table></figure>
+<p>下面构建一个组件，它可以由父组件的属性中接收矩阵，并且渲染一个立方体的转换动画。下面代码展示了这个组件的结构。我们用 <strong>styled-components</strong> 和 <strong>react-sizeme</strong> 库中的函数对这个组件进行了包装，以访问颜色主题和检测组件尺寸的变化。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; withTheme &#125; <span class="keyword">from</span> <span class="string">&#x27;styled-components&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; withSize &#125; <span class="keyword">from</span> <span class="string">&#x27;react-sizeme&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreeScene</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;&#125;</span><br><span class="line">  render() &#123;&#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount() &#123;&#125;</span><br><span class="line"></span><br><span class="line">  componentWillUnmount() &#123;&#125;</span><br><span class="line"></span><br><span class="line">  animate = <span class="function">() =&gt;</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">  componentWillReceiveProps(&#123; <span class="attr">size</span>: &#123; width, height &#125; &#125;) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> WrappedScene = withTheme(withSize(&#123; <span class="attr">monitorHeight</span>: <span class="literal">true</span> &#125;)(ThreeScene))</span><br></pre></td></tr></table></figure>
+<p>在<strong>构造函数</strong>中，我们对状态进行了初始化，其中包括了视图的大小。因此，我们当接收新的状态值时，可以在 <strong>componentWillReceiveProps</strong> 方法中与初始状态进行对比。由于需要访问实际的 <strong>DOM</strong> 元素以注入 <strong>ThreeJS</strong> 的 <strong>renderer</strong>，因此需要在 <strong>render</strong> 方法中用到 <strong>ref</strong> 属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> View = styled.div<span class="string">`</span></span><br><span class="line"><span class="string">  width: 100%;</span></span><br><span class="line"><span class="string">  height: 100%;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreeScene</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="built_in">super</span>(props)</span><br><span class="line">    <span class="built_in">this</span>.state = &#123;</span><br><span class="line">      width: <span class="number">0</span>,</span><br><span class="line">      height: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">ref</span>=<span class="string">&#123;el</span> =&gt;</span> (this.view = el)&#125; /&gt;</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 <strong>componentDidMount</strong> 方法中，我们对方块变换动画所需要的所有东西都进行了初始化。首先，我们创建了 ThreeJS 的场景（scene）并确定好摄像机（camera）的位置，然后我们创建了 ThreeJS 的 <strong>renderer</strong>，为它设置好了颜色及大小，最后将 <strong>renderer</strong> 加入到 <strong>View</strong> 组件中。</p>
+<p>接下来创建需要进行渲染的对象：坐标轴、方块以及方块的边。由于我们需要手动改变矩阵，因此将方块和边的 <strong>matrixAutoUpdate</strong> 属性设为 false。创建好这些对象后，将它们加入场景（scene）中。为了让用户可以通过鼠标来移动摄像机位置，我们还用到了 <strong>OrbitControls</strong>。</p>
+<p>最后要做的，就是将我们的库输出的矩阵转换成 <strong>ThreeJS</strong> 的格式，然后获取根据时间返回颜色和转换矩阵的函数。在 <strong>componentWillUnmount</strong>，取消动画（即停止 anime frame）并从 <strong>DOM</strong> 移除 <strong>renderer</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreeScene</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">      size: &#123; width, height &#125;,</span><br><span class="line">      matrix,</span><br><span class="line">      theme</span><br><span class="line">    &#125; = <span class="built_in">this</span>.props</span><br><span class="line">    <span class="built_in">this</span>.setState(&#123; width, height &#125;)</span><br><span class="line">    <span class="built_in">this</span>.scene = <span class="keyword">new</span> THREE.Scene()</span><br><span class="line">    <span class="built_in">this</span>.camera = <span class="keyword">new</span> THREE.PerspectiveCamera(<span class="number">100</span>, width / height)</span><br><span class="line">    <span class="built_in">this</span>.camera.position.set(<span class="number">1</span>, <span class="number">1</span>, <span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.renderer = <span class="keyword">new</span> THREE.WebGLRenderer(&#123; <span class="attr">antialias</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">    <span class="built_in">this</span>.renderer.setClearColor(theme.color.background)</span><br><span class="line">    <span class="built_in">this</span>.renderer.setSize(width, height)</span><br><span class="line">    <span class="built_in">this</span>.view.appendChild(<span class="built_in">this</span>.renderer.domElement)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> initialColor = theme.color.red</span><br><span class="line">    <span class="keyword">const</span> axes = <span class="keyword">new</span> THREE.AxesHelper(<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">const</span> geometry = <span class="keyword">new</span> THREE.BoxGeometry(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="built_in">this</span>.segments = <span class="keyword">new</span> THREE.LineSegments(</span><br><span class="line">      <span class="keyword">new</span> THREE.EdgesGeometry(geometry),</span><br><span class="line">      <span class="keyword">new</span> THREE.LineBasicMaterial(&#123; <span class="attr">color</span>: theme.color.mainText &#125;)</span><br><span class="line">    )</span><br><span class="line">    <span class="built_in">this</span>.cube = <span class="keyword">new</span> THREE.Mesh(</span><br><span class="line">      geometry,</span><br><span class="line">      <span class="keyword">new</span> THREE.MeshBasicMaterial(&#123; <span class="attr">color</span>: initialColor &#125;)</span><br><span class="line">    )</span><br><span class="line">    <span class="built_in">this</span>.objects = [<span class="built_in">this</span>.cube, <span class="built_in">this</span>.segments]</span><br><span class="line">    <span class="built_in">this</span>.objects.forEach(<span class="function"><span class="params">obj</span> =&gt;</span> (obj.matrixAutoUpdate = <span class="literal">false</span>))</span><br><span class="line">    <span class="built_in">this</span>.scene.add(<span class="built_in">this</span>.cube, axes, <span class="built_in">this</span>.segments)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.controls = <span class="keyword">new</span> OrbitControls(<span class="built_in">this</span>.camera)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.getAnimatedColor = getGetAnimatedColor(</span><br><span class="line">      initialColor,</span><br><span class="line">      theme.color.blue,</span><br><span class="line">      PERIOD</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">const</span> fromMatrix = fromMatrix4(<span class="built_in">this</span>.cube.matrix)</span><br><span class="line">    <span class="keyword">const</span> toMatrix = matrix.toDimension(<span class="number">4</span>)</span><br><span class="line">    <span class="built_in">this</span>.getAnimatedTransformation = getGetAnimatedTransformation(</span><br><span class="line">      fromMatrix,</span><br><span class="line">      toMatrix,</span><br><span class="line">      PERIOD</span><br><span class="line">    )</span><br><span class="line">    <span class="built_in">this</span>.frameId = requestAnimationFrame(<span class="built_in">this</span>.animate)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  componentWillUnmount() &#123;</span><br><span class="line">    cancelAnimationFrame(<span class="built_in">this</span>.frameId)</span><br><span class="line">    <span class="built_in">this</span>.view.removeChild(<span class="built_in">this</span>.renderer.domElement)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不过此时我们还没有定义 <strong>animate</strong> 函数，因此什么也不会渲染。首先，我们更新立方体及其边缘的转换矩阵，并且更新立方体的颜色，然后进行渲染并且调用 <code>window.requestAnimationFrame</code>。</p>
+<p><strong>componentWillReceiveProps</strong> 方法将接收当前组件的大小，当它检测到组件尺寸发生了变化时，会更新状态，改变 renderer 的尺寸，并调整 camera 的方位。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreeScene</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  animate = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> transformation = <span class="built_in">this</span>.getAnimatedTransformation()</span><br><span class="line">    <span class="keyword">const</span> matrix4 = toMatrix4(transformation)</span><br><span class="line">    <span class="built_in">this</span>.cube.material.color.set(<span class="built_in">this</span>.getAnimatedColor())</span><br><span class="line">    <span class="built_in">this</span>.objects.forEach(<span class="function"><span class="params">obj</span> =&gt;</span> obj.matrix.set(...matrix4.toArray()))</span><br><span class="line">    <span class="built_in">this</span>.renderer.render(<span class="built_in">this</span>.scene, <span class="built_in">this</span>.camera)</span><br><span class="line">    <span class="built_in">this</span>.frameId = <span class="built_in">window</span>.requestAnimationFrame(<span class="built_in">this</span>.animate)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentWillReceiveProps(&#123; <span class="attr">size</span>: &#123; width, height &#125; &#125;) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.state.width !== width || <span class="built_in">this</span>.state.height !== height) &#123;</span><br><span class="line">      <span class="built_in">this</span>.setState(&#123; width, height &#125;)</span><br><span class="line">      <span class="built_in">this</span>.renderer.setSize(width, height)</span><br><span class="line">      <span class="built_in">this</span>.camera.aspect = width / height</span><br><span class="line">      <span class="built_in">this</span>.camera.updateProjectionMatrix()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><p>为了将颜色变化以及矩阵变换做成动画，需要写个函数来返回动画函数。在写这块函数前，我们先要完成以下两种转换器：将我们库的矩阵转换为 <strong>ThreeJS</strong> 格式矩阵的函数，以及参考 StackOverflow 上代码的将 RGB 转换为 hex 的函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> THREE <span class="keyword">from</span> <span class="string">&#x27;three&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; Matrix &#125; <span class="keyword">from</span> <span class="string">&#x27;linear-algebra/matrix&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> toMatrix4 = <span class="function"><span class="params">matrix</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> matrix4 = <span class="keyword">new</span> THREE.Matrix4()</span><br><span class="line">  matrix4.set(...matrix.components())</span><br><span class="line">  <span class="keyword">return</span> matrix4</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> fromMatrix4 = <span class="function"><span class="params">matrix4</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> components = matrix4.toArray()</span><br><span class="line">  <span class="keyword">const</span> rows = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">4</span>)</span><br><span class="line">    .fill(<span class="number">0</span>)</span><br><span class="line">    .map(<span class="function">(<span class="params">_, i</span>) =&gt;</span> components.slice(i * <span class="number">4</span>, (i + <span class="number">1</span>) * <span class="number">4</span>))</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Matrix(...rows)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> THREE <span class="keyword">from</span> <span class="string">&#x27;three&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; Matrix &#125; <span class="keyword">from</span> <span class="string">&#x27;linear-algebra/matrix&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> toMatrix4 = <span class="function"><span class="params">matrix</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> matrix4 = <span class="keyword">new</span> THREE.Matrix4()</span><br><span class="line">  matrix4.set(...matrix.components())</span><br><span class="line">  <span class="keyword">return</span> matrix4</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> fromMatrix4 = <span class="function"><span class="params">matrix4</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> components = matrix4.toArray()</span><br><span class="line">  <span class="keyword">const</span> rows = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">4</span>)</span><br><span class="line">    .fill(<span class="number">0</span>)</span><br><span class="line">    .map(<span class="function">(<span class="params">_, i</span>) =&gt;</span> components.slice(i * <span class="number">4</span>, (i + <span class="number">1</span>) * <span class="number">4</span>))</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Matrix(...rows)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p>首先，需要计算每种原色（RGB）变化的幅度。第一次调用 <strong>getGetAnimatedColor</strong> 时会返回新的色彩与时间戳的集合；并在后续被调用时，通过颜色变化的距离以及时间的耗费，可以计算出当前时刻新的 <strong>RGB</strong> 颜色：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; hexToRgb, rgbToHex &#125; <span class="keyword">from</span> <span class="string">&#x27;./generic&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getGetAnimatedColor = <span class="function">(<span class="params">fromColor, toColor, period</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> fromRgb = hexToRgb(fromColor)</span><br><span class="line">  <span class="keyword">const</span> toRgb = hexToRgb(toColor)</span><br><span class="line">  <span class="keyword">const</span> distances = fromRgb.map(<span class="function">(<span class="params">fromPart, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> toPart = toRgb[index]</span><br><span class="line">    <span class="keyword">return</span> fromPart &lt;= toPart ? toPart - fromPart : <span class="number">255</span> - fromPart + toPart</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">let</span> start</span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!start) &#123;</span><br><span class="line">      start = <span class="built_in">Date</span>.now()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> now = <span class="built_in">Date</span>.now()</span><br><span class="line">    <span class="keyword">const</span> timePassed = now - start</span><br><span class="line">    <span class="keyword">if</span> (timePassed &gt; period) <span class="keyword">return</span> toColor</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> animatedDistance = timePassed / period</span><br><span class="line">    <span class="keyword">const</span> rgb = fromRgb.map(<span class="function">(<span class="params">fromPart, index</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> distance = distances[index]</span><br><span class="line">      <span class="keyword">const</span> step = distance * animatedDistance</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Math</span>.round((fromPart + step) % <span class="number">255</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> rgbToHex(...rgb)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="线性变换"><a href="#线性变换" class="headerlink" title="线性变换"></a>线性变换</h3><p>为了给线性变换做出动画效果，同样要进行上节的操作。我们首先找到矩阵变换前后的区别，然后在动画函数中，根据第一次调用 <strong>getGetAnimatedTransformation</strong> 时的状态，根据时间来更新各个组件的状态：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getGetAnimatedTransformation = <span class="function">(<span class="params">fromMatrix, toMatrix, period</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> distances = toMatrix.subtract(fromMatrix)</span><br><span class="line">  <span class="keyword">let</span> start</span><br><span class="line">  <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!start) &#123;</span><br><span class="line">      start = <span class="built_in">Date</span>.now()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> now = <span class="built_in">Date</span>.now()</span><br><span class="line">    <span class="keyword">const</span> timePassed = now - start</span><br><span class="line">    <span class="keyword">if</span> (timePassed &gt; period) <span class="keyword">return</span> toMatrix</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> animatedDistance = timePassed / period</span><br><span class="line">    <span class="keyword">const</span> newMatrix = fromMatrix.map(<span class="function">(<span class="params">fromComponent, i, j</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> distance = distances.rows[i][j]</span><br><span class="line">      <span class="keyword">const</span> step = distance * animatedDistance</span><br><span class="line">      <span class="keyword">return</span> fromComponent + step</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span> newMatrix</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Written by:  </strong>lsvih
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://lsvih.com/2019/06/26/javascript-linear-algebra-animating-linear-transformations-with-threejs/" title="JavaScript 线性代数：使用 ThreeJS 制作线性变换动画">https://lsvih.com/2019/06/26/javascript-linear-algebra-animating-linear-transformations-with-threejs/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Translate/" rel="tag"># Translate</a>
+              <a href="/tags/juejin/" rel="tag"># juejin</a>
+              <a href="/tags/Linear-Algebra/" rel="tag"># Linear Algebra</a>
+              <a href="/tags/React/" rel="tag"># React</a>
+              <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" rel="tag"># 线性代数</a>
+              <a href="/tags/ThreeJS/" rel="tag"># ThreeJS</a>
+              <a href="/tags/Animate/" rel="tag"># Animate</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag"># 数据可视化</a>
+          </div>
+
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/06/26/javascript-linear-algebra-linear-transformation/" rel="prev" title="JavaScript 线性代数：线性变换与矩阵">
+                  <i class="fa fa-chevron-left"></i> JavaScript 线性代数：线性变换与矩阵
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/06/26/javascript-linear-algebra-basic-matrix-operations/" rel="next" title="线性代数：矩阵基本运算">
+                  线性代数：矩阵基本运算 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -454,32 +475,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -495,9 +522,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -513,55 +539,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

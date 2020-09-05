@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,56 +13,33 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="My note">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;page&#x2F;11&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/page/11/index.html">
 <meta property="og:site_name" content="My note">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="lsvih">
 <meta name="twitter:card" content="summary">
+
 
 <link rel="canonical" href="https://lsvih.com/page/11/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
-    isPage: false,
-    isArchive: false
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
   };
 </script>
 
@@ -85,24 +62,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -110,60 +99,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -171,896 +163,44 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
 
-  
+      
+    </div>
+  </div>
+
 </div>
-<div class="search-pop-overlay"></div>
-
-  </div>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/11/09/Make-a-tool-convert-algebraic-expression-to-functional-expression-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/11/09/Make-a-tool-convert-algebraic-expression-to-functional-expression-2/" class="post-title-link" itemprop="url">Make a tool:convert algebraic expression to functional expression(2)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-11-09 13:36:00" itemprop="dateCreated datePublished" datetime="2016-11-09T13:36:00+08:00">2016-11-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>I got the data structure of stack and binary tree in last article,and finally I got a stack what can describe algebraic expression clearly.Now I can create a expression tree with this stack.</p>
-<h3 id="Create-the-expression-tree"><a href="#Create-the-expression-tree" class="headerlink" title="Create the expression tree"></a>Create the expression tree</h3><p>This expression tree is a binary tree because each function has 2 arguments commonly.So there are 3 things to describe an algebraic:operator,1st operand(orginal) and 2nd operand.I set binary tree node’s left child is the 1st operand,right child is the 2nd operand and its value is the operator.</p>
-<p>For example,1+2 is writen<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">  +</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"> &#x2F; \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">1   2</span></pre></td></tr></table></figure></p>
-<p>Before create the expression tree,I have to deal with the stack I got before.Because that stack is a reverse array to describe the algebraic expression.</p>
-<h4 id="Reverse-stack"><a href="#Reverse-stack" class="headerlink" title="Reverse stack"></a>Reverse stack</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">stack = Stack()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> origin.length() <span class="keyword">is</span> <span class="keyword">not</span> <span class="number">0</span>: stack.push(origin.pop())</span></pre></td></tr></table></figure>
-<p>Um..that’s all.</p>
-<p>And create an empty stack to store the operands temporarily while pop this stack.</p>
-<h4 id="Create-expression-tree-and-assign-elements"><a href="#Create-expression-tree-and-assign-elements" class="headerlink" title="Create expression tree and assign elements"></a>Create expression tree and assign elements</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> stack.length() <span class="keyword">is</span> <span class="keyword">not</span> <span class="number">0</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> stack.getTop() <span class="keyword">in</span> operators:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        node = BiTree(stack.pop())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        node.right = temp.pop()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        node.left = temp.pop()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">else</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        node = BiTree(stack.pop())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    temp.push(node)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> temp.pop()</span></pre></td></tr></table></figure>
-<p>By this way,I get the correct expression tree.</p>
-<p>For example,I input “A+b-x*(12.13+51^y)^1.4121” before,now I get a binary tree:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">  +</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"> &#x2F; \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">A   -</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">   &#x2F; \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  b   *</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">     &#x2F; \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    +   ^</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">       &#x2F; \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">      +  1.4121</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">     &#x2F; \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">   51   y</span></pre></td></tr></table></figure></p>
-<h3 id="Traverse-the-binary-tree-and-create-functional-expression"><a href="#Traverse-the-binary-tree-and-create-functional-expression" class="headerlink" title="Traverse the binary tree and create functional expression"></a>Traverse the binary tree and create functional expression</h3><p>This is an iterative process.I convert each child node into a functional expression,such as </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">  +</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"> &#x2F; \</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">1   2</span></pre></td></tr></table></figure>
-<p>will change to add(1,2)</p>
-<p>And put this functional expression as its parent node’s child,and loop again and again,until only one node left.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">operators_name = &#123;<span class="string">'+'</span>:<span class="string">'add'</span>,<span class="string">'-'</span>:<span class="string">'mius'</span>,<span class="string">'*'</span>:<span class="string">'muilt'</span>,<span class="string">'/'</span>:<span class="string">'divide'</span>,<span class="string">'^'</span>:<span class="string">'power'</span>&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="comment">#create_function_expression</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cfe</span><span class="params">(Tree)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> Tree.value <span class="keyword">in</span> operators_name:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        Tree.value = operators_name[Tree.value] +<span class="string">'('</span>+ cfe(Tree.left) +<span class="string">','</span>+ cfe(Tree.right) +<span class="string">')'</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> Tree.value</span></pre></td></tr></table></figure></p>
-<p>Test it,input “A+b-x*(12.13+51^y)^1.4121” and this script ouput add(A,mius(b,muilt(x,power(add(12.13,power(51,y)),1.4121))))</p>
-<p>All script have been uploaded to Github:</p>
-<p><a href="https://github.com/lsvih/algebraic-expression-to-function" target="_blank" rel="noopener">https://github.com/lsvih/algebraic-expression-to-function</a> </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/11/07/Make-a-tool-convert-algebraic-expression-to-functional-expression-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/11/07/Make-a-tool-convert-algebraic-expression-to-functional-expression-1/" class="post-title-link" itemprop="url">Make a tool:convert algebraic expression to functional expression(1)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-11-07 19:48:00" itemprop="dateCreated datePublished" datetime="2016-11-07T19:48:00+08:00">2016-11-07</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>My colleague,Tu is writing a programme for calculation of money in bank.Those algebraic expression are complicated.And he write program with Java.So when he is writing functional expression in Java,he is confusion because there are too much functions and brackets.</p>
-<p>To save him in brackets’ sea,I plan to make an tool to convert algebraic expression to functional expression.</p>
-<p>I will use Python to do that.</p>
-<p>First,I consider commonly operators are functions have 2 arguments,so I can construct binary tree to store algebraic expression.</p>
-<p>Second,it is likely that many brackets in expression.So I consider using stack to deal those brackets.</p>
-<h3 id="Review"><a href="#Review" class="headerlink" title="Review:"></a>Review:</h3><p>Data structure of stack<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        self.items = []</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span><span class="params">(self)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> len(self.items)==<span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self,item)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        self.items.append(item)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.is_empty():</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">return</span> self.items.pop()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getTop</span><span class="params">(self)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.is_empty():</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">return</span> self.items[len(self.items)<span class="number">-1</span>]</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">length</span><span class="params">(self)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> len(self.items)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">clear</span><span class="params">(self)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        self.__init__()</span></pre></td></tr></table></figure></p>
-<p>Data structrue of binary tree</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BiTree</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, value=None, left=None, right=None)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">        self.value = value</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">        self.left = left</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        self.right = right</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">clear</span><span class="params">(self)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        self.__init__()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span><span class="params">(self)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> self.value <span class="keyword">is</span> <span class="keyword">None</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">depth</span><span class="params">(self,node)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> node.value <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> node <span class="keyword">is</span> <span class="keyword">None</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">            l_length = self.depth(node.left)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">            r_length = self.depth(node.right)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">if</span> l_length&amp;gt;=r_length:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">return</span> l_length+<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">else</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">return</span> r_length+<span class="number">1</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">value</span><span class="params">(self)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> self.value</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">per_order_traverse</span><span class="params">(self, node)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> node <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> node.value <span class="keyword">is</span> <span class="keyword">None</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">return</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">print</span> node.value</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">        self.per_order_traverse(node.left)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">        self.per_order_traverse(node.right)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">in_order_traverse</span><span class="params">(self, node)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> node <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> node.value <span class="keyword">is</span> <span class="keyword">None</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">return</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">        self.in_order_traverse(node.left)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">print</span> node.value</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">        self.in_order_traverse(node.right)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post_order_traverse</span><span class="params">(self, node)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> node <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> node.value <span class="keyword">is</span> <span class="keyword">None</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">return</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">        self.post_order_traverse(node.left)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">        self.post_order_traverse(node.right)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">print</span> node.value</span></pre></td></tr></table></figure>
-<p>(It is not good to put those additional function in data structrue.lol)</p>
-<h3 id="Covert-algebraic-expression-to-binary-tree"><a href="#Covert-algebraic-expression-to-binary-tree" class="headerlink" title="Covert algebraic expression to binary tree"></a>Covert algebraic expression to binary tree</h3><p>This binary tree describes the whole computational procedure so it always called <strong>expression tree</strong>.</p>
-<p>To get more information about expression tree,visite CS1112 in The George Washington University：</p>
-<p><a href="https://www.seas.gwu.edu/~mtdiab/Courses/CS1112/lectures/module10/module10Supp.html" target="_blank" rel="noopener">https://www.seas.gwu.edu/~mtdiab/Courses/CS1112/lectures/module10/module10Supp.html</a> </p>
-<h4 id="1-Break-expression"><a href="#1-Break-expression" class="headerlink" title="(1)Break expression"></a>(1)Break expression</h4><p>Un,when I got an algebraic expression like “x+(y-31)^1.4+10*N”,I will break it into an list at first.</p>
-<p>Like this:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Exp = <span class="string">"A+b-x*(12.13+51^y)^1.4121"</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">operators = &#123;<span class="string">'('</span>:<span class="number">0</span>,<span class="string">')'</span>:<span class="number">0</span>,<span class="string">'+'</span>:<span class="number">1</span>,<span class="string">'-'</span>:<span class="number">1</span>,<span class="string">'*'</span>:<span class="number">2</span>,<span class="string">'/'</span>:<span class="number">2</span>,<span class="string">'^'</span>:<span class="number">3</span>&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> op <span class="keyword">in</span> operators:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    Exp = Exp.replace(op,<span class="string">'|'</span>+op+<span class="string">'|'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">Exp = Exp.split(<span class="string">'|'</span>)</span></pre></td></tr></table></figure></p>
-<p>out print [‘A’, ‘+’, ‘b’, ‘-‘, ‘x’, ‘*’, ‘’, ‘(‘, ‘12.13’, ‘+’, ‘51’, ‘^’, ‘y’, ‘)’, ‘’, ‘^’, ‘1.4121’]</p>
-<p>there some unexpected elem “” in this list,filter it!<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Exp = [item <span class="keyword">for</span> item <span class="keyword">in</span> Exp <span class="keyword">if</span> <span class="keyword">not</span> item <span class="keyword">is</span> <span class="string">""</span>]</span></pre></td></tr></table></figure></p>
-<p>Finally I got [‘A’, ‘+’, ‘b’, ‘-‘, ‘x’, ‘*’, ‘(‘, ‘12.13’, ‘+’, ‘51’, ‘^’, ‘y’, ‘)’, ‘^’, ‘1.4121’]</p>
-<p>Ps:I find that it is difficult to consider the situation when expression has negative item….</p>
-<p>TODO:consider the negative item!</p>
-<h4 id="2-Consider-those-brackets"><a href="#2-Consider-those-brackets" class="headerlink" title="(2)Consider those brackets"></a>(2)Consider those brackets</h4><p>Brackets will change the step of calculate,so I have to cope them before constructing expression tree.</p>
-<p>I set an empty stack,when I meet “(“ in expression,I will push this bracket and elems behind it into stack.When i meet “)” in expression,I will pop stack’s elems until the next “(“ is out from stack.</p>
-<p>By this way,I will get an correct order list of calculation whitout bracket.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clear_brackets</span><span class="params">(exp)</span>:</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    temp = Stack()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    result = Stack()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> elem <span class="keyword">in</span> exp:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">if</span> elem <span class="keyword">not</span> <span class="keyword">in</span> operators:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">            result.push(elem)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">else</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">if</span> temp.length() <span class="keyword">is</span> <span class="number">0</span> <span class="keyword">or</span> elem <span class="keyword">is</span> <span class="string">'('</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">                temp.push(elem)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            <span class="keyword">else</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">if</span> elem <span class="keyword">is</span> <span class="string">')'</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">                    <span class="keyword">while</span> temp.getTop() <span class="keyword">is</span> <span class="keyword">not</span> <span class="string">'('</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">                        result.push(temp.pop())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">                    temp.pop()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">elif</span> operators[elem] &lt; operators[temp.getTop()]:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">                    <span class="keyword">while</span> temp.length() <span class="keyword">is</span> <span class="keyword">not</span> <span class="number">0</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">                        <span class="keyword">if</span> temp.getTop() <span class="keyword">is</span> <span class="string">'('</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">                            <span class="keyword">break</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">                        result.push(temp.pop())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">                    temp.push(elem)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">                <span class="keyword">else</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">                    temp.push(elem)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">while</span> temp.length() <span class="keyword">is</span> <span class="keyword">not</span> <span class="number">0</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">        result.push(temp.pop())</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">return</span> result</span></pre></td></tr></table></figure></p>
-<p>Ps:Must import stack class before:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> data <span class="keyword">import</span> Stack</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> data <span class="keyword">import</span> BiTree</span></pre></td></tr></table></figure></p>
-<p>test it!</p>
-<p>input:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">a = clear_brackets(Exp)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> a.length() <span class="keyword">is</span> <span class="keyword">not</span> <span class="number">0</span>:</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">print</span> a.pop()</span></pre></td></tr></table></figure></p>
-<p>output:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">+</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">-</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">*</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">^</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="number">1.4121</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">+</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">^</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">y</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="number">51</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="number">12.13</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">x</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">A</span></pre></td></tr></table></figure>
-<p>Try to reduce it:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">+</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">-</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">*</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">^</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="number">1.4121</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">+</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">^</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">y</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="number">51</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"><span class="number">12.13</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">x</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">A</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">===========</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">+</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">-</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">*</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">^</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"><span class="number">1.4121</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">+</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="number">51</span>^y</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"><span class="number">12.13</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">x</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">A</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">==========</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">+</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">-</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">*</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">^</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line"><span class="number">1.4121</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line"><span class="number">12.13</span>+<span class="number">51</span>^y</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">33</span></pre></td><td class="code"><pre><span class="line">x</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">34</span></pre></td><td class="code"><pre><span class="line">b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">35</span></pre></td><td class="code"><pre><span class="line">A</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">36</span></pre></td><td class="code"><pre><span class="line">==========</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">37</span></pre></td><td class="code"><pre><span class="line">+</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">38</span></pre></td><td class="code"><pre><span class="line">-</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">39</span></pre></td><td class="code"><pre><span class="line">*</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">40</span></pre></td><td class="code"><pre><span class="line">(<span class="number">12.13</span>+<span class="number">51</span>^y)^<span class="number">1.4121</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">41</span></pre></td><td class="code"><pre><span class="line">x</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">42</span></pre></td><td class="code"><pre><span class="line">b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">43</span></pre></td><td class="code"><pre><span class="line">A</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">44</span></pre></td><td class="code"><pre><span class="line">==========</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">45</span></pre></td><td class="code"><pre><span class="line">+</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">46</span></pre></td><td class="code"><pre><span class="line">-</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">47</span></pre></td><td class="code"><pre><span class="line">x*(<span class="number">12.13</span>+<span class="number">51</span>^y)^<span class="number">1.4121</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">48</span></pre></td><td class="code"><pre><span class="line">b</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">49</span></pre></td><td class="code"><pre><span class="line">A</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">50</span></pre></td><td class="code"><pre><span class="line">==========</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">51</span></pre></td><td class="code"><pre><span class="line">+</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">52</span></pre></td><td class="code"><pre><span class="line">b-x*(<span class="number">12.13</span>+<span class="number">51</span>^y)^<span class="number">1.4121</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">53</span></pre></td><td class="code"><pre><span class="line">A</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">54</span></pre></td><td class="code"><pre><span class="line">==========</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">55</span></pre></td><td class="code"><pre><span class="line">A+b-x*(<span class="number">12.13</span>+<span class="number">51</span>^y)^<span class="number">1.4121</span></span></pre></td></tr></table></figure>
-<p>Perfect!I got the original expression,it says this function is work normally.</p>
-<h3 id="summary"><a href="#summary" class="headerlink" title="summary"></a>summary</h3><p>Now,the original expression is converted to a ordered stack.I will convert this stack to expression tree later.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/25/%E5%87%A0%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84-bash-%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/10/25/%E5%87%A0%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84-bash-%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">几个常用的 bash 命令</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-10-25 03:45:00" itemprop="dateCreated datePublished" datetime="2016-10-25T03:45:00+08:00">2016-10-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Essay/" itemprop="url" rel="index">
-                    <span itemprop="name">Essay</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>鉴于经常忘记这几个常用命令，故此记录下来。。</p>
-<p>1.查看当前正在运行的进程:ps -aux</p>
-<p>2.在当前正在运行的进程中查找指定的进程: ps -aux|grep npm (查找名字为npm的进程)</p>
-<p>&quot;|&quot;符号为管道符号，会将前面命令的执行结果传给后面的命令。</p>
-<p>grep为文本搜索命令，可以跟文本或正则进行查找</p>
-<p>3.查看指定端口的进程: isof -i:80(跟着的是端口号)</p>
-<p>4.查找到进程之后可以使用 kill 10000 (kill PID)来终止指定的进程</p>
-<p>5.静默启动程序: nohup npm run dev &amp;</p>
-<p>这样可以使程序在后台运行，不会影响操作而且也不会被挂断，即使ssh连接掉了也没有影响</p>
-<p>6.查看静默启动程序的日志: tail -f nohup.out</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/24/%E4%BD%BF%E7%94%A8vmware-vmware-fusion-%E7%AA%81%E7%A0%B4themida%E5%AF%B9%E4%BA%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E9%99%90%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/10/24/%E4%BD%BF%E7%94%A8vmware-vmware-fusion-%E7%AA%81%E7%A0%B4themida%E5%AF%B9%E4%BA%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E9%99%90%E5%88%B6/" class="post-title-link" itemprop="url">使用vmware(vmware fusion)突破themida对于虚拟机的限制</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-10-24 02:14:00" itemprop="dateCreated datePublished" datetime="2016-10-24T02:14:00+08:00">2016-10-24</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Essay/" itemprop="url" rel="index">
-                    <span itemprop="name">Essay</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>themida是比较有名的一款壳，可以在一定程度上保护软件不被破解或非法使用。例如一些游戏使用themida壳来防止用户使用虚拟机来进行多开。</p>
-<p>但是，我希望在mac上使用windows的软件，使用了vmware fusion 8虚拟机，结果软件在运行时会弹出“Sorry, this application cannot run under a Virtual Machine”的提示并终止程序运行。为了正常使用程序，需要进行以下操作：</p>
-<p>1.在关闭虚拟机的情况下编辑虚拟机的.vmx文件（此文件在虚拟机保存目录中），在文件中加上</p>
-<p>monitor_control.restrict_backdoor = “TRUE”</p>
-<p>disable_acceleration = “TRUE”</p>
-<p>这两行。</p>
-<p>2.themida通过判断系统硬件中是否存在”Vmware”类似名字的硬件来判断是否在虚拟机中运行，因此需要对硬件的名称进行修改。最简单的方式是使用驱动管理软件（例如驱动人生等），将驱动进行备份。备份后的驱动会以.zip文件的形式保存在设定的目录中，将其中的安装信息文件(后缀名为.inf)复制出来，进行如下修改：</p>
-<p>在文件的最后部分会有一个[String]设置块，把里面的xxx.Disk，xxx.Msg，xxx.SvcDesc等项目的值改成不包含Vmware字样的文字。</p>
-<p>3.在虚拟机设置中关闭所有不需要的项目，例如蓝牙等</p>
-<p>4.在虚拟机的系统中将Vmware Tools完全卸载</p>
-<p>通过这些操作，就能使themida认为运行环境不是虚拟机，从而不会终止运行了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/17/Problem-solving-ideas-of-Nim-game-classical-problem/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/10/17/Problem-solving-ideas-of-Nim-game-classical-problem/" class="post-title-link" itemprop="url">Problem-solving ideas of Nim game(classical problem)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-10-17 18:56:00" itemprop="dateCreated datePublished" datetime="2016-10-17T18:56:00+08:00">2016-10-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="Nim-game’s-rule"><a href="#Nim-game’s-rule" class="headerlink" title="Nim game’s rule:"></a>Nim game’s rule:</h3><p>You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones. The one who removes the last stone will be the winner. You will take the first turn to remove the stones.</p>
-<p>Both of you are very clever and have optimal strategies for the game. Write a function to determine whether you can win the game given the number of stones in the heap.</p>
-<p>For example, if there are 4 stones in the heap, then you will never win the game: no matter 1, 2, or 3 stones you remove, the last stone will always be removed by your friend.</p>
-<h3 id="idea-of-Nim-game"><a href="#idea-of-Nim-game" class="headerlink" title="idea of Nim game"></a>idea of Nim game</h3><p>There are some situations in this game.</p>
-<p>Let’s think about what will happend while stones is few:</p>
-<p>If there are 4 stones in the heap,you will lose the game in every matters.</p>
-<p>If there are less than 3 stones,you will win the game in one step.</p>
-<p>So,when there are more than 4 stones,you should remove some stones and let your friend getting 4 stones.In this situation,we can simplify this problem to that how to leaving 4 stones.And you will find it is the same as initially problem.</p>
-<p>Now, what you should do is leaving multiple of 4 stones in every matters.So,if the number of stones is not the muiltiple of 4,you will win this game.</p>
-<p>Finally,we can use a formula to express this problem:</p>
-<p><code>stone_num%4!==0</code></p>
-<p>you will win.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/09/mongoDB-nodejs%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7access-token%E9%AA%8C%E8%AF%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/10/09/mongoDB-nodejs%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7access-token%E9%AA%8C%E8%AF%81/" class="post-title-link" itemprop="url">mongoDB,nodejs简易实现用户access_token验证</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-10-09 15:29:00" itemprop="dateCreated datePublished" datetime="2016-10-09T15:29:00+08:00">2016-10-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Back-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Back End</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果:"></a>实现效果:</h3><p>用户调用接口时鉴权，如果没有合法的access_token则不允许接入，抛出401</p>
-<h3 id="实现要点"><a href="#实现要点" class="headerlink" title="实现要点:"></a>实现要点:</h3><p>mongoDB的简单操作，async与await</p>
-<h3 id="code"><a href="#code" class="headerlink" title="code:"></a>code:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> db = <span class="built_in">require</span>(<span class="string">'../db'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> router = express.Router()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> utils = <span class="built_in">require</span>(<span class="string">'../utils'</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> checkLogin = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">try</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (<span class="keyword">await</span> checkAccessToken(req.query.userId, req.query.access_token)) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        next()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    &#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">        res.status(<span class="number">401</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">        res.send()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#125;<span class="keyword">catch</span>(e)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    <span class="built_in">console</span>.error(e)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    res.status(<span class="number">500</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">    res.send()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = checkLogin;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">checkAccessToken</span>(<span class="params">userId, accessToken</span>) </span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">if</span> (!db) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">        <span class="built_in">console</span>.error(<span class="string">"DataBase error"</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">    &#125; <span class="keyword">else</span> &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">var</span> userInfo = <span class="keyword">await</span> db.user.findOne(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">            userId: userId</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">        &#125;).exec()</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">        <span class="keyword">return</span> userInfo.access_token === accessToken</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">32</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure>
-<p>mongoDB中，使用db.xx.find读出的是数组，需要用[0]或者findOne</p>
-<p>mongoDB的读取为异步过程，可以使用async await等待异步回调</p>
-<p>在处理时如果不使用res.send而直接调用next()，中间件向后传递</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/08/%E4%BD%BF%E7%94%A8node-express-mongoDB%E8%BF%9B%E8%A1%8C%E5%BE%AE%E4%BF%A1jssdk%E7%AD%BE%E5%90%8D%E8%BF%90%E7%AE%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/10/08/%E4%BD%BF%E7%94%A8node-express-mongoDB%E8%BF%9B%E8%A1%8C%E5%BE%AE%E4%BF%A1jssdk%E7%AD%BE%E5%90%8D%E8%BF%90%E7%AE%97/" class="post-title-link" itemprop="url">使用node+express+mongoDB进行微信jssdk签名运算</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-10-08 06:03:45" itemprop="dateCreated datePublished" datetime="2016-10-08T06:03:45+08:00">2016-10-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front End</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>代码地址:<a href="https://github.com/lsvih/Wechat-JSSDK-API/blob/master/index.js" target="_blank" rel="noopener">https://github.com/lsvih/Wechat-JSSDK-API/blob/master/index.js</a></p>
-<p>如果需要在微信浏览器中调用微信的底层支持(如调用相机等),需要使用微信jssdk。为了使用微信jssdk，需要计算出所需要的相关签名信息。</p>
-<p>微信jssdk文档:<a href="http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html#.E6.A6.82.E8.BF.B0" target="_blank" rel="noopener">http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html#.E6.A6.82.E8.BF.B0</a> </p>
-<p>附录1为签名计算方法，大致过程如下:</p>
-<p>微信的签名需要使用jssdk_ticket生成，jssdk_ticket需要使用access_token生成。它们的生命周期都只有2个小时而且每天的请求数量是有限制的，因此需要在获取到access_token与ticket之后使用各种方法，如缓存，文件，数据库来将它存储住。</p>
-<p>根据业务需求，我使用node+express+mongoDB写了微信签名的计算.</p>
-<p>在需要使用jssdk的页面调用 xxxxx/wx?url=location.href就能计算出当前页面的微信jssdk签名等信息。</p>
-<p>可以使用微信的签名校验工具来测试签名是否正确</p>
-<p>微信签名校验工具:<a href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign" target="_blank" rel="noopener">https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign</a> </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/03/%E5%9C%A8less%E4%B8%AD%E4%BD%BF%E7%94%A8calc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/10/03/%E5%9C%A8less%E4%B8%AD%E4%BD%BF%E7%94%A8calc/" class="post-title-link" itemprop="url">在less中使用calc()</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-10-03 04:22:00" itemprop="dateCreated datePublished" datetime="2016-10-03T04:22:00+08:00">2016-10-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front End</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>calc()在css中可以很方便的使用，但是在使用less时calc()内的东西会被编译器当作算式进行计算，例如</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:calc(</span> 100% <span class="selector-tag">-</span> 20<span class="selector-tag">px</span> );</span></pre></td></tr></table></figure>
-<p>会被编译成<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:calc</span> ( 80% );</span></pre></td></tr></table></figure></p>
-<p>此时，需要用到less的e()字符串函数来让其以css方式解析</p>
-<blockquote>
-<h3 id="e"><a href="#e" class="headerlink" title="e"></a>e<a href="http://lesscss.cn/functions/#string-functions-e" target="_blank" rel="noopener"></a></h3><p>CSS escaping, replaced with <code>~&quot;value&quot;</code> syntax.</p>
-<p>It expects string as a parameter and return its content as is, but without quotes. It can be used to output CSS value which is either not valid CSS syntax, or uses proprietary syntax which Less doesn’t recognize.</p>
-<p>Parameters: <code>string</code> - a string to escape.</p>
-<p>Returns: <code>string</code> - the escaped string, without quotes.</p>
-<p>Example:</p>
-<pre style="box-sizing: border-box; font-family: Monaco, Menlo, Consolas, 'Courier New', monospace; font-size: 13px; white-space: pre-wrap; padding: 9.5px; margin-top: 0px; margin-bottom: 10px; line-height: 1.42857; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(245, 245, 245);">filter: e("ms:alwaysHasItsOwnSyntax.For.Stuff()");</pre>
-
-<p>Output:</p>
-<pre style="box-sizing: border-box; font-family: Monaco, Menlo, Consolas, 'Courier New', monospace; font-size: 13px; white-space: pre-wrap; padding: 9.5px; margin-top: 0px; margin-bottom: 10px; line-height: 1.42857; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(245, 245, 245);">filter: ms:alwaysHasItsOwnSyntax.For.Stuff();</pre>
-
-<p>Note: The function accepts also <code>~&quot;&quot;</code> escaped values and numbers as parameters. Anything else returns an error.</p>
-</blockquote>
-<p>因此，需要这样写<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span>: <span class="selector-tag">calc</span>( <span class="selector-tag">e</span>("100% <span class="selector-tag">-</span> 20<span class="selector-tag">px</span>") );</span></pre></td></tr></table></figure></p>
-<p>或<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span>: <span class="selector-tag">calc</span>(~"100% <span class="selector-tag">-</span> 20<span class="selector-tag">px</span>");</span></pre></td></tr></table></figure></p>
-<p>这时就能满足需求，编译成css后会保持<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span>: <span class="selector-tag">calc</span>( 100% <span class="selector-tag">-</span> 20<span class="selector-tag">px</span> );</span></pre></td></tr></table></figure></p>
-<p>的样子。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/09/30/js%E5%AE%9E%E7%8E%B0async-parallel%E5%8A%9F%E8%83%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/09/30/js%E5%AE%9E%E7%8E%B0async-parallel%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">js实现async.parallel功能</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-09-30 16:25:46" itemprop="dateCreated datePublished" datetime="2016-09-30T16:25:46+08:00">2016-09-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Front-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Front End</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在有多个异步请求的情况下，如何将它们全部正确的返回请求是个问题。如果不适用async,一般有几种实现的情况。</p>
-<p>1、对于result需要按照顺序请求的情况直接使用回调-回调-回调</p>
-<p>  直接使用这样的回调就能完成相应需求：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> allResult = &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">asyncFunction(<span class="string">"1"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span>(error==<span class="literal">null</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    allResult[<span class="string">"1"</span>]=result</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    asyncFunction(<span class="string">"2"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">if</span>(error==<span class="literal">null</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        allResult[<span class="string">"2"</span>]=result</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">        asyncFunction(<span class="string">"3"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">          <span class="keyword">if</span>(error==<span class="literal">null</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">            allResult[<span class="string">"3"</span>]=result </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">          <span class="keyword">else</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">          <span class="built_in">console</span>.error(error)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">else</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">      <span class="built_in">console</span>.error(error)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">else</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">     <span class="built_in">console</span>.error(error)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">&#125;)</span></pre></td></tr></table></figure>
-<p>这种请求方式虽然能很明确地描述出整个流程，能保证result按顺序输出，但是代码一层套一层，不利于阅读。</p>
-<p>这种情况可以使用async.series进行控制，暂且不提</p>
-<p>2、如果不要求按照顺序输出result，因此上面那种做法就显得非常浪费时间，因为每个请求都要等到前一个请求完成后才会进行下一个请求，它们的时间是相加的。因此可以同时进行所有的请求，将所有请求的result都拿到，不需要管它们哪个先输出哪个后输出。</p>
-<p>在async中，可以这样实现:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>.parallel(&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  one:<span class="function"><span class="keyword">function</span>(<span class="params">done</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    asyncFunction(<span class="string">'1'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">if</span>(!error)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        done(<span class="literal">null</span>,result)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">else</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        done(error,<span class="literal">null</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">  two:<span class="function"><span class="keyword">function</span>(<span class="params">done</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    asyncFunction(<span class="string">'2'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">if</span>(!error)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        done(<span class="literal">null</span>,result)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">else</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">        done(error,<span class="literal">null</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">  &#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">  three:<span class="function"><span class="keyword">function</span>(<span class="params">done</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    asyncFunction(<span class="string">'3'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">if</span>(!error)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">        done(<span class="literal">null</span>,result)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">      <span class="keyword">else</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">        done(error,<span class="literal">null</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">24</span></pre></td><td class="code"><pre><span class="line">    &#125;)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">25</span></pre></td><td class="code"><pre><span class="line">  &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">26</span></pre></td><td class="code"><pre><span class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">27</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">if</span>(!error)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">28</span></pre></td><td class="code"><pre><span class="line">    callback(<span class="literal">null</span>,result)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">29</span></pre></td><td class="code"><pre><span class="line">  <span class="keyword">else</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">30</span></pre></td><td class="code"><pre><span class="line">    callback(error,<span class="literal">null</span>)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">31</span></pre></td><td class="code"><pre><span class="line">&#125;);</span></pre></td></tr></table></figure></p>
-<p>以上代码的含义是，同时调用3个asyncFunction，当三个函数都成功取到result之后将result输出，如果其中有任何一个函数出现了错误(收到了error)则输出错误信息。通过这种方式可以节省请求时间且便于查看代码。</p>
-<h3 id="实现async-parallel"><a href="#实现async-parallel" class="headerlink" title="实现async.parallel"></a>实现async.parallel</h3><p>async.parallel参数由2部分，第一部分是由请求组成的对象，第二部分是全部完成时处理的函数</p>
-<p>需要处理的第一点就是如何判断所有的asyncFunction都成功完成，且在那时候调用之后的函数.</p>
-<p>可以采用for in 来获取第一部分参数的请求数量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>.parallel = <span class="function"><span class="keyword">function</span>(<span class="params">actions,allDone</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> Result = &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> n = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> action <span class="keyword">in</span> actions)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">       <span class="keyword">if</span>(actions.hasOwnProperty(action)) n++</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
-<p>这样就能获得请求总数，hasOwnproperty防止计数时遍历到其原型的属性</p>
-<p>接着，就可以遍历请求，分别处理它们的回调了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>.parallel = <span class="function"><span class="keyword">function</span>(<span class="params">actions,allDone</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> Result = &#123;&#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">var</span> n = <span class="number">0</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> action <span class="keyword">in</span> actions)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">       <span class="keyword">if</span>(actions.hasOwnProperty(action)) n++</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    <span class="comment">//得到了n</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> action <span class="keyword">in</span> actions)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">       <span class="keyword">var</span> done = <span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">           <span class="keyword">if</span>(error==<span class="literal">null</span>)&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">               Result[action] = result</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">               n--</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">               <span class="keyword">if</span>(n==<span class="number">0</span>) allDone(<span class="literal">null</span>,Result)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">           &#125;<span class="keyword">else</span>&#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">               allDone(error,Result)<span class="comment">//如果asyncFunction发生错误,将错误返回</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">           &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">       &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">       action(done)<span class="comment">//将done作为参数放入每个请求中，用于处理result和error</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#125;</span></pre></td></tr></table></figure></p>
-<p>通过这种方式，简单实现了async.parallel的功能。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/09/28/%E5%9C%A8%E8%BF%9C%E7%A8%8Bgit%E4%BB%93%E5%BA%93%E5%9B%9E%E9%80%80%E7%89%88%E6%9C%AC%EF%BC%8C%E6%92%A4%E9%94%80commit/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/09/28/%E5%9C%A8%E8%BF%9C%E7%A8%8Bgit%E4%BB%93%E5%BA%93%E5%9B%9E%E9%80%80%E7%89%88%E6%9C%AC%EF%BC%8C%E6%92%A4%E9%94%80commit/" class="post-title-link" itemprop="url">在远程git仓库回退版本，撤销commit</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-09-28 04:52:00" itemprop="dateCreated datePublished" datetime="2016-09-28T04:52:00+08:00">2016-09-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Back-End/" itemprop="url" rel="index">
-                    <span itemprop="name">Back End</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>当做出了不正确的commit还push到远程仓库后，可以用强推的方法回退远程仓库</p>
-<ol>
-<li>先从远程仓库clone下最新的版本</li>
-<li>使用git reset —hard HEAD^ 来将仓库所有内容回退到上一个版本，在运行命令的时候可以看到当前的commit点<br><img src="/images/pasted-104.png" alt="upload successful"></li>
-<li>使用git status确认信息是否正确<br><img src="/images/pasted-105.png" alt="upload successful"><br>可以看到本地仓库是处于远程仓库4个commit版本前的位置</li>
-<li>强行将本地仓库推送到远程仓库，覆盖原来的master</li>
-</ol>
-<p>使用 git push origin +master:master</p>
-<p>此时远程仓库就回到了4个commit版本前。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-  </div>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-        </div>
-          
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
         </li>
@@ -1070,16 +210,16 @@
       </ul>
 
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
       <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">lsvih</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -1102,34 +242,936 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </div>
-
+      </section>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+      
+
+      
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/11/09/Make-a-tool-convert-algebraic-expression-to-functional-expression-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/11/09/Make-a-tool-convert-algebraic-expression-to-functional-expression-2/" class="post-title-link" itemprop="url">Make a tool:convert algebraic expression to functional expression(2)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-11-09 13:36:00" itemprop="dateCreated datePublished" datetime="2016-11-09T13:36:00+08:00">2016-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>I got the data structure of stack and binary tree in last article,and finally I got a stack what can describe algebraic expression clearly.Now I can create a expression tree with this stack.</p>
+<h3 id="Create-the-expression-tree"><a href="#Create-the-expression-tree" class="headerlink" title="Create the expression tree"></a>Create the expression tree</h3><p>This expression tree is a binary tree because each function has 2 arguments commonly.So there are 3 things to describe an algebraic:operator,1st operand(orginal) and 2nd operand.I set binary tree node’s left child is the 1st operand,right child is the 2nd operand and its value is the operator.</p>
+<p>For example,1+2 is writen<br><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  +</span><br><span class="line"> / \</span><br><span class="line"><span class="number">1</span>   <span class="number">2</span></span><br></pre></td></tr></table></figure></p>
+<p>Before create the expression tree,I have to deal with the stack I got before.Because that stack is a reverse array to describe the algebraic expression.</p>
+<h4 id="Reverse-stack"><a href="#Reverse-stack" class="headerlink" title="Reverse stack"></a>Reverse stack</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stack = Stack()</span><br><span class="line"><span class="keyword">while</span> origin.length() <span class="keyword">is</span> <span class="keyword">not</span> <span class="number">0</span>: stack.push(origin.pop())</span><br></pre></td></tr></table></figure>
+<p>Um..that’s all.</p>
+<p>And create an empty stack to store the operands temporarily while pop this stack.</p>
+<h4 id="Create-expression-tree-and-assign-elements"><a href="#Create-expression-tree-and-assign-elements" class="headerlink" title="Create expression tree and assign elements"></a>Create expression tree and assign elements</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> stack.length() <span class="keyword">is</span> <span class="keyword">not</span> <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">if</span> stack.getTop() <span class="keyword">in</span> operators:</span><br><span class="line">        node = BiTree(stack.pop())</span><br><span class="line">        node.right = temp.pop()</span><br><span class="line">        node.left = temp.pop()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        node = BiTree(stack.pop())</span><br><span class="line">    temp.push(node)</span><br><span class="line"><span class="keyword">return</span> temp.pop()</span><br></pre></td></tr></table></figure>
+<p>By this way,I get the correct expression tree.</p>
+<p>For example,I input “A+b-x*(12.13+51^y)^1.4121” before,now I get a binary tree:<br><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  +</span><br><span class="line"> / <span class="tag">\</span></span><br><span class="line">A   -</span><br><span class="line">   / <span class="tag">\</span></span><br><span class="line">  b   *</span><br><span class="line">     / <span class="tag">\</span></span><br><span class="line">    +   ^</span><br><span class="line">       / <span class="tag">\</span></span><br><span class="line">      +  1.4121</span><br><span class="line">     / <span class="tag">\</span></span><br><span class="line">   51   y</span><br></pre></td></tr></table></figure></p>
+<h3 id="Traverse-the-binary-tree-and-create-functional-expression"><a href="#Traverse-the-binary-tree-and-create-functional-expression" class="headerlink" title="Traverse the binary tree and create functional expression"></a>Traverse the binary tree and create functional expression</h3><p>This is an iterative process.I convert each child node into a functional expression,such as </p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  +</span><br><span class="line"> / \</span><br><span class="line"><span class="number">1</span>   <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>will change to add(1,2)</p>
+<p>And put this functional expression as its parent node’s child,and loop again and again,until only one node left.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">operators_name = &#123;<span class="string">&#x27;+&#x27;</span>:<span class="string">&#x27;add&#x27;</span>,<span class="string">&#x27;-&#x27;</span>:<span class="string">&#x27;mius&#x27;</span>,<span class="string">&#x27;*&#x27;</span>:<span class="string">&#x27;muilt&#x27;</span>,<span class="string">&#x27;/&#x27;</span>:<span class="string">&#x27;divide&#x27;</span>,<span class="string">&#x27;^&#x27;</span>:<span class="string">&#x27;power&#x27;</span>&#125;</span><br><span class="line"><span class="comment">#create_function_expression</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cfe</span>(<span class="params">Tree</span>):</span></span><br><span class="line">    <span class="keyword">if</span> Tree.value <span class="keyword">in</span> operators_name:</span><br><span class="line">        Tree.value = operators_name[Tree.value] +<span class="string">&#x27;(&#x27;</span>+ cfe(Tree.left) +<span class="string">&#x27;,&#x27;</span>+ cfe(Tree.right) +<span class="string">&#x27;)&#x27;</span></span><br><span class="line">    <span class="keyword">return</span> Tree.value</span><br></pre></td></tr></table></figure></p>
+<p>Test it,input “A+b-x*(12.13+51^y)^1.4121” and this script ouput add(A,mius(b,muilt(x,power(add(12.13,power(51,y)),1.4121))))</p>
+<p>All script have been uploaded to Github:</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/lsvih/algebraic-expression-to-function">https://github.com/lsvih/algebraic-expression-to-function</a> </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/11/07/Make-a-tool-convert-algebraic-expression-to-functional-expression-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/11/07/Make-a-tool-convert-algebraic-expression-to-functional-expression-1/" class="post-title-link" itemprop="url">Make a tool:convert algebraic expression to functional expression(1)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-11-07 19:48:00" itemprop="dateCreated datePublished" datetime="2016-11-07T19:48:00+08:00">2016-11-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>My colleague,Tu is writing a programme for calculation of money in bank.Those algebraic expression are complicated.And he write program with Java.So when he is writing functional expression in Java,he is confusion because there are too much functions and brackets.</p>
+<p>To save him in brackets’ sea,I plan to make an tool to convert algebraic expression to functional expression.</p>
+<p>I will use Python to do that.</p>
+<p>First,I consider commonly operators are functions have 2 arguments,so I can construct binary tree to store algebraic expression.</p>
+<p>Second,it is likely that many brackets in expression.So I consider using stack to deal those brackets.</p>
+<h3 id="Review"><a href="#Review" class="headerlink" title="Review:"></a>Review:</h3><p>Data structure of stack<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.items = []</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> len(self.items)==<span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span>(<span class="params">self,item</span>):</span></span><br><span class="line">        self.items.append(item)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.is_empty():</span><br><span class="line">            <span class="keyword">return</span> self.items.pop()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getTop</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.is_empty():</span><br><span class="line">            <span class="keyword">return</span> self.items[len(self.items)<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">length</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> len(self.items)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">clear</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.__init__()</span><br></pre></td></tr></table></figure></p>
+<p>Data structrue of binary tree</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BiTree</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, value=None, left=None, right=None</span>):</span></span><br><span class="line">        self.value = value</span><br><span class="line">        self.left = left</span><br><span class="line">        self.right = right</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">clear</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.__init__()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_empty</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.value <span class="keyword">is</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">depth</span>(<span class="params">self,node</span>):</span></span><br><span class="line">        <span class="keyword">if</span> node.value <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> node <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l_length = self.depth(node.left)</span><br><span class="line">            r_length = self.depth(node.right)</span><br><span class="line">            <span class="keyword">if</span> l_length&amp;gt;=r_length:</span><br><span class="line">                <span class="keyword">return</span> l_length+<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> r_length+<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">value</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.value</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">per_order_traverse</span>(<span class="params">self, node</span>):</span></span><br><span class="line">        <span class="keyword">if</span> node <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> node.value <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="keyword">print</span> node.value</span><br><span class="line">        self.per_order_traverse(node.left)</span><br><span class="line">        self.per_order_traverse(node.right)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">in_order_traverse</span>(<span class="params">self, node</span>):</span></span><br><span class="line">        <span class="keyword">if</span> node <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> node.value <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.in_order_traverse(node.left)</span><br><span class="line">        <span class="keyword">print</span> node.value</span><br><span class="line">        self.in_order_traverse(node.right)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post_order_traverse</span>(<span class="params">self, node</span>):</span></span><br><span class="line">        <span class="keyword">if</span> node <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> node.value <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        self.post_order_traverse(node.left)</span><br><span class="line">        self.post_order_traverse(node.right)</span><br><span class="line">        <span class="keyword">print</span> node.value</span><br></pre></td></tr></table></figure>
+<p>(It is not good to put those additional function in data structrue.lol)</p>
+<h3 id="Covert-algebraic-expression-to-binary-tree"><a href="#Covert-algebraic-expression-to-binary-tree" class="headerlink" title="Covert algebraic expression to binary tree"></a>Covert algebraic expression to binary tree</h3><p>This binary tree describes the whole computational procedure so it always called <strong>expression tree</strong>.</p>
+<p>To get more information about expression tree,visite CS1112 in The George Washington University：</p>
+<p><a target="_blank" rel="noopener" href="https://www.seas.gwu.edu/~mtdiab/Courses/CS1112/lectures/module10/module10Supp.html">https://www.seas.gwu.edu/~mtdiab/Courses/CS1112/lectures/module10/module10Supp.html</a> </p>
+<h4 id="1-Break-expression"><a href="#1-Break-expression" class="headerlink" title="(1)Break expression"></a>(1)Break expression</h4><p>Un,when I got an algebraic expression like “x+(y-31)^1.4+10*N”,I will break it into an list at first.</p>
+<p>Like this:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Exp = <span class="string">&quot;A+b-x*(12.13+51^y)^1.4121&quot;</span></span><br><span class="line">operators = &#123;<span class="string">&#x27;(&#x27;</span>:<span class="number">0</span>,<span class="string">&#x27;)&#x27;</span>:<span class="number">0</span>,<span class="string">&#x27;+&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;-&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;*&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;/&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;^&#x27;</span>:<span class="number">3</span>&#125;</span><br><span class="line"><span class="keyword">for</span> op <span class="keyword">in</span> operators:</span><br><span class="line">    Exp = Exp.replace(op,<span class="string">&#x27;|&#x27;</span>+op+<span class="string">&#x27;|&#x27;</span>)</span><br><span class="line">Exp = Exp.split(<span class="string">&#x27;|&#x27;</span>)</span><br></pre></td></tr></table></figure></p>
+<p>out print [‘A’, ‘+’, ‘b’, ‘-‘, ‘x’, ‘*’, ‘’, ‘(‘, ‘12.13’, ‘+’, ‘51’, ‘^’, ‘y’, ‘)’, ‘’, ‘^’, ‘1.4121’]</p>
+<p>there some unexpected elem “” in this list,filter it!<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exp = [item <span class="keyword">for</span> item <span class="keyword">in</span> Exp <span class="keyword">if</span> <span class="keyword">not</span> item <span class="keyword">is</span> <span class="string">&quot;&quot;</span>]</span><br></pre></td></tr></table></figure></p>
+<p>Finally I got [‘A’, ‘+’, ‘b’, ‘-‘, ‘x’, ‘*’, ‘(‘, ‘12.13’, ‘+’, ‘51’, ‘^’, ‘y’, ‘)’, ‘^’, ‘1.4121’]</p>
+<p>Ps:I find that it is difficult to consider the situation when expression has negative item….</p>
+<p>TODO:consider the negative item!</p>
+<h4 id="2-Consider-those-brackets"><a href="#2-Consider-those-brackets" class="headerlink" title="(2)Consider those brackets"></a>(2)Consider those brackets</h4><p>Brackets will change the step of calculate,so I have to cope them before constructing expression tree.</p>
+<p>I set an empty stack,when I meet “(“ in expression,I will push this bracket and elems behind it into stack.When i meet “)” in expression,I will pop stack’s elems until the next “(“ is out from stack.</p>
+<p>By this way,I will get an correct order list of calculation whitout bracket.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clear_brackets</span>(<span class="params">exp</span>):</span></span><br><span class="line">    temp = Stack()</span><br><span class="line">    result = Stack()</span><br><span class="line">    <span class="keyword">for</span> elem <span class="keyword">in</span> exp:</span><br><span class="line">        <span class="keyword">if</span> elem <span class="keyword">not</span> <span class="keyword">in</span> operators:</span><br><span class="line">            result.push(elem)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> temp.length() <span class="keyword">is</span> <span class="number">0</span> <span class="keyword">or</span> elem <span class="keyword">is</span> <span class="string">&#x27;(&#x27;</span>:</span><br><span class="line">                temp.push(elem)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">if</span> elem <span class="keyword">is</span> <span class="string">&#x27;)&#x27;</span>:</span><br><span class="line">                    <span class="keyword">while</span> temp.getTop() <span class="keyword">is</span> <span class="keyword">not</span> <span class="string">&#x27;(&#x27;</span>:</span><br><span class="line">                        result.push(temp.pop())</span><br><span class="line">                    temp.pop()</span><br><span class="line">                <span class="keyword">elif</span> operators[elem] &lt; operators[temp.getTop()]:</span><br><span class="line">                    <span class="keyword">while</span> temp.length() <span class="keyword">is</span> <span class="keyword">not</span> <span class="number">0</span>:</span><br><span class="line">                        <span class="keyword">if</span> temp.getTop() <span class="keyword">is</span> <span class="string">&#x27;(&#x27;</span>:</span><br><span class="line">                            <span class="keyword">break</span></span><br><span class="line">                        result.push(temp.pop())</span><br><span class="line">                    temp.push(elem)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    temp.push(elem)</span><br><span class="line">    <span class="keyword">while</span> temp.length() <span class="keyword">is</span> <span class="keyword">not</span> <span class="number">0</span>:</span><br><span class="line">        result.push(temp.pop())</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure></p>
+<p>Ps:Must import stack class before:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> data <span class="keyword">import</span> Stack</span><br><span class="line"><span class="keyword">from</span> data <span class="keyword">import</span> BiTree</span><br></pre></td></tr></table></figure></p>
+<p>test it!</p>
+<p>input:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = clear_brackets(Exp)</span><br><span class="line"><span class="keyword">while</span> a.length() <span class="keyword">is</span> <span class="keyword">not</span> <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">print</span> a.pop()</span><br></pre></td></tr></table></figure></p>
+<p>output:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">+</span><br><span class="line">-</span><br><span class="line">*</span><br><span class="line">^</span><br><span class="line"><span class="number">1.4121</span></span><br><span class="line">+</span><br><span class="line">^</span><br><span class="line">y</span><br><span class="line"><span class="number">51</span></span><br><span class="line"><span class="number">12.13</span></span><br><span class="line">x</span><br><span class="line">b</span><br><span class="line">A</span><br></pre></td></tr></table></figure>
+<p>Try to reduce it:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">+</span><br><span class="line">-</span><br><span class="line">*</span><br><span class="line">^</span><br><span class="line"><span class="number">1.4121</span></span><br><span class="line">+</span><br><span class="line">^</span><br><span class="line">y</span><br><span class="line"><span class="number">51</span></span><br><span class="line"><span class="number">12.13</span></span><br><span class="line">x</span><br><span class="line">b</span><br><span class="line">A</span><br><span class="line">===========</span><br><span class="line">+</span><br><span class="line">-</span><br><span class="line">*</span><br><span class="line">^</span><br><span class="line"><span class="number">1.4121</span></span><br><span class="line">+</span><br><span class="line"><span class="number">51</span>^y</span><br><span class="line"><span class="number">12.13</span></span><br><span class="line">x</span><br><span class="line">b</span><br><span class="line">A</span><br><span class="line">==========</span><br><span class="line">+</span><br><span class="line">-</span><br><span class="line">*</span><br><span class="line">^</span><br><span class="line"><span class="number">1.4121</span></span><br><span class="line"><span class="number">12.13</span>+<span class="number">51</span>^y</span><br><span class="line">x</span><br><span class="line">b</span><br><span class="line">A</span><br><span class="line">==========</span><br><span class="line">+</span><br><span class="line">-</span><br><span class="line">*</span><br><span class="line">(<span class="number">12.13</span>+<span class="number">51</span>^y)^<span class="number">1.4121</span></span><br><span class="line">x</span><br><span class="line">b</span><br><span class="line">A</span><br><span class="line">==========</span><br><span class="line">+</span><br><span class="line">-</span><br><span class="line">x*(<span class="number">12.13</span>+<span class="number">51</span>^y)^<span class="number">1.4121</span></span><br><span class="line">b</span><br><span class="line">A</span><br><span class="line">==========</span><br><span class="line">+</span><br><span class="line">b-x*(<span class="number">12.13</span>+<span class="number">51</span>^y)^<span class="number">1.4121</span></span><br><span class="line">A</span><br><span class="line">==========</span><br><span class="line">A+b-x*(<span class="number">12.13</span>+<span class="number">51</span>^y)^<span class="number">1.4121</span></span><br></pre></td></tr></table></figure>
+<p>Perfect!I got the original expression,it says this function is work normally.</p>
+<h3 id="summary"><a href="#summary" class="headerlink" title="summary"></a>summary</h3><p>Now,the original expression is converted to a ordered stack.I will convert this stack to expression tree later.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/25/%E5%87%A0%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84-bash-%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/10/25/%E5%87%A0%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84-bash-%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">几个常用的 bash 命令</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-10-25 03:45:00" itemprop="dateCreated datePublished" datetime="2016-10-25T03:45:00+08:00">2016-10-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Essay/" itemprop="url" rel="index"><span itemprop="name">Essay</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>鉴于经常忘记这几个常用命令，故此记录下来。。</p>
+<p>1.查看当前正在运行的进程:ps -aux</p>
+<p>2.在当前正在运行的进程中查找指定的进程: ps -aux|grep npm (查找名字为npm的进程)</p>
+<p>&quot;|&quot;符号为管道符号，会将前面命令的执行结果传给后面的命令。</p>
+<p>grep为文本搜索命令，可以跟文本或正则进行查找</p>
+<p>3.查看指定端口的进程: isof -i:80(跟着的是端口号)</p>
+<p>4.查找到进程之后可以使用 kill 10000 (kill PID)来终止指定的进程</p>
+<p>5.静默启动程序: nohup npm run dev &amp;</p>
+<p>这样可以使程序在后台运行，不会影响操作而且也不会被挂断，即使ssh连接掉了也没有影响</p>
+<p>6.查看静默启动程序的日志: tail -f nohup.out</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/24/%E4%BD%BF%E7%94%A8vmware-vmware-fusion-%E7%AA%81%E7%A0%B4themida%E5%AF%B9%E4%BA%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E9%99%90%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/10/24/%E4%BD%BF%E7%94%A8vmware-vmware-fusion-%E7%AA%81%E7%A0%B4themida%E5%AF%B9%E4%BA%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E9%99%90%E5%88%B6/" class="post-title-link" itemprop="url">使用vmware(vmware fusion)突破themida对于虚拟机的限制</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-10-24 02:14:00" itemprop="dateCreated datePublished" datetime="2016-10-24T02:14:00+08:00">2016-10-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Essay/" itemprop="url" rel="index"><span itemprop="name">Essay</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>themida是比较有名的一款壳，可以在一定程度上保护软件不被破解或非法使用。例如一些游戏使用themida壳来防止用户使用虚拟机来进行多开。</p>
+<p>但是，我希望在mac上使用windows的软件，使用了vmware fusion 8虚拟机，结果软件在运行时会弹出“Sorry, this application cannot run under a Virtual Machine”的提示并终止程序运行。为了正常使用程序，需要进行以下操作：</p>
+<p>1.在关闭虚拟机的情况下编辑虚拟机的.vmx文件（此文件在虚拟机保存目录中），在文件中加上</p>
+<p>monitor_control.restrict_backdoor = “TRUE”</p>
+<p>disable_acceleration = “TRUE”</p>
+<p>这两行。</p>
+<p>2.themida通过判断系统硬件中是否存在”Vmware”类似名字的硬件来判断是否在虚拟机中运行，因此需要对硬件的名称进行修改。最简单的方式是使用驱动管理软件（例如驱动人生等），将驱动进行备份。备份后的驱动会以.zip文件的形式保存在设定的目录中，将其中的安装信息文件(后缀名为.inf)复制出来，进行如下修改：</p>
+<p>在文件的最后部分会有一个[String]设置块，把里面的xxx.Disk，xxx.Msg，xxx.SvcDesc等项目的值改成不包含Vmware字样的文字。</p>
+<p>3.在虚拟机设置中关闭所有不需要的项目，例如蓝牙等</p>
+<p>4.在虚拟机的系统中将Vmware Tools完全卸载</p>
+<p>通过这些操作，就能使themida认为运行环境不是虚拟机，从而不会终止运行了。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/17/Problem-solving-ideas-of-Nim-game-classical-problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/10/17/Problem-solving-ideas-of-Nim-game-classical-problem/" class="post-title-link" itemprop="url">Problem-solving ideas of Nim game(classical problem)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-10-17 18:56:00" itemprop="dateCreated datePublished" datetime="2016-10-17T18:56:00+08:00">2016-10-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Nim-game’s-rule"><a href="#Nim-game’s-rule" class="headerlink" title="Nim game’s rule:"></a>Nim game’s rule:</h3><p>You are playing the following Nim Game with your friend: There is a heap of stones on the table, each time one of you take turns to remove 1 to 3 stones. The one who removes the last stone will be the winner. You will take the first turn to remove the stones.</p>
+<p>Both of you are very clever and have optimal strategies for the game. Write a function to determine whether you can win the game given the number of stones in the heap.</p>
+<p>For example, if there are 4 stones in the heap, then you will never win the game: no matter 1, 2, or 3 stones you remove, the last stone will always be removed by your friend.</p>
+<h3 id="idea-of-Nim-game"><a href="#idea-of-Nim-game" class="headerlink" title="idea of Nim game"></a>idea of Nim game</h3><p>There are some situations in this game.</p>
+<p>Let’s think about what will happend while stones is few:</p>
+<p>If there are 4 stones in the heap,you will lose the game in every matters.</p>
+<p>If there are less than 3 stones,you will win the game in one step.</p>
+<p>So,when there are more than 4 stones,you should remove some stones and let your friend getting 4 stones.In this situation,we can simplify this problem to that how to leaving 4 stones.And you will find it is the same as initially problem.</p>
+<p>Now, what you should do is leaving multiple of 4 stones in every matters.So,if the number of stones is not the muiltiple of 4,you will win this game.</p>
+<p>Finally,we can use a formula to express this problem:</p>
+<p><code>stone_num%4!==0</code></p>
+<p>you will win.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/09/mongoDB-nodejs%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7access-token%E9%AA%8C%E8%AF%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/10/09/mongoDB-nodejs%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7access-token%E9%AA%8C%E8%AF%81/" class="post-title-link" itemprop="url">mongoDB,nodejs简易实现用户access_token验证</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-10-09 15:29:00" itemprop="dateCreated datePublished" datetime="2016-10-09T15:29:00+08:00">2016-10-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果:"></a>实现效果:</h3><p>用户调用接口时鉴权，如果没有合法的access_token则不允许接入，抛出401</p>
+<h3 id="实现要点"><a href="#实现要点" class="headerlink" title="实现要点:"></a>实现要点:</h3><p>mongoDB的简单操作，async与await</p>
+<h3 id="code"><a href="#code" class="headerlink" title="code:"></a>code:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> db = <span class="built_in">require</span>(<span class="string">&#x27;../db&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> router = express.Router()</span><br><span class="line"><span class="keyword">var</span> utils = <span class="built_in">require</span>(<span class="string">&#x27;../utils&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> checkLogin = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">await</span> checkAccessToken(req.query.userId, req.query.access_token)) &#123;</span><br><span class="line">        next()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        res.status(<span class="number">401</span>)</span><br><span class="line">        res.send()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">    <span class="built_in">console</span>.error(e)</span><br><span class="line">    res.status(<span class="number">500</span>)</span><br><span class="line">    res.send()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = checkLogin;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">checkAccessToken</span>(<span class="params">userId, accessToken</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!db) &#123;</span><br><span class="line">        <span class="built_in">console</span>.error(<span class="string">&quot;DataBase error&quot;</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> userInfo = <span class="keyword">await</span> db.user.findOne(&#123;</span><br><span class="line">            userId: userId</span><br><span class="line">        &#125;).exec()</span><br><span class="line">        <span class="keyword">return</span> userInfo.access_token === accessToken</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>mongoDB中，使用db.xx.find读出的是数组，需要用[0]或者findOne</p>
+<p>mongoDB的读取为异步过程，可以使用async await等待异步回调</p>
+<p>在处理时如果不使用res.send而直接调用next()，中间件向后传递</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/08/%E4%BD%BF%E7%94%A8node-express-mongoDB%E8%BF%9B%E8%A1%8C%E5%BE%AE%E4%BF%A1jssdk%E7%AD%BE%E5%90%8D%E8%BF%90%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/10/08/%E4%BD%BF%E7%94%A8node-express-mongoDB%E8%BF%9B%E8%A1%8C%E5%BE%AE%E4%BF%A1jssdk%E7%AD%BE%E5%90%8D%E8%BF%90%E7%AE%97/" class="post-title-link" itemprop="url">使用node+express+mongoDB进行微信jssdk签名运算</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-10-08 06:03:45" itemprop="dateCreated datePublished" datetime="2016-10-08T06:03:45+08:00">2016-10-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>代码地址:<a target="_blank" rel="noopener" href="https://github.com/lsvih/Wechat-JSSDK-API/blob/master/index.js">https://github.com/lsvih/Wechat-JSSDK-API/blob/master/index.js</a></p>
+<p>如果需要在微信浏览器中调用微信的底层支持(如调用相机等),需要使用微信jssdk。为了使用微信jssdk，需要计算出所需要的相关签名信息。</p>
+<p>微信jssdk文档:<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html#.E6.A6.82.E8.BF.B0">http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html#.E6.A6.82.E8.BF.B0</a> </p>
+<p>附录1为签名计算方法，大致过程如下:</p>
+<p>微信的签名需要使用jssdk_ticket生成，jssdk_ticket需要使用access_token生成。它们的生命周期都只有2个小时而且每天的请求数量是有限制的，因此需要在获取到access_token与ticket之后使用各种方法，如缓存，文件，数据库来将它存储住。</p>
+<p>根据业务需求，我使用node+express+mongoDB写了微信签名的计算.</p>
+<p>在需要使用jssdk的页面调用 xxxxx/wx?url=location.href就能计算出当前页面的微信jssdk签名等信息。</p>
+<p>可以使用微信的签名校验工具来测试签名是否正确</p>
+<p>微信签名校验工具:<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign">https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign</a> </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/03/%E5%9C%A8less%E4%B8%AD%E4%BD%BF%E7%94%A8calc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/10/03/%E5%9C%A8less%E4%B8%AD%E4%BD%BF%E7%94%A8calc/" class="post-title-link" itemprop="url">在less中使用calc()</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-10-03 04:22:00" itemprop="dateCreated datePublished" datetime="2016-10-03T04:22:00+08:00">2016-10-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>calc()在css中可以很方便的使用，但是在使用less时calc()内的东西会被编译器当作算式进行计算，例如</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:calc(</span> 100% <span class="selector-tag">-</span> 20<span class="selector-tag">px</span> );</span><br></pre></td></tr></table></figure>
+<p>会被编译成<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span><span class="selector-pseudo">:calc</span> ( 80% );</span><br></pre></td></tr></table></figure></p>
+<p>此时，需要用到less的e()字符串函数来让其以css方式解析</p>
+<blockquote>
+<h3 id="e"><a href="#e" class="headerlink" title="e"></a>e<a target="_blank" rel="noopener" href="http://lesscss.cn/functions/#string-functions-e"></a></h3><p>CSS escaping, replaced with <code>~&quot;value&quot;</code> syntax.</p>
+<p>It expects string as a parameter and return its content as is, but without quotes. It can be used to output CSS value which is either not valid CSS syntax, or uses proprietary syntax which Less doesn’t recognize.</p>
+<p>Parameters: <code>string</code> - a string to escape.</p>
+<p>Returns: <code>string</code> - the escaped string, without quotes.</p>
+<p>Example:</p>
+<pre style="box-sizing: border-box; font-family: Monaco, Menlo, Consolas, 'Courier New', monospace; font-size: 13px; white-space: pre-wrap; padding: 9.5px; margin-top: 0px; margin-bottom: 10px; line-height: 1.42857; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(245, 245, 245);">filter: e("ms:alwaysHasItsOwnSyntax.For.Stuff()");</pre>
+
+<p>Output:</p>
+<pre style="box-sizing: border-box; font-family: Monaco, Menlo, Consolas, 'Courier New', monospace; font-size: 13px; white-space: pre-wrap; padding: 9.5px; margin-top: 0px; margin-bottom: 10px; line-height: 1.42857; word-break: break-all; word-wrap: break-word; color: rgb(51, 51, 51); border: 1px solid rgb(204, 204, 204); border-radius: 4px; background-color: rgb(245, 245, 245);">filter: ms:alwaysHasItsOwnSyntax.For.Stuff();</pre>
+
+<p>Note: The function accepts also <code>~&quot;&quot;</code> escaped values and numbers as parameters. Anything else returns an error.</p>
+</blockquote>
+<p>因此，需要这样写<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span>: <span class="selector-tag">calc</span>( <span class="selector-tag">e</span>(&quot;100% <span class="selector-tag">-</span> 20<span class="selector-tag">px</span>&quot;) );</span><br></pre></td></tr></table></figure></p>
+<p>或<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span>: <span class="selector-tag">calc</span>(~&quot;100% <span class="selector-tag">-</span> 20<span class="selector-tag">px</span>&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>这时就能满足需求，编译成css后会保持<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">height</span>: <span class="selector-tag">calc</span>( 100% <span class="selector-tag">-</span> 20<span class="selector-tag">px</span> );</span><br></pre></td></tr></table></figure></p>
+<p>的样子。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/09/30/js%E5%AE%9E%E7%8E%B0async-parallel%E5%8A%9F%E8%83%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/09/30/js%E5%AE%9E%E7%8E%B0async-parallel%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">js实现async.parallel功能</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-09-30 16:25:46" itemprop="dateCreated datePublished" datetime="2016-09-30T16:25:46+08:00">2016-09-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在有多个异步请求的情况下，如何将它们全部正确的返回请求是个问题。如果不适用async,一般有几种实现的情况。</p>
+<p>1、对于result需要按照顺序请求的情况直接使用回调-回调-回调</p>
+<p>  直接使用这样的回调就能完成相应需求：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> allResult = &#123;&#125;</span><br><span class="line">asyncFunction(<span class="string">&quot;1&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(error==<span class="literal">null</span>)</span><br><span class="line">    allResult[<span class="string">&quot;1&quot;</span>]=result</span><br><span class="line">    asyncFunction(<span class="string">&quot;2&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(error==<span class="literal">null</span>)</span><br><span class="line">        allResult[<span class="string">&quot;2&quot;</span>]=result</span><br><span class="line">        asyncFunction(<span class="string">&quot;3&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">          <span class="keyword">if</span>(error==<span class="literal">null</span>)</span><br><span class="line">            allResult[<span class="string">&quot;3&quot;</span>]=result </span><br><span class="line">          <span class="keyword">else</span></span><br><span class="line">          <span class="built_in">console</span>.error(error)</span><br><span class="line">        &#125;)</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      <span class="built_in">console</span>.error(error)</span><br><span class="line">    &#125;)</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">     <span class="built_in">console</span>.error(error)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这种请求方式虽然能很明确地描述出整个流程，能保证result按顺序输出，但是代码一层套一层，不利于阅读。</p>
+<p>这种情况可以使用async.series进行控制，暂且不提</p>
+<p>2、如果不要求按照顺序输出result，因此上面那种做法就显得非常浪费时间，因为每个请求都要等到前一个请求完成后才会进行下一个请求，它们的时间是相加的。因此可以同时进行所有的请求，将所有请求的result都拿到，不需要管它们哪个先输出哪个后输出。</p>
+<p>在async中，可以这样实现:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>.parallel(&#123;</span><br><span class="line">  one:<span class="function"><span class="keyword">function</span>(<span class="params">done</span>)</span>&#123;</span><br><span class="line">    asyncFunction(<span class="string">&#x27;1&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(!error)</span><br><span class="line">        done(<span class="literal">null</span>,result)</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        done(error,<span class="literal">null</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  two:<span class="function"><span class="keyword">function</span>(<span class="params">done</span>)</span>&#123;</span><br><span class="line">    asyncFunction(<span class="string">&#x27;2&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(!error)</span><br><span class="line">        done(<span class="literal">null</span>,result)</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        done(error,<span class="literal">null</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  three:<span class="function"><span class="keyword">function</span>(<span class="params">done</span>)</span>&#123;</span><br><span class="line">    asyncFunction(<span class="string">&#x27;3&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(!error)</span><br><span class="line">        done(<span class="literal">null</span>,result)</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        done(error,<span class="literal">null</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,<span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!error)</span><br><span class="line">    callback(<span class="literal">null</span>,result)</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    callback(error,<span class="literal">null</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>以上代码的含义是，同时调用3个asyncFunction，当三个函数都成功取到result之后将result输出，如果其中有任何一个函数出现了错误(收到了error)则输出错误信息。通过这种方式可以节省请求时间且便于查看代码。</p>
+<h3 id="实现async-parallel"><a href="#实现async-parallel" class="headerlink" title="实现async.parallel"></a>实现async.parallel</h3><p>async.parallel参数由2部分，第一部分是由请求组成的对象，第二部分是全部完成时处理的函数</p>
+<p>需要处理的第一点就是如何判断所有的asyncFunction都成功完成，且在那时候调用之后的函数.</p>
+<p>可以采用for in 来获取第一部分参数的请求数量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>.parallel = <span class="function"><span class="keyword">function</span>(<span class="params">actions,allDone</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> Result = &#123;&#125;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> action <span class="keyword">in</span> actions)&#123;</span><br><span class="line">       <span class="keyword">if</span>(actions.hasOwnProperty(action)) n++</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样就能获得请求总数，hasOwnproperty防止计数时遍历到其原型的属性</p>
+<p>接着，就可以遍历请求，分别处理它们的回调了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>.parallel = <span class="function"><span class="keyword">function</span>(<span class="params">actions,allDone</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> Result = &#123;&#125;</span><br><span class="line">    <span class="keyword">var</span> n = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> action <span class="keyword">in</span> actions)&#123;</span><br><span class="line">       <span class="keyword">if</span>(actions.hasOwnProperty(action)) n++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//得到了n</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> action <span class="keyword">in</span> actions)&#123;</span><br><span class="line">       <span class="keyword">var</span> done = <span class="function"><span class="keyword">function</span>(<span class="params">error,result</span>)</span>&#123;</span><br><span class="line">           <span class="keyword">if</span>(error==<span class="literal">null</span>)&#123;</span><br><span class="line">               Result[action] = result</span><br><span class="line">               n--</span><br><span class="line">               <span class="keyword">if</span>(n==<span class="number">0</span>) allDone(<span class="literal">null</span>,Result)</span><br><span class="line">           &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">               allDone(error,Result)<span class="comment">//如果asyncFunction发生错误,将错误返回</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       action(done)<span class="comment">//将done作为参数放入每个请求中，用于处理result和error</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过这种方式，简单实现了async.parallel的功能。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/09/28/%E5%9C%A8%E8%BF%9C%E7%A8%8Bgit%E4%BB%93%E5%BA%93%E5%9B%9E%E9%80%80%E7%89%88%E6%9C%AC%EF%BC%8C%E6%92%A4%E9%94%80commit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/09/28/%E5%9C%A8%E8%BF%9C%E7%A8%8Bgit%E4%BB%93%E5%BA%93%E5%9B%9E%E9%80%80%E7%89%88%E6%9C%AC%EF%BC%8C%E6%92%A4%E9%94%80commit/" class="post-title-link" itemprop="url">在远程git仓库回退版本，撤销commit</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-09-28 04:52:00" itemprop="dateCreated datePublished" datetime="2016-09-28T04:52:00+08:00">2016-09-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>当做出了不正确的commit还push到远程仓库后，可以用强推的方法回退远程仓库</p>
+<ol>
+<li>先从远程仓库clone下最新的版本</li>
+<li>使用git reset —hard HEAD^ 来将仓库所有内容回退到上一个版本，在运行命令的时候可以看到当前的commit点<br><img src="/images/pasted-104.png" alt="upload successful"></li>
+<li>使用git status确认信息是否正确<br><img src="/images/pasted-105.png" alt="upload successful"><br>可以看到本地仓库是处于远程仓库4个commit版本前的位置</li>
+<li>强行将本地仓库推送到远程仓库，覆盖原来的master</li>
+</ol>
+<p>使用 git push origin +master:master</p>
+<p>此时远程仓库就回到了4个commit版本前。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -1141,32 +1183,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -1182,9 +1230,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -1200,55 +1247,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

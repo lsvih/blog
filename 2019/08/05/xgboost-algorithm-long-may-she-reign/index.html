@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,64 +13,47 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
-  <meta name="keywords" content="Translate,juejin,Algorithm,Machine Learning,Deep Learning,XGBoost">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="XGBoost 算法万岁！">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2019&#x2F;08&#x2F;05&#x2F;xgboost-algorithm-long-may-she-reign&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/2019/08/05/xgboost-algorithm-long-may-she-reign/index.html">
 <meta property="og:site_name" content="My note">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;15650167189931.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;cdn-images-1.medium.com&#x2F;max&#x2F;2000&#x2F;1*QJZ6W-Pck_W7RlIDwUIN9Q.jpeg">
-<meta property="og:image" content="https:&#x2F;&#x2F;cdn-images-1.medium.com&#x2F;max&#x2F;11030&#x2F;1*Uwbv9Nzv7uoZV_hJwrsPGQ.jpeg">
-<meta property="og:image" content="https:&#x2F;&#x2F;cdn-images-1.medium.com&#x2F;max&#x2F;2000&#x2F;1*FLshv-wVDfu-i54OqvZdHg.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;cdn-images-1.medium.com&#x2F;max&#x2F;2000&#x2F;1*U72CpSTnJ-XTjCisJqCqLg.jpeg">
-<meta property="og:updated_time" content="2019-08-05T14:54:58.080Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lsvih.com/images/15650167189931.jpg">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/2000/1*QJZ6W-Pck_W7RlIDwUIN9Q.jpeg">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/11030/1*Uwbv9Nzv7uoZV_hJwrsPGQ.jpeg">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/2000/1*FLshv-wVDfu-i54OqvZdHg.png">
+<meta property="og:image" content="https://cdn-images-1.medium.com/max/2000/1*U72CpSTnJ-XTjCisJqCqLg.jpeg">
+<meta property="article:published_time" content="2019-08-05T14:50:00.000Z">
+<meta property="article:modified_time" content="2019-08-05T14:54:58.080Z">
+<meta property="article:author" content="lsvih">
+<meta property="article:tag" content="Translate">
+<meta property="article:tag" content="juejin">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Deep Learning">
+<meta property="article:tag" content="XGBoost">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;15650167189931.jpg">
+<meta name="twitter:image" content="https://lsvih.com/images/15650167189931.jpg">
+
 
 <link rel="canonical" href="https://lsvih.com/2019/08/05/xgboost-algorithm-long-may-she-reign/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
   };
 </script>
 
@@ -93,24 +76,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -118,60 +113,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -179,31 +177,106 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
 
-  
-</div>
-<div class="search-pop-overlay"></div>
-
+      
+    </div>
   </div>
+
 </div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-XGBoost%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是 XGBoost？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%9B%B4%E8%A7%82%E5%9C%B0%E7%90%86%E8%A7%A3-XGBoost%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">如何直观地理解 XGBoost？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-XGBoost-%E6%95%88%E6%9E%9C%E8%BF%99%E4%B9%88%E5%A5%BD%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">为什么 XGBoost 效果这么好？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Where-is-the-proof"><span class="nav-number">4.</span> <span class="nav-text">Where is the proof?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E4%BB%AC%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E5%9C%A8%E4%BB%BB%E4%BD%95%E6%83%85%E5%86%B5%E9%83%BD%E7%94%A8-XGBoost%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">我们是否可以在任何情况都用 XGBoost？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E6%9D%A5%E4%BC%9A%E5%A6%82%E4%BD%95%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">未来会如何？</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lsvih</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">161</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">205</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
@@ -213,20 +286,20 @@
   </div>
   <div class="reading-progress-bar"></div>
 
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content">
-            
-
-  <div class="posts-expand">
+    <div class="main-inner post posts-expand">
       
+
+      
+
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/08/05/xgboost-algorithm-long-may-she-reign/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -238,33 +311,36 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
+
+    
+    
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           XGBoost 算法万岁！
-        </h2>
+        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-08-05 22:50:00" itemprop="dateCreated datePublished" datetime="2019-08-05T22:50:00+08:00">2019-08-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Translate/" itemprop="url" rel="index">
-                    <span itemprop="name">Translate</span>
-                  </a>
-                </span>
-            </span>
+      <time title="Created: 2019-08-05 22:50:00" itemprop="dateCreated datePublished" datetime="2019-08-05T22:50:00+08:00">2019-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -273,21 +349,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
         <p><img src="/images/15650167189931.jpg" alt="Photo By Jared Subia"></p>
 <a id="more"></a>
 <blockquote>
 <p>机器学习算法的新女王将接管整个世界……</p>
 </blockquote>
-<p>（本文与 <a href="https://towardsdatascience.com/u/e15e82916c90" target="_blank" rel="noopener">Venkat Anurag Setty</a> 共同完成）</p>
+<p>（本文与 <a target="_blank" rel="noopener" href="https://towardsdatascience.com/u/e15e82916c90">Venkat Anurag Setty</a> 共同完成）</p>
 <p>我还记得 15 年前我的第一份工作。那时，我刚完成研究生课程，作为一名分析师加入了一家国际投行。在入职的第一天，我小心翼翼地工作，不断回想学过的知识，心里想着自己是否能胜任这个企业的工作。老板感受到了我的焦虑，笑着对我说：</p>
 <p><strong>“别担心！你只要了解回归模型就行了！”</strong></p>
 <p>我仔细想了想，“明白了！” —— 无论是线性回归还是逻辑回归我都了解。老板是对的，在我的任期内，专门构建基于回归的统计学模型。我并不是孤身一人，因为在那时，回归模型是无可争议的预测分析女王。15 年后，回归模型的时代结束了，这位老女王已经退位。新上任的女王有着时髦的名字：XGBoost 或 Extreme Gradient Boosting。</p>
 <hr>
-<h2 id="什么是-XGBoost？"><a href="#什么是-XGBoost？" class="headerlink" title="什么是 XGBoost？"></a>什么是 XGBoost？</h2><p><a href="https://xgboost.ai/" target="_blank" rel="noopener">XGBoost</a> 是一种基于决策树的集成（ensemble）机器学习算法，使用了<a href="https://en.wikipedia.org/wiki/Gradient_boosting" target="_blank" rel="noopener">梯度提升（gradient boosting）</a>框架。在非结构化数据（如图像、文本等）的预测问题中，人工神经网络效果好于其它所有算法和框架；然而，在解决中小型的结构化、扁平化数据时，基于决策树的算法才是最好的。下面的图表展示了近年来基于树的算法的演变过程：</p>
+<h2 id="什么是-XGBoost？"><a href="#什么是-XGBoost？" class="headerlink" title="什么是 XGBoost？"></a>什么是 XGBoost？</h2><p><a target="_blank" rel="noopener" href="https://xgboost.ai/">XGBoost</a> 是一种基于决策树的集成（ensemble）机器学习算法，使用了<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Gradient_boosting">梯度提升（gradient boosting）</a>框架。在非结构化数据（如图像、文本等）的预测问题中，人工神经网络效果好于其它所有算法和框架；然而，在解决中小型的结构化、扁平化数据时，基于决策树的算法才是最好的。下面的图表展示了近年来基于树的算法的演变过程：</p>
 <p><img src="https://cdn-images-1.medium.com/max/2000/1*QJZ6W-Pck_W7RlIDwUIN9Q.jpeg" alt="Evolution of XGBoost Algorithm from Decision Trees"></p>
-<p>XGBoost 算法是华盛顿大学在科研工程中开发的。<a href="https://arxiv.org/pdf/1603.02754.pdf" target="_blank" rel="noopener">陈天奇与 Carlos Guestrin</a> 在 SIGKDD 2016 上发表了他们的论文，迅速吸引了机器学习界的注意。自从 XGBoost 推出以来，它不仅在许多 Kaggle 竞赛中获得了胜利，还为一些顶尖的业界应用提供了动力。因此，形成了一个强大的数据科学家社区为 XGBoost 做贡献，目前 <a href="https://github.com/dmlc/xgboost/" target="_blank" rel="noopener">GitHub</a> 上的 XGBoost 项目有 350 余名贡献者，3600 余条 commit 记录。XGBoost 算法还在下面几个方面极为出众：</p>
+<p>XGBoost 算法是华盛顿大学在科研工程中开发的。<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1603.02754.pdf">陈天奇与 Carlos Guestrin</a> 在 SIGKDD 2016 上发表了他们的论文，迅速吸引了机器学习界的注意。自从 XGBoost 推出以来，它不仅在许多 Kaggle 竞赛中获得了胜利，还为一些顶尖的业界应用提供了动力。因此，形成了一个强大的数据科学家社区为 XGBoost 做贡献，目前 <a target="_blank" rel="noopener" href="https://github.com/dmlc/xgboost/">GitHub</a> 上的 XGBoost 项目有 350 余名贡献者，3600 余条 commit 记录。XGBoost 算法还在下面几个方面极为出众：</p>
 <ol>
 <li>应用广泛：可以用于解决回归、分类、排序和其它用户自定义的预测问题；</li>
 <li>可移植性：在 Windows、Linux 和 OS X 系统中都能顺畅运行；</li>
@@ -313,11 +387,11 @@
 </li>
 </ol>
 <hr>
-<h2 id="为什么-XGBoost-效果这么好？"><a href="#为什么-XGBoost-效果这么好？" class="headerlink" title="为什么 XGBoost 效果这么好？"></a>为什么 XGBoost 效果这么好？</h2><p>XGBoost 和梯度提升机（Gradient Boosting Machines，GBM）都是集成（ensemble）树方法，原理都是用梯度下降架构来对多个弱分类器（通常是 <a href="https://www.datasciencecentral.com/profiles/blogs/introduction-to-classification-regression-trees-cart" target="_blank" rel="noopener">CARTs</a>）进行提升（boosting）。不过，XGBoost 通过系统优化与算法强化在 GBM 框架上进行了改进。</p>
+<h2 id="为什么-XGBoost-效果这么好？"><a href="#为什么-XGBoost-效果这么好？" class="headerlink" title="为什么 XGBoost 效果这么好？"></a>为什么 XGBoost 效果这么好？</h2><p>XGBoost 和梯度提升机（Gradient Boosting Machines，GBM）都是集成（ensemble）树方法，原理都是用梯度下降架构来对多个弱分类器（通常是 <a target="_blank" rel="noopener" href="https://www.datasciencecentral.com/profiles/blogs/introduction-to-classification-regression-trees-cart">CARTs</a>）进行提升（boosting）。不过，XGBoost 通过系统优化与算法强化在 GBM 框架上进行了改进。</p>
 <p><img src="https://cdn-images-1.medium.com/max/2000/1*FLshv-wVDfu-i54OqvZdHg.png" alt="XGBoost 是如何优化标准 GBM 算法的"></p>
 <p><strong>系统优化：</strong></p>
 <ol>
-<li><p><strong>并行化</strong>：XGBoost 通过<a href="http://zhanpengfang.github.io/418home.html" target="_blank" rel="noopener">并行化</a>方法来实现顺序的建树过程。由于基础学习器循环内部（包括用于枚举树的叶子节点的外部循环，以及用于计算特征的内部循环）的可互换性，因此才能这么做；循环的嵌套会限制并行化，因为如果没有完成两个开销更大的内部循环，就不能开始新的外部循环。XGBoost 算法通过使用并行线程对所有实例进行全局扫描和排序来进行初始化，使得循环的顺序变得可交换，从而减少了运行的时间。这样做，可以抵消并行化开销而提升算法性能。</p>
+<li><p><strong>并行化</strong>：XGBoost 通过<a target="_blank" rel="noopener" href="http://zhanpengfang.github.io/418home.html">并行化</a>方法来实现顺序的建树过程。由于基础学习器循环内部（包括用于枚举树的叶子节点的外部循环，以及用于计算特征的内部循环）的可互换性，因此才能这么做；循环的嵌套会限制并行化，因为如果没有完成两个开销更大的内部循环，就不能开始新的外部循环。XGBoost 算法通过使用并行线程对所有实例进行全局扫描和排序来进行初始化，使得循环的顺序变得可交换，从而减少了运行的时间。这样做，可以抵消并行化开销而提升算法性能。</p>
 </li>
 <li><p><strong>树剪枝</strong>：在 GBM 框架中，树停止分裂的标准本质上是贪婪的，取决于分裂点的 loss 值。而 XGBoost 用 <code>max_depth</code> 这一参数而非某个指标来停止分裂，然后开始反过来对树进行剪枝。这种“深度优先”的方法显著提高了计算性能。</p>
 </li>
@@ -326,28 +400,28 @@
 </ol>
 <p><strong>算法强化：</strong></p>
 <ol>
-<li><p><strong>正则化（Regularization）</strong>：XGBoost 同时通过 LASSO（L1）与 Ridge（L2）<a href="https://towardsdatascience.com/l1-and-l2-regularization-methods-ce25e7fc831c" target="_blank" rel="noopener">正则化</a>惩罚过于复杂的模型，从而避免过拟合。</p>
+<li><p><strong>正则化（Regularization）</strong>：XGBoost 同时通过 LASSO（L1）与 Ridge（L2）<a target="_blank" rel="noopener" href="https://towardsdatascience.com/l1-and-l2-regularization-methods-ce25e7fc831c">正则化</a>惩罚过于复杂的模型，从而避免过拟合。</p>
 </li>
-<li><p><strong>稀疏意识（Sparsity Awareness）</strong>：XGBoost 会根据训练 loss 自动“学习”输入中的缺失值，从而自然地接收稀疏特征，并更高效地处理各种<a href="https://www.kdnuggets.com/2017/10/xgboost-concise-technical-overview.html" target="_blank" rel="noopener">稀疏模式（sparsity patterns）</a>的数据。</p>
+<li><p><strong>稀疏意识（Sparsity Awareness）</strong>：XGBoost 会根据训练 loss 自动“学习”输入中的缺失值，从而自然地接收稀疏特征，并更高效地处理各种<a target="_blank" rel="noopener" href="https://www.kdnuggets.com/2017/10/xgboost-concise-technical-overview.html">稀疏模式（sparsity patterns）</a>的数据。</p>
 </li>
-<li><p><strong>Weighted Quantile Sketch</strong>：XGBoost 使用分布式 <a href="https://arxiv.org/pdf/1603.02754.pdf" target="_blank" rel="noopener">weighted Quantile Sketch 算法</a>，可以有效地找到大多数带权数据集的最佳分割点。 </p>
+<li><p><strong>Weighted Quantile Sketch</strong>：XGBoost 使用分布式 <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1603.02754.pdf">weighted Quantile Sketch 算法</a>，可以有效地找到大多数带权数据集的最佳分割点。 </p>
 </li>
-<li><p><strong>交叉验证（Cross-validation）</strong>：算法内置了在每次迭代时进行<a href="https://towardsdatascience.com/cross-validation-in-machine-learning-72924a69872f" target="_blank" rel="noopener">交叉验证</a>的方法，不再需要显式地去搜索与指定一轮训练中所需的 boosting 迭代次数。</p>
+<li><p><strong>交叉验证（Cross-validation）</strong>：算法内置了在每次迭代时进行<a target="_blank" rel="noopener" href="https://towardsdatascience.com/cross-validation-in-machine-learning-72924a69872f">交叉验证</a>的方法，不再需要显式地去搜索与指定一轮训练中所需的 boosting 迭代次数。</p>
 </li>
 </ol>
 <hr>
-<h2 id="Where-is-the-proof"><a href="#Where-is-the-proof" class="headerlink" title="Where is the proof?"></a>Where is the proof?</h2><p>我们使用 Scikit-learn 的 <a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_classification.html" target="_blank" rel="noopener"><code>Make_Classification</code></a> 数据包，创建了一个包含 100 万个数据点、20 个特征（其中包括 2 个信息性特征与 2 个冗余特征）的随机样本集，并用它测试几种算法：逻辑回归、随机森林、标准梯度提升和 XGBoost。</p>
+<h2 id="Where-is-the-proof"><a href="#Where-is-the-proof" class="headerlink" title="Where is the proof?"></a>Where is the proof?</h2><p>我们使用 Scikit-learn 的 <a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_classification.html"><code>Make_Classification</code></a> 数据包，创建了一个包含 100 万个数据点、20 个特征（其中包括 2 个信息性特征与 2 个冗余特征）的随机样本集，并用它测试几种算法：逻辑回归、随机森林、标准梯度提升和 XGBoost。</p>
 <p><img src="https://cdn-images-1.medium.com/max/2000/1*U72CpSTnJ-XTjCisJqCqLg.jpeg" alt="XGBoost vs. Other ML Algorithms using SKLearn’s Make_Classification Dataset"></p>
-<p>如上图所示，与其它算法相比，XGBoost 模型得到了最好的预测性能与最短的处理时间。研究发现，在其它严格的<a href="https://github.com/szilard/benchm-ml" target="_blank" rel="noopener">基准测试</a>中，也能得到类似的结果。因此，XGBoost 在最近的数据科学比赛中被广泛采用，也是意料之中的事。</p>
+<p>如上图所示，与其它算法相比，XGBoost 模型得到了最好的预测性能与最短的处理时间。研究发现，在其它严格的<a target="_blank" rel="noopener" href="https://github.com/szilard/benchm-ml">基准测试</a>中，也能得到类似的结果。因此，XGBoost 在最近的数据科学比赛中被广泛采用，也是意料之中的事。</p>
 <blockquote>
-<p>“当你举棋不定的时候，用 XGBoost 就对了” —— <a href="http://blog.kaggle.com/2015/08/26/avito-winners-interview-1st-place-owen-zhang/" target="_blank" rel="noopener">Avito</a> Kaggle 上下文广告点击预测大赛冠军 Owen Zhang 如是说。</p>
+<p>“当你举棋不定的时候，用 XGBoost 就对了” —— <a target="_blank" rel="noopener" href="http://blog.kaggle.com/2015/08/26/avito-winners-interview-1st-place-owen-zhang/">Avito</a> Kaggle 上下文广告点击预测大赛冠军 Owen Zhang 如是说。</p>
 </blockquote>
 <hr>
-<h2 id="我们是否可以在任何情况都用-XGBoost？"><a href="#我们是否可以在任何情况都用-XGBoost？" class="headerlink" title="我们是否可以在任何情况都用 XGBoost？"></a>我们是否可以在任何情况都用 XGBoost？</h2><p>在机器学习中（或者说在生命中），没有免费的午餐。作为数据科学家，必须为手头数据测试所有算法，以找到效果最好的算法。但是，选出正确算法还不够，还必须要为数据集正确地配置算法的<a href="https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/" target="_blank" rel="noopener">超参数</a>。此外，在选择最优算法时，除了效果还要考虑其它的因素，比如计算复杂度、可解释性、易用性等等。这正是机器学习从科学转向艺术的部分，同时，也是魔法发生的地方！</p>
+<h2 id="我们是否可以在任何情况都用-XGBoost？"><a href="#我们是否可以在任何情况都用-XGBoost？" class="headerlink" title="我们是否可以在任何情况都用 XGBoost？"></a>我们是否可以在任何情况都用 XGBoost？</h2><p>在机器学习中（或者说在生命中），没有免费的午餐。作为数据科学家，必须为手头数据测试所有算法，以找到效果最好的算法。但是，选出正确算法还不够，还必须要为数据集正确地配置算法的<a target="_blank" rel="noopener" href="https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/">超参数</a>。此外，在选择最优算法时，除了效果还要考虑其它的因素，比如计算复杂度、可解释性、易用性等等。这正是机器学习从科学转向艺术的部分，同时，也是魔法发生的地方！</p>
 <hr>
-<h2 id="未来会如何？"><a href="#未来会如何？" class="headerlink" title="未来会如何？"></a>未来会如何？</h2><p>机器学习是一个非常活跃的研究领域，目前已经出现了各种各样的 XGBoost 的变体。微软研究院最近提出了 <a href="https://www.microsoft.com/en-us/research/project/lightgbm/" target="_blank" rel="noopener">LightGBM</a> 梯度提升框架，体现出了巨大的潜力。Yandex 科技开发了 <a href="https://catboost.ai/" target="_blank" rel="noopener">CatBoost</a>，得到了令人印象深刻的基准测试结果。出现一个在预测性能、灵活性、可解释性和实用型都优于 XGBoost 的框架只是时间上的问题。然而，在这个更强的挑战者到来之前，XGBoost 将继续统治机器学习的世界！</p>
+<h2 id="未来会如何？"><a href="#未来会如何？" class="headerlink" title="未来会如何？"></a>未来会如何？</h2><p>机器学习是一个非常活跃的研究领域，目前已经出现了各种各样的 XGBoost 的变体。微软研究院最近提出了 <a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/research/project/lightgbm/">LightGBM</a> 梯度提升框架，体现出了巨大的潜力。Yandex 科技开发了 <a target="_blank" rel="noopener" href="https://catboost.ai/">CatBoost</a>，得到了令人印象深刻的基准测试结果。出现一个在预测性能、灵活性、可解释性和实用型都优于 XGBoost 的框架只是时间上的问题。然而，在这个更强的挑战者到来之前，XGBoost 将继续统治机器学习的世界！</p>
 <blockquote>
-<p>掘金地址：<a href="https://juejin.im/post/5d484040e51d4561f95ee9de" target="_blank" rel="noopener">https://juejin.im/post/5d484040e51d4561f95ee9de</a></p>
+<p>掘金地址：<a target="_blank" rel="noopener" href="https://juejin.im/post/5d484040e51d4561f95ee9de">https://juejin.im/post/5d484040e51d4561f95ee9de</a></p>
 </blockquote>
 
     </div>
@@ -355,25 +429,25 @@
     
     
     
-        
 
-<div>
-<ul class="post-copyright">
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
   <li class="post-copyright-author">
-    <strong>Post author:  </strong>lsvih
+      <strong>Written by:  </strong>lsvih
   </li>
   <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="/https:/lsvih.com/2019/08/05/xgboost-algorithm-long-may-she-reign/" title="XGBoost 算法万岁！">https://lsvih.com/2019/08/05/xgboost-algorithm-long-may-she-reign/</a>
+      <strong>Post link: </strong>
+      <a href="https://lsvih.com/2019/08/05/xgboost-algorithm-long-may-she-reign/" title="XGBoost 算法万岁！">https://lsvih.com/2019/08/05/xgboost-algorithm-long-may-she-reign/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
   </li>
 </ul>
 </div>
 
-
-      <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Translate/" rel="tag"># Translate</a>
               <a href="/tags/juejin/" rel="tag"># juejin</a>
@@ -385,114 +459,59 @@
 
         
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2019/06/28/why-one-hot-encode-data-in-machine-learning/" rel="prev" title="在机器学习中为什么要进行 One-Hot 编码？">
-      <i class="fa fa-chevron-left"></i> 在机器学习中为什么要进行 One-Hot 编码？
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/02/07/edge-detection-in-python/" rel="next" title="使用 Python 进行边缘检测">
-      使用 Python 进行边缘检测 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/06/28/why-one-hot-encode-data-in-machine-learning/" rel="prev" title="在机器学习中为什么要进行 One-Hot 编码？">
+                  <i class="fa fa-chevron-left"></i> 在机器学习中为什么要进行 One-Hot 编码？
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/02/07/edge-detection-in-python/" rel="next" title="使用 Python 进行边缘检测">
+                  使用 Python 进行边缘检测 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
   
   
   
 
-  </div>
 
 
-          </div>
-          
+      
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-XGBoost？"><span class="nav-number">1.</span> <span class="nav-text">什么是 XGBoost？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何直观地理解-XGBoost？"><span class="nav-number">2.</span> <span class="nav-text">如何直观地理解 XGBoost？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么-XGBoost-效果这么好？"><span class="nav-number">3.</span> <span class="nav-text">为什么 XGBoost 效果这么好？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Where-is-the-proof"><span class="nav-number">4.</span> <span class="nav-text">Where is the proof?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我们是否可以在任何情况都用-XGBoost？"><span class="nav-number">5.</span> <span class="nav-text">我们是否可以在任何情况都用 XGBoost？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未来会如何？"><span class="nav-number">6.</span> <span class="nav-text">未来会如何？</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">lsvih</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">161</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">categories</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">205</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-  </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
-
-
-
-      </div>
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+  </main>
 
+  <footer class="footer">
+    <div class="footer-inner">
+      
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -504,32 +523,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -545,9 +570,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -563,55 +587,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 

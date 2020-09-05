@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 5.1.1">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,68 +13,47 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
 
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://lsvih.com').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.6.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    algolia: {
-      appID: '6U6P1RGK4F',
-      apiKey: 'b14e73cdd627eabe947b5decbe14850f',
-      indexName: 'lsvih',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+  </script>
 
   <meta name="description" content="直线分类问题 对于此数据图可以发现正类与负类的决策边界大约是一条直线。 与线性回归类似，先计算代价方程J J(\theta_0,\theta_1)&#x3D;\frac{1}{2m} \sum^m_{i&#x3D;1}(h_\theta(x^{(i)}-y^{(i)}))^2但是其中的h(x)发生了变化，实际上为 h_\theta(x)&#x3D;g(\theta^Tx)g(z)&#x3D;\frac{1}{1+e^{-z}}带入得 J">
-<meta name="keywords" content="machine learning,coursera note">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习学习笔记（八）分类问题实操">
-<meta property="og:url" content="https:&#x2F;&#x2F;lsvih.com&#x2F;2016&#x2F;03&#x2F;30&#x2F;%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E5%AE%9E%E6%93%8D&#x2F;index.html">
+<meta property="og:url" content="https://lsvih.com/2016/03/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E5%AE%9E%E6%93%8D/index.html">
 <meta property="og:site_name" content="My note">
 <meta property="og:description" content="直线分类问题 对于此数据图可以发现正类与负类的决策边界大约是一条直线。 与线性回归类似，先计算代价方程J J(\theta_0,\theta_1)&#x3D;\frac{1}{2m} \sum^m_{i&#x3D;1}(h_\theta(x^{(i)}-y^{(i)}))^2但是其中的h(x)发生了变化，实际上为 h_\theta(x)&#x3D;g(\theta^Tx)g(z)&#x3D;\frac{1}{1+e^{-z}}带入得 J">
-<meta property="og:locale" content="default">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-33.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-34.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-35.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-36.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-37.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-38.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-39.png">
-<meta property="og:updated_time" content="2018-10-28T16:13:16.760Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://lsvih.com/images/pasted-33.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-34.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-35.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-36.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-37.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-38.png">
+<meta property="og:image" content="https://lsvih.com/images/pasted-39.png">
+<meta property="article:published_time" content="2016-03-30T10:49:00.000Z">
+<meta property="article:modified_time" content="2018-10-28T16:13:16.760Z">
+<meta property="article:author" content="lsvih">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="coursera note">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;lsvih.com&#x2F;images&#x2F;pasted-33.png">
+<meta name="twitter:image" content="https://lsvih.com/images/pasted-33.png">
+
 
 <link rel="canonical" href="https://lsvih.com/2016/03/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E5%AE%9E%E6%93%8D/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true,
-    isPage: false,
-    isArchive: false
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
   };
 </script>
 
@@ -97,24 +76,36 @@
 
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -122,60 +113,63 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container">
-    <div class="headband"></div>
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">My note</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <h1 class="site-subtitle" itemprop="description">lsvih</h1>
-      
-  </div>
-
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">My note</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">lsvih</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
 
 
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-fw fa-user"></i>About</a>
+    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -183,202 +177,44 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
+
+
+
+  <div class="search-pop-overlay">
     <div class="popup search-popup">
-    <div class="search-header">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input" id="search-input"></div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
-
-  
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E5%AE%9E%E6%93%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          机器学习学习笔记（八）分类问题实操
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-03-30 18:49:00" itemprop="dateCreated datePublished" datetime="2016-03-30T18:49:00+08:00">2016-03-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="直线分类问题"><a href="#直线分类问题" class="headerlink" title="直线分类问题"></a>直线分类问题</h3><p><img src="/images/pasted-33.png" alt="upload successful"></p>
-<p>对于此数据图可以发现正类与负类的决策边界大约是一条直线。</p>
-<p>与线性回归类似，先计算代价方程J</p>
-<script type="math/tex; mode=display">J(\theta_0,\theta_1)=\frac{1}{2m} \sum^m_{i=1}(h_\theta(x^{(i)}-y^{(i)}))^2</script><p>但是其中的h(x)发生了变化，实际上为</p>
-<script type="math/tex; mode=display">h_\theta(x)=g(\theta^Tx)</script><script type="math/tex; mode=display">g(z)=\frac{1}{1+e^{-z}}</script><p>带入得</p>
-<script type="math/tex; mode=display">J(\theta)=\frac{1}{m}\sum^m_{i=1}Cost(h_\theta(x^{(i)},y^{(i)})) \\=-\frac{1}{m}[\sum^m_{i=1}y^{(i)}log{h_\theta(x^{(i)})}+(1-y^{(i)})log{(1-h_\theta(x^{(i)})})]</script><p>同理带入梯度下降函数</p>
-<script type="math/tex; mode=display">\theta:=\theta-\alpha\frac{1}{m}\sum^m_{i=1}[(h_\theta(x^{(i)})-y^{(i)})\cdot x^{(i)}]</script><p>最后将它们放入fminunc（matlab求最小值函数）中运算即可得到训练结果。<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">J += (-y(<span class="built_in">i</span>).*(<span class="built_in">log</span>(h))-(<span class="number">1</span>-y(<span class="built_in">i</span>)).*(<span class="built_in">log</span>(<span class="number">1</span>-h)))/m;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">//----</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">grad += ((h - y(<span class="built_in">i</span>))*X(<span class="built_in">i</span>,:)')/m;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr></table></figure><br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">options = optimset(<span class="string">'GradObj'</span>, <span class="string">'on'</span>, <span class="string">'MaxIter'</span>, <span class="number">400</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">[theta, cost] = ...</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">	fminunc(@(t)(costFunction(t, X, y)), initial_theta, options);</span></pre></td></tr></table></figure></p>
-<p>即可得到训练后的$\theta$值，在图上表现出来呈</p>
-<p><img src="/images/pasted-34.png" alt="upload successful"></p>
-<p>可以看到正集与负集基本分开。</p>
-<h3 id="非直线分类"><a href="#非直线分类" class="headerlink" title="非直线分类"></a>非直线分类</h3><p><img src="/images/pasted-35.png" alt="upload successful"></p>
-<p>如图所示，可以看出正负集的边界应该是曲线。</p>
-<p>曲线的方程是多项式，因此首先对曲线的多项式的项进行罗列：</p>
-<p><img src="/images/pasted-36.png" alt="upload successful"></p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">degree = <span class="number">6</span>;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">out = <span class="built_in">ones</span>(<span class="built_in">size</span>(X1(:,<span class="number">1</span>)));</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:degree</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">0</span>:<span class="built_in">i</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">        out(:, <span class="keyword">end</span>+<span class="number">1</span>) = (X1.^(<span class="built_in">i</span>-<span class="built_in">j</span>)).*(X2.^<span class="built_in">j</span>);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">    <span class="keyword">end</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr></table></figure>
-<p>以上生成了一个28项的向量作为这个曲线的项。</p>
-<script type="math/tex; mode=display">J(\theta)=\frac{1}{m}[\sum^m_{i=1}-y^{(i)}log{h_\theta(x^{(i)})}-(1-y^{(i)})log{(1-h_\theta(x^{(i)})})]+\frac{\lambda}{2m}\sum^n_{j=1}\theta^2_j</script><p>根据此公式进行代价函数的运算。</p>
-<p>由于上式中最后一项$\theta$不需要惩罚$\theta_0$，因此从$\theta_1$开始相乘。由于matlab的下标号是从1开始的，因此最后一项的θ要从2开始相乘。后面的梯度函数同理</p>
-<script type="math/tex; mode=display">\frac{\partial J(\theta)}{\partial \theta_0}=\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j, \text{for j=0}\\ \frac{\partial J(\theta)}{\partial \theta_j}=(\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j)+\frac{\lambda}{m}\theta_j ,\text{for j}\geq 1</script><p>简单用循环写代码如下<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">J += (-y(<span class="built_in">i</span>).*(<span class="built_in">log</span>(h))-(<span class="number">1</span>-y(<span class="built_in">i</span>)).*(<span class="built_in">log</span>(<span class="number">1</span>-h)))/m;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=(<span class="number">2</span>:<span class="built_in">size</span>(theta))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">J += theta(<span class="built_in">j</span>)^<span class="number">2.</span>*lambda/(<span class="number">2</span>*m);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">//-------</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">grad += ((h - y(<span class="built_in">i</span>))*X(<span class="built_in">i</span>,:)')./m;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=(<span class="number">2</span>:<span class="built_in">size</span>(theta))</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">grad(<span class="built_in">j</span>) += theta(<span class="built_in">j</span>).*lambda./m;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line"><span class="keyword">end</span></span></pre></td></tr></table></figure></p>
-<p>可以得到多项式的各个$\theta$值。</p>
-<p>根据多项式画出图形可以看到</p>
-<p><img src="/images/pasted-37.png" alt="upload successful"></p>
-<p>基本将正负极分开。</p>
-<p>如果对$\lambda=1$(正则化参数)进行修改，例如修改成别的值可以得到：</p>
-<p>$\lambda=0$</p>
-<p><img src="/images/pasted-38.png" alt="upload successful"></p>
-<p>$\lambda=100$</p>
-<p><img src="/images/pasted-39.png" alt="upload successful"></p>
-<p>可以看到$\lambda=0$的时候拟合曲线绕的弯非常多，试图去匹配所有的点，因而失去了这个集整体的特征，变得过度复杂，这种现象称为过拟合；</p>
-<p>而$\lambda=100$的时候明显拟合曲线并没有良好地工作，称为欠拟合（$\theta$的乘积占的权重过大导致除了θ0之外的项全部变为0）。</p>
-
     </div>
-
-    
-    
-    
-        
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:  </strong>lsvih
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="/https:/lsvih.com/2016/03/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E5%AE%9E%E6%93%8D/" title="机器学习学习笔记（八）分类问题实操">https://lsvih.com/2016/03/30/机器学习学习笔记（八）分类问题实操/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
-  </li>
-</ul>
-</div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
-              <a href="/tags/coursera-note/" rel="tag"># coursera note</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2016/03/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/" rel="prev" title="机器学习学习笔记（七）分类问题">
-      <i class="fa fa-chevron-left"></i> 机器学习学习笔记（七）分类问题
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2016/03/30/%E8%AE%A9%E7%BD%91%E9%A1%B5%E8%8F%9C%E5%8D%95%E4%B8%8A%E6%8B%89%E5%87%BA%E7%8E%B0%E4%B8%8B%E6%8B%89%E6%B6%88%E5%A4%B1%E2%80%94%E2%80%94%E7%AE%80%E5%8D%95%E6%9C%89%E8%B6%A3%E7%9A%84headroom-js/" rel="next" title="让网页菜单上拉出现下拉消失——简单有趣的headroom.js">
-      让网页菜单上拉出现下拉消失——简单有趣的headroom.js <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
   </div>
 
-
-          </div>
-          
-
-        </div>
-          
+</div>
+        
   
   <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
         </li>
@@ -388,17 +224,17 @@
       </ul>
 
       <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#直线分类问题"><span class="nav-number">1.</span> <span class="nav-text">直线分类问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非直线分类"><span class="nav-number">2.</span> <span class="nav-text">非直线分类</span></a></li></ol></div>
-      </div>
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B4%E7%BA%BF%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">直线分类问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E7%9B%B4%E7%BA%BF%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">非直线分类</span></a></li></ol></div>
+      </section>
       <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">lsvih</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -421,34 +257,213 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/lsvih" title="GitHub → https://github.com/lsvih" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </div>
-
+      </section>
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
-      </div>
-    </main>
+    </header>
 
-    <footer class="footer">
-      <div class="footer-inner">
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E5%AE%9E%E6%93%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          机器学习学习笔记（八）分类问题实操
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-03-30 18:49:00" itemprop="dateCreated datePublished" datetime="2016-03-30T18:49:00+08:00">2016-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="直线分类问题"><a href="#直线分类问题" class="headerlink" title="直线分类问题"></a>直线分类问题</h3><p><img src="/images/pasted-33.png" alt="upload successful"></p>
+<p>对于此数据图可以发现正类与负类的决策边界大约是一条直线。</p>
+<p>与线性回归类似，先计算代价方程J</p>
+<script type="math/tex; mode=display">J(\theta_0,\theta_1)=\frac{1}{2m} \sum^m_{i=1}(h_\theta(x^{(i)}-y^{(i)}))^2</script><p>但是其中的h(x)发生了变化，实际上为</p>
+<script type="math/tex; mode=display">h_\theta(x)=g(\theta^Tx)</script><script type="math/tex; mode=display">g(z)=\frac{1}{1+e^{-z}}</script><p>带入得</p>
+<script type="math/tex; mode=display">J(\theta)=\frac{1}{m}\sum^m_{i=1}Cost(h_\theta(x^{(i)},y^{(i)})) \\=-\frac{1}{m}[\sum^m_{i=1}y^{(i)}log{h_\theta(x^{(i)})}+(1-y^{(i)})log{(1-h_\theta(x^{(i)})})]</script><p>同理带入梯度下降函数</p>
+<script type="math/tex; mode=display">\theta:=\theta-\alpha\frac{1}{m}\sum^m_{i=1}[(h_\theta(x^{(i)})-y^{(i)})\cdot x^{(i)}]</script><p>最后将它们放入fminunc（matlab求最小值函数）中运算即可得到训练结果。<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span><br><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span><br><span class="line">J += (-y(<span class="built_in">i</span>).*(<span class="built_in">log</span>(h))-(<span class="number">1</span>-y(<span class="built_in">i</span>)).*(<span class="built_in">log</span>(<span class="number">1</span>-h)))/m;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">//----</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span><br><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span><br><span class="line">grad += ((h - y(<span class="built_in">i</span>))*X(<span class="built_in">i</span>,:)&#x27;)/m;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure><br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">options = optimset(<span class="string">&#x27;GradObj&#x27;</span>, <span class="string">&#x27;on&#x27;</span>, <span class="string">&#x27;MaxIter&#x27;</span>, <span class="number">400</span>);</span><br><span class="line"></span><br><span class="line">[theta, cost] = ...</span><br><span class="line">	fminunc(@(t)(costFunction(t, X, y)), initial_theta, options);</span><br></pre></td></tr></table></figure></p>
+<p>即可得到训练后的$\theta$值，在图上表现出来呈</p>
+<p><img src="/images/pasted-34.png" alt="upload successful"></p>
+<p>可以看到正集与负集基本分开。</p>
+<h3 id="非直线分类"><a href="#非直线分类" class="headerlink" title="非直线分类"></a>非直线分类</h3><p><img src="/images/pasted-35.png" alt="upload successful"></p>
+<p>如图所示，可以看出正负集的边界应该是曲线。</p>
+<p>曲线的方程是多项式，因此首先对曲线的多项式的项进行罗列：</p>
+<p><img src="/images/pasted-36.png" alt="upload successful"></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">degree = <span class="number">6</span>;</span><br><span class="line">out = <span class="built_in">ones</span>(<span class="built_in">size</span>(X1(:,<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:degree</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">0</span>:<span class="built_in">i</span></span><br><span class="line">        out(:, <span class="keyword">end</span>+<span class="number">1</span>) = (X1.^(<span class="built_in">i</span>-<span class="built_in">j</span>)).*(X2.^<span class="built_in">j</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>以上生成了一个28项的向量作为这个曲线的项。</p>
+<script type="math/tex; mode=display">J(\theta)=\frac{1}{m}[\sum^m_{i=1}-y^{(i)}log{h_\theta(x^{(i)})}-(1-y^{(i)})log{(1-h_\theta(x^{(i)})})]+\frac{\lambda}{2m}\sum^n_{j=1}\theta^2_j</script><p>根据此公式进行代价函数的运算。</p>
+<p>由于上式中最后一项$\theta$不需要惩罚$\theta_0$，因此从$\theta_1$开始相乘。由于matlab的下标号是从1开始的，因此最后一项的θ要从2开始相乘。后面的梯度函数同理</p>
+<script type="math/tex; mode=display">\frac{\partial J(\theta)}{\partial \theta_0}=\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j, \text{for j=0}\\ \frac{\partial J(\theta)}{\partial \theta_j}=(\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j)+\frac{\lambda}{m}\theta_j ,\text{for j}\geq 1</script><p>简单用循环写代码如下<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span><br><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span><br><span class="line">J += (-y(<span class="built_in">i</span>).*(<span class="built_in">log</span>(h))-(<span class="number">1</span>-y(<span class="built_in">i</span>)).*(<span class="built_in">log</span>(<span class="number">1</span>-h)))/m;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=(<span class="number">2</span>:<span class="built_in">size</span>(theta))</span><br><span class="line">J += theta(<span class="built_in">j</span>)^<span class="number">2.</span>*lambda/(<span class="number">2</span>*m);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">//-------</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span><br><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span><br><span class="line">grad += ((h - y(<span class="built_in">i</span>))*X(<span class="built_in">i</span>,:)&#x27;)./m;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=(<span class="number">2</span>:<span class="built_in">size</span>(theta))</span><br><span class="line">grad(<span class="built_in">j</span>) += theta(<span class="built_in">j</span>).*lambda./m;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>可以得到多项式的各个$\theta$值。</p>
+<p>根据多项式画出图形可以看到</p>
+<p><img src="/images/pasted-37.png" alt="upload successful"></p>
+<p>基本将正负极分开。</p>
+<p>如果对$\lambda=1$(正则化参数)进行修改，例如修改成别的值可以得到：</p>
+<p>$\lambda=0$</p>
+<p><img src="/images/pasted-38.png" alt="upload successful"></p>
+<p>$\lambda=100$</p>
+<p><img src="/images/pasted-39.png" alt="upload successful"></p>
+<p>可以看到$\lambda=0$的时候拟合曲线绕的弯非常多，试图去匹配所有的点，因而失去了这个集整体的特征，变得过度复杂，这种现象称为过拟合；</p>
+<p>而$\lambda=100$的时候明显拟合曲线并没有良好地工作，称为欠拟合（$\theta$的乘积占的权重过大导致除了θ0之外的项全部变为0）。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Written by:  </strong>lsvih
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://lsvih.com/2016/03/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E5%AE%9E%E6%93%8D/" title="机器学习学习笔记（八）分类问题实操">https://lsvih.com/2016/03/30/机器学习学习笔记（八）分类问题实操/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/coursera-note/" rel="tag"># coursera note</a>
+          </div>
+
         
-  <div class="beian"><a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/03/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98/" rel="prev" title="机器学习学习笔记（七）分类问题">
+                  <i class="fa fa-chevron-left"></i> 机器学习学习笔记（七）分类问题
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2016/03/30/%E8%AE%A9%E7%BD%91%E9%A1%B5%E8%8F%9C%E5%8D%95%E4%B8%8A%E6%8B%89%E5%87%BA%E7%8E%B0%E4%B8%8B%E6%8B%89%E6%B6%88%E5%A4%B1%E2%80%94%E2%80%94%E7%AE%80%E5%8D%95%E6%9C%89%E8%B6%A3%E7%9A%84headroom-js/" rel="next" title="让网页菜单上拉出现下拉消失——简单有趣的headroom.js">
+                  让网页菜单上拉出现下拉消失——简单有趣的headroom.js <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
@@ -460,32 +475,38 @@
   </span>
   <span class="author" itemprop="copyrightHolder">lsvih</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.6.0
-  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div><script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: false,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["$", "$"],["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
 
-        
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
+    </div>
+  </footer>
 
   
-  <script src="/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script>
-<script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
-
-
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
   <script>
@@ -501,9 +522,8 @@
 
 
 
-  
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.css">
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@2/dist/instantsearch.min.js"></script><script src="/js/algolia-search.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -519,55 +539,16 @@
 
   
 
+
+
+
+
+
+
+
   
-      
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
-<script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
-</script>
-
-    
+  
 
   
 
