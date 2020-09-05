@@ -219,6 +219,173 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/05/12/%E5%88%AB%E8%AE%A9%E4%BD%A0%E7%9A%84%E5%81%8F%E7%88%B1%E6%8B%96%E4%BA%86%E5%90%8E%E8%85%BF%EF%BC%9A%E5%BF%AB%E6%8B%A5%E6%8A%B1%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%90%A7%EF%BC%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/05/12/%E5%88%AB%E8%AE%A9%E4%BD%A0%E7%9A%84%E5%81%8F%E7%88%B1%E6%8B%96%E4%BA%86%E5%90%8E%E8%85%BF%EF%BC%9A%E5%BF%AB%E6%8B%A5%E6%8A%B1%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%90%A7%EF%BC%81/" class="post-title-link" itemprop="url">别让你的偏爱拖了后腿：快拥抱箭头函数吧！</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2017-05-12 19:12:00" itemprop="dateCreated datePublished" datetime="2017-05-12T19:12:00+08:00">2017-05-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Translate/" itemprop="url" rel="index">
+                    <span itemprop="name">Translate</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/images/pasted-153.png" alt="upload successful"></p>
+<p>我以教 JavaScript 为生。最近我给学生上了柯里化箭头函数这个课程——这还是最开始的几节课。我认为它是一个很好用的技能，因此将这个内容提到了课程的前面。而学生们没有让我失望，比我想象中地<strong>更快地</strong>掌握了使用箭头函数进行柯里化。</p>
+<p>如果学生们能够理解它，并且能尽快由它获益，为什么不早点将箭头函数教给他们呢？</p>
+<blockquote>
+<p>Note：我的课程并不适合那些从来没有接触过代码的人。大多数学生在加入我们的课程之前至少有几个月的编程经历——无论他们是自学，还是通过培训班学习，或者本身就是专业的。然而，我发现许多只有一点经验或者没有经验的年轻开发者们能够很快地接受这些主题。</p>
+</blockquote>
+<p>我看到很多的学生在上了 1 小时的课之后就能很熟练地使用箭头函数工作了。（如果你是<a href="https://ericelliottjs.com/product/lifetime-access-pass/" target="_blank" rel="noopener">“和 Eric Elliott 一起学习 JavaScript”</a>培训班的同学，你可以看这个约 55 分钟的视频——<a href="https://ericelliottjs.com/premium-content/es6-curry-composition/" target="_blank" rel="noopener">ES6 的柯里化与组合</a>）。</p>
+<p>看到学生们如此之快地掌握与应用他们新发现的柯里化方法，我想起了我在推特上发了柯里化箭头函数的帖子，然后被一群人喷“可读性差”的事。我很惊讶为什么他们会坚持这个观点。</p>
+<p>首先，我们先来看看这个例子。我在推特发了这个函数，然后我发现有人强烈反对这种写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const secret &#x3D; msg &#x3D;&gt; () &#x3D;&gt; msg;</span></pre></td></tr></table></figure>
+<p>我对有人在推特上指责我在误导别人感到不可思议。我写这个函数是为了示范在 ES6 中写柯里化函数是多么的<strong>简单</strong>。它是我能想到的在 JavaScript 中<strong>最简单</strong>的实际运用与闭包表达式了。（相关阅读：<a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-closure-b2f0d2152b36" target="_blank" rel="noopener">什么是闭包</a>）</p>
+<p>它和下面的函数表达式等价：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const secret &#x3D; function (msg) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  return function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    return msg;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
+<p><code>secret()</code> 是一个函数，它需要传入 <code>msg</code> 这个参数，然后会返回一个新的函数，这个函数将会返回 <code>msg</code> 的值。无论你向 <code>secret()</code> 中传入什么值，它都会利用闭包固定 <code>msg</code> 的值。</p>
+<p>你可以这么用它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const mySecret &#x3D; secret(&#39;hi&#39;);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">mySecret(); &#x2F;&#x2F; &#39;hi&#39;</span></pre></td></tr></table></figure>
+<p>事实证明，双箭头并没有让人感到困惑。我坚信：</p>
+<blockquote>
+<p>对于熟悉的人来说，单行的箭头函数是 JavaScript 表达柯里化函数<strong>最具有可读性</strong>的方法了。</p>
+</blockquote>
+<p>有许多人指责我，告诉我将代码写的长一些比简短的代码更容易阅读。他们有时也许是对的，但是大多数情况都错了。更长、更详细的代码不一定更容易阅读——至少，对熟悉箭头函数的人来说就是如此。</p>
+<p>我在推特上看到的持反对意见的人，并没有像我的学生一样享受平滑的学习箭头函数的过程。在我的经验里，学生学习柯里化箭头函数就像鱼在水里生活一样。仅仅学了几天，他们就开始使用箭头了。它帮助学生们轻松地跨过了各种编程问题的鸿沟。</p>
+<p>我没有看到学习、阅读、理解箭头函数对那些学生造成了任何的“困难”——一旦他们决定学习，只要上个大概一小时的课就能基本掌握。</p>
+<p>他们能够很轻松地读懂柯里化箭头函数，尽管他们从来没有见过这类的东西，他们还是能够告诉我这些函数做了什么事。当我给他们布置任务后他们也能够很自如地自己完成任务。</p>
+<p>从另一方面说，他们能够很快<strong>熟悉</strong>柯里化箭头函数，并且没有为此产生任何<strong>问题</strong>。他们阅读这些函数就像你读一句话一样，他们对其的理解让他们写出了更简单、更少 bug 的代码。</p>
+<h3 id="为什么一些人认为传统的函数表达式看起来“更具有可读性”？"><a href="#为什么一些人认为传统的函数表达式看起来“更具有可读性”？" class="headerlink" title="为什么一些人认为传统的函数表达式看起来“更具有可读性”？"></a>为什么一些人认为传统的函数表达式看起来“更具有可读性”？</h3><p><strong>偏爱</strong>是一种显著的<a href="https://www.psychologytoday.com/blog/mind-my-money/200807/familiarity-bias-part-i-what-is-it" target="_blank" rel="noopener">人类认知偏差</a>，它会让我们在有更好的选择的情况下做出自暴自弃的选择。我们会因此无视更舒服更好的方法，习惯性地选用以前使用过的老方法。</p>
+<p>你可以从这本书中更详细地了解“偏爱”这种心理：<a href="https://www.amazon.com/Undoing-Project-Friendship-Changed-Minds-ebook/dp/B01GI6S7EK/ref=as_li_ss_tl?ie=UTF8&amp;qid=1492606452&amp;sr=8-1&amp;keywords=the+undoing+project&amp;linkCode=ll1&amp;tag=eejs-20&amp;linkId=4ebd1476f97023e8acb4bba37ea18b90" target="_blank" rel="noopener">《The Undoing Project: A Friendship that Changed Our Minds》</a>（很多情况都是我们自欺欺人）。每个软件工程师都应该读一读这本书，因为它会鼓励你辩证地去看待问题，以及鼓励你多对假设进行实验，以免掉入各种认知陷阱中。书中那些发现认知陷阱的故事也很有趣。</p>
+<h3 id="传统的函数表达式可能会在你的代码中导致-Bug-的出现"><a href="#传统的函数表达式可能会在你的代码中导致-Bug-的出现" class="headerlink" title="传统的函数表达式可能会在你的代码中导致 Bug 的出现"></a>传统的函数表达式可能会在你的代码中导致 Bug 的出现</h3><p>今天我用 ES5 的语法重写了一个 ES6 写的柯里化箭头函数，以便发布开源模块让人们无需编译就能在老浏览器中用。然而 ES5 版本让我震惊。</p>
+<p>ES6 版本的代码非常简短、简介、优雅——仅仅只需要 4 行。</p>
+<p>我觉得，这件事可以发个推特，告诉大家箭头函数是一种更加优越的实现，是时候如同放弃自己的坏习惯一样，放弃传统函数表达式的写法了。</p>
+<p>所以我发了一条推特：</p>
+<p><img src="/images/pasted-154.png" alt="upload successful"></p>
+<p>为了防止你看不清图片，下面贴上这个函数的文本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 使用箭头函数柯里化</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">const composeMixins &#x3D; (...mixins) &#x3D;&gt; (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  instance &#x3D; &#123;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  mix &#x3D; (...fns) &#x3D;&gt; x &#x3D;&gt; fns.reduce((acc, fn) &#x3D;&gt; fn(acc), x)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">) &#x3D;&gt; mix(...mixins)(instance);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 对比一下 ES5 风格的代码：</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">var composeMixins &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  var mixins &#x3D; [].slice.call(arguments);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">  return function (instance, mix) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">    if (!instance) instance &#x3D; &#123;&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    if (!mix) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">      mix &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">        var fns &#x3D; [].slice.call(arguments);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">        return function (x) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">          return fns.reduce(function (acc, fn) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">            return fn(acc);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">          &#125;, x);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">        &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">      &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">21</span></pre></td><td class="code"><pre><span class="line">    return mix.apply(null, mixins)(instance);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">22</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">23</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
+<p>这里的函数封装了一个 <code>pipe()</code>，它是标准的函数式编程的工具函数，通常<a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-function-composition-20dfb109a1a0" target="_blank" rel="noopener">用于组合函数</a>。这个 <code>pipe()</code> 函数在 lodash 中是 <code>lodash/flow</code>，在 Ramda 中是 <code>R.pipe()</code>，在一些函数式编程语言中它甚至本身就是一个运算符号。</p>
+<p>每个<a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0" target="_blank" rel="noopener">熟悉函数式编程</a>的人都应该很熟悉它。它的实现主要依赖于<a href="https://medium.com/javascript-scene/reduce-composing-software-fe22f0c39a1d" target="_blank" rel="noopener">Reduce</a>。</p>
+<p>在这个例子中，它用来组合混合函数，不过这点无关紧要（有专门写这方面的博客文章）。我们需要注意是以下几个重要的细节：</p>
+<p>这个函数可以将任何数量的函数混合，最终返回一个函数，这个函数在管道中应用了其它的函数——就像流水线一样。每个混合函数都将实例（<code>instance</code>）作为输入，然后在将自己传递给管道中下一个函数之前，将一些变量传入。</p>
+<p>如果你没有传入 <code>instance</code>，它将会为你创建一个新的对象。</p>
+<p>有时你可能会想用别的混合方式。例如，使用 <code>compose()</code> 代替 <code>pipe()</code> 来传递函数，让组合顺序反过来。</p>
+<p>如果你不需要自定义函数混合时的行为，你可以简单地使用默认设定，使用 <code>pipe()</code> 来完成过程。</p>
+<h3 id="事实"><a href="#事实" class="headerlink" title="事实"></a>事实</h3><p>除了可读性的区别之外，以下列举了一些与这个例子有关的<strong>客观事实</strong>：</p>
+<ul>
+<li>我有多年的 ES5 与 ES6 编程经验，无论是箭头函数表达式还是别的函数表达式我都很熟悉。因此“偏爱”对我来说<strong>不是</strong>一个变化无常的因素。</li>
+<li>我没几秒就写好了 ES6 版本的代码，它没有任何 bug（它通过了所有的单元测试，因此我敢肯定这点）。</li>
+<li>写 ES5 版本的代码花了我好几分钟。一个是几秒，一个是几分钟，差距还是挺大的。写 ES5 代码时，我有 2 次弄错了函数的作用范围；写出了 3 个 bug，然后要花时间去分别调试与修复；还有 2 次我不得不使用 <code>console.log()</code> 来弄清函数执行的情况。</li>
+<li>ES6 版本代码仅仅只有 4 行。</li>
+<li>ES5 版本代码有 21 行（其中真正有代码的有 17 行）。</li>
+<li>尽管 ES5 版本的代码更加冗长，但是它比起 ES6 版本的代码来说仍然缺少了一些信息。它虽然长，但是<strong>表达的东西更少</strong>。这个问题在后面会提到。</li>
+<li>ES6 版本代码在代码中有 2 个 speard 运算符。而 ES5 版本代码中没有这个运算符，而是使用了<strong>意义晦涩</strong>的 <code>arguments</code> 对象，它将严重影响函数内容的可读性。（不推荐原因之一）</li>
+<li>ES6 版本代码在函数片段中定义了 <code>mix</code> 的默认值，由此你可以很清楚地看到它是参数的值。而 ES5 版本代码却混淆了这个细节问题，将它隐藏在函数体中。（不推荐原因之二）</li>
+<li>ES6 版本代码仅有 2 层代码块，这将会帮助读者理解代码结构，以及知道如何去阅读这个代码。而 ES5 代码有 6 层代码块，复杂的层级结构会让函数结构的可读性变得很差。（不推荐原因之三）</li>
+</ul>
+<p>在 ES5 版本代码中，<code>pipe()</code> 占据了函数体的大部分内容——要把它们放到同一行中去简直是个荒唐的想法。非常<strong>有必要</strong>将 <code>pipe()</code> 这个函数单独抽离出来，让我们的 ES5 版本代码更具有可读性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var pipe &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  var fns &#x3D; [].slice.call(arguments);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  return function (x) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    return fns.reduce(function (acc, fn) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      return fn(acc);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">    &#125;, x);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">var composeMixins &#x3D; function () &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  var mixins &#x3D; [].slice.call(arguments);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  return function (instance, mix) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    if (!instance) instance &#x3D; &#123;&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">    if (!mix) mix &#x3D; pipe;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">18</span></pre></td><td class="code"><pre><span class="line">    return mix.apply(null, mixins)(instance);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">19</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">20</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
+<p>这样，我觉得它更具可读性，并且更容易理解它的意思了。</p>
+<p>让我们看看如果我们对 ES6 版本代码做一些可读性“优化”会怎么样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const pipe &#x3D; (...fns) &#x3D;&gt; x &#x3D;&gt; fns.reduce((acc, fn) &#x3D;&gt; fn(acc), x);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">const composeMixins &#x3D; (...mixins) &#x3D;&gt; (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">  instance &#x3D; &#123;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">  mix &#x3D; pipe</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">) &#x3D;&gt; mix(...mixins)(instance);</span></pre></td></tr></table></figure>
+<p>就像 ES5 版本代码的优化一样，这个“优化”后的代码更加冗长（它加入了之前没有的新变量）。与 ES5 版本代码不同，这个版本在将管道的概念抽象出来后<strong>并没有明显的提高代码可读性</strong>。不过毕竟函数里已经清楚的写明了 <code>mix</code> 这个变量，它还是更容易让人理解一些。</p>
+<p><code>mix</code> 的定义本身在它的那一行就已经存在了，它不太可能会让阅读代码的人找不到何时结束 <code>mix</code>、剩下的代码何时执行。</p>
+<p>而现在我们用了 2 个变量来表示同一个东西。我们因此而获益了吗？完全没有。</p>
+<p>那么为什么 ES5 函数在对函数进行抽象之后会变得<strong>更具可读性</strong>呢？</p>
+<p>因为之前 ES5 版本的代码<strong>明显更复杂</strong>。这种复杂度的来源是我们讨论的问题重点。我可以断言，它的复杂度的来源归根结底就是<strong>语法干扰</strong>，这种语法干扰只会让<strong>函数的本身含义变得费解</strong>，并没有别的用处。</p>
+<p>让我们换种方法，把一些多余的变量去掉，在例子中都使用 ES6 代码，只比较<strong>箭头函数</strong>与<strong>传统函数表达式</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">var composeMixins &#x3D; function (...mixins) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  return function (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    instance &#x3D; &#123;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    mix &#x3D; function (...fns) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">      return function (x) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">        return fns.reduce(function (acc, fn) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line">          return fn(acc);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">        &#125;, x);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">      &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">    &#125;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">  ) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    return mix(...mixins)(instance);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
+<p>现在，至少我觉得它的可读性显著的提升了。我们利用 <strong>rest</strong> 语法以及<strong>默认参数</strong>语法对它进行了修改。当然，你得对 rest 语法和默认参数语法很熟悉才会觉得这个版本的代码更可读。不过即使你不了解这些，我觉得这个版本也会看起来更加<strong>有条理</strong>。</p>
+<p>现在已经改进了许多了，但是我觉得这个版本还是比较简洁。将 <code>pipe()</code> 抽象出来，写到它自己的函数里可能会<strong>有所帮助</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const pipe &#x3D; function (...fns) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  return function (x) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">    return fns.reduce(function (acc, fn) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">      return fn(acc);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">    &#125;, x);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">6</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">7</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">8</span></pre></td><td class="code"><pre><span class="line"></span></pre></td></tr><tr><td class="gutter"><pre><span class="line">9</span></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 传统函数表达式</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">10</span></pre></td><td class="code"><pre><span class="line">const composeMixins &#x3D; function (...mixins) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">11</span></pre></td><td class="code"><pre><span class="line">  return function (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">12</span></pre></td><td class="code"><pre><span class="line">    instance &#x3D; &#123;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">13</span></pre></td><td class="code"><pre><span class="line">    mix &#x3D; pipe</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">14</span></pre></td><td class="code"><pre><span class="line">  ) &#123;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">15</span></pre></td><td class="code"><pre><span class="line">    return mix(...mixins)(instance);</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">16</span></pre></td><td class="code"><pre><span class="line">  &#125;;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">17</span></pre></td><td class="code"><pre><span class="line">&#125;;</span></pre></td></tr></table></figure>
+<p>这样是不是更好了？现在 <code>mix</code> 只占了单独的一样，函数结构也更加的清晰——但是这样做不符合我的胃口，它的语法干扰实在是太多了。在现在的 <code>composeMixins()</code> 中，我觉得描述一个函数在哪结束、另一个函数从哪开始还不够清楚。</p>
+<p>除了调用函数体之外，<code>funcion</code> 这个关键字似乎和其它的代码<strong>混淆</strong>在一起了。我的函数的真正的功能被<strong>隐藏</strong>了起来！参数的调用和函数体的起始到底在哪里？如果我仔细看也能够分析出来，但是它对我来说实在是不容易阅读。</p>
+<p>那么如果我们去掉 <code>function</code> 这个关键字，然后通过一个<strong>大箭头</strong> <code>=&gt;</code> 指向返回值来代替 <code>return</code> 关键字，避免它们和其它关键部分混在一起，现在会怎么样呢？</p>
+<p>我们当然可以这么做，代码会是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const composeMixins &#x3D; (...mixins) &#x3D;&gt; (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  instance &#x3D; &#123;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  mix &#x3D; pipe</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">) &#x3D;&gt; mix(...mixins)(instance);</span></pre></td></tr></table></figure>
+<p>现在应该可以很清楚这段代码做了什么事了。<code>composeMixins()</code> 是一个函数，它传入了任意数量的 <code>mixins</code>，最终会返回一个得到两个额外参数（<code>instance</code> 与 <code>mix</code>）的函数。它返回了通过 <code>mixins</code> 管道组合的 <code>instance</code> 的结果。</p>
+<p>还有一件事……如果我们对 <code>pipe()</code> 进行同样的优化，可以神奇地将它写到一行中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const pipe &#x3D; (...fns) &#x3D;&gt; x &#x3D;&gt; fns.reduce((acc, fn) &#x3D;&gt; fn(acc), x);</span></pre></td></tr></table></figure>
+<p>当它在一行内被定义的时候，将它抽象成一个函数这件事反而变得不那么明了了。</p>
+<p>另外请记住，这个函数在 Lodash、Ramda 以及其它库中都有用到，但是仅仅为了用这个函数就去 import 这些库并不是一件划得来的事。</p>
+<p>那么我们自己写一行这个函数有必要吗？应该有的。它实际上是两个不同的函数，把它们分开会让代码更加清晰。</p>
+<p>另一方面，如果将其写在一行中，当你看参数命名的时候，你就已经明了了其类型以及用例。我们将它写在一行，就如下面代码所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">const composeMixins &#x3D; (...mixins) &#x3D;&gt; (</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">  instance &#x3D; &#123;&#125;,</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">  mix &#x3D; (...fns) &#x3D;&gt; x &#x3D;&gt; fns.reduce((acc, fn) &#x3D;&gt; fn(acc), x)</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">) &#x3D;&gt; mix(...mixins)(instance);</span></pre></td></tr></table></figure>
+<p>现在让我们回头看看最初的函数。无论我们后面做了什么调整，<strong>我们都没有丢弃任何本来就有的信息</strong>。并且，通过在行内声明变量和默认值，我们还给这个函数<strong>增加了信息量</strong>，描述了这个函数是怎么使用的以及参数值是什么样子的。</p>
+<p>ES5 版本中增加的额外的代码其实都是语法干扰。这些代码对于<strong>熟悉</strong>柯里化箭头函数的人来说<strong>没有任何有用之处</strong>。</p>
+<p>只要你熟悉柯里化箭头函数，你就会觉得最开头的代码更加清晰并具有<strong>可读性</strong>，因为它没有多余的语法糊弄人。</p>
+<p>柯里化箭头函数还能<strong>减少错误的藏身之处</strong>，因为它能让 bug 隐藏的部分更少。我猜想，在传统函数表达式中一定隐藏了许多的 bug，一旦你升级使用箭头函数就能找到并排除这些 bug。</p>
+<p>我希望你的团队也能支持、学习与应用 ES6 的更加简洁的代码风格，提高工作效率。</p>
+<p>有时，在代码中详细地进行描述是正确的行为，但通常来说，代码越少越好。如果更少的代码能够实现同样的东西，能够传达更多的信息，不用丢弃任何信息量，那么它<strong>明显</strong>更加优越。认知这些不同点的关键就是看它们表达的信息。如果加上的代码没有更多的意义，那么这种代码就不应该存在。这个道理很简单，就和自然语言的风格规范一样（不说废话）。将这种表达风格规范应用到代码中。拥抱它，你将能写出更好的代码。</p>
+<p>一天过去，天色已黑，仍然有其它推特的回复在说 ES6 版本的代码更加缺乏可读性：</p>
+<p><img src="/images/pasted-155.png" alt="upload successful"></p>
+<p>我只想说：是时候熟练去掌握 ES6、柯里化与组合函数了。</p>
+<h3 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h3><p><a href="https://ericelliottjs.com/product/lifetime-access-pass/" target="_blank" rel="noopener">“与 Eric Elliott 一起学习 JavaScript”</a>会员现在可以看这个大约 55 分钟的视频课程——<a href="https://ericelliottjs.com/premium-content/es6-curry-composition/" target="_blank" rel="noopener">ES6 柯里化与组合</a>。</p>
+<p>如果你还不是我们的会员，你可会遗憾地错过这个机会哦！</p>
+<p><img src="/images/pasted-156.png" alt="upload successful"></p>
+<h3 id="作者简介"><a href="#作者简介" class="headerlink" title="作者简介"></a>作者简介</h3><p><strong>*Eric Elliott*</strong> 是 O’Reilly 出版的<a href="http://pjabook.com" target="_blank" rel="noopener">*《Programming JavaScript Applications》*</a>书籍、<a href="http://ericelliottjs.com/product/lifetime-access-pass/" target="_blank" rel="noopener">“与 Eric Elliott 学习 JavaScript”</a>课程作者。他曾经帮助 Adobe、莱美、华尔街日报、ESPN、BBC 进行软件开发，以及帮助 Usher、Frank Ocean、Metallica 等著名音乐家做网站。</p>
+<p>最后<del>喂狗粮</del>：</p>
+<p><strong>他与世界上最美丽的女人在旧金山湾区共度一生。</strong></p>
+<blockquote>
+<p>发布于掘金 <a href="https://juejin.im/post/59158c92a0bb9f005fd58fd7" target="_blank" rel="noopener">https://juejin.im/post/59158c92a0bb9f005fd58fd7</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/05/04/%E5%9C%A8-Swift-%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E5%AE%9E%E7%8E%B0%E6%87%92%E5%8A%A0%E8%BD%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1433,127 +1600,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/03/21/EM-algorithm%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/03/21/EM-algorithm%E6%9C%80%E5%A4%A7%E4%BC%BC%E7%84%B6%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">EM algorithm最大似然算法学习笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2017-03-21 12:55:00" itemprop="dateCreated datePublished" datetime="2017-03-21T12:55:00+08:00">2017-03-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="琴生不等式-Jensen’s-inequality"><a href="#琴生不等式-Jensen’s-inequality" class="headerlink" title="琴生不等式(Jensen’s inequality)"></a>琴生不等式(Jensen’s inequality)</h2><p>最大似然函数应用到了琴生不等式。琴生不等式给出了积分的凸函数值和凸函数的积分值间的关系。它由以下两部分组成：</p>
-<p>当$f(x)$是(a,b)区间上的凸函数时，则对任意的点$x_1,x_2,…,x_n \in (a,b)$有</p>
-<script type="math/tex; mode=display">f(\frac{x_1+x_2+...+x_n}{n}) \geq \frac{1}{n}[f(x_1)+f(x_2)+...+f(x_n)]</script><p>当$x_1=x_2=…=x_n$时取等号。</p>
-<p>当$f(x)$是(a,b)区间上的凹函数时，则对任意的点$x_1,x_2,…,x_n in (a,b)$有</p>
-<script type="math/tex; mode=display">f(\frac{x_1+x_2+...+x_n}{n}) \leq \frac{1}{n}[f(x_1)+f(x_2)+...+f(x_n)]</script><p>当$x_1=x_2=…=x_n$时取等号。</p>
-<p>将琴生不等式应用到概率论，有</p>
-<p>当$f(x)$是凸函数时</p>
-<script type="math/tex; mode=display">E[f(X)]\geq f(EX)</script><p>当$f(x)$是凹函数时</p>
-<script type="math/tex; mode=display">E[f(X)]\leq f(EX)</script><p>如图所示：</p>
-<p><img src="/images/pasted-108.png" alt="upload successful"></p>
-<h2 id="最大似然算法-EM-algorithm-的推导"><a href="#最大似然算法-EM-algorithm-的推导" class="headerlink" title="最大似然算法(EM algorithm)的推导"></a>最大似然算法(EM algorithm)的推导</h2><h3 id="似然函数-likelihood-function"><a href="#似然函数-likelihood-function" class="headerlink" title="似然函数(likelihood function)"></a>似然函数(likelihood function)</h3><p>当有一组数据${ x^{(1)},…,x^{(m)} }$，这一组数据是从更大的未知数据中抽样出来的，每一个x对抽样而言都是独立事件。因此，抽样出每个数据的概率为$p(x)$，抽样出这一组数据集的概率则为$\prod^m_{i=1} p(x)$。而所有的数据都满足某一个分布规律（求的正是这个规律），例如高斯分布等。这个分布规律含有一个分布参数$\theta$，这个参数决定了这个分布规律。此时抽样出数据集的概率为$\prod^m_{i=1} p(x_i;\theta)$，将这个式子记为$L(\theta)$，即</p>
-<script type="math/tex; mode=display">L(\theta)=\prod^m_{i=1} p(x_i;\theta)</script><p>当$L(\theta)$最大时，有最大的可能抽出这组数据，就能猜测$\theta$是分布概率的参数。这个式子被称为似然函数。</p>
-<blockquote>
-<p>p(x;y)表示当参数为y时x的概率</p>
-</blockquote>
-<p>为了让计算更方便，将乘法运算通过求ln值变化为加法运算</p>
-<script type="math/tex; mode=display">l(\theta)=\sum^m_{i=1} \ln p(x_i;\theta)</script><p>这个l称为loglikelihood function</p>
-<h3 id="最大似然函数"><a href="#最大似然函数" class="headerlink" title="最大似然函数"></a>最大似然函数</h3><p>当有多组数据时，每组数据的分布规律都不同，对于每组数据来说都有一个隐藏的变量z将不同的组别分开。例如对于$x^{(i)}$来说，有$p(z^{(1)})$的可能是聚类1的，有$p(z^{(2)})$的可能是聚类2的。因此将所有的可能加起来，有</p>
-<script type="math/tex; mode=display">l(\theta)=\sum^m_{i=1} \ln p(x_i;\theta)=\sum^m_{i=1} ln\sum_{z^{(i)}}p(x^{(i)},z^{(i)};\theta)</script><p>为了求其最值，则需要对其进行求导。此时发现，$\sum \ln \sum f(x,y,z)$相当难进行求导，因此对其进行化简：</p>
-<p>对于$x^{(i)}$，它的所有z概率之和记为$\sum_{z^{(i)}} Q_i(z^{(i)})=1$，对上式加入这个值，得到</p>
-<script type="math/tex; mode=display">l(\theta)=\sum^m_{i=1} \ln p(x_i;\theta)=\sum^m_{i=1} \ln\sum_{z^{(i)}} Q_i(z^{(i)}) \frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}</script><p>对于$f(x)=\ln x$来说，$\frac{\mathrm{d}^2 f(x) }{\mathrm{d} x^2}=-\frac{1}{x^2}\leq0$，因此它为凹函数。应用琴生不等式，$E(f(x)) \leq f(EX)$。同理，上式进行不等变换：</p>
-<script type="math/tex; mode=display">f(E_{z^{(i)~Q_i}}[\frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}]) \geq E_{z^{(i)~Q_i}}[f(\frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})})]\Rightarrow
-\\
-\sum^m_{i=1} ln\sum_{z^{(i)}} Q_i(z^{(i)}) \frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})} \\
-\geq \sum^m_{i=1} \sum_{z^{(i)}} Q_i(z^{(i)}) \ln \frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}</script><p>此时得到的式子是一个不等式，确切的说是似然函数的下界。为了让似然函数达到最大，则需要得到合适的$z,\theta$让下界更高。</p>
-<p>此时分两步来进行计算：第一步固定$\theta$调整$Q_i(z^i)$，让下界上升至最高(前式的不等式取到等号)，第二部固定$Q_i(z^i)$调整$\theta$，使似然函数的值升高，下界达到最高，再重复第一步。循环往复直到第二步收敛。</p>
-<h4 id="E-step"><a href="#E-step" class="headerlink" title="E-step"></a>E-step</h4><p>根据琴生不等式，当X为常数时，肯定有$E[f(X)]= f(EX)$，即</p>
-<script type="math/tex; mode=display">\frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})} = c</script><p>而$\sum_{z^{(i)}} Q_i(z^{(i)})=1$，因此</p>
-<script type="math/tex; mode=display">Q_i(z^{(i)})=\frac{p(x^{(i)},z^{(i)};\theta)}{\sum_z p(x^{(i)},z,\theta)}=p(x^{(i)},z^{(i)};\theta)</script><p>这就是第一步，让琴生不等式中的X为常数，取到f(x)的最大值。这一步记为E-step：</p>
-<script type="math/tex; mode=display">Q_i(z^{(i)}):=p(x^{(i)},z^{(i)};\theta)</script><h4 id="M-step"><a href="#M-step" class="headerlink" title="M-step"></a>M-step</h4><p>固定$\theta$，下界为</p>
-<script type="math/tex; mode=display">\sum^m_{i=1} \sum_{z^{(i)}} Q_i(z^{(i)}) \ln \frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}</script><p>此时要调整$Q_i(z^i)$，让下界升到最高。记第t步为$l(\theta^{t})$，第t+1步为$l(\theta^{t+1})$。由于下界在升高，最大似然函数值也会升高，$Q_i(z^i)$随之升高，直到收敛。因此可以推导</p>
-<script type="math/tex; mode=display">l(\theta^{(t+1)})=\sum^m_{i=1} \sum_{z^{(i)}} Q_i^{(t+1)}(z^{(i)}) \ln \frac{p(x^{(i)},z^{(i)};\theta^{(t+1)})}{Q^{(t+1)}_i(z^{(i)})}\\
-\geq \sum^m_{i=1} \sum_{z^{(i)}} Q_i^{t}(z^{(i)}) \ln \frac{p(x^{(i)},z^{(i)};\theta^{(t+1)})}{Q^{t}_i(z^{(i)})}\\
-\geq \sum^m_{i=1} \sum_{z^{(i)}} Q_i^{t}(z^{(i)}) \ln \frac{p(x^{(i)},z^{(i)};\theta^{t})}{Q^{t}_i(z^{(i)})}=l(\theta^{t})</script><p>最终得到</p>
-<script type="math/tex; mode=display">l(\theta^{(t+1)}) \geq l(\theta^t)</script><p>因此可得知M-step中，$Q_i(z^i)$的值会不断增加直到收敛。</p>
-<p>M-step记为</p>
-<script type="math/tex; mode=display">\theta:=\arg \max_\theta \sum^m_{i=1} \sum_{z^{(i)}} Q_i(z^{(i)}) \ln \frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}</script><p>最终得到最大似然算法：</p>
-<script type="math/tex; mode=display">
-\text{Repeat until convergence}\{ \\
-\text{(E-step) For each i,set}\\
- Q_i(z^{(i)}):=p(x^{(i)},z^{(i)};\theta) \\
- \text{(M-step) set}\\
- \theta:=\arg \max_\theta \sum^m_{i=1} \sum_{z^{(i)}} Q_i(z^{(i)}) \ln \frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}\\
- \}</script><hr>
-<blockquote>
-<p>Reference</p>
-<p>Stanford CS229 <a href="http://cs229.stanford.edu/notes/cs229-notes8.pdf" target="_blank" rel="noopener">http://cs229.stanford.edu/notes/cs229-notes8.pdf</a><br><a href="https://lsvih.com/img/1490063106133851.pdf">cs229-notes8-EM算法.pdf</a><br>从最大似然到EM算法浅解 <a href="http://blog.csdn.net/zouxy09/article/details/8537620/" target="_blank" rel="noopener">http://blog.csdn.net/zouxy09/article/details/8537620/</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1597,7 +1648,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">160</span>
+          <span class="site-state-item-count">161</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1610,7 +1661,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">201</span>
+        <span class="site-state-item-count">205</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

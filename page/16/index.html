@@ -219,6 +219,78 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/25/dedecms%E6%A0%8F%E7%9B%AE%E8%AE%BE%E4%B8%BA%E5%A4%96%E9%83%A8%E9%93%BE%E6%8E%A5%E4%B8%8D%E5%9C%A8%E8%8F%9C%E5%8D%95%E6%98%BE%E7%A4%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/03/25/dedecms%E6%A0%8F%E7%9B%AE%E8%AE%BE%E4%B8%BA%E5%A4%96%E9%83%A8%E9%93%BE%E6%8E%A5%E4%B8%8D%E5%9C%A8%E8%8F%9C%E5%8D%95%E6%98%BE%E7%A4%BA/" class="post-title-link" itemprop="url">dedecms栏目设为外部链接不在菜单显示</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-03-25 17:01:00" itemprop="dateCreated datePublished" datetime="2016-03-25T17:01:00+08:00">2016-03-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Back-End/" itemprop="url" rel="index">
+                    <span itemprop="name">Back End</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在include/tag/lib/channel/artlist.lib.php中找到67行</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$tpsql = <span class="string">" reid=0 AND ispart&lt;&gt;2 AND ishidden&lt;&gt;1 AND channeltype&gt;0 "</span>;</span></pre></td></tr></table></figure>
+<p>改成<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">$tpsql = <span class="string">" reid=0 AND ishidden&lt;&gt;1 AND channeltype&gt;0 "</span>;</span></pre></td></tr></table></figure></p>
+<p>即可</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/24/%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92%E7%9A%84%E9%A2%84%E6%B5%8B%E6%96%B9%E7%A8%8B%E3%80%81%E4%BB%A3%E4%BB%B7%E5%87%BD%E6%95%B0%E4%B8%8E%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1043,114 +1115,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/03/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" class="post-title-link" itemprop="url">机器学习学习笔记（一）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-03-23 01:08:04" itemprop="dateCreated datePublished" datetime="2016-03-23T01:08:04+08:00">2016-03-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
-                    <span itemprop="name">Machine Learning</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>the field of study that gives computers the ability to learn without being explicitly programmed</p>
-</blockquote>
-<p>机器学习让计算机有能力去自主学习，而不是被死板地编程，它发源于人工智能领域，在现在各个领域发挥了独特的作用。</p>
-<h4 id="应用示例"><a href="#应用示例" class="headerlink" title="应用示例"></a>应用示例</h4><p>谷歌百度等搜索引擎实现的学习算法学会如何对网页排名，从而让海量的网页有序地展示在用户面前；</p>
-<p>Iphone等手机与某些app在处理照片时，能够自动地识别出照片中的人；</p>
-<p>电子邮箱系统在用户对广告邮件等标记垃圾邮件后，垃圾邮件过滤器学会了如何自动甄选出垃圾邮件，让用户避免垃圾邮件的困扰；</p>
-<p>无人驾驶汽车通过图像或雷达等传感器学习大量正常驾驶时车辆的情景从而学会自己安全地驾驶；</p>
-<p>在通过对各种棋谱、棋局的研究学习后，下棋软件能够打败世界一流的棋手；</p>
-<p>等等…</p>
-<h4 id="机器学习的崛起"><a href="#机器学习的崛起" class="headerlink" title="机器学习的崛起"></a>机器学习的崛起</h4><p>机器学习的概念在很早之前就已经出现，例如神经元网络在1943年就已经被提出。 现在，网络技术与自动化技术飞速发展， 出现了大量的数据集可以运用与机器学习算法，例如网络企业的点击记录、医院的电子医疗记录、DNA测序等等；甚至机器学习算法已经被应用于探究人类的学习方式，并试图理解人类的大脑。</p>
-<h4 id="机器学习算法的分类"><a href="#机器学习算法的分类" class="headerlink" title="机器学习算法的分类"></a>机器学习算法的分类</h4><ol>
-<li><p>监督学习(Supervised learning)</p>
-</li>
-<li><p>无监督学习(Unsupervised learning)</p>
-</li>
-<li><p>强化学习(Reinforcement learning)等</p>
-</li>
-</ol>
-<h5 id="一、监督学习-Supervised-learning"><a href="#一、监督学习-Supervised-learning" class="headerlink" title="一、监督学习(Supervised learning)"></a>一、监督学习(Supervised learning)</h5><p>包括回归问题（预测）、根据特征参数分类等。</p>
-<p>举栗子：</p>
-<p>（1）在收集大量关于某地房价与房屋面积的数据后，可以大致判断出房价与面积成线性关系，并能预测出数据中未包含的面积大小对应的大致的房价。</p>
-<p><img src="/images/pasted-0.png" alt="upload successful"></p>
-<p>（2）在收集到大量某肿瘤病人的数据（如年龄与肿瘤大小）后，对病人的病情（如肿瘤良性恶性）进行输入，得到相关模型。之后的病人就可以根据其年龄、肿瘤大小直接预测出其所在分类（良性恶性）。</p>
-<p>总结：在监督学习中，对于数据集中的每个数据， 都有相应的正确答案，（训练集） 算法就是基于这些来做出预测。例如上面的房价和肿瘤性质。</p>
-<p>回归问题即预测一个连续值输出，分类问题即预测一个离散值输出。</p>
-<h5 id="二、无监督学习-Unsupervised-learning"><a href="#二、无监督学习-Unsupervised-learning" class="headerlink" title="二、无监督学习(Unsupervised learning)"></a>二、无监督学习(Unsupervised learning)</h5><p>无监督学习中没有监督学习数据集的属性、标签等，所有的数据都是一样的。</p>
-<p>例如，</p>
-<p>（1）聚类算法，在大量的没有明确标签的数据中，一些数据有着类似的特征或结构，通过聚类算法可以自动的找到这些数据中的类型。</p>
-<p><img src="/images/pasted-1.png" alt="upload successful"></p>
-<p>例如DNA测序，测到的数值量非常大，不同DNA段可能有类似的功能与性质，通过聚类算法找到它们相似的性质并进</p>
-<p>行分类。</p>
-<p><img src="/images/pasted-2.png" alt="upload successful"></p>
-<p>（2）鸡尾酒宴问题：当两个人在同时说话时，有多个话筒分别在不同的位置对他们的声音进行采集，得到多个样本。经过算法处理后可以将两个人同时说话的声音分离开来（奇异值分解）。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>对机器算法有了大概的认知与了解，对与监督学习与无监督学习的异同有了清楚的认识，能够正确地判断出某例是属于哪一类问题</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span>
+    <a class="extend prev" rel="prev" href="/page/15/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/17/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1194,7 +1163,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">160</span>
+          <span class="site-state-item-count">161</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1207,7 +1176,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">201</span>
+        <span class="site-state-item-count">205</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
