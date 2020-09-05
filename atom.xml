@@ -126,9 +126,9 @@
     
       <category term="Paper" scheme="https://lsvih.com/tags/Paper/"/>
     
-      <category term="deep learning" scheme="https://lsvih.com/tags/deep-learning/"/>
-    
       <category term="NLP" scheme="https://lsvih.com/tags/NLP/"/>
+    
+      <category term="deep learning" scheme="https://lsvih.com/tags/deep-learning/"/>
     
       <category term="Natural Language Processing" scheme="https://lsvih.com/tags/Natural-Language-Processing/"/>
     
@@ -341,11 +341,11 @@
     
       <category term="Paper" scheme="https://lsvih.com/tags/Paper/"/>
     
-      <category term="NLP" scheme="https://lsvih.com/tags/NLP/"/>
-    
       <category term="GNN" scheme="https://lsvih.com/tags/GNN/"/>
     
       <category term="GCN" scheme="https://lsvih.com/tags/GCN/"/>
+    
+      <category term="NLP" scheme="https://lsvih.com/tags/NLP/"/>
     
       <category term="Text classification" scheme="https://lsvih.com/tags/Text-classification/"/>
     
