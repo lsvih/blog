@@ -224,7 +224,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">161</span>
+          <span class="site-state-item-count">162</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -280,6 +280,81 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/23/vuejs%E7%9A%84%E5%B5%8C%E5%A5%97%E5%88%97%E8%A1%A8%E7%BB%91%E5%AE%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/03/23/vuejs%E7%9A%84%E5%B5%8C%E5%A5%97%E5%88%97%E8%A1%A8%E7%BB%91%E5%AE%9A/" class="post-title-link" itemprop="url">vuejs 的嵌套列表绑定</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-03-23 11:49:00" itemprop="dateCreated datePublished" datetime="2016-03-23T11:49:00+08:00">2016-03-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在项目中碰到了在v-for列表内还有一层列表的情况</p>
+<p>json结构如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;orders&quot;</span>:</span><br><span class="line">[&#123;<span class="string">&quot;id&quot;</span>:<span class="string">&quot;1&quot;</span>,</span><br><span class="line"><span class="string">&quot;state&quot;</span>:<span class="string">&quot;0&quot;</span>,</span><br><span class="line"><span class="string">&quot;time&quot;</span>:<span class="string">&quot;2016-03-17&quot;</span>,</span><br><span class="line"><span class="string">&quot;goods&quot;</span>:[&#123;<span class="string">&quot;id&quot;</span>:<span class="string">&quot;1&quot;</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;物品1&quot;</span>,<span class="string">&quot;img&quot;</span>:<span class="string">&quot;xxx.jpg&quot;</span>&#125;,</span><br><span class="line">&#123;<span class="string">&quot;id&quot;</span>:<span class="string">&quot;1&quot;</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;物品1&quot;</span>,<span class="string">&quot;img&quot;</span>:<span class="string">&quot;xxx.jpg&quot;</span>&#125;]&#125;,</span><br><span class="line">&#123;<span class="string">&quot;id&quot;</span>:<span class="string">&quot;2&quot;</span>,</span><br><span class="line"><span class="string">&quot;state&quot;</span>:<span class="string">&quot;1&quot;</span>,</span><br><span class="line"><span class="string">&quot;time&quot;</span>:<span class="string">&quot;2016-03-17&quot;</span>,</span><br><span class="line"><span class="string">&quot;goods&quot;</span>:[&#123;<span class="string">&quot;id&quot;</span>:<span class="string">&quot;1&quot;</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;物品1&quot;</span>,<span class="string">&quot;img&quot;</span>:<span class="string">&quot;xxx.jpg&quot;</span>&#125;,</span><br><span class="line">&#123;<span class="string">&quot;id&quot;</span>:<span class="string">&quot;1&quot;</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;物品1&quot;</span>,<span class="string">&quot;img&quot;</span>:<span class="string">&quot;xxx.jpg&quot;</span>&#125;]&#125;</span><br><span class="line">]&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到需要在列表内嵌另一个列表。绑定代码为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">	el: <span class="string">&quot;#allorder&quot;</span>,</span><br><span class="line">	data: order</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>html代码为<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">&quot;allorder&quot;</span> <span class="attr">v-for</span>=<span class="string">&quot;orders in orders&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;order-state&quot;</span>&gt;</span>&#123;&#123;orders.state&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   订单号:<span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;orders.id&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">   下单日期:<span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;orders.ordertime&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;lineimg&quot;</span> <span class="attr">v-for</span>=<span class="string">&quot;good in orders.goods&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:src</span>=<span class="string">&quot;good.img_src&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   

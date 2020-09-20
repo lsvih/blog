@@ -224,7 +224,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">161</span>
+          <span class="site-state-item-count">162</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -280,6 +280,94 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/28/%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/02/28/%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">一份为 Node.js 应用准备的 Dockerfile 指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-02-28 11:55:00" itemprop="dateCreated datePublished" datetime="2018-02-28T11:55:00+08:00">2018-02-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="/images/pasted-306.png" alt="upload successful"></p>
+<h3 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h3><p>本文涵盖了从创建简单的 Dockerfile 到生产环境多级构建 Node.js Web 应用的例子。以下为本指南的内容摘要：</p>
+<ul>
+<li>使用合适的基础镜像（开发环境使用 carbon，生产环境使用 alpine）。</li>
+<li>在开发时使用 <code>nodemon</code> 进行热加载。</li>
+<li>优化 Docker 的 cache layer（缓存层）—— 按照正确的顺序使用命令，仅在需要时运行 <code>npm install</code>。</li>
+<li>使用 <code>serve</code> 包部署静态文件（比如 React、Vue、Angular 生成的 bundle）。</li>
+<li>使用 <code>alpine</code> 进行生产环境下的多级构建，减少最终镜像文件的大小。</li>
+<li>#建议 — 1) 使用 COPY 代替 ADD 2) 使用 <code>init</code> 标识，处理 CTRL-C 等内核信号。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/02/28/%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1691,156 +1779,6 @@
     <div class="post-body" itemprop="articleBody">
           <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> consum_record</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">    consum_record, </span><br><span class="line">    (</span><br><span class="line">        <span class="keyword">SELECT</span></span><br><span class="line">            <span class="keyword">min</span>(<span class="keyword">id</span>) <span class="keyword">id</span>,</span><br><span class="line">            user_id,</span><br><span class="line">            monetary,</span><br><span class="line">            consume_time</span><br><span class="line">        <span class="keyword">FROM</span></span><br><span class="line">            consum_record</span><br><span class="line">        <span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">            user_id,</span><br><span class="line">            monetary,</span><br><span class="line">            consume_time</span><br><span class="line">        <span class="keyword">HAVING</span></span><br><span class="line">            <span class="keyword">count</span>(*) &gt; <span class="number">1</span></span><br><span class="line">    ) t2</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">    consum_record.user_id = t2.user_id </span><br><span class="line">    <span class="keyword">and</span> consum_record.monetary = t2.monetary</span><br><span class="line">    <span class="keyword">and</span> consum_record.consume_time  = t2.consume_time</span><br><span class="line"><span class="keyword">AND</span> consum_record.id &gt; t2.id;</span><br></pre></td></tr></table></figure>
 <p>抄自<a target="_blank" rel="noopener" href="https://www.cxiansheng.cn/server/348">https://www.cxiansheng.cn/server/348</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/12/04/%E4%B8%BA%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%B8%A6%E4%B8%8A%E5%B8%BD%E5%AD%90-%E2%80%94-%E4%BD%BF%E7%94%A8-helmet-%E4%BF%9D%E6%8A%A4-Express-%E5%BA%94%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/12/04/%E4%B8%BA%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E5%B8%A6%E4%B8%8A%E5%B8%BD%E5%AD%90-%E2%80%94-%E4%BD%BF%E7%94%A8-helmet-%E4%BF%9D%E6%8A%A4-Express-%E5%BA%94%E7%94%A8/" class="post-title-link" itemprop="url">为你的网站带上帽子 — 使用 helmet 保护 Express 应用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-12-04 16:13:00" itemprop="dateCreated datePublished" datetime="2017-12-04T16:13:00+08:00">2017-12-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><img src="/images/pasted-281.png" alt="upload successful"><br><a target="_blank" rel="noopener" href="https://expressjs.com/">Express</a> 基于 <a target="_blank" rel="noopener" href="https://nodejs.org/">Node.js</a>，是一款用于构建 Web 服务的优秀框架。它很容易上手，且得益于其中间件的概念，可以很方便地进行配置与拓展。尽管现在有<a target="_blank" rel="noopener" href="https://www.twilio.com/blog/2016/07/how-to-receive-a-post-request-in-node-js.html">各种各样的用于创建 Web 应用的框架</a>，但我的第一选择始终是 Express。然而，直接使用 Express 不能完全遵循安全性的最佳实践。因此我们需要使用类似 <a target="_blank" rel="noopener" href="https://helmetjs.github.io/"><code>helmet</code></a> 的模块来改善应用的安全性。</p>
-<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>在开始之前，请确认你已经安装好了 Node.js 以及 npm（或 yarn）。你可以<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">在 Node.js 官网下载以及查看安装指南</a>。</p>
-<p>我们将以一个新的工程为例，不过你也可以将这些功能应用于现有的工程中。</p>
-<p>在命令行中运行以下命令创建一个新的工程：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir secure-express-demo</span><br><span class="line"><span class="built_in">cd</span> secure-express-demo</span><br><span class="line">npm init -y</span><br></pre></td></tr></table></figure>
-<p>运行以下命令安装 Express 模块：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express --save</span><br></pre></td></tr></table></figure>
-<p>在 <code>secure-express-demo</code> 目录下创建一个名为 <code>index.js</code> 的文件，加入以下代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> PORT = process.env.PORT || <span class="number">3000</span>;</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.send(<span class="string">`&lt;h1&gt;Hello World&lt;/h1&gt;`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(PORT, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Listening on http://localhost:<span class="subst">$&#123;PORT&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>保存文件，试运行看看它是否能正常工作。运行以下命令启动服务：</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">node</span> <span class="title">index</span>.js</span><br></pre></td></tr></table></figure>
-<p>访问 <a target="_blank" rel="noopener" href="http://localhost:3000">http://localhost:3000</a>，你应该可以看到 <code>Hello World</code>。</p>
-<p><img src="/images/pasted-282.png" alt="upload successful"></p>
-<h3 id="检查-Headers"><a href="#检查-Headers" class="headerlink" title="检查 Headers"></a>检查 Headers</h3><p><img src="/images/pasted-283.png" alt="upload successful"></p>
-<p>现在让我们通过增加与删除一些 HTTP headers 来改善应用安全性。你可以用一些工具来检查它的 headers，例如使用 <code>curl</code> 运行以下命令：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http:<span class="regexp">//</span>localhost:<span class="number">3000</span> --include</span><br></pre></td></tr></table></figure>
-<p><code>--include</code> 标志可以让其输出 response 的 HTTP headers。如果你没有安装 <code>curl</code>，也可以用你最常用浏览器开发者工具的 network 面板代替。</p>
-<p>你可以看到在收到的 response 中包含的以下 HTTP headers：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">HTTP</span>/<span class="number">1</span>.<span class="number">1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">X</span>-Powered-By: Express</span><br><span class="line"><span class="attribute">Content</span>-Type: text/html; charset=utf-<span class="number">8</span></span><br><span class="line"><span class="attribute">Content</span>-Length: <span class="number">20</span></span><br><span class="line"><span class="attribute">ETag</span>: W/<span class="string">&quot;14-SsoazAISF4H46953FT6rSL7/tvU&quot;</span></span><br><span class="line"><span class="attribute">Date</span>: Wed, <span class="number">01</span> Nov <span class="number">2017</span> <span class="number">13</span>:<span class="number">36</span>:<span class="number">10</span> GMT</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br></pre></td></tr></table></figure>
-<p>一般来说，由 <code>X-</code> 开头的 header 是非标准头部。请注意那个 <code>X-Powered-By</code> 的 header，它会暴露你使用的框架。对于攻击者来说，这可以降低攻击成本，因为他们只专注攻击此框架的已知漏洞即可。</p>
-<h3 id="戴上头盔（helmet）"><a href="#戴上头盔（helmet）" class="headerlink" title="戴上头盔（helmet）"></a>戴上头盔（helmet）</h3><p><img src="/images/pasted-284.png" alt="upload successful"></p>
-<p>来看看如果我们使用 <code>helmet</code> 会发生什么。运行以下命令安装 <code>helmet</code>：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> helmet <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
-<p>将 <code>helmet</code> 中间件加入你的应用中。对 <code>index.js</code> 进行如下修改：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> helmet = <span class="built_in">require</span>(<span class="string">&#x27;helmet&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> PORT = process.env.PORT || <span class="number">3000</span>;</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line">app.use(helmet());</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.send(<span class="string">`&lt;h1&gt;Hello World&lt;/h1&gt;`</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(PORT, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Listening on http://localhost:<span class="subst">$&#123;PORT&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>这样就使用了 <code>helmet</code> 的默认配置。接下来看看它做了什么事情。重启服务，再次通过以下命令检查 HTTP headers：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http:<span class="regexp">//</span>localhost:<span class="number">3000</span> --inspect</span><br></pre></td></tr></table></figure>
-<p>新的 headers 会类似于下面这样：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">HTTP/1.1</span> <span class="number">200</span> <span class="string">OK</span></span><br><span class="line"><span class="attr">X-DNS-Prefetch-Control:</span> <span class="string">off</span></span><br><span class="line"><span class="attr">X-Frame-Options:</span> <span class="string">SAMEORIGIN</span></span><br><span class="line"><span class="attr">Strict-Transport-Security:</span> <span class="string">max-age=15552000;</span> <span class="string">includeSubDomains</span></span><br><span class="line"><span class="attr">X-Download-Options:</span> <span class="string">noopen</span></span><br><span class="line"><span class="attr">X-Content-Type-Options:</span> <span class="string">nosniff</span></span><br><span class="line"><span class="attr">X-XSS-Protection:</span> <span class="number">1</span><span class="string">;</span> <span class="string">mode=block</span></span><br><span class="line"><span class="attr">Content-Type:</span> <span class="string">text/html;</span> <span class="string">charset=utf-8</span></span><br><span class="line"><span class="attr">Content-Length:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">ETag:</span> <span class="string">W/&quot;14-SsoazAISF4H46953FT6rSL7/tvU&quot;</span></span><br><span class="line"><span class="attr">Date:</span> <span class="string">Wed,</span> <span class="number">01</span> <span class="string">Nov</span> <span class="number">2017 13:50:42 </span><span class="string">GMT</span></span><br><span class="line"><span class="attr">Connection:</span> <span class="string">keep-alive</span></span><br></pre></td></tr></table></figure>
-<p>首先值得庆祝的是 <code>X-Powered-By</code> header 不见了。但现在又多了好些新的 header，它们是做什么的呢？</p>
-<h4 id="X-DNS-Prefetch-Control"><a href="#X-DNS-Prefetch-Control" class="headerlink" title="X-DNS-Prefetch-Control"></a>X-DNS-Prefetch-Control</h4><p>这个 header 对增加安全性并没有太大作用。它的值为 <code>off</code> 时，将关闭浏览器对页面中 URL 的 DNS 预读取。DNS 预读取可以提高你的网站的性能，根据 MDN 描述，它可以<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Controlling_DNS_prefetching">增加 5% 或更高的图片加载速度</a>。不过开启这项功能也可能会使用户在多次访问同一个网页时缓存出现问题。</p>
-<blockquote>
-<p>译注：缓存问题未查到资料，如果您了解这块请留言</p>
-</blockquote>
-<p>它的默认值是 <code>off</code>，如果你希望通过它提升性能，可以在调用 <code>helmet()</code> 时传入 <code>&#123; dnsPrefetchControl: &#123; allow: true &#125;&#125;</code> 开启 DNS 预读取。</p>
-<h4 id="X-Frame-Options"><a href="#X-Frame-Options" class="headerlink" title="X-Frame-Options"></a>X-Frame-Options</h4><p><code>X-Frame-Options</code> 可以让你控制页面是否能在 <code>&lt;frame/&gt;</code>、<code>&lt;iframe/&gt;</code> 或者 <code>&lt;object/&gt;</code> 之类的页框内加载。除非你的确需要通过这些方式来打开页面，否则请通过下面的配置完全禁用它：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">app.use(helmet(&#123;</span><br><span class="line">  frameguard: &#123;</span><br><span class="line">    action: <span class="string">&#x27;deny&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
-<p><a target="_blank" rel="noopener" href="http://caniuse.com/#feat=x-frame-options">所有的现代浏览器都支持 <code>X-Frame-Options</code></a>。你也可以通过稍后将介绍的内容安全策略来控制它。</p>
-<h4 id="Strict-Transport-Security"><a href="#Strict-Transport-Security" class="headerlink" title="Strict-Transport-Security"></a>Strict-Transport-Security</h4><p>它也被称为 HSTS（严格安全 HTTP 传输），用于确保在访问 HTTPS 网站时不出现协议降级（回到 HTTP）的情况。如果用户一旦访问了带有此 header 的 HTTPS 网站，浏览器就会确保将来再次访问次网站时不允许使用 HTTP 进行通信。此功能有助于防范中间人攻击。</p>
-<p>有时，当你使用公共 WiFi 时尝试访问 <a target="_blank" rel="noopener" href="https://google.com">https://google.com</a> 之类的门户网页时就能看到此功能运作。WiFi 尝试将你重定向到他们的门户网站去，但你曾经通过 HTTPS 访问过 <code>google.com</code>，且它带有 <code>Strict-Transport-Security</code> 的 header，因此浏览器将阻止重定向。</p>
-<p>你可以访问 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Security/HTTP_Strict_Transport_Security">MDN</a> 或者 <a target="_blank" rel="noopener" href="https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet">OWASP wiki</a> 查看更多相关信息。</p>
-<h4 id="X-Download-Options"><a href="#X-Download-Options" class="headerlink" title="X-Download-Options"></a>X-Download-Options</h4><p>这个 header 仅用于保护你的应用免受老版 IE 漏洞的困扰。一般来说，如果你部署了不能被信任的 HTTP 文件用于下载，用户可以直接打开这些文件（而不需要先保存到硬盘去）并且可以直接在你 app 的上下文中执行。这个 header 可以确保用户在访问这种文件前必须将其下载到本地，这样就能防止这些文件在你 app 的上下文中执行了。</p>
-<p>你可以访问 <a target="_blank" rel="noopener" href="https://helmetjs.github.io/docs/ienoopen/">helmet 文档</a>和 <a target="_blank" rel="noopener" href="https://blogs.msdn.microsoft.com/ie/2008/07/02/ie8-security-part-v-comprehensive-protection/">MSDN 博文</a>查看更多相关信息。</p>
-<h4 id="X-Content-Type-Options"><a href="#X-Content-Type-Options" class="headerlink" title="X-Content-Type-Options"></a>X-Content-Type-Options</h4><p>一些浏览器不使用服务器发送的 <code>Content-Type</code> 来判断文件类型，而使用“MIME 嗅探”，根据文件内容来判断内容类型并基于此执行文件。</p>
-<p>假设你在网页中提供了一个上传图片的途径，但攻击者上传了一些内容为 HTML 代码的图片文件，如果浏览器使用 MIME 嗅探则会将其作为 HTML 代码执行，攻击者就能执行成功的 XSS 攻击了。</p>
-<p>通过设置 header 为 <code>nosniff</code> 可以禁用这种 MIME 嗅探。</p>
-<h4 id="X-XSS-Protection"><a href="#X-XSS-Protection" class="headerlink" title="X-XSS-Protection"></a>X-XSS-Protection</h4><p>此 header 能在用户浏览器中开启基本的 XSS 防御。它不能避免一切 XSS 攻击，但它可以防范基本的 XSS。例如，如果浏览器检测到查询字符串中包含类似 <code>&lt;script&gt;</code> 标签之类的内容，则会阻止这种疑似 XSS 攻击代码的执行。这个 header 可以设置三种不同的值：<code>0</code>、<code>1</code> 和 <code>1; mode=block</code>。如果你想了解更多关于如何选择模式的知识，请查看 <a target="_blank" rel="noopener" href="https://blog.innerht.ml/the-misunderstood-x-xss-protection/"><code>X-XSS-Protection</code> 及其潜在危害</a> 一文。</p>
-<h4 id="升级你的-helmet"><a href="#升级你的-helmet" class="headerlink" title="升级你的 helmet"></a>升级你的 helmet</h4><p>以上只是 <a target="_blank" rel="noopener" href="https://helmetjs.github.io/docs/"><code>helmet</code></a> 提供的默认设置。除此之外，它还可以让你设置 <a target="_blank" rel="noopener" href="https://helmetjs.github.io/docs/expect-ct/"><code>Expect-CT</code></a>、<a target="_blank" rel="noopener" href="https://helmetjs.github.io/docs/hpkp/"><code>Public-Key-Pins</code></a>、<a target="_blank" rel="noopener" href="https://helmetjs.github.io/docs/nocache/"><code>Cache-Control</code></a> 和 <a target="_blank" rel="noopener" href="https://helmetjs.github.io/docs/referrer-policy/"><code>Referrer-Policy</code></a> 之类的 header。你可以在 <a target="_blank" rel="noopener" href="https://helmetjs.github.io/docs/"><code>helmet</code> 文档</a> 中查找更多相关配置。</p>
-<h3 id="保护你的网页免受非预期内容的侵害"><a href="#保护你的网页免受非预期内容的侵害" class="headerlink" title="保护你的网页免受非预期内容的侵害"></a>保护你的网页免受非预期内容的侵害</h3><p><img src="/images/pasted-285.png" alt="upload successful"></p>
-<p>跨站脚本执行对于 web 应用来说是无法根绝的威胁。如果攻击者可以在你的应用中注入并运行代码，其后果对于你和你的用户来说可能是一场噩梦。有一种能试图阻止在你网页中运行非预期代码的方案：<code>CSP</code>（内容安全策略）。</p>
-<p>CSP 允许你设定一组规则，以定义你的页面能够加载资源的来源。任何违反规则的资源都会被浏览器自动阻止。</p>
-<p>你可以通过修改 <code>Content-Security-Policy</code> HTTP header 来指定规则，或者你不能改 header 时也可以使用 meta 标签来设定。</p>
-<p>这个 header 类似于这样：</p>
-<figure class="highlight csp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Content-Security-Policy</span>: <span class="keyword">default-src</span> <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">    <span class="keyword">script-src</span> <span class="string">&#x27;nonce-XQY ZwBUm/WV9iQ3PwARLw==&#x27;</span>;</span><br><span class="line">    <span class="keyword">style-src</span> <span class="string">&#x27;nonce-XQY ZwBUm/WV9iQ3PwARLw==&#x27;</span>;</span><br><span class="line">    <span class="keyword">img-src</span> <span class="string">&#x27;self&#x27;</span>;</span><br><span class="line">    <span class="keyword">font-src</span> <span class="string">&#x27;nonce-XQY ZwBUm/WV9iQ3PwARLw==&#x27;</span> fonts.gstatic.com;</span><br><span class="line">    <span class="keyword">object-src</span> <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">    block-all-mixed-content;</span><br><span class="line">    <span class="keyword">frame-ancestors</span> <span class="string">&#x27;none&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<p>在这个例子中，你可以看到我们只允许从自己的域名或者 Google Fonts 的 fonts.gstatic.com 来获取字体；只允许加载本域名下的图片；只允许加载不指定来源，但必须包含指定 <code>nonce</code> 值的脚本及样式文件。这个 nonce 值需要用下面这样的方式指定：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;myscript.js&quot;</span> <span class="attr">nonce</span>=<span class="string">&quot;XQY ZwBUm/WV9iQ3PwARLw==&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;mystyles.css&quot;</span> <span class="attr">nonce</span>=<span class="string">&quot;XQY ZwBUm/WV9iQ3PwARLw==&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p>当浏览器收到 HTML 时，为了安全起见它会清除所有的 nonce 值，其它的脚本无法得到这个值，也就无法添加进网页中了。</p>
-<p>你还可以禁止所有在 HTTPS 页面中包含的 HTTP 混合内容和所有 <code>&lt;object /&gt;</code> 元素，以及通过设置 <code>default-src</code> 为 <code>none</code> 来禁用一切不为图片、样式表以及脚本的内容。此外，你还可以通过 <code>frame-ancestors</code> 来禁用 iframe。</p>
-<p>你可以自己手动去编写这些 header，不过走运的是 Express 中已经有了许多现成的 CSP 解决方案。<a target="_blank" rel="noopener" href="https://helmetjs.github.io/docs/csp/"><code>helmet</code> 支持 CSP</a>，但 <code>nonce</code> 需要你自己去生成。我个人为此使用了一个名为 <code>express-csp-header</code> 的模块。</p>
-<p>安装及运行 <code>express-csp-header</code>：</p>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express-csp-<span class="built_in">header</span> --<span class="keyword">save</span></span><br></pre></td></tr></table></figure>
-<p>为你的 <code>index.js</code> 添加并修改以下内容，启用 CSP：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> helmet = <span class="built_in">require</span>(<span class="string">&#x27;helmet&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> csp = <span class="built_in">require</span>(<span class="string">&#x27;express-csp-header&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> PORT = process.env.PORT || <span class="number">3000</span>;</span><br><span class="line"><span class="keyword">const</span> app = express();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> cspMiddleware = csp(&#123;</span><br><span class="line">  policies: &#123;</span><br><span class="line">    <span class="string">&#x27;default-src&#x27;</span>: [csp.NONE],</span><br><span class="line">    <span class="string">&#x27;script-src&#x27;</span>: [csp.NONCE],</span><br><span class="line">    <span class="string">&#x27;style-src&#x27;</span>: [csp.NONCE],</span><br><span class="line">    <span class="string">&#x27;img-src&#x27;</span>: [csp.SELF],</span><br><span class="line">    <span class="string">&#x27;font-src&#x27;</span>: [csp.NONCE, <span class="string">&#x27;fonts.gstatic.com&#x27;</span>],</span><br><span class="line">    <span class="string">&#x27;object-src&#x27;</span>: [csp.NONE],</span><br><span class="line">    <span class="string">&#x27;block-all-mixed-content&#x27;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&#x27;frame-ancestors&#x27;</span>: [csp.NONE]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.use(helmet());</span><br><span class="line">app.use(cspMiddleware);</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  res.send(<span class="string">`</span></span><br><span class="line"><span class="string">    &lt;h1&gt;Hello World&lt;/h1&gt;</span></span><br><span class="line"><span class="string">    &lt;style nonce=<span class="subst">$&#123;req.nonce&#125;</span>&gt;</span></span><br><span class="line"><span class="string">      .blue &#123; background: cornflowerblue; color: white; &#125;</span></span><br><span class="line"><span class="string">    &lt;/style&gt;</span></span><br><span class="line"><span class="string">    &lt;p class=&quot;blue&quot;&gt;This should have a blue background because of the loaded styles&lt;/p&gt;</span></span><br><span class="line"><span class="string">    &lt;style&gt;</span></span><br><span class="line"><span class="string">      .red &#123; background: maroon; color: white; &#125;</span></span><br><span class="line"><span class="string">    &lt;/style&gt;</span></span><br><span class="line"><span class="string">    &lt;p class=&quot;red&quot;&gt;This should not have a red background, the styles are not loaded because of the missing nonce.&lt;/p&gt;</span></span><br><span class="line"><span class="string">  `</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(PORT, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`Listening on http://localhost:<span class="subst">$&#123;PORT&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>重启服务，访问 <a target="_blank" rel="noopener" href="http://localhost:3000">http://localhost:3000</a>，可以看到一个带有蓝色背景的段落，因为相关的样式成功被加载了。而另一个段落没有样式，因为其样式缺少了 nonce 值。</p>
-<p><img src="/images/pasted-286.png" alt="upload successful"></p>
-<p>CSP header 还可以设定报告违规的 URL，你还可以在严格启用 CSP 之前仅开启报告模式，收集相关数据。</p>
-<p>你可以在 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy__by_cnvoid">MDN CSP 介绍</a>查看更多信息，并浏览 <a target="_blank" rel="noopener" href="http://caniuse.com/#feat=contentsecuritypolicy">“Can I Use” 网站查看 CSP 兼容性</a>。大多数主流浏览器都支持这项特性。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="/images/pasted-287.png" alt="upload successful"></p>
-<p>可惜的是，在安全性方面不存在所谓的万能方案，新的漏洞层出不穷。但是，你可以很轻松地在你的 web 应用中设置这些 HTTP header，显著地提升你应用的安全性，何乐而不为呢？如果你想了解更多有关 HTTP header 提高安全性的最佳实践，请浏览 <a target="_blank" rel="noopener" href="https://securityheaders.io/">securityheaders.io</a>。</p>
-<p>如果你想了解更多 web 安全方面的最佳实践，请访问 <a target="_blank" rel="noopener" href="https://www.owasp.org/index.php/Main_Page">Open Web Applications Security Project（OWASP）</a>，它涵盖了广泛的主题及有用的资源。</p>
-<p>如果你有任何问题，或有其它用于提升 Node.js web 应用的工具，请随时联系我：</p>
-<ul>
-<li>Twitter：<a target="_blank" rel="noopener" href="https://twitter.com/dkundel">@dkundel</a></li>
-<li>Email：<a href="mailto:dkundel@twilio.com">dkundel@twilio.com</a></li>
-<li>GitHub：<a target="_blank" rel="noopener" href="https://github.com/dkundel">dkundel</a></li>
-</ul>
-<blockquote>
-<p>本文发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/5a24fd8f51882509e5438247">https://juejin.im/post/5a24fd8f51882509e5438247</a></p>
-</blockquote>
 
       
     </div>

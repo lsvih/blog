@@ -224,7 +224,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">161</span>
+          <span class="site-state-item-count">162</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -280,6 +280,90 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/09/10/%E5%A4%84%E7%90%86unbalanced-parenthesis%E6%83%85%E5%BD%A2%EF%BC%8C%E5%AF%B9%E6%AD%A3%E5%88%99%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9B%E8%A1%8C%E8%BD%AC%E4%B9%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/09/10/%E5%A4%84%E7%90%86unbalanced-parenthesis%E6%83%85%E5%BD%A2%EF%BC%8C%E5%AF%B9%E6%AD%A3%E5%88%99%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9B%E8%A1%8C%E8%BD%AC%E4%B9%89/" class="post-title-link" itemprop="url">处理unbalanced parenthesis情形，对正则字符串进行转义</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-09-10 02:00:14" itemprop="dateCreated datePublished" datetime="2017-09-10T02:00:14+08:00">2017-09-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>使用 python re 处理数据时，程序提示“unbalanced parenthesis”，中文意思即为“不平衡的括号”。查看代码发现，在定义正则时使用了这样的做法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">re.compile(<span class="string">r&quot;123&quot;</span> + str + <span class="string">&quot;123&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>然后排查发现数据中有几个例外的 str 含有括号，这些括号没有经过处理就直接传入了正则表达式中，变成了类似</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">r&quot;123this is str)123&quot;</span></span><br></pre></td></tr></table></figure>
+<p>的数据，造成错误。</p>
+<p>翻阅 python re 文档发现，可以使用 re.escape 对字符串进行正则转义。如</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span> <span class="keyword">is</span> str)</span><br></pre></td></tr></table></figure>
+<p>可以转成</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span><span class="string">\</span> <span class="keyword">is</span><span class="string">\</span> str<span class="string">\)</span></span><br></pre></td></tr></table></figure>
+<p>这样传入正则就不会出现问题了。</p>
+<blockquote>
+<p>以后写正则如果还要传字符串进去一定要细心这类问题</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1352,112 +1436,6 @@ input: &quot;What’s it like outside?&quot;
     <div class="post-body" itemprop="articleBody">
           <p>ionic3 修复了2.x 存在的 ion-select 组件的 interface 等 bug，因此对其进行升级。修改 package.json，删除 node_module 目录，在 npm I 的时候依次按照提示在 package.json 中将不符合版本的库改为兼容版本。</p>
 <p>升级完成之后 build 时提示 webpackjsonp is not defined，翻阅 README 的 Change log 发现新版 cli 脚手架写的 webpack 配置有所改变，将公用部分使用 CommonsChunkPlugin 额外打了一个包，此包命名为 vendor。在 app 入口文件中引用该公用包解决问题。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/09/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/08/09/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="post-title-link" itemprop="url">卷积神经网络</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-08-09 16:25:34" itemprop="dateCreated datePublished" datetime="2017-08-09T16:25:34+08:00">2017-08-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="CNN-是怎么学习的？学习了什么？"><a href="#CNN-是怎么学习的？学习了什么？" class="headerlink" title="CNN 是怎么学习的？学习了什么？"></a>CNN 是怎么学习的？学习了什么？</h2><p><strong>这篇文章是深度学习系列的一部分。你可以在</strong><a target="_blank" rel="noopener" href="https://github.com/xitu/gold-miner/blob/master/TODO/deep-learning-1-setting-up-aws-image-recognition.md"><strong>这里</strong></a><strong>查看第一部分，以及在</strong><a target="_blank" rel="noopener" href="https://github.com/xitu/gold-miner/blob/master/TODO/deep-learning-3-more-on-cnns-handling-overfitting.md"><strong>这里</strong></a><strong>查看第三部分。</strong></p>
-<p><img src="/images/pasted-171.png" alt="upload successful"></p>
-<p>这一周，我们将探索卷积神经网络（CNN）的内部工作原理。你可能会问：在网络内部究竟发生了什么？它们是怎样学习的？</p>
-<p>这门课程遵循自上而下的学习方法与理念。因此一般来说，我们在开始学习的时候就能立即玩到所有的模型，然后我们会逐渐深入其内部的工作原理。因此，本系列也将会逐渐深入探索神经网络的内部工作原理。现在仅仅是第二周，让我们朝着最终的目标迈进吧！</p>
-<p>在上周，我在猫狗图像集上训练了 Vgg 16 模型。我想先聊一下为什么说使用预先训练好的模型是一种很好的方法。为了使用这些模型，首先你得要弄清楚这些模型到底学习的是什么。从本质上说，CNN 学习的是过滤器，并将学习到的过滤器应用于图像。当然，这些“过滤器”和你在 Instagram 里用的滤镜（英文也为“filter”）并不是一种东西，但它们其实有一些相同之处。CNN 会使用一个小方块遍历整张图片，通常将这个小方块称为“窗口”。接下来，网络会在图片中查找与过滤器匹配的图片内容。在第一层，网络可能只学习到了一些简单的事物（例如对角线）。在之后的每一层中，网络都将结合前面找到的特征，持续学习更加复杂的概念。单单听这些概念可能会让人比较迷糊，让我们直接来看一些例子。<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1311.2901">Zeiler and Fergus (2013)</a> 为可视化 CNN 学习过程做出了一项很棒的工作。下图是他们在论文中用的 CNN 模型，赢得 Imagenet 竞赛的 Vgg16 模型就是基于这个模型做出来的。</p>
-<p><img src="/images/pasted-172.png" alt="upload successful"></p>
-<p>CNN，作者：Zeiler &amp; Fergus (2013)</p>
-<p>可能你现在会觉得这个图片很难懂，请不要慌！让我们先从我们可以在图中看到的东西说起吧。首先，输入图像是正方形，大小为 224x224 像素。我之前说的过滤器大小是 7x7 像素大小。该模型有一个输入层，7 个隐藏层以及一个输出层。输出层的“C”指的是模型的预测分类数量。现在让我们来了解 CNN 中最有趣的部分：这个神经网络在每一层中都学到了什么！</p>
-<p><img src="/images/pasted-173.png" alt="upload successful"></p>
-<p>上图为 CNN 的第二层。左边的图像代表了 CNN 的这层网络在右边的真实图片中学习到的内容。<br>在 CNN 的第二层中，你可以发现这个模型已经不仅仅是去提取对角线了，它找到了一些更有意思的形状特征。例如在第二排第二列的方块中，你可以看到模型正在提取圆形；还有，最后一个方块表明模型正在专注于识别图中的一个直角作为特征。</p>
-<p><img src="/images/pasted-174.png" alt="upload successful"></p>
-<p>上图为 CNN 的第三层。<br>在第三层中，我们可以看到模型已经开始学习一些更具体的东西。第一个方块中的图像表明模型已经能够识别出一些地理特征；第二排第二列的方块表明模型正在识别车轮；倒数第二个方块表明模型正在识别人类。</p>
-<p><img src="/images/pasted-175.png" alt="upload successful"></p>
-<p>CNN 的第四层与第五层</p>
-<p>在最后，第四层与第五层保持前面模型越来越具体的趋势。第五层找到了对解决我们的猫狗问题非常有帮助的特征。与此同时，它还识别出了独轮车，以及鸟类、爬行动物的眼睛。请注意，这些图像仅仅展示了每一层学习到的东西的极小一部分。</p>
-<p>希望上面的文字已经告诉了你为什么使用预先训练好的模型是很有用的。如果你想更多的了解这块领域的研究，你可以搜索“迁移学习”（transfer learning）的相关内容。虽然我们的猫狗问题训练集仅仅只有 25000 张图片，一个新的模型可能还无法从这些图片中学习到所有的特征，但我们的 Vgg16 模型已经相当“了解”怎么去识别猫和狗了。最后，通过“微调”（Finetuning） Vgg16 模型的最后一层，让其不再输出 1000 多种分类的概率，而是直接输出二分类 —— 猫和狗。</p>
-<p>如果你对深度学习背后的数学知识感兴趣，<a target="_blank" rel="noopener" href="http://cs231n.github.io/">Stanford’s CNN pages</a> 是很好的参考材料。他们首次以“数学之美”解释了浅层神经网络。</p>
-<hr>
-<h4 id="微调及线性层（全连接层）"><a href="#微调及线性层（全连接层）" class="headerlink" title="微调及线性层（全连接层）"></a>微调及线性层（全连接层）</h4><p>上周，我用这个预先训练好的 Vgg16 模型不能很自然的区分猫和狗这两个分类下的图片，而是提出了 1000 余种分类。此外，这个模型并不会直接输出“猫”和“狗”的分类，而是输出猫和狗的一些特定品种。那我们如何修改这个模型，让它能够有效地对猫和狗进行分类呢？</p>
-<p>有种可选方案：手动将这些品种分到猫和狗中去，然后计算其概率之和。但是，这种做法会丢弃一些关键信息。例如，如果图片中只有一根骨头，但它很可能是一张属于狗的照片。如果我们仅查看这些品种分为猫狗的概率，前面提到的这种信息很可能会丢失。因此在模型的最后，我们加入一个线性层（全连接层），它将仅输出两种分类。实际上，Vgg16 模型的最后有 3 层全连接层。我们可以微调这些层，通过反向传播来训练它们。反向传播算法常常被人看成是一种抽象的魔法，但其实它只是简单应用链式求导法则。你可以暂时忽略这些数学上的细节，TensorFlow、Theano 和其它深度学习库已经帮你做好了这些工作。</p>
-<p>如果你正在运行 Fast AI 课程 lesson 2 的 notebook，我建议你最好先只使用 notebook 的样例图片。如果你运行 p2 的实例，可能会由于保存、加载 numpy 数组将内存耗尽。</p>
-<hr>
-<h4 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h4><p>前面我们讨论了网络最后的线性层（全连接层）。然而，神经网络的所有层都不是线性的。在神经网络计算出每个神经元的参数之后，我们需要将它们的计算结果作为参数输入到激活函数中。人工神经网络基本上由矩阵乘法组成，如果我们只使用线性计算的话，我们只能将它们一个个叠加在一起，并不能做成一个很深的网络。因此，我们会经常在网络的各层使用非线性的激活函数。通过将重重线性与非线性函数叠加在一起，理论上我们可以对任何事物进行建模。下面是三种最受欢迎的非线性激活函数：</p>
-<ul>
-<li>Sigmoid <strong>（将值转换到 0，1 间）</strong></li>
-<li>TanH <strong>（将值转换到 -1，1 间）</strong></li>
-<li>ReLu <strong>（如果值为负则输出 0，否则输出原值）</strong></li>
-</ul>
-<p><img src="/images/pasted-176.png" alt="upload successful"></p>
-<p>上图为最常用的激活函数：Sigmoid、Tanh 和 ReLu（又名修正线性单元）<br>目前，ReLu 是使用的最多的非线性激活函数，主要原因是它可以减少梯度消失的可能性，以及保持稀疏特征。稍后会讨论这方面的更多详情。因为我们希望模型最后能够输出确定的内容，因此模型的最后一层通常使用一种另外的激活函数 —— softmax。softmax 函数是一种非常受欢迎的分类器。</p>
-<p>在微调完 Vgg16 模型的最后一层之后，它总共有 138357544 个参数。谢天谢地，我们不需要手动计算各种梯度 XD。下一周我们将更深入地了解 CNN 的工作原理，讨论主题为欠拟合和过拟合。</p>
-<p>如果你喜欢这篇文章，请将它推荐给其他人吧！你也可以关注此系列文章，跟上 Fast AI 课程的进度。下篇文章再会！</p>
-<blockquote>
-<p>发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/598ac6a55188257dd366367f">https://juejin.im/post/598ac6a55188257dd366367f</a></p>
-</blockquote>
 
       
     </div>
