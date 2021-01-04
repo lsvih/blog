@@ -224,7 +224,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">162</span>
+          <span class="site-state-item-count">164</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -237,7 +237,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">205</span>
+        <span class="site-state-item-count">208</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -280,6 +280,186 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2021/01/04/docker-binary-install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/04/docker-binary-install/" class="post-title-link" itemprop="url">安装并配置 Docker 二进制版</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-01-04 15:34:00" itemprop="dateCreated datePublished" datetime="2021-01-04T15:34:00+08:00">2021-01-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Note/" itemprop="url" rel="index"><span itemprop="name">Note</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在 centos 7 环境下配置与安装 docker 二进制版。</p>
+<ol>
+<li><p>解压 docker 文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xzvf /path/to/&lt;FILE&gt;.tar.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>复制 docker 文件至 /usr/bin/ 目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp docker/* /usr/bin/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 docker service 让 dockerd 自启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp docker_service/* /etc/systemd/system</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启 systemctl，启用 docker 自启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> docker</span><br><span class="line">sudo systemctl start docker </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 docker 用户组，并将当前用户加入其中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd docker</span><br><span class="line">sudo gpasswd -a <span class="variable">$USER</span> docker</span><br><span class="line">newgrp docker</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：如果没有这一步，会导致 docker 只能由 sudo 运行，否则会出现 permission denied 的错误。</p>
+</blockquote>
+</li>
+<li><p>重启 <code>reboot</code>。</p>
+</li>
+<li><p>验证 docker 安装情况： <code>docker images</code></p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2020/12/24/cytoscape-js-label-out-of-edge/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/24/cytoscape-js-label-out-of-edge/" class="post-title-link" itemprop="url">cytoscape.js 让标签与线错开</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-12-24 12:05:00" itemprop="dateCreated datePublished" datetime="2020-12-24T12:05:00+08:00">2020-12-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>按照官方说明，在 stylesheet 中直接使用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">edge</span>&#123;</span><br><span class="line">     <span class="attribute">label</span>: <span class="built_in">data</span>(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以让连边的 label 正常显示：</p>
+<p><img src="/images/16097437968228.jpg" alt="-w806"></p>
+<p>但是，文字覆盖在连边上效果很不好，因此有时候会使用 <code>outline</code> 等方式，让文本更加突出。而根据需求，现在需要让 label 文本和连边错开（即文本在边的上边而不是重合），使用官方提供的 margin 等接口，都会在连边不是水平的时候导致文本的错位：</p>
+<p><img src="/images/16097440375915.jpg" alt="-w575"></p>
+<p><img src="/images/16097440528539.jpg" alt="-w220"></p>
+<p>上面两个图片是 </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">edge</span>&#123;</span><br><span class="line">    <span class="attribute">text-margin-y</span>: <span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>的效果。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">graph.cy.style().selector(<span class="string">&#x27;edge&#x27;</span>).style(&#123;<span class="string">&#x27;label&#x27;</span>:  <span class="function"><span class="params">label</span> =&gt;</span> label.data().name + <span class="string">&quot;\n\n\u200b&quot;</span>&#125;).update()</span><br></pre></td></tr></table></figure>
+<p>直接让一行标签变成三行标签，这样就刚好和连边错开了。其中 <code>\u200b</code> 是空白的字符，在图中不会显示，拿来做占位符恰好合适。效果如下：</p>
+<p><img src="/images/16097441916015.jpg" alt="-w310"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1035,217 +1215,6 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/06/28/why-one-hot-encode-data-in-machine-learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/28/why-one-hot-encode-data-in-machine-learning/" class="post-title-link" itemprop="url">在机器学习中为什么要进行 One-Hot 编码？</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2019-06-28 11:10:00" itemprop="dateCreated datePublished" datetime="2019-06-28T11:10:00+08:00">2019-06-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>入门机器学习应用，尤其是需要对实际数据进行处理时，是很困难的。</p>
-<p>一般来说，机器学习教程会推荐你或要求你，在开始拟合模型之前，先以特定的方式准备好数据。</p>
-<p>其中，一个很好的例子就是对类别数据（Categorical data）进行 One-Hot 编码（又称独热编码）。</p>
-<ul>
-<li>为什么 One-Hot 编码是必要的？</li>
-<li>为什么你不能直接使用数据来拟合模型？</li>
-</ul>
-<p>在本文中，你将得到上述重要问题的答案，并能更好地理解机器学习应用中的数据准备工作。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/06/28/why-one-hot-encode-data-in-machine-learning/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/06/27/Graph%20Convolutional%20Networks%20for%20Text%20Classification/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/27/Graph%20Convolutional%20Networks%20for%20Text%20Classification/" class="post-title-link" itemprop="url">Graph Convolutional Networks for Text Classification 论文笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2019-06-27 12:04:00" itemprop="dateCreated datePublished" datetime="2019-06-27T12:04:00+08:00">2019-06-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>本文作于 2018 年，被 AAAI 2019 接收。作者是浙大博士，在 Northwestern University 做博后期间做出了此工作。文章中开源了实现代码：<a target="_blank" rel="noopener" href="https://github.com/yao8839836/text_gcn">https://github.com/yao8839836/text_gcn</a> </p>
-</blockquote>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>本文解决的是自然语言处理中最基础的任务 - 文本分类任务。利用近年大火的图神经网络，作者通过词与文章的共现信息和 TF-IDF 权重和互信息权重将无结构数据文本进行了构图，并利用 Graph Convolutional Network（GCN）捕获图中的文档-词、词-词、文档-文档关系，从而进行文本分类。</p>
-<p>具体来说，本文主要有以下两个贡献点：</p>
-<ol>
-<li>提出了使用图神经网络来解决文本分类问题，有效利用了文档、词等的异构信息</li>
-<li>在 benchmark 上达到了 state-of-the-art 的效果</li>
-</ol>
-<h2 id="背景与相关工作"><a href="#背景与相关工作" class="headerlink" title="背景与相关工作"></a>背景与相关工作</h2><h3 id="文本分类"><a href="#文本分类" class="headerlink" title="文本分类"></a>文本分类</h3><p>传统的文本分类方法主要依靠特征工程，在深度学习兴起后，各种深度学习框架代替了这个步骤。人们利用文本的分布式表示（embedding），使用各种 CNN、RNN、LSTM 等神经网络来捕获 embedding 中的语义信息，进行分类。本文就是在此基础之上，用 GCN 来捕获 Graph 中的 语义信息从而实现准确分类。</p>
-<h3 id="图网络"><a href="#图网络" class="headerlink" title="图网络"></a>图网络</h3><p>近些年为了突破传统神经网络只能应用于对齐的 grid 数据的限制，出现了可以应用于 Graph 的图神经网络。其中，GCN 方法简单有效，在图的各个节点上计算其邻居的聚合信息表示。因此，作者 employ 了 GCN 方法，将其用于图结构的学习。</p>
-<h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>作者在 5 个常用的公开数据集上进行了实验。这 5 个数据集的基本信息如下：</p>
-<p><img src="/images/15616083187154.jpg" alt="-w692"></p>
-<p>在实验前，作者利用 NLTK 去除了前 4 个数据集的停用词，并去除了频次小于 5 的低频次。MR 数据集因为句子太短了，没有必要再删。</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="构图方法"><a href="#构图方法" class="headerlink" title="构图方法"></a>构图方法</h3><p>作者最终构成的图结构如下图所示：</p>
-<p><img src="/images/15616083306904.jpg" alt="-w922"></p>
-<p>在图中，左边是文本构成的图，右边是经过 GCN 得到的图表示。在左图中，以“O”开头的节点是文档节点，白色圈里有单词的节点是单词节点，黑色的线是文档-单词关系，灰色的线是单词-单词关系。右图中的$R(x)$表示文档或单词$x$的表示。</p>
-<p>具体来说，在这个情景中，构图主要在于如何对文档-单词和单词-单词的边赋权。作者使用了下面公式所示的构图方式：</p>
-<script type="math/tex; mode=display">
-A _ { i j } = \left\{ \begin{array} { c } { \operatorname { PMI } ( i , j ) } \space \text{i,j 是单词，且 PMI(i,j)>0} \\ { \mathrm { TF } - \mathrm { IDF } _ { i j } } \space \text{i是单词，j是文档} \\ { 1 } \space i =j \\ { 0 } \space otherwise \end{array} \right.</script><p>$A_{ij}$表示从节点 i 连到节点 j 的边的权重。简单来说，就是对文档-单词的边算 TF-IDF 作为权重，对单词-单词的边使用 PMI 做权重。PMI 是单词与单词的互信息，具体计算方式是：</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \operatorname { PMI } ( i , j ) = & \log \frac { p ( i , j ) } { p ( i ) p ( j ) } \\ p ( i , j ) = & \frac { \# W ( i , j ) } { \# W } \\ p ( i ) = & \frac { \# W ( i ) } { \# W } \end{aligned}</script><p>其中，#W 是滑动窗口，具体来说，PMI 就是算单词 i 和单词 j 同时出现的概率比上单词 i 和单词 j 单独出现的概率。</p>
-<h3 id="分类算法"><a href="#分类算法" class="headerlink" title="分类算法"></a>分类算法</h3><p>在 GCN 框架内，使用 BP 算法来优化节点表示，并在 GCN 后加一层 Dense 层和激活层，利用 softmax 来进行分类。作者将其表示如下：</p>
-<script type="math/tex; mode=display">Z = \operatorname { softmax } \left( \tilde { A } \operatorname { ReL } \mathbf { U } \left( \tilde { A } X W _ { 0 } \right) W _ { 1 } \right)</script><p>其中，$ \tilde { A } X W _ { 0 } $ 和前面的公式 $L ^ { ( 1 ) } = \rho \left( \tilde { A } X W _ { 0 } \right)$ 一致，都是通过对 W 的优化来进行节点的表示。对上面的公式进一步拆解，可以记为：</p>
-<script type="math/tex; mode=display">E _ { 1 } = \tilde { A } X W _ { 0 }</script><p>$E_1$ 就是对单词和文档节点的表示。</p>
-<script type="math/tex; mode=display">E _ { 2 } = \tilde { A } \operatorname { ReLU } \left( \tilde { A } X W _ { 0 } \right) W _ { 1 }</script><p>$E_2$ 就是对节点的第二层级表示。因此，本文相当于用了 2 层 GCN 进行图表示，然后用 softmax 进行分类。在分类优化时，采用了交叉熵损失函数：</p>
-<script type="math/tex; mode=display">
-\mathcal { L } = - \sum _ { d \in \mathcal { Y } _ { D } } \sum _ { f = 1 } ^ { F } Y _ { d f } \ln Z _ { d f }</script><h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><h3 id="baseline-设置"><a href="#baseline-设置" class="headerlink" title="baseline 设置"></a>baseline 设置</h3><p>作者设置了多种 baseline，包括：</p>
-<ul>
-<li>TF-IDF + 线性分类器</li>
-<li>CNN 文本分类（Convolutional neural networks for sentence classification，EMNLP）</li>
-<li>LSTM 文本分类（Recurrent neural network for text classiﬁcation with multi-task learning，IJCAI）</li>
-<li>Bi-LSTM</li>
-<li>PV-DBOW（Distributed representations of sentences and documents，ICML）</li>
-<li>PV-DM（同上）</li>
-<li>PTE（Automatic lymphoma classiﬁcation with sentence subgraph mining from pathology reports）</li>
-<li>FastText（Bag of tricks for efﬁcient text classiﬁcation，EACL）</li>
-<li>SWEM（Baseline needs more love: On simple wordembedding-based models and associated pooling mechanisms，ACL）</li>
-<li>LEAM（Joint embedding of words and labels for text classiﬁcation，ACL）</li>
-<li>Graph-CNN-C（Convolutional neural networks on graphs with fast localized spectral ﬁltering，NIPS）</li>
-<li>Graph-CNN-S（Spectral networks and locally connected networks on graphs，ICLR）</li>
-<li>Graph-CNN-F（Deep convolutional networks on graphstructured data）</li>
-</ul>
-<p>可以看到，作者的实验非常完善且置信，应用了当时几乎全部的文本分类方法来进行对比。</p>
-<h3 id="实验设置"><a href="#实验设置" class="headerlink" title="实验设置"></a>实验设置</h3><p>作者用了 200 维作为 embedding 维数，20 作为滑动窗口大小，学习率设为 0.02，Dorpout 设为 0.5，分别随机采样 10 % 数据作为验证集和测试集。</p>
-<h3 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h3><p>最终，得到了如下表所示的实验结果：</p>
-<p><img src="/images/15616083449147.jpg" alt="-w1067"></p>
-<p>该表有两个维度，数据集和模型。从此也可以看出，作者实验做的非常充分。</p>
-<h3 id="结果分析"><a href="#结果分析" class="headerlink" title="结果分析"></a>结果分析</h3><p>从上表可以看到，除了 MR 数据集外，作者提出的 Text GCN 方法在其余全部数据集上都得到了最好的结果。猜测可能是由于 MR 数据集中数据过于短，构图效果不佳造成的。</p>
-<p>此外，作者利用 t-SNE 方法（Visualizing data using t-sne，JMLR）对结果进行了可视化，用于分析训练得到的 embedding 的效果。结果如下：</p>
-<p><img src="/images/15616083604339.jpg" alt="-w513"></p>
-<p>可以看到，作者提出的 Text GCN 方法得到的文档表示在 t-SNE 表现是可分的，类间距离较大，优于用来对比的其余两种方法。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>作者提出的 Text GCN 方法在文本分类任务中，在多个数据集上得到了最好的结果。我认为其最大创新点在于：1、引入了 GCN 来做文本分类 2、提出了这种构建带权边图的方式。整个工作非常完备，应该要做的实验基本都做了，令人信服，我们做文本分类应当也要学习本文的实验方式。此外，文章最后的节点表示可视化也很有说服力。</p>
-<p>对于后续工作，我觉得一个是可以 follow 一些新的构图方式和 GNN 框架，再有就是在 loss 方面进行改进，优化表示的空间分布。此外，可以考虑结合一些最新的语言模型方法（BERT、XLNET 等）改善结果。以及，可以对分类器那块进行一些改进，比如引入 Attention 等方法可能可以提升效果。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1292,7 +1261,7 @@ A _ { i j } = \left\{ \begin{array} { c } { \operatorname { PMI } ( i , j ) } \s
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

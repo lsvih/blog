@@ -224,7 +224,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">162</span>
+          <span class="site-state-item-count">164</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -237,7 +237,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">205</span>
+        <span class="site-state-item-count">208</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -280,6 +280,180 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/20/%E6%A0%B9%E6%8D%AEVuejs%E5%88%B6%E4%BD%9C%E7%9A%84%E5%8F%AF%E6%9F%A5%E6%89%BE%E5%A4%9A%E4%B8%AA%E6%95%B0%E5%80%BC%E7%9A%84%E8%BF%87%E6%BB%A4%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/04/20/%E6%A0%B9%E6%8D%AEVuejs%E5%88%B6%E4%BD%9C%E7%9A%84%E5%8F%AF%E6%9F%A5%E6%89%BE%E5%A4%9A%E4%B8%AA%E6%95%B0%E5%80%BC%E7%9A%84%E8%BF%87%E6%BB%A4%E5%99%A8/" class="post-title-link" itemprop="url">根据Vuejs制作的可查找多个数值的过滤器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-04-20 14:23:00" itemprop="dateCreated datePublished" datetime="2016-04-20T14:23:00+08:00">2016-04-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在实际项目中，需要制作”我的订单”功能。功能逻辑如下：使用ajax将所有订单数据下载到json数组中，将json数组与div绑定。</p>
+<p>且订单有多个状态，如state=1是待确认订单，state=2是待付款订单，state=3是待配送订单，state=4是待评价订单。</p>
+<p>但是在调支付接口时，发现已付款订单有两种状态:同步状态与异步状态（交易平台需要一定时间确认后才能将确认消息异步发送给服务端），为了用户体验，拟使同步与异步状态的订单都归类在“已付款订单”中，因此Vue原生自带的单个数值搜索的过滤器不足以满足需求，需要一个能够同时搜索多个数值的过滤器来进行过滤。</p>
+<p>过滤器代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * Filter filter array for arrays</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param <span class="type">&#123;String&#125;</span> <span class="variable">arr</span></span></span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param <span class="type">&#123;String&#125;</span> <span class="variable">searcharr</span></span></span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param <span class="type">&#123;String&#125;</span> <span class="variable">feature</span></span></span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">filtersBy</span>(<span class="params">arr, searcharr, feature</span>) </span>&#123;</span><br><span class="line">     searcharr = convertArray(searcharr);</span><br><span class="line">     arr = convertArray(arr);</span><br><span class="line">     <span class="keyword">var</span> res = [];</span><br><span class="line">     <span class="keyword">var</span> item, searchitem;</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; searcharr.length; j++) &#123;</span><br><span class="line">             item = arr[i];</span><br><span class="line">             searchitem = searcharr[j];</span><br><span class="line">             <span class="built_in">console</span>.log(feature)</span><br><span class="line">             <span class="keyword">if</span> (item[feature] == searchitem) &#123;</span><br><span class="line">                 res.push(item);</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> res;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>插入源码后注册即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> filters = &#123;</span><br><span class="line">    orderBy: orderBy,</span><br><span class="line">    filterBy: filterBy,</span><br><span class="line">    filtersBy: filtersBy,</span><br><span class="line">    limitBy: limitBy</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>运行效果：</p>
+<p>数据:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> DATA = &#123;</span><br><span class="line">	<span class="string">&quot;datas&quot;</span>: [&#123;</span><br><span class="line">	<span class="string">&quot;id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">	<span class="string">&quot;type&quot;</span>: <span class="number">1</span>,</span><br><span class="line">	<span class="string">&quot;data&quot;</span>: <span class="string">&quot;这是分类一的第一项&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">&quot;id&quot;</span>: <span class="number">2</span>,</span><br><span class="line">	<span class="string">&quot;type&quot;</span>: <span class="number">1</span>,</span><br><span class="line">	<span class="string">&quot;data&quot;</span>: <span class="string">&quot;这是分类一的第二项&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">&quot;id&quot;</span>: <span class="number">3</span>,</span><br><span class="line">	<span class="string">&quot;type&quot;</span>: <span class="number">1</span>,</span><br><span class="line">	<span class="string">&quot;data&quot;</span>: <span class="string">&quot;这是分类一的第三项&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">&quot;id&quot;</span>: <span class="number">4</span>,</span><br><span class="line">	<span class="string">&quot;type&quot;</span>: <span class="number">2</span>,</span><br><span class="line">	<span class="string">&quot;data&quot;</span>: <span class="string">&quot;这是分类二的第一项&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">&quot;id&quot;</span>: <span class="number">5</span>,</span><br><span class="line">	<span class="string">&quot;type&quot;</span>: <span class="number">2</span>,</span><br><span class="line">	<span class="string">&quot;data&quot;</span>: <span class="string">&quot;这是分类二的第二项&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">&quot;id&quot;</span>: <span class="number">6</span>,</span><br><span class="line">	<span class="string">&quot;type&quot;</span>: <span class="number">3</span>,</span><br><span class="line">        <span class="string">&quot;data&quot;</span>: <span class="string">&quot;这是分类三的第一项&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">&quot;id&quot;</span>: <span class="number">7</span>,</span><br><span class="line">	<span class="string">&quot;type&quot;</span>: <span class="number">3</span>,</span><br><span class="line">	<span class="string">&quot;data&quot;</span>: <span class="string">&quot;这是分类三的第二项&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">&quot;id&quot;</span>: <span class="number">8</span>,</span><br><span class="line">	<span class="string">&quot;type&quot;</span>: <span class="number">3</span>,</span><br><span class="line">	<span class="string">&quot;data&quot;</span>: <span class="string">&quot;这是分类三的第三项&quot;</span></span><br><span class="line">	&#125;, &#123;</span><br><span class="line">	<span class="string">&quot;id&quot;</span>: <span class="number">9</span>,</span><br><span class="line">	<span class="string">&quot;type&quot;</span>: <span class="number">3</span>,</span><br><span class="line">	<span class="string">&quot;data&quot;</span>: <span class="string">&quot;这是分类三的第四项&quot;</span></span><br><span class="line">	&#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>html:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;type-1&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;data in datas | filtersBy &#x27;[2,3]&#x27; &#x27;type&#x27;&quot;</span> <span class="attr">track-by</span>=<span class="string">&quot;item.id&quot;</span>&gt;</span>&#123;&#123;data.data&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>js:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">&#x27;#type-1&#x27;</span>,</span><br><span class="line">    data: DATA</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>结果:</p>
+<p><img src="/images/pasted-53.png" alt="upload successful"></p>
+<p>可以满足需求，在数据中搜索多项并过滤。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/20/js%E4%B8%ADreduce%E7%9A%84%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/04/20/js%E4%B8%ADreduce%E7%9A%84%E7%94%A8%E6%B3%95/" class="post-title-link" itemprop="url">js中reduce的用法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-04-20 07:36:00" itemprop="dateCreated datePublished" datetime="2016-04-20T07:36:00+08:00">2016-04-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>从左到右遍历数组的一种方式</p>
+<blockquote>
+<p>arr.reduce(callback(previousValue,currentValue,index,array), [initialValue]);  </p>
+</blockquote>
+<p>callback 函数中 <code>previousValue</code> 等于 <code>initialValue</code> 的值或者是上一次 <code>reduce return</code> 回来的值</p>
+<p><code>currentValue</code> 是当前执行到的数组的值</p>
+<p><code>index</code> 是当前执行到的数组的下标</p>
+<p><code>array</code> 是执行 <code>reduce</code> 的 <code>array</code></p>
+<p>尝试：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">a.reduce(</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">a,b,c,d</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="string">&#x27;previousValue= &#x27;</span>+a+ <span class="string">&#x27;;currentValue= &#x27;</span>+b+ <span class="string">&#x27;;index= &#x27;</span>+c+ <span class="string">&#x27;;array= &#x27;</span>+d)</span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line">&#125;,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br></pre></td></tr></table></figure></p>
+<p>得到结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">previousValue=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>;currentValue=<span class="number">1</span>;index=<span class="number">0</span>;array=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span></span><br><span class="line"></span><br><span class="line">previousValue=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>;currentValue=<span class="number">2</span>;index=<span class="number">1</span>;array=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span></span><br><span class="line"></span><br><span class="line">previousValue=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>;currentValue=<span class="number">3</span>;index=<span class="number">2</span>;array=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span></span><br><span class="line"></span><br><span class="line">previousValue=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>;currentValue=<span class="number">4</span>;index=<span class="number">3</span>;array=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span></span><br><span class="line"></span><br><span class="line">previousValue=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>;currentValue=<span class="number">5</span>;index=<span class="number">4</span>;array=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span></span><br><span class="line"></span><br><span class="line">previousValue=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>;currentValue=<span class="number">6</span>;index=<span class="number">5</span>;array=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p>可以感受到其用法。</p>
+<p>例如数组累加：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">1</span>]</span><br><span class="line">sum = a.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev,cur</span>)</span>&#123;<span class="keyword">return</span> prev+cur&#125;)</span><br><span class="line"><span class="comment">//sum = 13</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>因此vuejs中filterBy代码中的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> keys=toArray(<span class="built_in">arguments</span>,n).reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev,cur</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> prev.concat(cur);</span><br><span class="line">    &#125;,[]);</span><br></pre></td></tr></table></figure>
+<p>用途是将数组扁平化。</p>
+<p>例如<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a= [</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">  [<span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">];</span><br><span class="line"><span class="keyword">var</span> b= a.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">prev, cur</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> prev.concat(cur);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//b = [1,2,3,4,5,6]</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1048,187 +1222,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/30/%E8%AE%A9%E7%BD%91%E9%A1%B5%E8%8F%9C%E5%8D%95%E4%B8%8A%E6%8B%89%E5%87%BA%E7%8E%B0%E4%B8%8B%E6%8B%89%E6%B6%88%E5%A4%B1%E2%80%94%E2%80%94%E7%AE%80%E5%8D%95%E6%9C%89%E8%B6%A3%E7%9A%84headroom-js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/03/30/%E8%AE%A9%E7%BD%91%E9%A1%B5%E8%8F%9C%E5%8D%95%E4%B8%8A%E6%8B%89%E5%87%BA%E7%8E%B0%E4%B8%8B%E6%8B%89%E6%B6%88%E5%A4%B1%E2%80%94%E2%80%94%E7%AE%80%E5%8D%95%E6%9C%89%E8%B6%A3%E7%9A%84headroom-js/" class="post-title-link" itemprop="url">让网页菜单上拉出现下拉消失——简单有趣的headroom.js</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-03-30 19:19:00" itemprop="dateCreated datePublished" datetime="2016-03-30T19:19:00+08:00">2016-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Headroom.js 是一个轻量级、高性能的JS小工具,通过在指定的div class中加上”headroom”，”headroom headroom—unpinned”,”headroom headroom—pinned”来使用户能够方便地基于网页上下滚动控制菜单样式。</p>
-<p>使用时，只需在网页中引用js库（jquery版需要同时引用 jQuery.headroom.min.js 与 headroom.min.js）,将事件绑定在元素上</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&quot;#header&quot;</span>).headroom();</span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myElement = <span class="built_in">document</span>.querySelector(<span class="string">&quot;header&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> headroom  = <span class="keyword">new</span> Headroom(myElement);</span><br><span class="line"></span><br><span class="line">headroom.init(); </span><br></pre></td></tr></table></figure>
-<p>即可方便使用。</p>
-<p>成功使用时，可以在调试台看到页面上下滚动时设置的元素的class也同时在变化。由class的变化可以在css中添加样式与动画，达到想要的效果。例如<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.headroom</span> &#123;</span><br><span class="line">    <span class="attribute">will-change</span>: transform;</span><br><span class="line">    <span class="attribute">transition</span>: transform <span class="number">200ms</span> linear;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.headroom--pinned</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(<span class="number">0%</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.headroom--unpinned</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">100%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>以上代码简单实现了菜单栏随着页面上下滚动的显示与隐藏效果。</p>
-<p>cdn 地址：<a target="_blank" rel="noopener" href="http://www.bootcdn.cn/headroom/">http://www.bootcdn.cn/headroom/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E5%AE%9E%E6%93%8D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/03/30/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98%E5%AE%9E%E6%93%8D/" class="post-title-link" itemprop="url">机器学习学习笔记（八）分类问题实操</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-03-30 18:49:00" itemprop="dateCreated datePublished" datetime="2016-03-30T18:49:00+08:00">2016-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="直线分类问题"><a href="#直线分类问题" class="headerlink" title="直线分类问题"></a>直线分类问题</h3><p><img src="/images/pasted-33.png" alt="upload successful"></p>
-<p>对于此数据图可以发现正类与负类的决策边界大约是一条直线。</p>
-<p>与线性回归类似，先计算代价方程J</p>
-<script type="math/tex; mode=display">J(\theta_0,\theta_1)=\frac{1}{2m} \sum^m_{i=1}(h_\theta(x^{(i)}-y^{(i)}))^2</script><p>但是其中的h(x)发生了变化，实际上为</p>
-<script type="math/tex; mode=display">h_\theta(x)=g(\theta^Tx)</script><script type="math/tex; mode=display">g(z)=\frac{1}{1+e^{-z}}</script><p>带入得</p>
-<script type="math/tex; mode=display">J(\theta)=\frac{1}{m}\sum^m_{i=1}Cost(h_\theta(x^{(i)},y^{(i)})) \\=-\frac{1}{m}[\sum^m_{i=1}y^{(i)}log{h_\theta(x^{(i)})}+(1-y^{(i)})log{(1-h_\theta(x^{(i)})})]</script><p>同理带入梯度下降函数</p>
-<script type="math/tex; mode=display">\theta:=\theta-\alpha\frac{1}{m}\sum^m_{i=1}[(h_\theta(x^{(i)})-y^{(i)})\cdot x^{(i)}]</script><p>最后将它们放入fminunc（matlab求最小值函数）中运算即可得到训练结果。<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span><br><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span><br><span class="line">J += (-y(<span class="built_in">i</span>).*(<span class="built_in">log</span>(h))-(<span class="number">1</span>-y(<span class="built_in">i</span>)).*(<span class="built_in">log</span>(<span class="number">1</span>-h)))/m;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">//----</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span><br><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span><br><span class="line">grad += ((h - y(<span class="built_in">i</span>))*X(<span class="built_in">i</span>,:)&#x27;)/m;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure><br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">options = optimset(<span class="string">&#x27;GradObj&#x27;</span>, <span class="string">&#x27;on&#x27;</span>, <span class="string">&#x27;MaxIter&#x27;</span>, <span class="number">400</span>);</span><br><span class="line"></span><br><span class="line">[theta, cost] = ...</span><br><span class="line">	fminunc(@(t)(costFunction(t, X, y)), initial_theta, options);</span><br></pre></td></tr></table></figure></p>
-<p>即可得到训练后的$\theta$值，在图上表现出来呈</p>
-<p><img src="/images/pasted-34.png" alt="upload successful"></p>
-<p>可以看到正集与负集基本分开。</p>
-<h3 id="非直线分类"><a href="#非直线分类" class="headerlink" title="非直线分类"></a>非直线分类</h3><p><img src="/images/pasted-35.png" alt="upload successful"></p>
-<p>如图所示，可以看出正负集的边界应该是曲线。</p>
-<p>曲线的方程是多项式，因此首先对曲线的多项式的项进行罗列：</p>
-<p><img src="/images/pasted-36.png" alt="upload successful"></p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">degree = <span class="number">6</span>;</span><br><span class="line">out = <span class="built_in">ones</span>(<span class="built_in">size</span>(X1(:,<span class="number">1</span>)));</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:degree</span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">0</span>:<span class="built_in">i</span></span><br><span class="line">        out(:, <span class="keyword">end</span>+<span class="number">1</span>) = (X1.^(<span class="built_in">i</span>-<span class="built_in">j</span>)).*(X2.^<span class="built_in">j</span>);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>以上生成了一个28项的向量作为这个曲线的项。</p>
-<script type="math/tex; mode=display">J(\theta)=\frac{1}{m}[\sum^m_{i=1}-y^{(i)}log{h_\theta(x^{(i)})}-(1-y^{(i)})log{(1-h_\theta(x^{(i)})})]+\frac{\lambda}{2m}\sum^n_{j=1}\theta^2_j</script><p>根据此公式进行代价函数的运算。</p>
-<p>由于上式中最后一项$\theta$不需要惩罚$\theta_0$，因此从$\theta_1$开始相乘。由于matlab的下标号是从1开始的，因此最后一项的θ要从2开始相乘。后面的梯度函数同理</p>
-<script type="math/tex; mode=display">\frac{\partial J(\theta)}{\partial \theta_0}=\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j, \text{for j=0}\\ \frac{\partial J(\theta)}{\partial \theta_j}=(\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_j)+\frac{\lambda}{m}\theta_j ,\text{for j}\geq 1</script><p>简单用循环写代码如下<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span><br><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span><br><span class="line">J += (-y(<span class="built_in">i</span>).*(<span class="built_in">log</span>(h))-(<span class="number">1</span>-y(<span class="built_in">i</span>)).*(<span class="built_in">log</span>(<span class="number">1</span>-h)))/m;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=(<span class="number">2</span>:<span class="built_in">size</span>(theta))</span><br><span class="line">J += theta(<span class="built_in">j</span>)^<span class="number">2.</span>*lambda/(<span class="number">2</span>*m);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">//-------</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=(<span class="number">1</span>:m);</span><br><span class="line">h = sigmoid(X(<span class="built_in">i</span>,:)*theta);</span><br><span class="line">grad += ((h - y(<span class="built_in">i</span>))*X(<span class="built_in">i</span>,:)&#x27;)./m;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">j</span>=(<span class="number">2</span>:<span class="built_in">size</span>(theta))</span><br><span class="line">grad(<span class="built_in">j</span>) += theta(<span class="built_in">j</span>).*lambda./m;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>可以得到多项式的各个$\theta$值。</p>
-<p>根据多项式画出图形可以看到</p>
-<p><img src="/images/pasted-37.png" alt="upload successful"></p>
-<p>基本将正负极分开。</p>
-<p>如果对$\lambda=1$(正则化参数)进行修改，例如修改成别的值可以得到：</p>
-<p>$\lambda=0$</p>
-<p><img src="/images/pasted-38.png" alt="upload successful"></p>
-<p>$\lambda=100$</p>
-<p><img src="/images/pasted-39.png" alt="upload successful"></p>
-<p>可以看到$\lambda=0$的时候拟合曲线绕的弯非常多，试图去匹配所有的点，因而失去了这个集整体的特征，变得过度复杂，这种现象称为过拟合；</p>
-<p>而$\lambda=100$的时候明显拟合曲线并没有良好地工作，称为欠拟合（$\theta$的乘积占的权重过大导致除了θ0之外的项全部变为0）。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1275,7 +1268,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -224,7 +224,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">162</span>
+          <span class="site-state-item-count">164</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -237,7 +237,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">205</span>
+        <span class="site-state-item-count">208</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -280,6 +280,209 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/04/01/%E4%B8%80%E5%90%8D-iOS-%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84-React-Native-%E5%BC%80%E5%8F%91%E7%BB%8F%E5%8E%86-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/04/01/%E4%B8%80%E5%90%8D-iOS-%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84-React-Native-%E5%BC%80%E5%8F%91%E7%BB%8F%E5%8E%86-md/" class="post-title-link" itemprop="url">一名 iOS 开发者的 React Native 开发经历.md</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-04-01 15:12:00" itemprop="dateCreated datePublished" datetime="2017-04-01T15:12:00+08:00">2017-04-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>如果你是一名 iOS 开发者，你应该听说过 React Native。它给出了简单而吸引人的承诺：一次编写，两处部署，同时搞定 iOS 与安卓版本的 app。我是一名资深的 iOS 开发者（还是一名更资深的 macOS 开发者），我想分享我应用这门神奇技术的经历。</p>
+<p>去年，我们和一个客户进行过交谈。他们来找我们是因为他们想尽快完成他们的 iOS app。在讨论的过程中，他们提到了这个叫做 React Native 的东西。他们有个善于使用 Javascript 的 web 开发人员，那个人指出使用 RN 可以让开发速度快很多。这场谈判最终我们没有达成共识而是以失败告终，但这件事也让我开始思考是否应该将 RN 纳入我们的技术栈中</p>
+<p>几周后一位老友来访，让我为他出版的一本书制作一个 app 作为补充参考资料。因为这个工作我找到了一线机会：这是一个很棒的时机来试一试 React Native。由于他的读者大多数使用安卓系统，因此「一次编写，两处部署」的理念在此深得我心。</p>
+<p>我不会带你亲历一遍我的各种尝试和遇到的问题。但我要说的是，就这么一个简单的 app，并不能使用 RN 很好的进行开发。以下是原因。</p>
+<p>首先，我必须说一下除开「一次编写，两处部署」的承诺，我喜欢 React Native 的地方。</p>
+<ul>
+<li>React.js，RN 由它而生。它是一种描述与更新 UI 的优雅方法。它的基本原理是组件使用一组传递给它的属性由上到下渲染其 UI。感谢 React 的虚拟 DOM，当属性变化时 UI 会立即更新，使得 model 与 view 能够自动且无缝地同步。我多么希望 iOS 的 UIKit 也这样设计啊！</li>
+<li>更新 JSX 代码就可以在模拟器中更新 app 而不需要重新编译与重新运行，这点真的很棒。</li>
+<li>蓬勃发展的 RN 社区提供了数以百计的预制组件，你可以在你的 app 中使用它们。（实际上我非常讨厌这种看似专业的「脚本小子」的编程方法。构建一个大部分都不是你自己写的，并且弄不明白的 app，将会导致之后的维护如同陷入泥潭一般困难）</li>
+<li>我很担心 RN 的性能，但是在我的经历中它并没有出现问题。滚动和动画都很流畅。毕竟 RN app 大部分使用的是平台原生的 UI 控件，RN 的工程师们也对它们进行了很好的优化。</li>
+</ul>
+<p>那么为什么我不喜欢它呢？老实说，我并不是 React Native 的目标用户。我熟悉 Javascript 但我并不精通它，我精通的是 Swift/Objective-C。我很快就意识到，如果我使用 RN 来完成这个 app，将会比我用 Swift 慢 10-20 倍。当然，安卓版本还要单独写，但是考虑到我学习 RN 的学习曲线，我还不如去学习 Java。</p>
+<p>除此之外，我认为采用 RN 的解决方案还有一些严重的问题。</p>
+<h3 id="脆弱的依赖链"><a href="#脆弱的依赖链" class="headerlink" title="脆弱的依赖链"></a>脆弱的依赖链</h3><p>React Native 并不是一个一站式解决方案。我制作了一个粗略的必要组件依赖图：</p>
+<p><img src="/images/pasted-117.png" alt="upload successful"></p>
+<p>React Native 的依赖链</p>
+<p>如果你来自 web 开发的世界，这可能对你来说很正常；但是对我来说，这很不正常。我的世界中有 Xcode，任何创建 Swift/Obj-C/iOS/Mac/Apple TV 等 app 所需要的东西都已经封装好并由 Xcode 管理。依赖链和前面的图一样（甚至更长），<strong>但是依赖链中的东西都保证是同步且兼容的。</strong></p>
+<p>我现在肯定 RN 依赖链中的大多数组件都是互相兼容的。但我遇到了四五个需要在 StackOverflow 上花几小时寻求解决方案的问题。在我心中更重要的是之后会发生的事情。例如，升级 Nuclide（IDE 的 RN 拓展）可能需要新版的 Atom。我系统中的另一个工具需要新版的 <code>winston</code>，如果那个版本不兼容 RN 怎么办？后果可想而知。</p>
+<h3 id="被打破的承诺"><a href="#被打破的承诺" class="headerlink" title="被打破的承诺"></a>被打破的承诺</h3><p>事实证明「一次编写，两处部署」的承诺只有部分实现了。我遇到了必须要把我的 RN app 根据目标平台（iOS 或安卓）进行「分支」的问题。例如 tab bar，你可能认为像它这么随处可见的组件会被 RN 列为「一等公民」，但事实不是这样的。RN 为 iOS 收录了 <code>TabBarIOS</code> 组件，但是因为某些原因它在安卓上并不相同。相反，在 GitHub 上有一堆的教程和解决方案教你如何从头做起。又例如 nav bar，iOS 的 <code>NavigatorIOS</code> 与安卓的 <code>Navigator</code> 工作方式差别巨大。这些核心的导航功能结构在两个平台上的差异会导致要为每个平台分别编写大量的不同的文件与组件。我开始感觉到，尽管承诺很神奇，尽管我在用同一种语言，但其实我仍然在写两个不同的 app。</p>
+<ul>
+<li>实际上，这个「承诺」其实是别人推断的，并不是官方宣称的（至少 Facebook/RN 的人没有这么宣称过）。官方宣传的是「一次学习，随处编写」。</li>
+</ul>
+<h3 id="令人惊讶的技术限制"><a href="#令人惊讶的技术限制" class="headerlink" title="令人惊讶的技术限制"></a>令人惊讶的技术限制</h3><p>我在做的这个项目其实是一个层级化的参考指南。书作者和我为目录与文章用我们设计的 UI 范式规划了一套挺合理的布局。根据我们的想法，我们可以通过链接或导航跳转到数百个使用静态内容的详情页中。我写好了代码，但奇怪的是我调用 <code>require()</code> 一直不成功。我经过一段时间的研究，了解到 RN 限制<strong>您无法从任意路径读取文件</strong>。显然你的 RN app 在编译时收集了所有可能用到的路径，任何编译器无法找到的路径都将不能读取。所以你可以用 <code>require(‘../file1.json’)</code> 但不能用 <code>require(‘../file’ + ‘1’ + ‘.json’)</code>。这个让人惊讶的限制使得我们的架构无法实现。</p>
+<h3 id="冒牌货般的-UI"><a href="#冒牌货般的-UI" class="headerlink" title="冒牌货般的 UI"></a>冒牌货般的 UI</h3><p>你最终完成的 RN app 可能既不像原生的 iOS app 也不像原生的安卓 app。大多数用户可能不会察觉这个问题，但有些人会发现更大的问题。你有可能会丢失一些用户会注意到的平台特有的细节，例如不能从左侧右滑来返回。（当你用 <code>NavigatorIOS</code> 完成两个平台的导航时会出现这个问题）</p>
+<p>总而言之，iOS 开发者不应该将 React Native 视为两个平台的跨平台解决方案。写一个原生的 iOS app 将会花费<strong>更少</strong>的时间并可能得到更棒的 UX。对于安卓 app 也一样，所以我认为大家应该更多的去专注于平台原生解决方案。</p>
+<p>什么时候用 RN 才是正确的呢？如果你是一个专业的 Javascript 程序员或者你有这么一个员工，并且你<strong>不打算</strong>配置 iOS 开发或安卓开发人员，那么你<strong>可能</strong>会从中获益。还记得那个想要尽快做好跨平台 app 的那个客户吗？他们<strong>曾</strong>有一名 Javascript 工程师，他们 app 的 v1.0 版本最近才出现在应用商店中。此时，距他们联系我们已经过去了 8 个月。</p>
+<blockquote>
+<p>发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/58df4c3fa0bb9f0069e2f2bd">https://juejin.im/post/58df4c3fa0bb9f0069e2f2bd</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/03/23/EM-algorithm-in-python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/03/23/EM-algorithm-in-python/" class="post-title-link" itemprop="url">EM algorithm in python</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-03-23 01:15:00" itemprop="dateCreated datePublished" datetime="2017-03-23T01:15:00+08:00">2017-03-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>由<a href="http://lsvih.com/?p=515">之前的学习笔记</a> 使用python实现EM算法。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/lsvih/algorithm-practice/tree/master/em">代码地址</a></p>
+<h2 id="EM-algorithm"><a href="#EM-algorithm" class="headerlink" title="EM algorithm"></a>EM algorithm</h2><script type="math/tex; mode=display">\text{Repeat until convergence}\{\\
+\text{(E-step) For each i,set}\\
+ Q_i(z^{(i)}):=p(x^{(i)},z^{(i)};\theta)\\
+ \text{(M-step) set}\\
+ \theta:=\arg \max_\theta \sum^m_{i=1} \sum_{z^{(i)}} Q_i(z^{(i)}) \ln \frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}\}</script><h2 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h2><p>和上一篇k-means一样，从准备数据开始。EM算法可以用来对数据集中数据的分布参数进行极大似然估计。因此，为它准备两组一维高斯分布数据。</p>
+<p>使用numpy的randn函数来生成正态分布数据，使用matplotlib来对其进行可视化。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.randn.html#numpy.random.randn">参考numpy的文档</a>，生成一个[latex]N(mu,sigma^2)[/latex]的正态分布，需要使用</p>
+<p>mu + sigma * np.random.randn(..)</p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generateDataAndShow</span>():</span></span><br><span class="line">    x1,x2 = mu1 + sigma * np.random.randn(<span class="number">500</span>),mu2 + sigma * np.random.randn(<span class="number">500</span>)</span><br><span class="line">    x = np.append(x1,x2)</span><br><span class="line">    plt.hist(x,<span class="number">50</span>,normed=<span class="literal">True</span>)</span><br><span class="line">    plt.show()</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    data = generateDataAndShow()</span><br></pre></td></tr></table></figure>
+<p>这样，就得到了两组分别以[latex]N(mu_1,sigma^2)[/latex]与[latex]N(mu_2,sigma^2)[/latex]分布的数据集。通过matplotlib可以看到它们的分布概率图大致如下：</p>
+<p><img src="/images/pasted-115.png" alt="upload successful"></p>
+<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><p>算法的推导与分析在<a href="http://lsvih.com/?p=515">http://lsvih.com/?p=515</a> 进行过了。总体来说是一个迭代渐进的过程。渐进的变量有两个，一个是实现分类的隐藏变量z，另一个是决定分布函数的参数[latex]theta[/latex]。</p>
+<h3 id="E-step"><a href="#E-step" class="headerlink" title="E-step"></a>E-step</h3><p>已知高斯函数的概率密度函数(PDF)为</p>
+<script type="math/tex; mode=display">f(x,\sigma,\mu)=\frac{1}{\sigma \sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i,X <span class="keyword">in</span> enumerate(data):</span><br><span class="line">    p1 = np.exp(-(X-mu1)**<span class="number">2</span>/(<span class="number">2</span>*sigma**<span class="number">2</span>))/(sigma*(np.sqrt(<span class="number">2</span>*np.pi)))</span><br><span class="line">    p2 = np.exp(-(X-mu2)**<span class="number">2</span>/(<span class="number">2</span>*sigma**<span class="number">2</span>))/(sigma*(np.sqrt(<span class="number">2</span>*np.pi)))</span><br><span class="line">    Z[i,<span class="number">0</span>],Z[i,<span class="number">1</span>] = p1/(p1+p2),p2/(p1+p2)</span><br></pre></td></tr></table></figure>
+<p>即实现$Q_i(z^{(i)}):=p(x^{(i)},z^{(i)};\theta)$</p>
+<h3 id="M-step"><a href="#M-step" class="headerlink" title="M-step"></a>M-step</h3><p>data为矩阵</p>
+<script type="math/tex; mode=display">\begin{bmatrix}x_1\\x_2\\...\\x_n\end{bmatrix}</script><p>而Z为矩阵</p>
+<script type="math/tex; mode=display">\begin{bmatrix}Z^{(1)}_1&Z^{(1)}_2\\Z^{(2)}_1&Z^{(2)}_2\\...\\Z^{(n)}_1&Z^{(n)}_2\end{bmatrix}</script><p>因此完成$\theta:=\arg \max_\theta \sum^m_{i=1} \sum_{z^{(i)}} Q_i(z^{(i)}) \ln \frac{p(x^{(i)},z^{(i)};\theta)}{Q_i(z^{(i)})}$运算可以使用矩阵的点乘实现。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mu1,mu2 = np.dot(np.array(data),np.array(Z))/np.sum(Z,axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><p>在对于E-step与M-step不停的迭代优化后，达到一个期望精度值停止运算。因此main()可以写成</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    o_mu1,o_mu2 = mu1,mu2</span><br><span class="line">    Z = np.zeros([len(data),<span class="number">2</span>])</span><br><span class="line">    <span class="comment">#E-Step</span></span><br><span class="line">    <span class="comment">#M-Step</span></span><br><span class="line">    <span class="keyword">if</span> abs(o_mu1-mu1)+abs(o_mu2-mu2) &lt;= <span class="number">0.001</span>:</span><br><span class="line">        <span class="keyword">print</span> mu1,mu2</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>在迭代至指定精度后，将得到的mu1与mu2与sigma决定的正态分步曲线画出来。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Darw Gaussian function</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.mlab <span class="keyword">as</span> mlab</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">n,bins,p = ax.hist(data,<span class="number">50</span>,normed=<span class="literal">True</span>)</span><br><span class="line">y1,y2 = mlab.normpdf(bins, mu1, sigma), mlab.normpdf(bins, mu2, sigma)</span><br><span class="line">ax.plot(bins, y1/<span class="number">2</span>)</span><br><span class="line">ax.plot(bins, y2/<span class="number">2</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>可以看到，最初的generateData函数中画出的图形为</p>
+<p><img src="/images/pasted-115.png" alt="upload successful"></p>
+<p>得到结果后画出的曲线为</p>
+<p><img src="/images/pasted-116.png" alt="upload successful"></p>
+<p>基本能匹配之前生成的数据。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1056,250 +1259,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/11/30/Key-to-%E2%80%98JavaScript-Puzzlers-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/11/30/Key-to-%E2%80%98JavaScript-Puzzlers-3/" class="post-title-link" itemprop="url">Key to ‘JavaScript Puzzlers'(3)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-11-30 07:38:00" itemprop="dateCreated datePublished" datetime="2016-11-30T07:38:00+08:00">2016-11-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h4 id="4-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#4-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="4.What is the result of this expression? (or multiple ones)"></a>4.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> END = <span class="built_in">Math</span>.pow(<span class="number">2</span>, <span class="number">53</span>);</span><br><span class="line"><span class="keyword">var</span> START = END - <span class="number">100</span>;</span><br><span class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = START; i &lt;= END; i++) &#123;</span><br><span class="line">    count++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(count);</span><br></pre></td></tr></table></figure>
-<p>A    0</p>
-<p>B    100</p>
-<p>C    101</p>
-<p>D    other</p>
-<p>Correct answer is D.2<sup>53</sup> is the largest number in javascript,so that i never become lager than START.This code will cause infinite loop.</p>
-<h4 id="5-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#5-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="5.What is the result of this expression? (or multiple ones)"></a>5.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ary = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line">ary[<span class="number">10</span>] = <span class="number">10</span>;</span><br><span class="line">ary.filter(<span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123; <span class="keyword">return</span> x === <span class="literal">undefined</span>;&#125;);</span><br></pre></td></tr></table></figure>
-<p>A    [undefined x 7]</p>
-<p>B    [0,1,2,10]</p>
-<p>C    []</p>
-<p>D    [undefined]</p>
-<p>C is correct answer.The ary looks like [0,1,2,undefined x 7,10] , but in fact array.prototype.filter() ignore undefined element.So it returned []</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">See more information about array.prototype.filter()</a></p>
-</blockquote>
-<h4 id="6-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#6-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="6.What is the result of this expression? (or multiple ones)"></a>6.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> two   = <span class="number">0.2</span></span><br><span class="line"><span class="keyword">var</span> one   = <span class="number">0.1</span></span><br><span class="line"><span class="keyword">var</span> eight = <span class="number">0.8</span></span><br><span class="line"><span class="keyword">var</span> six   = <span class="number">0.6</span></span><br><span class="line">[two - one == one, eight - six == two]</span><br></pre></td></tr></table></figure>
-<p>A    [true,true]</p>
-<p>B    [false,false]</p>
-<p>C    [true,false]</p>
-<p>D    other</p>
-<p>Is C.</p>
-<p>Javascript hasn’t ability of precise calculation,so that float number will be calculated in a imprecise mode.</p>
-<p>&gt; 0.8-0.6 = 0.20000000000000007</p>
-<p>Specially, 0.2-0.1 = 0.1</p>
-<h4 id="7-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#7-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="7.What is the result of this expression? (or multiple ones)"></a>7.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCase2</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(value) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;A&#x27;</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Case A&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;B&#x27;</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Case B&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="literal">undefined</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;undefined&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Do not know!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">showCase2(<span class="built_in">String</span>(<span class="string">&#x27;A&#x27;</span>));</span><br></pre></td></tr></table></figure>
-<p>A    Case A</p>
-<p>B    Case B</p>
-<p>C    Do not know!</p>
-<p>D    undefined</p>
-<p>swith() method uses ‘===’ to judge condition,new String(A) construct a new string object, </p>
-<p>new String(‘a’) == ‘a’ but new String(‘a’) !== ‘a’.</p>
-<p>So this question’s answer is C</p>
-<p>let a = new String(“b”)</p>
-<p>typeof a === ‘object’</p>
-<p>8.What is the result of this expression? (or multiple ones)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCase2</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span>(value) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;A&#x27;</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Case A&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;B&#x27;</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Case B&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="literal">undefined</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;undefined&#x27;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Do not know!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">showCase2(<span class="built_in">String</span>(<span class="string">&#x27;A&#x27;</span>));</span><br></pre></td></tr></table></figure>
-<p>A    Case A</p>
-<p>B    Case B</p>
-<p>C    Do not know!</p>
-<p>D    undefined</p>
-<p>Correct is A.</p>
-<p>String(‘A’) === ‘A’</p>
-<p>let a  = String(‘b’)</p>
-<p>typeof a === ‘string’</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/11/28/Key-to-JavaScript-Puzzlers-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/11/28/Key-to-JavaScript-Puzzlers-2/" class="post-title-link" itemprop="url">Key to 'JavaScript Puzzlers'(2)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-11-28 03:52:00" itemprop="dateCreated datePublished" datetime="2016-11-28T03:52:00+08:00">2016-11-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Continue.</p>
-<h4 id="3-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#3-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="3.What is the result of this expression? (or multiple ones)"></a>3.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ [<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>].reduce(<span class="built_in">Math</span>.pow), [].reduce(<span class="built_in">Math</span>.pow) ]</span><br></pre></td></tr></table></figure>
-<p>A    an error</p>
-<p>B    [9,0]</p>
-<p>C    [9,NaN]</p>
-<p>D    [9,undefined]</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">See more information about Array.prototype.reduce()</a>&gt; The reduce() method applies a function against an accumulator and each value of the array (from left-to-right) to reduce it to a single value.</p>
-</blockquote>
-<p>reduce() accept 2 arguments:reduce(callback,initialValue),this callback function will get 4 arguments:</p>
-<p>callback(accumulator,currentValue,currentIndex,array)</p>
-<blockquote>
-<p>accumulator</p>
-<p>The accumulated value previously returned in the last invocation of the callback, or initialValue, if supplied. (See below.)</p>
-<p>currentValue</p>
-<p>The current element being processed in the array.</p>
-<p>currentIndex</p>
-<p>The index of the current element being processed in the array. Starts at index 0, if an initialValue is provided, and at index 1 otherwise.</p>
-<p>array</p>
-<p>The array reduce was called upon.</p>
-</blockquote>
-<p>For example,use<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>].reduce(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>It returned 15.</p>
-<p>First callback function got (1,2) returned 3,then the 2nd callback function got (3,3) returned 6.The 3rd callback got (6,4) returned 10,the 4st callback got (10,5) returned 15,the finally result.</p>
-<p>Math.pow() will calculate power value.It accept 2 arguments,like Math.pow(base,exponent)</p>
-<p>It’s equal to base<sup>exponent</sup> </p>
-<p>In this problem,[1,2,3].reduce(Math.pow) means that:</p>
-<p>step1: Math.pow got (1,2) returned 1</p>
-<p>step2: Math.pow got (1,3) returned 1</p>
-<p>Finally it got 1.</p>
-<p>But the 2nd array’s item is []</p>
-<p>reduce() method need an intial value at least,so it will throw an error:</p>
-<p>TypeError: Reduce of empty array with no initial value</p>
-<p>So this problem’s correct answer is A</p>
-<h4 id="4-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#4-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="4.What is the result of this expression? (or multiple ones)"></a>4.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> val = <span class="string">&#x27;smtg&#x27;</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Value is &#x27;</span> + (val === <span class="string">&#x27;smtg&#x27;</span>) ? <span class="string">&#x27;Something&#x27;</span> : <span class="string">&#x27;Nothing&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<p>A    Value is Something</p>
-<p>B    Value is Nothing</p>
-<p>C    NaN</p>
-<p>D    Other</p>
-<p>This is a trick question.The correct is D</p>
-<p>The operator ‘+’ will calculate first because it has higher precedence.</p>
-<p>That expression equal to<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Value is true&#x27;</span>? <span class="string">&#x27;Something&#x27;</span>:<span class="string">&#x27;Nothing&#x27;</span>);</span><br></pre></td></tr></table></figure></p>
-<p>An string expression like ‘true’ in condition,So it will print ‘Something’</p>
-<h4 id="5-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#5-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="5.What is the result of this expression? (or multiple ones)"></a>5.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;World!&#x27;</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> name === <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> name = <span class="string">&#x27;Jack&#x27;</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Goodbye &#x27;</span> + name);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Hello &#x27;</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<p>A    Goodbye Jack</p>
-<p>B    Hello Jack</p>
-<p>C    Hello undefined</p>
-<p>D    Hello World</p>
-<p>This a question about “Hoisting”.The ‘var’ will hoisting in the function scope.</p>
-<p>So the code will be this:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;World!&#x27;</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> name === <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">        name = <span class="string">&#x27;Jack&#x27;</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Goodbye &#x27;</span> + name);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Hello &#x27;</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
-<p>For if (typeof name === ‘undefined’),it will find name from scope chain,so this ‘name’ is declared in anonymous function: var name</p>
-<p>‘var name’ means that name is undefined,so condition of ‘if’ is true,then name is declared ‘Jack’.</p>
-<p>Hence,printed ‘Goodbye Jack’</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Glossary/Hoisting">See more information about Hoisting</a></p>
-</blockquote>
-<hr>
-<p>Do rest tomorrow</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1346,7 +1305,7 @@
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

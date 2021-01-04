@@ -224,7 +224,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">162</span>
+          <span class="site-state-item-count">164</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -237,7 +237,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">205</span>
+        <span class="site-state-item-count">208</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -280,6 +280,439 @@
       
 
       
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/10/11/Information-Extraction-in-Illicit-Web-Domains-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/10/11/Information-Extraction-in-Illicit-Web-Domains-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Information Extraction in Illicit Web Domains 论文笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-10-11 00:27:00" itemprop="dateCreated datePublished" datetime="2017-10-11T00:27:00+08:00">2017-10-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Paper/" itemprop="url" rel="index"><span itemprop="name">Paper</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>Kejriwal M, Szekely P. Information Extraction in Illicit Web Domains[J]. 2017.</p>
+</blockquote>
+<h3 id="论文信息"><a href="#论文信息" class="headerlink" title="论文信息"></a>论文信息</h3><p>论文作者为南加大维特比学院的 Mayank Kejriwal 和 Pedro Szekely，发表于 WWW 2017。</p>
+<h3 id="论文概述"><a href="#论文概述" class="headerlink" title="论文概述"></a>论文概述</h3><p>建立了稳定可靠的信息提取系统（Information Extraction System），用以从非法领域的网页中抽取有用的实体信息。将建立的模型应用于真实数据集得到的结果比 baseline（设定为 CRF）的 F-Score 高了 18%。</p>
+<h3 id="论文提纲"><a href="#论文提纲" class="headerlink" title="论文提纲"></a>论文提纲</h3><ol>
+<li>论文简介</li>
+<li>描述了一些 IE system 的相关工作</li>
+<li>详细描述了此文章所使用的模型</li>
+<li>实验评估</li>
+<li>总结工作</li>
+</ol>
+<h4 id="一、论文简介"><a href="#一、论文简介" class="headerlink" title="一、论文简介"></a>一、论文简介</h4><p>作者首先简介了构建领域知识图谱（knowledge graph）所需要做的工作：</p>
+<ol>
+<li><p>领域发现。来源可以为爬虫或领域本体库。</p>
+<blockquote>
+<p>爬虫部分引用了 S. Chakrabarti. Mining the Web: Discovering knowledge from hypertext data. Elsevier, 2002.<br>领域本体库部分引用了 A. Zouaq and R. Nkambou. A survey of domain ontology engineering: methods and tools. In Advances in intelligent tutoring systems, pages 103–119. Springer, 2010.   </p>
+</blockquote>
+</li>
+<li><p>有了数据源后，使用 IE system 抽取相关结构化数据。作者简述了基于统计学习的信息抽取方法：使用 CRF 序列标注、以及在数据量大的情况下使用深层神经网络,目的为抽取命名实体与关系（extraction of name entities and relationships）。</p>
+<blockquote>
+<p>神经网络部分引用 R. Collobert and J. Weston. A unified architecture for natural language processing: Deep neural networks with multitask learning. In Proceedings of the 25th international conference on Machine learning, pages 160–167. ACM, 2008.   </p>
+</blockquote>
+<p> 当 IE system 在跨领域 Web 数据源（cross-domain Web source，以维基百科为例）和传统领域（以生物学为例）表现优秀时，在一些“动态领域”（dynamic domain）中表现一般。这些领域包括：news feed、自媒体、广告、在线市场以及一些非法领域（如人口贩卖 human trafficking）等。</p>
+</li>
+<li>非法领域的信息抽取之所以难做是因为在非法网站中常常会对信息进行混淆、非随机地对一些常用词进行错误拼写、OOV（out of vocabulary，非登录词）及生僻词高频出现、有时候还非随机使用Unicode 字符，且相关网页中正文分布稀疏、网页结构各异。与传统领域中（如聊天记录、Twitter 等）规律的信息不同，这些信息正文在非法网站中基本上是独一无二的。此论文仅讨论人口贩卖领域，不过在另一些在暗网中存在 Web 服务的非法领域（如武器贩卖、恐怖袭击、假货等）也可以适用。</li>
+<li><p>接着举了两个典型例子说明上面的情况：<br> eg1. Hey gentleman im neWYOrk and i’m looking for generous…<br> eg2. AVAILABLE NOW! ?? - (4 two 4) six 5 two - 0 9 three 1 - 21 </p>
+</li>
+<li><p>因此传统领域 IE system 的包装归纳学习系统（wrapper induction systems）不能在这些领域中正常工作，只能将数据给调查员和领域专家进行分析。<br> 作者归纳：此论文分析了传统的 IE system 在动态的、非法的领域中的不适用性，因此提出了一种不依赖于传统信息提取系统、可在小样本 Web 数据集上正常运行的方法。</p>
+</li>
+<li>简介这种方法。此方法包含了两个步骤：<br>1) 第一步，使用召回率很高的识别器（用于识别地址、年龄等）为所有页面做候选标注（candidate annotations）。如下图所示</li>
+</ol>
+<p><img src="/images/pasted-224.png" alt="upload successful"></p>
+<p>2) 第二步，使用一种无特征的监督学习算法，基于随机映射学习单词表示的意思。用此算法对上面的候选标注进行二分类，分为正确与不正确。</p>
+<ol>
+<li>简述贡献：创建了一种轻量级的、无特征的信息提取系统，可以适用于各种各样的非法领域。且这种方法很容易实现，无需大范围地调参，效果随数据集增大而增强，适用部署于流数据。且此方法在刚开始做领域发现的小数据集上也表现良好，在遇到超大 web 数据集时依然稳定。</li>
+<li>简述 baseline，基于 CRF 的最新的 Stanford Named Entity Resolution system，包含关于人口贩卖的预训练数据。</li>
+</ol>
+<h4 id="二、相关工作"><a href="#二、相关工作" class="headerlink" title="二、相关工作"></a>二、相关工作</h4><p>Open IE</p>
+<blockquote>
+<p>N. Kushmerick. Wrapper induction for information extraction. PhD thesis, University of Washington, 1997.<br>M. Banko, M. J. Cafarella, S. Soderland,M. Broadhead, and O. Etzioni. Open information extraction from the web. In IJCAI, volume 7, pages 2670–2676, 2007.<br>ADRMine<br>B. Han, P. Cook, and T. Baldwin. Text-based twitter user geolocation prediction. Journal of Artificial Intelligence Research, 49:451–500, 2014.<br>A. Nikfarjam, A. Sarker, K. OaˆA ̆Z ́Connor, R. Ginn, and G. Gonzalez. Pharmacovigilance from social media: mining adverse drug reaction mentions using sequence labeling with word embedding cluster features. Journal of the American Medical Informatics Association, page ocu041, 2015.   </p>
+</blockquote>
+<p>在此之前还没有工作对无特征、低监督的 web 非法领域信息提取进行研究。</p>
+<h4 id="三、方法"><a href="#三、方法" class="headerlink" title="三、方法"></a>三、方法</h4><p>总体的架构如上图 Figure 1 所示。模型有两个输入端，一个是包含有关兴趣领域的 Web 页面集，一个是有着高召回率的识别器。在此论文中假定模型初始化时的数据集很小，接着会有很多的数据不断地加入到数据集中（即模仿流数据条件）。首先将给定一个初始的数据集，其中已经人工标注好了 10-100 条数据的属性（假定为城市、姓名、年龄），模型将根据此数据集在没有做特征工程的情况下学习出一个信息提取系统。</p>
+<blockquote>
+<p>此处数据条数有疑问</p>
+</blockquote>
+<p>需要注意的是需要分析的 Web 页面大多是多领域结合，因此在处理页面时不仅需要不断将新的页面加入数据集中，还要由初始数据集进行概念漂移（concept drift）以适应各种新的情况。</p>
+<h5 id="1-预处理过程"><a href="#1-预处理过程" class="headerlink" title="1 预处理过程"></a>1 预处理过程</h5><p>爬取相关网页，使用 RTE（Readability Text Extractor）对 HTML 文本进行正文提取。对 RTE 进行调参，将其调至高召回率。由于 Web 网页的结构多样，因此正文中可能会存在许多无关内容（包括一些无用的数字及 Unicode 字符等等）。RTE 最终会返回一组字符串集，字符串集中包含以句子为单位的内容。</p>
+<blockquote>
+<p>RTE 给了网址：<a target="_blank" rel="noopener" href="https://www.readability.com/developers/api">https://www.readability.com/developers/api</a></p>
+</blockquote>
+<p>接下来使用 NLTK 对 RTE 返回内容的每个句子分别进行分词。</p>
+<h5 id="2-词向量表示"><a href="#2-词向量表示" class="headerlink" title="2 词向量表示"></a>2 词向量表示</h5><p>接下来作者使用 CRF 序列标注模型对已标注数据进行学习（详细内容在后面）。但是由于数据集实在太少，CRF 的效果并不好。<br>为了避免 CRF 出现的状态，又为了避免工作量极大的页面标注，作者使用了非监督算法，以低维空间来表示页面中所有词的全集。在此使用了嵌入算法（embedding algorithms），作者在此提及了 Word2Vec 和 Bollegala 的算法和一种更简单的算法（random indexing）。</p>
+<blockquote>
+<p>Word2Vec 引用了 T. Mikolov, I. Sutskever, K. Chen, G. S. Corrado, and J. Dean. Distributed representations of words and phrases and their compositionality. In Advances in neural information processing systems, pages 3111–3119, 2013.<br>Bollegala 算法引用了 D. Bollegala, T. Maehara, and K.-i. Kawarabayashi. Embedding semantic relations into word representations. arXiv preprint arXiv:1505.00161, 2015.<br>random indexing 引用了 M. Sahlgren. An introduction to random indexing. In  Methods and applications of semantic indexing workshop at the 7th international conference on terminology and knowledge engineering, TKE, volume 5, 2005.<br>最终作者选用了“最简单”的 RI（random indexing）算法。此算法可以保证向量在表示时，即使是在低维空间中点与点间依然能够保持足够的距离。RI 算法最开始本来是为了增量降维（incremental dimensionality reduction）设计的。RI 算法定义如下：</p>
+</blockquote>
+<p>$d \in \mathbb{Z}^+$ -&gt; 向量维数<br>$r \in [0,1]$ -&gt; 定义为 +1 或 -1 的概率</p>
+<p>对于一个词向量（这里应该叫做 token 向量，因为在这个情景中 nltk 并不能很好地进行正确分词）来说，随机选择 $[d <em> r]$ 个维度设定为 +1，随机选择 $[d </em> r]$ 个维度设定为 -1，其余 $d - 2 [d * r]$ 个维度设定为 0。</p>
+<p>由于在此场景下数据均为噪音很多的流数据，因此只考虑较短的上下文范围。由此确定 RI 算法的滑动窗口大小。滑动窗口定义如下：</p>
+<p>给定一组数量为 $|t|$ 的单位元素 $t$，以及一个窗口基准位置 $0 &lt; i &lt; |t|$，则可以定义一个滑动窗口 $(u, v)$。滑动窗口内的所有元素记为 $S$，将基准位置的特征词挖去：$S - t[i]$，得到滑动窗口全集。滑动窗口的位置坐标为 $[max(i-u,1),min(i+v,|t|)]$。</p>
+<p><img src="/images/pasted-226.png" alt="upload successful"></p>
+<p>上图为使用 RI 算法，设定滑动窗口大小设定为 (2,2) 时产生的 Token 向量。</p>
+<p>作者对于原始的 RI 算法进行了一些改进，改动内容如下：</p>
+<p>原始 RI 算法在求某特征词上下文向量时没有进行任何权重计算，直接对上下文非特征词的词向量进行了求和。也就是说，对于单词 w 来说，其表示向量进行了 $\vec{w}_{i+1} = \vec{w}_i + \vec{a}$ 计算。但是对于非法领域来说，在此情景中会出现大量独特的 token ，包括且不仅限于罕见单词、Unicode 符号、HTML tag、数字序列（如电话号码）等。这些 token 可能在文本全集中仅仅会出现一次或少数几次，因此它们产生的表示向量也会很少出现。作者为了避免这种情况的出现，预先定义了一些“高权重单位”（compound unit）</p>
+<p>为了定义这种高权重单位的值，作者对于上下文中 token 可能出现的一些“罕见”情况进行了定义，定义如下：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>High-idf-units</td>
+<td>低词频单元</td>
+<td>单元内的单词词频低于设定值$\theta$（默认为 1%）</td>
+</tr>
+<tr>
+<td>Pure-num-units</td>
+<td>纯数字单元</td>
+<td>只包含数字的单元</td>
+</tr>
+<tr>
+<td>Alpha-num-units</td>
+<td>字母-数字混合单元</td>
+<td>至少包含 1 个数字与 1 个字母的单元</td>
+</tr>
+<tr>
+<td>Pure-punct-units</td>
+<td>纯符号单元</td>
+<td>只包含标点符号的单元</td>
+</tr>
+<tr>
+<td>Alpha-punct-units</td>
+<td>字母-符号混合单元</td>
+<td>至少包含 1 个字母与 1 个符号的单元</td>
+</tr>
+<tr>
+<td>Nonascii-unicode-units</td>
+<td>非 ASCII 字符单元</td>
+<td>只包含非 ASCII 字符的单元</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>以上 6 种“罕见”的单元就是“高权重单位”。</p>
+<p>作者在这儿举了个例子：有个单词为“rare”它在文中出现的词频低于某个设定值（如 1%），它根据上表可以定义为 High-idf-units。</p>
+<p>作者对 RI 算法根据上面的定义进行了一定修改：RI 算法在计算上下文向量时，仅使用上面 6 中高权重单元的表示向量进行计算。也就是说，每个 token 最终都可以根据上面 6 中高权重单元的向量的线性计算得到自己的独特向量 $\vec{w}_C$。</p>
+<p>个人认为作者这样做丢失了很多可能会有用的信息，但是这样可以在本来整体信息就不多的非法领域网页 Web 正文中最大可能地提取高敏感信息。如果之后对这种方法进行改进的话，可以在这块找出更多高敏感信息的模式特征，或者使用改造过的 word2vec 等其它算法进行尝试。</p>
+<h5 id="3-应用高召回率识别器"><a href="#3-应用高召回率识别器" class="headerlink" title="3 应用高召回率识别器"></a>3 应用高召回率识别器</h5><p>此处的“识别器”指的是对单一属性进行识别的函数。作者在此给出了相关定义：</p>
+<p>对于某个属性 A，它的识别器 $R_A$ 为一个函数，该函数接受一组 token，该组数据记为 t。给定两个输入值 i 与 j（$j \geq i$），分别代表 t 中的两个位置。如果 t 的 t[i]:t[j] 子集为 A 属性的 instance 则返回 True，否则返回 False。</p>
+<p>值得注意的是在上面的定义中，识别器并不能识别出 token 中所隐藏的 instance。在平常的 IE system 中所使用的识别器一般都是 recall 和 precision 都相对较高的。在现在这个情境中，识别器不再追求纯粹的准确率（评判标准为 recall 与 precision），而是尽量少丢失一些信息。因此作者选用了有着高 recall 的识别器对文本进行识别标注，在后面一步再去使用监督学习分类来改进这一步产生的候选标注的 precision。</p>
+<p><img src="/images/pasted-227.png" alt="upload successful"></p>
+<h5 id="4-使用监督学习根据上下文进行分类"><a href="#4-使用监督学习根据上下文进行分类" class="headerlink" title="4 使用监督学习根据上下文进行分类"></a>4 使用监督学习根据上下文进行分类</h5><p>在此之前，已经通过高 recall 的识别器将大多数有可能正确的有意义实体给识别出来，因此需要应用分类器对前一步骤得到的各个实体进行分类以提高最终结果精确度。</p>
+<p>由识别器得到一系列的标注（标注可以为单独的 token，也可以是一组连续的 token），将各个标注所在的滑动窗口 (u,v)-context 取出其上下文，求其向量表示，上下文向量的无权重和（unweighted sum）来表示这些标注的上下文向量。</p>
+<p>接着，对这些向量应用 l2 正则，使用监督学习分类器（如随机森林）对其进行分类。</p>
+<h4 id="四、实验评估"><a href="#四、实验评估" class="headerlink" title="四、实验评估"></a>四、实验评估</h4><h5 id="1-数据集与评价标准"><a href="#1-数据集与评价标准" class="headerlink" title="1 数据集与评价标准"></a>1 数据集与评价标准</h5><p><img src="/images/pasted-228.png" alt="upload successful"></p>
+<p>表 2：数据集用量</p>
+<p>作者描述，数据集来自于 DARPA MEMEX 项目。（网址：<a target="_blank" rel="noopener" href="http://www.darpa.mil/program/memex）">http://www.darpa.mil/program/memex）</a></p>
+<p><img src="/images/pasted-229.png" alt="upload successful"></p>
+<p>表 3：5 种类别的标准数据集</p>
+<p>baseline 与本文的分类器都将对上表包含的 5 种类型的数据进行分类标注。</p>
+<p>本文的标准数据集来自于数据集。对数据集应用高 recall 识别器，再对识别器得到的结果进行人工标注。</p>
+<h5 id="2-系统描述"><a href="#2-系统描述" class="headerlink" title="2 系统描述"></a>2 系统描述</h5><p>根据上文所述，本文构建的 Information Extraction System 对于每种属性都由两个部分组成：高 recall 识别器与用于裁剪标记的分类器。作者实验室为此构建了 4 中高 recall 的识别器，分别为:</p>
+<p>GeoNames-Cities<br>GeoNames-States<br>RegEx-Ages<br>Dictionary-Names</p>
+<p>其中前两种识别器的数据集来自于<a target="_blank" rel="noopener" href="http://www.geonames.org/，在此处引用了">http://www.geonames.org/，在此处引用了</a> M. Wick and C. Boutreux. Geonames. GeoNames Geographical Database, 2011。</p>
+<p>对于年龄识别，开发了 <a target="_blank" rel="noopener" href="https://github.com/usc-isi-i2/dig-age-extractor">https://github.com/usc-isi-i2/dig-age-extractor</a> </p>
+<blockquote>
+<p>阅读代码发现原理特别简单，单纯的匹配数字</p>
+</blockquote>
+<p>对于姓名属性，作者收集了各种语言的姓名于数据集中，数据集地址：<br><a target="_blank" rel="noopener" href="https://github.com/usc-isi-i2/dig-dictionaries/tree/master/person-names">https://github.com/usc-isi-i2/dig-dictionaries/tree/master/person-names</a></p>
+<h5 id="3-baseline"><a href="#3-baseline" class="headerlink" title="3 baseline"></a>3 baseline</h5><p>作者使用 Stanford Named Entity Recognition system(NER) 作为其 baseline。</p>
+<blockquote>
+<p>此处引用 J. R. Finkel, T. Grenager, and C. Manning. Incorporating non-local information into information extraction systems by gibbs sampling. In Proceedings of the 43rd Annual Meeting on Association for Computational Linguistics, pages 363–370. Association for Computational Linguistics, 2005.</p>
+</blockquote>
+<p>并使用为其使用了一个预训练数据集（脚标 12）。对于新数据集使用 baseline 模型进行重训练，随机采样 30% 与 70% 数据集作为训练集，其余数据作为测试集。baseline 的设置如下表所示：</p>
+<p><img src="/images/pasted-230.png" alt="upload successful"><br>表 4：斯坦福 NER 在模型重训练时的参数设置</p>
+<h5 id="4-相关参数"><a href="#4-相关参数" class="headerlink" title="4 相关参数"></a>4 相关参数</h5><p>词向量表示中，使用 100 维，低词频词的词频比例阈值设为 0.01。（这些参数作者说是根据之前的相关论文设定的，但是在这儿没有引用具体论文）。滑动窗口大小设置为 (2,2)，作者在此描述尝试使用了更大的滑动窗口但是没有很好的效果。</p>
+<p>分类器采用随机森林分类，树数量为 10，变量重要性度量方式为 Gini 指数法，找出最佳的 20 个特征进行分类，使用 ANOVA（方差分析）作为评估函数。</p>
+<p><strong>评估指标</strong>：准确率、回归率与 F1 指标</p>
+<p><strong>实验环境</strong>：iMac，4GHz Intel core i7，32 GB RAM，Scikit-learn v0.18</p>
+<h5 id="5-实验结果"><a href="#5-实验结果" class="headerlink" title="5 实验结果"></a>5 实验结果</h5><p>直接贴论文中实验结果的指标表格：</p>
+<p><img src="/images/pasted-231.png" alt="upload successful"></p>
+<p>表 5：baseline 与此系统在训练 30% 数据时的 PRF 指标</p>
+<p><img src="/images/pasted-232.png" alt="upload successful"></p>
+<p>表 6：baseline 与此系统在训练 70% 数据时的 PRF 指标</p>
+<p><img src="/images/pasted-233.png" alt="upload successful"></p>
+<p>表 7：训练 30% 数据时，此系统在不同全集中的 F1 指标</p>
+<p><img src="/images/pasted-234.png" alt="upload successful"></p>
+<p>表 8：训练 70% 数据时，此系统在不同全集中的 F1 指标</p>
+<p><img src="/images/pasted-235.png" alt="upload successful"></p>
+<p>图 5：训练 30% 数据时，在姓名属性识别中，使用不同特征数量得到的 PRF 指标变化折线图</p>
+<p><img src="/images/pasted-236.png" alt="upload successful"></p>
+<p>表 9：系统识别城市名称的一些样例</p>
+<h5 id="6-讨论"><a href="#6-讨论" class="headerlink" title="6 讨论"></a>6 讨论</h5><p>（作者”解释“了前面我关于为什么不使用 word2vec 的疑惑）作者表示，他也不清楚为啥不能使用 word2vec 之类更具适应性的算法来代替 Random Indexing 算法。不过表 7 与表 8 可以看到 Random Indexing 算法在不断加入更多网站的情况下表现仍然稳定。</p>
+<p><img src="/images/pasted-237.png" alt="upload successful"></p>
+<p>表 10：在一万数据集与全集中 Random Indexing 算法找到的相似语义样例</p>
+<p>由表 10 可以看到 Random Indexing 算法在不同数据集大小下表现的鲁棒性，给出的相似语义词依然较为准确。</p>
+<p><img src="/images/pasted-238.png" alt="upload successful"></p>
+<p>图 6：城市名称上下文分类时的可视化图（不同的颜色表示在标准数据集中的标签）</p>
+<p>使用 t-SNE 工具对数据进行可视化，得到上图。</p>
+<blockquote>
+<p>t-SNE 工具引用了 L. v. d. Maaten and G. Hinton. Visualizing data using t-sne. Journal of Machine Learning Research, 9(Nov):2579–2605, 2008.</p>
+</blockquote>
+<p>由图可见，分类器对城市名称正负例分类效果良好。另外可以观察到图中有许多点各自又组成了一些”子聚类“（sub-cluster），这些点来自于上下文比较相似的数据。</p>
+<p>最后，作者表示他们在后来的工作中对一些不常见的属性（例如一些领域特定属性）进行了测试，仍然得到了相似的性能。因此这种方法在各种情况都适用。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>作者提出了一种轻量、特征不可知的信息提取方式，适用于非法 Web 领域。这种方法基于初始本体集中构建的向量表示，与使用高 recall 的分类器结合，得到了良好的结果。实验结果表明这种方法相对于其 baseline（CRF）有明显的提升。论文中的各种代码都在 github 上进行了公开。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/09/27/Uber-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B9%B3%E5%8F%B0-%E2%80%94-%E7%B1%B3%E5%BC%80%E6%9C%97%E5%9F%BA%E7%BD%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/09/27/Uber-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%B9%B3%E5%8F%B0-%E2%80%94-%E7%B1%B3%E5%BC%80%E6%9C%97%E5%9F%BA%E7%BD%97/" class="post-title-link" itemprop="url">Uber 机器学习平台 — 米开朗基罗</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-09-27 20:04:46" itemprop="dateCreated datePublished" datetime="2017-09-27T20:04:46+08:00">2017-09-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Uber 工程师们一直致力于开发各种新技术，以让客户得到有效、无缝的用户体验。现在，他们正在加大对人工智能、机器学习领域的投入来实现这个愿景。在 Uber，工程师们开发出了一个名为“米开朗基罗”（Michelangelo）的机器学习平台，它是一个内部的“MLaaS”（机器学习即服务）平台，用以降低机器学习开发的门槛，并能根据不同的商业需求对 AI 进行拓展与缩放，就有如客户使用 Uber 打车一样方便。</p>
+<p>米开朗基罗平台可以让公司内部团队无缝构建、部署与运行 Uber 规模的机器学习解决方案。它旨在覆盖全部的端到端机器学习工作流，包括：数据管理、训练模型、评估模型、部署模型、进行预测、预测监控。此系统不仅支持传统的机器学习模型，还支持时间序列预测以及深度学习。</p>
+<p>米开朗基罗在 Uber 投产约一年时间，已经成为了 Uber 工程师、数据科学家真正意义上的“平台”，现在有数十个团队在此平台上构建、部署模型。实际上，米开朗基罗平台现在部署于多个 Uber 数据中心并使用专用硬件，用于为公司内最高负载的在线服务提供预测功能。</p>
+<p>本文将介绍米开朗基罗以及其产品用例，并简单通过这个强大的 MLaaS 系统介绍整个机器学习工作流。</p>
+<h2 id="米开朗基罗背后的动机"><a href="#米开朗基罗背后的动机" class="headerlink" title="米开朗基罗背后的动机"></a>米开朗基罗背后的动机</h2><p>在米开朗基罗平台出现前，Uber 的工程师和数据科学家们在构建、部署一些公司需要，并且能根据实际操作进行规模拓展的机器学习模型时，遇到了很多挑战。那时他们试图使用各种各样的工具来创建预测模型（如 R 语言、<a target="_blank" rel="noopener" href="http://scikit-learn.org/stable/">scikit-learn</a>、自定义算法等），此时工程团队会构建一些一次性的系统以使用这些模型进行预测。因此，在 Uber 内能够在短时间内使用各种开源工具构建出框架的数据科学家与工程师少之又少，限制了机器学习在公司内的应用。</p>
+<p>具体来说，那时没有建立一个可靠、统一、pipeline 可复用的系统用于创建、管理、训练、预测规模化数据。因此在那时，不会有人做出数据科学家的台式机跑不了的模型，也没有一个规范的结果存储方式，要将几个实验结果进行对比也是相当困难的事情。更重要的是，那时没有一种将模型部署到生产环境的确定方法。因此，大多数情况下都是相关的工程团队不得不为手中的项目开发定制的服务容器。这时，他们注意到了这些迹象符合由 Scully 等人记录的<a target="_blank" rel="noopener" href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf">机器学习的反模式</a>一文的描述。</p>
+<p>米开朗基罗旨在将整个团队的工作流程和工具标准化，通过端对端系统让整个公司的用户都能轻松构建、运行大型机器学习系统。但是工程师们的目标不仅限于解决这些直观的问题，更是要创立一个能与业务共同发展的体系。</p>
+<p>当工程师们于 2015 年年中开始构建米开朗基罗系统时，他们也开始解决一些规模化模型训练以及一些将模型部署于生产环境容器的问题。接着，他们专注于构建能够更好进行管理、共享特征 pipeline 的系统。而最近，他们的重心转移到了开发者生产效率 — 如何加速从想法到产品模型的实现以及接下来的快速迭代。</p>
+<p>下一节将通过一个样例来介绍如何使用米开朗基罗构建、部署一个模型，用于解决 Uber 的某种特定问题。虽然下面重点讲的是 <a target="_blank" rel="noopener" href="https://www.ubereats.com/">UberEATS</a> 中的具体用例，但是这个平台也管理着公司里其他针对多种预测用例的类似模型。</p>
+<h2 id="用例：UberEATS-送餐到家时间预估模型"><a href="#用例：UberEATS-送餐到家时间预估模型" class="headerlink" title="用例：UberEATS 送餐到家时间预估模型"></a>用例：UberEATS 送餐到家时间预估模型</h2><p>UberEATS 在米开朗基罗中有数个模型在运行，包括送餐到达时间预测、搜索排行、搜索自动完成、餐厅排行等。送餐到达时间预测模型能够预测准备膳食、送餐以及送餐过程中的各个阶段所需的时间。</p>
+<p><img src="/images/pasted-214.png" alt="upload successful"></p>
+<p>图 1：UberEATS app 提供了估测外卖送达时间的功能，此功能由基于米开朗基罗构建的机器学习模型驱动。</p>
+<p>预测外卖的送达时间（ETD）并不是一件简单的事情。当 UberEATS 用户下单时，订单将被送到餐厅进行处理。餐厅需要确认订单，根据订单的复杂度以及餐厅的繁忙程度准备餐品，这一步自然要花费一些时间。在餐品快要准备完毕的时候，Uber 外卖员出发去取餐。接着，外卖员需要开车到达餐厅、找到停车场、进餐厅取餐、回到车里、开车前往客户家（这个步骤耗时取决于路线、交通等因素）、找到车位、走到客户家门口，最终完成交货。UberEATS 的目标就是预测这个复杂的多阶段过程的总时间，并在各个步骤重新计算 ETD。</p>
+<p>在米开朗基罗平台上，UberEATS 数据科学家们使用了 GBDT（梯度提升决策树）回归模型来预测这种端到端的送达时间。此模型使用的特征包括请求信息（例如时间、送餐地点）、历史特征（例如餐厅在过去 7 天中的平均餐食准备时间）、以及近似实时特征（例如最近一小时的平均餐食准备时间）。此模型部署于 Uber 数据中心的米开朗基罗平台提供的容器中，通过 UberEATS 微服务提供网络调用。预测结果将在餐食准备及送达前展示给客户。</p>
+<h2 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h2><p>米开朗基罗系统由一些开源系统和内置组件组成。主要使用的开源组件有 <a target="_blank" rel="noopener" href="http://hadoop.apache.org/">HDFS</a>、<a target="_blank" rel="noopener" href="https://spark.apache.org/">Spark</a>、<a target="_blank" rel="noopener" href="http://samza.apache.org/">Samza</a>、<a target="_blank" rel="noopener" href="http://cassandra.apache.org/">Cassandra</a>、<a target="_blank" rel="noopener" href="https://spark.apache.org/mllib/">MLLib</a>、<a target="_blank" rel="noopener" href="https://github.com/dmlc/xgboost">XGBoost</a>、<a target="_blank" rel="noopener" href="https://www.tensorflow.org/">TensorFlow</a>。在条件允许的前提下，开发团队更倾向于使用一些成熟的开源系统，并会进行 fork、定制化，如果有需求的话也会对其进行贡献。如果找不到合适的开源解决方案，他们也会自己构建一些系统。</p>
+<p>米开朗基罗系统建立与 Uber 的数据及计算基础设施之上，它们提供了一个“数据湖”，其中包含了 Uber 所有的事务和日志数据。由 Kafka 对 Uber 的所有服务日志进行采集汇总，使用 Cassandra 集群管理的 Samza 流计算引擎以及 Uber 内部服务进行计算与部署。</p>
+<p>在下一节中将以 UberEATS 的 ETD 模型为例，简单介绍系统的各个层次，说明米开朗基罗的技术细节。</p>
+<h2 id="机器学习工作流"><a href="#机器学习工作流" class="headerlink" title="机器学习工作流"></a>机器学习工作流</h2><p>在 Uber，大多数的机器学习用例（包括一些正在做的工作，例如分类、回归以及时间序列预测等）都有着一套同样的工作流程。这种工作流程可以与具体实现分离，因此很容易进行拓展以支持新的算法和框架（例如最新的深度学习框架）。它还适用于各种不同预测用例的部署模式（如在线部署与离线部署，在车辆中使用与在手机中使用）。</p>
+<p>米开朗基罗专门设计提供可拓展、可靠、可重用、易用的自动化工具，用于解决下面 6 步工作流：</p>
+<ol>
+<li>管理数据</li>
+<li>训练模型</li>
+<li>评估模型</li>
+<li>部署模型</li>
+<li>预测结果</li>
+<li>预测监控</li>
+</ol>
+<p>下面将详细介绍米开朗基罗的架构是如何促进工作流中的各个步骤的。</p>
+<h2 id="管理数据"><a href="#管理数据" class="headerlink" title="管理数据"></a>管理数据</h2><p>找出良好的特征经常是是机器学习最难的部分，工程师们也发现整个机器学习解决方案中最费时费力的部分就是构建及管理数据管道。</p>
+<p>因此，平台应提供一套标准工具以构建数据管道，生成特征，对数据集进行标记（用于训练及再训练），以及提供无标记特征数据用以预测，这些工具需要与公司的数据湖、数据中心以及公司的在线数据服务系统进行深度的整合。构建出来的数据管道必须具有可缩放性以及足够的性能，能够监控数据流以及数据质量，为各种在线/离线训练与预测都提供全面的支持。这些工具还应该能通过团队共享的方式生成特征，以减少重复工作并提高数据质量。此外，这些工具应当提供强有力的保护措施，鼓励用户去采用最好的方式使用工具（例如，保证在训练时和预测时都采用同一批次生成的数据）。</p>
+<p>米开朗基罗的数据管理组件分为在线管道和离线管道。目前，离线管道主要用于为批量模型训练以及批量预测作业提供数据；在线管道主要为在线、低时延预测作业提供数据（以及之后会为在线学习系统提供支持）。</p>
+<p>此外，工程师们还为数据管理层新加了一个特征存储系统，可以让各个团队共享、发现高质量的数据特征以解决他们的机器学习问题。工程师们发现，Uber 的许多模型都是用了类似或相同的特征，而在不同组织的团队以及团队里的不同项目中共享特征是一件很有价值的事情。</p>
+<p><img src="/images/pasted-215.png" alt="upload successful"></p>
+<p>图 2：数据预处理管道将数据存入特征库以及训练数据仓库中。</p>
+<h3 id="离线部署"><a href="#离线部署" class="headerlink" title="离线部署"></a>离线部署</h3><p>Uber 的事务与日志数据会“流入”一个 HDFS 数据湖中，可以使用 Spark 和 Hive SQL 的计算作业轻松调用这些数据。平台提供了容器与计划任务两种方式运行常规作业，用于计算项目内部的私有特征或将其发布至特征存储库（见后文）与其他团队共享。当计划任务运行批量作业或通过别的方式触发批量作业时，作业将被整合传入数据质量监控工具，此工具能够快速回溯找出问题出在 pipeine 中的位置，判明是本地代码的问题还是上游代码的问题导致的数据错误。</p>
+<h3 id="在线部署"><a href="#在线部署" class="headerlink" title="在线部署"></a>在线部署</h3><p>在线部署的模型将无法访问 HDFS 存储的数据，因此，一些需要在 Uber 生产服务的支撑数据库中读取的特征很难直接用于这种在线模型（例如，无法直接查询 UberEATS 的订单服务去计算某餐厅某特定时间段平均膳食准备时间）。因此，工程师们将在线模型需要的特征预计算并存储在 Cassandra 中，线上模型可以低延迟读取这些数据。</p>
+<p>在线部署支持两种计算系统：批量预计算与近实时计算，详情如下：</p>
+<ul>
+<li><strong>批量预计算</strong>。这个系统会定期进行大批量计算，并将 HDFS 中的特征历史记录加载进 Cassandra 数据库中。这样做虽然很简单粗暴，但是如果需要的特征对实时性要求不高（比如允许隔几小时更新一次），那么效果还是很好的。这个系统还能保证在批处理管道中用于训练和服务的数据是同批次的。UberEATS 就采用了这个系统处理一部分特征，如“餐厅过去七天的膳食平均准备时间”。</li>
+<li><strong>近实时计算</strong>。这个系统会将相关指标发布至 Kafka 系统，接着运行 Samza 流计算作业以低时延生成所有特征。接着这些特征将直接存入 Cassandra 数据库用于提供服务，并同时备份至 HDFS 用于之后的训练作业。和批量预计算系统一样，这样做同样能保证提供服务和进行训练的数据为同一批次。为了避免这个系统的冷启动，工程师们还专门为这个系统制作了一个工具，用于“回填”数据与基于历史记录运行批处理生成训练数据。UberEATS 就使用了这种近实时计算 pipeline 来得到如“餐厅过去一小时的膳食平均准备时间”之类的特征。</li>
+</ul>
+<h3 id="共享特征库"><a href="#共享特征库" class="headerlink" title="共享特征库"></a>共享特征库</h3><p>工程师们发现建立一个集中的特征库是很有用的，这样 Uber 的各个团队可以使用其他团队创建和管理的可靠的特征，且特征可以被分享。从大方向上看，它做到了以下两件事情：</p>
+<ol>
+<li>它可以让用户轻松地将自己构建的特征存入共享特征库中（只需要增加少许元数据，如添加者、描述、SLA 等），另外它也能让一些特定项目使用的特征以私有形式存储。</li>
+<li>只要特征存入了特征库，那之后再用它就十分简单了。无论是在线模型还是离线模型，都只要简单地在模型配置中写上特征的名称就行了。系统将会从 HDFS 取出正确的数据，进行处理后返回相应的特征集既可以用于模型训练，也可以用于批量预测或者从 Cassandra 取值做在线预测。</li>
+</ol>
+<p>目前，Uber 的特征库中有大约 10000 个特征用于加速机器学习工程的构建，公司的各个团队还在不断向其中增加新的特征。特征库中的特征每天都会进行自动计算与更新。</p>
+<p>未来，工程师们打算构建自动化系统，以进行特征库搜索并找出解决给定预测问题的最有用的特征。</p>
+<p><strong>用于特征选择及转换的领域特定语言（DSL）。</strong></p>
+<p>由数据 pipeline 生成的特征与客户端服务传来的特征经常不符合模型需要的数据格式，而且这些数据时常会缺失一些值，需要对其进行填充；有时候，模型可能只需要传入的特征的一个子集；还有的时候，将传入的时间戳转换为 小时/天 或者 天/周 会在模型中起到更好的效果；另外，还可能需要对特征值进行归一化（例如减去平均值再除以标准差）。</p>
+<p>为了解决这些问题，工程师们为建模人员创造了一种 DSL（领域特定语言），用于选择、转换、组合那些用于训练或用于预测的特征。这种 DSL 为 Scala 的子集，是一种纯函数式语言，包含了一套常用的函数集，工程师们还为这种 DSL 增加了自定义函数的功能。这些函数能够从正确的地方取出特征（离线模型从数据 pipeline 取特征值，在线模型从客户请求取特征值，或是直接从特征库中取出特征）。</p>
+<p>此外，DSL 表达式是模型配置的一部分，在训练时取特征的 DSL 与在与测试时用的 DSL 需要保持一致，以确保任何时候传入模型的特征集的一致性。</p>
+<h3 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h3><p>目前平台支持离线、大规模分布式训练，包括决策树、线性模型、逻辑模型、无监督模型（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/K-means_clustering">k-means</a>）、时间序列模型以及深度神经网络。工程师们将定期根据用户的需求增加一些由 Uber <a target="_blank" rel="noopener" href="https://www.uber.com/info/ailabs/">AI 实验室</a>新开发的模型。此外，用户也可以自己提供模型类型，包括自定义训练、评价以及提供服务的代码。分布式模型训练系统可以规模化处理数十亿的样本数据，也可以处理一些小数据集进行快速迭代。</p>
+<p>一个模型的配置包括模型类型、超参、数据源、特征 DSL，以及计算资源需求（需要的机器数量、内存用量、是否使用 GPU 等）。这些信息将用于配置运行在 <a target="_blank" rel="noopener" href="https://yarnpkg.com/">YARN</a> 或 <a target="_blank" rel="noopener" href="https://yarnpkg.com/">Mesos</a> 集群上的训练作业。</p>
+<p>在模型训练完毕之后，系统会将其计算得到的性能指标（例如 ROC 曲线和 PR 曲线）进行组合，得到一个模型评价报告。在训练结束时，系统会将原始配置、学习到的参数以及评价包括存回模型库，用于分析与部署。</p>
+<p>除了训练单个模型之外，米开朗基罗系统还支持对分块模型等各种模型进行超参搜索。以分块模型为例，以分块模型为例，系统会根据用户配置自动对训练数据进行分块，对每个分块训练一个模型；在有需要的时候再将各个分块模型合并到父模型中（例如，先对每个城市数据进行训练，如果无法得到准确的市级模型时再将其合并为国家级模型）。</p>
+<p>训练作业可以通过 Web UI 或者 API 进行配置与管理（通常使用 <a target="_blank" rel="noopener" href="http://jupyter.org/">Jupyter notebook</a>）。大多数团队都使用 API 以及流程管理工具来对他们的模型进行定期重训练。</p>
+<p><img src="/images/pasted-216.png" alt="upload successful"></p>
+<p>图 3：模型训练作业使用特征库与数据训练仓库中的数据集来训练模型，接着将模型存入模型库中。</p>
+<h3 id="评估模型"><a href="#评估模型" class="headerlink" title="评估模型"></a>评估模型</h3><p>训练模型可以看成是一种寻找最佳特征、算法、超参以针对问题建立最佳模型的探索过程。在得到用例的理想模型前，训练数百种模型而一无所获也是常有的事。虽然这些失败的模型最终不能用于生产，但它们可以指导工程师们更好地进行模型配置，从而获得更好的性能。追踪这些训练过的模型（例如谁、何时训练了它们，用了什么数据集、什么超参等），对它们的性能进行评估、互相对比，可以为平台带来更多的价值与机会。不过要处理如此之多的模型，也是一个极大的挑战。</p>
+<p>米开朗基罗平台中训练的每个模型都需要将以下信息作为版本对象存储在 Cassandra 的模型库中：</p>
+<ul>
+<li>谁训练的模型。</li>
+<li>训练模型的开始时间与结束时间。</li>
+<li>模型的全部配置（包括用了什么特征、超参的设置等）。</li>
+<li>引用训练集和测试集。</li>
+<li>描述每个特征的重要性。</li>
+<li>模型准确性评价方法。</li>
+<li>模型每个类型的标准评价表或图（例如 ROC 曲线图、PR 曲线图，以及二分类的混淆矩阵等）。</li>
+<li>模型所有学习到的参数。</li>
+<li>模型可视化摘要统计。</li>
+</ul>
+<p>用户可以通过 Web UI 或者使用 API 轻松获取这些数据，用以检查单个模型的详细情况或者对多个模型进行比较。</p>
+<h3 id="模型准确率报告"><a href="#模型准确率报告" class="headerlink" title="模型准确率报告"></a>模型准确率报告</h3><p>回归模型的准确率报告会展示标准的准确率指标与图表；分类模型的准确率报告则会展示不同的分类集合，如图 4 图 5 所示：</p>
+<p><img src="/images/pasted-217.png" alt="upload successful"></p>
+<p>图 4：回归模型的报告展示了与回归相关的性能指标。</p>
+<p><img src="/images/pasted-218.png" alt="upload successful"></p>
+<p>图 5：二分类模型报告展示了分类相关的性能指标。</p>
+<h3 id="可视化决策树"><a href="#可视化决策树" class="headerlink" title="可视化决策树"></a>可视化决策树</h3><p>决策树作为一种重要的模型类型，工程师们为其提供了可视化工具，以帮助建模者更好地理解模型的行为原理，并在建模者需要时帮助其进行调试。例如在一个决策树模型中，用户可以浏览每个树分支，看到其对于整体模型的重要程度、决策分割点、每个特征对于某个特定分支的权重，以及每个分支上的数据分布等变量。用户可以输入一个特征值，可视化组件将会遍历整个决策树的触发路径、每个树的预测、整个模型的预测，将数据展示成类似下图的样子：</p>
+<p><img src="/images/pasted-219.png" alt="upload successful"></p>
+<p>图 6：使用强大的树可视化组件查看树模型。</p>
+<h3 id="特征报告"><a href="#特征报告" class="headerlink" title="特征报告"></a>特征报告</h3><p>米开朗基罗提供了特征报告，在报告中使用局部依赖图以及混合直方图展示了各个特征对于模型的重要性。选中两个特征可以让用户看到它们之间相互的局部依赖图表，如下所示：</p>
+<p><img src="/images/pasted-220.png" alt="upload successful"></p>
+<p>图 7：在特征报告中可以看到的特征、对模型的重要性以及不同特征间的相关性。</p>
+<h3 id="部署模型"><a href="#部署模型" class="headerlink" title="部署模型"></a>部署模型</h3><p>米开朗基罗支持使用 UI 或 API 端对端管理模型的部署。一个模型可以有下面三种部署方式：</p>
+<ol>
+<li><strong>离线部署</strong>。模型将部署于离线容器中，使用 Spark 作业，根据需求或计划任务进行批量预测。</li>
+<li><strong>在线部署</strong>。模型将部署于在线预测服务集群（集群通常为使用负载均衡部署的数百台机器），客户端可以通过网络 RPC 调用发起单个或批量的预测请求。</li>
+<li><strong>部署为库</strong>。工程师们希望能在服务容器中运行模型。可以将其整合为一个库，也可以通过 Java API 进行调用（在下图中没有展示此类型，不过这种方式与在线部署比较类似）。</li>
+</ol>
+<p><img src="/images/pasted-221.png" alt="upload successful"></p>
+<p>图 8：模型库中的模型部署于在线及离线容器中用于提供服务。</p>
+<p>上面所有情况中，所需要的模型组件（包括元数据文件、模型参数文件以及编译好的 DSL）都将被打包为 ZIP 文件，使用 Uber 的标准代码部署架构将其复制到 Uber 数据中心的相关数据上。预测服务容器将会从磁盘自动加载新模型，并自动开始处理预测请求。</p>
+<p>许多团队都自己写了自动化脚本，使用米开朗基罗 API 进行一般模型的定期再训练及部署。例如 UberEATS 的送餐时间预测模型就由数据科学家和工程师通过 Web UI 控制进行训练与部署。</p>
+<h3 id="预测结果"><a href="#预测结果" class="headerlink" title="预测结果"></a>预测结果</h3><p>一旦模型部署于服务容器并加载成功，它就可以开始用于对数据管道传来的特征数据或用户端发来的数据进行预测。原始特征将通过编译好的 DSL 传递，如有需要也可以对 DSL 进行修改以改进原始特征，或者从特征存储库中拉取一些额外的特征。最终构造出的特征向量会传递给模型进行评分。如果模型为在线模型，预测结果将通过网络传回给客户端。如果模型为离线模型，预测结果将被写回 Hive，之后可以通过下游的批处理作业或者直接使用 SQL 查询传递给用户，如下所示：</p>
+<p><img src="/images/pasted-222.png" alt="upload successful"></p>
+<p>图 9：在线预测服务及离线预测服务使用一组特征向量生成预测结果。</p>
+<h3 id="引用模型"><a href="#引用模型" class="headerlink" title="引用模型"></a>引用模型</h3><p>在米开朗基罗平台中可以同时向服务容器部署多个模型。这也使得从旧模型向新模型进行无痛迁移以及对模型进行 A/B 测试成为可能。在服务中，可以由模型的 UUID 以及一个在部署时可指定的 tag（或者别名）识别不同的模型。以一个在线模型为例，客户端服务会将特征向量与需要使用的模型 UUID 或者 tag 同时发送给服务容器；如果使用的是 tag，服务容器会使用此 tag 对应的最新部署的模型进行预测。如果使用的是多个模型，所有对应的模型都将对各批次的数据进行预测，并将 UUID 和 tag 与预测结果一同传回，方便客户端进行筛选过滤。</p>
+<p>如果在部署一个新模型替换旧模型时用了相同的事物（例如用了一些同样的特征），用户可以为新模型设置和旧模型一样的 tag，这样容器就会立即开始使用新模型。这可以让用户只需要更新模型，而不用去修改他们的客户端代码。用户也可以通过设置 UUID 来部署新模型，再将客户端或中间件配置中旧模型的 UUID 换成新的，逐步将流量切换到新模型去。</p>
+<p>如果需要对模型进行 A/B 测试，用户可以通过 UUID 或者 tag 轻松地部署竞争模型，再使用客户端服务中的 Uber 实验框架将部分流量导至各个模型，再对性能指标进行评估。</p>
+<h3 id="规模缩放与时延"><a href="#规模缩放与时延" class="headerlink" title="规模缩放与时延"></a>规模缩放与时延</h3><p>由于机器学习模型是无状态的，且不需要共享任何东西，因此，无论是在线模式还是离线模式下对它们进行规模缩放都是一件轻而易举的事情。如果是在线模型，工程师可以简单地给预测服务集群增加机器，使用负载均衡器分摊负载。如果是离线预测，工程师可以给 Spark 设置更多的 executor，让 Spark 进行并行管理。</p>
+<p>在线服务的延迟取决于模型的类型与复杂度以及是否使用从 Cassandra 特征库中取出的特征。在模型不需要从 Cassandra 取特征的情况下，P95 测试延迟小于 5 毫秒。在需要从 Cassandra 取特征时，P95 测试延迟仍小于 10 毫秒。目前用量最大的模型每秒能提供超过 250000 次预测。</p>
+<h3 id="预测监控"><a href="#预测监控" class="headerlink" title="预测监控"></a>预测监控</h3><p>当模型训练完成并完成评价之后，使用的数据都将是历史数据。监控模型的预测情况，是确保其在未来正常工作的重要保障。工程师需要确保数据管道传入的是正确的数据，并且生产环境没有发生变化，这样模型才能够进行准确的预测。</p>
+<p>为了解决这个问题，米开朗基罗系统会自动记录并将部分预测结果加入到数据 pipeline 的标签中去，有了这些信息，就能得到持续的、实时的模型精确度指标。在回归模型中，会将 R^2/<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Coefficient_of_determination">决定系数</a>、<a target="_blank" rel="noopener" href="https://www.kaggle.com/wiki/RootMeanSquaredLogarithmicError">均方根对数误差</a>（RMSLE）、<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Root-mean-square_deviation">均方根误差</a>（RMSE）以及<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Mean_absolute_error">平均绝对值误差</a>发布至 Uber 的实时监控系统中，用户可以分析指标与时间关系的图标，并设置阈值告警：</p>
+<p><img src="/images/pasted-223.png" alt="upload successful"></p>
+<p>图 10：对预测结果进行采样，与观测结果进行比较得到模型准确指标。</p>
+<h3 id="管理层、API、Web-UI"><a href="#管理层、API、Web-UI" class="headerlink" title="管理层、API、Web UI"></a>管理层、API、Web UI</h3><p>米开朗基罗系统的最后一个重要部分就是 API 层了，它也是整个系统的大脑。API 层包含一个管理应用，提供了 Web UI 以及网络 API 两种访问方式，并与 Uber 的监控、报警系统相结合。同时该层还包含了用于管理批量数据管道、训练作业、批量预测作业、模型批量部署以及在线容器的工作流系统。</p>
+<p>米开朗基罗的用户可以通过 Web UI、REST API 以及监控、管理工具直接与这些组件进行交互。</p>
+<h2 id="米开朗基罗平台之后的构建工作"><a href="#米开朗基罗平台之后的构建工作" class="headerlink" title="米开朗基罗平台之后的构建工作"></a>米开朗基罗平台之后的构建工作</h2><p>工程师们打算在接下来几个月继续扩展与加强现有的系统，以支持不断增长的用户和 Uber 的业务。随着米开朗基罗平台各个层次的不断成熟，他们计划开发更高层的工具与服务，以推动机器学习在公司内部的发展，更好地支持商业业务：</p>
+<ul>
+<li><strong>AutoML</strong>。这是将会成为一个自动搜寻与发现模型配置的系统（包括算法、特征集、超参值等），可以为给定问题找到表现最佳的模型。该系统还会自动构建数据管道，根据模型的需要生成特征与标签。目前工程师团队已经通过特征库、统一的离线在线数据管道、超参搜索特征解决了此系统的一大部分问题。AutoML 系统可以加快数据科学的早期工作，数据科学家们只需要指定一组标签和一个目标函数，接着就能高枕无忧地使用 Uber 的数据找到解决问题的最佳模型了。这个系统的最终目标就是构建更智能的工具，简化数据科学家们的工作，从而提高生产力。</li>
+<li><strong>模型可视化</strong>。对于机器学习，尤其是深度学习，理解与调试模型现在变得越来越重要。虽然工程师们已经首先为树状模型提供了可视化工具，但是还需要做更多的工作，帮助数据科学家理解、debug、调整他们的模型，得到真正令人信服的结果。</li>
+<li><strong>在线学习</strong>。Uber 的机器学习模型大多数直接受到 Uber 产品的实时影响。这也意味着这些模型需要能够在复杂、不断变化的真实世界中运行。为了保证模型在变化环境中的准确性，这些模型需要随着环境一同进化；现在，各个团队会在米开朗基罗平台上定期对模型进行重训练。一个完整的平台式解决方案应该让用户能够轻松地对模型进行升级、快速训练及评价，有着更精细的监控及报警系统。虽然这将是一个很大的工程，但是早前的研究结果表明，构建完成在线学习系统可能会带来巨大的收益。</li>
+<li><strong>分布式深度学习</strong>。越来越多的 Uber 机器学习系统开始使用深度学习实现。定义与迭代深度学习模型的工作流与标准的工作流有着很大的区别，因此需要平台对其进行额外的支持。深度学习需要处理更大的数据集，需要不同的硬件支持（例如 GPU），因此它更需要分布式学习的支持，以及与更具弹性的资源管理堆栈进行紧密结合。</li>
+</ul>
+<p>如果你对挑战规模化机器学习有兴趣，欢迎申请<a target="_blank" rel="noopener" href="https://www.uber.com/careers/list/?city=all&amp;country=all&amp;keywords=machine+learning+platform+team&amp;subteam=all&amp;team=all">Uber 机器学习平台团队</a> ！</p>
+<p>作者简介：Jeremy Hermann 是 Uber 机器学习平台团队的工程经理，Mike Del Balso 是 Uber 机器学习平台团队的产品经理。</p>
+<blockquote>
+<p>发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/59c8b4d56fb9a00a4843b2a6">https://juejin.im/post/59c8b4d56fb9a00a4843b2a6</a></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1236,223 +1669,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/14/%E6%9C%BA%E5%99%A8%E4%B9%8B%E9%AD%82%EF%BC%9A%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/08/14/%E6%9C%BA%E5%99%A8%E4%B9%8B%E9%AD%82%EF%BC%9A%E8%81%8A%E5%A4%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84/" class="post-title-link" itemprop="url">机器之魂：聊天机器人是怎么工作的</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-08-14 15:52:47" itemprop="dateCreated datePublished" datetime="2017-08-14T15:52:47+08:00">2017-08-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Translate/" itemprop="url" rel="index"><span itemprop="name">Translate</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>自早期的工业时代以来，人类就被能自主操作的设备迷住了。因为，它们代表了科技的“人化”。</p>
-<p>而在今天，各种软件也在逐渐变得人性化。其中变化最明显的当属“聊天机器人”。</p>
-<p>但是这些“机械”是如何运作的呢？首先，让我们回溯过去，探寻一种原始，但相似的技术。</p>
-<h3 id="音乐盒是如何工作的"><a href="#音乐盒是如何工作的" class="headerlink" title="音乐盒是如何工作的"></a>音乐盒是如何工作的</h3><p><img src="/images/pasted-177.png" alt="upload successful"></p>
-<p>早期自动化的样例 —— 机械音乐盒。<br>一组经过调音的金属齿排列成梳状结构，置于一个有针的圆柱边上。每根针都以一个特定的时间对应着一个音符。</p>
-<p>当机械转动时，它便会在预定好的时间通过单个或者多个针的拨动来产生乐曲。如果要播放不同的歌，你得换不同的圆柱桶（假设不同的乐曲对应的特定音符是一样的）。</p>
-<p>除了发出音符之外，圆筒的转动还可以附加一些其它的动作，例如移动小雕像等。不管怎样，这个音乐盒的基本机械结构是不会变的。</p>
-<h3 id="聊天机器人是如何工作的"><a href="#聊天机器人是如何工作的" class="headerlink" title="聊天机器人是如何工作的"></a>聊天机器人是如何工作的</h3><p>输入的文本将经过一种名为“分类器”的函数处理，这种分类器会将一个输入的句子和一种“意图”（聊天的目的）联系起来，然后针对这种“意图”产生回应。</p>
-<p><img src="/images/pasted-178.png" alt="upload successful"></p>
-<p><a target="_blank" rel="noopener" href="http://lauragelston.ghost.io/speakeasy/">一个聊天机器人的例子</a></p>
-<p>你可以将分类器看成是将一段数据（一句话）分入几个分类中的一种（即某种意图）的一种方式。输入一句话“how are you?”，将被分类成一种意图，然后将其与一种回应（例如“I’m good”或者更好的“I am well”）联系起来。</p>
-<p>我们在基础科学中早学习了分类：黑猩猩属于“哺乳动物”类，蓝鸟属于“鸟”类，地球属于“行星”等等。</p>
-<p>一般来说，文本分类有 3 种不同的方法。可以将它们看做是为了一些特定目的制造的软件机械，就如同音乐盒的圆筒一样。</p>
-<h3 id="聊天机器人的文本分类方法"><a href="#聊天机器人的文本分类方法" class="headerlink" title="聊天机器人的文本分类方法"></a><strong>聊天机器人的文本分类方法</strong></h3><ul>
-<li><strong>模式匹配</strong></li>
-<li><strong>算法</strong></li>
-<li><strong>神经网络</strong></li>
-</ul>
-<p>无论你使用哪种分类器，最终的结果一定是给出一个回应。音乐盒可以利用一些机械机构的联系来完成一些额外的“动作”，聊天机器人也如此。回应中可以使用一些额外的信息（例如天气、体育比赛比分、网络搜索等等），但是这些信息并不是聊天机器人的组成部分，它们仅仅是一些额外的代码。也可以根据句子中的某些特定“词性”来产生回应（例如某个专有名词）。此外，符合意图的回应也可以使用逻辑条件来判断对话的“状态”，以提供一些不同的回应，这也可以通过随机选择实现（好让对话更加“自然”）。</p>
-<h3 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h3><p>早期的聊天机器人通过模式匹配来进行文本分类以及产生回应。这种方法常常被称为“暴力法”，因为系统的作者需要为某个回应详细描述所有模式。</p>
-<p>这些模式的标准结构是“AIML”（人工智能标记语言）。这个名词里用了“人工智能”作为修饰词，但是<a target="_blank" rel="noopener" href="https://medium.com/@gk_/the-ai-label-is-bullshit-559b171867ff">它们完全不是一码事</a>。</p>
-<p>下面是一个简单的模式匹配定义：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aiml</span> <span class="attr">version</span> = <span class="string">&quot;1.0.1&quot;</span> <span class="attr">encoding</span> = <span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">category</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">pattern</span>&gt;</span> WHO IS ALBERT EINSTEIN <span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">template</span>&gt;</span>Albert Einstein was a German physicist.<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">category</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">category</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">pattern</span>&gt;</span> WHO IS Isaac NEWTON <span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">template</span>&gt;</span>Isaac Newton was a English physicist and mathematician.<span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">category</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="tag">&lt;<span class="name">category</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">pattern</span>&gt;</span>DO YOU KNOW WHO * IS<span class="tag">&lt;/<span class="name">pattern</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">srai</span>&gt;</span>WHO IS <span class="tag">&lt;<span class="name">star</span>/&gt;</span><span class="tag">&lt;/<span class="name">srai</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">category</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aiml</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>然后机器经过处理会回答：</p>
-<pre><code>Human: Do you know who Albert Einstein is
-Robot: Albert Einstein was a German physicist.
-</code></pre><p>它之所以知道别人问的是哪个物理学家，只是靠着与他或者她名字相关联的模式匹配。同样的，它靠着创作者预设的模式可以对任何意图进行回应。在给予它成千上万种模式之后，你终将能看到一个“类人”的聊天机器人出现。</p>
-<p>2000 年的时候，John Denning 和他的同事就以这种方法做了个聊天机器人（<a target="_blank" rel="noopener" href="http://mashable.com/2014/06/12/eugene-goostman-turing-test/">相关新闻</a>），并通过了“图灵测试”。它设计的目标是模仿来自乌克兰的一个 13 岁的男孩，这孩子的英语水平很蹩脚。我在 2015 年的时候和 John 见过面，他没有矢口否认这个自动机的内部原理。因此，这个聊天机器人很可能就是用“暴力”的方法进行模式匹配。但它也证明了一点：在足够大的模式匹配定义的支持下，可以让大部分对话都贴近“自然”的程度。同时也符合了图灵（Alan Turing）的断言：制作用来糊弄人类的机器是“毫无意义”的。</p>
-<p>使用这种方法做机器人的典型案例还有 <a target="_blank" rel="noopener" href="http://www.pandorabots.com/">PandoraBots</a>，他们宣称已经用他们的框架构建了超过 28.5 万个聊天机器人。</p>
-<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>暴力穷举法做自动机让人望而却步：对于每个输入都得有可用的模式来匹配其回应。人们由“老鼠洞”得到灵感，创建了模式的层级结构。</p>
-<p>我们可以使用<strong>算法</strong>这种方法来减少分类器以便对机器进行管理，或者也可以说我们为它创建一个方程。这种方法是计算机科学家们称为“简化”的方法：问题需要<strong>缩减</strong>，那么解决问题的方法就是将其简化。</p>
-<p>有一种叫做“朴素贝叶斯多项式模型”的经典文本分类算法，你可以在<a target="_blank" rel="noopener" href="http://nlp.stanford.edu/IR-book/pdf/13bayes.pdf">这儿</a>或者别的地方学习它。下面是它的公式：</p>
-<p><img src="/images/pasted-179.png" alt="upload successful"></p>
-<p>实际用起它来比看上去要简单的多。给定一组句子，每个句子对应一个分类；接着输入一个新的句子，我们可以通过计算这个句子的单词在各个分类中的词频，找出各个分类的共性，并给每个分类一个<strong>分值</strong>（找出共性这点是很重要的：例如匹配到单词“cheese”（奶酪）比匹配到单词“it”要有意义的多）。最后，得到最高分值的分类很可能就是输入句子的同类。当然以上的说法是经过简化的，例如你还得先找到每个单词的<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Stemming">词干</a>才行。不过，现在你应该对这种算法已经有了基本的概念。</p>
-<p>下面是一个简单的训练集：</p>
-<pre><code>class: weather
-    &quot;is it nice outside?&quot;
-    &quot;how is it outside?&quot;
-    &quot;is the weather nice?&quot;
-
-class: greeting
-    &quot;how are you?&quot;
-    &quot;hello there&quot;
-    &quot;how is it going?&quot;
-</code></pre><p>让我们来对几个简单的输入句子进行分类：</p>
-<pre><code>input: &quot;Hi there&quot;
- term: &quot;hi&quot; (**no matches)**
- term: &quot;there&quot; **(class: greeting)**
- classification: **greeting **(score=1)
-
-input: &quot;What’s it like outside?&quot;
- term: &quot;it&quot; **(class: weather (2), greeting)**
- term: &quot;outside **(class: weather (2) )**
- classification: **weather **(score=4)
-</code></pre><p>请注意，“What’s it like outside”在分类时找到了另一个分类的单词，但是正确的分类给了单词较高的分值。通过算法公式，我们可以为句子计算匹配每个分类对应的词频，因此不需要去标明所有的模式。</p>
-<p>这种分类器通过标定分类分值（计算词频）的方法给出最匹配语句的分类，但是它仍然有局限性。分值与概率不同，它仅仅能告诉我们句子的意图最有可能是哪个分类，而不能告诉我们它的所有匹配分类的可能性。因此，很难去给出一个阈值来判定是接受这个得分结果还是不接受这个结果。这种类型的算法给出的最高分仅仅能作为判断相关性的基础，它本质上作为分类器的效果还是比较差的。此外，这个算法不能接受 <em>is not</em> 类型的句子，因为它仅仅计算了 <em>it</em> 可能是什么。也就是说这种方法不适合做为包含 <em>not</em> 的否定句的分类。</p>
-<p>有许多的聊天机器人框架<a target="_blank" rel="noopener" href="https://medium.com/@gk_/text-classification-using-algorithms-e4d50dcba45#.ewnhttxa4">都是用这种方法来判断意图分类</a>。而且大多数都是针对训练集进行词频计算，这种“幼稚”的方法有时还意外的有效。</p>
-<h3 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3><p>人工神经网络发明于 20 世纪 40 年代，它通过迭代计算训练数据得到连接的加权值（“突触”），然后用于对输入数据进行分类。通过一次次使用训练数据计算改变加权值以使得神经网络的输出得到更高的“准确率”（低错误率）。</p>
-<p><img src="/images/pasted-180.png" alt="upload successful"></p>
-<p>上图为一种神经网络结构，其中包括神经元（圆）和突触（线）</p>
-<p>其实除了当今的软件可以用更快的处理器、更大的内存外，这些结构并没有出现什么新奇的东西。当做数十万次的矩阵乘法（神经网络中的基本数学运算）的时候，运行内存和计算速度成为了关键问题。</p>
-<p>在前面的方法里，每个分类都会给定一些例句。接着，根据词干进行分句，将所有单词作为神经网络的输入。然后遍历数据，进行成千上万次迭代计算，每次迭代都通过改变突触权重来得到更高的准确率。接着反过来通过对训练集输出值和神经网络计算结果的对比，对各层重新进行计算权重（反向传播）。这个“权重”可以类比成神经突触想记住某个东西的“力度”，你能记住某个东西是因为你曾多次见过它，在每次见到它的时候这个“权重”都会轻微地上升。</p>
-<p>有时，在权重调整到某个程度后反而会使得结果逐渐变差，这种情况称为“过拟合”，在出现过拟合的情况下继续进行训练，反而会适得其反。</p>
-<p><img src="/images/pasted-181.png" alt="upload successful"></p>
-<p>训练好的神经网络模型的代码量其实很小，不过它需要一个很大的潜在权重矩阵。举个相对较小的样例，它的训练句子包括了 150 个单词、30 种分类，这可能产生一个 150x30 大小的矩阵；你可以想象一下，为了降低错误率，这么大的一个矩阵需要反复的进行 10 万次矩阵乘法。这也是为什么说需要高性能处理器的原因。</p>
-<p>神经网络之所以能够做到既复杂又稀疏，归结于<a target="_blank" rel="noopener" href="https://www.khanacademy.org/math/precalculus/precalc-matrices/multiplying-matrices-by-matrices/v/matrix-multiplication-intro">矩阵乘法</a>和一种<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Sigmoid_function">缩小值至 -1，1 区间的公式</a>（即激活函数，这里指的是 Sigmoid），一个中学生也能在几小时内学会它。其实真正困难的工作是清洗训练数据。</p>
-<p>就像前面的模式匹配和算法匹配一样，神经网络也有各种各样的变体，有一些变体会十分复杂。不过它的基本原理是相同的，做的主要工作也都是进行分类。</p>
-<p>机械音乐盒并不了解乐理，同样的，<strong>聊天机器人并不了解语言</strong>。</p>
-<p>聊天机器人实质上就是寻找短语集合中的模式，每个短语还能再分割成单个单词。在聊天机器人内部，除了它们存在的模式以及训练数据之外的<strong>单词其实并没有意义</strong>。为这样的“机器人”贴上“人工智能”的标签其实<a target="_blank" rel="noopener" href="https://medium.com/@gk_/the-ai-label-is-bullshit-559b171867ff#.3tlhftemt">也很糟糕</a>。</p>
-<p>总结：聊天机器人就像机械音乐盒一样：它就是<strong>一个根据模式来进行输出的机器</strong>，只不过它不用圆筒和针，而是使用软件代码和数学原理。</p>
-<blockquote>
-<p>发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/599155d86fb9a03c467c151d">https://juejin.im/post/599155d86fb9a03c467c151d</a></p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/12/%E8%A7%A3%E5%86%B3%E5%B0%86-ionic2-%E5%8D%87%E7%BA%A7%E8%87%B3-3-%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84-webpackJsonp-%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/08/12/%E8%A7%A3%E5%86%B3%E5%B0%86-ionic2-%E5%8D%87%E7%BA%A7%E8%87%B3-3-%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84-webpackJsonp-%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">解决将 ionic2 升级至 3 时出现的 webpackJsonp 问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-08-12 18:28:26" itemprop="dateCreated datePublished" datetime="2017-08-12T18:28:26+08:00">2017-08-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>ionic3 修复了2.x 存在的 ion-select 组件的 interface 等 bug，因此对其进行升级。修改 package.json，删除 node_module 目录，在 npm I 的时候依次按照提示在 package.json 中将不符合版本的库改为兼容版本。</p>
-<p>升级完成之后 build 时提示 webpackjsonp is not defined，翻阅 README 的 Change log 发现新版 cli 脚手架写的 webpack 配置有所改变，将公用部分使用 CommonsChunkPlugin 额外打了一个包，此包命名为 vendor。在 app 入口文件中引用该公用包解决问题。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1499,7 +1715,7 @@ input: &quot;What’s it like outside?&quot;
 <div class="copyright">
   
   &copy; 2016 – 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
