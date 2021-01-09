@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 5.3.0">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,14 +16,13 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
   </script>
-
-  <meta name="description" content="通过本文，我们将熟悉树莓派 GPIO 及其技术规范。并且，我们将通过了一个简单例子，说明如何使用树莓派的 I&#x2F;O 控制 LED 和开关。  你可能见过 “IoT” 这个术语，它是 Internet of Things（物联网） 的缩写。意思是，人们可以通过互联网控制一台设备（即“物” thing）。比如，用手机控制你房间内的智能电灯泡就是一种物联网的应用。 由于物联网设备可通过互联网控制，所以">
+<meta name="description" content="通过本文，我们将熟悉树莓派 GPIO 及其技术规范。并且，我们将通过了一个简单例子，说明如何使用树莓派的 I&#x2F;O 控制 LED 和开关。  你可能见过 “IoT” 这个术语，它是 Internet of Things（物联网） 的缩写。意思是，人们可以通过互联网控制一台设备（即“物” thing）。比如，用手机控制你房间内的智能电灯泡就是一种物联网的应用。 由于物联网设备可通过互联网控制，所以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="树莓派 4 GPIO 简介及使用 Node.js 控制树莓派">
 <meta property="og:url" content="https://lsvih.com/2020/09/05/an-introduction-to-raspberry-pi-4-gpio-and-controlling-it-with-node-js/index.html">
@@ -63,8 +64,7 @@
     lang   : 'en'
   };
 </script>
-
-  <title>树莓派 4 GPIO 简介及使用 Node.js 控制树莓派 | My note</title>
+<title>树莓派 4 GPIO 简介及使用 Node.js 控制树莓派 | My note</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142893470-1"></script>
     <script>
@@ -75,8 +75,6 @@
         gtag('config', 'UA-142893470-1');
       }
     </script>
-
-
 
 
 
@@ -126,7 +124,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -154,31 +152,11 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-about"><a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -189,13 +167,12 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container"></div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
@@ -205,14 +182,13 @@
   <div class="algolia-pagination"></div>
 </div>
 
-      
     </div>
   </div>
 
 </div>
         
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -230,18 +206,19 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Arduino-%E5%BE%AE%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">Arduino 微控制器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%91%E8%8E%93%E6%B4%BE%E5%BE%AE%E5%9E%8B%E7%94%B5%E8%84%91"><span class="nav-number">2.</span> <span class="nav-text">树莓派微型电脑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E8%8E%93%E6%B4%BE-GPIO-%E5%BC%95%E8%84%9A%E5%88%86%E9%85%8D"><span class="nav-number"></span> <span class="nav-text">树莓派 - GPIO 引脚分配</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%92%A1-%E7%94%B5%E6%BA%90%E5%BC%95%E8%84%9A%E5%92%8C%E5%BC%95%E8%84%9A%E5%88%86%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">💡 电源引脚和引脚分组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%94%8C-GPIO-%E5%BC%95%E8%84%9A"><span class="nav-number">2.</span> <span class="nav-text">🔌 GPIO 引脚</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%A7%99%E2%80%8D%E2%99%80%EF%B8%8F-SPI%E3%80%81-I%C2%B2C-%E5%92%8C-UART-%E5%8D%8F%E8%AE%AE"><span class="nav-number">3.</span> <span class="nav-text">🧙‍♀️ SPI、 I²C 和 UART 协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%9A%A1-%E7%8E%B0%E8%A1%8C%E8%A7%84%E8%8C%83"><span class="nav-number">4.</span> <span class="nav-text">⚡ 现行规范</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="nav-number"></span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LED-%E8%BE%93%E5%87%BA%E7%A4%BA%E4%BE%8B"><span class="nav-number"></span> <span class="nav-text">LED 输出示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%85%B3%E8%BE%93%E5%85%A5%E7%A4%BA%E4%BE%8B"><span class="nav-number"></span> <span class="nav-text">开关输入示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E5%90%88-I-O-%E7%A4%BA%E4%BE%8B"><span class="nav-number"></span> <span class="nav-text">组合 I&#x2F;O 示例</span></a></div>
-      </section>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Arduino-%E5%BE%AE%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">Arduino 微控制器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%91%E8%8E%93%E6%B4%BE%E5%BE%AE%E5%9E%8B%E7%94%B5%E8%84%91"><span class="nav-number">2.</span> <span class="nav-text">树莓派微型电脑</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E8%8E%93%E6%B4%BE-GPIO-%E5%BC%95%E8%84%9A%E5%88%86%E9%85%8D"><span class="nav-number"></span> <span class="nav-text">树莓派 - GPIO 引脚分配</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%92%A1-%E7%94%B5%E6%BA%90%E5%BC%95%E8%84%9A%E5%92%8C%E5%BC%95%E8%84%9A%E5%88%86%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">💡 电源引脚和引脚分组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%94%8C-GPIO-%E5%BC%95%E8%84%9A"><span class="nav-number">2.</span> <span class="nav-text">🔌 GPIO 引脚</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%A7%99%E2%80%8D%E2%99%80%EF%B8%8F-SPI%E3%80%81-I%C2%B2C-%E5%92%8C-UART-%E5%8D%8F%E8%AE%AE"><span class="nav-number">3.</span> <span class="nav-text">🧙‍♀️ SPI、 I²C 和 UART 协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%9A%A1-%E7%8E%B0%E8%A1%8C%E8%A7%84%E8%8C%83"><span class="nav-number">4.</span> <span class="nav-text">⚡ 现行规范</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="nav-number"></span> <span class="nav-text">前提条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LED-%E8%BE%93%E5%87%BA%E7%A4%BA%E4%BE%8B"><span class="nav-number"></span> <span class="nav-text">LED 输出示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E5%85%B3%E8%BE%93%E5%85%A5%E7%A4%BA%E4%BE%8B"><span class="nav-number"></span> <span class="nav-text">开关输入示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E5%90%88-I-O-%E7%A4%BA%E4%BE%8B"><span class="nav-number"></span> <span class="nav-text">组合 I&#x2F;O 示例</span></a></div>
+        </div>
+        <!--/noindex-->
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">lsvih</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap animated">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -264,7 +241,7 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author animated">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
         <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
@@ -272,13 +249,14 @@
         <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
+  <div class="cc-license site-overview-item animated" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </section>
+        </div>
+      </div>
     </div>
   </aside>
   <div class="sidebar-dimmer"></div>
@@ -287,7 +265,7 @@
     </header>
 
     
-  <div class="back-to-top">
+  <div class="back-to-top" role="button">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
@@ -299,14 +277,16 @@
 
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
-    
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2020/09/05/an-introduction-to-raspberry-pi-4-gpio-and-controlling-it-with-node-js/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -318,9 +298,6 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           树莓派 4 GPIO 简介及使用 Node.js 控制树莓派
@@ -533,13 +510,13 @@
           </div>
     </footer>
   </article>
-  
-  
-  
+</div>
 
 
 
-      
+
+
+
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -562,20 +539,16 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
 
-      
   <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
-  
   &copy; 2016 – 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
@@ -605,40 +578,20 @@
   });
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="{{  theme.vendors.mathjax  }}"></script>
 
 
     </div>
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
-
-
-
-
-  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
-
-
-
-
-
-
-
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4.8.3/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.9.2/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -650,15 +603,8 @@
 
 
 
-
-
-
-
   
 
-  
-
-  
 
 </body>
 </html>

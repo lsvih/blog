@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 5.3.0">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,14 +16,13 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
   </script>
-
-  <meta name="description" content="Flutter 是一款用同一套代码构建高性能、高保真的 iOS 及安卓应用的跨平台移动端应用 SDK。 文档中提到：  Flutter 包括一个 react 风格的框架、一个 2D 渲染引擎、一些预制的插件以及开发者工具。   文本希望能快速为 JavaScript 开发者们提供一个简练的入门指南，我会试着以 JS 与 npm 生态系统来类比 Flutter &#x2F; Dart 与 Pub 包库。  如">
+<meta name="description" content="Flutter 是一款用同一套代码构建高性能、高保真的 iOS 及安卓应用的跨平台移动端应用 SDK。 文档中提到：  Flutter 包括一个 react 风格的框架、一个 2D 渲染引擎、一些预制的插件以及开发者工具。   文本希望能快速为 JavaScript 开发者们提供一个简练的入门指南，我会试着以 JS 与 npm 生态系统来类比 Flutter &#x2F; Dart 与 Pub 包库。  如">
 <meta property="og:type" content="article">
 <meta property="og:title" content="为 JavaScript 程序员准备的 Flutter 指南">
 <meta property="og:url" content="https://lsvih.com/2018/04/04/%E4%B8%BA-JavaScript-%E7%A8%8B%E5%BA%8F%E5%91%98%E5%87%86%E5%A4%87%E7%9A%84-Flutter-%E6%8C%87%E5%8D%97/index.html">
@@ -61,8 +62,7 @@
     lang   : 'en'
   };
 </script>
-
-  <title>为 JavaScript 程序员准备的 Flutter 指南 | My note</title>
+<title>为 JavaScript 程序员准备的 Flutter 指南 | My note</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142893470-1"></script>
     <script>
@@ -73,8 +73,6 @@
         gtag('config', 'UA-142893470-1');
       }
     </script>
-
-
 
 
 
@@ -124,7 +122,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -152,31 +150,11 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-about"><a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -187,13 +165,12 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container"></div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
@@ -203,14 +180,13 @@
   <div class="algolia-pagination"></div>
 </div>
 
-      
     </div>
   </div>
 
 </div>
         
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -228,18 +204,19 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%AE%A4%E8%AF%86%E6%88%91%EF%BC%8C%E9%82%A3%E4%B9%88%E6%88%91%E7%9F%A5%E9%81%93%E4%BD%A0%E6%AD%A3%E5%9C%A8%E6%83%B3%E4%BB%80%E4%B9%88%E2%80%A6"><span class="nav-number">1.</span> <span class="nav-text">如果你认识我，那么我知道你正在想什么…</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flutter"><span class="nav-number"></span> <span class="nav-text">Flutter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number"></span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number"></span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A5%E9%97%A8%E5%8F%8A%E5%85%B6%E5%AE%83%E8%A7%82%E7%82%B9"><span class="nav-number"></span> <span class="nav-text">入门及其它观点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E7%9A%84%E5%A4%9F%E5%A4%9A%E4%BA%86%EF%BC%8C%E7%8E%B0%E5%9C%A8%E8%AE%A9%E6%88%91%E4%BB%AC%E5%BC%80%E5%A7%8B%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%90%A7%EF%BC%81"><span class="nav-number">1.</span> <span class="nav-text">说的够多了，现在让我们开始创建一个新的工程吧！</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8-macOS-%E4%B8%AD%E5%AE%89%E8%A3%85-CLI"><span class="nav-number"></span> <span class="nav-text">在 macOS 中安装 CLI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%85%B6%E5%AE%83%E4%BE%9D%E8%B5%96"><span class="nav-number"></span> <span class="nav-text">安装其它依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA-Flutter-app"><span class="nav-number"></span> <span class="nav-text">创建你的第一个 Flutter app</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-number"></span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Widget"><span class="nav-number"></span> <span class="nav-text">Widget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%83%E5%B1%80%E4%B8%8E%E7%BC%96%E5%86%99%E6%A0%B7%E5%BC%8F"><span class="nav-number"></span> <span class="nav-text">布局与编写样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SetState-%E5%8F%8A%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0"><span class="nav-number"></span> <span class="nav-text">SetState 及生命周期函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number"></span> <span class="nav-text">总结</span></a></div>
-      </section>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E8%AE%A4%E8%AF%86%E6%88%91%EF%BC%8C%E9%82%A3%E4%B9%88%E6%88%91%E7%9F%A5%E9%81%93%E4%BD%A0%E6%AD%A3%E5%9C%A8%E6%83%B3%E4%BB%80%E4%B9%88%E2%80%A6"><span class="nav-number">1.</span> <span class="nav-text">如果你认识我，那么我知道你正在想什么…</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flutter"><span class="nav-number"></span> <span class="nav-text">Flutter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number"></span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number"></span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A5%E9%97%A8%E5%8F%8A%E5%85%B6%E5%AE%83%E8%A7%82%E7%82%B9"><span class="nav-number"></span> <span class="nav-text">入门及其它观点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B4%E7%9A%84%E5%A4%9F%E5%A4%9A%E4%BA%86%EF%BC%8C%E7%8E%B0%E5%9C%A8%E8%AE%A9%E6%88%91%E4%BB%AC%E5%BC%80%E5%A7%8B%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%90%A7%EF%BC%81"><span class="nav-number">1.</span> <span class="nav-text">说的够多了，现在让我们开始创建一个新的工程吧！</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8-macOS-%E4%B8%AD%E5%AE%89%E8%A3%85-CLI"><span class="nav-number"></span> <span class="nav-text">在 macOS 中安装 CLI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%85%B6%E5%AE%83%E4%BE%9D%E8%B5%96"><span class="nav-number"></span> <span class="nav-text">安装其它依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA-Flutter-app"><span class="nav-number"></span> <span class="nav-text">创建你的第一个 Flutter app</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-number"></span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Widget"><span class="nav-number"></span> <span class="nav-text">Widget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%83%E5%B1%80%E4%B8%8E%E7%BC%96%E5%86%99%E6%A0%B7%E5%BC%8F"><span class="nav-number"></span> <span class="nav-text">布局与编写样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SetState-%E5%8F%8A%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0"><span class="nav-number"></span> <span class="nav-text">SetState 及生命周期函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number"></span> <span class="nav-text">总结</span></a></div>
+        </div>
+        <!--/noindex-->
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">lsvih</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap animated">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -262,7 +239,7 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author animated">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
         <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
@@ -270,13 +247,14 @@
         <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
+  <div class="cc-license site-overview-item animated" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </section>
+        </div>
+      </div>
     </div>
   </aside>
   <div class="sidebar-dimmer"></div>
@@ -285,7 +263,7 @@
     </header>
 
     
-  <div class="back-to-top">
+  <div class="back-to-top" role="button">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
@@ -297,14 +275,16 @@
 
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
-    
+  
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/04/04/%E4%B8%BA-JavaScript-%E7%A8%8B%E5%BA%8F%E5%91%98%E5%87%86%E5%A4%87%E7%9A%84-Flutter-%E6%8C%87%E5%8D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -316,9 +296,6 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           为 JavaScript 程序员准备的 Flutter 指南
@@ -513,13 +490,13 @@
           </div>
     </footer>
   </article>
-  
-  
-  
+</div>
 
 
 
-      
+
+
+
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -542,20 +519,16 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
 
-      
   <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
-  
   &copy; 2016 – 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
@@ -585,40 +558,20 @@
   });
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="{{  theme.vendors.mathjax  }}"></script>
 
 
     </div>
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
-
-
-
-
-  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
-
-
-
-
-
-
-
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4.8.3/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.9.2/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -630,15 +583,8 @@
 
 
 
-
-
-
-
   
 
-  
-
-  
 
 </body>
 </html>

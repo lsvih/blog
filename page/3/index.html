@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 5.3.0">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,14 +16,13 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
   </script>
-
-  <meta property="og:type" content="website">
+<meta property="og:type" content="website">
 <meta property="og:title" content="My note">
 <meta property="og:url" content="https://lsvih.com/page/3/index.html">
 <meta property="og:site_name" content="My note">
@@ -42,8 +43,7 @@
     lang   : 'en'
   };
 </script>
-
-  <title>My note - lsvih</title>
+<title>My note - lsvih</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142893470-1"></script>
     <script>
@@ -54,8 +54,6 @@
         gtag('config', 'UA-142893470-1');
       }
     </script>
-
-
 
 
 
@@ -105,7 +103,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -133,31 +131,11 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-about"><a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -168,13 +146,12 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container"></div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
@@ -184,14 +161,13 @@
   <div class="algolia-pagination"></div>
 </div>
 
-      
     </div>
   </div>
 
 </div>
         
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -209,17 +185,18 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <section class="post-toc-wrap sidebar-panel">
-      </section>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">lsvih</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap animated">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -242,7 +219,7 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author animated">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
         <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
@@ -250,13 +227,14 @@
         <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
+  <div class="cc-license site-overview-item animated" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </section>
+        </div>
+      </div>
     </div>
   </aside>
   <div class="sidebar-dimmer"></div>
@@ -265,7 +243,7 @@
     </header>
 
     
-  <div class="back-to-top">
+  <div class="back-to-top" role="button">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
@@ -277,13 +255,15 @@
 
 
     <div class="main-inner index posts-expand">
-      
 
-      
-      
+    
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/04/07/Robust-Classification-with-Convolutional-Prototype-Learning-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -295,13 +275,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/04/07/Robust-Classification-with-Convolutional-Prototype-Learning-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Robust Classification with Convolutional Prototype Learning 论文笔记</a>
+          <a href="/2019/04/07/Robust-Classification-with-Convolutional-Prototype-Learning-%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Robust Classification with Convolutional Prototype Learning 论文笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -439,14 +415,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/02/20/basic-color-theory-for-web-developers/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -458,13 +439,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/02/20/basic-color-theory-for-web-developers/" class="post-title-link" itemprop="url">Web 开发者需要了解的基础色彩理论</a>
+          <a href="/2019/02/20/basic-color-theory-for-web-developers/" class="post-title-link" itemprop="url">Web 开发者需要了解的基础色彩理论</a>
         </h2>
 
         <div class="post-meta-container">
@@ -518,14 +495,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/02/16/ten-things-you-didnt-know-about-webpagetest-org/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -537,13 +519,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/02/16/ten-things-you-didnt-know-about-webpagetest-org/" class="post-title-link" itemprop="url">十件你不知道的关于 WebPageTest.org 的事(译)</a>
+          <a href="/2019/02/16/ten-things-you-didnt-know-about-webpagetest-org/" class="post-title-link" itemprop="url">十件你不知道的关于 WebPageTest.org 的事(译)</a>
         </h2>
 
         <div class="post-meta-container">
@@ -599,14 +577,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/01/30/5-%E4%B8%AA%E5%8F%AF%E4%BB%A5%E7%AB%8B%E5%88%BB%E5%9C%A8%E4%BD%A0%E7%9A%84-Ionic-App-%E4%B8%AD%E7%94%A8%E4%B8%8A%E7%9A%84%E5%8A%A8%E7%94%BB%E5%8C%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -618,13 +601,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/30/5-%E4%B8%AA%E5%8F%AF%E4%BB%A5%E7%AB%8B%E5%88%BB%E5%9C%A8%E4%BD%A0%E7%9A%84-Ionic-App-%E4%B8%AD%E7%94%A8%E4%B8%8A%E7%9A%84%E5%8A%A8%E7%94%BB%E5%8C%85/" class="post-title-link" itemprop="url">5 个可以立刻在你的 Ionic App 中用上的动画包</a>
+          <a href="/2019/01/30/5-%E4%B8%AA%E5%8F%AF%E4%BB%A5%E7%AB%8B%E5%88%BB%E5%9C%A8%E4%BD%A0%E7%9A%84-Ionic-App-%E4%B8%AD%E7%94%A8%E4%B8%8A%E7%9A%84%E5%8A%A8%E7%94%BB%E5%8C%85/" class="post-title-link" itemprop="url">5 个可以立刻在你的 Ionic App 中用上的动画包</a>
         </h2>
 
         <div class="post-meta-container">
@@ -680,14 +659,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2019/01/23/DNS-over-TLS-%E7%AB%AF%E5%88%B0%E7%AB%AF%E5%8A%A0%E5%AF%86%E7%9A%84%20DNS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -699,13 +683,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/23/DNS-over-TLS-%E7%AB%AF%E5%88%B0%E7%AB%AF%E5%8A%A0%E5%AF%86%E7%9A%84%20DNS/" class="post-title-link" itemprop="url">DNS over TLS：端到端加密的 DNS</a>
+          <a href="/2019/01/23/DNS-over-TLS-%E7%AB%AF%E5%88%B0%E7%AB%AF%E5%8A%A0%E5%AF%86%E7%9A%84%20DNS/" class="post-title-link" itemprop="url">DNS over TLS：端到端加密的 DNS</a>
         </h2>
 
         <div class="post-meta-container">
@@ -760,14 +740,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/12/15/Translation-of-DVBF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -779,13 +764,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/15/Translation-of-DVBF/" class="post-title-link" itemprop="url">Translation of 'Deep Variational Bayes Filters Unsupervised Learning of State Space Models from Raw Data'.</a>
+          <a href="/2018/12/15/Translation-of-DVBF/" class="post-title-link" itemprop="url">Translation of 'Deep Variational Bayes Filters Unsupervised Learning of State Space Models from Raw Data'.</a>
         </h2>
 
         <div class="post-meta-container">
@@ -831,14 +812,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/11/26/Slide-of-ChineseOTE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -850,13 +836,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/11/26/Slide-of-ChineseOTE/" class="post-title-link" itemprop="url">Slide of 'Char-BiLSTM-CRF Incorporating POS and Dictionaries for Chinese OTE' used in ACML conference.</a>
+          <a href="/2018/11/26/Slide-of-ChineseOTE/" class="post-title-link" itemprop="url">Slide of 'Char-BiLSTM-CRF Incorporating POS and Dictionaries for Chinese OTE' used in ACML conference.</a>
         </h2>
 
         <div class="post-meta-container">
@@ -902,14 +884,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/10/30/Slide-of-Algorithms-for-Non-negative-Matrix-Factorization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -921,13 +908,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/30/Slide-of-Algorithms-for-Non-negative-Matrix-Factorization/" class="post-title-link" itemprop="url">Slide of 'Algorithms for Non-negative Matrix Factorization' used in assignment.</a>
+          <a href="/2018/10/30/Slide-of-Algorithms-for-Non-negative-Matrix-Factorization/" class="post-title-link" itemprop="url">Slide of 'Algorithms for Non-negative Matrix Factorization' used in assignment.</a>
         </h2>
 
         <div class="post-meta-container">
@@ -973,14 +956,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/10/30/Algorithms%20for%20Non-negative%20Matrix%20Factorization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -992,13 +980,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/30/Algorithms%20for%20Non-negative%20Matrix%20Factorization/" class="post-title-link" itemprop="url">Algorithms for Non-negative Matrix Factorization，非负矩阵分解 论文翻译</a>
+          <a href="/2018/10/30/Algorithms%20for%20Non-negative%20Matrix%20Factorization/" class="post-title-link" itemprop="url">Algorithms for Non-negative Matrix Factorization，非负矩阵分解 论文翻译</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1119,14 +1103,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/10/29/%E5%85%B3%E9%94%AE%E8%AF%8D%E8%A7%84%E5%88%99%E7%94%9F%E6%88%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1138,13 +1127,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/29/%E5%85%B3%E9%94%AE%E8%AF%8D%E8%A7%84%E5%88%99%E7%94%9F%E6%88%90/" class="post-title-link" itemprop="url">关键词规则生成</a>
+          <a href="/2018/10/29/%E5%85%B3%E9%94%AE%E8%AF%8D%E8%A7%84%E5%88%99%E7%94%9F%E6%88%90/" class="post-title-link" itemprop="url">关键词规则生成</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1265,19 +1250,15 @@
       
     </footer>
   </article>
-  
-  
-  
+</div>
 
 
-  
+
+
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
-
-
-      
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -1300,20 +1281,16 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
 
-      
   <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
-  
   &copy; 2016 – 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
@@ -1343,40 +1320,20 @@
   });
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="{{  theme.vendors.mathjax  }}"></script>
 
 
     </div>
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
-
-
-
-
-  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
-
-
-
-
-
-
-
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4.8.3/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.9.2/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -1388,15 +1345,8 @@
 
 
 
-
-
-
-
   
 
-  
-
-  
 
 </body>
 </html>

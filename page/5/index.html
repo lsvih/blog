@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.1.1">
+<meta name="generator" content="Hexo 5.3.0">
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,14 +16,13 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"lsvih.com","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
+    var CONFIG = {"hostname":"lsvih.com","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"algolia":{"appID":"6U6P1RGK4F","apiKey":"b14e73cdd627eabe947b5decbe14850f","indexName":"lsvih","hits":{"per_page":10}}};
   </script>
-
-  <meta property="og:type" content="website">
+<meta property="og:type" content="website">
 <meta property="og:title" content="My note">
 <meta property="og:url" content="https://lsvih.com/page/5/index.html">
 <meta property="og:site_name" content="My note">
@@ -42,8 +43,7 @@
     lang   : 'en'
   };
 </script>
-
-  <title>My note - lsvih</title>
+<title>My note - lsvih</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142893470-1"></script>
     <script>
@@ -54,8 +54,6 @@
         gtag('config', 'UA-142893470-1');
       }
     </script>
-
-
 
 
 
@@ -105,7 +103,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -133,31 +131,11 @@
 
 <nav class="site-nav">
   <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a>
-
-  </li>
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-about"><a href="https://cv.lsvih.com/" rel="noopener" target="_blank"><i class="fa fa-user fa-fw"></i>About</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
         </a>
@@ -168,13 +146,12 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container"></div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
@@ -184,14 +161,13 @@
   <div class="algolia-pagination"></div>
 </div>
 
-      
     </div>
   </div>
 
 </div>
         
   
-  <div class="toggle sidebar-toggle">
+  <div class="toggle sidebar-toggle" role="button">
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
     <span class="toggle-line"></span>
@@ -209,17 +185,18 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <section class="post-toc-wrap sidebar-panel">
-      </section>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">lsvih</p>
   <div class="site-description" itemprop="description"></div>
 </div>
-<div class="site-state-wrap animated">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -242,7 +219,7 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author animated">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
         <a href="https://github.com/lsvih" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;lsvih" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
@@ -250,13 +227,14 @@
         <a href="mailto:lsvih@qq.com" title="E-Mail → mailto:lsvih@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
-  <div class="cc-license animated" itemprop="license">
+  <div class="cc-license site-overview-item animated" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
 
-      </section>
+        </div>
+      </div>
     </div>
   </aside>
   <div class="sidebar-dimmer"></div>
@@ -265,7 +243,7 @@
     </header>
 
     
-  <div class="back-to-top">
+  <div class="back-to-top" role="button">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
@@ -277,13 +255,15 @@
 
 
     <div class="main-inner index posts-expand">
-      
 
-      
-      
+    
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/03/15/%E7%94%A8-Python-%E5%81%9A%E4%B8%80%E4%B8%AA-H5-%E6%B8%B8%E6%88%8F%E6%9C%BA%E5%99%A8%E4%BA%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -295,13 +275,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/03/15/%E7%94%A8-Python-%E5%81%9A%E4%B8%80%E4%B8%AA-H5-%E6%B8%B8%E6%88%8F%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="post-title-link" itemprop="url">用 Python 做一个 H5 游戏机器人</a>
+          <a href="/2018/03/15/%E7%94%A8-Python-%E5%81%9A%E4%B8%80%E4%B8%AA-H5-%E6%B8%B8%E6%88%8F%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="post-title-link" itemprop="url">用 Python 做一个 H5 游戏机器人</a>
         </h2>
 
         <div class="post-meta-container">
@@ -355,14 +331,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/03/06/%E4%BD%BF%E7%94%A8-Grub-%E5%BC%95%E5%AF%BC-Linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -374,13 +355,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/03/06/%E4%BD%BF%E7%94%A8-Grub-%E5%BC%95%E5%AF%BC-Linux/" class="post-title-link" itemprop="url">使用 Grub 引导 Linux</a>
+          <a href="/2018/03/06/%E4%BD%BF%E7%94%A8-Grub-%E5%BC%95%E5%AF%BC-Linux/" class="post-title-link" itemprop="url">使用 Grub 引导 Linux</a>
         </h2>
 
         <div class="post-meta-container">
@@ -432,14 +409,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/28/%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -451,13 +433,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/02/28/%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">一份为 Node.js 应用准备的 Dockerfile 指南</a>
+          <a href="/2018/02/28/%E4%B8%80%E4%BB%BD%E4%B8%BA-Node-js-%E5%BA%94%E7%94%A8%E5%87%86%E5%A4%87%E7%9A%84-Dockerfile-%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">一份为 Node.js 应用准备的 Dockerfile 指南</a>
         </h2>
 
         <div class="post-meta-container">
@@ -520,14 +498,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/22/%E5%9C%A8-Swift-playground-%E4%B8%AD%E7%BC%96%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -539,13 +522,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/02/22/%E5%9C%A8-Swift-playground-%E4%B8%AD%E7%BC%96%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">在 Swift playground 中编写单元测试</a>
+          <a href="/2018/02/22/%E5%9C%A8-Swift-playground-%E4%B8%AD%E7%BC%96%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">在 Swift playground 中编写单元测试</a>
         </h2>
 
         <div class="post-meta-container">
@@ -629,14 +608,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/02/06/%E5%A6%82%E4%BD%95%E4%B8%BA-Flask-Web-%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE-Nginx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -648,13 +632,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/02/06/%E5%A6%82%E4%BD%95%E4%B8%BA-Flask-Web-%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE-Nginx/" class="post-title-link" itemprop="url">如何为 Flask Web 应用配置 Nginx</a>
+          <a href="/2018/02/06/%E5%A6%82%E4%BD%95%E4%B8%BA-Flask-Web-%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE-Nginx/" class="post-title-link" itemprop="url">如何为 Flask Web 应用配置 Nginx</a>
         </h2>
 
         <div class="post-meta-container">
@@ -801,14 +781,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/01/16/TML-5-2-%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E5%86%85%E5%AE%B9%EF%BC%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -820,13 +805,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/01/16/TML-5-2-%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E5%86%85%E5%AE%B9%EF%BC%9F/" class="post-title-link" itemprop="url">HTML 5.2 有哪些新内容？</a>
+          <a href="/2018/01/16/TML-5-2-%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B0%E5%86%85%E5%AE%B9%EF%BC%9F/" class="post-title-link" itemprop="url">HTML 5.2 有哪些新内容？</a>
         </h2>
 
         <div class="post-meta-container">
@@ -930,14 +911,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/01/16/%E8%BF%9E%E6%8E%A5-cisco-anyconnect-%E5%90%8E%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -949,13 +935,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/01/16/%E8%BF%9E%E6%8E%A5-cisco-anyconnect-%E5%90%8E%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90/" class="post-title-link" itemprop="url">连接 cisco anyconnect 后网络受限</a>
+          <a href="/2018/01/16/%E8%BF%9E%E6%8E%A5-cisco-anyconnect-%E5%90%8E%E7%BD%91%E7%BB%9C%E5%8F%97%E9%99%90/" class="post-title-link" itemprop="url">连接 cisco anyconnect 后网络受限</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1010,14 +992,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/01/03/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB%E5%8F%8A%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1029,13 +1016,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/01/03/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB%E5%8F%8A%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">编辑距离及编辑距离算法</a>
+          <a href="/2018/01/03/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB%E5%8F%8A%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">编辑距离及编辑距离算法</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1560,14 +1543,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2018/01/03/How-to-write-an-introduction-for-a-paper/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1579,13 +1567,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/01/03/How-to-write-an-introduction-for-a-paper/" class="post-title-link" itemprop="url">How to write an introduction for a paper</a>
+          <a href="/2018/01/03/How-to-write-an-introduction-for-a-paper/" class="post-title-link" itemprop="url">How to write an introduction for a paper</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1641,14 +1625,19 @@
       
     </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/12/13/%E4%BB%8E-Gzip-%E5%8E%8B%E7%BC%A9-SVG-%E8%AF%B4%E8%B5%B7-%E2%80%94-%E8%AE%BA%E5%A6%82%E4%BD%95%E5%87%8F%E5%B0%8F%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E7%9A%84%E5%A4%A7%E5%B0%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1660,13 +1649,9 @@
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="My note">
     </span>
-
-    
-    
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/12/13/%E4%BB%8E-Gzip-%E5%8E%8B%E7%BC%A9-SVG-%E8%AF%B4%E8%B5%B7-%E2%80%94-%E8%AE%BA%E5%A6%82%E4%BD%95%E5%87%8F%E5%B0%8F%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E7%9A%84%E5%A4%A7%E5%B0%8F/" class="post-title-link" itemprop="url">从 Gzip 压缩 SVG 说起 — 论如何减小资源文件的大小</a>
+          <a href="/2017/12/13/%E4%BB%8E-Gzip-%E5%8E%8B%E7%BC%A9-SVG-%E8%AF%B4%E8%B5%B7-%E2%80%94-%E8%AE%BA%E5%A6%82%E4%BD%95%E5%87%8F%E5%B0%8F%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E7%9A%84%E5%A4%A7%E5%B0%8F/" class="post-title-link" itemprop="url">从 Gzip 压缩 SVG 说起 — 论如何减小资源文件的大小</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1796,19 +1781,15 @@
       
     </footer>
   </article>
-  
-  
-  
+</div>
 
 
-  
+
+
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
-
-
-      
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -1831,20 +1812,16 @@
     });
   }
 </script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
 
-      
   <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备18029472号-1 </a>
   </div>
 
 <div class="copyright">
-  
   &copy; 2016 – 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
@@ -1874,40 +1851,20 @@
   });
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="{{  theme.vendors.mathjax  }}"></script>
 
 
     </div>
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
 
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
-
-
-
-
-  <script src="//cdn.jsdelivr.net/npm/algoliasearch@4.4.0/dist/algoliasearch-lite.umd.js"></script>
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.7.1/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
-
-
-
-
-
-
-
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4.8.3/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.9.2/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
 
 
 
@@ -1919,15 +1876,8 @@
 
 
 
-
-
-
-
   
 
-  
-
-  
 
 </body>
 </html>
