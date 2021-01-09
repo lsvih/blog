@@ -319,8 +319,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:tap</span>=<span class="string">&quot;getevent($event)&quot;</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>vm中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">    getevent: <span class="function"><span class="keyword">function</span>(<span class="params">thisvmObject</span>)</span>&#123;</span><br><span class="line">       thisObject = thisvmObject.currentTarget;</span><br><span class="line">       <span class="built_in">console</span>.log(thisObject.innerHTML);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>output&gt;&gt;</p>
+<p>vm中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">    getevent: <span class="function"><span class="keyword">function</span>(<span class="params">thisvmObject</span>)</span>&#123;</span><br><span class="line">       thisObject = thisvmObject.currentTarget;</span><br><span class="line">       <span class="built_in">console</span>.log(thisObject.innerHTML);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>output&gt;&gt;</p>
 <p>Hello</p>
 
     </div>
@@ -437,7 +436,7 @@
   });
 </script>
 
-<script src="{{  theme.vendors.mathjax  }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
     </div>

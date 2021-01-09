@@ -32,8 +32,8 @@
 <meta property="article:published_time" content="2016-11-27T19:52:00.000Z">
 <meta property="article:modified_time" content="2018-10-28T16:12:58.190Z">
 <meta property="article:author" content="lsvih">
-<meta property="article:tag" content="note">
 <meta property="article:tag" content="Front End">
+<meta property="article:tag" content="note">
 <meta property="article:tag" content="Javascript">
 <meta property="article:tag" content="Essay">
 <meta name="twitter:card" content="summary">
@@ -341,8 +341,7 @@
 <p>array</p>
 <p>The array reduce was called upon.</p>
 </blockquote>
-<p>For example,use<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>].reduce(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>It returned 15.</p>
+<p>For example,use<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>].reduce(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br>It returned 15.</p>
 <p>First callback function got (1,2) returned 3,then the 2nd callback function got (3,3) returned 6.The 3rd callback got (6,4) returned 10,the 4st callback got (10,5) returned 15,the finally result.</p>
 <p>Math.pow() will calculate power value.It accept 2 arguments,like Math.pow(base,exponent)</p>
 <p>It’s equal to base<sup>exponent</sup> </p>
@@ -361,16 +360,14 @@
 <p>D    Other</p>
 <p>This is a trick question.The correct is D</p>
 <p>The operator ‘+’ will calculate first because it has higher precedence.</p>
-<p>That expression equal to<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Value is true&#x27;</span>? <span class="string">&#x27;Something&#x27;</span>:<span class="string">&#x27;Nothing&#x27;</span>);</span><br></pre></td></tr></table></figure></p>
-<p>An string expression like ‘true’ in condition,So it will print ‘Something’</p>
+<p>That expression equal to<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Value is true&#x27;</span>? <span class="string">&#x27;Something&#x27;</span>:<span class="string">&#x27;Nothing&#x27;</span>);</span><br></pre></td></tr></table></figure><br>An string expression like ‘true’ in condition,So it will print ‘Something’</p>
 <h4 id="5-What-is-the-result-of-this-expression-or-multiple-ones"><a href="#5-What-is-the-result-of-this-expression-or-multiple-ones" class="headerlink" title="5.What is the result of this expression? (or multiple ones)"></a>5.What is the result of this expression? (or multiple ones)</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;World!&#x27;</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> name === <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> name = <span class="string">&#x27;Jack&#x27;</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Goodbye &#x27;</span> + name);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Hello &#x27;</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
 <p>A    Goodbye Jack</p>
 <p>B    Hello Jack</p>
 <p>C    Hello undefined</p>
 <p>D    Hello World</p>
 <p>This a question about “Hoisting”.The ‘var’ will hoisting in the function scope.</p>
-<p>So the code will be this:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;World!&#x27;</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> name === <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">        name = <span class="string">&#x27;Jack&#x27;</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Goodbye &#x27;</span> + name);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Hello &#x27;</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
-<p>For if (typeof name === ‘undefined’),it will find name from scope chain,so this ‘name’ is declared in anonymous function: var name</p>
+<p>So the code will be this:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">&#x27;World!&#x27;</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> name === <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">        name = <span class="string">&#x27;Jack&#x27;</span>;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Goodbye &#x27;</span> + name);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;Hello &#x27;</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure><br>For if (typeof name === ‘undefined’),it will find name from scope chain,so this ‘name’ is declared in anonymous function: var name</p>
 <p>‘var name’ means that name is undefined,so condition of ‘if’ is true,then name is declared ‘Jack’.</p>
 <p>Hence,printed ‘Goodbye Jack’</p>
 <blockquote>
@@ -404,8 +401,8 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/note/" rel="tag"># note</a>
               <a href="/tags/Front-End/" rel="tag"># Front End</a>
+              <a href="/tags/note/" rel="tag"># note</a>
               <a href="/tags/Javascript/" rel="tag"># Javascript</a>
               <a href="/tags/Essay/" rel="tag"># Essay</a>
           </div>
@@ -494,7 +491,7 @@
   });
 </script>
 
-<script src="{{  theme.vendors.mathjax  }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
     </div>

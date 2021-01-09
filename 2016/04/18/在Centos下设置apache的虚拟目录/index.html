@@ -323,13 +323,12 @@
 <li>更改httpd.conf<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/httpd/conf/http.conf</span><br></pre></td></tr></table></figure>
 使用vi进行修改。用到的快捷键:<br>跳到文件第一行：gg<br>跳到文件最后一行：shift + g</li>
 <li>加入内容：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VirtualHost</span> <span class="attr">xxx.com</span>&gt;</span></span><br><span class="line">    ServerAdmin root@localhost</span><br><span class="line">    DocumentRoot /var/www/html/xxx</span><br><span class="line">    ServerName xxx.com</span><br><span class="line">        <span class="tag">&lt;<span class="name">Directory</span> /<span class="attr">var</span>/<span class="attr">www</span>/<span class="attr">html</span>/<span class="attr">xxxx</span>&gt;</span></span><br><span class="line">                Require all granted</span><br><span class="line">        <span class="tag">&lt;/<span class="name">Directory</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">VirtualHost</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>重启apache<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service httpd restart</span><br></pre></td></tr></table></figure></p>
-<p>然后即可设置xxx.com的域名解析到此服务器。</p>
-<blockquote>
+重启apache<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service httpd restart</span><br></pre></td></tr></table></figure>
+然后即可设置xxx.com的域名解析到此服务器。<blockquote>
 <p>使用过程中发现设置xxx.com的虚拟目录后，xxx.com能够成功解析到服务器，然而www.xxx.com不能成功解析，重新操作了一般，又添加了一个www.xxx.com的虚拟目录后能够成功解析。</p>
 </blockquote>
+</li>
+</ol>
 
     </div>
 
@@ -445,7 +444,7 @@
   });
 </script>
 
-<script src="{{  theme.vendors.mathjax  }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
     </div>

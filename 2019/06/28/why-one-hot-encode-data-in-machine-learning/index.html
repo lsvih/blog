@@ -369,7 +369,7 @@
 <p>这种情况下，就要对整数表示使用 One-Hot 编码了。One-Hot 编码会去除整数编码，并为每个整数值都创建一个二值变量。</p>
 <p>在颜色（color）的示例中，有 3 种类别，因此需要 3 个二值变量进行编码。对应的颜色位置上将被标为“1”，其它颜色位置上会被标为“0”。</p>
 <p>比如：</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">red, green, blue</span><br><span class="line"><span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line"><span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span></span><br><span class="line"><span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">red</span>, green, blue</span><br><span class="line"><span class="attribute">1</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line"><span class="attribute">0</span>, <span class="number">1</span>, <span class="number">0</span></span><br><span class="line"><span class="attribute">0</span>, <span class="number">0</span>, <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>在统计学等领域中，这种二值变量通常被称为“虚拟变量”或“哑变量”（dummy variable）。</p>
 <h2 id="One-Hot-编码教程"><a href="#One-Hot-编码教程" class="headerlink" title="One-Hot 编码教程"></a>One-Hot 编码教程</h2><p>如果你想了解如何在 Python 对你的数据进行 One-Hot 编码，请参阅：</p>
 <ul>
@@ -507,7 +507,7 @@
   });
 </script>
 
-<script src="{{  theme.vendors.mathjax  }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
     </div>

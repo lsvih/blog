@@ -386,7 +386,7 @@
 <h3 id="创造我们自己的-Operator（操作符）"><a href="#创造我们自己的-Operator（操作符）" class="headerlink" title="创造我们自己的 Operator（操作符）"></a>创造我们自己的 Operator（操作符）</h3><p>在我们理解了可观察对象与观察者对象的概念之后，我们可以更轻松地去创造我们自己的操作符了。我们在 <code>Observable</code> 对象原型中加上一个新的方法：</p>
 <figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Observable</span>.proto<span class="keyword">type</span>.map=function(mapFn)&#123;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>这个方法将会像 JavaScript 中的 <code>Array.prototype.map</code> 一样使用，不过它可以对任何值用：</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> input$ = Observable.fromEvent(node, <span class="string">&#x27;input&#x27;</span>)</span><br><span class="line">	.map(<span class="keyword">event</span> =&gt; <span class="keyword">event</span>.target.<span class="keyword">value</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const input$ = <span class="module-access"><span class="module"><span class="identifier">Observable</span>.</span></span>from<span class="constructor">Event(<span class="params">node</span>, &#x27;<span class="params">input</span>&#x27;)</span></span><br><span class="line">	.map(event =&gt; event.target.value);</span><br></pre></td></tr></table></figure>
 <p>所以我们要取得回调函数，并调用它，返回我们期望得到的数据。在这之前，我们需要拿到流中最新的数据值。</p>
 <p>下面该做什么就比较明了了，我们要得到调用了这个 <code>.map()</code> 操作符的 Observable 实例的引用入口。我们是在原型链上编程，因此可以直接这么做：</p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Observable.prototype.map = <span class="function"><span class="keyword">function</span> <span class="params">(mapFn)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> input = <span class="keyword">this</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -524,7 +524,7 @@
   });
 </script>
 
-<script src="{{  theme.vendors.mathjax  }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
     </div>

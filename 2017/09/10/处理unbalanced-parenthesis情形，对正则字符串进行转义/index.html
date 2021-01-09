@@ -318,12 +318,12 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>使用 python re 处理数据时，程序提示“unbalanced parenthesis”，中文意思即为“不平衡的括号”。查看代码发现，在定义正则时使用了这样的做法：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">re.compile(<span class="string">r&quot;123&quot;</span> + str + <span class="string">&quot;123&quot;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">re.<span class="built_in">compile</span>(<span class="string">r&quot;123&quot;</span> + <span class="built_in">str</span> + <span class="string">&quot;123&quot;</span>)</span><br></pre></td></tr></table></figure>
 <p>然后排查发现数据中有几个例外的 str 含有括号，这些括号没有经过处理就直接传入了正则表达式中，变成了类似</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">r&quot;123this is str)123&quot;</span></span><br></pre></td></tr></table></figure>
 <p>的数据，造成错误。</p>
 <p>翻阅 python re 文档发现，可以使用 re.escape 对字符串进行正则转义。如</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span> <span class="keyword">is</span> str)</span><br></pre></td></tr></table></figure>
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span> <span class="keyword">is</span> <span class="built_in">str</span>)</span><br></pre></td></tr></table></figure>
 <p>可以转成</p>
 <figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span><span class="string">\</span> <span class="keyword">is</span><span class="string">\</span> str<span class="string">\)</span></span><br></pre></td></tr></table></figure>
 <p>这样传入正则就不会出现问题了。</p>
@@ -444,7 +444,7 @@
   });
 </script>
 
-<script src="{{  theme.vendors.mathjax  }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
     </div>

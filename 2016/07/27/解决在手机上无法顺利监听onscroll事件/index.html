@@ -324,10 +324,8 @@
 <p>Git地址:<a target="_blank" rel="noopener" href="https://git.oschina.net/chenjianlong/JRoll2">https://git.oschina.net/chenjianlong/JRoll2</a></p>
 <p>官网:<a target="_blank" rel="noopener" href="http://www.chjtx.com/JRoll/">http://www.chjtx.com/JRoll/</a></p>
 <p>用法：</p>
-<p>引用<code>&lt;script src=&#39;jroll.js&#39;&gt;&lt;/script&gt;</code>后，在文档中定义好滚动对象与滚动容器，例如<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;wrapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;scroller&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>其中scroller为滚动对象，wrapper为滚动容器。需要注意的是滚动对象的高必须大于滚动容器的高才能顺利地进行滚动操作（废话）</p>
-<p>接着创建jroll对象，如下所示<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jroll = <span class="keyword">new</span> JRoll(<span class="string">&quot;#wrapper&quot;</span>, &#123;option&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>其中option为配置内容，具体使用方法见官网。</p>
+<p>引用<code>&lt;script src=&#39;jroll.js&#39;&gt;&lt;/script&gt;</code>后，在文档中定义好滚动对象与滚动容器，例如<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;wrapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;scroller&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><br>其中scroller为滚动对象，wrapper为滚动容器。需要注意的是滚动对象的高必须大于滚动容器的高才能顺利地进行滚动操作（废话）</p>
+<p>接着创建jroll对象，如下所示<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jroll = <span class="keyword">new</span> JRoll(<span class="string">&quot;#wrapper&quot;</span>, &#123;option&#125;);</span><br></pre></td></tr></table></figure><br>其中option为配置内容，具体使用方法见官网。</p>
 <p>另外，当在页面(滚动对象)中存在类似于动态加载与文本展开等情况的时候，在加载完毕与文本展开动画播放完毕的时候必须要使用jroll.refresh()对jroll对象进行刷新，不然jroll的高度不会发生改变从而使页面显示不全。</p>
 <p>在项目中，使用jroll完美地完成了视差滚动效果的实现，在ios设备上的webapp中滚动动画打到了40fps以上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jroll.on(<span class="string">&#x27;scroll&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//视差滚动计算</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 
@@ -445,7 +443,7 @@
   });
 </script>
 
-<script src="{{  theme.vendors.mathjax  }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
     </div>

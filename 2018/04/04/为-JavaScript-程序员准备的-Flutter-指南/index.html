@@ -416,7 +416,7 @@
 <p><code>import ‘package:flutter/material.dart’;</code></p>
 <p>这个依赖文件是哪儿来的？请查看 <code>pubspec.yaml</code> 文件，可以发现在依赖列表中单独有一个 flutter 依赖项，在这儿是引用的 <code>package:flutter/</code>。如果想添加或导入其它依赖项，那么需要将新的依赖加入 <code>pubspec.yaml</code>，然后用过 import 来使用它们。</p>
 <p>在 <code>main.dart</code> 的头部，我们还可以看到有一个名为 main 的函数。在 Dart 中，<a target="_blank" rel="noopener" href="https://www.dartlang.org/guides/language/language-tour#the-main-function">main</a> 是一个特殊的、<strong>必要的</strong>、顶级的函数，也是 app 开始执行的地方。因为 Flutter 是由 Dart 构建的，main 也是这个工程的主入口。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  runApp(<span class="keyword">new</span> MyApp());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="function"><span class="title">main</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">  runApp(<span class="keyword">new</span> MyApp());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>此函数调用了 <code>new MyApp()</code>，这个类。与 React App 类似，有一个由多个组件组合而成的主组件，然后调用 <code>ReactDOM.render</code> 或 <code>AppRegistry.registerComponent</code> 进行渲染。</p>
 <h3 id="Widget"><a href="#Widget" class="headerlink" title="Widget"></a>Widget</h3><p>Flutter <a target="_blank" rel="noopener" href="https://flutter.io/technical-overview/">技术总览</a>中的一个核心原则就是：“一切皆 Widget”。</p>
 <blockquote>
@@ -558,7 +558,7 @@
   });
 </script>
 
-<script src="{{  theme.vendors.mathjax  }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
     </div>

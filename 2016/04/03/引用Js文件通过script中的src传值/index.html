@@ -32,8 +32,8 @@
 <meta property="article:published_time" content="2016-04-03T09:27:00.000Z">
 <meta property="article:modified_time" content="2018-10-28T16:13:14.090Z">
 <meta property="article:author" content="lsvih">
-<meta property="article:tag" content="note">
 <meta property="article:tag" content="Front End">
+<meta property="article:tag" content="note">
 <meta name="twitter:card" content="summary">
 
 
@@ -321,8 +321,7 @@
 <script type="text/javascript" src="js/iflogin.js?url=cart.html" ></script>
 
 <p>在 iflogin.js 中需要用到url这个参数。</p>
-<p>原理:<script>在 html 中也是标签，能通过 document.getElementsByTagName 访问到。然后通过 split 截断 src 中的字符串即可得到需要的值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> js = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;script&quot;</span>);  </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; js.length; i++) &#123;  </span><br><span class="line">    <span class="keyword">if</span> (js[i].src.indexOf(<span class="string">&quot;iflogin.js&quot;</span>) &gt;= <span class="number">0</span>) &#123;  </span><br><span class="line">        <span class="keyword">var</span> url = <span class="keyword">new</span> <span class="built_in">Array</span>();  </span><br><span class="line">        url = js[i].src.split(<span class="string">&#x27;?&#x27;</span>);  </span><br><span class="line">        url = url[<span class="number">1</span>].split(<span class="string">&#x27;=&#x27;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如上所示，通过查找所有 script 标签，找到 iflogin.js 并读得后面所跟参数。</p>
+<p>原理:<script>在 html 中也是标签，能通过 document.getElementsByTagName 访问到。然后通过 split 截断 src 中的字符串即可得到需要的值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> js = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;script&quot;</span>);  </span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; js.length; i++) &#123;  </span><br><span class="line">    <span class="keyword">if</span> (js[i].src.indexOf(<span class="string">&quot;iflogin.js&quot;</span>) &gt;= <span class="number">0</span>) &#123;  </span><br><span class="line">        <span class="keyword">var</span> url = <span class="keyword">new</span> <span class="built_in">Array</span>();  </span><br><span class="line">        url = js[i].src.split(<span class="string">&#x27;?&#x27;</span>);  </span><br><span class="line">        url = url[<span class="number">1</span>].split(<span class="string">&#x27;=&#x27;</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>如上所示，通过查找所有 script 标签，找到 iflogin.js 并读得后面所跟参数。</p>
 
     </div>
 
@@ -349,8 +348,8 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/note/" rel="tag"># note</a>
               <a href="/tags/Front-End/" rel="tag"># Front End</a>
+              <a href="/tags/note/" rel="tag"># note</a>
           </div>
 
         
@@ -437,7 +436,7 @@
   });
 </script>
 
-<script src="{{  theme.vendors.mathjax  }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
 
     </div>
