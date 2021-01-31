@@ -201,7 +201,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">164</span>
+          <span class="site-state-item-count">165</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -214,7 +214,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">208</span>
+        <span class="site-state-item-count">210</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -255,6 +255,90 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/12/11/Support-Vector-Regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/12/11/Support-Vector-Regression/" class="post-title-link" itemprop="url">Support Vector Regression</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-12-11 09:13:00" itemprop="dateCreated datePublished" datetime="2016-12-11T09:13:00+08:00">2016-12-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>Intro quote from </p>
+<p><a target="_blank" rel="noopener" href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.114.4288">“A Tutorial on Support Vector Regression”</a>, Alex J. Smola, Bernhard Schölkopf - Statistics and Computing archive Volume 14 Issue 3, August 2004, p. 199-222</p>
+</blockquote>
+<p>A support vector machine constructs a hyper-plane or set of hyper-planes in a high or infinite dimensional space, which can be used for classification, regression or other tasks. Intuitively, a good separation is achieved by the hyper-plane that has the largest distance to the nearest training data points of any class (so-called functional margin), since in general the larger the margin the lower the generalization error of the classifier.</p>
+<p><img src="/images/pasted-106.png" alt="upload successful"></p>
+<h3 id="Mathematical-formulation"><a href="#Mathematical-formulation" class="headerlink" title="Mathematical formulation"></a>Mathematical formulation</h3><p>Given training vectors $x_{i}\in \mathbb{R}^{p}$, i=1,…, n, and a vector $y\in {1,-1}^{n}$,SVC solves the following primal problem:</p>
+<script type="math/tex; mode=display">\min \limits_{w,b,\zeta }\frac{1}{2}w^{T}w+C\sum_{i=1}^{n}\zeta _{i}\\  subject \to y_{i}(w^{T}\phi (x_{i}+b))\geq 1-\zeta _{i},\\  \zeta _{i}\geq 0,i=1,...,n</script><p>Its dual is</p>
+<script type="math/tex; mode=display">\min \limits_{a} \frac{1}{2}a^{T}Qa-e^{T}a\\ subject \to y^{T}a=0\\  0\leq a_{i}\leq C,i=1,...,n</script><p>where ‘e’ is the vector of all ones,’C’ &gt; 0  is the upper bound,’Q’ is an n by n positive semidefinite matrix,$Q_{ij}\equiv y_{i}y_{j}K(x_{i},x_{j})$,where $K(x_{i},x_{j})=\phi (x_{i})^{T}\phi (x_{j})$  is the kernel. Here training vectors are implicitly mapped into a higher (maybe infinite) dimensional space by the function $\phi$.</p>
+<p>The decision function is:</p>
+<p>$sgn(\sum_{i=1}^{n}y_{i}a_{i}K(x_{i},x)+\rho )$</p>
+<p>These parameters can be accessed through the members dual_coef_ which holds the difference , support_vectors_ which holds the support vectors, and intercept_ which holds the independent term </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1064,87 +1148,6 @@
 <p>mongoDB中，使用db.xx.find读出的是数组，需要用[0]或者findOne</p>
 <p>mongoDB的读取为异步过程，可以使用async await等待异步回调</p>
 <p>在处理时如果不使用res.send而直接调用next()，中间件向后传递</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/08/%E4%BD%BF%E7%94%A8node-express-mongoDB%E8%BF%9B%E8%A1%8C%E5%BE%AE%E4%BF%A1jssdk%E7%AD%BE%E5%90%8D%E8%BF%90%E7%AE%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/10/08/%E4%BD%BF%E7%94%A8node-express-mongoDB%E8%BF%9B%E8%A1%8C%E5%BE%AE%E4%BF%A1jssdk%E7%AD%BE%E5%90%8D%E8%BF%90%E7%AE%97/" class="post-title-link" itemprop="url">使用node+express+mongoDB进行微信jssdk签名运算</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-10-08 06:03:45" itemprop="dateCreated datePublished" datetime="2016-10-08T06:03:45+08:00">2016-10-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>代码地址:<a target="_blank" rel="noopener" href="https://github.com/lsvih/Wechat-JSSDK-API/blob/master/index.js">https://github.com/lsvih/Wechat-JSSDK-API/blob/master/index.js</a></p>
-<p>如果需要在微信浏览器中调用微信的底层支持(如调用相机等),需要使用微信jssdk。为了使用微信jssdk，需要计算出所需要的相关签名信息。</p>
-<p>微信jssdk文档:<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html#.E6.A6.82.E8.BF.B0">http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html#.E6.A6.82.E8.BF.B0</a> </p>
-<p>附录1为签名计算方法，大致过程如下:</p>
-<p>微信的签名需要使用jssdk_ticket生成，jssdk_ticket需要使用access_token生成。它们的生命周期都只有2个小时而且每天的请求数量是有限制的，因此需要在获取到access_token与ticket之后使用各种方法，如缓存，文件，数据库来将它存储住。</p>
-<p>根据业务需求，我使用node+express+mongoDB写了微信签名的计算.</p>
-<p>在需要使用jssdk的页面调用 xxxxx/wx?url=location.href就能计算出当前页面的微信jssdk签名等信息。</p>
-<p>可以使用微信的签名校验工具来测试签名是否正确</p>
-<p>微信签名校验工具:<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign">https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign</a> </p>
 
       
     </div>

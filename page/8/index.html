@@ -201,7 +201,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">164</span>
+          <span class="site-state-item-count">165</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -214,7 +214,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">208</span>
+        <span class="site-state-item-count">210</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -255,6 +255,88 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/08/18/%E5%9C%A8-Ulysses-%E4%B8%AD%E4%BD%BF%E7%94%A8-Latex-%E5%85%AC%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2017/08/18/%E5%9C%A8-Ulysses-%E4%B8%AD%E4%BD%BF%E7%94%A8-Latex-%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">在 Ulysses 中使用 Latex 公式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-08-18 17:27:58" itemprop="dateCreated datePublished" datetime="2017-08-18T17:27:58+08:00">2017-08-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在文档的头部加上如下代码：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~~ <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/x-mathjax-config&quot;</span>&gt;</span></span><br><span class="line"><span class="javascript">~~ MathJax.Hub.Config(&#123;<span class="attr">tex2jax</span>: &#123;<span class="attr">inlineMath</span>:[[<span class="string">&#x27;$latex&#x27;</span>,<span class="string">&#x27;$&#x27;</span>]]&#125;&#125;);</span></span><br><span class="line">~~ <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">~~ <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>即可在 Ulysses 中正常使用 Latex 公式啦。</p>
+<p>输入</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~~ <span class="symbol">$</span>latex a = <span class="built_in">frac</span>&#123;<span class="number">1</span>&#125;&#123;b&#125; <span class="symbol">$</span></span><br></pre></td></tr></table></figure>
+<p>得到</p>
+<p><img src="/images/pasted-182.png" alt="upload successful"></p>
+<p>试试在 wp 里 latex 的显示：</p>
+<p>~~ $latex a = frac{1}{b} $</p>
+<p>除了多了两波浪号没别的问题，手动去掉吧。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1871,118 +1953,6 @@ print &quot;Accuracy:&quot;, accuracy_score([x[1] for x in test], pred_data)
 <blockquote>
 <p>发布于掘金 <a target="_blank" rel="noopener" href="https://juejin.im/post/59420951128fe1006a1960f8">https://juejin.im/post/59420951128fe1006a1960f8</a></p>
 </blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2017/06/11/Reinforcement-Learning-notes-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2017/06/11/Reinforcement-Learning-notes-1/" class="post-title-link" itemprop="url">Reinforcement Learning notes(1)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2017-06-11 14:33:00" itemprop="dateCreated datePublished" datetime="2017-06-11T14:33:00+08:00">2017-06-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>Stanford CS229 notes 12: <a target="_blank" rel="noopener" href="http://cs229.stanford.edu/notes/cs229-notes12.pdf">http://cs229.stanford.edu/notes/cs229-notes12.pdf</a></p>
-<p><a target="_blank" rel="noopener" href="//lsivh.com/img/1496555948888450.pdf">cs229-notes12.pdf</a></p>
-<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>在CS229 notes 中提到了强化学习的意义：</p>
-<p>In the reinforcement learning framework, we will instead provide our algorithms only a reward function, which indicates to the learning agent when it is doing well, and when it is doing poorly.</p>
-<p>个人的理解就是强化学习就是让 agent 根据环境包含的信息与强化信号量判断策略的选择，同时策略的不同造成的结果会以反馈的形式产生强化信号量给 agent，最终 agent 以“得到最大化的正强化信号量”为标准，做出最佳的策略选择。</p>
-<p>换句话说，强化学习不会给模型提供任何“正确的决策”规则，只会给 agent 从环境状态得来的强化信号量，通过这种方式，agent 在行动=&gt;评价=&gt;学习的过程中学习到了知识，学到了如何做出让评价最好的决策方式。</p>
-<h3 id="Markov-decision-processes-MDP"><a href="#Markov-decision-processes-MDP" class="headerlink" title="Markov decision processes (MDP)"></a>Markov decision processes (MDP)</h3><p>马尔科夫决策过程为一个包含5个元素的元组</p>
-<script type="math/tex; mode=display">MDP = (S,A,{P_{sa}},\gamma,R)</script><p>其中：</p>
-<p>S 为 states，状态集，包含所有 agent 可能处于的状态。</p>
-<p>A 为 actions，行动集，包含了所有 agent 在各种状态下可以采取的行动。</p>
-<p>$P_{sa}$ 为概率，代表了 agent 在 s 状态下做出 a 行动的概率</p>
-<p>$\gamma$ 的值 $\gamma in [0,1)$，称为“discount factor”，可以理解为“折算率”</p>
-<p>R 为奖励函数（reward function），其值由$S\times A \mapsto R$或$S \mapsto R$决定。</p>
-<p>马尔科夫决策过程即为 agent 从初状态$s_0$开始行动，在马尔科夫决策的 A（行动集）中选择一种行动方式 $a_0 \in A$，到达第二个状态$s_1$，接着选择$a_1$……</p>
-<script type="math/tex; mode=display">s_0 \overset{a_0}{\rightarrow} s_1\overset{a_1}{\rightarrow} s_2\overset{a_2}{\rightarrow} s_3\overset{a_3}{\rightarrow} ...</script><p>这个过程的价值（payoff）记作</p>
-<script type="math/tex; mode=display">R(s_0,a_0) + \gamma R(s_1,a_1)+\gamma^2 R(s_2,a_2) + ...</script><p>简写为</p>
-<script type="math/tex; mode=display">r_0 + \gamma r_1 + \gamma^2 r_2 + ...</script><p>$\gamma^i$会越来越小，因此越后面的 R 权值越小。</p>
-<p>当 MDP 确定后，每次决策时的状态、行为都是确定的，为了让 agent 在任意状态做出最佳的行为让状态尽量达到最好的情况（即获得最大的奖励值），需要确定一组策略，让整个过程的价值尽量最大化。</p>
-<p>整个过程的期望记为：</p>
-<script type="math/tex; mode=display">E[r_0 + \gamma r_1+\gamma^2 r_2 + ...]</script><p>将策略记为$\pi$，规定了任意情况下的$s \rightarrow a$，因此可以记为：</p>
-<script type="math/tex; mode=display">a = \pi (s)</script><p>这个策略的价值函数（value function）记为</p>
-<script type="math/tex; mode=display">V^\pi(s)=E[r_0 + \gamma r_1+\gamma^2 r_2 + ...| r_0=R(s),\pi]</script><p>上式表示的是在起点为$s$、使用策略[latex]pi[/latex]的情况下的价值函数值。</p>
-<h4 id="状态值函数"><a href="#状态值函数" class="headerlink" title="状态值函数"></a>状态值函数</h4><h5 id="策略评价"><a href="#策略评价" class="headerlink" title="策略评价"></a>策略评价</h5><p>对上式变换：</p>
-<script type="math/tex; mode=display">V^\pi(s)=E[r_0 + \gamma r_1+\gamma^2 r_2+ ...| r_0=R(s),\pi]</script><script type="math/tex; mode=display">V^pi(s_t)=E_\pi[r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + ...]</script><script type="math/tex; mode=display">V^\pi(s_t) = E_\pi[r_t + \gamma V^\pi(s_{t+1})]</script><p>上式的$s_{t+1}$指的是$s_t$状态经过策略$\pi$之后到达的下一个状态。根据$P_{s\pi(s)}$对上式期望值进行展开，同时考虑在状态$s_t$下的所有策略动作情况：</p>
-<script type="math/tex; mode=display">V^\pi(s_t) = E_\pi[r_t + \gamma V^\pi(s_{t+1})]</script><script type="math/tex; mode=display">=\sum_{s_{t+1}} P(s_{t+1}|s_t,\pi(s)) [R(s_t,\pi(s),s_{t+1}) + \gamma V^\pi(s_{t+1})]</script><p>上式中的$P(s_{t+1}|s_t,\pi(s))$指的是在$s_t$状态下进行策略$\pi(s)$到达状态 $s_{t+1}$的概率，$R(s_t,\pi(s),s_{t+1})$为从状态 $s_t$ 转移到状态 $s_{t+1}$ 的期望回报值（其实就是之前的$s_t$）。</p>
-<p>根据贝尔曼最优化方程，有</p>
-<script type="math/tex; mode=display">V^*(s_t) = \max_a \sum_{s_{t+1}} P(s_{t+1}|s_t,pi(s)) [R(s_t,\pi(s),s_{t+1}) + \gamma V^*(s_{t+1})]</script><p>因此，对于任意一种策略$\pi$，我们都能通过这种方法对各个动作得到的价值函数值进行最大化迭代，逐渐逼近最大价值函数值。</p>
-<script type="math/tex; mode=display">
-\text{input pi} \\
-\text{While }\Delta < \theta \{\\
-\text{tmp} = V(s)\\
-V(s) = \max_a \sum_{s_{t+1}} P(s_{t+1}|s_t,\pi(s))[R(s_t,\pi(s),s_{t+1}) +\gamma V^*(s_{t+1})\\
-\Delta = \max(\Delta,|V(s) - \text{tmp}|)\\
-\} \\
-\text{output } V(s) \approx V^\pi(s)</script><h5 id="策略改进"><a href="#策略改进" class="headerlink" title="策略改进"></a>策略改进</h5><p>假设有$\pi$与$\pi_1$两种策略，如果$Q^\pi(s,\pi_1(s)) \geq V^\pi(s)$（也就是$V^\pi_1(s) \geq V^\pi$），那么说明$\pi_1$的效果一定比$\pi$要好。</p>
-<p>以此为依据，可以在每个状态 s 下对决策允许集进行遍历，计算所有决策会产生的价值函数值，根据贪心策略找到产生做大价值函数值的策略$\pi^*$，它即为效果最好的策略。</p>
-<script type="math/tex; mode=display">\pi_1 = \arg \max_a Q^\pi(s,a)</script><script type="math/tex; mode=display">=\arg \max_a \sum_{s_{t+1}} P(s_{t+1}|s_t,a) [R(s_t,a,s_{t+1}) + \gamma V^*(s_{t+1})]</script><h3 id="策略迭代"><a href="#策略迭代" class="headerlink" title="策略迭代"></a>策略迭代</h3><p>由上面的策略评价进行计算，能够得到当前策略下最大的价值函数值，接着使用策略改进，得到更好的策略$\pi_1$，再接着对这个$\pi_1$再次使用策略评估……这样一遍又一遍地迭代计算，最终能得到趋近最佳值的策略价值函数值与对应的策略。</p>
-<p><img src="/images/pasted-163.png" alt="upload successful"></p>
-<h3 id="值迭代"><a href="#值迭代" class="headerlink" title="值迭代"></a>值迭代</h3><p><img src="/images/pasted-164.png" alt="upload successful"></p>
-<h3 id="值迭代与策略迭代的区别"><a href="#值迭代与策略迭代的区别" class="headerlink" title="值迭代与策略迭代的区别"></a>值迭代与策略迭代的区别</h3><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/41477987">https://www.zhihu.com/question/41477987</a></p>
 
       
     </div>

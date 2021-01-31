@@ -201,7 +201,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">164</span>
+          <span class="site-state-item-count">165</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -214,7 +214,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">208</span>
+        <span class="site-state-item-count">210</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -255,6 +255,90 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/07/15/%E4%BD%BF%E7%94%A8canvas%E5%88%B6%E4%BD%9C%E7%94%BB%E5%9B%BE%E6%9D%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/07/15/%E4%BD%BF%E7%94%A8canvas%E5%88%B6%E4%BD%9C%E7%94%BB%E5%9B%BE%E6%9D%BF/" class="post-title-link" itemprop="url">使用canvas制作画图板</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-07-15 03:28:00" itemprop="dateCreated datePublished" datetime="2016-07-15T03:28:00+08:00">2016-07-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>原理：在canvas画布上捕捉鼠标（手指）动作，关注下笔、拖动、抬笔三个事件。</p>
+<p>下笔使用onmousedown/ontouchstart，拖动使用onmousemove/ontouchmove，抬笔使用onmouseup/ontouchend，同时需要检测笔尖是否移动到画布外（onmouseout）。</p>
+<p>在这三个事件被捕捉后，就能顺利的在画布上生成图像了。</p>
+<p>在画布上自由画画：</p>
+<p>Html:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;canvas&quot;</span> <span class="attr">width</span>=<span class="string">&quot;1024&quot;</span> <span class="attr">height</span>=<span class="string">&quot;665&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br></pre></td></tr></table></figure><br>Javascript:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;canvas&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> can = canvas.getContext(<span class="string">&#x27;2d&#x27;</span>);</span><br><span class="line"><span class="comment">//定义画布</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/****使用自由画笔****/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Brush</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">canvas.ontouchstart = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	<span class="keyword">var</span> sX = e.pageX - <span class="built_in">this</span>.offsetLeft;</span><br><span class="line">	<span class="keyword">var</span> sY = e.pageY - <span class="built_in">this</span>.offsetTop;</span><br><span class="line">	<span class="comment">//获取起始坐标</span></span><br><span class="line">	can.beginPath();</span><br><span class="line">	can.moveTo(sX, sY);</span><br><span class="line">	status = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//画笔移动的时候</span></span><br><span class="line">canvas.ontouchmove = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	<span class="keyword">var</span> eX = e.pageX - <span class="built_in">this</span>.offsetLeft;</span><br><span class="line">	<span class="keyword">var</span> eY = e.pageY - <span class="built_in">this</span>.offsetTop;</span><br><span class="line">	<span class="keyword">if</span>(status == <span class="number">1</span>) &#123;</span><br><span class="line">		can.lineTo(eX, eY);</span><br><span class="line">		can.stroke();</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//画笔抬起的时候</span></span><br><span class="line">canvas.ontouchend = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	can.closePath();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">Brush();</span><br></pre></td></tr></table></figure>
+<p>通过以上代码可以实现在画布上自由绘画。</p>
+<p>用按钮触发以上函数可实现选择“自由画笔工具”绘画。</p>
+<p>相似的，画直线、画圆形、画矩形也是如此：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/****画直线****/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Line</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">canvas.ontouchstart = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	sX = e.pageX - <span class="built_in">this</span>.offsetLeft;</span><br><span class="line">	sY = e.pageY - <span class="built_in">this</span>.offsetTop;</span><br><span class="line">	can.beginPath();</span><br><span class="line">	can.moveTo(sX, sY);</span><br><span class="line">&#125;</span><br><span class="line">canvas.ontouchmove = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//画笔抬起时，画笔位置为终点</span></span><br><span class="line">canvas.ontouchend = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	<span class="keyword">var</span> eX = e.pageX - <span class="built_in">this</span>.offsetLeft;</span><br><span class="line">	<span class="keyword">var</span> eY = e.pageY - <span class="built_in">this</span>.offsetTop;</span><br><span class="line">	can.lineTo(eX, eY);</span><br><span class="line">	can.closePath();</span><br><span class="line">	can.stroke();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/****画空心圆形****/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Arc</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">canvas.ontouchstart = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	sX = e.pageX - <span class="built_in">this</span>.offsetLeft;</span><br><span class="line">	sY = e.pageY - <span class="built_in">this</span>.offsetTop;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//画空心圆，鼠标抬起时，当前画笔位置为外圆结束点</span></span><br><span class="line">canvas.ontouchend = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	<span class="keyword">var</span> eX = e.pageX - <span class="built_in">this</span>.offsetLeft;</span><br><span class="line">	<span class="keyword">var</span> eY = e.pageY - <span class="built_in">this</span>.offsetTop;</span><br><span class="line">	<span class="keyword">var</span> dX = eX - sX</span><br><span class="line">	<span class="keyword">var</span> dY = eY - sY;</span><br><span class="line"><span class="keyword">var</span> r = <span class="built_in">Math</span>.sqrt(<span class="built_in">Math</span>.pow(dX, <span class="number">2</span>) + <span class="built_in">Math</span>.pow(dY, <span class="number">2</span>)); </span><br><span class="line">	<span class="comment">//计算出半径</span></span><br><span class="line">	can.beginPath();</span><br><span class="line">	can.arc(sX, sY, r, <span class="number">0</span>, <span class="number">360</span>, <span class="literal">false</span>);</span><br><span class="line">	can.closePath();</span><br><span class="line">	can.stroke();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/****画矩形****/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Rect</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">canvas.ontouchstart = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	sX = e.pageX - <span class="built_in">this</span>.offsetLeft;</span><br><span class="line">	sY = e.pageY - <span class="built_in">this</span>.offsetTop;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//画空心矩形，画笔抬起时，当前画笔位置为矩形的右下角</span></span><br><span class="line">canvas.ontouchend = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	<span class="keyword">var</span> eX = e.pageX - <span class="built_in">this</span>.offsetLeft;</span><br><span class="line">	<span class="keyword">var</span> eY = e.pageY - <span class="built_in">this</span>.offsetTop;</span><br><span class="line">	<span class="keyword">var</span> w = eX - sX; <span class="comment">//矩形的宽</span></span><br><span class="line">	<span class="keyword">var</span> h = eY - sY; <span class="comment">//矩形的高</span></span><br><span class="line">	can.strokeRect(sX, sY, w, h);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>通过以上代码可以实现简单的画图板。但是会产生一个问题：画矩形与圆形时 在画笔移动时，画布上不会产生相应的图形，只有在画笔抬起时才会产生图像，所以在画画的时候感知不到自己纠结画出的图形是怎样的，这样的体验非常差。因此，使用双画布来解决这个问题，即在本来的画布上放一个同样大小的画布，移动画笔的时候在临时画布上不断地清除、绘制图像就能使用户感知到画画的过程。</p>
+<p>临时画布需要设置position:absolute与z-index来与主画布重叠。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/****清除临时画布的函数****/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clearContext</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    can_bak.clearRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">1024</span>, <span class="number">665</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>例如画圆形时，加上<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">canvas_bak.ontouchmove = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">	e = <span class="built_in">window</span>.event || e;</span><br><span class="line">	clearContext();</span><br><span class="line">	<span class="keyword">var</span> eX = e.pageX - <span class="built_in">this</span>.offsetLeft;</span><br><span class="line">	<span class="keyword">var</span> eY = e.pageY - <span class="built_in">this</span>.offsetTop;</span><br><span class="line">	<span class="keyword">var</span> dX = eX - sX</span><br><span class="line">	<span class="keyword">var</span> dY = eY - sY;</span><br><span class="line"><span class="keyword">var</span> r = <span class="built_in">Math</span>.sqrt(<span class="built_in">Math</span>.pow(dX, <span class="number">2</span>) + <span class="built_in">Math</span>.pow(dY, <span class="number">2</span>));</span><br><span class="line">	can_bak.beginPath();</span><br><span class="line">	can_bak.arc(sX, sY, r, <span class="number">0</span>, <span class="number">360</span>, <span class="literal">false</span>);</span><br><span class="line">	can_bak.closePath();</span><br><span class="line">	can_bak.stroke();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>在ontouchend中加上clearContext();即可。</p>
+<p>最终效果：</p>
+<p><img src="/images/pasted-86.png" alt="upload successful"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1109,89 +1193,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>出现次数相同的单词按照单词字母排序<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;Count words.&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_words</span>(<span class="params">s, n</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Return the n most frequently occuring words in s.&quot;&quot;&quot;</span></span><br><span class="line">    words = s.split(<span class="string">&quot; &quot;</span>)</span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> Count the number of occurences of each word in s</span></span><br><span class="line">    counters = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> counters:</span><br><span class="line">            counters[word] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            counters[word] = <span class="number">1</span></span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> Sort the occurences in descending order (alphabetically in case of ties)</span></span><br><span class="line">    top = <span class="built_in">sorted</span>(counters.iteritems(), key=<span class="keyword">lambda</span> d:(-d[<span class="number">1</span>],d[<span class="number">0</span>]))</span><br><span class="line">    <span class="comment">##lambda中&quot;-&quot;为反序，意思是先把单词出现次数从大到小排列，</span></span><br><span class="line">    <span class="comment">##然后再以单词的字母从小到大排列</span></span><br><span class="line">    <span class="comment"># <span class="doctag">TODO:</span> Return the top n words as a list of tuples (&lt;word&gt;, &lt;count&gt;)</span></span><br><span class="line">    top_n = top[:n]<span class="comment">##返回前n个单词</span></span><br><span class="line">    <span class="keyword">return</span> top_n</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_run</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Test count_words() with some inputs.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span> count_words(<span class="string">&quot;cat bat mat cat bat cat&quot;</span>, <span class="number">3</span>)</span><br><span class="line">    <span class="built_in">print</span> count_words(<span class="string">&quot;betty bought a bit of butter but the butter was bitter&quot;</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    test_run()</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/18/JS%E5%86%99%E4%B8%80%E9%81%8DK-means/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/05/18/JS%E5%86%99%E4%B8%80%E9%81%8DK-means/" class="post-title-link" itemprop="url">JS写一遍K-means</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-05-18 06:54:00" itemprop="dateCreated datePublished" datetime="2016-05-18T06:54:00+08:00">2016-05-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>数据可视化用的highcharts.</p>
-<p>运行结果:</p>
-<p><img src="/images/pasted-75.png" alt="upload successful"></p>
-<p>在html头部加上highcharts的cdn<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;http://cdn.hcharts.cn/highcharts/highcharts.js&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><br>数据如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        name: &#x27;Female&#x27;,</span><br><span class="line">        color: &#x27;rgba(223,83,83,.5)&#x27;,</span><br><span class="line">        data: [[161.2, 51.6],[167.5, 59.0],[159.5, 49.2],</span><br><span class="line">        [157.0, 63.0],[155.8, 53.6]...]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        name: &#x27;Male&#x27;,</span><br><span class="line">        color: &#x27;rgba(119,152,191,.5)&#x27;,</span><br><span class="line">        data:  [[174.0, 65.6],[175.3, 71.8],[193.5, 80.7],</span><br><span class="line">        [186.5, 72.6],[187.2, 78.8]...]</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure><br>共有507个样本的身高与体重数据，标签分为男女。</p>
-<p>====代码====<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Dot_1, Dot_2, temp_group_1, temp_group_2 = <span class="keyword">new</span> <span class="built_in">Array</span>;</span><br><span class="line"><span class="keyword">var</span> temp_data</span><br><span class="line"><span class="keyword">var</span> dataTotel = hasntlabel_data.length;</span><br><span class="line"><span class="keyword">var</span> TempDot = [<span class="number">0</span>, <span class="number">0</span>];</span><br><span class="line">random_dot();</span><br><span class="line">initgroup();</span><br><span class="line">k_means()</span><br><span class="line"><span class="comment">//主要代码</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123; <span class="comment">//初始化</span></span><br><span class="line">  group_1 = [];</span><br><span class="line">  group_2 = [];</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&quot;init&quot;</span>) <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dataTotel; i++) &#123;</span><br><span class="line">    distance(Dot_1,hasntlabel_data[i])&gt;distance(Dot_2,hasntlabel_data[i])?</span><br><span class="line">    group_2.push(hasntlabel_data[i]):group_1.push(hasntlabel_data[i]);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">random_dot</span>(<span class="params"></span>) </span>&#123; <span class="comment">//随机定两个点</span></span><br><span class="line">  Dot_1=[<span class="built_in">Math</span>.random()*<span class="number">7</span>,<span class="built_in">Math</span>.random()*<span class="number">7</span>]Dot_2=[<span class="built_in">Math</span>.random()*<span class="number">7</span>,<span class="built_in">Math</span>.random()*<span class="number">7</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">k_means</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(group_1.length + <span class="string">&#x27;,&#x27;</span> + group_2.length);</span><br><span class="line">  <span class="keyword">if</span> (!group_1.length || !group_2.length) &#123;</span><br><span class="line">    random_dot();</span><br><span class="line">    init();</span><br><span class="line">    k_means()</span><br><span class="line">  &#125;</span><br><span class="line">  data_1_x_sum = <span class="number">0</span>;</span><br><span class="line">  data_1_y_sum = <span class="number">0</span>;</span><br><span class="line">  data_2_x_sum = <span class="number">0</span>;</span><br><span class="line">  data_2_y_sum = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; group_1.length; i++) &#123;</span><br><span class="line">    data_1_x_sum += group_1[i][<span class="number">0</span>];</span><br><span class="line">    data_1_y_sum += group_1[i][<span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; group_2.length; i++) &#123;</span><br><span class="line">    data_2_x_sum += group_2[i][<span class="number">0</span>];</span><br><span class="line">    data_2_y_sum += group_2[i][<span class="number">1</span>];</span><br><span class="line">  &#125;</span><br><span class="line">  TempDot[<span class="number">0</span>] = Dot_1;</span><br><span class="line">  TempDot[<span class="number">1</span>] = Dot_2;</span><br><span class="line">  Dot_1 = [(data_1_x_sum / group_1.length), (data_1_y_sum / group_1.length)];</span><br><span class="line">  Dot_2 = [(data_2_x_sum / group_2.length), (data_2_y_sum / group_2.length)];</span><br><span class="line">  <span class="keyword">if</span>(Dot_1[<span class="number">0</span>]==TempDot[<span class="number">0</span>][<span class="number">0</span>]&amp;&amp;Dot_1[<span class="number">1</span>]==TempDot[<span class="number">0</span>][<span class="number">1</span>]</span><br><span class="line">  &amp;&amp;Dot_2[<span class="number">0</span>]==TempDot[<span class="number">1</span>][<span class="number">0</span>]&amp;&amp;Dot_2[<span class="number">1</span>]==TempDot[<span class="number">1</span>][<span class="number">1</span>])&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  group_1 = [];</span><br><span class="line">  group_2 = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; dataTotel; i++) &#123;</span><br><span class="line">    distance(Dot_1,hasntlabel_data[i])&gt;distance(Dot_2,hasntlabel_data[i])</span><br><span class="line">    ?group_2.push(hasntlabel_data[i]):group_1.push(hasntlabel_data[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  k_means()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params">e, f</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Math</span>.sqrt(<span class="built_in">Math</span>.pow((f[<span class="number">0</span>] - e[<span class="number">0</span>]), <span class="number">2</span>) + <span class="built_in">Math</span>.pow((f[<span class="number">1</span>] - e[<span class="number">1</span>]), <span class="number">2</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>当多次运行代码时，可以看到不同的结果</p>
-<p><img src="/images/pasted-76.png" alt="upload successful"></p>
-<p>对于K-means来说初始点对于结果的影响大，</p>
-<p>且收敛太慢，算法复杂度高O(nkt)，结果不一定是全局最优，只能保证局部最优。</p>
-<p>之后会学习与使用K-means++之类的增强的算法来进行聚类分析。</p>
 
       
     </div>

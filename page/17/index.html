@@ -201,7 +201,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">164</span>
+          <span class="site-state-item-count">165</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -214,7 +214,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">208</span>
+        <span class="site-state-item-count">210</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -255,6 +255,148 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/03/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/03/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/" class="post-title-link" itemprop="url">机器学习学习笔记（四）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-03-23 18:02:00" itemprop="dateCreated datePublished" datetime="2016-03-23T18:02:00+08:00">2016-03-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="多元线性回归与梯度下降的推广"><a href="#多元线性回归与梯度下降的推广" class="headerlink" title="多元线性回归与梯度下降的推广"></a>多元线性回归与梯度下降的推广</h3><p>已经理解并明白了单变量线性回归与其对应的两个参数的梯度下降方程，现将情况推广到多元的情况。</p>
+<p>例如最初的例子房价与房屋大小的关系，现在可以加上卧室数量、大厅数量、房屋年龄等其他的参数一并参与考虑来进行预测。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Size($feet^2$)</th>
+<th>Number of bedrooms</th>
+<th>Number of floors</th>
+<th>Age of home(years)</th>
+<th>Price($1000)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2104</td>
+<td>5</td>
+<td>1</td>
+<td>45</td>
+<td>460</td>
+</tr>
+<tr>
+<td>1416</td>
+<td>3</td>
+<td>2</td>
+<td>40</td>
+<td>232</td>
+</tr>
+<tr>
+<td>1534</td>
+<td>3</td>
+<td>2</td>
+<td>30</td>
+<td>315</td>
+</tr>
+<tr>
+<td>852</td>
+<td>2</td>
+<td>1</td>
+<td>36</td>
+<td>178</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在单变量线性回归中，样本的数量被记作m，在多元的情况下依然记为m，例如上表的数据有多少行m就为多少。</p>
+<p>同时上表较之前多了几列，其特征数量即为n，即除了price之外的列数即为n,n=4。</p>
+<p>同样将数据分为输入数据x与输出数据y，以m上标n下标的形式表现。例如上表的第三行表示的房子的层数就用$x^{(3)}_3$来表示。</p>
+<p>因此由原来简单的</p>
+<script type="math/tex; mode=display">h_\theta(x)=\theta_0+\theta_1x</script><p>推广开来，成为了如下形式</p>
+<script type="math/tex; mode=display">h_\theta(x)=\theta_0+\theta_1x_1+\theta_2x_2+...+\theta_nx_n</script><p>为了定义方便，设x0=1,能得到对多元与单变量都适用的预测方程：</p>
+<script type="math/tex; mode=display">h(x)=\sum^n_{i=0}\theta_ix_i=\theta^TX</script><hr>
+<p>同样的，多元线性回归的预测方程也需要有值来评估预测拟合度的好坏，因此引入之前的代价方程，推广到多元情况，很容易得到代价方程(Cost Function)：</p>
+<script type="math/tex; mode=display">J(\theta_0,\theta_1,...,\theta_n)=\frac{1}{2m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})^2</script><p>对于单变量线性回归来说，梯度下降的原理如下：</p>
+<p><img src="/images/pasted-15.png" alt="upload successful"></p>
+<p>而对于多元线性回归来说，$J(\theta_0,\theta_1)$推广到了$J(\theta_0,…,\theta_n)$，因此求偏导得到的结果有n种情况。</p>
+<p><img src="/images/pasted-17.png" alt="upload successful"></p>
+<p>偏导得</p>
+<p><img src="/images/pasted-18.png" alt="upload successful"></p>
+<script type="math/tex; mode=display">\theta_0:=\theta_0 - \alpha\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_0</script><script type="math/tex; mode=display">\theta_1:=\theta_1 - \alpha\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_1</script><script type="math/tex; mode=display">\theta_2:=\theta_2 - \alpha\frac{1}{m}\sum^m_{i=1}(h_\theta(x^{(i)})-y^{(i)})x^{(i)}_2</script><p>可以发现，最终得到的公式仍然符合单变量线性回归（n=1）。</p>
+<blockquote>
+<p>偏导过程可由高数解出。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
