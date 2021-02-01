@@ -6,7 +6,7 @@
   <link href="https://lsvih.com/atom.xml" rel="self"/>
   
   <link href="https://lsvih.com/"/>
-  <updated>2021-01-31T14:09:58.294Z</updated>
+  <updated>2021-02-01T04:59:04.586Z</updated>
   <id>https://lsvih.com/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>构建设计系统和组件库</title>
+    <link href="https://lsvih.com/2021/02/01/building-a-design-system-and-a-component-library/"/>
+    <id>https://lsvih.com/2021/02/01/building-a-design-system-and-a-component-library/</id>
+    <published>2021-02-01T05:03:00.000Z</published>
+    <updated>2021-02-01T04:59:04.586Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/images/16121554838666.jpg" alt=""></p><p>当我们开始在 React 中重构前端项目时，可复用 UI 组件还不在我们设计和开发工作流程之内。我们的 jQuery 前端项目主要是基于 Twitter 的 bootstrap 组件构建的，这些组件针为特定的用例进行了调整，或通过附加功能进行了扩展。我们通过从旧设计中汲取精华并加以改进，让每个特性都有了新的设计。随着团队和应用的不断发展，我们的各个组件朝着不同的方向改进，导致了文本大小、配色、按钮和链接出现了各种各样的变化，最终使得整个应用的用户体验脱节。</p><p>在 React 中重构前端项目，给了我们重新思考设计和开发工作流的机会，也让我们有机会将重点放在为用户提供更统一的体验上。这一点非常重要，因为我们所需要做的，就是让应用程序更容易访问和能更快速地响应。这也促使了新的组件库的诞生，并继而驱动了设计系统的需求。这个迭代过程一开始非常困难且缓慢，但随着时间的推移，新的组件库和设计系统变得越来越实用，让开发人员和设计师兴奋不已。</p><a id="more"></a><h2 id="什么是设计系统？"><a href="#什么是设计系统？" class="headerlink" title="什么是设计系统？"></a>什么是设计系统？</h2><p>设计系统是关于如何创建、组织存档和使用 UI 组件的综合指南。它定义了一组适用于所有设计的规则、约束、原则和最佳实践。设计系统的核心元素是一组 UI 组件，如按钮、链接和列表。对每个组件，你都可以为其附上说明，描述在设计期间为这个组件所做选择；以及为每个组件撰写文档，用以定义组件的规则、行为和约束，提供用例和其它可以通过文本描述的细节。</p><h2 id="什么是组件库？"><a href="#什么是组件库？" class="headerlink" title="什么是组件库？"></a>什么是组件库？</h2><p>组件库是用编程语言实现的可复用 UI 组件的集合。当得到设计系统的支持时，它也可以被视为设计及其指导方针的交互式实现。</p><h2 id="为什么要关心这个？"><a href="#为什么要关心这个？" class="headerlink" title="为什么要关心这个？"></a>为什么要关心这个？</h2><p>如 <a href="https://medium.com/airbnb-design/224748775e4e">Airbnb 的 Karri Saarinen</a> 所言，统一的设计系统对于实现更好更快的构建来说，非常重要；更好的原因是用户更容易理解统一的体验，更快的原因是它为我们提供了一种共同的语言来进行协作。</p><p>在 Karify 看来，设计系统可以帮助我们创建并遵循自己的设计准则，也可以帮助我们在多种平台和设备上创建出一个统一的用户体验。最后，它还可以帮助我们的团队更高效、更敏捷、更紧密地合作。以下是我们发现的一些更详细的优势：</p><ul><li><strong>沟通</strong>：让设计师理解开发人员，也让开发人员理解设计师。以前对双方都很难理解的概念现在清晰多了。讨论组件和使用我们在沟通中约定的规则，会使得设计和开发过程更加容易。</li><li><strong>一致性</strong>：应用程序页面的外观和体验变得统一。我们会知道一个标题或正常的文本应该使用的大小、应该为主要操作配置什么类型的按钮、什么颜色用来传达特定操作的类型或信息，以及每种类型的元素之间应该有多少间距。如果我们决定更改其中任何一个规范，就可以很容易地在整个设计系统、组件库和应用程序中对它们进行更改。</li><li><strong>协作</strong>：设计师和开发人员工作得更紧密，能够更容易地分享想法和见解。由于沟通变得更容易，因此讨论功能限制以及在早期阶段将它们合并到设计中也变得更容易了。使用 <a href="https://zeplin.io/">Zeplin</a> 之类的工具会使这个过程更加高效，因为它可以让设计师和开发人员针对设计的任何一处细节进行讨论。</li><li><strong>文档</strong>：组件指南提供了关于组件的外观、使用、行为以及为什么这样做的详细信息。如果将来某个组件的设计或实现出现了问题，就更容易找到背后的原因，并避免了再次考虑之前已经考虑过的问题（除非它不再有意义）。</li><li><strong>模块化</strong>：所有的组件都使用有限的规则和关注点来表示设计和代码的一小部分。这样就可以在设计和代码中实现关注点分离。</li><li><strong>可维护性</strong>：这使设计和代码的更新变得更加容易，因为当一个组件被修改时，使用它的所有其它组件都会更新。虽然在旧组件上需要做一些额外的处理，但可以立竿见影地让你看到自己的修改造成的影响。</li></ul><p>与任何其它方法一样，我们在设计系统的开发中也发现了一些缺点：</p><ul><li><strong>耗费时间</strong>：开始的时候尤其如此。定义所有规则、约束和基本组件（如文本、颜色和间距）需要进行大量讨论。随着时间的推移，这个过程会加快。这取决于在设计新特性之前需要创建多少新组件。但是一旦你有了一些组件，在现有的或新的设计中重用它们就会变得非常快。这同样适用于应用程序的开发。</li><li><strong>缺乏创造力</strong>：由于受限于所有的规则和约束，创作空间减少了。不过，这也可以被视为一种优势，因为它带来了一致性。</li><li><strong>陡峭的学习曲线</strong>：这主要是团队里新人面临的问题，因为他们将需要熟悉许多规则，才能熟练地应用它们。从另一个角度来说，这也使他们的学习更容易，因为设计系统本身已经传达了规则。</li><li><strong>复杂性</strong>：如果有太多依赖于其他组件的组件，那么维护和重用它们也会变得很复杂。</li></ul><p>不过，不要让这些缺点吓到你。学习如何让这些缺点最小化，也是我们设计过程的一部分。随着时间的推移，优势变得比劣势更明显。</p><h2 id="如何开始呢？"><a href="#如何开始呢？" class="headerlink" title="如何开始呢？"></a>如何开始呢？</h2><p>首先，我们建议你了解<a href="https://bradfrost.com/blog/post/atomic-web-design/">原子设计</a>的概念以及<a href="https://airbnb.design/systems-thinking-unlocked/">设计系统的最佳实践</a>和诸如 <a href="https://airbnb.design/building-a-visual-language">Airbnb</a> 这样的设计系统的例子。此外，你还应该选择用于构建设计系统的工具。我们选择了 <a href="https://www.sketch.com/">Sketch</a>，但也有其它选择，比如 <a href="https://www.figma.com/">Figma</a>。</p><p>接着，你就可以开始定义属于你的一套色彩、排版样式和间距尺寸，这将是你的第一个“原子”。它将允许你开始定义你的第一个“分子”，如按钮、链接和页面等。在第一次迭代中，你很可能会遗漏一些用例，因此需要多轮迭代来逐步完善，直到一切都没问题并能经得起时间的考验。</p><p>如果你已经有了一个应用程序，但不能一次全部更改，那么我们建议你基于现有的设计系统去对它进行改进。对于每个部分，分析你所拥有的，选择你喜欢的部分，改进你不喜欢的部分。即使这个工作很繁琐，也应该将未来的组件从遗留组件中分离出来。这样，你就可以避免在新组件中使用遗留组件。慢慢地，这会让你达到你的目标。</p><h2 id="我们是怎么做到的？"><a href="#我们是怎么做到的？" class="headerlink" title="我们是怎么做到的？"></a>我们是怎么做到的？</h2><p>我们的团队最初由两名设计师和一名前端开发人员组成，后来又有一名开发人员加入了这个团队。这个团队的规模无论是过去还是现在，都足够完成工作，并且也有充足的时间来处理细节问题。不过，我们认为团队的大小应取决于项目的规模和公司的节奏。</p><p>从头开始重构前端项目的机会也让我们可以从过去的错误中吸取教训。因此，我们根据用户的反馈来设计新组件。他们经常提到可访问性和响应性问题，为了解决这些问题，我们认为首先需要重新设计导航系统，然后再重新设计应用程序中的每个页面。</p><p>我们先将新的导航作为一个整体设计，在它的设计稳定下来之后，我们开始将其分解为更小的组件，这就产生为原子设计所分割好的的原子、分子和有机体。虽然在理想情况下，我们应该从原子开始设计，但如果没有明确的方向，这将是非常困难的事；而现在，我们已经通过拆分整体设计定义好了几个原子和分子，再将它们组合成新的有机体或页面就比较容易了。</p><p>在创建组件时，我们将它们定义为<code>符号</code>（<code>symbols</code>），并在 Sketch 库文件中把它们分割为<code>原子</code>、<code>分子</code>和<code>有机体</code>。Sketch 有助于将我们的<code>原子</code>组件作为符号在其它<code>分子</code>或<code>有机体</code>组件中使用。在 Sketch 中，它们被称为<code>嵌套符号</code>（<code>nested symbols</code>）。我们确保按级联顺序使用组件，以保证更新只能是单向进行的。</p><p><img src="/images/16121555015376.jpg" alt=""></p><p><strong>我们的 Sketch <code>分子</code>库：按钮组件中的图标组件是从 Sketch <code>原子</code>库中复用的。</strong></p><p>为了记录我们的选择，我们在 Material UI 组件指南的启发下，为每个组件（不管它是原子、分子还是有机体）创建了设计指南。紧接着，为不同的组件设定不同指导方针，以及定义一些适用于所有组件的通用方针，其中有些通用指导方针是非常重要的（比如可访问性和风格定位）。这些指导方针是我们唯一的事实来源，它们确保很多细节是一览无余的。为了给人留下印象，它们是一份包含以下部分的简单文档：</p><ul><li>使用</li><li>分解</li><li>不同的视图的布局</li><li>行为</li><li>可访问性</li></ul><p>我们在根据每一个功能或者项目而创建的<code>模板</code>或<code>页面</code>文件中使用组件。当一个组件或页面准备好了，我们通过 <a href="https://zeplin.io/">Zeplin</a> 与开发人员和其他参与者分享设计。这个工具允许他们从设计中提取信息，比如颜色、大小和资源。它还允许对任一组件发起讨论，这可以极大地提高协作效率，因为这些细节通常是需要通过开会来进行讨论的。</p><p><img src="/images/16121555140458.jpg" alt=""></p><p><strong>在 Zeplin 中协作开发的按钮组件。</strong></p><p>现在，开发人员可以使用 Zeplin 中的信息来开始构建相应的 React 组件了。理想情况下，每个设计组件都应该只有一个 React 组件，以保证设计和代码之间的关系尽可能地紧密一些。为了获得灵感，我们经常会看看其他组件库是怎么做的，比如 <a href="https://material-ui.com/">Material-UI</a>。</p><p>为了简化这个过程，我们使用了 <a href="https://storybook.js.org/">Storybook</a>，它促进了组件的独立开发。它还提供了一种与库中所有组件可视化交互的方法，设计师可以使用这些组件来验证最终的实现。</p><p><img src="/images/16121555265534.jpg" alt=""></p><p><strong>Storybook 中相同的按钮：准备审核</strong></p><p>在我们的设计系统和组件库中，我们都按照类别将组件进行分组，例如按钮、颜色、表单元素、布局、链接、排版等。</p><p>从本质上讲，这些工具帮助我们在工作过程中建立起反馈循环机制：设计师可以通过查看 Storybook 轻松地对组件库给出反馈，开发人员可以轻松地在 Zeplin 对设计进行评论或者下载资源。</p><h2 id="还有哪些可以做得更好的地方？"><a href="#还有哪些可以做得更好的地方？" class="headerlink" title="还有哪些可以做得更好的地方？"></a>还有哪些可以做得更好的地方？</h2><p>总的来说，我们觉得现在这个过程已经足够好了，但有些事情还可以做一些变通。下面是我们一路上遇到的痛点：</p><ul><li><strong>可访问性指南</strong>：我们完全低估了可访问性。<a href="https://www.w3.org/TR/WCAG21/">WCAG guidelines</a> 有很多指导方针，但你不可能在这么小的团队中全部实现。我们必须选择哪些是对我们的用户最重要的。然而，我们在这个过程中很晚才做出这个选择，因为它对我们的原子组件（主要是字体和颜色）产生了影响，这迫使我们重新考虑一些分子和有机体。</li><li><strong>复杂组件</strong>：我们经常尝试创建职责过多或对其它组件有太多依赖的组件。最好将它们分解成更小的组件，而不是盲目提高它们的可定制性。拆分也许会导致设计和代码上出现一些冗余，但这种方式是更容易被理解的。</li><li><strong>缺乏计划和无限的范围</strong>：有一段时间，项目的范围只是持续增长。有些事情很重要，但有些就不那么重要了。由于这个项目没有结束日期，很难划定界限。最终，我们开始更频繁地讨论这些问题，以确定哪些是真正重要的。</li></ul><p>最终，在重新设计完导航系统之后，我们对这些问题进行了学习和改进。我们仍然不时地遇到一些复杂的组件，但我认为尽快地发现并指出错误也是其中的一个过程。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在我们看来，构建一个设计系统和一个组件库是值得的。它带来了我们从一开始就在寻找的一致性设计。这并不意味着我们会把这套方案推荐给所有人。在开始之前，我们建议你先确认这对于你的项目而言是否是正确的解决方案。我们认为，只有当你知道或期望产品需要大量不同的页面，并且这些页面具有复用同一组件的复杂交互时，才需要这样做。如果是一家初创公司或小公司，并希望在未来几年扩大规模时，这一点尤其重要。然而，如果你的产品是一个简单的网站，在几年之内不会有太大的变化，那么这可能是过分的。</p><hr><blockquote><p>翻译：<a href="https://github.com/Charlo-O">Charlo</a>，<a href="https://github.com/lsvih">lsvih</a><br>校对：<a href="https://github.com/Shirley-He-Maker">贺雪 Amy</a>，<a href="https://github.com/Chorer">Chorer</a><br>原文：<a href="https://medium.com/javascript-in-plain-english/building-a-design-system-and-a-component-library-3f4e01a7b0b4">Building a design system and a component library</a><br>掘金地址：<a href="https://juejin.cn/post/6924152501805678606">https://juejin.cn/post/6924152501805678606</a></p></blockquote>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;/images/16121554838666.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;当我们开始在 React 中重构前端项目时，可复用 UI 组件还不在我们设计和开发工作流程之内。我们的 jQuery 前端项目主要是基于 Twitter 的 bootstrap 组件构建的，这些组件针为特定的用例进行了调整，或通过附加功能进行了扩展。我们通过从旧设计中汲取精华并加以改进，让每个特性都有了新的设计。随着团队和应用的不断发展，我们的各个组件朝着不同的方向改进，导致了文本大小、配色、按钮和链接出现了各种各样的变化，最终使得整个应用的用户体验脱节。&lt;/p&gt;
+&lt;p&gt;在 React 中重构前端项目，给了我们重新思考设计和开发工作流的机会，也让我们有机会将重点放在为用户提供更统一的体验上。这一点非常重要，因为我们所需要做的，就是让应用程序更容易访问和能更快速地响应。这也促使了新的组件库的诞生，并继而驱动了设计系统的需求。这个迭代过程一开始非常困难且缓慢，但随着时间的推移，新的组件库和设计系统变得越来越实用，让开发人员和设计师兴奋不已。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Translate" scheme="https://lsvih.com/categories/Translate/"/>
+    
+    
+    <category term="Translate" scheme="https://lsvih.com/tags/Translate/"/>
+    
+    <category term="juejin" scheme="https://lsvih.com/tags/juejin/"/>
+    
+    <category term="Design" scheme="https://lsvih.com/tags/Design/"/>
+    
+    <category term="React" scheme="https://lsvih.com/tags/React/"/>
+    
+    <category term="Frontend" scheme="https://lsvih.com/tags/Frontend/"/>
+    
+    <category term="Design System" scheme="https://lsvih.com/tags/Design-System/"/>
+    
+  </entry>
   
   <entry>
     <title>自己写一个 Redux</title>
@@ -676,41 +709,6 @@
     <category term="线性代数" scheme="https://lsvih.com/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
     
     <category term="数据可视化" scheme="https://lsvih.com/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>An Online Social Network-based Recommendation System 论文笔记</title>
-    <link href="https://lsvih.com/2019/05/23/An%20Online%20Social%20Network-based%20Recommendation%20System/"/>
-    <id>https://lsvih.com/2019/05/23/An%20Online%20Social%20Network-based%20Recommendation%20System/</id>
-    <published>2019-05-23T14:48:00.000Z</published>
-    <updated>2019-05-23T14:48:31.920Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>本文发表于2007年，作者是来自多伦多大学计算机系的几位师生。虽然本文在领域内影响并不大，但我认为它的撰写非常清晰，有利于对“基于社会网络的推荐系统”这一课题的了解。</p></blockquote><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>作者提出了一种基于社会网络的推荐系统，这种推荐系统利用用户资料以及用户与用户之间的连接进行推荐（具体来说是通过用户的打分矩阵和对应的朋友关系来推荐）。</p><blockquote><p>本文的数据来源于一个名为 BoardGameGeek（BGG）的网站，在数据一节详细描述</p></blockquote><h2 id="背景与相关工作"><a href="#背景与相关工作" class="headerlink" title="背景与相关工作"></a>背景与相关工作</h2><p>所谓推荐系统，是一种基于用户以往数据、通过某些算法计算，向用户推送新内容的一种机制，在 20 世纪互联网经济发展中被广泛使用。最早利用推荐系统扩大利润的是电商 Amazon，他们利用用户曾经购买或评分的商品来预测用户之后可能会购买的商品并进行推送，从而促使用户购买更多的商品。</p><p>推荐系统最常用的方式就是基于内容的<strong>协同过滤</strong>方法（这种方式在今天也被广泛使用，好处是推荐较为准确，坏处是计算量极大），具体来说就是通过计算多个用户喜好的相似，来推荐对应的对象。</p><p>推荐系统研究的一个难点就是数据的获取，使用用户数据容易触及隐私问题，因此各个公司都是在利用用户的公开数据来进行推荐系统的研究。这又有另一个问题：很多用户的公开数据并不完全（比如获取不到用户间的联系），导致困难重重。此外，传统的算法的前提假设为用户是独立的存在，因此无法利用用户的结构信息来进行推荐。</p><p>作者通过对社会学和机器学习的研究，为 boardgaming 开发了一种 Online Social Network-based（OSN）推荐系统，实现了较好的推荐效果。</p><p>最后作者还对数据的隐私问题和算法的应用进行了讨论。</p><h2 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h2><p>BoardGameGeek（BGG）是一个知名的游戏站点，人们在其中讨论各种游戏机和卡带，并且会对各个游戏、主机等产品进行评价、打分。比较特殊的是，这个网站包含了大量的公开社交信息（玩家会公开加好友，并进行讨论），因此适合用来使用社会网络来构建推荐系统。</p><p>最终，作者使用的数据包括：</p><ul><li>大约 3 万条被用户评价过的游戏数据</li><li>大约 4 万条曾经评价过游戏的用户数据</li><li>所有的任意用户对任意游戏的评价数据</li><li>各个用户“愿望清单”的游戏列表</li><li>用户与用户之间的好友关系</li></ul><h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>作者使用了概率矩阵分解算法（probabilistic matrix factorization，简称 PMF 算法）。在此简单描述一下这个算法：</p><p>给定一个维数为 $M \times N$ 的评价矩阵 $R$，其中 $R_{ij}$ 可以表示用户 $i$ 对游戏 $j$ 的评价分数。而 PMF 算法的目的就是对评价矩阵 $R$ 进行矩阵分解，找到评价矩阵的因子：</p><script type="math/tex; mode=display">R \approx U G</script><p>其中 $U \in \mathcal { R } ^ { M \times D } $, $G \in \mathcal { R } ^ { D \times N }$。作者假设有一些“原型用户”（prototype user），这种用户具有评分和喜好的代表性。上式中的$D$就是这种“原型用户”的数量。因此上面的矩阵分解就能得出原型用户的评分矩阵。作者直接利用 FA、PCA 之类的矩阵分解算法，使用方差 $\left( \sum _ { i , j } R _ { i j } - U _ { i } ^ { T } G _ { j } \right) ^ { 2 }$ 作为损失函数，对矩阵分解算法进行优化。（注，这应该是非常稀疏的矩阵分析）</p><p>为了把社会网络的信息加入模型中，作者将社交信息定义为矩阵 $F$，其维数是 $M \times M$。在 $F$ 中，如果用户 $i$ 和 $j$ 是好友关系，则 $F_{ij} = 1$，否则为 0。由此，作者将前面的矩阵分析式子改写为：</p><script type="math/tex; mode=display">R \approx F U G</script><p>转换问题，写作：</p><script type="math/tex; mode=display">F^{-1} R \approx U G</script><p>这样就可以继续用前文的方法求出原型用户的评分了。</p><h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>作者使用 SE（方差）loss 对矩阵分解进行优化，在训练迭代过程中 loss 下降情况如下图所示：</p><p><img src="/images/15586229007735.jpg" alt="-w445"></p><p>可以看到算法确实收敛了。（个人觉得可能过拟合了）</p><p>这个实验因为没有标注数据，所以也不好进行评价。因此作者用少数的数据作为测试集来验证效果，发现结果不错，最后直接将这个 baseline 做成了一款 Web 应用。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文提出了一种同时利用社会网络信息和用户评分信息的推荐算法，改善了推荐系统的效果。其意义是找了一种方法来把简单的社会网络信息给整合进传统的评分矩阵分解法中。总体来说整个文章的方法非常简单，而且实验不够置信，但可以用来参考了解“基于社会网络的推荐系统”这一课题。</p><p>此外，这篇文献的年代其实比较久远，目前已经有各种各样利用 Network Embedding 的方法，利用各种异构网络信息去做推荐系统，但其实主要的方法还是这篇文章中的方法：将评分矩阵与网络表示矩阵进行合并，然后再做矩阵分析。区别是本文的 Social Network 的表示实质上就是最简单的 one-hot Network Embedding，如果换成现代先进的 node2vec、deep walk 之类的方法应该会有所提升。</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;本文发表于2007年，作者是来自多伦多大学计算机系的几位师生。虽然本文在领域内影响并不大，但我认为它的撰写非常清晰，有利于对“基于社会网络的推荐系统”这一课题的了解。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#</summary>
-      
-    
-    
-    
-    <category term="Paper" scheme="https://lsvih.com/categories/Paper/"/>
-    
-    
-    <category term="note" scheme="https://lsvih.com/tags/note/"/>
-    
-    <category term="machine learning" scheme="https://lsvih.com/tags/machine-learning/"/>
-    
-    <category term="Paper" scheme="https://lsvih.com/tags/Paper/"/>
-    
-    <category term="recommendation system" scheme="https://lsvih.com/tags/recommendation-system/"/>
-    
-    <category term="social network" scheme="https://lsvih.com/tags/social-network/"/>
     
   </entry>
   

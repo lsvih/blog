@@ -201,7 +201,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">165</span>
+          <span class="site-state-item-count">166</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -214,7 +214,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">210</span>
+        <span class="site-state-item-count">211</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -255,6 +255,84 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/10/09/mongoDB-nodejs%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7access-token%E9%AA%8C%E8%AF%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/10/09/mongoDB-nodejs%E7%AE%80%E6%98%93%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7access-token%E9%AA%8C%E8%AF%81/" class="post-title-link" itemprop="url">mongoDB,nodejs简易实现用户access_token验证</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-10-09 15:29:00" itemprop="dateCreated datePublished" datetime="2016-10-09T15:29:00+08:00">2016-10-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果:"></a>实现效果:</h3><p>用户调用接口时鉴权，如果没有合法的access_token则不允许接入，抛出401</p>
+<h3 id="实现要点"><a href="#实现要点" class="headerlink" title="实现要点:"></a>实现要点:</h3><p>mongoDB的简单操作，async与await</p>
+<h3 id="code"><a href="#code" class="headerlink" title="code:"></a>code:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> db = <span class="built_in">require</span>(<span class="string">&#x27;../db&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> router = express.Router()</span><br><span class="line"><span class="keyword">var</span> utils = <span class="built_in">require</span>(<span class="string">&#x27;../utils&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> checkLogin = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">await</span> checkAccessToken(req.query.userId, req.query.access_token)) &#123;</span><br><span class="line">        next()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        res.status(<span class="number">401</span>)</span><br><span class="line">        res.send()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">    <span class="built_in">console</span>.error(e)</span><br><span class="line">    res.status(<span class="number">500</span>)</span><br><span class="line">    res.send()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = checkLogin;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">checkAccessToken</span>(<span class="params">userId, accessToken</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!db) &#123;</span><br><span class="line">        <span class="built_in">console</span>.error(<span class="string">&quot;DataBase error&quot;</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> userInfo = <span class="keyword">await</span> db.user.findOne(&#123;</span><br><span class="line">            userId: userId</span><br><span class="line">        &#125;).exec()</span><br><span class="line">        <span class="keyword">return</span> userInfo.access_token === accessToken</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>mongoDB中，使用db.xx.find读出的是数组，需要用[0]或者findOne</p>
+<p>mongoDB的读取为异步过程，可以使用async await等待异步回调</p>
+<p>在处理时如果不使用res.send而直接调用next()，中间件向后传递</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1035,88 +1113,6 @@
 <p>解决方案：在按钮之上覆盖一层点击区域，将按钮的触发事件放在此区域之上</p>
 <p><img src="/images/pasted-88.png" alt="upload successful"></p>
 <p>添加点击区域后可操作范围明显增大。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/07/27/%E8%A7%A3%E5%86%B3%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E6%97%A0%E6%B3%95%E9%A1%BA%E5%88%A9%E7%9B%91%E5%90%AConscroll%E4%BA%8B%E4%BB%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/07/27/%E8%A7%A3%E5%86%B3%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E6%97%A0%E6%B3%95%E9%A1%BA%E5%88%A9%E7%9B%91%E5%90%AConscroll%E4%BA%8B%E4%BB%B6/" class="post-title-link" itemprop="url">解决在手机上无法顺利监听onscroll事件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-07-27 09:28:00" itemprop="dateCreated datePublished" datetime="2016-07-27T09:28:00+08:00">2016-07-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在进行制作视差滚动效果时，需要获得每时每刻滚动条的位置以进行计算，因此会使用window.onscroll来监听滚动条的位置。在pc上可以顺利的连续获得滚动条的任意时刻的坐标，然而在手机上无法顺利获得连续的事件触发。原因是移动端为了获得流畅的滚动效果与弹性效果，对于系统原生的滚动事件进行了限制，因此无法获得连续的滚动事件。</p>
-<p>为了在移动端上实现视差网页效果，需要手动模拟用户滚动的事件，这样才能连续获取事件触发。通常使用iscroll等帮助实现效果。</p>
-<p>在寻找相关滚动库的时候发现了一款小巧又好用的滚动js库 Jroll,大小仅仅只有13KB,比iscroll的lite版本还要小一半，而且能够完整实现需求。</p>
-<p>Git地址:<a target="_blank" rel="noopener" href="https://git.oschina.net/chenjianlong/JRoll2">https://git.oschina.net/chenjianlong/JRoll2</a></p>
-<p>官网:<a target="_blank" rel="noopener" href="http://www.chjtx.com/JRoll/">http://www.chjtx.com/JRoll/</a></p>
-<p>用法：</p>
-<p>引用<code>&lt;script src=&#39;jroll.js&#39;&gt;&lt;/script&gt;</code>后，在文档中定义好滚动对象与滚动容器，例如<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;wrapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;scroller&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><br>其中scroller为滚动对象，wrapper为滚动容器。需要注意的是滚动对象的高必须大于滚动容器的高才能顺利地进行滚动操作（废话）</p>
-<p>接着创建jroll对象，如下所示<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jroll = <span class="keyword">new</span> JRoll(<span class="string">&quot;#wrapper&quot;</span>, &#123;option&#125;);</span><br></pre></td></tr></table></figure><br>其中option为配置内容，具体使用方法见官网。</p>
-<p>另外，当在页面(滚动对象)中存在类似于动态加载与文本展开等情况的时候，在加载完毕与文本展开动画播放完毕的时候必须要使用jroll.refresh()对jroll对象进行刷新，不然jroll的高度不会发生改变从而使页面显示不全。</p>
-<p>在项目中，使用jroll完美地完成了视差滚动效果的实现，在ios设备上的webapp中滚动动画打到了40fps以上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jroll.on(<span class="string">&#x27;scroll&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//视差滚动计算</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
