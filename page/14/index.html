@@ -201,7 +201,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">166</span>
+          <span class="site-state-item-count">167</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -255,6 +255,79 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/05/30/mui%E4%B8%A4%E4%B8%AAwebview%E9%97%B4%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE-%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2016/05/30/mui%E4%B8%A4%E4%B8%AAwebview%E9%97%B4%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE-%E8%B0%83%E7%94%A8%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">mui两个webview间传输数据(调用函数)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2016-05-30 11:08:00" itemprop="dateCreated datePublished" datetime="2016-05-30T11:08:00+08:00">2016-05-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Front-End/" itemprop="url" rel="index"><span itemprop="name">Front End</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>传出值页面：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> todo_page= plus.webview.currentWebview().opener();<span class="comment">//父页面，也可以是别的webviewObject</span></span><br><span class="line">mui.fire(todo_page,<span class="string">&quot;id&quot;</span>,&#123;<span class="attr">id</span>:<span class="number">1</span>&#125;);</span><br></pre></td></tr></table></figure><br>收到值/执行函数页面<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&quot;price&quot;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event.detail.price);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><br>得到:1</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1037,79 +1110,6 @@
           <p>目标网站:<a target="_blank" rel="noopener" href="http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx">http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx</a> </p>
 <p>需要将所有数据爬下放到数据库中.中途遇到了各种编码问题,因此使用了requests获取页面.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf-8</span></span><br><span class="line"><span class="comment">#encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> MySQLdb</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pyq</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span>(<span class="params">text</span>):</span></span><br><span class="line">    m = hashlib.md5()</span><br><span class="line">    m.update(text.encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    <span class="keyword">return</span> m.hexdigest()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getandupload</span>():</span></span><br><span class="line">	conn=MySQLdb.connect(host=<span class="string">&#x27;localhost&#x27;</span>,user=<span class="string">&#x27;root&#x27;</span>,passwd=<span class="string">&#x27;&#x27;</span>,port=<span class="number">3306</span>,charset=<span class="string">&#x27;utf8&#x27;</span>)</span><br><span class="line">	cur=conn.cursor()</span><br><span class="line">	conn.select_db(<span class="string">&#x27;pytest&#x27;</span>)</span><br><span class="line">	ret=requests.get(url=<span class="string">&quot;http://jc.bjmemc.com.cn/IndexAirReport/AirDailyReport.aspx&quot;</span>) </span><br><span class="line">	doc=pyq(ret.text)</span><br><span class="line">	date = re.findall(<span class="string">r&#x27;(w*[0-9]+)w*&#x27;</span>,doc.find(<span class="string">&#x27;#Label0&#x27;</span>).text())</span><br><span class="line">	<span class="comment">#正则,将数字提取出来(为了将yyyy年mm月dd日改成yyyy/mm/dd)</span></span><br><span class="line">	date = date[<span class="number">0</span>]+<span class="string">&#x27;/&#x27;</span>+date[<span class="number">1</span>]+<span class="string">&#x27;/&#x27;</span>+date[<span class="number">2</span>]</span><br><span class="line">	table = pyq(pyq(doc.find(<span class="string">&#x27;#marqueebox&#x27;</span>)).find(<span class="string">&#x27;table&#x27;</span>))</span><br><span class="line">	stations = re.findall(<span class="string">r&#x27;&lt;td style=&quot;width:126px&quot;&gt;(.+?)&lt;/td&gt;&#x27;</span>,table.html())</span><br><span class="line">	aqis = re.findall(<span class="string">r&#x27;&lt;td style=&quot;width:90px&quot;&gt;(.+?)&lt;/td&gt;&#x27;</span>,table.html())</span><br><span class="line">	<span class="comment">#通过正则将html代码中需要的数据提取出来并存在数组中.</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">35</span>):</span><br><span class="line">		value=[md5(date+stations[i][<span class="number">1</span>:]),date,stations[i][<span class="number">1</span>:],aqis[<span class="number">2</span>*i]]</span><br><span class="line">		cur.execute(<span class="string">&#x27;insert ignore into aqi_bjmemc values(%s,%s,%s,%s)&#x27;</span>,value)</span><br><span class="line">	        <span class="comment">#设置了md5id为主键,因此当传重复数据的时候md5id重复,避免了重复上传数据.</span></span><br><span class="line">	conn.commit()</span><br><span class="line">	cur.close()</span><br><span class="line">	conn.close()</span><br><span class="line">getandupload()</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2016/04/27/python%E5%AF%B9%E4%BA%8E%E6%97%B6%E9%97%B4%EF%BC%88hh-mm%EF%BC%89%E8%BF%9B%E8%A1%8C%E5%BE%AA%E7%8E%AF%E9%80%92%E5%A2%9E/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2016/04/27/python%E5%AF%B9%E4%BA%8E%E6%97%B6%E9%97%B4%EF%BC%88hh-mm%EF%BC%89%E8%BF%9B%E8%A1%8C%E5%BE%AA%E7%8E%AF%E9%80%92%E5%A2%9E/" class="post-title-link" itemprop="url">python对于时间（hh:mm）进行循环递增</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2016-04-27 02:52:00" itemprop="dateCreated datePublished" datetime="2016-04-27T02:52:00+08:00">2016-04-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Back-End/" itemprop="url" rel="index"><span itemprop="name">Back End</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>某数据写入数据表时，其中一个字段是time，具体内容是从00:00一直到23:30。因此打算用python对csv文件进行逐行处理，新建time列，其中的数据按照半小时递增。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="comment">#对于时间进行处理需要引入time</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">importcsv</span>(<span class="params">filename,outfilename</span>):</span></span><br><span class="line">    print(filename)</span><br><span class="line">    filenamerow = filename.split(<span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">    filenamerow[<span class="number">2</span>] = filenamerow[<span class="number">2</span>][:-<span class="number">4</span>]</span><br><span class="line">    date = filenamerow[<span class="number">1</span>]</span><br><span class="line">    <span class="built_in">type</span> = filenamerow[<span class="number">2</span>]</span><br><span class="line">    lctime = <span class="number">1325347200.0</span></span><br><span class="line">    <span class="comment">#设定一个时间戳，对应的是某一天的00:00</span></span><br><span class="line">    g=file(<span class="built_in">type</span>+ <span class="string">&#x27;-&#x27;</span> +date+ <span class="string">&#x27;.csv&#x27;</span>,<span class="string">&#x27;w+&#x27;</span>)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        line = f.readline()</span><br><span class="line">        <span class="keyword">while</span> line:</span><br><span class="line">            line = line.replace(<span class="string">&#x27;n&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            line = line.replace(<span class="string">&#x27;r&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            line = line + <span class="string">&#x27;,,&#x27;</span></span><br><span class="line">            row = line.split(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">            row[<span class="number">2</span>] = row[<span class="number">0</span>]</span><br><span class="line">            x = time.localtime(lctime)</span><br><span class="line">            <span class="comment">#对时间戳进行处理,得到</span></span><br><span class="line">            <span class="comment">#time.struct_time(tm_year=2012, tm_mon=1, tm_mday=1, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=6, tm_yday=1, tm_isdst=0)</span></span><br><span class="line">            row[<span class="number">1</span>] = time.strftime(<span class="string">&#x27;%H:%M&#x27;</span>,x)</span><br><span class="line">            <span class="comment">#对以上的时间进行格式化并写入第二列。格式为HH:MM</span></span><br><span class="line">            row[<span class="number">0</span>] = date</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(row)-<span class="number">1</span>):</span><br><span class="line">                row[i] = row[i] + <span class="string">&#x27;,&#x27;</span></span><br><span class="line">            g.writelines(row)</span><br><span class="line">            g.writelines(<span class="string">&#x27;n&#x27;</span>)</span><br><span class="line">            lctime = lctime + <span class="number">1800.0</span></span><br><span class="line">            <span class="comment">#时间戳加上1800，相当于加上了1800s = 30min</span></span><br><span class="line">            line = f.readline()</span><br><span class="line">    g.close()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ListFiles</span>():</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(data_folder):</span><br><span class="line">        <span class="keyword">if</span> i.endswith(<span class="string">&#x27;.csv&#x27;</span>):</span><br><span class="line">            importcsv(i,i)</span><br></pre></td></tr></table></figure><br>python中时间戳都是以s为单位，且格式为<strong>浮点</strong></p>
 
       
     </div>

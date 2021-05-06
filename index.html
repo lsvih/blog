@@ -201,7 +201,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">166</span>
+          <span class="site-state-item-count">167</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -255,6 +255,85 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2021/05/06/nni-stuck-at-waiting-status/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lsvih">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My note">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/05/06/nni-stuck-at-waiting-status/" class="post-title-link" itemprop="url">NNI 在执行并行任务时卡死在 WAITING 状态</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-05-06 19:27:04" itemprop="dateCreated datePublished" datetime="2021-05-06T19:27:04+08:00">2021-05-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在使用 NNI 自动跑实验，过了几个小时去看了一眼状态，结果发现有任务一直处于 <code>WAITING</code> 状态（如图所示），而实际上服务器的 GPU 并非处于全部被占用的状态。</p>
+<p><img src="/images/16203006119866.jpg" alt=""></p>
+<p>经过查阅 issue 与查看源码，发现 nni 判定 <code>WAITING</code> 状态的任务在何时可以执行并将状态转变为 <code>RUNNING</code> 的条件是文件 <code>/tmp/&lt;user_name&gt;/nni/script/gpu_metrics</code> 中 <code>gpuInfos</code> 字段下各 GPU 的状态 <code>activeProcessNum</code>。由于服务器上有 GPU 实时监控软件在不断调用 <code>nvidia-smi</code> 程序，导致 nni 的检查 GPU 状态的程序一直卡在 <code>nvidia-smi</code> 处。</p>
+<p>而 nni 中专门有个脚本可以用来检测 GPU 使用情况并更新 <code>gpu_metrics</code> 文件：<code>/&lt;python_path&gt;/site-packages/nni/tools/gpu_tool/gpu_metrics_collector.py</code>。查看代码可以看到：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>(<span class="params">argv</span>):</span></span><br><span class="line">    metrics_output_dir = os.environ[<span class="string">&#x27;METRIC_OUTPUT_DIR&#x27;</span>]</span><br><span class="line"></span><br><span class="line">    cmd = <span class="string">&#x27;nvidia-smi -q -x&#x27;</span>.split()</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">True</span>):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            smi_output = subprocess.check_output(cmd)</span><br><span class="line">        <span class="keyword">except</span> Exception:</span><br><span class="line">            traceback.print_exc()</span><br><span class="line">            gen_empty_gpu_metric(metrics_output_dir)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        parse_nvidia_smi_result(smi_output, metrics_output_dir)</span><br><span class="line">        <span class="comment"># <span class="doctag">TODO:</span> change to sleep time configurable via arguments</span></span><br><span class="line">        time.sleep(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p>因此，将环境变量 <code>METRIC_OUTPUT_DIR</code> 设定在 <code>gpu_metrics</code> 所在的目录，即可自动生成最新的 GPU 状态。在我这儿卡住的服务器上 kill 掉无响应的 <code>nvidia-smi</code> 程序，执行 <code>METRIC_OUTPUT_DIR=/tmp/&lt;user_name&gt;/nni/script/ python3 -m nni.tools.gpu_tool.gpu_metrics_collector</code>，成功地让一直卡在 <code>WAITING</code> 状态的程序继续运行，状态转为 <code>RUNNING</code>。</p>
+<p>为了后续不被卡住，特意用了 <code>crontab</code> 定期执行一次杀掉 <code>nvidia-smi</code> 和执行 <code>gpu_metrics_collector</code> 的操作，一劳永逸。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1061,86 +1140,6 @@ MixPooling = \lambda MeanPooling + (1 - \lambda MaxPooling)</script><p>其中 $\
     
     <div class="post-body" itemprop="articleBody">
           <p><iframe src="https://lsvih.github.io/workshop/20-07-15/Enhancing%20Pre-trained%20Chinese%20Character%20Representation%20with%20Word-aligned%20Attention.html" scrolling="no" frameborder="0" align="" height="600px" width="100%"></iframe></p>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://lsvih.com/2020/06/05/fetch-all-git-remote-branch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="lsvih">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My note">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/06/05/fetch-all-git-remote-branch/" class="post-title-link" itemprop="url">获取 Git 全部远程分支</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2020-06-05 16:13:59" itemprop="dateCreated datePublished" datetime="2020-06-05T16:13:59+08:00">2020-06-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Note/" itemprop="url" rel="index"><span itemprop="name">Note</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>因为图省硬盘，直接用了 <code>--depth=1</code> 命令 clone，导致在本地追踪不到远程的分支，并且用 <code>git branch -a</code> 看不到远程分支，当然也不能 checkout 到 origin/remote 上去。<code>git fetch all</code>、<code>git fetch origin</code> 也都拿不到内容。</p>
-<p>因为有 slash 的内容和已经准备好的 commit，又不想重新去 clone，想起来 git 使用 fetch 时就是去找 <code>.git/config</code> 文件里的 remote origin 字段，因此直接改了这个文件的内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim .git/config</span><br></pre></td></tr></table></figure>
-<p>找到  </p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[remote <span class="string">&quot;origin&quot;</span>]</span><br><span class="line">        url = https:<span class="regexp">//gi</span>thub.com<span class="regexp">/xxx/</span>xxx</span><br><span class="line">        fetch = +refs<span class="regexp">/heads/m</span>aster:refs<span class="regexp">/remotes/</span>origin/master</span><br></pre></td></tr></table></figure>
-<p>果然 head 和 remote origin 都指向 master，把 master 改成 *：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[remote <span class="string">&quot;origin&quot;</span>]</span><br><span class="line">        url = https:<span class="regexp">//gi</span>thub.com<span class="regexp">/xxx/</span>xxx</span><br><span class="line">        fetch = +refs<span class="regexp">/heads/</span>*:refs<span class="regexp">/remotes/</span>origin/*</span><br></pre></td></tr></table></figure>
-<p>接着 <code>git fetch --all</code>，就拿到了全部的分支，现在就可以直接去 checkout 了~</p>
-
       
     </div>
 
